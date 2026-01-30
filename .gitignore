@@ -1,0 +1,14 @@
+.env
+extracted
+env
+envwebvoyager
+envwebvoyager_fullstack
+envwebvoyager_fullstack_browseruse
+node_modules
+
+__pycache__
+downloads
+wandb
+
+outputs
+gather_statistics
