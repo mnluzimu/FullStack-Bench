@@ -1,0 +1,338 @@
+[
+    {
+        "requirement_tested": "Display a map interface for visualizing neighborhood data",
+        "user_persona": "A city planner exploring different neighborhoods for development opportunities.",
+        "user_goal": "To visualize neighborhood boundaries and data points on an interactive map.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Map Interface",
+                "description": "Alex opens the application and sees the full-screen map interface with a toolbar at the top. The background is ivory, and the UI controls are forest green.",
+                "action": "Land on the main dashboard page.",
+                "expected_outcome": "The map loads with neighborhood boundaries displayed and a toolbar containing search, filter, and export icons."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Neighborhood Boundaries",
+                "description": "Alex clicks on a neighborhood boundary to select it. He notices the boundary highlights and a tooltip appears with basic information.",
+                "action": "Click on a neighborhood boundary.",
+                "expected_outcome": "The neighborhood is selected, and a tooltip shows its name and selected metric value."
+            },
+            {
+                "step": 3,
+                "title": "Navigating the Map",
+                "description": "Alex scrolls the mouse wheel to zoom in on the selected neighborhood to get a closer look at local features.",
+                "action": "Scroll on the map.",
+                "expected_outcome": "The map zooms in or out depending on scroll direction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to select and compare multiple neighborhoods",
+        "user_persona": "A researcher analyzing data across several areas for academic study.",
+        "user_goal": "To select and compare data from multiple neighborhoods simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting First Neighborhood",
+                "description": "Jamie clicks on the first neighborhood on the map to begin comparison. The neighborhood appears in the selection bar below the map.",
+                "action": "Click on a neighborhood on the map.",
+                "expected_outcome": "The neighborhood name appears in the horizontal selection bar at the bottom of the map."
+            },
+            {
+                "step": 2,
+                "title": "Adding More Neighborhoods",
+                "description": "Jamie clicks on a second neighborhood to add it to the comparison. Now two neighborhoods are shown in the bar.",
+                "action": "Click on a second neighborhood on the map.",
+                "expected_outcome": "The second neighborhood is added to the selection bar alongside the first."
+            },
+            {
+                "step": 3,
+                "title": "Removing a Selected Neighborhood",
+                "description": "Jamie decides to remove one of the neighborhoods from the comparison. She clicks the remove button next to it.",
+                "action": "Click the remove button next to a neighborhood in the selection bar.",
+                "expected_outcome": "The selected neighborhood is removed from the comparison and disappears from the selection bar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show demographic data for selected neighborhoods",
+        "user_persona": "A community organizer reviewing population and income details for planning services.",
+        "user_goal": "To view demographic data including population, age distribution, and household income for selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Demographic Cards",
+                "description": "Sam selects two neighborhoods on the map. Below the map, he sees demographic cards showing population and income data for each.",
+                "action": "Select two neighborhoods on the map.",
+                "expected_outcome": "Demographic cards appear below the map, each representing a selected neighborhood with population and income statistics."
+            },
+            {
+                "step": 2,
+                "title": "Opening Detailed View",
+                "description": "Sam clicks on one of the demographic cards to see a detailed breakdown of age groups and income levels.",
+                "action": "Click on a demographic card.",
+                "expected_outcome": "A modal opens displaying a detailed breakdown of age distribution and income levels for that neighborhood."
+            },
+            {
+                "step": 3,
+                "title": "Interacting with Charts",
+                "description": "Sam hovers over the chart in the demographic card to highlight corresponding data points.",
+                "action": "Hover over chart elements in a demographic card.",
+                "expected_outcome": "Corresponding data points are highlighted on the chart."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show economic data for selected neighborhoods",
+        "user_persona": "An economist evaluating employment and income trends across regions.",
+        "user_goal": "To view economic data including employment rates and median household income for selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Economic Metrics",
+                "description": "Taylor selects a neighborhood and views the economic data section which includes a summary table and a chart.",
+                "action": "Select a neighborhood on the map.",
+                "expected_outcome": "The economic data section appears below the demographic cards, showing a summary table and a chart."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Metric Details",
+                "description": "Taylor clicks on an economic metric card to see a detailed breakdown of industries and income sources.",
+                "action": "Click on an economic metric card.",
+                "expected_outcome": "Expanded details about industries and income sources are displayed for that neighborhood."
+            },
+            {
+                "step": 3,
+                "title": "Analyzing Chart Data",
+                "description": "Taylor hovers over the chart to see tooltips with precise values for employment and income metrics.",
+                "action": "Hover over chart lines or bars in the economic data section.",
+                "expected_outcome": "Tooltips appear with exact values for the hovered elements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show crime data for selected neighborhoods",
+        "user_persona": "A police analyst examining crime patterns in different areas.",
+        "user_goal": "To view crime data including incident types and frequency for selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Crime Statistics",
+                "description": "Jordan selects a neighborhood and views the crime data panel showing heatmap and bar chart representations.",
+                "action": "Select a neighborhood on the map.",
+                "expected_outcome": "Crime statistics appear in a separate panel with visual representations using heatmaps and bar charts."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Incident Type",
+                "description": "Jordan clicks on a specific crime category to filter the map and charts to show only that type of incident.",
+                "action": "Click on a crime category in the crime data panel.",
+                "expected_outcome": "The map and charts update to show only incidents of the selected type."
+            },
+            {
+                "step": 3,
+                "title": "Examining Crime Clusters",
+                "description": "Jordan hovers over a crime cluster on the map to see a popup with details about incidents in that zone.",
+                "action": "Hover over a crime cluster on the map.",
+                "expected_outcome": "A popup appears with details about the incidents in that particular zone."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide interactive charts for visualizing demographic, economic, and crime data",
+        "user_persona": "A data scientist creating visual reports for stakeholders.",
+        "user_goal": "To interact with charts that visualize demographic, economic, and crime data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Rearranging Chart Components",
+                "description": "Morgan drags a chart component to a new position within the dashboard to customize the layout.",
+                "action": "Drag and drop a chart component.",
+                "expected_outcome": "The chart moves to the new position and the layout updates in real-time."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Chart Series Visibility",
+                "description": "Morgan clicks on a legend item in one of the charts to hide or show specific data series.",
+                "action": "Click on a legend item in a chart.",
+                "expected_outcome": "The visibility of the corresponding chart series toggles between visible and hidden."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable customization of dashboard layouts with draggable components",
+        "user_persona": "A business user tailoring the dashboard to focus on relevant metrics.",
+        "user_goal": "To customize the dashboard layout by moving and resizing panels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Moving Dashboard Panels",
+                "description": "Casey drags a panel containing demographic data to a preferred location on the dashboard.",
+                "action": "Drag a panel to a new position.",
+                "expected_outcome": "The panel moves to the new position and the layout is updated instantly."
+            },
+            {
+                "step": 2,
+                "title": "Maximizing Panel View",
+                "description": "Casey clicks the maximize icon on an economic data panel to expand it for better viewing.",
+                "action": "Click the maximize/minimize icon on a panel.",
+                "expected_outcome": "The panel expands to fill more space or returns to its original size."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support real-time data fetching from backend APIs",
+        "user_persona": "A public policy analyst needing up-to-date neighborhood data.",
+        "user_goal": "To ensure the latest neighborhood data is displayed by refreshing from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Data Refresh",
+                "description": "Lena clicks the refresh button to manually initiate a new data fetch from the backend API.",
+                "action": "Click the refresh button.",
+                "expected_outcome": "A loading spinner appears, indicating ongoing data request, and the data updates."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Data Status",
+                "description": "Lena hovers over the loading spinner to confirm the status of the data fetch.",
+                "action": "Hover over the loading spinner.",
+                "expected_outcome": "A tooltip appears showing the current data status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a clean UI with ivory background and forest green accents",
+        "user_persona": "A general user browsing the application for neighborhood insights.",
+        "user_goal": "To experience a consistent and visually appealing interface with the specified color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Experiencing the Visual Design",
+                "description": "Zoe navigates to the main dashboard and observes that the background is ivory with forest green accents on all interactive elements.",
+                "action": "Navigate to the main dashboard page.",
+                "expected_outcome": "The entire interface follows the design guidelines with ivory background and forest green UI elements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to filter data by time range or specific metrics",
+        "user_persona": "A market researcher analyzing trends over time.",
+        "user_goal": "To filter displayed data by time range or specific metrics.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Time Range Filter",
+                "description": "Pat selects 'Last Year' from the time range dropdown to apply the filter to all charts and tables.",
+                "action": "Select a time range from the dropdown menu.",
+                "expected_outcome": "All charts and tables update to display data filtered by the selected time range."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Metric Visibility",
+                "description": "Pat toggles the 'Employment Rate' checkbox to hide it from the charts and tables.",
+                "action": "Toggle a metric checkbox.",
+                "expected_outcome": "The selected metric is hidden from the charts and tables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable export functionality for dashboard data and charts",
+        "user_persona": "A data reporter preparing a summary document.",
+        "user_goal": "To export dashboard data and charts into downloadable formats.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Export Process",
+                "description": "Riley clicks the export button in the top-right corner to start the export process.",
+                "action": "Click the export button.",
+                "expected_outcome": "A dialog box opens asking to choose the export format (PDF or CSV)."
+            },
+            {
+                "step": 2,
+                "title": "Downloading Exported File",
+                "description": "Riley chooses PDF format and clicks to download the generated file.",
+                "action": "Choose PDF format and click download.",
+                "expected_outcome": "A PDF file containing the current dashboard data and visualizations is downloaded."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide user authentication and session management",
+        "user_persona": "A registered user accessing personalized dashboard features.",
+        "user_goal": "To log in and access personalized dashboard settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Samantha enters her credentials on the login screen and clicks the login button.",
+                "action": "Click the login button with valid credentials.",
+                "expected_outcome": "She is authenticated and redirected to the dashboard with her profile icon visible."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out",
+                "description": "Samantha clicks the logout link to end her session.",
+                "action": "Click the logout link.",
+                "expected_outcome": "Her session ends and she is redirected back to the login screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include search functionality to find specific neighborhoods",
+        "user_persona": "A local resident looking for a specific area.",
+        "user_goal": "To quickly locate a neighborhood by name or address.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for a Neighborhood",
+                "description": "Morgan types 'Downtown' into the search bar and sees live suggestions.",
+                "action": "Type in the search bar.",
+                "expected_outcome": "Live suggestions appear based on matching neighborhood names."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Suggestion",
+                "description": "Morgan clicks on the suggested 'Downtown' neighborhood to center the map and select it for comparison.",
+                "action": "Click on a search suggestion.",
+                "expected_outcome": "The map centers on the selected neighborhood and it is added to the comparison."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure responsive design for desktop and mobile devices",
+        "user_persona": "A mobile user accessing the app on a smartphone.",
+        "user_goal": "To navigate the application smoothly on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating on Mobile",
+                "description": "Taylor accesses the application on a mobile device and swipes left to navigate between tabs.",
+                "action": "Swipe left on the mobile screen.",
+                "expected_outcome": "Navigation between tabs or datasets occurs smoothly."
+            },
+            {
+                "step": 2,
+                "title": "Zooming on Touchscreen",
+                "description": "Taylor pinches the map to zoom in and out on the touchscreen.",
+                "action": "Pinch the map on the touchscreen.",
+                "expected_outcome": "The map zooms in or out according to the pinch gesture."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate PostgreSQL database with environment variables for connection",
+        "user_persona": "A system administrator verifying database connectivity.",
+        "user_goal": "To confirm that the application connects securely to the PostgreSQL database using defined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "The system checks if the application connects to the PostgreSQL instance using the environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "action": "Start the backend service.",
+                "expected_outcome": "The backend successfully connects to the PostgreSQL database using the specified environment variables."
+            }
+        ]
+    }
+]

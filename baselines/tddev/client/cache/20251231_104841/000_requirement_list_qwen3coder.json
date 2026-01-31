@@ -1,0 +1,273 @@
+[
+    {
+        "resource_dependency": {
+            "contestDataAPI": "GET /api/contests - returns list of contests with id, title, description, date, location, status",
+            "contestDetailAPI": "GET /api/contests/{id} - returns full contest details including schedule and media",
+            "registerForContestAPI": "POST /api/registrations - accepts user_id and contest_id",
+            "authAPI": "POST /api/auth/login, POST /api/auth/register",
+            "searchAPI": "GET /api/contests/search?q={query}&dateFrom={date}&dateTo={date}&location={location}",
+            "realTimeStatusAPI": "WebSocket connection to /ws/contests for live status updates"
+        },
+        "function": "A frontend application that fetches all dynamic data via backend APIs",
+        "static_description": "Main application layout with header navigation bar in teal color, mint cream background, footer, and content areas for different sections. All data displayed in tables, cards, and lists is fetched dynamically from backend APIs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigation links trigger API calls to load respective page content dynamically without full page reload."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scrolling on contest lists triggers additional API calls to load more contest data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnection": "PostgreSQL database connection using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "contestSchema": "CREATE TABLE contests (id SERIAL PRIMARY KEY, title VARCHAR(255), description TEXT, date TIMESTAMP, location VARCHAR(255), status VARCHAR(50));",
+            "registrationSchema": "CREATE TABLE registrations (id SERIAL PRIMARY KEY, user_id INTEGER, contest_id INTEGER, registration_date TIMESTAMP);",
+            "userSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(100), email VARCHAR(255), password_hash VARCHAR(255));",
+            "resultSchema": "CREATE TABLE results (id SERIAL PRIMARY KEY, contest_id INTEGER, participant_name VARCHAR(255), score DECIMAL, ranking INTEGER);",
+            "photoSchema": "CREATE TABLE photos (id SERIAL PRIMARY KEY, contest_id INTEGER, url VARCHAR(500), caption TEXT, upload_date TIMESTAMP);"
+        },
+        "function": "A backend API layer connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend server configured to connect to PostgreSQL database using provided environment variables. Exposes RESTful endpoints for contest data, user management, registrations, results, and photos. Includes WebSocket endpoint for real-time updates.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "createContestAPI": "POST /api/admin/contests - accepts title, description, date, location",
+            "adminAuthRequirement": "Bearer token authentication required for admin endpoints",
+            "contestFormFields": [
+                "title",
+                "description",
+                "date",
+                "location"
+            ]
+        },
+        "function": "Contest announcement posting functionality with title, description, date, and location fields",
+        "static_description": "Admin dashboard form with input fields for contest title (text input), description (textarea), date (datetime picker), and location (text input). Submit button styled in teal. Form validation messages displayed below each field when applicable.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button sends POST request to create contest API with form data. Shows success message or error feedback based on response."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "In title or location fields, pressing Enter submits the form if all required fields are filled."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resultsDataAPI": "GET /api/results/{contest_id} - returns array of participants with names, scores, and rankings",
+            "rankingDisplayLogic": "Sort results by score descending, assign rankings accordingly"
+        },
+        "function": "Contest results display section showing participant names, scores, and rankings",
+        "static_description": "Results table with teal header row showing columns: Rank, Participant Name, Score. Table body populated with participant data. Mint cream background with teal borders around table cells. Responsive design stacks columns vertically on mobile.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Sorting arrows in column headers re-sort the table data by that column (ascending/descending toggle)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "photoGalleryAPI": "GET /api/photos/{contest_id} - returns array of photo objects with url, caption, upload_date",
+            "photoUploadAPI": "POST /api/admin/photos - accepts image file, caption, contest_id",
+            "photoStorageService": "Cloud storage service for hosting uploaded images"
+        },
+        "function": "Photo gallery section for showcasing contest photos with captions and upload dates",
+        "static_description": "Grid layout of photo thumbnails with mint cream spacing between items. Each photo card shows image, caption below, and upload date in small text. Teal border around each photo card. Pagination controls at bottom.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a photo thumbnail opens modal with larger image view, full caption, and upload date. Navigation arrows allow viewing other photos in gallery."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Photo cards show subtle teal shadow effect and slight scale-up animation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "registrationFormAPI": "POST /api/registrations - accepts user details and contest_id",
+            "userValidationAPI": "GET /api/users/check?email={email} - checks if user already exists",
+            "formFields": [
+                "name",
+                "email",
+                "phone",
+                "emergency_contact"
+            ]
+        },
+        "function": "User registration form for signing up to participate in contests",
+        "static_description": "Registration form with input fields for name (text), email (email), phone (tel), and emergency contact (text). Teal submit button labeled 'Register'. Form has mint cream background with teal border. Terms and conditions checkbox required for submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button validates all fields, checks for existing user, then posts registration data. Shows confirmation message or validation errors."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in any form field moves focus to next field, or submits if last field and all validations pass."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "browseContestsAPI": "GET /api/contests?type={upcoming|past}&filter={keyword} - returns filtered contest list",
+            "filterOptions": [
+                "Upcoming",
+                "Past",
+                "All Dates",
+                "Location"
+            ],
+            "contestCardComponent": "Reusable component showing contest title, date, location, and status badge"
+        },
+        "function": "Contest browsing page listing all upcoming and past contests with filtering options",
+        "static_description": "Page with filter sidebar on left (teal headings) containing dropdowns for date range and location, radio buttons for contest type. Main content area shows grid of contest cards with mint cream background. Each card displays title in bold, date, location, and colored status badge (Upcoming/Ongoing/Closed).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Filter options trigger API call to refresh contest list. Clicking contest card navigates to contest detail page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Contest cards show teal highlight border and subtle shadow effect."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contestDetailAPI": "GET /api/contests/{id} - returns complete contest details including schedule and media",
+            "relatedMediaAPI": "GET /api/contests/{id}/media - returns photos and videos related to contest",
+            "scheduleSchema": "Array of schedule items with time, activity, and description"
+        },
+        "function": "Individual contest detail pages with full descriptions, schedules, and related media",
+        "static_description": "Detailed page layout with contest title in large teal heading, followed by description paragraph, date and location info in info boxes. Schedule section shows timeline view with activities. Media section displays photo gallery. Registration button prominently displayed in teal. Mint cream background throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Registration button opens registration form modal. Media items open in lightbox viewer. Schedule items can be expanded to show detailed descriptions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": {
+                "primaryBackground": "mint cream (#F5FFFA)",
+                "primaryAccent": "teal (#008080)",
+                "secondaryElements": "dark teal (#006666)"
+            },
+            "responsiveBreakpoints": "Mobile (<768px), Tablet (768px-1024px), Desktop (>1024px)"
+        },
+        "function": "Responsive web design with mint cream background and teal-colored UI elements",
+        "static_description": "Website with mint cream background applied to all pages. All buttons, headers, and interactive elements styled in various shades of teal. Layout adjusts based on screen size with mobile-first approach. Navigation transforms from hamburger menu on mobile to horizontal bar on desktop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout breakpoints adjust element sizes, spacing, and arrangement. Mobile menu toggles visibility. Grid layouts change column counts based on available width."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authAPI": "POST /api/auth/login, POST /api/auth/register, GET /api/auth/profile",
+            "sessionManagement": "JWT-based session handling with secure HTTP-only cookies",
+            "userDashboardAPI": "GET /api/user/dashboard - returns user's registered contests and profile info"
+        },
+        "function": "Authentication system for users to manage their contest registrations",
+        "static_description": "Login/register modal forms with teal buttons and mint cream backgrounds. User dashboard showing profile information and list of registered contests. Navigation bar shows user avatar and logout option when authenticated.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Login/Register buttons submit credentials and store JWT token. Logout button clears session and redirects to home. Dashboard refreshes user-specific contest list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminDashboardAPI": "GET /api/admin/dashboard - returns admin statistics and recent activities",
+            "contentManagementAPI": "CRUD endpoints for contests (/api/admin/contests), results (/api/admin/results), photos (/api/admin/photos)",
+            "adminSidebarNavigation": [
+                "Dashboard",
+                "Contests",
+                "Registrations",
+                "Results",
+                "Photos",
+                "Users"
+            ]
+        },
+        "function": "Admin dashboard for managing contest content, results, and photo submissions",
+        "static_description": "Full-screen admin interface with teal sidebar navigation and mint cream main content area. Dashboard shows statistics cards with contest counts, registration numbers, and recent activities. Content management sections provide forms and tables for editing data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Sidebar navigation loads respective management sections. Action buttons (Edit/Delete/Add) trigger corresponding API calls. Form submissions update backend data and refresh views."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPI": "GET /api/contests/search?q={query}&dateFrom={date}&dateTo={date}&location={location}",
+            "searchFormFields": [
+                "keyword",
+                "startDate",
+                "endDate",
+                "location"
+            ],
+            "searchResultsComponent": "Reusable component to display search results matching filters"
+        },
+        "function": "Search functionality to find contests by keyword, date range, or location",
+        "static_description": "Search bar in header with keyword input field and advanced search toggle. Advanced search panel reveals additional fields for date range (two date pickers) and location dropdown. Search button in teal. Results page shows matching contests in card grid layout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Search button triggers API call with all filled parameters. Advanced search toggle animates panel visibility. Clear button resets all search fields."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in keyword field initiates search with current parameters."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeStatusAPI": "WebSocket connection to /ws/contests for live status updates",
+            "statusIndicators": [
+                "Open",
+                "Closed",
+                "Ongoing"
+            ],
+            "websocketMessageFormat": "{contest_id: integer, status: string, timestamp: datetime}"
+        },
+        "function": "Real-time contest status updates indicating if contests are open, closed, or ongoing",
+        "static_description": "Status badges on contest cards and detail pages showing current state (Open/Closed/Ongoing) with colored indicators. WebSocket connection established on page load to receive live updates. Status changes automatically reflected without page refresh.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Message",
+                "description": "Incoming WebSocket messages update corresponding contest status badges in real-time. Visual notification appears when status of currently viewed contest changes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{\"scripts\": {\"install:all\": \"npm run install:frontend && npm run install:backend\", \"install:frontend\": \"cd frontend && npm install\", \"install:backend\": \"cd backend && npm install\"}}",
+            "directoryStructure": "Root directory with frontend/ and backend/ subdirectories, each containing their own package.json"
+        },
+        "function": "Package.json configuration enabling `npm run install:all` for combined dependency installation",
+        "static_description": "Root package.json file with scripts section defining install:all command that runs installation in both frontend and backend directories. Commands reference separate package.json files in respective subdirectories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentScriptConfig": "{\"scripts\": {\"dev\": \"concurrently \\\"npm run dev:frontend\\\" \\\"npm run dev:backend\\\"\", \"dev:frontend\": \"cd frontend && npm run dev\", \"dev:backend\": \"cd backend && npm run dev\"}}",
+            "concurrentlyDependency": "concurrently package added to root devDependencies"
+        },
+        "function": "Concurrent development server startup using `npm run dev` for both frontend and backend",
+        "static_description": "Root package.json scripts section with dev command that uses concurrently package to start both frontend and backend development servers simultaneously. Output from both processes displayed in terminal with color-coded prefixes.",
+        "interaction_and_states": []
+    }
+]

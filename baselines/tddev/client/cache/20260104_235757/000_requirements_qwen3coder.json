@@ -1,0 +1,17 @@
+[
+    "A frontend that fetches all dynamic data from backend APIs",
+    "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+    "User registration functionality with account creation and validation",
+    "User login functionality with authentication and session management",
+    "Search functionality for bus and railway tickets with filters for date, time, origin, and destination",
+    "Real-time display of seat availability and pricing for selected routes",
+    "Secure payment processing integration for ticket purchases",
+    "Booking confirmation system that sends notifications via email or SMS",
+    "User dashboard displaying booking history and past transactions",
+    "Ticket printing functionality for confirmed bookings",
+    "Responsive design that adapts to both mobile and desktop devices",
+    "All page backgrounds configured with snow theme",
+    "All UI components styled with dim gray color scheme",
+    "Repository package.json configured with npm run install:all to install both frontend and backend dependencies",
+    "Repository package.json configured with npm run dev to start both frontend and backend concurrently"
+]

@@ -1,0 +1,338 @@
+[
+    {
+        "requirement_tested": "Display a list of property listings on the homepage",
+        "user_persona": "A potential homebuyer browsing available properties.",
+        "user_goal": "To view multiple property listings on the homepage in a visually appealing grid format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Sarah opens the real estate website and expects to see property listings immediately.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "A grid of property cards is displayed with thumbnails, titles, prices, and locations. The background is alice blue and all card elements are styled with steel blue."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Property Card",
+                "description": "Sarah sees an interesting property and clicks on its card to learn more.",
+                "action": "Click on a property card.",
+                "expected_outcome": "The page navigates to the property detail page without a full page reload (SPA navigation)."
+            },
+            {
+                "step": 3,
+                "title": "Scrolling for More Listings",
+                "description": "After viewing some properties, Sarah scrolls down to see more listings.",
+                "action": "Scroll to the bottom of the property listing grid.",
+                "expected_outcome": "Additional property listings load automatically through infinite scroll functionality."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show detailed property information on individual property pages",
+        "user_persona": "A serious buyer wanting to know everything about a specific property.",
+        "user_goal": "To view comprehensive details of a selected property including images, specifications, and nearby places.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Property Details",
+                "description": "John clicks on a property card from the homepage to see its full details.",
+                "action": "Click on a property listing card.",
+                "expected_outcome": "John is taken to a detailed property page showing large images in a carousel, price, location, specs, description, and nearby places. Background is alice blue with steel blue text."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Through Images",
+                "description": "John wants to see more photos of the property and interacts with the image carousel.",
+                "action": "Click on the next arrow in the image carousel.",
+                "expected_outcome": "The displayed image changes to the next one in the sequence."
+            },
+            {
+                "step": 3,
+                "title": "Exploring Nearby Places",
+                "description": "John hovers over map markers to understand what's close to the property.",
+                "action": "Hover over a marker representing a nearby place.",
+                "expected_outcome": "A tooltip appears showing the name of the place and its distance from the property."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a search bar for users to search properties by keywords",
+        "user_persona": "A user looking for properties matching specific criteria quickly.",
+        "user_goal": "To find properties using keyword searches like 'downtown apartment'.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Search Bar",
+                "description": "Emily notices a search bar at the top of the homepage and decides to use it.",
+                "action": "Identify the search bar with magnifying glass icon.",
+                "expected_outcome": "A prominent search bar is visible with placeholder text 'Search properties...' and steel blue border against alice blue background."
+            },
+            {
+                "step": 2,
+                "title": "Entering Keywords",
+                "description": "Emily types 'luxury downtown condo' into the search field.",
+                "action": "Type 'luxury downtown condo' into the search input field.",
+                "expected_outcome": "Text appears in the search box as she types."
+            },
+            {
+                "step": 3,
+                "title": "Initiating Search",
+                "description": "Emily presses Enter to submit her search query.",
+                "action": "Press Enter key after entering the search term.",
+                "expected_outcome": "Property listings update to show only those matching the keywords in title, description, or location."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide filter options for users to refine property searches",
+        "user_persona": "A meticulous buyer who has very specific housing preferences.",
+        "user_goal": "To narrow down property choices using various filters such as price range and number of bedrooms.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Filter Panel",
+                "description": "Michael looks for ways to refine his search and finds the filter sidebar.",
+                "action": "Click on the filter toggle/control to reveal the filter panel.",
+                "expected_outcome": "A collapsible sidebar filter panel opens, showing categories like Price Range, Location, Property Type, Bedrooms, and Bathrooms, styled with steel blue and alice blue."
+            },
+            {
+                "step": 2,
+                "title": "Setting Price Range",
+                "description": "Michael adjusts the price slider to match his budget.",
+                "action": "Drag the price range slider handles to set minimum and maximum values.",
+                "expected_outcome": "Min/max price values update in real-time as he drags the slider."
+            },
+            {
+                "step": 3,
+                "title": "Applying Filters",
+                "description": "After selecting several filters, Michael applies them to update the property list.",
+                "action": "Click the 'Apply Filters' button.",
+                "expected_outcome": "The property listings update to reflect only those matching all applied filter conditions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fetch all property data dynamically from backend APIs",
+        "user_persona": "A developer testing if the frontend properly retrieves live data.",
+        "user_goal": "To ensure that all property information comes from dynamic API calls rather than hardcoded content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Property Listings",
+                "description": "When the app starts, it should fetch property listings from the backend.",
+                "action": "Load the homepage which mounts the property listing component.",
+                "expected_outcome": "An API call is made to /api/properties endpoint and the returned data populates the property grid."
+            },
+            {
+                "step": 2,
+                "title": "Updating After Filtering",
+                "description": "Changing filter settings should trigger new data fetching.",
+                "action": "Select a bedroom count filter and apply it.",
+                "expected_outcome": "Another API request is sent with updated filter parameters and the UI reflects the filtered results."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect backend to external PostgreSQL database using provided environment variables",
+        "user_persona": "A DevOps engineer verifying backend database connectivity.",
+        "user_goal": "To confirm that the backend service connects correctly to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "The backend application initializes and attempts to connect to the database.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "The backend successfully establishes a connection to the PostgreSQL database using DB_HOST=localhost, DB_PORT=5432, etc."
+            },
+            {
+                "step": 2,
+                "title": "Executing Database Query",
+                "description": "An API endpoint is hit which requires querying the database.",
+                "action": "Make a GET request to /api/properties.",
+                "expected_outcome": "The backend queries the connected PostgreSQL database and returns property records stored in the 'properties' table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up frontend to consume data via RESTful API endpoints",
+        "user_persona": "A frontend developer ensuring proper communication between client and server.",
+        "user_goal": "To verify that the frontend makes correct RESTful API requests to retrieve property data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initializing HTTP Client",
+                "description": "Frontend components initialize with preconfigured API client.",
+                "action": "Mount a component that needs property data.",
+                "expected_outcome": "Axios or Fetch client is initialized with base URL pointing to the backend server."
+            },
+            {
+                "step": 2,
+                "title": "Making Data Requests",
+                "description": "UI interaction triggers a data fetch operation.",
+                "action": "Trigger a property listing load event.",
+                "expected_outcome": "HTTP GET request is made to /api/properties endpoint and receives a successful JSON response with property data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support browsing property listings without page reloads where applicable",
+        "user_persona": "A fast-browsing user navigating between property listings and details.",
+        "user_goal": "To seamlessly move between property summaries and full details without experiencing full page reloads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Listings",
+                "description": "Emma clicks on different property cards to compare them.",
+                "action": "Click on multiple property cards consecutively.",
+                "expected_outcome": "Each click navigates to the respective property detail page using SPA routing without full page reloads."
+            },
+            {
+                "step": 2,
+                "title": "Using Browser Navigation",
+                "description": "Emma uses the browser back button to revisit previous pages.",
+                "action": "Click the browser back button after visiting a few property detail pages.",
+                "expected_outcome": "Navigation occurs between previously viewed pages without triggering full page reloads."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to click on a property listing to view its full details",
+        "user_persona": "A curious user wanting quick access to detailed property info.",
+        "user_goal": "To access detailed property information by clicking on any property listing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Clicking Property Listing",
+                "description": "David sees a property he likes and wants to get more information.",
+                "action": "Click anywhere on a property listing card.",
+                "expected_outcome": "He is redirected to the property detail page identified by the unique property ID in the URL."
+            },
+            {
+                "step": 2,
+                "title": "Opening in New Tab",
+                "description": "David prefers to keep the current page open while checking out another property.",
+                "action": "Right-click on a property listing card and choose 'Open link in new tab'.",
+                "expected_outcome": "The property detail page opens in a new browser tab or window."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable filtering properties by attributes such as price, location, or type",
+        "user_persona": "A selective renter needing precise property matches.",
+        "user_goal": "To filter property listings based on specific attributes like price range and location.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adjusting Filter Controls",
+                "description": "Lisa modifies several filter controls to match her needs.",
+                "action": "Change the location dropdown selection and adjust bedroom radio buttons.",
+                "expected_outcome": "Selected filter values update accordingly in the UI."
+            },
+            {
+                "step": 2,
+                "title": "Real-Time Filtering",
+                "description": "As Lisa changes filters, she expects immediate updates.",
+                "action": "Modify any active filter control.",
+                "expected_outcome": "New API requests are triggered with updated filter parameters, refreshing the displayed listings instantly."
+            },
+            {
+                "step": 3,
+                "title": "Resetting Filters",
+                "description": "Lisa wants to start fresh with no filters applied.",
+                "action": "Click the 'Reset Filters' button.",
+                "expected_outcome": "All filter selections are cleared and the original unfiltered property list is shown again."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure consistent styling with alice blue background and steel blue elements",
+        "user_persona": "A designer reviewing visual consistency across the site.",
+        "user_goal": "To verify that the entire website maintains a uniform color scheme throughout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Overall Design",
+                "description": "Alex inspects the general look of the homepage.",
+                "action": "View the homepage layout and primary interactive elements.",
+                "expected_outcome": "Background is consistently alice blue (#F0F8FF) and interactive elements, borders, and headings are styled in steel blue (#4682B4)."
+            },
+            {
+                "step": 2,
+                "title": "Testing Interactive States",
+                "description": "Alex tests how interactive elements respond to user actions.",
+                "action": "Hover over buttons and focus on form inputs.",
+                "expected_outcome": "Elements slightly change shade on hover but retain their steel blue base color; focused elements maintain steel blue styling with clear focus indicators."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json to support `npm run install:all` for both frontend and backend",
+        "user_persona": "A team member setting up the project locally for the first time.",
+        "user_goal": "To install dependencies for both frontend and backend parts of the application using a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Command",
+                "description": "Jamie clones the repository and runs the combined install script.",
+                "action": "Execute `npm run install:all` in the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed sequentially without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json to support `npm run dev` to start both frontend and backend concurrently",
+        "user_persona": "A developer starting up the local development environment.",
+        "user_goal": "To launch both frontend and backend development servers with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Taylor wants to begin working on the project and starts the dev environment.",
+                "action": "Run `npm run dev` from the root folder.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently, displaying logs from each in the same terminal session."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive design for usability across devices",
+        "user_persona": "A mobile user accessing the site on a smartphone.",
+        "user_goal": "To navigate and interact with the website smoothly regardless of device screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Viewport",
+                "description": "Patricia resizes her browser window to simulate smaller screens.",
+                "action": "Manually resize the browser window to mobile dimensions.",
+                "expected_outcome": "Layout adjusts automatically, reorganizing elements for optimal viewing on smaller screens—grid becomes single column, filter sidebar turns into a collapsible drawer."
+            },
+            {
+                "step": 2,
+                "title": "Interacting on Mobile",
+                "description": "Patricia taps on touch targets designed for finger interaction.",
+                "action": "Tap on property cards and filter controls using touchscreen.",
+                "expected_outcome": "Controls respond appropriately with adequate spacing and sizing suitable for touch interaction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include error handling for failed API requests or missing data",
+        "user_persona": "An end-user encountering network issues during usage.",
+        "user_goal": "To receive informative feedback when something goes wrong with data retrieval.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Simulating API Failure",
+                "description": "Network issue causes an API call to fail unexpectedly.",
+                "action": "Trigger a property listing fetch when backend is unreachable.",
+                "expected_outcome": "Instead of broken UI, a clear error message is displayed along with a retry option."
+            },
+            {
+                "step": 2,
+                "title": "Handling Missing Data",
+                "description": "Some property entries may lack required information.",
+                "action": "Receive a property record with missing essential fields.",
+                "expected_outcome": "Placeholders or notifications appear in sections where data is missing, preventing blank or malformed display areas."
+            }
+        ]
+    }
+]

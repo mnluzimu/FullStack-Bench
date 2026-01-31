@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement a risk assessment website for conducting risk assessments and generating reports. The website should have functionalities for selecting risk assessment items, auto-populating data, generating charts, and creating reports. Users should be able to select risk assessment items, and the website will automatically fill in relevant data from a background database, generate charts, and create reports. The website should also have a subscription feature, allowing users to access the risk assessment tool. Define the background as alice blue and components as steel blue.

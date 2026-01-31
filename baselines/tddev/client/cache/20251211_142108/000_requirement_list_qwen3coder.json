@@ -1,0 +1,298 @@
+[
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "email",
+                "password"
+            ],
+            "registerFormFields": [
+                "first_name",
+                "last_name",
+                "email",
+                "date_of_birth",
+                "password",
+                "confirm_password"
+            ],
+            "genderValidationRule": "Only female users allowed",
+            "authAPI": "RESTful authentication API with endpoints for register, login, logout, and session management"
+        },
+        "function": "Enable secure user registration and login for female participants to access the health survey platform.",
+        "static_description": "A centered card layout with a whitesmoke background and dark cyan header displaying 'Health Survey Portal'. The form contains labeled input fields for email/password on login view or full registration details on sign-up view, along with action buttons ('Login' / 'Register'). A toggle link allows switching between views.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping 'Register' switches view to show extended registration form; tapping 'Login' returns to login-only form."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Validates inputs against rules including gender restriction. On success, redirects authenticated user to dashboard; shows error messages otherwise."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardIcons": [
+                "/icons/survey-available.svg",
+                "/icons/submission-status.svg"
+            ],
+            "surveyDataSchema": "Database table with columns: survey_id (UUID), title (string), description (text), created_at (timestamp), due_date (nullable timestamp)",
+            "submissionStatusSchema": "Table linking user_id and survey_id with status enum: not_started, in_progress, submitted, approved"
+        },
+        "function": "Provide an overview interface where users can see available health surveys and check their individual submission statuses.",
+        "static_description": "Two-panel layout featuring a left-aligned list of survey cards showing titles, brief descriptions, and icons from resource_dependency, alongside a right panel listing previous submissions indicating current status using badges styled in dark cyan.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a survey card navigates to that specific multi-page survey form; clicking a submission entry opens detailed view of responses."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formQuestionTypes": [
+                "text_input",
+                "multiple_choice",
+                "checkbox_group",
+                "dropdown_select"
+            ],
+            "formNavigationButtons": [
+                "Previous",
+                "Next",
+                "Save Draft",
+                "Submit"
+            ],
+            "pageIndicatorFormat": "Page X of Y",
+            "formStatePersistenceAPI": "Endpoint for saving partial progress per user-survey combination"
+        },
+        "function": "Deliver a structured, paginated questionnaire experience supporting diverse input methods tailored to collecting health data effectively.",
+        "static_description": "Multi-step form displayed one page at a time, each containing grouped questions based on type definitions. Navigation controls appear below content area, showing dynamic pagination indicator derived from total number of pages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "'Next' moves forward through pages unless validation errors exist; 'Previous' returns without validating. 'Save Draft' stores current answers via persistence API then confirms save locally."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "validationRulesDefinition": "{ fieldName: { required: boolean, pattern?: regex } }",
+            "errorMessagingStyle": "Inline red text beneath invalid fields",
+            "formValidationLibrary": "Built-in client-side validator triggered after every keystroke/change"
+        },
+        "function": "Ensure accurate data entry by providing immediate feedback when mandatory fields are missing or incorrectly formatted during form completion.",
+        "static_description": "Each input field includes optional asterisk marking required items. Real-time inline warnings appear directly under respective fields upon losing focus if criteria aren't met, styled according to errorMessagingStyle.",
+        "interaction_and_states": [
+            {
+                "interaction": "Blur",
+                "description": "Triggers instant evaluation of associated validation rules. Invalid entries display custom message strings while disabling forward navigation until corrected."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "saveDraftButtonLabel": "Save Draft",
+            "draftSavedConfirmationMessage": "Progress saved successfully!",
+            "localDraftResumeAPI": "GET endpoint retrieving previously stored incomplete responses tied to active session"
+        },
+        "function": "Permit temporary suspension and later resumption of partially completed surveys without loss of entered information.",
+        "static_description": "Form footer includes additional control labeled 'Save Draft', distinct visually but aligned consistently with primary navigation elements. Upon activation, confirmation message briefly overlays screen center.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Serializes all current form values into JSON payload sent to localDraftResumeAPI. Displays transient success notification overlay before redirecting back to dashboard or preserving context within same tab."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "confirmationReferenceNumberPattern": "HS-[YYYYMMDD]-[XXXX]",
+            "confirmationScreenContent": "Thank you for completing your submission. Your reference number is {reference_number}. Please keep this safe.",
+            "submissionTrackingDatabaseSchema": "New table storing submission_id (auto-generated UUID), reference_number (unique string), user_id, survey_id, submitted_at (timestamp)"
+        },
+        "function": "Acknowledge successful receipt of user-submitted survey data by issuing a traceable unique identifier.",
+        "static_description": "Full-screen confirmation modal featuring large bold rendering of generated HS-###### reference code surrounded by supportive copy text sourced from confirmationScreenContent, plus prominent call-to-action directing return to main dashboard.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Pressing 'Return to Dashboard' button dismisses confirmation screen and updates browser location accordingly, simultaneously logging event in submission tracking schema."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminSidebarMenuItems": [
+                "View Surveys",
+                "Edit Responses",
+                "Delete Entries"
+            ],
+            "dataTableColumns": [
+                "User Name",
+                "Survey Title",
+                "Submission Date",
+                "Status",
+                "Actions"
+            ],
+            "CRUDOperationsEndpoints": "Standard REST routes (/surveys/:id) enabling GET, PUT, DELETE operations scoped to administrator privileges"
+        },
+        "function": "Empower administrative staff to inspect, modify, and remove submitted participant responses securely.",
+        "static_description": "Admin-focused interface presenting sortable/filterable grid resembling spreadsheet populated with dataTableColumns. Sidebar navigation provides quick access to core management tasks such as viewing, editing, or deleting entries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing row-specific actions triggers corresponding HTTP request targeting CRUDOperationsEndpoints. Successful edits update displayed records instantly; deletions prompt secondary confirmation dialog prior to execution."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "roleDefinitions": "{ admin: ['read', 'write', 'delete'], user: ['read_own'] }",
+            "permissionMatrixStorage": "Roles assigned via relational mapping between user_id and role_type enums in centralized permissions table",
+            "authorizationMiddleware": "JWT-based middleware verifying claims against defined roleDefinitions before granting route access"
+        },
+        "function": "Enforce granular access restrictions ensuring only authorized individuals perform designated functions across both frontend interfaces and backend systems.",
+        "static_description": "Hidden-by-default sections become accessible depending on decoded JWT contents which dictate visibility of protected UI components like admin menus or restricted dashboards. No visible cues distinguish these states externally.",
+        "interaction_and_states": [
+            {
+                "interaction": "Route Access Attempt",
+                "description": "Requests to guarded paths invoke authorizationMiddleware checks comparing token scopes with roleDefinitions matrix. Unauthorized attempts redirect to general access-denied landing page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "approvalWorkflowStates": [
+                "Pending Review",
+                "Approved",
+                "Rejected"
+            ],
+            "dataReviewerInterfaceElements": [
+                "Approve Button",
+                "Reject With Comment Field",
+                "Audit Log Panel"
+            ],
+            "reviewDecisionWebhook": "POST endpoint accepting reviewer decisions and appending outcome + notes to original record metadata"
+        },
+        "function": "Facilitate verification procedures wherein qualified reviewers assess authenticity and completeness of incoming health submissions prior to formal processing.",
+        "static_description": "Dedicated workspace resembling expanded version of standard response viewer augmented with dedicated panel housing decision-making tools including binary approval toggle, optional rejection textbox, and chronological audit log feed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Hitting either 'Approve' or 'Reject' button packages reviewer selections into structured payload dispatched to reviewDecisionWebhook, updating underlying workflow state accordingly and refreshing UI representation immediately afterward."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartRenderingEngine": "D3.js library configured for bar graphs, pie charts, trend lines",
+            "reportFilterOptions": [
+                "Date Range",
+                "Age Group",
+                "Geographic Region",
+                "Survey Type"
+            ],
+            "exportFormatsSupported": [
+                ".pdf",
+                ".csv"
+            ],
+            "analyticsAggregationService": "Backend microservice aggregating anonymized survey metrics grouped by selected filters"
+        },
+        "function": "Visualize compiled statistical insights drawn from accumulated health survey datasets, offering customizable filtering options and export capabilities.",
+        "static_description": "Tabbed report interface showcasing interactive D3-powered visualizations arranged horizontally beneath filter controls positioned atop viewport. Export toolbar appears fixed at bottom edge permitting download in supported file formats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Change Filter Selection",
+                "description": "Adjustments made to any filter option trigger AJAX query sent to analyticsAggregationService resulting in updated chart renderings reflecting refined dataset scope."
+            },
+            {
+                "interaction": "Click Export Button",
+                "description": "Activating desired format initiates server-side generation process leveraging pre-defined templates returning downloadable file attachment ready for user consumption."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "encryptionAlgorithmUsed": "AES-256-CBC",
+            "keyManagementPolicy": "Rotated monthly using AWS KMS integration",
+            "databaseConnectionSettings": "TLS-enabled PostgreSQL instance hosted behind VPC firewall enforcing strict IAM policies"
+        },
+        "function": "Maintain confidentiality and integrity of sensitive medical information gathered through the platform utilizing industry-standard cryptographic protections combined with hardened infrastructure configurations.",
+        "static_description": "No direct user-facing elements involved; entire implementation resides beneath application surface layer ensuring transparent operation invisible to end-users while meeting regulatory compliance standards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Data Write Operation",
+                "description": "All newly inserted rows undergo automatic encryption procedure applying AES-256-CBC cipher managed via keyManagementPolicy prior to physical storage inside secured PostgreSQL environment governed by databaseConnectionSettings."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mediaQueryBreakpoints": "{ mobile: max-width 768px, tablet: min-width 769px and max-width 1024px, desktop: min-width 1025px }",
+            "responsiveComponentBehavior": "Flexible grids adapting column count, font scaling adjustments, touch-friendly tap targets"
+        },
+        "function": "Optimize usability and readability regardless of device category by dynamically adjusting layout proportions, typography sizing, and interactive element dimensions.",
+        "static_description": "Uniform aesthetic maintained across breakpoints incorporating fluidly resizing containers, adaptive spacing ratios, scalable fonts adhering to WCAG accessibility guidelines, and appropriately sized touch targets suitable for fingers rather than cursors.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Viewport",
+                "description": "Window dimension changes cause CSS media queries to evaluate triggering reflows governed by mediaQueryBreakpoints configuration causing structural shifts aligning with optimal mobile/tablet/desktop presentation paradigms."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalColorPalette": "{ background: '#F5F5F5', accent: '#008B8B' }",
+            "themeOverrideFiles": [
+                "variables.scss",
+                "button-theme.css"
+            ]
+        },
+        "function": "Establish consistent visual identity throughout application leveraging prescribed color scheme applied uniformly across all stylistic properties including backgrounds, borders, text highlights, and interactive states.",
+        "static_description": "Entire site rendered against whitesmoke backdrop (#F5F5F5) complemented by dark cyan accents (#008B8B) manifested in headers, links, buttons, selection indicators, hover effects, and focus rings ensuring cohesive branding presence.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover Over Interactive Element",
+                "description": "Mouse hovering over clickable regions results in subtle shade variations derived from globalColorPalette maintaining harmony while enhancing discoverability without compromising accessibility contrast ratios."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileEditableFields": [
+                "Name",
+                "Email",
+                "Phone Number",
+                "Address",
+                "Emergency Contact Info"
+            ],
+            "historyDisplayFormat": "List view grouping past surveys chronologically with status tags",
+            "personalInfoUpdateAPI": "PATCH endpoint modifying user attributes linked to authenticated account"
+        },
+        "function": "Allow registered members to maintain up-to-date contact information and monitor historical engagement patterns related to prior survey participation.",
+        "static_description": "Split-pane layout placing editable personal details form on left side juxtaposed against vertically scrollable timeline of completed/pending surveys listed chronologically on right half, each marked clearly with status badge.",
+        "interaction_and_states": [
+            {
+                "interaction": "Edit Profile Field",
+                "description": "Modifying any field enables 'Save Changes' CTA which when clicked serializes altered values into PATCH request directed toward personalInfoUpdateAPI concluding with optimistic UI refresh synchronized with latest persisted data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auditTrailEntrySchema": "{ timestamp: ISO8601 datetime, actor: user/admin ID, action: string description, affected_record: survey/user ID }",
+            "auditViewerFilters": [
+                "Time Period",
+                "Actor Role",
+                "Action Type"
+            ],
+            "auditLogDatabaseTable": "Separate indexed table capturing granular transactional events linked to sensitive data manipulations"
+        },
+        "function": "Record comprehensive activity logs documenting who accessed what information and when, particularly focusing on privileged operations involving protected health records.",
+        "static_description": "Dedicated administrative module displaying sortable tabular audit trail indexed by descending timestamps. Filters located above table allow narrowing displayed entries based on predefined categories facilitating forensic investigations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Apply Audit Trail Filter",
+                "description": "Updating any filter criterion executes filtered search against auditLogDatabaseTable returning subset matching specified conditions thereby reducing noise and improving investigative efficiency."
+            }
+        ]
+    }
+]

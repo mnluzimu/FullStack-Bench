@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "Implement a 2048 game board with a 4x4 grid layout",
+        "user_persona": "A casual gamer who enjoys puzzle games during breaks.",
+        "user_goal": "To see a properly laid out 4x4 grid ready to start playing the 2048 game.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Website",
+                "description": "Alex opens the browser and navigates to the 2048 game website. He expects to see the game board immediately.",
+                "action": "Load the webpage.",
+                "expected_outcome": "A centered square game board appears with a linen background, containing a 4x4 grid of maroon-colored cells."
+            },
+            {
+                "step": 2,
+                "title": "Checking Initial Board State",
+                "description": "Alex looks at the grid to confirm it has been initialized correctly with two starting tiles.",
+                "action": "Observe the grid visually.",
+                "expected_outcome": "Two randomly placed tiles (with values 2 or 4) are visible on the grid,其余 cells are empty light maroon placeholders."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support tile movement in four directions: up, down, left, and right",
+        "user_persona": "A frequent player familiar with classic 2048 controls.",
+        "user_goal": "To move all tiles smoothly in any of the four directions using keyboard arrows.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Gameplay",
+                "description": "Jamie sees the initial board and decides to try moving tiles around first.",
+                "action": "Press the right arrow key.",
+                "expected_outcome": "All tiles shift towards the right edge of the grid, stopping either at the edge or before colliding with another tile."
+            },
+            {
+                "step": 2,
+                "title": "Testing Other Directions",
+                "description": "Curious about responsiveness, Jamie tries pressing other arrow keys quickly.",
+                "action": "Press ArrowUp, then ArrowLeft, then ArrowDown sequentially.",
+                "expected_outcome": "Tiles respond accurately by shifting upwards, then leftwards, then downwards respectively with each keystroke."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable merging of identical adjacent tiles during movement",
+        "user_persona": "An experienced 2048 player aiming to build high-value tiles efficiently.",
+        "user_goal": "To combine adjacent tiles of the same value and watch them merge into one higher-value tile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Merge Scenario",
+                "description": "Taylor notices two horizontal tiles with matching numbers lined up and plans to merge them.",
+                "action": "Press the left arrow key to push tiles together.",
+                "expected_outcome": "The two adjacent identical tiles merge into a single tile whose value equals their sum, triggering a brief animation."
+            },
+            {
+                "step": 2,
+                "title": "Observing Result",
+                "description": "Taylor watches closely to verify that the merge happened correctly and the score updated.",
+                "action": "Watch the newly formed tile and the score display.",
+                "expected_outcome": "A new tile representing the combined value is shown, and the score increases by that amount instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Track and display the current score dynamically",
+        "user_persona": "A competitive player focused on achieving high scores.",
+        "user_goal": "To monitor how many points he gains with every successful merge.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Score Check",
+                "description": "Casey glances at the top panel to check his starting score before making any moves.",
+                "action": "Look at the score display element.",
+                "expected_outcome": "Score shows '0' above the game board."
+            },
+            {
+                "step": 2,
+                "title": "Making a Move That Scores Points",
+                "description": "After merging two tiles, Casey checks whether his score reflects the gain.",
+                "action": "Perform a tile merge by pressing an arrow key.",
+                "expected_outcome": "The score display updates in real-time to show the increased total based on the merged tile's value."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Detect and handle game over state when no moves remain",
+        "user_persona": "A meticulous tester checking edge cases of the game logic.",
+        "user_goal": "To verify that the game detects when no more moves are possible and declares a loss.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Playing Until Blocked",
+                "description": "Morgan keeps playing until the grid fills up with non-matching tiles, leaving no room for further moves.",
+                "action": "Continue making moves until the board is nearly full with mismatched tiles.",
+                "expected_outcome": "Eventually, no directional inputs cause any tile movement or changes."
+            },
+            {
+                "step": 2,
+                "title": "Triggering Game Over",
+                "description": "Morgan attempts one final move knowing it won’t work, expecting the game to recognize defeat.",
+                "action": "Press any arrow key once more.",
+                "expected_outcome": "The game transitions to game over state with a 'Game Over!' message appearing and the revive option becoming active."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to start a new game at any time",
+        "user_persona": "Someone wanting to practice strategies repeatedly without restarting the browser.",
+        "user_goal": "To reset the game completely and begin afresh anytime during gameplay.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Mid-Game Reset Decision",
+                "description": "Riley realizes she made a mistake early in the game and wants to restart from scratch.",
+                "action": "Click the 'New Game' button located above the board.",
+                "expected_outcome": "The entire board resets, showing only two new random starting tiles and the score returns to zero."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a revive option after game over to continue playing",
+        "user_persona": "A determined player unwilling to give up even after losing.",
+        "user_goal": "To resume playing from the exact moment the game was lost instead of starting over.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Game Over",
+                "description": "Jordan exhausts all possible moves and sees the 'Game Over!' message.",
+                "action": "Wait for the game over screen to appear.",
+                "expected_outcome": "Overlay dims the board and displays 'Game Over!' with a prominent 'Revive' button below."
+            },
+            {
+                "step": 2,
+                "title": "Choosing to Revive",
+                "description": "Instead of quitting, Jordan opts to keep going from where things went wrong.",
+                "action": "Click the 'Revive' button.",
+                "expected_outcome": "The game over overlay disappears, restoring the previous board configuration and re-enabling movement controls."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support winning condition when a tile reaches 2048 value",
+        "user_persona": "An ambitious player striving to reach the ultimate goal of the game.",
+        "user_goal": "To achieve a 2048 tile and receive recognition for completing the core objective.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Building Toward Victory",
+                "description": "Casey carefully lines up tiles, working methodically toward forming a 2048 tile.",
+                "action": "Strategically merge tiles until one approaches 1024 and beyond.",
+                "expected_outcome": "Higher-valued tiles accumulate as planned."
+            },
+            {
+                "step": 2,
+                "title": "Achieving the Target Tile",
+                "description": "Finally, Casey makes the crucial move that creates the elusive 2048 tile.",
+                "action": "Merge two 1024 tiles by pressing an appropriate arrow key.",
+                "expected_outcome": "A modal pops up announcing 'You Win!' offering the choice to continue playing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all game logic runs client-side with no backend dependencies",
+        "user_persona": "A privacy-conscious user who prefers apps that don't send personal data elsewhere.",
+        "user_goal": "To enjoy uninterrupted gameplay without needing internet connectivity or worrying about remote processing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Playing Offline",
+                "description": "Sam loads the game while offline and begins playing, expecting everything to function normally.",
+                "action": "Open the game page without an active internet connection.",
+                "expected_outcome": "The game loads successfully and operates fully without requiring server communication."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Browser Activity",
+                "description": "While playing, Sam checks developer tools to ensure nothing is being sent externally.",
+                "action": "Open browser DevTools > Network tab and observe traffic.",
+                "expected_outcome": "No network requests related to game state or logic are observed during normal play."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design UI components with maroon color scheme",
+        "user_persona": "A designer evaluating consistency of brand aesthetics across interfaces.",
+        "user_goal": "To confirm that all interactive and static UI elements use the specified maroon color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Visual Elements",
+                "description": "Taylor examines various parts of the interface looking for uniformity in color usage.",
+                "action": "Scan visually across buttons, tiles, and panels.",
+                "expected_outcome": "All UI components utilize maroon tones consistently, aligning with the defined color palette."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set background color to linen as the primary background",
+        "user_persona": "A user sensitive to visual comfort and contrast preferences.",
+        "user_goal": "To experience a soothing background tone that enhances visibility of foreground elements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Noticing Overall Background Tone",
+                "description": "Jordan observes the general feel of the site upon landing on the homepage.",
+                "action": "View the entire screen’s backdrop.",
+                "expected_outcome": "The full viewport background is rendered in linen (#faf0e6), providing a warm off-white canvas."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include controls for starting new game and reviving game state",
+        "user_persona": "A practical user seeking quick access to essential game functions.",
+        "user_goal": "To easily find and use controls for resetting or continuing the game whenever needed.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Control Buttons",
+                "description": "Alex scans the top section of the game area for familiar action buttons.",
+                "action": "Look for labeled buttons near the top of the game board.",
+                "expected_outcome": "Two clearly labeled buttons—'New Game' and 'Revive'—are aligned horizontally above the board with consistent styling."
+            },
+            {
+                "step": 2,
+                "title": "Using Each Button Appropriately",
+                "description": "During gameplay and post-loss, Alex tests both buttons to understand their behavior.",
+                "action": "Click 'New Game' mid-play, then click 'Revive' after game over.",
+                "expected_outcome": "'New Game' resets everything immediately; 'Revive' becomes active only after loss and restores prior board state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display game status including score, win/lose state",
+        "user_persona": "An observant player who likes staying informed about ongoing game dynamics.",
+        "user_goal": "To stay aware of current performance metrics and outcomes through clear status indicators.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Active Status Panel",
+                "description": "Riley focuses on the upper portion of the screen to track evolving game conditions.",
+                "action": "Observe the status panel throughout different stages of gameplay.",
+                "expected_outcome": "Score updates dynamically, and relevant win/loss messages appear promptly in designated containers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Maintain responsive design for desktop and mobile devices",
+        "user_persona": "A multi-device user switching between phone and laptop regularly.",
+        "user_goal": "To have the game adapt seamlessly to varying screen sizes without compromising usability.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Switching Viewports",
+                "description": "Sam views the game on both a desktop browser and smartphone to compare layouts.",
+                "action": "Access the game on a large monitor and later on a small touchscreen device.",
+                "expected_outcome": "Game board scales appropriately, maintaining 4x4 proportions, with readable text and tappable controls on smaller screens."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Desktop Window",
+                "description": "On desktop, Sam manually resizes the browser window to simulate different resolutions.",
+                "action": "Drag the browser window edges to adjust width.",
+                "expected_outcome": "Layout recalculates fluidly, adapting spacing, font sizes, and tile dimensions according to predefined breakpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with install:all and dev scripts for frontend",
+        "user_persona": "A developer setting up the project locally for contributions or testing.",
+        "user_goal": "To get the development environment running smoothly using standard npm commands.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Devon clones the repository and prepares to run the app locally.",
+                "action": "Run command `npm run install:all` in terminal.",
+                "expected_outcome": "Both frontend and backend dependencies install successfully without errors."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Server",
+                "description": "Once installed, Devon starts the local servers to begin coding or testing.",
+                "action": "Run command `npm run dev` in terminal.",
+                "expected_outcome": "Frontend and backend services launch concurrently, allowing simultaneous development and debugging."
+            }
+        ]
+    }
+]

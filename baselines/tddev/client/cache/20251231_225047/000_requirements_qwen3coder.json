@@ -1,0 +1,17 @@
+[
+    "Frontend application that fetches all data from backend APIs with no hard-coded or mock data",
+    "Backend API server that connects to PostgreSQL database using specified environment variables",
+    "Data visualization components for displaying basketball statistics and trends",
+    "Match prediction functionality based on historical data and analytics",
+    "Betting recommendation system derived from statistical analysis",
+    "Basketball data browsing interface with filtering and search capabilities",
+    "Match history viewing feature with detailed game statistics",
+    "Team rankings display with current standings and performance metrics",
+    "Player performance tracking with individual statistics and comparisons",
+    "Analysis results presentation to support informed betting decisions",
+    "Ghost white background color applied throughout the website",
+    "Slate gray color scheme for all UI components and elements",
+    "Responsive web design compatible with desktop and mobile devices",
+    "User authentication and session management for personalized experiences",
+    "Real-time data updates for live matches and latest statistics"
+]

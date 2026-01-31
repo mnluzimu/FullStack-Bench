@@ -1,0 +1,17 @@
+[
+    "A frontend that fetches all data from backend APIs",
+    "A backend that connects to an external PostgreSQL database using specified environment variables",
+    "A homepage displaying a list of forum posts",
+    "A search bar to enable users to search for posts by keywords",
+    "Category filtering functionality to browse posts by category",
+    "A post creation form allowing users to create new forum posts",
+    "A reply functionality enabling users to respond to existing posts",
+    "A user center page displaying personal information, own posts, and reply history",
+    "User authentication system to manage login and session states",
+    "Post detail pages showing full content and associated replies",
+    "UI styled with ghost white background and slate gray components",
+    "Repository configured with package.json supporting `npm run install:all` and `npm run dev`",
+    "API endpoints for fetching, creating, and managing posts and replies",
+    "Database schema supporting users, posts, replies, and categories",
+    "Responsive design compatible across desktop and mobile views"
+]

@@ -1,0 +1,268 @@
+[
+    {
+        "requirement_tested": "Display a dashboard layout with teal-styled components and mint cream background",
+        "user_persona": "A financial analyst who needs to quickly assess the overall health of multiple companies.",
+        "user_goal": "To view a visually appealing and consistent dashboard layout that helps organize financial data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading the Dashboard",
+                "description": "Sarah opens the financial dashboard in her browser. She immediately notices the clean, mint cream background and teal-styled components.",
+                "action": "Open the financial dashboard URL in the browser.",
+                "expected_outcome": "The dashboard loads with a mint cream background and all UI elements styled in teal colors."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Components",
+                "description": "Sarah scrolls through the dashboard and sees a responsive grid layout with teal-styled cards and headers.",
+                "action": "Scroll down to observe the layout structure and component styling.",
+                "expected_outcome": "All components including headers, cards, and navigation bars are consistently styled with teal accents against a mint cream background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to browse financial data from each company in a structured manner",
+        "user_persona": "A portfolio manager reviewing quarterly earnings across several firms.",
+        "user_goal": "To efficiently browse financial data from each company in a clear and organized way.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting a Company",
+                "description": "Mike clicks on the first company listed in the sidebar to view its financial data.",
+                "action": "Click on a company name in the sidebar menu.",
+                "expected_outcome": "The main content area updates to show financial metrics for the selected company in a structured card layout."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Detailed Metrics",
+                "description": "Mike expands the company card to see more detailed financial information.",
+                "action": "Click on a company card to expand and show detailed financial metrics.",
+                "expected_outcome": "Additional financial details such as revenue breakdowns and expense categories are displayed within the expanded card."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide consolidated financial reports across multiple companies",
+        "user_persona": "A CFO preparing an executive summary for stakeholders.",
+        "user_goal": "To generate and review a consolidated financial report summarizing all companies' performance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Consolidated Report",
+                "description": "Lisa navigates to the consolidated reports section and clicks the 'Generate Report' button.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "The system fetches and displays a consolidated financial summary across all companies including total revenue, combined profit, and overall asset valuation."
+            },
+            {
+                "step": 2,
+                "title": "Customizing Report Filters",
+                "description": "Lisa applies date range filters to focus on Q3 results.",
+                "action": "Click on filter options and select a date range.",
+                "expected_outcome": "The consolidated report updates to reflect only data within the selected date range."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable cross-company financial comparisons and reporting capabilities",
+        "user_persona": "An investment analyst comparing the performance of competing firms.",
+        "user_goal": "To visually compare financial metrics between selected companies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Comparison Tool",
+                "description": "Tom clicks the 'Compare Companies' button to open the multi-select modal.",
+                "action": "Click the 'Compare Companies' button.",
+                "expected_outcome": "A modal dialog appears with checkboxes to select multiple companies for comparison."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Comparative Charts",
+                "description": "Tom selects three companies and views their performance side-by-side using bar charts.",
+                "action": "Select companies and click on chart tabs to switch between visualization types.",
+                "expected_outcome": "Interactive bar charts display comparative financial metrics such as revenue and profit for the selected companies."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a frontend that fetches all financial data from backend APIs",
+        "user_persona": "A developer testing data integrity in the dashboard application.",
+        "user_goal": "To verify that the frontend retrieves live financial data from backend services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Page Load",
+                "description": "Alex loads the dashboard and checks if initial data is fetched from the backend.",
+                "action": "Load the dashboard page.",
+                "expected_outcome": "Company list and latest financial data are retrieved dynamically from backend APIs without using mock data."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Data",
+                "description": "Alex clicks the refresh button to simulate a manual data update.",
+                "action": "Click the refresh button to re-fetch updated financial data.",
+                "expected_outcome": "The dashboard reloads with fresh financial data pulled directly from backend endpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a backend service that connects to an external PostgreSQL database",
+        "user_persona": "A DevOps engineer ensuring proper backend infrastructure.",
+        "user_goal": "To confirm that the backend successfully connects to the specified PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "The backend server starts up and attempts to connect to the PostgreSQL database.",
+                "action": "Start the backend server.",
+                "expected_outcome": "The backend initializes and establishes a connection to the PostgreSQL database using configured environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure the backend to use specific environment variables for database connection",
+        "user_persona": "A system administrator setting up the application environment.",
+        "user_goal": "To validate that the backend uses correct environment variables for database access.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Environment Variables",
+                "description": "The system checks that environment variables are properly loaded at startup.",
+                "action": "Observe the backend logs during startup.",
+                "expected_outcome": "Logs confirm successful reading and application of environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support dynamic retrieval of financial data without hard-coded or mock data",
+        "user_persona": "A QA tester verifying data authenticity.",
+        "user_goal": "To ensure all displayed financial data comes from the actual database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Live Data Fetching",
+                "description": "Emma checks that the dashboard does not show static or mocked values.",
+                "action": "Inspect the network tab in browser developer tools to monitor API calls.",
+                "expected_outcome": "All financial data is fetched via RESTful API calls to the backend, confirming no hardcoded or mock data is used."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all components are styled consistently with teal color scheme",
+        "user_persona": "A UX designer reviewing visual consistency.",
+        "user_goal": "To confirm that every UI element adheres to the teal color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Component Styling",
+                "description": "The designer inspects various UI elements to ensure uniform teal styling.",
+                "action": "Examine buttons, headers, cards, and other components for consistent color application.",
+                "expected_outcome": "All UI components utilize varying shades of teal for branding and visual hierarchy, maintaining a cohesive look."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a responsive dashboard layout suitable for financial data visualization",
+        "user_persona": "A business user accessing the dashboard on a tablet device.",
+        "user_goal": "To have a usable and readable dashboard layout on mobile and desktop devices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "The user resizes the browser window to simulate a mobile view.",
+                "action": "Resize the browser window to smaller dimensions.",
+                "expected_outcome": "The layout adjusts dynamically, components reorganize, and charts resize appropriately to fit the available space."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide functionality to view detailed financial information per company",
+        "user_persona": "A financial auditor needing full transparency into company finances.",
+        "user_goal": "To access comprehensive financial statements for individual companies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Company Detail View",
+                "description": "The auditor clicks on a company card to view its detailed financial overview.",
+                "action": "Click on a company card or detail link to navigate to a detailed financial page.",
+                "expected_outcome": "A new page opens displaying full financial statements including income statements, balance sheets, and cash flow reports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to generate and view consolidated financial summaries",
+        "user_persona": "A senior executive requiring quick insights into company performance.",
+        "user_goal": "To generate a consolidated financial summary to guide strategic decisions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Summary Overview",
+                "description": "The executive clicks the 'Generate Summary' button to update the consolidated view.",
+                "action": "Click the 'Generate Summary' button.",
+                "expected_outcome": "The consolidated financial overview updates with the latest aggregated data including totals, percentages, and key highlights."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support filtering and sorting of financial data by company or time period",
+        "user_persona": "A data analyst focusing on specific sectors or periods.",
+        "user_goal": "To filter and sort financial data according to custom criteria.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "The analyst selects specific companies and date ranges from the filter panel.",
+                "action": "Select filters from dropdown menus to apply to financial data listings.",
+                "expected_outcome": "Financial data listing updates to show only entries matching the selected criteria."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Data",
+                "description": "The analyst sorts the filtered data by profit margin descending.",
+                "action": "Click on sorting indicators to reorder data by various criteria.",
+                "expected_outcome": "The financial data list is reordered based on the selected sorting option."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement user authentication and authorization for accessing financial data",
+        "user_persona": "A junior employee trying to access restricted financial data.",
+        "user_goal": "To securely log into the dashboard and gain appropriate access rights.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "The user enters their credentials on the login form.",
+                "action": "Submit the login form with valid username and password.",
+                "expected_outcome": "The system authenticates the user and redirects them to the dashboard with appropriate access levels."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out",
+                "description": "After completing tasks, the user logs out to end their session.",
+                "action": "Click the logout button in the top-right corner.",
+                "expected_outcome": "The user's session is terminated and they are redirected to the login page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run install:all and npm run dev scripts for concurrent frontend and backend startup",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "To easily install dependencies and start both frontend and backend servers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The developer runs the install command to set up all necessary packages.",
+                "action": "Run the command 'npm run install:all'.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "The developer starts both frontend and backend servers together.",
+                "action": "Run the command 'npm run dev'.",
+                "expected_outcome": "The frontend and backend servers start concurrently and become accessible at their respective ports."
+            }
+        ]
+    }
+]

@@ -1,0 +1,221 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/customers",
+            "customerDataSchema": "Database table 'customers' with fields: id (UUID), name (string), email (string), phone (string), address (text), date_of_birth (date), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Fetch and display customer information from the backend API.",
+        "static_description": "A grid-based layout showing customer cards or a table listing customers with columns for name, email, phone, and registration date. Each row includes action buttons (Edit, Delete) styled with dark cyan icons on a whitesmoke background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Edit button opens a modal form pre-filled with customer data for editing."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the Delete button triggers a confirmation dialog before removing the customer record via DELETE /api/customers/{id}."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgresSchemaDefinition": "CREATE TABLE customers (id UUID PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), phone VARCHAR(20), address TEXT, date_of_birth DATE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP);"
+        },
+        "function": "Establish connection to PostgreSQL database and define schema for storing customer data.",
+        "static_description": "Backend service initializes connection to PostgreSQL using provided environment variables and creates the 'customers' table if it does not exist upon startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/policies",
+            "policyDataSchema": "Database table 'policies' with fields: id (UUID), customer_id (foreign key to customers.id), policy_type (string), start_date (date), end_date (date), premium_amount (decimal), status (enum: active/inactive/expired), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Enable viewing and managing insurance policies associated with customers.",
+        "static_description": "A tabbed interface showing a list of policies in a sortable table with columns: Policy Number, Customer Name, Type, Start Date, End Date, Premium Amount, Status. Action buttons for Edit/Delete are styled with dark cyan.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Edit button opens a modal form populated with policy details for modification."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the Delete button prompts a confirmation dialog prior to deletion via DELETE /api/policies/{id}."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresSchemaDefinition": "CREATE TABLE policies (id UUID PRIMARY KEY, customer_id UUID REFERENCES customers(id), policy_type VARCHAR(100), start_date DATE, end_date DATE, premium_amount DECIMAL(10,2), status VARCHAR(20), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP);"
+        },
+        "function": "Define and create database schema for storing policy-related data linked to customers.",
+        "static_description": "The backend ensures the 'policies' table is created during initialization, enforcing referential integrity with the 'customers' table.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/claims",
+            "claimDataSchema": "Database table 'claims' with fields: id (UUID), policy_id (foreign key to policies.id), claim_date (date), description (text), amount_claimed (decimal), status (enum: pending/approved/rejected), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Allow users to view and manage insurance claims related to policies.",
+        "static_description": "A claims dashboard displaying a filterable table with columns: Claim ID, Policy Number, Claim Date, Description, Amount Claimed, Status. Buttons for viewing/editing/deleting claims use dark cyan styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking View/Edit opens a detailed claim form modal for reviewing or updating claim information."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Delete initiates a confirmation prompt followed by removal through DELETE /api/claims/{id}."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresSchemaDefinition": "CREATE TABLE claims (id UUID PRIMARY KEY, policy_id UUID REFERENCES policies(id), claim_date DATE, description TEXT, amount_claimed DECIMAL(10,2), status VARCHAR(20), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP);"
+        },
+        "function": "Define and create database schema for claims linked to policies.",
+        "static_description": "Ensures creation of the 'claims' table with proper foreign key relationships to the 'policies' table at application startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "reportApiEndpoint": "/api/reports",
+            "reportTypes": [
+                "Customer Growth Report",
+                "Policy Renewal Forecast",
+                "Claims Summary Report"
+            ]
+        },
+        "function": "Generate various analytical reports based on collected business data.",
+        "static_description": "Reports section featuring a dropdown menu to select report type, date range picker, and a Generate button. Output area displays generated reports either as downloadable PDFs or embedded documents within a whitesmoke-themed container.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a report type and clicking Generate sends parameters to /api/reports endpoint which returns formatted report content."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartLibraryUrl": "https://cdn.jsdelivr.net/npm/chart.js",
+            "chartDataEndpoint": "/api/analytics/charts"
+        },
+        "function": "Visualize key metrics and trends using interactive charts.",
+        "static_description": "Dashboard panel containing multiple chart widgets (bar, line, pie) rendered using Chart.js library. Charts show data such as monthly policy sales, claim distributions, and customer acquisition rates against a whitesmoke background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart segments reveals tooltips with precise numerical values and labels."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking chart legends toggles visibility of corresponding datasets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeVariables": "{ background-color: whitesmoke; primary-color: darkcyan; }",
+            "cssFilePath": "/src/styles/theme.css"
+        },
+        "function": "Apply consistent color theme throughout the application UI.",
+        "static_description": "All page backgrounds set to whitesmoke (#F5F5F5). Primary interactive elements like buttons, links, and highlights styled with dark cyan (#008B8B). Consistent typography and spacing maintained across views.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonPath": "./package.json",
+            "installScriptCommand": "concurrently \"npm install\" \"cd backend && npm install\""
+        },
+        "function": "Configure package.json script to install dependencies for both frontend and backend projects.",
+        "static_description": "The root package.json contains an 'install:all' script that executes concurrent installations for frontend and backend node_modules using concurrently CLI tool.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "concurrently \"npm run dev\" \"cd backend && npm run dev\"",
+            "packageJsonPath": "./package.json"
+        },
+        "function": "Set up development mode execution for full-stack local testing.",
+        "static_description": "Root package.json defines a 'dev' script launching both frontend (Vite/Vue/etc.) and backend (Node.js/Express) servers simultaneously using concurrently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authApiEndpoints": [
+                "/api/auth/login",
+                "/api/auth/logout",
+                "/api/auth/register"
+            ],
+            "jwtSecretEnvVar": "JWT_SECRET=mysecretkey"
+        },
+        "function": "Secure access to system resources through user authentication and role-based authorization.",
+        "static_description": "Login screen with username/password fields and Submit button. Upon successful login, JWT token stored securely; subsequent requests include Authorization header. Unauthorized routes redirect to login page.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting credentials calls POST /api/auth/login. Valid credentials return JWT used for future authenticated API requests."
+            },
+            {
+                "interaction": "Click",
+                "description": "Logout clears session/token and redirects to login page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchApiEndpoint": "/api/search",
+            "filterOptions": [
+                "Name",
+                "Email",
+                "Policy Type",
+                "Claim Status"
+            ]
+        },
+        "function": "Enable searching and filtering across customer, policy, and claims datasets.",
+        "static_description": "Search bar positioned atop main content areas with dropdown filters beside it. Filters allow narrowing results by entity attributes. Results update dynamically without page reload.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Text",
+                "description": "Typing into search bar debounces input and queries /api/search?q={term}&filters={} to retrieve filtered dataset."
+            },
+            {
+                "interaction": "Change Filter Selection",
+                "description": "Changing filter criteria updates query string sent to backend, refreshing displayed records accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardMetricsEndpoint": "/api/dashboard/metrics",
+            "metricCardIcons": [
+                "/icons/customers.svg",
+                "/icons/policies.svg",
+                "/icons/claims.svg"
+            ]
+        },
+        "function": "Display summarized KPIs and operational insights on a centralized dashboard.",
+        "static_description": "Admin dashboard presents metric cards showing total customers, active policies, open claims, etc., arranged in a responsive grid layout. Cards feature dark cyan borders/icons over whitesmoke background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "Dashboard fetches latest metrics from /api/dashboard/metrics and renders numeric values inside visually distinct cards."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "@media (max-width: 768px)",
+            "mobileFirstStylesheet": "/src/styles/responsive.css"
+        },
+        "function": "Ensure usability and visual consistency across desktop, tablet, and mobile devices.",
+        "static_description": "UI components utilize flexbox/grid layouts adjusting to viewport size changes. Navigation menus collapse into hamburger menus on small screens. Tables become scrollable horizontally when needed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Component dimensions adapt fluidly according to CSS media queries ensuring readability and accessibility regardless of device orientation or screen resolution."
+            }
+        ]
+    }
+]

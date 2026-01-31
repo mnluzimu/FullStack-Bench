@@ -1,0 +1,253 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDatabaseSchema": "Create a database table named 'stocks' with fields: stock_id (primary key), symbol (string), company_name (string), sector (string), industry (string), market_cap (float), last_updated (datetime).",
+            "stockSearchAPI": "Integration with a stock data API such as Alpha Vantage or Yahoo Finance for real-time stock searching by symbol or name."
+        },
+        "function": "Enable users to search for stocks by entering either a stock code or company name.",
+        "static_description": "A centered search bar at the top of the page with a placeholder text 'Enter stock code or company name', accompanied by a magnifying glass icon on the right side. Background is white, input field border is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search bar focuses the input field allowing text entry."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates the search query using the entered value."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon submits the current input in the search bar."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summaryTemplate": "<div><h3>{companyName}</h3><p>Sector: {sector}</p><p>Industry: {industry}</p><p>Market Cap: ${marketCap}</p></div>",
+            "stockInfoSchema": "Fields required: company_name (string), sector (string), industry (string), market_cap (float), current_price (float), price_change (float), percent_change (float)"
+        },
+        "function": "Summarize essential stock information including company name, sector, industry, market cap, and latest price movement.",
+        "static_description": "A card-style container below the search results showing summarized stock details. Includes company name header, sector/industry labels, market capitalization figure, and price changes. White background with navy text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking anywhere on the summary card navigates to the full stock detail/report generation view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGeneratorAPI": "An external service like OpenAI GPT API for generating custom natural language reports based on selected parameters.",
+            "reportStorageSchema": "Table 'reports' with fields: report_id (primary key), user_id (foreign key), stock_symbol (string), created_at (datetime), content (text), format_type (string)."
+        },
+        "function": "Generate customizable stock analysis reports tailored to user preferences.",
+        "static_description": "A dedicated section within the stock detail view containing controls for selecting report parameters and a 'Generate Report' button. Layout includes checkboxes/dropdowns for sections and a blue 'Generate Report' button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Generate Report' triggers the report creation process using selected options and displays the result in a new preview panel."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptions": [
+                "PDF",
+                "Markdown",
+                "Plain Text",
+                "HTML"
+            ],
+            "formatIcons": [
+                "/assets/icons/pdf-icon.svg",
+                "/assets/icons/markdown-icon.svg",
+                "/assets/icons/text-icon.svg",
+                "/assets/icons/html-icon.svg"
+            ]
+        },
+        "function": "Allow users to choose their preferred format for exporting generated reports.",
+        "static_description": "Horizontal row of icons/buttons labeled PDF, Markdown, Plain Text, HTML located above the report generation area. Each icon visually distinct but styled consistently with navy theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a format updates the export/download option accordingly when the report is ready."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentSections": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "Historical Performance",
+                "Analyst Opinions"
+            ],
+            "checkboxGroupStyle": "Vertical stack of checkboxes with navy border and white fill, aligned left under a heading 'Include Sections'"
+        },
+        "function": "Let users select which content sections they want included in their generated reports.",
+        "static_description": "A vertical checklist group positioned next to the format selector titled 'Include Sections'. Options listed vertically with small square checkboxes beside each label.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Checking/unchecking boxes toggles inclusion of respective content blocks during report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basicInfoFields": [
+                "Symbol",
+                "Company Name",
+                "Sector",
+                "Industry",
+                "Market Cap",
+                "Current Price",
+                "52-Week High/Low"
+            ],
+            "dataFormatter": "Function to convert raw numerical values into readable strings with appropriate units ($, %)"
+        },
+        "function": "Display fundamental information about the selected stock in an organized manner.",
+        "static_description": "Tabular layout presented in a bordered box showing key-value pairs of basic info. Table uses alternating row shading with headers in bold navy font against white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "D3.js or Chart.js library loaded via CDN",
+            "trendDataSchema": "Time series dataset including date (datetime) and closing_price (float)",
+            "sampleChartData": "[{\"date\": \"2023-01-01\", \"price\": 150}, {\"date\": \"2023-02-01\", \"price\": 160}]"
+        },
+        "function": "Visualize historical performance and recent trends through interactive charts.",
+        "static_description": "Interactive line chart occupying two-thirds width of screen beneath the basic info block. X-axis shows dates, Y-axis shows prices. Navy-colored lines with gridlines.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Mouse hovering over points on the chart reveals tooltip with exact date and price value."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of different trend lines if multiple datasets are shown."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataSchema": "Fields: revenue (float), net_income (float), eps (float), pe_ratio (float), dividend_yield (float), debt_to_equity (float)",
+            "externalFinancialAPI": "An API providing quarterly and annual financial statements such as IEX Cloud or Financial Modeling Prep."
+        },
+        "function": "Integrate and display key financial indicators sourced from reliable external providers.",
+        "static_description": "Collapsible accordion section titled 'Financial Overview' containing bullet-pointed financial stats. Content hidden until expanded. Navy-themed toggle arrow indicates expandable nature.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the section title expands/collanpses the detailed financial metrics panel."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColor": "#FFFFFF"
+        },
+        "function": "Maintain consistent white background across all pages and components.",
+        "static_description": "Entire webpage rendered with solid white background (#FFFFFF) applied globally via CSS body rule.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorPalette": "#000080",
+            "buttonHoverEffect": "Darken shade slightly on hover without changing base color definition"
+        },
+        "function": "Apply uniform navy color scheme to interactive and structural elements throughout the site.",
+        "static_description": "All buttons, input borders, icons, and highlight bars use navy (#000080) as primary accent color. Consistent styling applied site-wide.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and clickable elements darken slightly upon mouseover while maintaining original shape and size."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "inputFieldStiling": "Rounded corners, navy border, padding, focus glow effect",
+            "formValidationMessage": "Red error message appearing below invalid inputs stating 'Please enter valid stock code or name.'"
+        },
+        "function": "Provide intuitive interface for submitting stock-related queries.",
+        "static_description": "Form element featuring a single-line input box with rounded edges, navy outline, and subtle inner shadow when active. Label reads 'Search Stocks:' placed above the field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Focus",
+                "description": "Input gains keyboard focus and displays glowing border indicating readiness for typing."
+            },
+            {
+                "interaction": "Blur",
+                "description": "If no text was entered before losing focus, placeholder reappears and validation errors show if needed."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "previewContainerMarkup": "<iframe srcdoc=\"{generatedReportHTML}\" style=\"width:100%; height:600px;\"></iframe>",
+            "loadingSpinner": "/assets/animations/loading-spinner.gif"
+        },
+        "function": "Preview generated reports directly within the browser prior to downloading.",
+        "static_description": "Modal overlay window displaying iframe-based preview of generated report content. Contains close button and download link. Overlay backdrop dims main page behind it.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Closing modal returns user back to previous view. Download link triggers file save dialog."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormats": [
+                "pdf",
+                "md",
+                "txt",
+                "html"
+            ],
+            "fileDownloadHandler": "Client-side JavaScript function that converts report string/blob into downloadable file with correct MIME type"
+        },
+        "function": "Permit users to save generated reports locally in various digital formats.",
+        "static_description": "Dropdown menu near bottom-right corner of report viewer offering choices: 'Download as PDF', 'Save as Markdown', etc. Navy-statted caret icon opens dropdown list.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing an option starts client-side conversion and prompts native OS download prompt."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realtimeDataProvider": "WebSocket connection or polling mechanism connected to live stock ticker API such as Polygon.io or Alpaca Markets",
+            "refreshInterval": "Auto-refresh every 30 seconds unless manually refreshed sooner"
+        },
+        "function": "Fetch up-to-the-minute stock pricing and metadata from authoritative financial sources.",
+        "static_description": "Status indicator light in upper-right corner showing green circle when connected to live feed. Timestamp below says 'Last updated: HH:MM AM/PM'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Manual refresh button forces immediate update request regardless of auto-refresh timer."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "Search",
+                "My Reports",
+                "Settings"
+            ],
+            "topMenuBarHeight": "60px fixed position navbar spanning entire viewport width"
+        },
+        "function": "Ensure seamless navigation between major sections of the application.",
+        "static_description": "Fixed horizontal navigation bar at top featuring evenly spaced links labeled Home, Search, My Reports, Settings. Active tab highlighted subtly with underline or contrasting text color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any menu item scrolls or redirects to associated section/view."
+            }
+        ]
+    }
+]

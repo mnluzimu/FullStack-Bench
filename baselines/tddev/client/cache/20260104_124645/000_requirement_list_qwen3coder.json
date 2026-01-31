@@ -1,0 +1,202 @@
+[
+    {
+        "resource_dependency": {
+            "backgroundColor": "seashell",
+            "componentThemeColor": "crimson",
+            "responsiveCSSFramework": "Tailwind CSS or Bootstrap"
+        },
+        "function": "Provide a visually consistent and responsive user interface across devices using seashell background and crimson-themed components.",
+        "static_description": "The entire website uses a seashell background color. All interactive components such as buttons, links, cards, and navigation bars use crimson as their primary theme color. Layout adapts responsively to mobile, tablet, and desktop screen sizes using a CSS framework.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts dynamically to maintain usability and readability on various screen sizes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "/api/articles/search",
+            "searchInputPlaceholderText": "Search medical articles...",
+            "searchIconSVG": "<svg>...</svg>"
+        },
+        "function": "Enable keyword-based searching of medical articles through a dedicated search bar.",
+        "static_description": "A centered search bar appears prominently at the top of the homepage with placeholder text 'Search medical articles...' and a magnifying glass icon aligned to the right inside the input field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type in Search Bar",
+                "description": "As the user types, suggestions may appear below the search bar (optional feature)."
+            },
+            {
+                "interaction": "Press Enter or Click Submit Button",
+                "description": "Triggers an API call to /api/articles/search?q={query} which returns filtered results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "articleDetailAPIEndpoint": "/api/articles/{id}",
+            "articleDataSchema": "Table: articles(id UUID PRIMARY KEY, title TEXT, abstract TEXT, content TEXT, author_id UUID, published_at TIMESTAMP)",
+            "markdownRendererLibrary": "React Markdown or similar"
+        },
+        "function": "Display complete content of a selected medical article in a clean and readable format.",
+        "static_description": "Each article page displays the title, publication date, author name, abstract, and full body content rendered from markdown or plain text. Styling ensures optimal reading experience with appropriate spacing and font sizing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate to Article Page",
+                "description": "Fetches article data from /api/articles/{id} and renders it on the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pdfDownloadAPIEndpoint": "/api/articles/{id}/download",
+            "downloadIconSVG": "<svg>...</svg>",
+            "pdfGenerationService": "Puppeteer or WeasyPrint"
+        },
+        "function": "Allow users to download individual medical articles in PDF format.",
+        "static_description": "Below each article’s content, there is a crimson-colored button labeled 'Download PDF' with a download icon next to it.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Download PDF Button",
+                "description": "Initiates a GET request to /api/articles/{id}/download which generates and serves a downloadable PDF file of the article."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginAPIEndpoint": "/api/auth/login",
+            "registerAPIEndpoint": "/api/auth/register",
+            "authTokenStorage": "localStorage or cookies",
+            "jwtSecretEnvVar": "JWT_SECRET"
+        },
+        "function": "Support secure login and registration for users accessing protected areas of the site.",
+        "static_description": "Login/Register forms are accessible via a modal or separate pages with fields for email, password, and optional confirm password during registration. Forms include validation feedback messages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Login Form",
+                "description": "Calls /api/auth/login with credentials; upon success, stores JWT token and redirects to dashboard."
+            },
+            {
+                "interaction": "Submit Registration Form",
+                "description": "Calls /api/auth/register with user details; upon success, logs the user in automatically or shows confirmation message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardRoute": "/dashboard",
+            "protectedRoutesMiddleware": "Express middleware checking JWT validity",
+            "authorDashboardComponentTree": "Sidebar, Profile Card, Articles List Section"
+        },
+        "function": "Provide a centralized dashboard for authors to manage their account and content.",
+        "static_description": "Upon logging in, authenticated authors land on /dashboard. The layout includes a sidebar navigation menu, a profile summary card showing current info, and a list of authored articles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Access Dashboard Route",
+                "description": "Redirected if unauthenticated. Displays personalized dashboard when logged in."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileUpdateAPIEndpoint": "/api/profile/update",
+            "editableFieldsList": [
+                "name",
+                "email",
+                "bio",
+                "specialty"
+            ],
+            "profileDataSchema": "Table: users(id UUID PRIMARY KEY, name TEXT, email TEXT UNIQUE, bio TEXT, specialty TEXT)"
+        },
+        "function": "Allow authors to edit and save updates to their personal profile information.",
+        "static_description": "Inside the dashboard, a form titled 'Edit Profile' allows editing of name, email, bio, and specialty fields. Save and Cancel buttons are present beneath the form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Modify Field Values",
+                "description": "Form fields become editable upon focus or click."
+            },
+            {
+                "interaction": "Click Save Changes",
+                "description": "Submits updated data to /api/profile/update endpoint and refreshes displayed profile information."
+            },
+            {
+                "interaction": "Click Cancel",
+                "description": "Resets form fields to original values without submitting changes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "articlesAPIEndpoint": "/api/articles",
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "articleModelDefinition": "Table: articles(id UUID PRIMARY KEY, title TEXT, abstract TEXT, content TEXT, author_id UUID REFERENCES users(id), published_at TIMESTAMP)"
+        },
+        "function": "Serve dynamic medical article content over RESTful endpoints connected directly to a PostgreSQL database.",
+        "static_description": "Backend exposes multiple endpoints under /api/articles including listing, retrieving, and downloading articles. These routes connect to tables in the PostgreSQL database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontendAPIClient": "Axios or Fetch API",
+            "baseAPIUrlEnvironmentVariable": "REACT_APP_API_BASE_URL=http://localhost:5000/api"
+        },
+        "function": "Ensure all frontend content related to medical articles is fetched exclusively from backend APIs rather than hardcoded.",
+        "static_description": "All article listings, individual views, and downloads originate from calls made to backend API endpoints like /api/articles or /api/articles/{id}. No static or mock data used in production builds.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionString": "postgresql://myappuser:myapppassword@localhost:5432/myapp",
+            "databaseInitializationScriptPath": "./scripts/init-db.sql"
+        },
+        "function": "Establish connection between backend services and PostgreSQL database using provided environment variables.",
+        "static_description": "Application connects to PostgreSQL instance running locally using fixed credentials stored in environment variables. Connection established once per server startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "articlesTableSchemaSQL": "CREATE TABLE articles(id UUID PRIMARY KEY, title TEXT NOT NULL, abstract TEXT, content TEXT NOT NULL, author_id UUID REFERENCES users(id) ON DELETE CASCADE, published_at TIMESTAMP DEFAULT NOW());"
+        },
+        "function": "Define and implement a relational database schema for storing and retrieving medical articles efficiently.",
+        "static_description": "Articles table supports indexing by id and author_id, enabling fast lookups and joins with user data. Fields ensure integrity and scalability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "usersTableSchemaSQL": "CREATE TABLE users(id UUID PRIMARY KEY, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, bio TEXT, specialty TEXT);",
+            "sessionManagementMechanism": "JWT tokens signed with secret key"
+        },
+        "function": "Manage user identities, authentication, and profile information securely within the database.",
+        "static_description": "Users table enforces uniqueness on email addresses and hashes passwords before storage. It also holds optional extended profile fields like bio and specialty.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"",
+            "packageJsonLocation": "./package.json"
+        },
+        "function": "Automate installation of frontend and backend dependencies with a single command.",
+        "static_description": "Root-level package.json defines a script named install:all that runs npm install in both frontend and backend directories simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "concurrently \\\"cd frontend && npm start\\\" \\\"cd backend && npm run start:dev\\\"",
+            "concurrentlyDevDependency": "^7.6.0"
+        },
+        "function": "Run both frontend development server and backend application concurrently for local testing.",
+        "static_description": "Root-level package.json contains a dev script that launches both frontend (typically React dev server) and backend (Node.js Express app) processes together.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "seoFriendlyURLPattern": "/articles/:slug",
+            "slugGenerationStrategy": "Based on article title, e.g., 'Understanding Heart Disease' becomes 'understanding-heart-disease'",
+            "slugFieldInDB": "articles.slug TEXT UNIQUE"
+        },
+        "function": "Generate SEO-friendly URLs for individual articles based on human-readable slugs.",
+        "static_description": "Each article URL follows the pattern /articles/slug where slug is auto-generated from the article title and stored uniquely in the database.",
+        "interaction_and_states": []
+    }
+]

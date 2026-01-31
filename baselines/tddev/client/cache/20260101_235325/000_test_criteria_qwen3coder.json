@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "A forum homepage displaying a list of posts with titles, authors, categories, and timestamps",
+        "user_persona": "A casual visitor browsing the latest discussions.",
+        "user_goal": "To quickly scan the homepage and read an interesting post.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Alex opens the forum website and lands on the homepage. He sees a clean list of posts with titles, authors, categories, and timestamps.",
+                "action": "Load the homepage URL '/'.",
+                "expected_outcome": "A vertically stacked list of post previews is displayed with each showing title in bold, author username, category name, and timestamp on a ghost white background with slate gray text."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Post",
+                "description": "One post titled 'Best Practices for Node.js' catches Alex's attention. He clicks on the title to read more.",
+                "action": "Click on the post title 'Best Practices for Node.js'.",
+                "expected_outcome": "The browser navigates to the individual post detail page for that post."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A navigation bar with links to Home, Categories, Search, and User Center",
+        "user_persona": "A regular forum participant looking to explore different sections.",
+        "user_goal": "Navigate efficiently between major sections of the forum.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Navigation Bar",
+                "description": "Jamie notices the horizontal navigation bar at the top of every page. She wants to browse categories.",
+                "action": "Locate and click on the 'Categories' link in the navigation bar.",
+                "expected_outcome": "The browser navigates to the '/categories' URL and displays the list of available categories."
+            },
+            {
+                "step": 2,
+                "title": "Returning to Homepage",
+                "description": "After exploring categories, Jamie decides to return to the main feed.",
+                "action": "Click on the 'Home' link in the navigation bar.",
+                "expected_outcome": "The browser navigates back to the homepage at '/'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search functionality allowing users to search posts by keywords in title or content",
+        "user_persona": "A student researching a specific topic discussed in the forum.",
+        "user_goal": "Find relevant posts about JavaScript frameworks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Feature",
+                "description": "Taylor recalls reading something about React and wants to find it again. He goes to the search section.",
+                "action": "Navigate to the Search page and type 'React' into the search input field.",
+                "expected_outcome": "The search box accepts text input and shows placeholder 'Search posts...' with slate gray styling."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Query",
+                "description": "Taylor presses Enter after typing his keyword.",
+                "action": "Press the Enter key while focused on the search input.",
+                "expected_outcome": "The system calls the search API and returns a filtered list of posts matching the term 'React'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Category browsing feature showing a list of categories and ability to filter posts by selected category",
+        "user_persona": "A developer interested in backend technologies.",
+        "user_goal": "Browse only posts related to backend development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Categories Page",
+                "description": "Jordan visits the categories page to see what topics are covered.",
+                "action": "Navigate to '/categories'.",
+                "expected_outcome": "A list or grid of categories is displayed with names and descriptions on a ghost white background with slate gray components."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Category",
+                "description": "He finds the 'Backend Development' category and clicks on it to see related posts.",
+                "action": "Click on the 'Backend Development' category card/list item.",
+                "expected_outcome": "Redirected to a view showing only posts tagged under 'Backend Development', fetched via the categoryPostsAPIEndpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Post creation form with fields for title, content (supporting rich text or markdown), and category selection",
+        "user_persona": "An experienced developer sharing knowledge.",
+        "user_goal": "Share a tutorial on setting up Docker containers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting New Post",
+                "description": "Sam logs in and decides to write a new post. He navigates to the post creation form.",
+                "action": "Click on a 'New Post' button or navigate directly to the post creation route.",
+                "expected_outcome": "A form appears with fields for Title, Content (with rich text/markdown support), and Category dropdown, styled with slate gray borders on ghost white background."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Form",
+                "description": "Sam fills out the title as 'Docker Setup Guide', writes detailed content using markdown formatting, and selects 'DevOps' as the category.",
+                "action": "Fill in the title, content, and select 'DevOps' from the category dropdown.",
+                "expected_outcome": "All fields accept input correctly and reflect user choices visually."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Post",
+                "description": "Satisfied with the draft, Sam submits the post.",
+                "action": "Click the 'Submit Post' button.",
+                "expected_outcome": "Form data is sent to POST /api/posts; upon success, Sam is redirected to the homepage or the newly created post's detail page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Individual post detail page showing full content, author info, timestamp, and associated replies",
+        "user_persona": "A reader wanting to understand a complex answer.",
+        "user_goal": "Read the full explanation of a solution posted by another user.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Detailed View",
+                "description": "Casey clicks on a post link from the homepage to get the full context.",
+                "action": "Click on a post title from the homepage.",
+                "expected_outcome": "Navigated to the post detail page which displays the full title, author information, timestamp, and complete content with ghost white background and slate gray styling."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Replies",
+                "description": "Below the main content, Casey scrolls down to see how others responded.",
+                "action": "Scroll down past the post content.",
+                "expected_outcome": "A section appears listing all replies with their content, author, and timestamp beneath the original post."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reply functionality enabling users to add comments/replies to existing posts",
+        "user_persona": "A junior developer asking for clarification.",
+        "user_goal": "Ask a follow-up question on a helpful post.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing Reply",
+                "description": "Riley finishes reading a useful post and wants to ask a clarifying question.",
+                "action": "Scroll to the bottom of the post detail page and locate the 'Add a Reply' textarea.",
+                "expected_outcome": "A text area labeled 'Add a Reply' and a 'Submit Reply' button appear at the bottom of the replies section, styled consistently."
+            },
+            {
+                "step": 2,
+                "title": "Writing and Submitting Reply",
+                "description": "She types her question into the reply box and submits it.",
+                "action": "Type 'Can you explain how this works with async/await?' into the reply textarea and click 'Submit Reply'.",
+                "expected_outcome": "The reply is submitted via POST /api/posts/{postId}/replies and immediately appears at the top of the replies list without needing a refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User center page displaying logged-in user's profile information including username and email",
+        "user_persona": "A registered user checking their account details.",
+        "user_goal": "Verify that his profile information is correct.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing User Center",
+                "description": "Morgan logs in and navigates to the User Center to review his profile.",
+                "action": "Click on the 'User Center' link in the navigation bar.",
+                "expected_outcome": "Redirected to '/user-center' where a section displays Morgan's Username and Email Address in a simple card/list format with ghost white/slate gray styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User center section listing all posts created by the logged-in user",
+        "user_persona": "A prolific contributor reviewing his work.",
+        "user_goal": "Review all the posts he has written over time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Personal Contributions",
+                "description": "Patricia wants to revisit her old posts. She goes to the User Center.",
+                "action": "Navigate to the User Center page.",
+                "expected_outcome": "The page loads and includes a section titled 'My Posts' showing a list of post previews she authored, matching the homepage style."
+            },
+            {
+                "step": 2,
+                "title": "Reading Own Post",
+                "description": "She clicks on one of her older posts to reread it.",
+                "action": "Click on a post title within the 'My Posts' list.",
+                "expected_outcome": "Redirected to the individual post detail page for that specific post."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User center section listing all replies made by the logged-in user",
+        "user_persona": "An active community member tracking engagement.",
+        "user_goal": "See all the replies he has contributed across the forum.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Tracking Engagement",
+                "description": "Leo wants to see all his past replies. He accesses the appropriate section in the User Center.",
+                "action": "Visit the User Center and look for the 'My Replies' section.",
+                "expected_outcome": "A list of Leo's replies is shown with snippets, associated post titles, and timestamps, styled with ghost white and slate gray."
+            },
+            {
+                "step": 2,
+                "title": "Jumping to Context",
+                "description": "He clicks on one of his replies to see it in context within the original thread.",
+                "action": "Click on a reply listed under 'My Replies'.",
+                "expected_outcome": "Redirected to the original post detail page, ideally scrolled to the location of that specific reply."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication system supporting user login and registration",
+        "user_persona": "A first-time visitor ready to join the community.",
+        "user_goal": "Create a new account and log in to start participating.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Account",
+                "description": "Dana visits the forum and wants to participate. She needs to register.",
+                "action": "Click on a 'Sign Up' or 'Register' option and fill out the registration form with username, email, and password.",
+                "expected_outcome": "Upon submitting valid credentials to POST /api/auth/register, Dana receives confirmation and possibly gets automatically logged in or redirected to login page."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Later, Dana returns and needs to log in with her new account.",
+                "action": "Enter username and password in the login form and click 'Login'.",
+                "expected_outcome": "Credentials are verified via POST /api/auth/login. On success, authentication token is stored client-side and Dana is redirected to the homepage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API for fetching, creating, and managing forum posts and replies",
+        "user_persona": "Frontend engineer testing integration points.",
+        "user_goal": "Ensure frontend can retrieve and manipulate forum data properly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Posts",
+                "description": "As part of testing, the frontend makes a request to load initial data.",
+                "action": "Frontend performs GET request to /api/posts.",
+                "expected_outcome": "Server responds with a JSON array of posts retrieved from the PostgreSQL database using configured connection settings."
+            },
+            {
+                "step": 2,
+                "title": "Adding New Reply",
+                "description": "Testing submission of a new reply from the UI.",
+                "action": "Frontend sends POST request to /api/posts/{postId}/replies with reply content.",
+                "expected_outcome": "Server inserts the reply into the 'replies' table and returns the newly created reply object confirming successful operation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API for handling user authentication and retrieving user-specific data",
+        "user_persona": "Security-conscious tester validating access control.",
+        "user_goal": "Confirm that user data is securely accessible only to authenticated users.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Protected Route Without Token",
+                "description": "Attempting to access user profile without being authenticated.",
+                "action": "Send GET request to /api/users/me without providing a valid auth token.",
+                "expected_outcome": "Server rejects the request with a 401 Unauthorized status due to missing or invalid authentication token."
+            },
+            {
+                "step": 2,
+                "title": "Successful Authenticated Request",
+                "description": "Now with a valid token, attempting the same request.",
+                "action": "Include valid JWT/session token in header and send GET request to /api/users/me.",
+                "expected_outcome": "Server validates the token and returns the authenticated user's profile data retrieved from the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connection to a PostgreSQL database using specified environment variables for storing posts, replies, users, and categories",
+        "user_persona": "System administrator deploying the application.",
+        "user_goal": "Verify that the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Application Startup",
+                "description": "During deployment, the backend service starts up and attempts to connect to the database.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "Backend uses environment variables DB_HOST=localhost, DB_PORT=5432, etc., to establish a connection to the PostgreSQL instance hosting the 'myapp' database."
+            },
+            {
+                "step": 2,
+                "title": "Database Schema Verification",
+                "description": "Ensuring required tables exist and are structured correctly.",
+                "action": "Run a migration or startup script that checks existence of 'users', 'posts', 'replies', and 'categories' tables.",
+                "expected_outcome": "All necessary tables are present with correct schemas as defined in the requirements, confirming proper database initialization."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Styling with ghost white background and slate gray components applied globally",
+        "user_persona": "UI designer ensuring brand consistency.",
+        "user_goal": "Validate that global color scheme is applied uniformly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Global Styles",
+                "description": "Ella inspects various pages to ensure consistent styling.",
+                "action": "Open multiple pages (homepage, categories, user center) and inspect body and component styles.",
+                "expected_outcome": "Body background is set to ghost white (#F8F8FF); common UI components such as buttons, inputs, cards use slate gray (#708090) for borders/text/backgrounds."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Consistency",
+                "description": "Verifying that interactive elements maintain the theme during states like hover or focus.",
+                "action": "Hover over buttons and links and check computed styles.",
+                "expected_outcome": "Interactive elements retain the global ghost white and slate gray palette even during hover/focus states, maintaining visual coherence."
+            }
+        ]
+    }
+]

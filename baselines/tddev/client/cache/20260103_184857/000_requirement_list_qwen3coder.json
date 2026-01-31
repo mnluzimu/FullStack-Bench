@@ -1,0 +1,252 @@
+[
+    {
+        "resource_dependency": {
+            "fitnessStatsAPI": "GET /api/user/stats",
+            "userDataSchema": "Database table: users(user_id UUID, username STRING, email STRING, created_at TIMESTAMP).",
+            "chartLibrary": "Chart.js or similar library for rendering graphs"
+        },
+        "function": "Display user-specific fitness metrics including total workouts, calories burned, active minutes, and weekly trends.",
+        "static_description": "A white background page with navy-colored charts and summary cards showing key fitness stats. Charts include line graph for weekly activity and bar chart for daily calorie burn. Summary cards show totals at the top.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On page load, fetches user stats via fitnessStatsAPI and populates charts and summary cards dynamically."
+            },
+            {
+                "interaction": "Refresh Button Click",
+                "description": "Triggers re-fetch of data from fitnessStatsAPI to update displayed statistics in real time."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exerciseLogAPI": "POST /api/exercises/log",
+            "exerciseTypesDropdownContent": [
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Weightlifting",
+                "Yoga",
+                "HIIT"
+            ],
+            "formValidationRules": "Required fields: exercise type, duration (min), date. Optional: notes, intensity level.",
+            "exercisesTableSchema": "Database table: exercises(exercise_id UUID, user_id UUID, type STRING, duration INTEGER, date DATE, notes TEXT, intensity ENUM(low, medium, high))"
+        },
+        "function": "Allow users to log new fitness activities through an input form with validation.",
+        "static_description": "White background page with a navy-themed form containing dropdowns, text inputs, and submit button. Fields include exercise type, duration, date, optional notes, and intensity slider.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Click",
+                "description": "Validates form inputs; if valid, sends POST request to exerciseLogAPI and clears form upon success."
+            },
+            {
+                "interaction": "Invalid Form Submit Attempt",
+                "description": "Displays inline error messages next to invalid fields without sending API request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "diaryEntriesAPI": "GET /api/diary, POST /api/diary, PUT /api/diary/{id}, DELETE /api/diary/{id}",
+            "diaryDataSchema": "Database table: diary_entries(entry_id UUID, user_id UUID, title STRING, content TEXT, created_at TIMESTAMP)",
+            "richTextEditor": "Embedded rich-text editor component for formatting entries"
+        },
+        "function": "Enable users to create, read, update, and delete personal fitness diary entries.",
+        "static_description": "White background page with navy-styled list of past diary entries and a rich-text editor above it. Each entry shows title, preview snippet, timestamp, and edit/delete icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "New Entry Save Click",
+                "description": "Submits new diary content via POST to diaryEntriesAPI and refreshes the list of entries."
+            },
+            {
+                "interaction": "Edit Icon Click",
+                "description": "Loads selected entry into the editor for modification, changes save button behavior to use PUT /api/diary/{id}."
+            },
+            {
+                "interaction": "Delete Icon Click",
+                "description": "Prompts confirmation dialog; confirms deletion via DELETE /api/diary/{id} and removes entry from list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leaderboardAPI": "GET /api/leaderboard",
+            "leaderboardDataSchema": "View combining user workout counts and points, e.g., SELECT u.username, COUNT(e.exercise_id) AS workouts FROM users u JOIN exercises e ON u.user_id = e.user_id GROUP BY u.user_id ORDER BY workouts DESC LIMIT 10",
+            "refreshInterval": "Poll every 60 seconds for updated rankings"
+        },
+        "function": "Show ranked list of users based on recent fitness activity participation.",
+        "static_description": "White background page with a navy-themed leaderboard table listing usernames and workout counts. Top three positions highlighted visually.",
+        "interaction_and_states": [
+            {
+                "interaction": "Auto Refresh",
+                "description": "Every 60 seconds, calls GET /api/leaderboard to update rankings automatically without user action."
+            },
+            {
+                "interaction": "Manual Refresh Click",
+                "description": "Immediately triggers GET /api/leaderboard call to update leaderboard manually."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authAPI": "POST /api/auth/login, POST /api/auth/register, GET /api/auth/me",
+            "sessionStorage": "Store JWT token securely after login",
+            "loginFormFields": [
+                "email",
+                "password"
+            ],
+            "registerFormFields": [
+                "username",
+                "email",
+                "password",
+                "confirmPassword"
+            ]
+        },
+        "function": "Manage secure access to individual user accounts and protect private fitness data.",
+        "static_description": "White background landing page with centered navy-themed login/register tabs. Active tab displays corresponding form with labeled input fields and action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Login Submit Click",
+                "description": "Calls POST /api/auth/login with credentials; stores returned JWT and redirects to dashboard on success."
+            },
+            {
+                "interaction": "Register Submit Click",
+                "description": "Validates matching passwords and calls POST /api/auth/register; logs user in automatically on successful registration."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fitnessDataEndpoints": "GET /api/exercises, GET /api/diary, GET /api/stats",
+            "dbConnectionConfig": "Uses DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchema": "Tables: users, exercises, diary_entries, with proper foreign key relationships and indexes."
+        },
+        "function": "Serve structured fitness data endpoints consumed by frontend applications over RESTful interfaces.",
+        "static_description": "No visual interface; this is a backend-only specification ensuring authenticated API routes return JSON responses for exercises, diary entries, and user stats.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dynamicDataFetching": "All pages fetch data via async HTTP requests to backend APIs",
+            "loadingIndicators": "Spinner components shown during API fetch operations",
+            "errorHandling": "Toast notifications display generic errors when API calls fail"
+        },
+        "function": "Ensure all displayed content originates from live backend sources rather than hardcoded values.",
+        "static_description": "Each frontend route renders skeleton loaders initially before populating content fetched asynchronously from backend services.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Initiates API calls to retrieve relevant data; shows loading spinner until response arrives."
+            },
+            {
+                "interaction": "Network Error",
+                "description": "Displays toast notification indicating failure to load data and offers retry option."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "connectionPoolConfig": "Establish pool of reusable connections using provided environment variables"
+        },
+        "function": "Connect application backend to external PostgreSQL instance using predefined configuration parameters.",
+        "static_description": "Backend initializes database client using environment-based connection string at startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalCSSVariables": ":root { --bg-color: #FFFFFF; --primary-color: #000080; }",
+            "componentStyleGuide": "Apply navy color to all buttons, headers, cards, and interactive elements. Background set to white globally."
+        },
+        "function": "Enforce consistent styling across entire application using specified color palette.",
+        "static_description": "Entire UI uses white backgrounds with navy text and component borders. All interactive elements styled in navy theme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "userExercisesAPI": "GET /api/exercises?userId={currentUserId}",
+            "exerciseListSchema": "Same schema as global exercises table but filtered per user_id"
+        },
+        "function": "Provide paginated browsing capability for viewing previously logged personal fitness sessions.",
+        "static_description": "White background page with navy-styled filter controls and sortable table of user's historical exercises. Columns include date, type, duration, and actions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Pagination Controls Click",
+                "description": "Fetches additional batches of exercise records via GET /api/exercises with offset/limit query params."
+            },
+            {
+                "interaction": "Sort Header Click",
+                "description": "Reorders table rows by selected column (date/type/duration) using updated query parameter in API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "visualizationComponents": "Bar charts, pie charts, trend lines powered by Chart.js",
+            "statisticalSummaryAPI": "GET /api/user/summary"
+        },
+        "function": "Represent complex fitness analytics visually for easier interpretation and progress tracking.",
+        "static_description": "Navy-themed card sections presenting various statistical visualizations such as monthly activity distribution, most frequent exercise types, and performance trends.",
+        "interaction_and_states": [
+            {
+                "interaction": "Time Range Selector Change",
+                "description": "Adjusts chart data range by modifying timeframe query param sent to statisticalSummaryAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "inputFormTemplates": "Reusable React/Vue form components with built-in validation logic",
+            "formSubmissionAPIs": "POST /api/exercises/log, POST /api/diary"
+        },
+        "function": "Capture user-provided fitness activity and journal information via standardized web forms.",
+        "static_description": "Consistent navy-themed form layouts used throughout app for entering exercise logs and diary posts. Include labels, placeholders, and submission buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Field Blur",
+                "description": "Triggers immediate field-level validation and displays feedback beneath respective input."
+            },
+            {
+                "interaction": "Form Reset Click",
+                "description": "Clears all input fields and resets form state back to defaults."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketIntegration": "Optional WebSocket endpoint for instant leaderboard/statistic updates",
+            "pollingMechanism": "Fallback interval-based polling every 30 seconds for critical metrics"
+        },
+        "function": "Maintain up-to-the-minute accuracy of shared fitness metrics like leaderboards and personal stats.",
+        "static_description": "Leaderboard and stats pages silently update behind the scenes either via WebSocket events or periodic API polling.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Event Received",
+                "description": "Updates leaderboard rankings or statistic counters instantly without requiring manual refresh."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileSettingsAPI": "GET /api/user/profile, PUT /api/user/profile",
+            "profileDataSchema": "Extended users table with goal_weight FLOAT, preferred_units ENUM(kg/lbs), notification_preferences JSONB"
+        },
+        "function": "Allow customization of personal fitness preferences and goals within dedicated profile section.",
+        "static_description": "White background settings panel with navy-styled editable fields for weight goals, unit preferences, and notification toggles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Save Profile Changes Click",
+                "description": "Collects modified settings and submits them via PUT /api/user/profile then confirms update with success message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{ scripts: { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }",
+            "folderStructure": "Root directory contains frontend/, backend/, and shared/ folders with appropriate package.json files inside each."
+        },
+        "function": "Streamline development workflow by enabling unified installation and concurrent execution of frontend and backend processes.",
+        "static_description": "Root-level package.json file defines convenience commands for multi-project setup and local development bootstrapping.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,240 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "azure",
+            "ui_component_color": "midnight blue",
+            "anonymous_report_icon": "/icons/report-icon.svg",
+            "file_upload_api": "An endpoint for uploading files with size and type validation.",
+            "database_schema": "PostgreSQL schema with tables: reports(report_id UUID PRIMARY KEY, title TEXT, description TEXT, evidence_file_path TEXT, submitted_at TIMESTAMP, status ENUM('pending', 'reviewed', 'published')), users(user_id UUID PRIMARY KEY, role ENUM('admin', 'moderator', 'anonymous'), created_at TIMESTAMP), forums(forum_id UUID PRIMARY KEY, title TEXT, content TEXT, author_id UUID REFERENCES users(user_id), parent_post_id UUID REFERENCES forums(forum_id), created_at TIMESTAMP), articles(article_id UUID PRIMARY KEY, title TEXT, summary TEXT, content TEXT, author_id UUID REFERENCES users(user_id), published_at TIMESTAMP), search_index(content_type ENUM('report', 'forum', 'article'), content_id UUID, indexed_text TSVECTOR)"
+        },
+        "function": "Implement a whistleblower secrets/awareness website with anonymous reporting functionality",
+        "static_description": "The main landing page features an azure background with midnight blue UI components. It includes navigation links to Home, Anonymous Reporting, Forum, News & Blog, Search, and Admin Panel. The header contains a logo aligned left and a prominent 'Submit Report Anonymously' button styled in midnight blue.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Submit Report Anonymously' button navigates the user to the anonymous reporting form."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over navigation items highlights them slightly without changing color scheme."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "form_fields": [
+                "Title (text)",
+                "Description (textarea)",
+                "Evidence Upload (file input)"
+            ],
+            "submit_button_label": "Submit Report",
+            "file_validation_rules": "Max file size: 10MB; Allowed formats: PDF, JPG, PNG, DOCX",
+            "api_endpoint_submit_report": "/api/reports/submit"
+        },
+        "function": "Provide a submission form for users to anonymously report insights and upload evidence",
+        "static_description": "A dedicated form page with azure background and midnight blue-styled input fields for Title, Description, and Evidence Upload. A large midnight blue Submit button is present below the form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Submit button sends form data via POST request to /api/reports/submit after client-side validation."
+            },
+            {
+                "interaction": "File Selection",
+                "description": "Selecting a file populates the file input field and triggers immediate client-side validation against defined rules."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "threaded_forum_schema": "Database table: forums(forum_id UUID PRIMARY KEY, title TEXT, content TEXT, author_id UUID REFERENCES users(user_id), parent_post_id UUID REFERENCES forums(forum_id), created_at TIMESTAMP)",
+            "create_post_api": "/api/forum/posts/create",
+            "reply_to_post_api": "/api/forum/posts/{postId}/reply"
+        },
+        "function": "Include a discussion forum allowing users to post, reply, and engage in threaded conversations",
+        "static_description": "Forum page displays a list of top-level threads in card format on azure background with midnight blue headers and borders. Each thread shows title, excerpt, timestamp, and number of replies.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a thread expands it to show full content and nested replies. Clicking 'Reply' opens a reply form beneath the selected post."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads additional threads dynamically if pagination is enabled."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_input_placeholder": "Search topics, keywords...",
+            "search_results_schema": "Database view combining indexed content from reports, forums, and articles",
+            "search_api": "/api/search?query={keyword}"
+        },
+        "function": "Integrate a search functionality enabling keyword and topic-based content discovery",
+        "static_description": "A search bar positioned prominently in the header with azure background and midnight blue border. Below the bar, a results section lists matching items categorized under Reports, Forums, and Articles when active.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Typing initiates live suggestions based on partial matches after 3 characters."
+            },
+            {
+                "interaction": "Enter Key Press",
+                "description": "Pressing Enter submits the query and redirects to a results page listing relevant entries across all sections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "news_blog_schema": "Database table: articles(article_id UUID PRIMARY KEY, title TEXT, summary TEXT, content TEXT, author_id UUID REFERENCES users(user_id), published_at TIMESTAMP)",
+            "fetch_articles_api": "/api/articles/latest"
+        },
+        "function": "Develop a news and blog section displaying latest articles and updates",
+        "static_description": "News/Blog section presents cards with azure background and midnight blue accents. Each card shows article title, summary, publication date, and a Read More link.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a card or 'Read More' navigates to the full article page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling to bottom triggers loading more articles if available."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "design_tokens": "{ background-color: azure; ui-components-color: midnight-blue }"
+        },
+        "function": "Design the website with an azure background and midnight blue UI components",
+        "static_description": "Entire site uses azure (#F0FFFF) as base background color. All buttons, headers, cards, and interactive elements use midnight blue (#191970) styling consistently throughout pages.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontend_fetch_apis": [
+                "/api/reports/latest",
+                "/api/forum/posts",
+                "/api/articles/latest",
+                "/api/search"
+            ]
+        },
+        "function": "Create a frontend that dynamically fetches all content through backend APIs",
+        "static_description": "Frontend application built with framework capable of making HTTP requests to backend endpoints. Content areas such as homepage feed, forum threads, and blog posts load dynamically upon render.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Upon initial load, frontend makes concurrent GET requests to respective API endpoints to populate dynamic sections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_connection_env_vars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgres_integration_library": "pg or similar Node.js PostgreSQL client library"
+        },
+        "function": "Build a backend system connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend server configured to read environment variables for PostgreSQL connection parameters. Uses standard ORM or raw SQL queries to interact with database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "install_script_command": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\""
+        },
+        "function": "Configure package.json with 'npm run install:all' script to install frontend and backend dependencies",
+        "static_description": "Root-level package.json file defines custom script named 'install:all' which executes dependency installation commands for both frontend and backend directories concurrently.",
+        "interaction_and_states": [
+            {
+                "interaction": "Terminal Command Execution",
+                "description": "Running `npm run install:all` from root directory installs packages for both projects simultaneously."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dev_server_commands": "[\"cd frontend && npm run dev\", \"cd backend && npm run dev\"]",
+            "concurrent_execution_tool": "concurrently"
+        },
+        "function": "Configure package.json with 'npm run dev' script to start both frontend and backend concurrently",
+        "static_description": "Root-level package.json includes a 'dev' script that utilizes a concurrency tool to launch development servers for frontend and backend applications together.",
+        "interaction_and_states": [
+            {
+                "interaction": "Terminal Command Execution",
+                "description": "Executing `npm run dev` starts both frontend and backend development environments side-by-side."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "persistent_storage_tables": "reports, forums, articles, users, search_index"
+        },
+        "function": "Ensure all data including reports, forum posts, and articles are stored persistently in the database",
+        "static_description": "All submitted reports, forum discussions, published articles, user roles, and search indexes reside in PostgreSQL tables structured according to predefined schemas.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_system_schema": "users(user_id UUID PRIMARY KEY, role ENUM('admin', 'moderator', 'anonymous'), session_token TEXT, created_at TIMESTAMP)",
+            "generate_anon_token_api": "/api/auth/generate-anonymous-token"
+        },
+        "function": "Implement user authentication system to support anonymous submissions while maintaining security",
+        "static_description": "Authentication mechanism assigns temporary tokens to anonymous reporters during submission flow. Tokens do not associate personal information but allow tracking within session scope.",
+        "interaction_and_states": [
+            {
+                "interaction": "Form Submission Initiation",
+                "description": "At beginning of anonymous report process, frontend calls auth API to obtain short-lived token used for subsequent secure operations."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "upload_validation_config": "Maximum size: 10MB; Supported MIME types: image/jpeg, image/png, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "storage_location": "/uploads/evidence/",
+            "file_upload_api": "/api/files/upload"
+        },
+        "function": "Enable file upload capability for evidence submission with appropriate validation and storage",
+        "static_description": "Submission form includes a file picker element that accepts documents and images up to 10MB. Files are uploaded separately before finalizing the report submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "File Selection",
+                "description": "User selects a file which undergoes client-side checks for format and size prior to upload initiation."
+            },
+            {
+                "interaction": "Upload Trigger",
+                "description": "Selected file uploads asynchronously to designated folder path with unique identifier assigned for reference in report record."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_panel_routes": "/admin/reports, /admin/forum-posts, /admin/articles",
+            "moderation_actions": [
+                "Approve",
+                "Reject",
+                "Delete",
+                "Edit"
+            ],
+            "admin_role_check_middleware": "Middleware verifying admin/moderator privileges"
+        },
+        "function": "Provide moderation tools for administrators to manage reports, forum content, and published articles",
+        "static_description": "Admin dashboard accessible only to authenticated moderators/admins. Displays grids/lists of pending/approved content with inline action buttons per item.",
+        "interaction_and_states": [
+            {
+                "interaction": "Action Button Click",
+                "description": "Clicking Approve/Reject/Delete/Edit modifies corresponding entry status or content directly in database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "full_text_search_index": "PostgreSQL tsvector column indexing combined content fields",
+            "search_query_builder": "SQL-based query generator supporting multi-table UNION searches"
+        },
+        "function": "Optimize search functionality to index and retrieve content across reports, forums, and blog posts",
+        "static_description": "Search engine leverages PostgreSQL’s full-text search capabilities. Indexed content spans multiple domains ensuring fast retrieval regardless of source.",
+        "interaction_and_states": [
+            {
+                "interaction": "Query Submission",
+                "description": "Submitted search term gets parsed into weighted tsquery expression matched against precomputed vectors in unified index."
+            }
+        ]
+    }
+]

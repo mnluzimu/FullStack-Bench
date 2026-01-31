@@ -1,0 +1,310 @@
+[
+    {
+        "requirement_tested": "A dashboard interface displaying regulatory policies with data visualization capabilities",
+        "user_persona": "A policy analyst named Sarah who needs to quickly assess the landscape of current regulations.",
+        "user_goal": "To view a summary of regulatory policies along with visual charts depicting their distribution.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard",
+                "description": "Sarah opens the dashboard and expects to see an overview of policies alongside data visualizations.",
+                "action": "Navigate to the dashboard homepage.",
+                "expected_outcome": "Page loads with a lavender background, indigo header, and displays policy cards with interactive charts above them."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Policy Card",
+                "description": "Sarah sees a policy card that interests her and clicks on it to get more details.",
+                "action": "Click on a policy card.",
+                "expected_outcome": "Redirected to the detailed policy view page showing full information about the selected policy."
+            },
+            {
+                "step": 3,
+                "title": "Exploring Chart Tooltips",
+                "description": "While reviewing the dashboard, Sarah hovers over elements of the chart to gain deeper insights.",
+                "action": "Hover over chart elements.",
+                "expected_outcome": "Tooltip appears displaying additional data points related to the hovered segment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support for browsing and analyzing different regulatory policies",
+        "user_persona": "A compliance officer named James tasked with auditing applicable policies.",
+        "user_goal": "To efficiently browse through various regulatory policies using available filters and search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "James wants to narrow down the list of policies by selecting specific categories from the filter panel.",
+                "action": "Click checkboxes in the filter panel under Category section.",
+                "expected_outcome": "Policy listing updates immediately to show only those matching the selected categories without reloading the page."
+            },
+            {
+                "step": 2,
+                "title": "Searching Policies",
+                "description": "He recalls part of a policy title and uses the search bar to locate it.",
+                "action": "Type keyword into search field and press Enter.",
+                "expected_outcome": "System retrieves and displays policies whose titles or identifiers match the entered keyword."
+            },
+            {
+                "step": 3,
+                "title": "Scrolling for More Results",
+                "description": "After seeing initial results, James scrolls down to load more policies.",
+                "action": "Scroll to the bottom of the policy list.",
+                "expected_outcome": "Additional policies are automatically loaded as he reaches the end of the current result set."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive charts and graphs to represent complex policy data",
+        "user_persona": "A data scientist named Lisa evaluating policy trends over time.",
+        "user_goal": "To interact with charts to better understand how policies are distributed and evolve.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Toggling Data Series Visibility",
+                "description": "Lisa notices several data series in the chart legend and wants to isolate one for clearer analysis.",
+                "action": "Click on a legend item associated with a particular data series.",
+                "expected_outcome": "Corresponding data series in the chart is hidden or shown depending on previous state."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Detailed Values",
+                "description": "She moves her cursor over segments of a pie chart to see exact figures.",
+                "action": "Hover over segments of the pie chart.",
+                "expected_outcome": "Pop-up tooltip shows precise numerical values and percentage breakdowns for the hovered segment."
+            },
+            {
+                "step": 3,
+                "title": "Adjusting Time Scope Dynamically",
+                "description": "Wanting to focus on recent enactments, Lisa drags the time range selector to adjust the chart timeframe.",
+                "action": "Drag the time range selector handle on the chart timeline.",
+                "expected_outcome": "Chart updates dynamically to reflect policy data within the newly selected temporal scope."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filtering functionality to narrow down displayed policies based on user criteria",
+        "user_persona": "A legal researcher named Omar looking for environment-related policies.",
+        "user_goal": "To use filters effectively to isolate relevant environmental policies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Filter Criteria",
+                "description": "Omar selects 'Environment' from the Category filter checkboxes to refine the displayed policies.",
+                "action": "Check the 'Environment' checkbox in the Category filter section.",
+                "expected_outcome": "Live preview updates showing the number of policies affected, and the main listing reflects the filtered results instantly."
+            },
+            {
+                "step": 2,
+                "title": "Resetting All Filters",
+                "description": "After exploring, Omar decides to remove all applied filters to start fresh.",
+                "action": "Click the 'Clear Filters' button.",
+                "expected_outcome": "All previously selected filters are deselected, and the policy listing returns to its original unfiltered state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Sorting options for organizing policies by various attributes",
+        "user_persona": "A government official named Maria overseeing multiple jurisdictions’ policies.",
+        "user_goal": "To organize the policy list by creation date to track newest entries.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Sort Options",
+                "description": "Maria looks for a way to sort the policies and finds the 'Sort By' dropdown near the top right.",
+                "action": "Click the 'Sort By' dropdown menu.",
+                "expected_outcome": "Dropdown expands revealing a list of sortable fields including 'Created At', 'Title', etc."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Sorting Field",
+                "description": "She chooses to sort by 'Created At' to see most recently added policies first.",
+                "action": "Select 'Created At' from the dropdown options.",
+                "expected_outcome": "Policy list re-fetches and re-renders showing the newest policies at the top."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all policy data from backend APIs",
+        "user_persona": "A developer named Alex testing integration between frontend and backend systems.",
+        "user_goal": "To confirm that the frontend correctly fetches policy data dynamically from backend APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Page Load",
+                "description": "Alex visits the dashboard expecting to see real-time data pulled from the backend rather than hardcoded content.",
+                "action": "Open browser developer tools and navigate to the Network tab, then visit the dashboard.",
+                "expected_outcome": "Network logs show GET requests made to /api/policies endpoint, retrieving actual data instead of static placeholders."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer named Chen responsible for deploying backend services securely.",
+        "user_goal": "To verify that the backend properly connects to PostgreSQL using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Chen deploys the backend locally and ensures it initializes connection to the PostgreSQL database.",
+                "action": "Start the backend server process with correct environment variables configured.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL database using host=localhost, port=5432, and provided credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design to store regulatory policy information and related metadata",
+        "user_persona": "A database administrator named Dana setting up the schema for storing regulatory policies.",
+        "user_goal": "To validate that the database has been created with appropriate tables and relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Table Structures",
+                "description": "Dana connects to the PostgreSQL instance to inspect whether required tables exist and are structured correctly.",
+                "action": "Run SQL command to describe tables: policies, policy_metadata, and policy_attachments.",
+                "expected_outcome": "Returned schema matches documented definitions with proper primary keys, foreign keys, and column types."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI styling with lavender background color and indigo-colored UI elements",
+        "user_persona": "A UX designer named Riley ensuring brand consistency across the platform.",
+        "user_goal": "To verify that the color scheme aligns with branding guidelines.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Riley inspects the dashboard visually and via browser dev tools to confirm the background color.",
+                "action": "Use browser inspection tool to check the background color of the body element.",
+                "expected_outcome": "Background color is confirmed as lavender (#E6E6FA)."
+            },
+            {
+                "step": 2,
+                "title": "Validating UI Element Colors",
+                "description": "Next, she checks if interactive components like buttons and headers utilize indigo coloring.",
+                "action": "Inspect header navigation bar and buttons for color values.",
+                "expected_outcome": "UI elements such as headers and buttons display indigo color (#4B0082)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout ensuring usability across desktop and mobile devices",
+        "user_persona": "A remote worker named Taylor accessing the dashboard from both office PC and smartphone.",
+        "user_goal": "To ensure seamless usability regardless of device used.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Desktop Experience",
+                "description": "Taylor accesses the dashboard from a desktop computer and expects a multi-column layout.",
+                "action": "Resize browser window to simulate desktop resolution and observe layout.",
+                "expected_outcome": "Layout presents multiple columns of policy cards with filters aligned vertically on the left side."
+            },
+            {
+                "step": 2,
+                "title": "Mobile Responsiveness",
+                "description": "Later, Taylor switches to a mobile phone and checks for optimized layout.",
+                "action": "Access dashboard using a simulated mobile viewport (e.g., Chrome DevTools mobile mode).",
+                "expected_outcome": "Content stacks into a single column with larger touch targets suitable for finger tapping."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search bar for users to find specific policies by keyword or identifier",
+        "user_persona": "A junior associate named Jordan needing to find a specific regulation quickly.",
+        "user_goal": "To perform a quick search for a known policy using keywords.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Performing Keyword Search",
+                "description": "Jordan remembers a phrase from the policy and enters it into the search box.",
+                "action": "Enter keyword into the central search bar and press Enter.",
+                "expected_outcome": "Results update to show policies containing the keyword, ranked by relevance."
+            },
+            {
+                "step": 2,
+                "title": "Using Auto-Search Feature",
+                "description": "As Jordan continues typing, the system provides instant feedback.",
+                "action": "Pause typing mid-query in the search field.",
+                "expected_outcome": "After a short delay, auto-search executes and updates results accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Policy detail view showing comprehensive information when a policy is selected",
+        "user_persona": "A legislative assistant named Emma preparing briefing notes for a meeting.",
+        "user_goal": "To review all aspects of a selected policy comprehensively.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Between Tabs",
+                "description": "Emma clicks through different sections of the policy detail page to gather all necessary info.",
+                "action": "Click on tabs labeled Overview, Full Text, Metadata, and Attachments.",
+                "expected_outcome": "Each tab loads respective content blocks smoothly without requiring a full page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Export functionality allowing users to download policy data or visualizations",
+        "user_persona": "A report writer named Noah compiling findings for stakeholders.",
+        "user_goal": "To export policy data in a shareable format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Export Process",
+                "description": "Noah identifies a useful dataset and initiates the export function.",
+                "action": "Click the floating export action button located at the lower-right corner.",
+                "expected_outcome": "Context-sensitive menu pops up offering options like 'Download CSV', 'Export Chart Image', and 'Print Summary'."
+            },
+            {
+                "step": 2,
+                "title": "Downloading Selected Artifact",
+                "description": "He opts to download the current chart image for inclusion in his presentation.",
+                "action": "Choose 'Export Chart Image' from the menu.",
+                "expected_outcome": "A downloadable PNG or SVG file of the chart is generated and offered for saving."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system to manage access to sensitive policy information",
+        "user_persona": "An intern named Zoe who requires access to confidential regulatory materials.",
+        "user_goal": "To log in and access restricted policy areas securely.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Login Prompt",
+                "description": "Zoe attempts to access a protected area which prompts her to authenticate.",
+                "action": "Attempt to navigate to a restricted policy section.",
+                "expected_outcome": "A modal overlay appears asking for username and password credentials."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "She fills out the form with valid login details and submits.",
+                "action": "Enter valid username and password, then click Submit.",
+                "expected_outcome": "Successfully logged in and redirected to the originally requested protected resource with session established."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json to support `npm run install:all` and `npm run dev` commands",
+        "user_persona": "A team lead named Marcus guiding new developers through project setup.",
+        "user_goal": "To streamline local development environment setup with unified scripts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Marcus instructs the team to install dependencies for both frontend and backend simultaneously.",
+                "action": "Execute `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend node_modules directories are populated with required packages concurrently."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "Next, they start both development servers together for integrated debugging.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend development servers launch concurrently, ready for live coding and API testing."
+            }
+        ]
+    }
+]

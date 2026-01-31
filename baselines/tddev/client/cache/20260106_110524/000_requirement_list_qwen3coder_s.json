@@ -1,0 +1,174 @@
+[
+    {
+        "resource_dependency": {
+            "search_input_placeholder": "Enter stock code or name",
+            "search_button_text": "Search",
+            "report_format_options": [
+                "PDF",
+                "CSV",
+                "HTML"
+            ],
+            "report_content_sections": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ],
+            "background_color": "#FFFFFF",
+            "primary_color": "#000080"
+        },
+        "function": "Allow users to search for stocks by code or name and view relevant information.",
+        "static_description": "A clean search bar with a placeholder 'Enter stock code or name', a search button labeled 'Search', and a responsive layout designed to fit within a white background (#FFFFFF) using navy (#000080) as the primary color scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers the search action when the user clicks the 'Search' button after entering a stock code or name."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Initiates the search when the user presses Enter while typing in the search input field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stock_data_api": "An external financial data API providing real-time stock information including price, volume, and summary details.",
+            "database_connection_config": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "report_generation_api": "API endpoint for generating stock reports based on selected parameters."
+        },
+        "function": "Fetch and display live stock data from backend services upon user request.",
+        "static_description": "Displays a loading spinner during data retrieval and then presents stock details such as current price, change percentage, and other key metrics in a structured card layout against a white background with navy accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Upon successful search completion, displays the fetched stock information dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "report_format_dropdown": "Dropdown menu offering choices between PDF, CSV, and HTML formats.",
+            "content_selection_checkboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ]
+        },
+        "function": "Enable users to choose desired report format and content sections.",
+        "static_description": "Provides a dropdown selector for report format selection and checkboxes for choosing which data sections to include in the report. All controls are styled consistently with the white background and navy color theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects or deselects content sections for inclusion in the report."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Highlights options in the dropdown and checkbox labels for better visibility."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generate_report_button": "Button labeled 'Generate Report'",
+            "report_output_area": "Area to display or download generated reports"
+        },
+        "function": "Process user selections and produce a downloadable customized stock report.",
+        "static_description": "Includes a prominent 'Generate Report' button and an output area where the resulting report can be previewed or downloaded. The entire component uses the specified white background and navy styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiates report generation using selected format and content options."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basic_info_section_title": "Basic Information",
+            "basic_info_fields": [
+                "Stock Code",
+                "Company Name",
+                "Current Price",
+                "Change Percentage",
+                "Volume"
+            ]
+        },
+        "function": "Include essential stock identification and performance data in reports.",
+        "static_description": "A section titled 'Basic Information' displaying key fields like stock code, company name, current price, change percentage, and trading volume. Styled with white background and navy text for readability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "market_trends_section_title": "Market Trends",
+            "trend_visualization": "Chart or graph showing historical price movements over time",
+            "trend_summary_text": "Summary of recent market behavior and sentiment indicators"
+        },
+        "function": "Show market trend insights in reports to help users understand stock dynamics.",
+        "static_description": "A dedicated section named 'Market Trends' containing a chart visualizing historical price changes and a brief written summary of market activity related to the stock. Maintains the white background and navy color scheme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "financial_data_section_title": "Financial Data",
+            "financial_metrics": [
+                "Revenue",
+                "Earnings Per Share",
+                "Debt-to-Equity Ratio",
+                "P/E Ratio"
+            ]
+        },
+        "function": "Present critical financial indicators in generated reports.",
+        "static_description": "Section titled 'Financial Data' listing important metrics such as revenue, EPS, debt-to-equity ratio, and P/E ratio. Presented clearly on a white background with navy headers for emphasis.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgres_database_schema": "Schema includes tables for storing stock data, user preferences, and report history with appropriate relationships and constraints.",
+            "environment_variables": {
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            }
+        },
+        "function": "Integrate backend with PostgreSQL database for persistent storage and retrieval of stock and user data.",
+        "static_description": "Backend configured to connect to a PostgreSQL instance using the specified environment variables. Includes schema definitions for managing dynamic stock and report data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontend_backend_communication": "API endpoints for fetching stock data, saving reports, and retrieving previous searches.",
+            "api_endpoints": {
+                "GET /api/stocks/:symbol": "Retrieve real-time stock information",
+                "POST /api/reports": "Generate and save custom reports"
+            }
+        },
+        "function": "Enable seamless communication between frontend and backend for data exchange.",
+        "static_description": "Frontend components make HTTP requests to backend endpoints to fetch and send data without relying on hardcoded values.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "global_style_sheet": "CSS file applying white background (#FFFFFF) to all pages and navy (#000080) as primary color throughout the application."
+        },
+        "function": "Ensure consistent visual identity across all web pages.",
+        "static_description": "All pages use a global stylesheet enforcing a white background and navy-colored UI elements, ensuring brand consistency.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "input_validation_rules": "Validation logic for checking if entered stock codes or names follow standard naming conventions and exist in available datasets."
+        },
+        "function": "Verify that user-provided stock identifiers conform to acceptable formats before processing.",
+        "static_description": "Implements validation checks on input fields to ensure only valid stock codes or names are accepted for searching.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers input validation when user submits search via keyboard."
+            },
+            {
+                "interaction": "Click",
+                "description": "Initiates validation upon clicking the search button."
+            }
+        ]
+    }
+]

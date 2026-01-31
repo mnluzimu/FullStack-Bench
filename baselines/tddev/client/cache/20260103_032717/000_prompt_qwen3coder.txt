@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please develop a children's recycling game website to educate kids on proper waste recycling. The game should include competitive elements such as a leaderboard to keep kids engaged and motivated. The game should use a cartoon-style visual design to make it visually appealing to children. Kids should be able to play the game, receive feedback, learn how to correctly sort waste into the corresponding containers, and receive rewards and recognition through the game. Use seashell for container backgrounds and crimson for component visuals.

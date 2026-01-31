@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "Implement a discussion forum feature allowing anonymous posting",
+        "user_persona": "A first-year student looking to share thoughts without revealing identity.",
+        "user_goal": "To anonymously post a question about course materials in the correct topic category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to New Post Creation",
+                "description": "Alex visits the campus discussion board homepage and wants to start a new thread. He sees a prominent 'New Post' button.",
+                "action": "Click on the 'New Post' button.",
+                "expected_outcome": "A form appears with fields for title, content, and a dropdown menu for selecting a topic."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Anonymous Post Details",
+                "description": "Alex fills in his question as the post title and elaborates in the content area. He selects 'Academics' from the topic dropdown since it relates to coursework.",
+                "action": "Fill out the title and content fields, then select 'Academics' from the topic dropdown.",
+                "expected_outcome": "Form fields accept input correctly and the selected topic updates visually."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Anonymous Post",
+                "description": "Confident that everything is filled out properly, Alex submits the post using the dark olive green submit button.",
+                "action": "Click the submit button.",
+                "expected_outcome": "Post is successfully created via the /api/posts endpoint and the form clears, ready for another submission."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to reply to existing posts anonymously",
+        "user_persona": "A senior student wanting to help peers by answering questions.",
+        "user_goal": "To provide an answer to someone else's question while remaining anonymous.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding a Relevant Post",
+                "description": "Taylor browses the latest posts and finds one asking about exam preparation strategies.",
+                "action": "Navigate to the post detail page by clicking on the post title.",
+                "expected_outcome": "The post content loads along with a section below for replies."
+            },
+            {
+                "step": 2,
+                "title": "Composing an Anonymous Reply",
+                "description": "Taylor types her advice into the reply text area located beneath the original post.",
+                "action": "Enter reply content into the text area.",
+                "expected_outcome": "Text area accepts input normally without prompting for personal information."
+            },
+            {
+                "step": 3,
+                "title": "Sending the Anonymous Response",
+                "description": "After proofreading, Taylor clicks the dark olive green submit button to send her reply.",
+                "action": "Click the reply submit button.",
+                "expected_outcome": "Reply is posted successfully via the /api/replies endpoint and immediately visible under the original post."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide functionality for browsing and searching posts",
+        "user_persona": "A curious student exploring various topics discussed on campus.",
+        "user_goal": "To discover interesting discussions either through browsing or searching keywords.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Paginated Posts",
+                "description": "Jordan scrolls down the main feed to see more posts, noticing new ones loading as he reaches the bottom.",
+                "action": "Scroll to the end of the current post list.",
+                "expected_outcome": "Additional posts are fetched dynamically using pagination and appended to the list."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Specific Content",
+                "description": "Wanting to find something specific, Jordan uses the search bar at the top to look up 'final exams'.",
+                "action": "Type 'final exams' into the search bar and press Enter.",
+                "expected_outcome": "Search results for 'final exams' are returned from the /api/search endpoint and displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to follow topics of interest",
+        "user_persona": "An engaged student passionate about campus events.",
+        "user_goal": "To keep updated on all discussions happening within the Events topic.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Discovering Topic Tags",
+                "description": "While browsing posts, Riley notices several tagged with 'Events' and decides to follow this topic.",
+                "action": "Locate a post tagged with 'Events' and click the adjacent 'Follow' button.",
+                "expected_outcome": "UI toggles to show 'Unfollow' state instantly, confirming subscription change locally."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Follow Action",
+                "description": "Riley continues browsing, confident that future activity in the 'Events' topic will notify him.",
+                "action": "No further action taken.",
+                "expected_outcome": "POST request was made silently to /api/topics/{id}/follow to record the preference server-side."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a notification system for followed topics",
+        "user_persona": "A busy student relying on notifications to stay informed.",
+        "user_goal": "To get notified whenever there's new activity in followed topics like Career Opportunities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Real-Time Notifications",
+                "description": "Morgan has already followed 'Career Opportunities'. Suddenly, a new reply appears in a related thread.",
+                "action": "Wait passively for real-time event.",
+                "expected_outcome": "WebSocket delivers a notification automatically which shows up in Morgan’s notification panel."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Notification Panel",
+                "description": "Noticing the alert icon changed color, Morgan opens the notification panel to check what happened.",
+                "action": "Click the notification bell icon.",
+                "expected_outcome": "Dropdown panel reveals unread alerts including the new reply; PATCH call marks them as read."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure user privacy by not collecting personal information",
+        "user_persona": "A cautious student concerned about online privacy.",
+        "user_goal": "To participate freely without worrying about being tracked or identified.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying No Tracking Scripts",
+                "description": "Casey inspects the page source and browser developer tools to confirm no trackers are running.",
+                "action": "Open browser DevTools > Network tab and refresh the page.",
+                "expected_outcome": "Only internal API calls are observed, with no third-party analytics domains contacted."
+            },
+            {
+                "step": 2,
+                "title": "Checking Footer for Privacy Link",
+                "description": "Curious about the privacy policy, Casey scrolls to the footer and clicks the provided link.",
+                "action": "Scroll to bottom of page and click 'Privacy Policy'.",
+                "expected_outcome": "Link navigates to /privacy-policy where details about anonymity practices are explained."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Secure the platform against unauthorized access and data breaches",
+        "user_persona": "A security-conscious student aware of common web threats.",
+        "user_goal": "To interact safely knowing the platform protects against malicious actors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site Without Authentication Prompt",
+                "description": "Dana opens the platform and begins browsing without ever being asked to log in or register.",
+                "action": "Visit multiple public pages without logging in.",
+                "expected_outcome": "Pages load normally without redirection to authentication flows."
+            },
+            {
+                "step": 2,
+                "title": "Testing Rate Limit Enforcement",
+                "description": "Dana tries rapidly submitting many posts to test whether the system resists abuse.",
+                "action": "Attempt to submit multiple posts quickly in succession.",
+                "expected_outcome": "Requests begin failing temporarily due to rate limiting enforced behind the scenes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design the UI with honeydew as the background color",
+        "user_persona": "A design-aware student appreciating clean aesthetics.",
+        "user_goal": "To enjoy a visually consistent experience with soft background tones.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Background Color Consistency",
+                "description": "Jamie navigates across different sections of the site noting how the background remains uniformly styled.",
+                "action": "Visit homepage, individual post pages, and settings screen.",
+                "expected_outcome": "Every page utilizes honeydew (#F0FFF0) as the background color consistently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use dark olive green for component colors throughout the interface",
+        "user_persona": "A visual learner who relies on clear UI cues.",
+        "user_goal": "To recognize interactive elements easily thanks to cohesive styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Interactive Components",
+                "description": "Pat looks around the interface spotting buttons, forms, and links highlighted in a matching accent hue.",
+                "action": "Inspect various UI components such as buttons, form inputs, and navigation links.",
+                "expected_outcome": "All primary interactive elements use dark olive green (#556B2F) as their accent color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a frontend that fetches all data via backend APIs",
+        "user_persona": "A tech-savvy student interested in how applications work under the hood.",
+        "user_goal": "To observe seamless integration between frontend presentation and backend data delivery.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Initial Data Asynchronously",
+                "description": "Quinn opens the homepage and watches content populate gradually rather than appearing empty initially.",
+                "action": "Load the homepage and monitor network activity.",
+                "expected_outcome": "Frontend waits for GET requests to /api/posts and similar endpoints before rendering content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop a backend connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A computer science student learning backend systems.",
+        "user_goal": "To understand how backend connects securely to its data store.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Confirming Database Connection Setup",
+                "description": "Riley reviews deployment configuration ensuring proper database connectivity using standard variables.",
+                "action": "Check backend logs or configuration files for presence of DB_* environment variables.",
+                "expected_outcome": "Database connection initialized using localhost, port 5432, myappuser, myapppassword, and myapp values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'install:all' script for frontend and backend installation",
+        "user_persona": "A junior developer setting up a project for the first time.",
+        "user_goal": "To simplify setup process by installing dependencies for both sides together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Unified Install Command",
+                "description": "Sam clones the repository and runs the unified install command to prepare the environment.",
+                "action": "Run 'npm run install:all' from root directory.",
+                "expected_outcome": "Both frontend and backend node_modules folders are populated with necessary packages."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up 'dev' script in package.json to run frontend and backend concurrently",
+        "user_persona": "A collaborative developer working alongside teammates.",
+        "user_goal": "To launch full stack development environment efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers Together",
+                "description": "Jordan prepares to code by starting both frontend and backend servers simultaneously.",
+                "action": "Execute 'npm run dev' from root folder.",
+                "expected_outcome": "Concurrently launches both frontend and backend watch processes allowing integrated debugging."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support real-time updates for new replies and notifications",
+        "user_persona": "A responsive participant expecting timely feedback.",
+        "user_goal": "To receive instant updates when others engage with followed content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Establishing WebSocket Connection",
+                "description": "Alex loads the app and observes a background connection being established for live messaging.",
+                "action": "Open the application and inspect network tab for WebSocket handshake.",
+                "expected_outcome": "WebSocket connection initiates successfully to ws://localhost:PORT/ws/notifications."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Instant Updates",
+                "description": "Without refreshing, Alex receives immediate notice when someone replies to a followed post.",
+                "action": "Wait for real-time message arrival.",
+                "expected_outcome": "Live message arrives through WebSocket and displays automatically in notification dropdown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include moderation tools for managing inappropriate content",
+        "user_persona": "A responsible admin tasked with maintaining community standards.",
+        "user_goal": "To identify and act upon reported problematic content swiftly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Moderation Dashboard",
+                "description": "As an administrator, Taylor logs into the hidden moderation panel to review flagged items.",
+                "action": "Manually navigate to /admin/moderate and authenticate manually.",
+                "expected_outcome": "Dashboard loads showing unresolved reports sorted by severity levels."
+            },
+            {
+                "step": 2,
+                "title": "Taking Moderation Actions",
+                "description": "Seeing an offensive reply, Taylor chooses to remove it permanently from the platform.",
+                "action": "Click the 'Delete' button next to the flagged item.",
+                "expected_outcome": "DELETE request removes the entry from database and updates the dashboard view accordingly."
+            }
+        ]
+    }
+]

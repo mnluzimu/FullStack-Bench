@@ -1,0 +1,146 @@
+[
+    {
+        "resource_dependency": {
+            "biographyDataSchema": "Database table named 'biographies' with fields: id (UUID), name (string), birth_date (date), death_date (date, nullable), short_bio (text), full_bio (text), profile_image_url (string), created_at (timestamp), updated_at (timestamp).",
+            "lifeExperiencesSchema": "Database table named 'life_experiences' with fields: id (UUID), biography_id (foreign key to biographies.id), title (string), description (text), start_date (date), end_date (date, nullable), location (string), category (enum: education, career, personal), created_at (timestamp).",
+            "achievementsSchema": "Database table named 'achievements' with fields: id (UUID), biography_id (foreign key to biographies.id), title (string), description (text), date_received (date), awarding_body (string), created_at (timestamp).",
+            "honorsSchema": "Database table named 'honors' with fields: id (UUID), biography_id (foreign key to biographies.id), title (string), description (text), date_conferred (date), conferring_body (string), created_at (timestamp)."
+        },
+        "function": "Display a biography website with sections for basic information, life experiences, achievements, and honors.",
+        "static_description": "A page displaying a biography with a header showing the person's name, dates, and profile image. Below, four main sections are displayed in vertical order: Basic Information (short bio), Life Experiences (chronological list grouped by category), Achievements (list of awards and recognitions), and Honors (list of titles and distinctions). All elements use dim gray text on a snow background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "browseBiographiesAPI": "GET /api/biographies endpoint returning paginated list of biography summaries with fields: id, name, short_bio, profile_image_url.",
+            "biographyListSchema": "Database query joining biographies table to return summary fields only for listing purposes."
+        },
+        "function": "Provide browsing functionality for users to explore different biographies.",
+        "static_description": "A dedicated browsing page with a grid layout of biography cards. Each card displays a circular profile image, name, and brief excerpt from the short bio. Cards are arranged in rows and columns on a snow background with dim gray text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a biography card navigates the user to the detailed view page for that biography."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "detailedBiographyAPI": "GET /api/biographies/{id} endpoint returning complete biography data including associated life experiences, achievements, and honors.",
+            "experienceGroupingLogic": "Server-side logic to group life experiences by category (education, career, personal) before sending to frontend."
+        },
+        "function": "Enable detailed view pages for individual biographies.",
+        "static_description": "A standalone page presenting comprehensive details of a selected biography. Layout includes a fixed-width container with centered content, featuring the same four-section structure as the general display but with extended content. Background remains snow, and all text is dim gray.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchAPI": "GET /api/search?q={query} endpoint querying across name, short_bio, full_bio, experience titles/descriptions, achievement titles/descriptions, and honor titles/descriptions.",
+            "searchIndexSchema": "PostgreSQL full-text search index configured on relevant text fields in biographies, life_experiences, achievements, and honors tables."
+        },
+        "function": "Implement a search feature to allow users to find relevant biographical content.",
+        "static_description": "A prominent search bar located in the header/navigation area. When active, results appear in a dropdown list beneath the input field, showing matching biography names and snippets of relevant content. Search bar has a dim gray border on snow background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon or focusing the input field activates the search interface."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Submitting a search query via Enter key redirects to a dedicated search results page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorValue": "#fffafa"
+        },
+        "function": "Apply snow as the background color across all pages.",
+        "static_description": "All web pages utilize #fffafa (snow) as the primary background color, applied consistently through global CSS styles.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "colorSchemeValue": "#696969"
+        },
+        "function": "Style all elements with dim gray color scheme.",
+        "static_description": "Text, borders, icons, and other UI elements throughout the site use #696969 (dim gray) as the primary color, defined globally in CSS variables or theme files.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchBiographyDataFunction": "Frontend service method to call GET /api/biographies/{id}",
+            "fetchBrowseDataFunction": "Frontend service method to call GET /api/biographies",
+            "fetchSearchResultsFunction": "Frontend service method to call GET /api/search?q={query}"
+        },
+        "function": "Fetch all biography data dynamically from backend APIs.",
+        "static_description": "The frontend application initializes without any preloaded biographical content. Data loading indicators (spinners or placeholders) are shown until API responses populate the UI components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment-based connection string using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSetupScript": "SQL migration scripts to create biographies, life_experiences, achievements, and honors tables with appropriate indexes and constraints."
+        },
+        "function": "Connect backend to external PostgreSQL database using provided environment variables.",
+        "static_description": "Backend server establishes secure database connections at startup using environment variables. Connection pooling and error handling mechanisms are implemented but not visible in the UI.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "repositoryStructure": "Root directory containing 'frontend/' and 'backend/' subdirectories. Frontend uses React/Vue framework, backend uses Node.js/Express or similar stack. Both directories contain their own package.json files."
+        },
+        "function": "Include frontend and backend code in repository structure.",
+        "static_description": "Repository file tree shows clear separation between frontend and backend codebases under respective top-level folders. Shared configuration files like .gitignore reside in the root.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptDefinition": "\"scripts\": { \"install:all\": \"cd frontend && npm install && cd ../backend && npm install\" }"
+        },
+        "function": "Configure package.json with install:all script to set up both frontend and backend dependencies.",
+        "static_description": "Root-level package.json defines an install:all script that sequentially installs dependencies for both frontend and backend projects when executed.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptDefinition": "\"scripts\": { \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" }"
+        },
+        "function": "Configure package.json with dev script to run frontend and backend concurrently.",
+        "static_description": "Root-level package.json includes a dev script utilizing a tool like concurrently to launch both frontend development server and backend API server simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Ensure no hard-coded or mock data is used in the application.",
+        "static_description": "Application renders empty states or loading spinners initially while waiting for API responses. No placeholder or example data appears in production builds.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries and flexible units (%, rem, em) combined with mobile-first design principles",
+            "viewportMetaTag": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        },
+        "function": "Support responsive design for optimal viewing on desktop and mobile devices.",
+        "static_description": "Layout adjusts fluidly based on screen size. Biography cards stack vertically on small screens and align horizontally on larger ones. Font sizes scale appropriately. Navigation transforms into a collapsible menu on mobile.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "Browse Biographies",
+                "Search",
+                "About"
+            ]
+        },
+        "function": "Implement navigation menu for easy access to main sections of the website.",
+        "static_description": "Fixed-position navigation bar at the top of every page featuring links to Home, Browse Biographies, Search, and About sections. Menu items are horizontally aligned with dim gray text on snow background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any navigation link directs the user to the corresponding section or page."
+            }
+        ]
+    }
+]

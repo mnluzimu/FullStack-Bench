@@ -1,0 +1,228 @@
+[
+    {
+        "resource_dependency": {
+            "featuredArticlesDataSchema": "Database table 'articles' with fields: id (UUID), title (string), summary (text), author_id (foreign key to users.id), created_at (timestamp), is_featured (boolean).",
+            "featuredSolutionsDataSchema": "Database table 'solutions' with fields: id (UUID), title (string), problem_summary (text), author_id (foreign key to users.id), created_at (timestamp), is_featured (boolean)."
+        },
+        "function": "Display featured technical articles and solutions on the homepage.",
+        "static_description": "The homepage shows two sections: 'Featured Articles' and 'Popular Solutions'. Each section displays a grid of cards with titles, summaries, authors, and publish dates. Cards use a consistent style with rounded corners and hover effects.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on an article card navigates to the article detail page. Clicking on a solution card navigates to the solution detail page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Cards slightly elevate and show a shadow effect when hovered over."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "articlesDataSchema": "Database table 'articles' with fields: id (UUID), title (string), content (text), author_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp), tags (array of strings).",
+            "paginationAPIEndpoint": "/api/articles?page={pageNumber}&limit={itemsPerPage}"
+        },
+        "function": "Allow users to browse technical articles with pagination or infinite scroll.",
+        "static_description": "A dedicated page lists articles in a vertical feed. Each entry includes the title, excerpt, author name, publication date, and tags. Navigation controls appear at the bottom for pagination or a 'Load More' button for infinite scroll.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "For infinite scroll, reaching near the end of the list triggers loading more articles via API call."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on an article title navigates to the detailed article view page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "/api/search?query={searchTerm}&type=all",
+            "searchIconResource": "/icons/search-icon.svg"
+        },
+        "function": "Enable users to search technical information across articles and solutions.",
+        "static_description": "A prominent search bar appears at the top of the site layout. It contains a text input field with a magnifying glass icon aligned right. Placeholder text says 'Search articles and solutions...'",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search bar focuses the input field."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter submits the current query to the backend search API endpoint and redirects to the search results page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "articleDetailDataSchema": "Same schema as articles but includes full 'content' field rendered as HTML.",
+            "articleContentFormatter": "Use markdown-to-HTML converter library like marked.js to render article content safely."
+        },
+        "function": "Present a detailed view of each technical article with properly formatted content.",
+        "static_description": "Article detail page displays the title prominently, followed by metadata (author, publish/update date) and the main content area. Content supports headings, code blocks, images, links, and lists with appropriate styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Users can scroll through the entire article content vertically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on embedded links opens them in a new tab."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "solutionsDataSchema": "Database table 'solutions' with fields: id (UUID), title (string), problem_description (text), resolution_steps (text), category (string), author_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp).",
+            "filterOptions": [
+                "category",
+                "date"
+            ],
+            "solutionFilterAPI": "/api/solutions?category={category}&sort=date"
+        },
+        "function": "Provide a section for browsing and viewing solutions with filtering capabilities.",
+        "static_description": "Solutions browsing page displays a filter sidebar on the left and a list of solution cards on the right. Filters include dropdowns for categories and sorting by date. Solution cards show title, brief problem statement, and category tag.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a filter option updates the displayed list dynamically by calling the filtered API endpoint."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a solution card navigates to its detailed view page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "solutionDetailDataSchema": "Same schema as solutions but with full 'problem_description' and 'resolution_steps' rendered as HTML.",
+            "structuredPresentationStyle": "Use distinct visual sections for Problem Statement and Resolution Steps with clear headers and spacing."
+        },
+        "function": "Show detailed view of each solution with structured presentation of problem and resolution.",
+        "static_description": "Solution detail page presents the title first, then separates the content into two major sections: 'Problem Description' and 'Resolution Steps', each clearly labeled and visually distinct.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Users can read through the structured sections vertically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authAPISchema": "Endpoints: POST /api/auth/register, POST /api/auth/login, GET /api/auth/me, POST /api/auth/logout",
+            "sessionManagementLibrary": "Use express-session middleware for server-side sessions with cookie handling.",
+            "userDatabaseTable": "Table 'users': id (UUID), username (string), email (string, unique), password_hash (string), created_at (timestamp)"
+        },
+        "function": "Implement user authentication system supporting registration, login, logout, and session management.",
+        "static_description": "Login/Register modal or separate pages contain forms with inputs for credentials. Buttons for submitting actions. Links between login and register views.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit buttons trigger form validation and send data to respective backend auth endpoints. Successful login redirects to dashboard/homepage."
+            },
+            {
+                "interaction": "Click",
+                "description": "Logout button clears session and redirects to homepage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileDataSchema": "Includes user info + joined tables for authored_articles (count), contributed_solutions (count), messages_sent (count)",
+            "profilePageRoute": "/profile/{userId}"
+        },
+        "function": "Display a user profile page showing authored articles, contributed solutions, and communication history.",
+        "static_description": "Profile page has tabs for Overview, Authored Articles, Contributed Solutions, and Communication History. Default active tab is Overview which summarizes counts and recent activity.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching tabs loads corresponding data asynchronously without reloading the whole page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messagingAPISchema": "Endpoints: GET /api/messages/conversations, GET /api/messages/{conversationId}, POST /api/messages/send",
+            "messageDatabaseTables": "Tables: conversations(id), participants(conversation_id, user_id), messages(id, conversation_id, sender_id, content, timestamp)",
+            "realTimeMessagingSupport": "WebSocket integration needed for live message delivery."
+        },
+        "function": "Enable users to communicate with each other through private messaging or discussions.",
+        "static_description": "Messaging interface resembles chat apps with a list of conversations on the left and selected conversation thread on the right. Message bubbles differentiate sent vs received.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a conversation loads its message history. Typing and sending messages adds them to the current thread in real time."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "In message compose box, pressing Enter sends the typed message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "commentsAPISchema": "Endpoints: GET /api/comments?parent_type={type}&parent_id={id}, POST /api/comments/create",
+            "commentDatabaseTable": "Table 'comments': id (UUID), parent_type (enum: article/solution), parent_id (UUID), author_id (foreign key to users.id), content (text), created_at (timestamp)"
+        },
+        "function": "Allow users to leave comments on articles and solutions for interaction.",
+        "static_description": "Below the main content of articles/solutions, there’s a comments section. Existing comments are listed chronologically with author avatars, names, timestamps, and content. A form allows logged-in users to add new comments.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting a comment adds it to the list immediately after successful API response."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "Use environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME for connecting to PostgreSQL.",
+            "articlesAPIEndpoint": "/api/articles",
+            "solutionsAPIEndpoint": "/api/solutions",
+            "usersAPIEndpoint": "/api/users",
+            "searchResultsAPIEndpoint": "/api/search"
+        },
+        "function": "Expose backend API endpoints for fetching articles, solutions, user data, and search results from PostgreSQL database.",
+        "static_description": "RESTful API layer built using Node.js/Express exposing CRUD operations and specialized queries for articles, solutions, user profiles, and global search functionality.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontendHTTPClient": "Axios or Fetch API used throughout React/Vue components to make authenticated requests.",
+            "baseAPIUrlVariable": "Define REACT_APP_API_BASE_URL in .env file pointing to backend base URL."
+        },
+        "function": "Ensure all frontend components fetch dynamic data exclusively through HTTP calls to backend APIs.",
+        "static_description": "All dynamic content areas (articles list, solution details, user profile stats, etc.) initially display loading spinners before rendering fetched data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "connectionPoolLibrary": "pg-pool or similar to manage database connections efficiently."
+        },
+        "function": "Configure application environment to connect securely to PostgreSQL using predefined variables.",
+        "static_description": "Environment configuration files (.env) store sensitive database credentials. Backend initializes connection pool during startup using these values.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScriptsDefinition": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\" } }"
+        },
+        "function": "Define package.json scripts to streamline installation and development workflow.",
+        "static_description": "Root-level package.json defines custom commands to simplify multi-project setup and execution.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries or utility-first frameworks like Tailwind CSS.",
+            "mobileViewportMetaTag": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        },
+        "function": "Ensure responsive design works seamlessly across desktop and mobile devices.",
+        "static_description": "Layout adapts fluidly to different screen sizes. Navigation becomes collapsible hamburger menu on small screens. Font sizes and touch targets adjust accordingly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Changing browser window size reflows layout elements appropriately using CSS breakpoints."
+            }
+        ]
+    }
+]

@@ -1,0 +1,247 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A trader named Alex who wants to view live trading opportunities.",
+        "user_goal": "To see the latest trading opportunities loaded dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Trading Opportunities",
+                "description": "Alex opens the trading website and expects to see a list of current trading opportunities fetched from the backend.",
+                "action": "Load Page",
+                "expected_outcome": "The frontend makes GET requests to various endpoints and renders components with dynamic data such as user info and trading opportunities."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Sam deploying the backend service.",
+        "user_goal": "To ensure the backend connects securely to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Sam starts the backend server and verifies it connects to the PostgreSQL database using the correct environment variables.",
+                "action": "Start backend server process.",
+                "expected_outcome": "The backend initializes a connection pool to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for secure access",
+        "user_persona": "A new user named Jordan trying to access the trading dashboard.",
+        "user_goal": "To log in securely and gain access to the trading dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Jordan navigates to the homepage and fills out the login form with valid credentials.",
+                "action": "Submit Login Form",
+                "expected_outcome": "The system sends a POST request to /api/auth/login, authenticates Jordan, and redirects to the dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out",
+                "description": "After exploring the dashboard, Jordan decides to log out.",
+                "action": "Click Logout Button",
+                "expected_outcome": "A DELETE request is sent to /api/auth/logout, the session cookie is cleared, and Jordan is redirected to the login screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard for users to browse available trading opportunities",
+        "user_persona": "An experienced trader named Riley checking for new trading opportunities.",
+        "user_goal": "To view and refresh the list of available trading opportunities on the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Trading Opportunities",
+                "description": "Riley logs in and lands on the dashboard where a table of trading opportunities is displayed.",
+                "action": "Load Dashboard",
+                "expected_outcome": "The dashboard automatically fetches and displays the latest trading opportunities from /api/trading/opportunities."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Data",
+                "description": "Riley notices the data might be stale and clicks the refresh button.",
+                "action": "Click Refresh Button",
+                "expected_outcome": "The dashboard re-fetches data from the API and updates the table without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interface for placing bids and executing trades in real-time",
+        "user_persona": "A competitive trader named Taylor looking to place a bid on a promising opportunity.",
+        "user_goal": "To place a bid and execute a trade in real-time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Placing a Bid",
+                "description": "Taylor finds an attractive trading opportunity and clicks the 'Place Bid' button.",
+                "action": "Click Place Bid Button",
+                "expected_outcome": "A modal opens prompting for a bid amount. After submission, a POST request is made to /api/bids/place and a confirmation toast is shown."
+            },
+            {
+                "step": 2,
+                "title": "Executing Trade",
+                "description": "Taylor's bid gets accepted, and the system prompts to confirm execution.",
+                "action": "Confirm Trade Execution",
+                "expected_outcome": "A POST request is made to /api/trades/execute, and the UI updates instantly with the outcome."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Trading account management section for users to monitor balances and positions",
+        "user_persona": "A cautious investor named Morgan wanting to review their account status.",
+        "user_goal": "To view account balance and current positions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Account Summary",
+                "description": "Morgan clicks on the account tab to view their financial standing.",
+                "action": "Navigate to Account Tab",
+                "expected_outcome": "The system loads a detailed view of Morgan's portfolio, including account balance, open positions, and performance metrics."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Order history page displaying past transactions and trade outcomes",
+        "user_persona": "A meticulous trader named Casey reviewing past trades.",
+        "user_goal": "To filter and view past transactions by date range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "Casey visits the order history page and applies a date range filter to narrow down transactions.",
+                "action": "Apply Date Range Filter",
+                "expected_outcome": "The system updates the query parameters to /api/orders/history and renders a filtered list of transactions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updates for bid changes and trade executions",
+        "user_persona": "An active trader named Avery monitoring live market changes.",
+        "user_goal": "To receive real-time updates on bid changes and trade executions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Live Updates",
+                "description": "While browsing, Avery receives a notification about a new bid update.",
+                "action": "Receive New Message",
+                "expected_outcome": "A flash alert appears briefly at the top of the screen indicating the update and dismisses automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search and filter functionality for trading opportunities",
+        "user_persona": "A focused trader named Quinn searching for specific assets.",
+        "user_goal": "To find specific trading opportunities using search and filters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching Assets",
+                "description": "Quinn types a keyword into the search bar to find relevant opportunities.",
+                "action": "Type Search Query",
+                "expected_outcome": "The table dynamically filters results in real-time as Quinn types."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Quinn selects a filter option to refine the results further.",
+                "action": "Select Filter Option",
+                "expected_outcome": "The displayed opportunities update immediately based on the selected filter."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with lemon chiffon background and chocolate-colored components",
+        "user_persona": "A mobile user named Pat accessing the trading site on a phone.",
+        "user_goal": "To navigate the site comfortably on a small screen with consistent styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Viewport",
+                "description": "Pat resizes the browser window to simulate a mobile experience.",
+                "action": "Resize Browser Window",
+                "expected_outcome": "The layout adapts smoothly, adjusting fonts, spacing, and navigation menus based on viewport width, maintaining lemon chiffon background and chocolate components."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile settings page for personal information and preferences",
+        "user_persona": "A detail-oriented user named Robin updating personal settings.",
+        "user_goal": "To update profile information and save changes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Updating Profile",
+                "description": "Robin navigates to the profile settings page and modifies personal information.",
+                "action": "Save Changes",
+                "expected_outcome": "The updated information is submitted to /api/users/profile/update, and the UI reflects the saved state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Notifications system for trade confirmations and bid updates",
+        "user_persona": "A busy trader named Drew checking for important alerts.",
+        "user_goal": "To view and dismiss a notification about a recent trade.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Notifications",
+                "description": "Drew clicks the notification bell icon to check for alerts.",
+                "action": "Click Notification Bell",
+                "expected_outcome": "A dropdown panel appears showing recent notifications fetched from /api/notifications/feed."
+            },
+            {
+                "step": 2,
+                "title": "Dismissing Alert",
+                "description": "Drew dismisses a specific alert by clicking on it.",
+                "action": "Dismiss Single Alert",
+                "expected_outcome": "The alert is marked as read and removed from the dropdown list temporarily."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin panel for managing trading listings and user accounts",
+        "user_persona": "An administrator named Lee overseeing the platform.",
+        "user_goal": "To access the admin panel and manage platform resources.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Panel",
+                "description": "Lee tries to access the restricted admin panel to manage listings.",
+                "action": "Access Admin Panel",
+                "expected_outcome": "Lee is redirected to a protected route where JWT token claims are verified before granting access."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "`package.json` configured with `install:all` script to install frontend and backend dependencies",
+        "user_persona": "A developer named Kai setting up the project for the first time.",
+        "user_goal": "To install all frontend and backend dependencies with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Kai runs the install script to set up the development environment.",
+                "action": "Run npm run install:all",
+                "expected_outcome": "Two child processes start installing node_modules in client/ and server/ folders concurrently, completing together."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "`package.json` configured with `dev` script to start frontend and backend concurrently",
+        "user_persona": "A developer named Jan starting the development environment.",
+        "user_goal": "To launch both frontend and backend servers for local testing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Jan runs the dev script to begin working on the project locally.",
+                "action": "Execute npm run dev",
+                "expected_outcome": "Both frontend and backend development servers boot up concurrently, exposing the frontend on port 3000 and backend on port 5000."
+            }
+        ]
+    }
+]

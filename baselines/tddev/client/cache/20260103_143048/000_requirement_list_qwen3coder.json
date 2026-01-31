@@ -1,0 +1,217 @@
+[
+    {
+        "resource_dependency": {
+            "designerPhoto": "/assets/images/designer-photo.jpg",
+            "portfolioProjectImages": "/assets/images/portfolio/*",
+            "contactIcons": [
+                "/assets/icons/email.svg",
+                "/assets/icons/linkedin.svg",
+                "/assets/icons/behance.svg"
+            ],
+            "themeVariables": {
+                "background_color": "peach puff",
+                "component_color": "indian red"
+            }
+        },
+        "function": "Display a responsive frontend interface showcasing a personal portfolio of design works with consistent styling and navigation.",
+        "static_description": "The page displays a header with navigation links ('Home', 'About', 'Portfolio', 'Contact'), a hero section featuring the designer's name and tagline, followed by sections for About, Portfolio, and Contact. Background color is peach puff, and component colors (buttons, links) use indian red.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on navigation links scrolls smoothly to respective sections on the same page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Navigation links change color slightly when hovered over for better user feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bioContent": "Designer's biography including education, skills, and professional journey.",
+            "experienceTimelineData": [
+                {
+                    "year": "2020-Present",
+                    "role": "Senior Designer",
+                    "company": "Creative Studio"
+                },
+                {
+                    "year": "2018-2020",
+                    "role": "UI/UX Designer",
+                    "company": "Digital Agency"
+                }
+            ],
+            "profileImageSource": "/assets/images/profile.jpg"
+        },
+        "function": "Present detailed information about the designer including background, experience, and skills in a visually engaging layout.",
+        "static_description": "This section includes a left-aligned profile image referenced by 'profileImageSource', and to the right, structured text content containing the designer’s bio from 'bioContent' and a vertical timeline showing work experience based on 'experienceTimelineData'.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "projectThumbnails": "/assets/thumbnails/project-{id}.jpg",
+            "projectDetailsPopupContent": {
+                "title": "string",
+                "description": "text",
+                "technologies_used": "array of strings",
+                "live_demo_link": "url or null",
+                "source_code_link": "url or null"
+            }
+        },
+        "function": "Allow users to browse and explore the designer's portfolio projects through categorized thumbnails with expandable details.",
+        "static_description": "A grid-based gallery displays project thumbnails sourced from 'projectThumbnails'. Each thumbnail card shows title and brief description. Clicking opens a modal/popup showing full project details according to 'projectDetailsPopupContent'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a project thumbnail opens a modal displaying detailed project information including title, description, technologies used, and optional links to live demo or source code."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "emailAddress": "mailto:designer@example.com",
+            "socialMediaLinks": {
+                "linkedin": "https://linkedin.com/in/designer",
+                "behance": "https://behance.net/designer"
+            },
+            "contactFormFields": [
+                "Name",
+                "Email",
+                "Message"
+            ]
+        },
+        "function": "Provide accessible contact options such as email address, social media profiles, and a functional contact form.",
+        "static_description": "Displays clearly visible contact methods including clickable email link from 'emailAddress', icons linking to social platforms defined in 'socialMediaLinks', and a simple form with fields listed under 'contactFormFields'. All interactive elements follow the indian red color scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the email address opens the default mail client; clicking social icons redirects to external platform pages."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting the contact form triggers validation checks and sends data via POST request to /api/contact endpoint (placeholder only since this is static)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cssThemeFile": "/styles/theme.css"
+        },
+        "function": "Apply custom theme styles across the entire website ensuring consistency in visual identity.",
+        "static_description": "All pages utilize global CSS file located at 'cssThemeFile' which defines --background-color as peach puff and --primary-color as indian red. These variables are applied throughout components like buttons, headers, and backgrounds.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "htmlPages": [
+                "/index.html",
+                "/about.html",
+                "/portfolio.html",
+                "/contact.html"
+            ],
+            "contentAssets": [
+                "/assets/*",
+                "/styles/*",
+                "/scripts/*"
+            ]
+        },
+        "function": "Ensure all site content is statically served without requiring dynamic server-side processing or databases.",
+        "static_description": "Each HTML page in 'htmlPages' contains fully self-contained markup referencing local assets in 'contentAssets'. No JavaScript calls made to fetch remote or dynamic data during runtime.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Define absence of backend services due to static nature of the website content.",
+        "static_description": "No backend frameworks, servers, or APIs are implemented or initialized. Site consists purely of client-side rendered HTML/CSS/JS files.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "rootPackageJsonPath": "./package.json"
+        },
+        "function": "Configure npm scripts to allow installation of dependencies for both frontend and backend modules simultaneously.",
+        "static_description": "Root package.json includes an 'install:all' script that executes 'npm install' in both frontend and backend directories sequentially.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentlyDevScript": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\""
+        },
+        "function": "Enable concurrent development mode execution for frontend and backend processes using a unified command.",
+        "static_description": "The root package.json defines a 'dev' script utilizing 'concurrently' to launch frontend and backend development servers in parallel using their individual 'dev' commands.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbEnvVars": {
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            }
+        },
+        "function": "Prepare placeholder configuration for connecting to PostgreSQL if future dynamic features were added.",
+        "static_description": "Although unused currently, environment variable placeholders matching 'dbEnvVars' are documented for potential future backend integrations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": {
+                "host": "${DB_HOST}",
+                "port": "${DB_PORT}",
+                "username": "${DB_USERNAME}",
+                "password": "${DB_PASSWORD}",
+                "database": "${DB_NAME}"
+            }
+        },
+        "function": "Document how database connectivity would be established if backend logic were introduced later.",
+        "static_description": "Connection parameters align exactly with provided credentials stored in environment variables described in 'postgresConnectionConfig'. Used as reference template for backend setup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchApiEndpoint": "/api/data"
+        },
+        "function": "Outline how frontend could integrate with backend APIs if dynamic content became necessary.",
+        "static_description": "Placeholder references to API endpoints like 'fetchApiEndpoint' exist in code comments but remain inactive. Would enable AJAX requests if activated in future versions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "markdownPreviewStyles": "/styles/markdown-preview.css"
+        },
+        "function": "Support rendering of formatted content if markdown-based editing were incorporated into the portfolio.",
+        "static_description": "CSS stylesheets such as 'markdownPreviewStyles' are included to support clean presentation of markdown-rendered content, though currently unused.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "interactiveElementsList": [
+                "Project Modals",
+                "Smooth Scroll Navigation",
+                "Contact Form Validation"
+            ]
+        },
+        "function": "Enhance user engagement through lightweight interactivity while maintaining static site performance.",
+        "static_description": "Elements identified in 'interactiveElementsList' respond to standard browser events (clicks, scrolls) using vanilla JS or minimal libraries to maintain responsiveness without backend reliance.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers modal popups for project viewing and validates form inputs before submission attempt."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Enables smooth scrolling between anchor-linked sections within the single-page application."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "seoMetaTags": "<meta name=\"description\" content=\"Personal portfolio of [Designer Name], showcasing creative design works.\">"
+        },
+        "function": "Improve search engine visibility by implementing semantic HTML structure and meta tags.",
+        "static_description": "Each HTML document incorporates relevant SEO metadata defined in 'seoMetaTags', including descriptive titles, meta descriptions, and structured headings (<h1>, <h2>) to enhance crawlability.",
+        "interaction_and_states": []
+    }
+]

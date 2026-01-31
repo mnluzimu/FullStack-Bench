@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all poll data dynamically from backend APIs",
+        "user_persona": "A curious voter named Alex who wants to see what polls are available.",
+        "user_goal": "To browse a list of all available polls fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Alex opens the polls website and expects to see a list of available polls loaded from the server.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "A white background page loads with navy-styled cards displaying poll titles and descriptions fetched from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Poll Cards",
+                "description": "Alex scrolls down and sees more polls loading as he reaches the bottom, then clicks on one to participate.",
+                "action": "Scroll to load additional polls if paginated, then click on a poll card.",
+                "expected_outcome": "More polls load dynamically upon scrolling; clicking a poll card navigates to the specific poll voting page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Taylor responsible for verifying backend connectivity.",
+        "user_goal": "To confirm the backend successfully connects to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Taylor starts the backend server expecting it to connect to the PostgreSQL database using correct environment configurations.",
+                "action": "Run `npm run dev` in the backend directory.",
+                "expected_outcome": "Server starts without connection errors and logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Data via API Endpoint",
+                "description": "Taylor makes an API call to retrieve poll data to verify database interaction.",
+                "action": "Send GET request to `/api/polls` endpoint.",
+                "expected_outcome": "Returns JSON response containing list of polls retrieved from the connected PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface allowing users to browse available polls and their options",
+        "user_persona": "Jasmine, a regular site visitor looking to participate in active polls.",
+        "user_goal": "To find and select a poll they're interested in participating in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Available Polls",
+                "description": "Jasmine visits the homepage where she sees a list of polls presented in card format.",
+                "action": "Navigate to the homepage.",
+                "expected_outcome": "Polls are displayed in navy-themed cards with titles, descriptions, and 'View Poll' buttons."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Specific Poll",
+                "description": "She clicks on a poll titled 'Favorite Programming Language' to explore its options.",
+                "action": "Click on the 'View Poll' button of the chosen poll card.",
+                "expected_outcome": "Navigates to the detailed poll view showing available voting options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for users to cast votes for specific poll options",
+        "user_persona": "Riley, a tech enthusiast voting in a programming language preference poll.",
+        "user_goal": "To submit a vote for their favorite programming language in a poll.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing an Option",
+                "description": "Riley views the poll and selects 'Python' as her preferred choice from the radio buttons.",
+                "action": "Click on the radio button next to 'Python'.",
+                "expected_outcome": "'Submit Vote' button becomes enabled after selecting an option."
+            },
+            {
+                "step": 2,
+                "title": "Submitting the Vote",
+                "description": "Confident in her selection, Riley clicks the submit button to record her vote.",
+                "action": "Click the 'Submit Vote' button.",
+                "expected_outcome": "Vote is recorded via POST to `/api/votes`, and Riley is redirected to the results page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to view real-time or updated voting results for each poll",
+        "user_persona": "Sam, a participant wanting to see how others voted in the same poll.",
+        "user_goal": "To view up-to-date voting statistics for a recently participated poll.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Results Page",
+                "description": "After voting, Sam lands on the results page which shows real-time voting outcomes.",
+                "action": "Land on the results page automatically after submitting a vote.",
+                "expected_outcome": "Page displays poll title and horizontal bar charts showing vote distribution among options."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing for Updated Results",
+                "description": "Curious whether new votes have come in, Sam manually refreshes the page.",
+                "action": "Press F5 or use browser refresh button.",
+                "expected_outcome": "Results update dynamically by re-fetching latest data from the `/api/polls/{id}/results` endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Styling with a white background color throughout the website",
+        "user_persona": "Morgan, a designer reviewing the visual consistency of the site.",
+        "user_goal": "To ensure every page has a clean white background as per brand guidelines.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Homepage Background",
+                "description": "Morgan inspects the homepage visually to confirm the background color matches the requirement.",
+                "action": "Visit the homepage and inspect body background style.",
+                "expected_outcome": "Entire background is solid white (#FFFFFF) with no other colors used as base layer."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Subpages",
+                "description": "Morgan navigates to multiple subpages to check if the white background remains consistent.",
+                "action": "Navigate through several internal pages like poll detail and results.",
+                "expected_outcome": "All visited pages maintain a uniform white background regardless of content type."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI components styled with navy color as the primary accent",
+        "user_persona": "Casey, a front-end reviewer checking theme adherence.",
+        "user_goal": "To validate that all interactive and static UI components utilize navy as the main accent color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Buttons and Text",
+                "description": "Casey examines various UI elements such as buttons, headers, and links for proper navy coloring.",
+                "action": "Visit any page and inspect CSS properties of buttons, headings, and links.",
+                "expected_outcome": "Buttons, headers, and links consistently use navy (#000080) as their primary color."
+            },
+            {
+                "step": 2,
+                "title": "Testing Interactive Elements",
+                "description": "Casey interacts with hoverable items like buttons to observe navy styling behavior.",
+                "action": "Hover over navy-styled buttons and links.",
+                "expected_outcome": "Hover effects preserve or enhance the navy theme rather than switching to unrelated colors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema to store polls, poll options, and vote records",
+        "user_persona": "DevOps engineer named Jordan validating database structure.",
+        "user_goal": "To verify that the database schema supports storing all necessary poll-related entities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Database",
+                "description": "Jordan accesses the PostgreSQL instance using the defined credentials.",
+                "action": "Connect to PostgreSQL with DB_USERNAME=myappuser and DB_PASSWORD=myapppassword.",
+                "expected_outcome": "Successfully connects to the myapp database instance."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Table Structures",
+                "description": "Jordan checks that required tables exist with correct columns and relationships.",
+                "action": "Query table structures using `\\dt` and describe commands.",
+                "expected_outcome": "Tables `polls`, `poll_options`, and `votes` exist with defined columns and proper foreign key constraints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving poll lists, individual poll details, and submitting votes",
+        "user_persona": "API tester named Logan evaluating backend REST capabilities.",
+        "user_goal": "To ensure all essential API endpoints return accurate responses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Poll List Endpoint",
+                "description": "Logan calls the endpoint to fetch all available polls.",
+                "action": "Make GET request to `/api/polls`.",
+                "expected_outcome": "Receives a JSON array of poll objects including id, title, and description."
+            },
+            {
+                "step": 2,
+                "title": "Testing Poll Detail Endpoint",
+                "description": "Logan requests details for a specific poll by ID.",
+                "action": "Make GET request to `/api/polls/1`.",
+                "expected_outcome": "Returns detailed JSON object of the requested poll including associated options."
+            },
+            {
+                "step": 3,
+                "title": "Testing Vote Submission Endpoint",
+                "description": "Logan submits a vote for a specific option.",
+                "action": "Make POST request to `/api/votes` with body `{ \"poll_option_id\": 3 }`.",
+                "expected_outcome": "Responds with success confirmation and stores the vote in the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoint for fetching voting results for a specific poll",
+        "user_persona": "Data analyst named Quinn analyzing voting trends.",
+        "user_goal": "To extract comprehensive voting results for analysis purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting Voting Results",
+                "description": "Quinn uses the results endpoint to gather aggregated statistics for a particular poll.",
+                "action": "Make GET request to `/api/polls/1/results`.",
+                "expected_outcome": "Receives a JSON object containing poll metadata and results array with vote counts and percentages."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Response Structure",
+                "description": "Quinn verifies the returned data aligns with expected schema.",
+                "action": "Parse and review JSON keys and values in the response.",
+                "expected_outcome": "Each result entry includes option_text, vote_count, and percentage fields."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend routing to navigate between browsing polls, voting, and viewing results",
+        "user_persona": "UX researcher named Drew assessing seamless navigation flow.",
+        "user_goal": "To evaluate smooth transitions between different sections of the app.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Between Views",
+                "description": "Drew moves from the polls list to a specific poll and then to the results view.",
+                "action": "Click on a poll card and then click the 'View Results' link.",
+                "expected_outcome": "URL changes reflect route updates (/polls/:id → /polls/:id/results) without full page reloads."
+            },
+            {
+                "step": 2,
+                "title": "Using Browser Navigation",
+                "description": "Drew tests browser back/forward buttons to switch between previously visited views.",
+                "action": "Use browser's back and forward navigation controls.",
+                "expected_outcome": "Views change appropriately based on URL history stack without breaking SPA behavior."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across desktop and mobile devices",
+        "user_persona": "Mobile user named Zoe accessing the site on her smartphone.",
+        "user_goal": "To interact with the site smoothly despite limited screen space.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile Device",
+                "description": "Zoe opens the polls website on her phone to participate in a poll.",
+                "action": "Open the homepage on a mobile viewport.",
+                "expected_outcome": "Layout adapts responsively, making poll cards readable and buttons accessible."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Window During Use",
+                "description": "While browsing, Zoe rotates her device changing orientation.",
+                "action": "Rotate device from portrait to landscape mode.",
+                "expected_outcome": "Content rearranges itself fluidly maintaining readability and touch-target sizes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `install:all` script to install both frontend and backend dependencies",
+        "user_persona": "New team member named Finn setting up the project locally.",
+        "user_goal": "To quickly get both frontend and backend running with minimal setup effort.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Finn clones the repo and runs the unified install command.",
+                "action": "Execute `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend node_modules folders populate with required packages simultaneously."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Installation Success",
+                "description": "Finn checks that both sides of the application now have installed dependencies.",
+                "action": "Verify presence of node_modules directories in frontend and backend folders.",
+                "expected_outcome": "node_modules exist in both directories indicating successful dependency installation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `dev` script to start both frontend and backend concurrently",
+        "user_persona": "Developer named Eli preparing to develop features requiring both services.",
+        "user_goal": "To launch both applications with a single command for efficient local development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Eli initiates development mode to work on both frontend and backend simultaneously.",
+                "action": "Run `npm run dev` from the root folder.",
+                "expected_outcome": "Frontend and backend servers start concurrently, typically on ports like 3000 and 5000 respectively."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Concurrent Execution",
+                "description": "Eli confirms both services are actively serving content.",
+                "action": "Check terminal output and access localhost URLs.",
+                "expected_outcome": "Terminal logs show both apps booting, and visiting localhost addresses renders respective interfaces."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for invalid poll IDs, expired polls, or submission failures",
+        "user_persona": "Tester named Nora probing edge cases involving faulty inputs.",
+        "user_goal": "To confirm the system gracefully handles erroneous conditions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Non-Existent Poll",
+                "description": "Nora tries to access a poll with an invalid ID to trigger an error.",
+                "action": "Navigate to `/polls/99999` which does not correspond to any existing poll.",
+                "expected_outcome": "System returns a 404 error and displays a friendly message instead of crashing."
+            },
+            {
+                "step": 2,
+                "title": "Attempting Vote After Poll Expires",
+                "description": "Nora tries to submit a vote for a poll past its expiry date.",
+                "action": "Attempt to submit a vote via POST to `/api/votes` with expired poll option ID.",
+                "expected_outcome": "Backend rejects the request with a relevant error code and frontend displays an appropriate alert."
+            }
+        ]
+    }
+]

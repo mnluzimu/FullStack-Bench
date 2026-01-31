@@ -1,0 +1,387 @@
+[
+    {
+        "requirement_tested": "User registration and authentication system",
+        "user_persona": "A new blue-collar worker named Miguel who just heard about the job site from a friend.",
+        "user_goal": "To register for an account and log in successfully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Site and Starting Registration",
+                "description": "Miguel visits the homepage and sees the 'Register' link. He clicks it because he wants to find work.",
+                "action": "Click on the 'Register' link.",
+                "expected_outcome": "A registration form appears with fields for email, password, and confirm password on an ivory background."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Registration Form",
+                "description": "Miguel fills out his email and creates a strong password. As he types, he double-checks everything looks correct.",
+                "action": "Fill in email, password, and confirm password fields.",
+                "expected_outcome": "All fields accept input and display typed values correctly."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Registration",
+                "description": "Confident in his entries, Miguel presses Enter to submit the form quickly.",
+                "action": "Press the Enter key while focused on any input field.",
+                "expected_outcome": "The system processes the registration and redirects Miguel to a confirmation or login page with a success message."
+            },
+            {
+                "step": 4,
+                "title": "Logging In After Registration",
+                "description": "Now registered, Miguel enters his newly created credentials into the login form.",
+                "action": "Enter registered email and password, then click the 'Login' button.",
+                "expected_outcome": "Miguel is authenticated and redirected to his candidate dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Profile creation and editing interface with fields for name, contact info, skills, qualifications, email, and photo upload",
+        "user_persona": "Raj, a skilled electrician who has just signed up and needs to build his profile.",
+        "user_goal": "To complete his profile with personal details, skills, and a photo so employers can see his qualifications.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Profile Editor",
+                "description": "After logging in, Raj notices a prompt to complete his profile. He clicks the 'Complete Profile' button.",
+                "action": "Click on the 'Complete Profile' button.",
+                "expected_outcome": "The profile editing form loads with empty fields for full name, phone number, skills, qualifications, and a photo upload section."
+            },
+            {
+                "step": 2,
+                "title": "Entering Personal Information",
+                "description": "Raj fills in his full name and phone number carefully. His email is already pre-filled and read-only.",
+                "action": "Type 'Raj Patel' into the name field and '9876543210' into the phone number field.",
+                "expected_outcome": "Fields populate correctly, and the email field remains non-editable but visible."
+            },
+            {
+                "step": 3,
+                "title": "Adding Skills and Qualifications",
+                "description": "He selects 'Electrical Work' and 'Installation' from the skills dropdown and adds some certifications in the qualifications box.",
+                "action": "Select multiple skills from the dropdown and type qualifications into the text area.",
+                "expected_outcome": "Selected skills are visually indicated, and the qualifications text area retains the entered content."
+            },
+            {
+                "step": 4,
+                "title": "Uploading a Photo",
+                "description": "Raj drags and drops his professional headshot into the upload zone to make a good impression.",
+                "action": "Drag and drop an image file into the photo upload area.",
+                "expected_outcome": "The image preview updates immediately, indicating the upload was successful."
+            },
+            {
+                "step": 5,
+                "title": "Saving Profile Changes",
+                "description": "Satisfied with his profile, Raj clicks the Save button to finalize everything.",
+                "action": "Click the forest green 'Save' button.",
+                "expected_outcome": "Profile data is saved via the API, and Raj receives a success notification."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job listing creation and management for employers",
+        "user_persona": "Lisa, a construction company owner looking to hire more workers.",
+        "user_goal": "To post a new job listing for a carpenter position.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Employer Dashboard",
+                "description": "Lisa logs in and navigates to her employer dashboard to add a new job opening.",
+                "action": "Log in and navigate to the employer dashboard.",
+                "expected_outcome": "Dashboard loads showing tabs for 'My Jobs' and 'Applications'."
+            },
+            {
+                "step": 2,
+                "title": "Initiating New Job Post",
+                "description": "She clicks the 'Post New Job' button located prominently on the dashboard.",
+                "action": "Click the 'Post New Job' button.",
+                "expected_outcome": "A job posting form opens with fields for title, category, location, wage range, and description."
+            },
+            {
+                "step": 3,
+                "title": "Filling Out Job Details",
+                "description": "Lisa fills in the title 'Carpenter Needed', selects 'Construction' from the category dropdown, and writes a brief description.",
+                "action": "Enter job title, select 'Construction' from category dropdown, fill in other fields.",
+                "expected_outcome": "Each field accepts input correctly, and the category dropdown populates dynamically with valid options."
+            },
+            {
+                "step": 4,
+                "title": "Publishing the Job Listing",
+                "description": "Once done, Lisa hits the Publish button to make the job live.",
+                "action": "Click the forest green 'Publish' button.",
+                "expected_outcome": "The job is published successfully and appears in the 'My Jobs' list with proper details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search and filtering functionality for job listings by category (construction, plumbing, electrical, etc.)",
+        "user_persona": "Tommy, a plumber seeking part-time opportunities.",
+        "user_goal": "To find plumbing-related jobs only.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Browse Jobs Page",
+                "description": "Tommy goes to the main jobs browsing page to look for work.",
+                "action": "Navigate to the browse jobs page.",
+                "expected_outcome": "A list of job cards loads with filters displayed in the sidebar or top bar."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Tommy checks the 'Plumbing' checkbox under categories and clicks Apply Filters to narrow down the results.",
+                "action": "Check the 'Plumbing' checkbox and click 'Apply Filters'.",
+                "expected_outcome": "Only job listings categorized as Plumbing are shown in the results."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Browse jobs page with pagination or infinite scroll",
+        "user_persona": "Jenny, a painter exploring many job options.",
+        "user_goal": "To view several pages of available painting jobs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Initial Job Listings",
+                "description": "Jenny scrolls through the first set of job cards displayed on the browse jobs page.",
+                "action": "Load the browse jobs page.",
+                "expected_outcome": "Initial batch of job cards is displayed properly with titles, descriptions, and categories."
+            },
+            {
+                "step": 2,
+                "title": "Triggering Infinite Scroll",
+                "description": "As she reaches the end of the current list, Jenny continues scrolling expecting more jobs to load automatically.",
+                "action": "Scroll to the bottom of the job list.",
+                "expected_outcome": "Next batch of job listings loads seamlessly without needing to click anything."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job application submission and tracking system",
+        "user_persona": "Carlos, a welder interested in applying for a job.",
+        "user_goal": "To apply for a welding job and track its status afterward.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding and Viewing Job Details",
+                "description": "Carlos finds a suitable welding job and clicks on the card to read more details.",
+                "action": "Click on a welding job card from the browse jobs page.",
+                "expected_outcome": "Detailed job view opens showing full description, location, and wage information."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Application",
+                "description": "Impressed with the opportunity, Carlos clicks the 'Apply Now' button and confirms his intent.",
+                "action": "Click the 'Apply Now' button and confirm the application.",
+                "expected_outcome": "Application is submitted successfully via the API, and a confirmation screen appears."
+            },
+            {
+                "step": 3,
+                "title": "Checking Application Status",
+                "description": "Later, Carlos visits his candidate dashboard to check the status of his recent application.",
+                "action": "Navigate to the candidate dashboard and locate the applications list.",
+                "expected_outcome": "Carlos sees his application listed with the status marked as 'Pending Review'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Employer dashboard to manage posted jobs and view applications",
+        "user_persona": "David, an HVAC business manager reviewing applicants.",
+        "user_goal": "To review applications received for a technician job he posted.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Employer Account",
+                "description": "David logs in to access his employer dashboard.",
+                "action": "Log in using employer credentials.",
+                "expected_outcome": "Redirected to employer dashboard with tabs for managing jobs and applications."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Applications Tab",
+                "description": "He clicks on the 'Applications' tab to see which candidates have applied.",
+                "action": "Click the 'Applications' tab.",
+                "expected_outcome": "List of applications appears with candidate names, dates, and current statuses."
+            },
+            {
+                "step": 3,
+                "title": "Updating Application Status",
+                "description": "Seeing a promising candidate, David changes their status from 'Pending' to 'Reviewed'.",
+                "action": "Toggle the status switch for a selected application.",
+                "expected_outcome": "Status updates instantly and persists in the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Candidate dashboard to manage profile and track job applications",
+        "user_persona": "Sophia, a general laborer keeping track of her applications.",
+        "user_goal": "To view and update her profile and see all her job applications.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Candidate Dashboard",
+                "description": "Sophia logs in and lands on her candidate dashboard.",
+                "action": "Log in and land on the dashboard.",
+                "expected_outcome": "Dashboard splits into two panels—one showing profile summary and another listing applications."
+            },
+            {
+                "step": 2,
+                "title": "Editing Profile",
+                "description": "Noticing outdated info, Sophia clicks 'Edit Profile' to make necessary changes.",
+                "action": "Click the 'Edit Profile' button.",
+                "expected_outcome": "Redirected to the profile editing form with existing data pre-filled."
+            },
+            {
+                "step": 3,
+                "title": "Reviewing Applications",
+                "description": "Returning to the dashboard, Sophia reviews her list of applications to stay informed.",
+                "action": "Return to the dashboard and scan the applications list.",
+                "expected_outcome": "Applications are neatly listed with job titles, submission dates, and current statuses."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design for users, profiles, jobs, applications, and categories",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "To initialize the PostgreSQL database with the correct schema.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Environment Variables",
+                "description": "Before initializing the database, the developer sets up the required environment variables as instructed.",
+                "action": "Set environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Environment variables are configured correctly for database connection."
+            },
+            {
+                "step": 2,
+                "title": "Creating Database Tables",
+                "description": "Using the defined schema, the developer runs initialization scripts to create all required tables.",
+                "action": "Run SQL scripts to create users, profiles, jobs, applications, and categories tables with relationships.",
+                "expected_outcome": "Tables are created successfully with correct primary keys, foreign keys, constraints, and default values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for user authentication, profile management, job listings, and applications",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "To verify that core API endpoints return expected responses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Authentication Endpoint",
+                "description": "The developer sends a POST request to the register endpoint to test user creation.",
+                "action": "Send POST request to `/api/v1/auth/register` with valid user data.",
+                "expected_outcome": "Returns HTTP 201 Created with a success message and session token."
+            },
+            {
+                "step": 2,
+                "title": "Testing Profile Update Endpoint",
+                "description": "Next, they attempt to update a user's profile information via the appropriate endpoint.",
+                "action": "Send PUT request to `/api/v1/profile` with updated profile data and authorization header.",
+                "expected_outcome": "Returns HTTP 200 OK with updated profile data in the response body."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend styled with ivory background and forest green interactive elements",
+        "user_persona": "A designer checking visual consistency across the platform.",
+        "user_goal": "To ensure that all interactive elements use forest green against an ivory background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Button Styles",
+                "description": "The designer inspects a call-to-action button to verify its color matches the brand palette.",
+                "action": "Open DevTools and inspect a primary button’s computed styles.",
+                "expected_outcome": "Button background color is #228B22 (forest green) and page background is #FFFFF0 (ivory)."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Hover Effect",
+                "description": "They hover over the button to confirm the slight darkening effect functions correctly.",
+                "action": "Hover over the inspected button.",
+                "expected_outcome": "Button background darkens slightly, confirming hover interaction works as intended."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout compatible with desktop and mobile devices",
+        "user_persona": "Alex, a potential user accessing the site on a smartphone.",
+        "user_goal": "To navigate the job board smoothly on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser for Mobile View",
+                "description": "Alex resizes the browser window to simulate a mobile screen width.",
+                "action": "Resize browser window to less than 768px wide.",
+                "expected_outcome": "Layout adjusts automatically with stacked elements and collapsible navigation menus."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Mobile Layout",
+                "description": "He taps on a menu icon to reveal hidden navigation links and scrolls through content without horizontal overflow.",
+                "action": "Tap hamburger menu and scroll vertically through content.",
+                "expected_outcome": "Navigation expands smoothly, and no horizontal scrollbar appears during vertical scrolling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "File upload system for user profile photos",
+        "user_persona": "Emma, a roofer wanting to upload her latest photo.",
+        "user_goal": "To replace her old profile picture with a newer one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Upload Dialog",
+                "description": "Emma clicks the upload button in her profile editor to choose a new photo.",
+                "action": "Click the 'Upload Photo' button in the profile form.",
+                "expected_outcome": "Native file browser opens prompting Emma to select an image file."
+            },
+            {
+                "step": 2,
+                "title": "Selecting and Uploading Image",
+                "description": "She selects a high-quality JPEG and uploads it.",
+                "action": "Choose a .jpg file and click Open.",
+                "expected_outcome": "Image uploads successfully and replaces the previous one in the preview area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data validation and error handling for all forms and API requests",
+        "user_persona": "Jordan, a cautious user entering sensitive information.",
+        "user_goal": "To be guided appropriately when making mistakes during form filling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Invalid Data",
+                "description": "While registering, Jordan accidentally leaves the email field blank and tries to submit.",
+                "action": "Leave the email field empty and click Submit.",
+                "expected_outcome": "Inline red error label appears below the email field stating it is required."
+            },
+            {
+                "step": 2,
+                "title": "Correcting Mistakes",
+                "description": "Jordan fills in a valid email and tries again.",
+                "action": "Enter a valid email address and click Submit.",
+                "expected_outcome": "Form submits successfully without errors, and Jordan proceeds to the next step."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configuration with package.json scripts for install:all and dev commands",
+        "user_persona": "A new team member cloning the repository for the first time.",
+        "user_goal": "To get the development environment running quickly with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "After cloning the repo, the developer runs the unified install command.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With everything installed, they start both servers concurrently.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Frontend and backend development servers launch simultaneously and are accessible."
+            }
+        ]
+    }
+]

@@ -1,0 +1,211 @@
+[
+    {
+        "resource_dependency": {
+            "courseCatalogSchema": "Database table 'courses' with fields: course_id (unique ID), title (string), description (text), category (string), difficulty_level (string), certification_track (string), schedule (datetime), enrollment_deadline (datetime), available_seats (integer), prerequisites (text), instructor (string), price (decimal).",
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "filterIcon": "/assets/icons/filter-icon.svg"
+        },
+        "function": "Display a searchable and filterable course catalog with course listings.",
+        "static_description": "A full-width section with a lavender background containing a centered search bar and filter options above a grid of course cards. Each card displays course title, category, difficulty level, and a brief description. Cards use indigo borders and text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the search bar focuses it for input. Clicking on a filter icon opens a dropdown menu with filtering options by category, difficulty level, and certification track."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a course card slightly elevates it with a shadow effect for emphasis."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "courseDetailSchema": "Database table 'courses' with fields: course_id (unique ID), title (string), description (text), category (string), difficulty_level (string), certification_track (string), schedule (datetime), enrollment_deadline (datetime), available_seats (integer), prerequisites (text), instructor (string), price (decimal), syllabus (text).",
+            "enrollButtonIcon": "/assets/icons/enroll-icon.svg"
+        },
+        "function": "Display detailed course information pages including descriptions, prerequisites, and schedules.",
+        "static_description": "A detailed course page featuring a header with course title and an indigo 'Enroll Now' button with an icon. Below, sections for description, prerequisites, schedule, syllabus, and instructor details are laid out in a clean, readable format with indigo headings on a lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Enroll Now' button redirects the user to the enrollment flow."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userSchema": "Database table 'users' with fields: user_id (unique ID), name (string), email (string, unique), password_hash (string), phone (string), created_at (datetime).",
+            "paymentAPI": "Integration with a secure payment gateway API (e.g., Stripe) for handling transactions.",
+            "enrollmentSchema": "Database table 'enrollments' with fields: enrollment_id (unique ID), user_id (foreign key), course_id (foreign key), enrollment_date (datetime), payment_status (enum: pending, completed, failed), transaction_id (string)."
+        },
+        "function": "Enable online course enrollment with user registration and payment processing.",
+        "static_description": "A multi-step enrollment form displayed on a lavender background with indigo-styled input fields and buttons. Steps include user login/registration, course selection review, payment information entry, and confirmation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Proceed to Payment' submits the form and initiates the payment process via the integrated payment API."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting the registration form creates a new user record and redirects to the payment step."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chatbotAPI": "Integration with a conversational AI chatbot API (e.g., Dialogflow or Microsoft Bot Framework) for handling user queries.",
+            "chatbotIcon": "/assets/icons/chatbot-icon.svg"
+        },
+        "function": "Integrate a chatbot for user support and inquiries.",
+        "static_description": "A fixed-position chat widget in the bottom-right corner of every page with a lavender-themed chat icon. When opened, a chat window appears with an indigo header and message bubbles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the chat icon toggles the visibility of the chat window. User messages are sent via the integrated chatbot API for automated responses."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactFormSchema": "Database table 'inquiries' with fields: inquiry_id (unique ID), name (string), email (string), subject (string), message (text), submitted_at (datetime).",
+            "sendIcon": "/assets/icons/send-icon.svg"
+        },
+        "function": "Include a contact form for direct communication with the institute.",
+        "static_description": "A contact form section with indigo-styled input fields for name, email, subject, and message on a lavender background. A 'Send Message' button with an icon is prominently displayed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting the form stores the inquiry in the database and sends a notification to the institute’s support team."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "certificationPathwaySchema": "Database table 'certification_paths' with fields: path_id (unique ID), title (string), description (text), required_courses (array of course IDs), total_duration (string), completion_badge (string URL).",
+            "progressTrackingSchema": "Database table 'user_certifications' with fields: user_id (foreign key), path_id (foreign key), enrolled_date (datetime), progress_percentage (integer), completed (boolean), completion_date (datetime, nullable)."
+        },
+        "function": "Present certification pathways with progress tracking and completion status.",
+        "static_description": "A certification pathway page displaying a list of tracks with titles, descriptions, and progress bars styled in indigo on a lavender background. Each track shows the number of completed courses and a completion badge when earned.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a certification track navigates to its detailed view showing required courses and current progress."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginPageURL": "/login",
+            "userAccountSchema": "Database table 'users' with fields: user_id (unique ID), name (string), email (string, unique), password_hash (string), phone (string), profile_picture (string URL), created_at (datetime)."
+        },
+        "function": "Implement user authentication and account management features.",
+        "static_description": "A login/signup page with indigo-styled forms on a lavender background. Account management page includes editable fields for name, email, phone, and profile picture with save and cancel buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting the login form authenticates the user and redirects to their dashboard. Submitting changes on the account page updates the user record."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "Courses",
+                "Certifications",
+                "Contact",
+                "Dashboard"
+            ],
+            "logoImage": "/assets/images/logo.png"
+        },
+        "function": "Provide a responsive navigation menu and consistent page layout.",
+        "static_description": "A fixed top navigation bar with a logo on the left, menu items centered, and a user profile icon on the right. All elements use indigo styling on a lavender background. Responsive collapse into a hamburger menu on smaller screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a menu item navigates to the corresponding page. Clicking the hamburger icon toggles the mobile menu."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "{ lavenderBackground: #E6E6FA, indigoComponents: #4B0082 }"
+        },
+        "function": "Apply lavender background color and indigo component styling across all pages.",
+        "static_description": "All pages feature a consistent lavender (#E6E6FA) background color with indigo (#4B0082) used for buttons, headers, and interactive components throughout the site.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "courseFilterOptions": [
+                "Category",
+                "Difficulty Level",
+                "Certification Track"
+            ]
+        },
+        "function": "Enable users to browse courses by category, difficulty level, or certification track.",
+        "static_description": "Filter dropdowns positioned above the course catalog grid allowing users to sort courses by predefined categories, difficulty levels, and certification tracks. Indigo-styled dropdowns on a lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a filter option dynamically updates the course catalog grid to show only matching results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "courseAvailabilitySchema": "Database fields in 'courses': enrollment_deadline (datetime), available_seats (integer)"
+        },
+        "function": "Display course availability and enrollment deadlines.",
+        "static_description": "Each course card in the catalog displays a small indicator showing remaining seats and the enrollment deadline in indigo text on a lavender background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dashboardLayoutSchema": "User dashboard layout includes sections: Enrolled Courses, Certification Progress, Account Settings, and Support. Data sourced from 'enrollments', 'user_certifications', and 'users' tables."
+        },
+        "function": "Include a user dashboard to manage enrolled courses and certifications.",
+        "static_description": "A dashboard page with a lavender background featuring indigo-styled cards for enrolled courses, certification progress, account settings, and support links. Each card provides quick access to relevant actions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a course or certification card navigates to its respective detail page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchFunctionalitySchema": "Search index or query logic spanning 'courses' and 'certification_paths' tables based on title, description, and keywords."
+        },
+        "function": "Implement search functionality across course catalog and certification pathways.",
+        "static_description": "A unified search bar in the header allows users to search both courses and certification pathways. Results appear in a dropdown list with indigo highlights on a lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types, real-time suggestions are fetched and displayed in the dropdown."
+            },
+            {
+                "interaction": "Enter",
+                "description": "Pressing Enter navigates to a results page listing matching courses and certification paths."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "receiptTemplate": "HTML/CSS template for enrollment confirmation and receipt including user details, course info, payment amount, and transaction ID.",
+            "confirmationEmailAPI": "Service for sending automated emails via SMTP or third-party provider (e.g., SendGrid)."
+        },
+        "function": "Provide confirmation and receipt generation for successful enrollments.",
+        "static_description": "Upon successful enrollment and payment, a confirmation page displays a receipt with indigo headers and lavender background. An email with the same receipt is sent to the user.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "accessibilityStandards": "WCAG 2.1 compliance guidelines",
+            "mobileResponsiveFramework": "CSS media queries and flexible grid layouts for responsiveness"
+        },
+        "function": "Ensure accessibility compliance and mobile-responsive design.",
+        "static_description": "All pages are designed with semantic HTML, ARIA attributes, and scalable layouts that adapt to various screen sizes. Lavender backgrounds and indigo components maintain contrast and readability standards.",
+        "interaction_and_states": []
+    }
+]

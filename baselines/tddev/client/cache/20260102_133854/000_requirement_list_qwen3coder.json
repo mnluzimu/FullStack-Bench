@@ -1,0 +1,128 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/raw-materials",
+            "databaseSchema": "CREATE TABLE raw_materials (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, unit VARCHAR(50), quantity DECIMAL(10, 2), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Manage raw materials used in paper cup manufacturing including creation, updating, deletion, and listing.",
+        "static_description": "Displays a table of raw materials with columns: Name, Description, Unit, Quantity. Background color is light goldenrod (#FAFAD2). Table headers and rows use olive drab (#6B8E23) for text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Raw Material' opens a modal form to enter material details. Clicking on a row allows editing that material."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/finished-products",
+            "databaseSchema": "CREATE TABLE finished_products (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, unit VARCHAR(50), quantity DECIMAL(10, 2), price_per_unit DECIMAL(10, 2), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Manage finished paper cup products including creation, updating, deletion, and listing.",
+        "static_description": "Displays a table of finished products with columns: Name, Description, Unit, Quantity, Price per Unit. Background color is light goldenrod (#FAFAD2). Table headers and rows use olive drab (#6B8E23) for text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Finished Product' opens a modal form to enter product details. Clicking on a row allows editing that product."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/inventory",
+            "databaseSchema": "CREATE TABLE inventory (id SERIAL PRIMARY KEY, item_type VARCHAR(50) NOT NULL, item_id INTEGER NOT NULL, quantity_change DECIMAL(10, 2), transaction_type VARCHAR(50), notes TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Track inventory movements for both raw materials and finished products.",
+        "static_description": "Displays two tabs: 'Raw Materials Inventory' and 'Finished Products Inventory'. Each tab shows a chronological list of transactions with date, item name, change amount, type, and notes. Background color is light goldenrod (#FAFAD2). Tabs and table elements use olive drab (#6B8E23).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking either tab switches the displayed inventory data. Clicking 'Record Transaction' opens a form to log new inventory changes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/production",
+            "databaseSchema": "CREATE TABLE production_runs (id SERIAL PRIMARY KEY, product_id INTEGER REFERENCES finished_products(id), quantity_produced DECIMAL(10, 2), raw_material_usage JSONB, start_time TIMESTAMP, end_time TIMESTAMP, status VARCHAR(50), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Manage and track production runs for paper cups.",
+        "static_description": "Shows a list of production runs with columns: Product, Quantity Produced, Start Time, End Time, Status. Includes a 'Start New Production Run' button. Background color is light goldenrod (#FAFAD2). Elements use olive drab (#6B8E23).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Start New Production Run' opens a form to configure and initiate production. Clicking on a run shows detailed information including raw material consumption."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/sales",
+            "databaseSchema": "CREATE TABLE sales (id SERIAL PRIMARY KEY, customer_id INTEGER REFERENCES customers(id), product_id INTEGER REFERENCES finished_products(id), quantity_sold DECIMAL(10, 2), sale_price DECIMAL(10, 2), total_amount DECIMAL(10, 2), sale_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Record and track sales transactions of finished products.",
+        "static_description": "Displays a table of sales records with columns: Customer, Product, Quantity Sold, Sale Price, Total Amount, Date. Includes filters for date range and customer. Background color is light goldenrod (#FAFAD2). Table elements use olive drab (#6B8E23).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Record New Sale' opens a form to enter sale details. Clicking on a sale row shows detailed information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/customers",
+            "databaseSchema": "CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255), phone VARCHAR(50), address TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Manage customer information including contact details and company information.",
+        "static_description": "Shows a list of customers with columns: Name, Email, Phone, Address. Includes a search bar and 'Add Customer' button. Background color is light goldenrod (#FAFAD2). List items and buttons use olive drab (#6B8E23).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Customer' opens a form to enter new customer details. Clicking on a customer row allows editing their information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/reports",
+            "reportDataSchema": "Aggregated data from sales, production, and inventory tables grouped by various time periods and categories."
+        },
+        "function": "Generate and display detailed reports on inventory levels, production output, and sales performance.",
+        "static_description": "Contains multiple report sections: Inventory Summary, Production Report, Sales Analysis. Each section includes charts/graphs and export options. Background color is light goldenrod (#FAFAD2). Report cards and chart elements use olive drab (#6B8E23).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking different report types loads corresponding data visualization. Clicking 'Export Report' downloads the current view as PDF or CSV."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColor": "#FAFAD2",
+            "uiElementColor": "#6B8E23"
+        },
+        "function": "Apply consistent color scheme across entire application interface.",
+        "static_description": "All pages have light goldenrod (#FAFAD2) background. All UI components including buttons, forms, tables, and navigation bars use olive drab (#6B8E23) as primary color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "UI elements slightly darken when hovered to indicate interactivity while maintaining the olive drab color palette."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScript": "concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"",
+            "devScript": "concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\""
+        },
+        "function": "Configure package.json scripts for unified installation and development startup.",
+        "static_description": "Root package.json file containing scripts for installing dependencies and starting development servers for both frontend and backend simultaneously.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Line Execution",
+                "description": "Running 'npm run install:all' executes concurrent installations in frontend and backend directories. Running 'npm run dev' starts both development servers concurrently."
+            }
+        ]
+    }
+]

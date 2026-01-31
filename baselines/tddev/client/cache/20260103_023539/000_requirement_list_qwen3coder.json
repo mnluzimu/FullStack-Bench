@@ -1,0 +1,333 @@
+[
+    {
+        "resource_dependency": {
+            "api_endpoints": {
+                "fetch_dynamic_data": "/api/data"
+            },
+            "data_schema": "Database schema must support user sessions, progress tracking, word sets, avatars, blog posts, and game states.",
+            "frontend_framework": "React or Vue.js with Axios/Fetch for API communication"
+        },
+        "function": "Frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "A responsive web interface built using modern JavaScript frameworks, styled with CSS modules or TailwindCSS. Light gray background (#f0f0f0) applied to body. Dark red color (#8B0000) used for primary buttons, headers, and active navigation elements. All content areas dynamically populated via API calls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Upon load, the frontend makes an initial request to /api/data to retrieve session info, user preferences, and current word set. Displays loading spinner until response received."
+            },
+            {
+                "interaction": "Navigation Click",
+                "description": "Clicking any navigation link triggers a route change without full page reload, updating only relevant sections while maintaining persistent header/footer."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_connection_env_vars": {
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "database_schema": "PostgreSQL tables: users, sessions, word_sets, avatars, blogs, progress_tracking, games_history",
+            "external_api_placeholder": null
+        },
+        "function": "Backend server connecting to PostgreSQL database using specified environment variables",
+        "static_description": "Node.js (Express) or Python (FastAPI/Django REST Framework) backend configured to connect to PostgreSQL using provided credentials stored in environment variables. Server listens on port 3001 by default. Includes middleware for CORS, logging, error handling, and security headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Server Start",
+                "description": "At startup, reads DB connection parameters from environment variables and attempts to establish secure connection pool to PostgreSQL instance running locally."
+            },
+            {
+                "interaction": "API Request Received",
+                "description": "Processes incoming HTTP requests, queries appropriate database tables, returns structured JSON responses with proper status codes and pagination when needed."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "session_storage": "Redis or in-memory store for temporary session tokens",
+            "auth_endpoints": {
+                "login": "/api/auth/login",
+                "logout": "/api/auth/logout",
+                "register": "/api/auth/register"
+            },
+            "database_tables": "users table containing id, email, password_hash, created_at; sessions table with token, user_id, expires_at"
+        },
+        "function": "User authentication and session management system",
+        "static_description": "Login/Register forms displayed on homepage modal overlay. Passwords hashed before storage. JWT-based tokens issued upon successful login. Session timeout after 30 minutes of inactivity. Logout button visible in top-right corner once authenticated.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Login Form",
+                "description": "Validates credentials against database. On success, generates signed JWT token and stores session record. Redirects to dashboard."
+            },
+            {
+                "interaction": "Session Expire",
+                "description": "Detects expired session during API call. Automatically redirects user back to login screen with notification message."
+            },
+            {
+                "interaction": "Logout Button Click",
+                "description": "Invalidates current session token server-side and clears client-side cookie/localStorage entry. Navigates back to homepage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "progress_data_endpoint": "/api/dashboard/progress",
+            "chart_library": "Chart.js or D3.js for rendering graphs",
+            "data_schema": "progress_tracking table storing weekly_word_completion_rate, games_played_count, accuracy_percentage, last_active_date per user"
+        },
+        "function": "Dashboard page displaying user progress summary and statistics",
+        "static_description": "Center-aligned grid layout showing KPI cards including total words learned, streak count, average score, and weekly goal completion percentage. Below this, line chart visualizing performance over time. Right sidebar lists recently completed activities. Uses dark red accents (#8B0000) for highlights and metrics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Fetches latest stats from /api/dashboard/progress endpoint and renders interactive charts using Chart.js library. Shows skeleton loaders during data fetch."
+            },
+            {
+                "interaction": "Hover Over Chart Element",
+                "description": "Displays tooltip with precise value and date information related to hovered point or bar segment."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "weekly_words_endpoint": "/api/words/new-weekly-set",
+            "cron_scheduler": "Scheduled job every Monday at midnight UTC",
+            "data_schema": "word_sets table with columns: set_id, release_week_number, word_list_json, assigned_to_user_ids_array"
+        },
+        "function": "Weekly word delivery system providing 10 new words each week",
+        "static_description": "Each Monday, 10 curated vocabulary words delivered automatically to enrolled users' accounts. Words accessible through dedicated 'New Words' tab within dashboard. List shows definition, example sentence, pronunciation guide, and part-of-speech tag.",
+        "interaction_and_states": [
+            {
+                "interaction": "Cron Trigger",
+                "description": "Every Monday at 00:00 UTC, backend selects random batch of 10 approved words from master dictionary and assigns them to all active users who haven't opted out."
+            },
+            {
+                "interaction": "View New Words Tab",
+                "description": "Users can browse newly assigned words, mark favorites, flag difficult ones, or immediately begin practicing via associated mini-games."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "avatar_selection_endpoint": "/api/user/avatar/select",
+            "avatar_images_directory": "/public/assets/avatars/",
+            "data_schema": "avatars table holding id, name, file_path, unlock_conditions; users table updated with selected_avatar_id column"
+        },
+        "function": "Avatar selection feature allowing users to choose and customize their profile avatar",
+        "static_description": "Modal dialog presenting scrollable gallery of available avatars. Locked avatars appear dimmed with lock icon overlay. Selected avatar highlighted with border. Default placeholder shown initially. Avatars sourced from local assets folder.",
+        "interaction_and_states": [
+            {
+                "interaction": "Open Avatar Gallery",
+                "description": "Triggered via settings menu. Fetches list of unlocked avatars from /api/user/avatar/select endpoint and displays thumbnails in responsive grid layout."
+            },
+            {
+                "interaction": "Select Avatar Thumbnail",
+                "description": "Updates user’s selected_avatar_id field in database and visually reflects choice throughout app UI (profile badge, game leaderboards)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "waiting_room_game_endpoint": "/api/waiting-room/game-state",
+            "game_logic_module": "Simple matching/memory card flip logic written in vanilla JS or WASM module",
+            "data_schema": "games_history table logs start_time, end_time, result_score, game_type for analytics purposes"
+        },
+        "function": "Waiting room with simple game for user engagement during loading periods",
+        "static_description": "Minimalist card-matching game rendered inside centered container while main content loads. Grid of face-down cards arranged in 4x4 pattern. Timer counts elapsed seconds. Score increases with correct matches. Background uses light gray (#f0f0f0), card borders use dark red (#8B0000).",
+        "interaction_and_states": [
+            {
+                "interaction": "Flip Card",
+                "description": "First click reveals symbol/image underneath. Second click either completes match (cards stay revealed) or flips both back if mismatched. Tracks moves and time taken."
+            },
+            {
+                "interaction": "Game Complete",
+                "description": "Once all pairs matched, displays final time/score and offers option to replay or return to previous screen. Saves outcome to games_history table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigation_menu_items": [
+                "Home",
+                "Activities",
+                "Dashboard",
+                "Blog",
+                "Settings"
+            ],
+            "hero_image_url": "/assets/images/home-hero.jpg",
+            "testimonial_quotes_data": "Array of strings pulled from testimonials.json asset file"
+        },
+        "function": "Homepage with navigation to all main sections",
+        "static_description": "Full-width hero banner featuring welcoming headline, brief description of site features, and prominent CTA buttons directing toward sign-up/login and explore activities. Sticky navigation bar fixed at top showing logo left-aligned and menu items right-aligned. Footer contains quick links and social media icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Navigation Link",
+                "description": "Smooth scrolls or transitions to corresponding internal page based on URL routing configuration. Active link highlighted differently than others."
+            },
+            {
+                "interaction": "Click Hero Banner CTA",
+                "description": "Redirects visitor to registration form if unauthenticated, otherwise navigates directly to activities overview page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "activities_endpoints": [
+                "/api/activity/crossword",
+                "/api/activity/unjumble",
+                "/api/activity/synonyms",
+                "/api/activity/flashcards",
+                "/api/activity/fill-blanks"
+            ],
+            "activity_icons": [
+                "crossword-icon.svg",
+                "unjumble-icon.svg",
+                "synonym-icon.svg",
+                "flashcard-icon.svg",
+                "fillblank-icon.svg"
+            ]
+        },
+        "function": "Five distinct activity pages for different quiz and word game types",
+        "static_description": "Grid-based landing page listing five unique activity cards arranged horizontally or vertically depending on viewport size. Each card labeled clearly with title and short explanation. Icons representing respective games positioned above titles. Cards have uniform styling with dark red (#8B0000) hover effect.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Activity Card",
+                "description": "Navigates to specific activity route which loads interactive gameplay view tailored to that particular challenge type."
+            },
+            {
+                "interaction": "Hover Over Card",
+                "description": "Card elevates slightly with shadow effect and icon scales up subtly indicating interactivity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crossword_puzzle_endpoint": "/api/games/crossword/generate",
+            "grid_render_engine": "Custom SVG or canvas-based crossword grid renderer",
+            "data_schema": "puzzles table containing puzzle_id, clues_across_json, clues_down_json, solution_grid_string, difficulty_level"
+        },
+        "function": "Crossword puzzle game functionality",
+        "static_description": "Dynamically generated crossword grid presented within bordered white box centered on screen. Across/down clue lists positioned alongside or below grid depending on space. Text inputs embedded into each square cell. Submit button located beneath clues. Light gray background with dark red focus indicators around selected cells.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type Into Cell",
+                "description": "Each keystroke populates adjacent empty squares following crossword direction rules. Auto-switches to next clue when current word fully filled."
+            },
+            {
+                "interaction": "Click Clue Item",
+                "description": "Highlights associated row/column in grid and focuses first unfilled letter of that answer."
+            },
+            {
+                "interaction": "Submit Puzzle",
+                "description": "Compares entered answers with stored solutions. Highlights incorrect entries in red. Displays completion percentage and saves attempt history."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "unjumble_endpoint": "/api/games/unjumble/challenge",
+            "timer_component": "Countdown timer initialized to 60 seconds",
+            "data_schema": "challenges table with shuffled_letters_string, correct_answer_string, hint_text, difficulty_rating"
+        },
+        "function": "Letter unjumbling game functionality",
+        "static_description": "Large scrambled word displayed prominently near center of screen with draggable letter tiles underneath. Hint button available top-right. Countdown timer visible upper-left. Submit area accepts rearranged letters via drag-and-drop or typing. Background remains light gray with dark red accents on interactive elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag Letter Tile",
+                "description": "Letters can be dragged freely across screen but snap magnetically into submission slots when released nearby."
+            },
+            {
+                "interaction": "Click Hint Button",
+                "description": "Reveals one character of correct answer at cost of reduced score multiplier. Disabled after three uses per round."
+            },
+            {
+                "interaction": "Time Runs Out",
+                "description": "If no submission made before timer reaches zero, shows correct answer along with feedback message and proceeds to next challenge."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "synonym_antonym_endpoint": "/api/quiz/synonyms-antonyms/question",
+            "multiple_choice_options_renderer": "Standard radio-button group component",
+            "data_schema": "questions table including question_text, options_array, correct_option_index, category_tag (synonym/antonym)"
+        },
+        "function": "Synonym and antonym identification activities",
+        "static_description": "Single multiple-choice question shown with four possible answers aligned vertically. Question stem formatted as bolded text block above choices. Progress indicator bar fills incrementally with each answered item. Correct/wrong selections marked instantly with green/red checkmarks respectively.",
+        "interaction_and_states": [
+            {
+                "interaction": "Select Radio Option",
+                "description": "Instant validation performed against known correct index. Feedback animation plays briefly then advances automatically to next question unless reviewing mode enabled."
+            },
+            {
+                "interaction": "Review Mode Toggle",
+                "description": "Allows revisiting previously attempted questions for study purposes. Previous answers preserved even after toggling modes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "flashcards_endpoint": "/api/study/flashcards/deck",
+            "flip_animation_library": "CSS transform + transition properties or lightweight Flip.js plugin",
+            "data_schema": "decks table linking deck_id to owner_user_id; cards table with front_text, back_text, image_attachment_url, mastered_status_boolean"
+        },
+        "function": "Interactive flashcard system for vocabulary review",
+        "static_description": "Card-like element occupying most central portion of screen. Front side shows vocabulary term; flipping reveals definition, usage examples, audio pronunciation controls. Navigation arrows allow moving forward/backward through deck. Mastery buttons ('Got It', 'Needs Work') positioned bottom edge.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Flashcard",
+                "description": "Triggers smooth 180° rotation revealing reverse side of same card. Animation handled entirely through CSS transitions."
+            },
+            {
+                "interaction": "Press Arrow Keys",
+                "description": "Left/right arrow presses move sequentially between cards in current deck. Wraps around at ends."
+            },
+            {
+                "interaction": "Mark Mastery Status",
+                "description": "Tapping 'Got It' flags card as mastered, reducing future frequency. 'Needs Work' increases exposure likelihood during spaced repetition cycles."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fill_in_blank_endpoint": "/api/exercises/fill-blank/problem",
+            "input_validation_regex": "^\\w+(?:\\s+\\w+)*$",
+            "grading_algorithm": "Case-insensitive string comparison with optional tolerance for minor spelling variations",
+            "data_schema": "exercises table with sentence_template_string, blank_positions_array, acceptable_answers_jsonb, difficulty_tier"
+        },
+        "function": "Fill-in-the-blank exercises with automatic grading",
+        "static_description": "Sentence fragment displayed with underlined gaps indicating missing words. Corresponding number of text input fields placed inline beneath sentence. Immediate correctness feedback appears below each field upon blur. Final submit button evaluates entire exercise and displays overall grade.",
+        "interaction_and_states": [
+            {
+                "interaction": "Enter Word In Blank Field",
+                "description": "As user types, basic regex validation prevents invalid characters. Upon leaving field, instant evaluation compares input with predefined acceptable variants."
+            },
+            {
+                "interaction": "Click Submit Exercise",
+                "description": "All blanks reviewed collectively. Detailed breakdown returned showing which blanks were correct/incorrect. Stores results for later analysis and adjusts adaptive difficulty accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "blog_posts_endpoint": "/api/blog/articles",
+            "markdown_parser": "Showdown.js or similar client-side parser for rich-text formatting",
+            "data_schema": "articles table comprising article_id, title_string, author_name, publish_timestamp, content_markdown_blob, tags_array"
+        },
+        "function": "Blog section for vocabulary-related articles and updates",
+        "static_description": "Cleanly laid-out blog index featuring featured image thumbnails beside article titles. Filter/search bar allows sorting by tag/date. Individual articles open in clean reading view with serif fonts and ample whitespace. Sidebar suggests related posts and popular topics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Article Preview",
+                "description": "Loads complete article content asynchronously replacing index view. Parses markdown source into semantic HTML preserving headings, lists, emphasis styles."
+            },
+            {
+                "interaction": "Use Search Bar",
+                "description": "Filters displayed previews in real-time based on keyword matches found in title, excerpt, or tags metadata."
+            }
+        ]
+    }
+]

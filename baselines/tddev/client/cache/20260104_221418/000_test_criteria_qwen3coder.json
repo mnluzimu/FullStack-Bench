@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A traveler exploring Europe who wants up-to-date information on campsites and attractions.",
+        "user_goal": "To view the latest featured campsites without seeing any hardcoded or stale data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Maria opens the travel website homepage to see featured campsites.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "The frontend makes an API call to /api/featured/campsites and displays dynamically fetched campsite data in the carousel."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using these exact environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "user_persona": "A developer deploying the backend service for the first time.",
+        "user_goal": "To ensure the backend successfully connects to the PostgreSQL database using the specified environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "The developer starts the backend server after setting the required environment variables.",
+                "action": "Run `npm start` in the backend directory.",
+                "expected_outcome": "The backend logs show a successful connection to the PostgreSQL database using host=localhost, port=5432, username=myappuser, password=myapppassword, and database=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure the repository's package.json so that npm run install:all installs both FE & BE",
+        "user_persona": "A new contributor setting up the project locally.",
+        "user_goal": "To quickly install dependencies for both frontend and backend with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Alex clones the repository and runs the install-all script to get started.",
+                "action": "Execute `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend directories have their respective node_modules installed, as indicated by console messages confirming installation completion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure the repository's package.json so that npm run dev starts both concurrently",
+        "user_persona": "A developer ready to begin working on feature development.",
+        "user_goal": "To launch both frontend and backend servers simultaneously for integrated development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Jamie wants to work on both frontend and backend together and uses the dev script.",
+                "action": "Execute `npm run dev` from the root directory.",
+                "expected_outcome": "Both frontend development server (e.g., React/Vue dev server) and backend Node.js server start concurrently, with output from both visible in the terminal."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A homepage showcasing featured tourist attractions and campsites across Europe",
+        "user_persona": "A casual visitor interested in planning a European trip.",
+        "user_goal": "To discover featured attractions and campsites right from the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Taylor visits the travel site homepage hoping to find inspiration for her next trip.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The homepage loads with a hero banner, navigation bar, and two horizontally scrollable carousels—one displaying featured attractions and another for featured campsites."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Featured Content",
+                "description": "Intrigued by a campsite image, Taylor clicks on it to learn more.",
+                "action": "Click on a campsite item in the featured campsites carousel.",
+                "expected_outcome": "The page navigates to the detailed view page for that specific campsite."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search functionality allowing users to filter attractions and campsites by country, city, or keyword",
+        "user_persona": "A meticulous planner looking for specific destinations.",
+        "user_goal": "To find campsites located specifically in Berlin, Germany.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Search Interface",
+                "description": "Jordan looks for the search bar to narrow down his options.",
+                "action": "Click the 'Search' link in the main navigation.",
+                "expected_outcome": "The search interface appears with dropdowns for country and city, a keyword input field, and filter/reset buttons."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Results",
+                "description": "He selects Germany from the country dropdown, waits for the city list to populate, then chooses Berlin.",
+                "action": "Select 'Germany' from the country dropdown. Then select 'Berlin' from the city dropdown.",
+                "expected_outcome": "City dropdown populates dynamically with German cities. Selecting Berlin updates the available results to only show campsites in Berlin."
+            },
+            {
+                "step": 3,
+                "title": "Applying Filters",
+                "description": "Satisfied with his selections, Jordan applies the filters.",
+                "action": "Click the 'Apply Filters' button.",
+                "expected_outcome": "Results area updates to display only campsites located in Berlin, Germany."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A detailed view page for each attraction and campsite displaying description, location, images, availability, and reviews",
+        "user_persona": "A cautious booker wanting thorough information before making a reservation.",
+        "user_goal": "To evaluate whether a particular campsite meets his family's needs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Campsite Details",
+                "description": "Riley has clicked on a campsite and now sees its dedicated page.",
+                "action": "Navigate to a specific campsite's detail page.",
+                "expected_outcome": "Page displays title, description, image gallery, embedded map, availability calendar, reviews section, and action buttons ('Book Now', 'Write Review')."
+            },
+            {
+                "step": 2,
+                "title": "Checking Availability",
+                "description": "He wants to know if the campsite is free during his planned vacation week.",
+                "action": "Inspect the availability calendar for certain dates.",
+                "expected_outcome": "Calendar highlights available and unavailable dates clearly, helping Riley identify open slots."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A booking system enabling users to reserve attractions and campsites with date selection and confirmation",
+        "user_persona": "A spontaneous traveler ready to lock in a booking immediately.",
+        "user_goal": "To successfully reserve a weekend stay at a campsite he just discovered.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Booking",
+                "description": "Casey finds a perfect lakeside campsite and decides to book it right away.",
+                "action": "Click the 'Book Now' button on the campsite detail page.",
+                "expected_outcome": "A booking modal/form opens, prompting Casey to select dates and specify guest count."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Dates",
+                "description": "He picks Friday through Sunday for his getaway.",
+                "action": "Click on available dates in the date picker to select the desired range.",
+                "expected_outcome": "Selected dates are highlighted, and pricing information updates accordingly."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Reservation",
+                "description": "After verifying everything, Casey confirms his booking.",
+                "action": "Click the 'Submit Booking' button.",
+                "expected_outcome": "Data is sent to /api/bookings/create, and a confirmation modal appears with booking details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user review system allowing visitors to submit ratings and written feedback for attractions and campsites they have visited",
+        "user_persona": "A responsible reviewer who likes sharing honest opinions about places he's stayed.",
+        "user_goal": "To leave a five-star review with positive comments about a recently visited campsite.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Review Submission",
+                "description": "Dana returns to the campsite page where she spent last weekend and wants to share her experience.",
+                "action": "Click the 'Write Review' button on the campsite detail page.",
+                "expected_outcome": "A review form appears containing star rating selector and a text area for written feedback."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Feedback",
+                "description": "She gives five stars and writes how clean and scenic the place was.",
+                "action": "Click five stars in the rating component. Type feedback into the text area. Click 'Submit Review'.",
+                "expected_outcome": "Form data is posted to /api/reviews/create, and the reviews section refreshes to include Dana's new review."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user authentication system supporting registration, login, and session management",
+        "user_persona": "A new user wanting to save preferences and track bookings.",
+        "user_goal": "To register for an account and log in to access personalized features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering New Account",
+                "description": "Eli wants to keep track of future bookings and favorites, so he signs up.",
+                "action": "Click 'Sign Up', fill out username, email, and password fields, then click 'Register'.",
+                "expected_outcome": "Registration request is sent to /api/auth/register. Upon success, Eli is automatically logged in and redirected to the dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Logging Back In",
+                "description": "Days later, Eli returns to the site and logs in with his credentials.",
+                "action": "Click 'Login', enter email/password, and click 'Login'.",
+                "expected_outcome": "Request goes to /api/auth/login. Successful validation creates a session, and Eli is taken to his dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user dashboard displaying their bookings, submitted reviews, and saved favorites",
+        "user_persona": "An organized traveler who keeps tabs on past and upcoming trips.",
+        "user_goal": "To check his upcoming reservations and previously reviewed campsites.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Owen logs in and navigates to his personal dashboard.",
+                "action": "Log in and go to the '/dashboard' route.",
+                "expected_outcome": "Dashboard page loads showing sections for upcoming bookings, submitted reviews, and saved favorites."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Information",
+                "description": "He scans his upcoming bookings and clicks on one to manage it.",
+                "action": "Click on a booking listed under 'Upcoming Bookings'.",
+                "expected_outcome": "Redirected to the detailed view page for that booked campsite."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A map interface visualizing the locations of attractions and campsites across European countries and cities",
+        "user_persona": "A visual explorer preferring to plan trips based on geography.",
+        "user_goal": "To locate nearby campsites around Lake Geneva using the interactive map.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Map View",
+                "description": "Nina wants to visualize campsites near Lake Geneva instead of browsing lists.",
+                "action": "Click the 'Map' tab/link in the navigation.",
+                "expected_outcome": "Interactive map fills the screen, showing clusters of markers representing attractions and campsites."
+            },
+            {
+                "step": 2,
+                "title": "Zooming and Exploring",
+                "description": "She zooms in on Switzerland and clicks a cluster to see individual sites.",
+                "action": "Use zoom controls to focus on Switzerland. Click a marker cluster near Lake Geneva.",
+                "expected_outcome": "Cluster expands into individual markers. Clicking a marker shows a tooltip with basic info and a link to the detail page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin capabilities for managing content such as adding, editing, or removing attractions and campsites",
+        "user_persona": "A content manager tasked with updating listings regularly.",
+        "user_goal": "To add a newly opened campsite in France to the platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Admin Panel",
+                "description": "As an admin, Morgan accesses the protected content management section.",
+                "action": "Log in with admin credentials and navigate to the admin dashboard.",
+                "expected_outcome": "Admin panel loads with CRUD components for managing attractions and campsites."
+            },
+            {
+                "step": 2,
+                "title": "Creating New Listing",
+                "description": "Morgan fills out the form with details for a new French campsite.",
+                "action": "Fill out the campsite creation form and click 'Submit'.",
+                "expected_outcome": "Data is posted to /api/admin/content/create, and the new campsite appears in the listings after refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design optimized for desktop, tablet, and mobile browsing experiences",
+        "user_persona": "A frequent traveler checking the site on various devices.",
+        "user_goal": "To seamlessly use the search function whether on phone, tablet, or laptop.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Mobile Responsiveness",
+                "description": "Quinn checks the site on her smartphone while commuting.",
+                "action": "Resize browser window to less than 768px width or open on a mobile device.",
+                "expected_outcome": "Layout adapts: navigation collapses into hamburger menu, font sizes increase, and touch targets become larger for easier tapping."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Desktop Experience",
+                "description": "Later at home, Quinn switches to desktop to plan extensively.",
+                "action": "Expand browser window beyond 1024px width.",
+                "expected_outcome": "Layout shifts to multi-column grid, revealing full navigation bar and expanded content presentation suited for larger screens."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI styled with light pink as the main background color and medium violet red for interactive controls",
+        "user_persona": "A brand-conscious designer validating visual consistency.",
+        "user_goal": "To confirm that all interactive elements follow the prescribed color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Visual Design",
+                "description": "Pat inspects the homepage to verify correct usage of theme colors.",
+                "action": "Open homepage and inspect CSS styles applied to background and buttons.",
+                "expected_outcome": "Body background is set to #FFB6C1 (light pink). Buttons and links use #C71585 (medium violet red) for text/color/border."
+            },
+            {
+                "step": 2,
+                "title": "Checking Interactive States",
+                "description": "Pat hovers over a button to ensure hover/focus states match the theme.",
+                "action": "Hover over a primary button and tab-focus onto it.",
+                "expected_outcome": "Button darkens slightly or gains a themed outline/shadow when hovered or focused, maintaining color consistency."
+            }
+        ]
+    }
+]

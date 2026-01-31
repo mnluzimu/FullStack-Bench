@@ -1,0 +1,207 @@
+[
+    {
+        "resource_dependency": {
+            "basePageRoute": "/base",
+            "rankingPageRoute": "/ranking",
+            "storePageRoute": "/store",
+            "trainPageRoute": "/train",
+            "workersPageRoute": "/workers",
+            "upgradesPageRoute": "/upgrades",
+            "bankPageRoute": "/bank",
+            "messagesPageRoute": "/messages",
+            "reportsPageRoute": "/reports"
+        },
+        "function": "Provide navigation between different game pages to access various functionalities.",
+        "static_description": "A navigation bar displayed across the top or side of the screen with links to Base, Ranking, Store, Train, Workers, Upgrades, Bank, Messages, and Reports pages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigates the user to the selected page route upon clicking the corresponding link."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "raceSelectionBackgroundImage": "/assets/seashell-bg.png",
+            "raceDataSchema": "Table 'races' with columns: id (UUID), name (string), description (text), bonus_attributes (JSONB).",
+            "raceOptions": [
+                "Humans",
+                "Dragonborns",
+                "Elves",
+                "Dwarfs"
+            ]
+        },
+        "function": "Allow players to choose a race with unique attributes before starting gameplay.",
+        "static_description": "A full-screen modal or dedicated page with a seashell background displaying four distinct race cards (Humans, Dragonborns, Elves, Dwarfs) each with a brief description and associated bonuses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a race confirms the choice and initializes the player profile with that race’s attributes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resourceIcons": {
+                "gold": "/icons/gold.svg",
+                "iron": "/icons/iron.svg",
+                "wood": "/icons/wood.svg",
+                "wheat": "/icons/wheat.svg"
+            },
+            "resourcesDataSchema": "Table 'player_resources' with columns: player_id (UUID), gold (integer), iron (integer), wood (integer), wheat (integer)."
+        },
+        "function": "Display current quantities of essential resources for active gameplay decisions.",
+        "static_description": "A persistent header element showing icons and numeric values for Gold, Iron, Wood, and Wheat aligned horizontally near the top of the screen.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "upgradeListDataSchema": "Table 'city_upgrades' with columns: id (UUID), name (string), cost_gold (integer), cost_iron (integer), cost_wood (integer), cost_wheat (integer), effect_description (text), level_required (integer).",
+            "upgradeActionAPI": "POST /api/upgrades/city"
+        },
+        "function": "Enable players to improve their base infrastructure through upgrades.",
+        "static_description": "A grid layout presenting available city upgrades with names, costs in resources, required levels, and effects.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an upgrade initiates purchase validation against player resources and applies the upgrade if successful."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "workerTypesDataSchema": "Table 'worker_types' with columns: id (UUID), name (string), description (text), production_rate (JSONB), cost_gold (integer), cost_iron (integer), cost_wood (integer), cost_wheat (integer).",
+            "assignedWorkersDataSchema": "Table 'assigned_workers' with columns: player_id (UUID), worker_type_id (UUID), quantity (integer).",
+            "manageWorkersAPI": "GET /api/workers/types, POST /api/workers/assign"
+        },
+        "function": "Allow players to assign and upgrade workers responsible for resource generation.",
+        "static_description": "A dual-panel view: left panel lists worker types with stats and costs; right panel shows currently assigned workers per type.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking '+' or '-' buttons adjusts the number of assigned workers of a specific type after verifying sufficient resources."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "soldierTypesDataSchema": "Table 'soldier_types' with columns: id (UUID), name (string), attack_power (integer), defense_power (integer), recruitment_cost_gold (integer), recruitment_cost_iron (integer), upgrade_cost_gold (integer), upgrade_cost_iron (integer).",
+            "trainedSoldiersDataSchema": "Table 'trained_soldiers' with columns: player_id (UUID), soldier_type_id (UUID), quantity (integer), level (integer).",
+            "trainSoldiersAPI": "GET /api/soldiers/types, POST /api/soldiers/train"
+        },
+        "function": "Facilitate recruitment and upgrading of soldiers for military engagement.",
+        "static_description": "Tabbed interface listing soldier types with recruitment/upgrade costs, attack/defense stats, and current trained counts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Recruit' or 'Upgrade' validates resources and updates the trained soldiers table accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "storeItemsDataSchema": "Table 'store_items' with columns: id (UUID), name (string), category (enum: resource, item, upgrade), price_gold (integer), effect_description (text), availability_condition (text).",
+            "purchaseItemAPI": "POST /api/store/purchase"
+        },
+        "function": "Offer a marketplace for buying resources, items, or upgrades using gold.",
+        "static_description": "Categorized listings of purchasable goods with icons, prices, descriptions, and buy buttons arranged in a responsive grid.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Buy' deducts gold from the player's balance and adds the purchased item or resource amount to their inventory."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bankAccountDataSchema": "Table 'bank_accounts' with columns: player_id (UUID), stored_gold (integer), interest_rate (decimal), last_interest_claimed_at (timestamp).",
+            "bankOperationsAPI": "GET /api/bank/status, POST /api/bank/deposit, POST /api/bank/withdraw, POST /api/bank/claim-interest"
+        },
+        "function": "Support secure long-term storage of gold with interest accumulation over time.",
+        "static_description": "Dashboard-style panel showing total stored gold, current interest rate, time until next interest gain, and action buttons for depositing, withdrawing, and claiming interest.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "'Deposit', 'Withdraw', and 'Claim Interest' buttons trigger respective transactions validated server-side."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messageThreadDataSchema": "Table 'messages' with columns: id (UUID), sender_id (UUID), recipient_id (UUID), subject (string), content (text), sent_at (timestamp), read_status (boolean).",
+            "messagingAPI": "GET /api/messages/inbox, GET /api/messages/thread/:id, POST /api/messages/send"
+        },
+        "function": "Enable communication between players via private messaging.",
+        "static_description": "Inbox view displaying message threads with sender names, subjects, timestamps, and unread indicators. Message detail view shows conversation history.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a thread opens the detailed message exchange. Clicking 'Send' submits a new reply or message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "battleMatchmakingAPI": "POST /api/battle/matchmake",
+            "combatSimulationEngine": "External service simulating turn-based battles based on unit stats and strategies.",
+            "battleResultDataSchema": "Table 'battles' with columns: id (UUID), attacker_id (UUID), defender_id (UUID), outcome (enum: win, loss, draw), rewards (JSONB), timestamp (timestamp)."
+        },
+        "function": "Allow players to initiate and resolve combat encounters with other players.",
+        "static_description": "Battle initiation screen with opponent selection and army composition preview. Results screen displays outcome summary, casualties, and rewards earned.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Attack' queues a match request. Upon resolution, redirects to results screen showing battle outcome and applying changes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leaderboardDataSchema": "Table 'player_scores' with columns: player_id (UUID), username (string), score (integer), rank (integer), last_updated (timestamp).",
+            "rankingAPI": "GET /api/ranking/top"
+        },
+        "function": "Showcase competitive standings among all players based on accumulated scores.",
+        "static_description": "Leaderboard table listing top-ranked players with usernames, scores, and ranks, styled with alternating row colors and highlighted personal position.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "activityLogDataSchema": "Table 'activity_logs' with columns: id (UUID), player_id (UUID), event_type (string), description (text), related_entity_id (UUID), timestamp (timestamp).",
+            "reportsAPI": "GET /api/reports/activity-log"
+        },
+        "function": "Present historical records of player actions, especially battles and significant achievements.",
+        "static_description": "Chronological feed of past events grouped by date, with expandable entries providing detailed context about each logged activity.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Expanding an entry reveals extended details such as involved entities, exact resource changes, or battle summaries."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameAPISpecification": "RESTful endpoints serving dynamic data including player profiles, resources, rankings, messages, etc., secured with JWT authentication.",
+            "databaseConnectionConfig": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+        },
+        "function": "Serve all dynamic game data securely to the frontend via well-defined REST APIs.",
+        "static_description": "Backend layer exposing structured API routes mapped to database queries and business logic handlers without direct user-facing visuals.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionDetails": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish reliable connectivity to PostgreSQL database instance for persistent game state storage.",
+        "static_description": "Configuration file specifying database connection parameters sourced from predefined environment variables ensuring secure access.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+            "devScriptCommand": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
+        },
+        "function": "Streamline development setup and execution by configuring unified installation and launch scripts.",
+        "static_description": "Scripts defined under 'scripts' section in root-level package.json enabling one-command setup and concurrent frontend/backend startup.",
+        "interaction_and_states": []
+    }
+]

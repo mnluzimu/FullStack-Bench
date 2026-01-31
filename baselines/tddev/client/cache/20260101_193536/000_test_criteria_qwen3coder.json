@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "A chat interface component for user interaction with the chatbot",
+        "user_persona": "A customer visiting the website for the first time looking for help with a product question.",
+        "user_goal": "To open the chat interface and ask a question to the chatbot.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Spotting the Chat Widget",
+                "description": "Sarah scrolls down the page and notices a small dim gray chat icon fixed in the bottom-right corner with the label 'Support Chat'.",
+                "action": "Click on the chat header.",
+                "expected_outcome": "The message panel expands, revealing a scrollable message area and an input textbox at the bottom."
+            },
+            {
+                "step": 2,
+                "title": "Sending a Message",
+                "description": "Sarah types 'Do you have wireless headphones?' into the input box and presses Enter.",
+                "action": "Press Enter key while focused on the input textbox.",
+                "expected_outcome": "The message is sent to the chatbot, the input clears, and Sarah's message appears in a snow-styled container aligned to the right."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API endpoints to handle chatbot conversations and responses",
+        "user_persona": "A user actively chatting with the support bot to resolve an issue.",
+        "user_goal": "To send a message and receive a response from the chatbot via backend API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting a Query",
+                "description": "Mike types 'How do I reset my password?' and clicks the send button.",
+                "action": "Click the send button next to the input textbox.",
+                "expected_outcome": "The message is posted to the POST /api/chat/send endpoint, and Mike sees his message appear in the chat log."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Bot Response",
+                "description": "Within seconds, Mike sees a reply from the bot explaining how to reset the password.",
+                "action": "Wait for response from server.",
+                "expected_outcome": "The bot's response is fetched and displayed in a dim gray text container aligned to the left in the message history."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integration with a PostgreSQL database to store chat logs and FAQ data",
+        "user_persona": "A frequent visitor who has had several past conversations with the chatbot.",
+        "user_goal": "To review previous messages from a prior chat session.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Previous Messages",
+                "description": "Returning to the site, Anna opens the chat window hoping to see her last conversation about shipping times.",
+                "action": "Open the expanded chat interface.",
+                "expected_outcome": "A GET request is made to /api/chat/messages?session_id={id}, retrieving and displaying previous messages from the chat_logs table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chatbot logic to answer frequently asked questions based on stored data",
+        "user_persona": "A confused shopper needing quick answers about return policies.",
+        "user_goal": "To get an instant response to a commonly asked question.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Asking About Returns",
+                "description": "Jake asks the chatbot, 'What is your return policy?' expecting a standard answer.",
+                "action": "Type 'What is your return policy?' and press Enter.",
+                "expected_outcome": "The chatbot recognizes the query, retrieves the answer from the faq table, and displays it immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chatbot functionality to provide product information to users",
+        "user_persona": "A potential buyer interested in learning more about a specific product.",
+        "user_goal": "To inquire about product specifications through the chatbot.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting Product Info",
+                "description": "Lisa wants to know more about a product she saw earlier. She types 'Tell me about product ID 101'.",
+                "action": "Send the message 'Tell me about product ID 101'.",
+                "expected_outcome": "The chatbot identifies the product ID, queries the productInfoSchema, and returns detailed information about the product."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chatbot assistance for users in completing orders through conversation",
+        "user_persona": "A customer ready to make a purchase but unsure of the steps.",
+        "user_goal": "To place an order with the chatbot’s guidance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Order Process",
+                "description": "Ethan tells the chatbot he wants to buy a laptop and needs help placing the order.",
+                "action": "Send the message 'I want to buy a laptop'.",
+                "expected_outcome": "The chatbot initiates a multi-turn dialog asking Ethan for preferences like model and quantity."
+            },
+            {
+                "step": 2,
+                "title": "Completing Purchase Steps",
+                "description": "After selecting options, Ethan confirms his choices and proceeds to checkout.",
+                "action": "Confirm selections and respond affirmatively to prompts.",
+                "expected_outcome": "The chatbot submits the order via POST /api/orders/create and confirms the order was placed successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time message exchange capability between user and chatbot",
+        "user_persona": "A tech-savvy user expecting fast responses.",
+        "user_goal": "To experience seamless real-time communication with the chatbot.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Chat Session",
+                "description": "Riley opens the chat window and begins typing a question.",
+                "action": "Open chat and type a message.",
+                "expected_outcome": "A WebSocket connection is established at /ws/chat, enabling real-time message streaming."
+            },
+            {
+                "step": 2,
+                "title": "Instant Reply",
+                "description": "Riley sends the message and receives an almost immediate reply without refreshing the page.",
+                "action": "Send the typed message.",
+                "expected_outcome": "Bot’s reply is delivered instantly via WebSocket and displayed in the chat panel."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Styling implementation with snow-colored background",
+        "user_persona": "A design-conscious user browsing the website.",
+        "user_goal": "To observe the consistent use of a snow background across pages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Site Background",
+                "description": "Olivia navigates through different sections of the website and notices the soft snow background remains constant.",
+                "action": "Navigate between different pages.",
+                "expected_outcome": "Every page displays a background color of #fffafa (snow) due to global CSS rule .site-background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Component styling using dim gray color scheme",
+        "user_persona": "A detail-oriented user evaluating the site's aesthetics.",
+        "user_goal": "To notice the uniform dim gray styling of interactive elements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting UI Components",
+                "description": "Derek examines buttons, headers, and input fields throughout the site.",
+                "action": "Observe various UI components.",
+                "expected_outcome": "All primary components use a consistent dim gray background (#696969) and white text as defined in .dim-gray-components CSS class."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database connection configuration using provided environment variables",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "To ensure the application connects to the PostgreSQL database using the correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Backend Server",
+                "description": "Morgan runs the backend server after configuring environment variables.",
+                "action": "Start backend server with DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "The backend successfully connects to the PostgreSQL database using the specified environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend data fetching from backend APIs for dynamic content",
+        "user_persona": "A user exploring dynamic content loaded from the backend.",
+        "user_goal": "To view product information fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dynamic Content",
+                "description": "Tina visits the product page and expects to see updated product details.",
+                "action": "Load product page.",
+                "expected_outcome": "Frontend makes a GET request to /api/products/{id} and populates the page with dynamic data retrieved from the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration for concurrent frontend and backend development startup",
+        "user_persona": "A developer starting the development environment.",
+        "user_goal": "To launch both frontend and backend servers with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Dev Command",
+                "description": "Alex wants to start developing and uses the configured script to launch both environments.",
+                "action": "Run 'npm run dev' from the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently using the concurrently utility."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Installation scripts in package.json to set up both frontend and backend dependencies",
+        "user_persona": "A new team member setting up the project for the first time.",
+        "user_goal": "To install all necessary dependencies for frontend and backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Jamie clones the repo and needs to install dependencies for both parts of the stack.",
+                "action": "Run 'npm run install:all' from the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully as defined in the installAllScriptCommand."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User session management to maintain conversation context",
+        "user_persona": "A returning user resuming a previous conversation.",
+        "user_goal": "To continue a chat session where they left off.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resuming Session",
+                "description": "Jordan revisits the site and opens the chat, expecting to see the previous conversation context preserved.",
+                "action": "Open the chat interface.",
+                "expected_outcome": "A new session is initiated or resumed via POST /api/session/start, maintaining continuity with previous messages."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for failed chatbot responses or database connections",
+        "user_persona": "A frustrated user whose chat session suddenly stops responding.",
+        "user_goal": "To receive a meaningful error message when the chatbot service fails.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Service Failure",
+                "description": "While chatting, Taylor's messages stop getting replies. After waiting, he tries again.",
+                "action": "Attempt to send another message after a delay.",
+                "expected_outcome": "System detects failure, logs the error, and returns a fallback response: 'Service temporarily unavailable. Please try again later.'"
+            }
+        ]
+    }
+]

@@ -1,0 +1,257 @@
+[
+    {
+        "resource_dependency": {
+            "mapAPI": "An interactive map API such as Mapbox or Google Maps for rendering neighborhood boundaries and enabling zoom/pan functionality.",
+            "neighborhoodDataSchema": "Database schema with tables: neighborhoods (id, name, geometry), demographics (neighborhood_id, population, age_distribution, etc.), economics (neighborhood_id, median_income, employment_rate, etc.), crime (neighborhood_id, incidents_by_type, year), and a join table for comparisons (comparison_id, neighborhood_ids)."
+        },
+        "function": "Display an interactive map interface that allows users to visualize neighborhood boundaries and interact with map features.",
+        "static_description": "The interface displays a full-screen interactive map centered on a default region. Ivory background with forest green UI components like control buttons and legend panels. Zoom and pan controls are visible in the top-left corner.",
+        "interaction_and_states": [
+            {
+                "interaction": "Zoom",
+                "description": "User scrolls or uses '+'/'-' buttons to adjust the map scale dynamically without reloading content."
+            },
+            {
+                "interaction": "Pan",
+                "description": "User clicks and drags the map canvas to navigate across regions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "neighborhoodSelectionLogic": "A mechanism to track selected neighborhoods via click/tap events on the map or search results. Store selection state in memory or session storage.",
+            "comparisonViewSchema": "A view schema to manage multi-neighborhood comparison data including side-by-side layout configuration and metric alignment."
+        },
+        "function": "Allow users to select and compare multiple neighborhoods either through direct map interaction or search results.",
+        "static_description": "Neighborhoods appear as polygonal overlays on the map. Selected neighborhoods are visually highlighted with a border or fill color distinct from others. A comparison panel appears at the bottom showing basic stats of selected areas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a neighborhood selects it and adds it to the active comparison set. Subsequent clicks toggle selection off."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Double-clicking a neighborhood centers the map on that area and opens its detailed info modal."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographicDataEndpoint": "/api/demographics?neighborhood_ids=[...]",
+            "chartLibrary": "Chart.js or D3.js for creating bar/line/pie charts based on demographic datasets.",
+            "demographicMetricsSchema": "Fields: population, median_age, household_size, race_distribution, education_level."
+        },
+        "function": "Visualize demographic statistics of selected neighborhoods using interactive charts.",
+        "static_description": "Demographic visualization section shows charts inside collapsible/expansible cards. Default charts include Population Pyramid, Age Distribution Pie Chart, and Education Level Bar Graph. Cards use ivory backgrounds with forest green headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements highlights corresponding data points and shows tooltips with exact values."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on chart legends toggles visibility of related data series."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "economicDataEndpoint": "/api/economics?neighborhood_ids=[...]",
+            "economicMetricsSchema": "Fields: median_income, income_by_bracket, employment_rate, unemployment_rate, major_industries."
+        },
+        "function": "Visualize economic indicators of selected neighborhoods using interactive charts.",
+        "static_description": "Economic visualization section presents charts such as Income Bracket Histogram, Employment Rate Line Chart, and Industry Sector Donut Chart within expandable panels styled with forest green accents on ivory base.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays precise numerical values when hovering over data segments or lines."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking axis labels filters displayed data subsets (e.g., time ranges)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crimeDataEndpoint": "/api/crime?neighborhood_ids=[...]",
+            "crimeMetricsSchema": "Fields: total_incidents, incidents_by_type, incident_density_per_capita, trend_over_time."
+        },
+        "function": "Visualize crime-related data for selected neighborhoods using interactive charts.",
+        "static_description": "Crime data visualization includes Heatmaps, Incident Type Bar Charts, and Year-over-Year Trend Lines. Visualizations reside in collapsible containers matching the app’s theme palette.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Shows detailed breakdowns per category or timeframe upon hover."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items filters out/in specific crime categories from display."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardContainerComponent": "Reusable React/Vue component supporting drag-and-drop reordering of widgets.",
+            "interactiveChartWidget": "Pre-built reusable chart widget components that can be added to the dashboard grid."
+        },
+        "function": "Provide a centralized dashboard interface displaying all relevant charts in an organized manner.",
+        "static_description": "Dashboard consists of a responsive grid layout where each chart occupies a tile/card. Header includes title ('Data Dashboard') and export/download button. Background is ivory; tiles have forest green borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can rearrange chart positions by dragging and dropping individual widgets."
+            },
+            {
+                "interaction": "Resize",
+                "description": "Widgets support resizing by dragging their edges."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "layoutStorageAPI": "Persistent storage solution (localStorage or backend endpoint) to save user-defined dashboard configurations.",
+            "defaultLayoutTemplate": "JSON template defining initial widget placements and sizes."
+        },
+        "function": "Enable users to customize and persist changes to the dashboard layout.",
+        "static_description": "Customization controls located in a floating toolbar or settings drawer. Options include 'Save Layout', 'Reset to Default', and 'Load Saved Layout'. Theme remains consistent with ivory background and forest green components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Layout' stores current arrangement. 'Reset' reverts to default layout."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBarComponent": "Input field styled with forest green border and placeholder text.",
+            "autoCompleteAPI": "/api/search/neighborhoods?q={query}",
+            "searchResultsListSchema": "{ id: string, name: string, location_hint?: string }"
+        },
+        "function": "Provide a searchable interface to find and select neighborhoods quickly.",
+        "static_description": "Search bar placed prominently above the map. Suggestions dropdown lists matching neighborhoods as user types. Search box has a magnifying glass icon and uses the application's theme colors.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As user types, suggestions populate in real-time below the input field."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a suggestion focuses the map on the chosen neighborhood and highlights it."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "boundaryFilteringEngine": "Client-side logic or server-side query processor to filter data based on drawn polygons or predefined administrative zones.",
+            "drawingToolAPI": "Map drawing tools allowing polygon creation/deletion."
+        },
+        "function": "Allow users to define custom geographic filters and apply them to restrict data views.",
+        "static_description": "Drawing tools accessible via a floating menu near the map. Users draw shapes directly onto the map to isolate specific regions. Filtered data updates automatically once shape is finalized.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Click activates drawing mode; subsequent clicks outline the boundary."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Finalizes the drawn polygon and applies spatial filter to update displayed data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonPanelComponent": "UI component designed to show two or more neighborhood profiles side-by-side.",
+            "dualViewLayoutCSS": ".side-by-side { display: flex; gap: 1rem; }"
+        },
+        "function": "Facilitate side-by-side viewing of neighborhood metrics for easy comparison.",
+        "static_description": "Side-by-side view splits screen horizontally or vertically depending on device width. Each pane shows key metrics, charts, and summary stats for one neighborhood. Panes maintain ivory background with forest green dividers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Swipe Left/Right",
+                "description": "Mobile users swipe between comparison panes."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling synchronizes position across all comparison panels for aligned reading."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartConfigModal": "Popup dialog containing form fields for adjusting chart parameters such as axes, colors, scales, and labels.",
+            "chartStylePresets": "[{presetName: 'Minimalist'}, {presetName: 'Detailed'}, ...]"
+        },
+        "function": "Offer flexible options for modifying how charts render to suit user preferences.",
+        "static_description": "Each chart includes a gear/settings icon in its header. Clicking this reveals a modal window with adjustable properties like color themes, axis formatting, label styles, and data grouping methods.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens the customization modal for that specific chart."
+            },
+            {
+                "interaction": "Submit Form",
+                "description": "Applies new settings immediately to the associated chart instance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportServiceAPI": "/api/export/data",
+            "fileFormatOptions": [
+                "CSV",
+                "PDF",
+                "PNG"
+            ]
+        },
+        "function": "Permit exporting of data and visualizations in various formats for offline use or sharing.",
+        "static_description": "Export button available in both dashboard header and individual chart toolbars. Dropdown offers format choices: CSV, PDF, PNG. Button matches the app's color scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers download of currently visible data or chart image in selected format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "zoomControlIcons": "SVG icons for zoom-in (+), zoom-out (-), and reset view (🏠).",
+            "panGestureHandler": "Built-in touch/mouse handler integrated with map SDK."
+        },
+        "function": "Provide intuitive navigation tools for exploring the map at varying levels of detail.",
+        "static_description": "Zoom and pan controls positioned in the upper left corner of the map. Controls feature forest green icons against ivory backdrop. Includes +, -, and Home buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "+ increases zoom level, - decreases it, and 🏠 resets to original view."
+            },
+            {
+                "interaction": "Mouse Wheel",
+                "description": "Scrolling mouse wheel performs continuous zoom actions smoothly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "legendComponent": "Reusable UI element listing data classifications and color codes used in visualizations.",
+            "keyMetricCards": "Small informational cards showing primary figures like average income, population density, etc."
+        },
+        "function": "Present contextual information about what the data means and highlight important statistics.",
+        "static_description": "Legend panel floats along the right edge of the map/dashboard. Key metrics appear in small circular or rectangular badges near the top. All styling adheres to ivory and forest green theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Mousover legend items dims irrelevant data layers on charts/maps temporarily."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeVariables": ":root { --background-color: ivory; --accent-color: forestgreen; }",
+            "forestGreenPalette": "#228B22"
+        },
+        "function": "Enforce visual consistency throughout the application using specified color palette.",
+        "static_description": "All backgrounds set to ivory (#FFFFF0); actionable elements like buttons, headers, and chart axes rendered in forest green (#228B22). Consistent spacing and typography follow modern clean design principles.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "User registration functionality with form validation",
+        "user_persona": "A new engineer named Alex who wants to join the platform to explore tools.",
+        "user_goal": "To successfully register an account with valid credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Registration Form",
+                "description": "Alex visits the homepage and sees a 'Register' button. He clicks it to open the registration form.",
+                "action": "Click on the 'Register' button.",
+                "expected_outcome": "The registration form with fields for Username, Email, and Password appears."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Valid Information",
+                "description": "Alex fills in a valid username, email address, and strong password that meets all requirements.",
+                "action": "Enter 'alexengineer' as username, 'alex@example.com' as email, and 'SecurePass1!' as password.",
+                "expected_outcome": "Each field validates input instantly, showing no errors since the data is correct."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Registration Form",
+                "description": "Confident his details are accurate, Alex clicks the submit button to finalize registration.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "A success message appears confirming registration, and Alex is redirected to the login page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User login functionality with authentication",
+        "user_persona": "Returning user Jordan who has previously registered and now wants to access her account.",
+        "user_goal": "To log into her existing account using valid credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Login Page",
+                "description": "Jordan opens the website and finds the 'Login' button prominently displayed. She clicks it.",
+                "action": "Click on the 'Login' button.",
+                "expected_outcome": "The login form with fields for Email and Password appears."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "Jordan enters her registered email and correct password into the respective fields.",
+                "action": "Enter 'jordan@example.com' as email and 'MySecretPass9@' as password.",
+                "expected_outcome": "No immediate validation errors appear, indicating proper formatting of credentials."
+            },
+            {
+                "step": 3,
+                "title": "Logging In",
+                "description": "She clicks the login button hoping to gain access to her dashboard.",
+                "action": "Click the 'Login' button.",
+                "expected_outcome": "Jordan is authenticated, receives a JWT token, and gets redirected to her dashboard with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Tool information display including name, description, function, and price",
+        "user_persona": "Taylor, a mechanical engineer browsing tools online for potential purchases.",
+        "user_goal": "To browse and view basic information about available engineering tools.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Tool Listing Page",
+                "description": "Taylor lands on the main page where tools are listed. She expects to see key info at a glance.",
+                "action": "Navigate to the homepage or tools listing page.",
+                "expected_outcome": "A responsive grid of tool cards loads, each displaying the tool's name, truncated description, function summary, and price clearly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for tools by name or keyword",
+        "user_persona": "Riley, an electrical engineer looking for a specific multimeter model.",
+        "user_goal": "To quickly locate a particular tool using the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Riley notices the search bar near the top of the tool listings and decides to type in a known tool name.",
+                "action": "Type 'Fluke Multimeter' into the search bar and press Enter.",
+                "expected_outcome": "Results update dynamically without reloading the page, showing only tools matching the search term."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filter functionality for tools by category, price range, or function",
+        "user_persona": "Casey, a civil engineer seeking budget-friendly surveying equipment.",
+        "user_goal": "To filter tools by category and price range to find affordable options.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "Casey uses the sidebar filters to select 'Surveying Equipment' under category and '$0-$200' price range.",
+                "action": "Select 'Surveying Equipment' from Category dropdown and choose '$0-$200' radio button. Then click Apply.",
+                "expected_outcome": "The tool list updates automatically to show only filtered results matching those criteria."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Detailed tool view page with full information",
+        "user_persona": "Morgan, a systems engineer interested in learning more about a specific torque wrench.",
+        "user_goal": "To view comprehensive details of a selected tool.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting a Tool Card",
+                "description": "Morgan browses the tool grid and clicks on a torque wrench card to learn more.",
+                "action": "Click on the torque wrench tool card.",
+                "expected_outcome": "Redirected to a dedicated detail page showing full description, function, price, category, and other relevant information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Commenting functionality for users to comment on tools",
+        "user_persona": "Jamie, a chemical engineer who recently bought a pH meter and wants to share experience.",
+        "user_goal": "To leave a review comment on a purchased tool.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Writing a Comment",
+                "description": "After viewing the pH meter's details, Jamie scrolls down to the comments section and writes a review.",
+                "action": "Type 'This pH meter works great for lab use!' into the Add Comment textarea and click Post.",
+                "expected_outcome": "The comment is submitted successfully and immediately appears in the comments list below the input area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Rating functionality for users to rate tools",
+        "user_persona": "Pat, a structural engineer who tested several hammers and wants to rate one.",
+        "user_goal": "To provide a star rating for a hammer they've used.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Rating a Tool",
+                "description": "While viewing the hammer's detail page, Pat sees the five-star rating widget and decides to give it four stars.",
+                "action": "Click on the fourth star in the rating widget.",
+                "expected_outcome": "The rating is recorded, the UI reflects the chosen rating, and the overall average rating updates accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to serve tool data dynamically",
+        "user_persona": "Developer Sam maintaining the site backend ensuring real-time data delivery.",
+        "user_goal": "To ensure the backend delivers up-to-date tool data via RESTful endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Tools Data",
+                "description": "Sam tests the GET /api/tools endpoint to verify dynamic data retrieval from PostgreSQL.",
+                "action": "Make a GET request to '/api/tools'.",
+                "expected_outcome": "Returns a paginated JSON array of current tool records fetched directly from the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all data from backend APIs",
+        "user_persona": "DevOps engineer Lee monitoring frontend performance and API integrations.",
+        "user_goal": "To confirm the frontend exclusively pulls dynamic content from backend services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Initial Load",
+                "description": "Lee observes how the frontend behaves during initial load, particularly around data rendering.",
+                "action": "Load the homepage and observe network activity.",
+                "expected_outcome": "Loading indicators appear temporarily while Axios/fetch calls resolve, then dynamic content populates seamlessly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "PostgreSQL database connection using specified environment variables",
+        "user_persona": "System administrator Dana responsible for setting up production databases.",
+        "user_goal": "To configure and validate PostgreSQL connectivity using prescribed environment settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "Dana checks whether the backend properly connects to PostgreSQL using standard environment variables.",
+                "action": "Review backend configuration files and attempt to establish a database connection.",
+                "expected_outcome": "Successfully connects to PostgreSQL instance at localhost:5432 using myappuser/myapppassword for database myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with install:all script for frontend and backend",
+        "user_persona": "New contributor Kai cloning the repository for the first time.",
+        "user_goal": "To install dependencies for both frontend and backend projects efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Kai navigates to the project root and runs the unified dependency installation command.",
+                "action": "Run 'npm run install:all' in the terminal.",
+                "expected_outcome": "Both frontend and backend dependencies install concurrently without manual intervention."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with dev script to start frontend and backend concurrently",
+        "user_persona": "Developer Quinn working locally to develop features for both sides.",
+        "user_goal": "To launch development servers for frontend and backend simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Quinn prepares to code by launching both development environments at once.",
+                "action": "Execute 'npm run dev' from the root directory.",
+                "expected_outcome": "Development servers for both frontend and backend start concurrently, enabling integrated local development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Global background color set to ivory",
+        "user_persona": "Designer Morgan reviewing visual consistency across the application.",
+        "user_goal": "To verify that the global background color matches the design specification.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Morgan inspects the body element of any page to check the background color.",
+                "action": "Open browser DevTools and inspect the <body> tag styles.",
+                "expected_outcome": "The computed style shows background-color set to ivory (#FFFFF0) globally."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI components styled with forest green color",
+        "user_persona": "UX designer Taylor auditing interface aesthetics and brand compliance.",
+        "user_goal": "To ensure all interactive elements follow the defined color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking UI Component Colors",
+                "description": "Taylor examines various UI components such as buttons and form controls for consistent styling.",
+                "action": "Inspect different UI elements like buttons, links, and form borders visually and via DevTools.",
+                "expected_outcome": "All specified UI components render with forest green (#228B22) as per design guidelines."
+            }
+        ]
+    }
+]

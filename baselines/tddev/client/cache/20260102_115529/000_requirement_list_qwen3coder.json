@@ -1,0 +1,250 @@
+[
+    {
+        "resource_dependency": {
+            "background_image": "Azure mist-themed background image or CSS gradient",
+            "component_style": "Dark slate blue themed components with appropriate contrast and accessibility considerations"
+        },
+        "function": "Provide a responsive frontend application that fetches all dynamic data from backend APIs.",
+        "static_description": "The frontend application features a consistent Azure Mist background across all pages with Dark Slate Blue styled components such as buttons, cards, forms, and navigation menus. It includes navigation links to different sections: Dashboard, Send Message, User Profile, Policy Configuration, Monitoring, and Admin Panel.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on navigation links loads respective views dynamically via API calls without full page reloads."
+            },
+            {
+                "interaction": "Resize",
+                "description": "UI adjusts responsively on window resize maintaining usability on mobile, tablet, and desktop screens."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_connection": "PostgreSQL database connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Serve backend API endpoints and connect to PostgreSQL database using specified environment variables.",
+        "static_description": "Backend server runs independently but communicates with the frontend through RESTful API endpoints. It establishes secure connections to the PostgreSQL database using provided credentials stored in environment variables.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request",
+                "description": "Upon receiving requests from frontend, backend processes them by querying or updating the PostgreSQL database accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "session_store": "Secure session storage mechanism (e.g., Redis or encrypted cookies)",
+            "auth_endpoints": "Authentication endpoints: POST /login, POST /logout, GET /me"
+        },
+        "function": "Manage user authentication and maintain session states securely.",
+        "static_description": "Login form displayed on access-restricted routes requiring username/email and password inputs along with optional 'Remember Me' checkbox.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting login form sends credentials to backend which validates against stored user data and initiates a session upon success."
+            },
+            {
+                "interaction": "Logout Click",
+                "description": "Clicking logout button invalidates current session and redirects user back to login screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "send_message_endpoint": "POST /api/messages/send",
+            "recipient_input_icon": "User/group icon SVG file path"
+        },
+        "function": "Allow authenticated users to compose and send short messages specifying recipients and content.",
+        "static_description": "Message composition area contains two main input fields labeled 'Recipient(s)' and 'Message Content', accompanied by a prominent 'Send' button. Recipient field supports multiple entries separated by commas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Typing into recipient/content fields enables the send button when both contain valid input."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Send' submits message details to backend API endpoint for processing and delivery."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "message_history_endpoint": "GET /api/messages/history",
+            "history_table_columns": [
+                "Timestamp",
+                "Recipient",
+                "Content",
+                "Status"
+            ]
+        },
+        "function": "Display historical records of sent messages including timestamp, recipient, content, and status.",
+        "static_description": "Dashboard presents a tabular view listing past messages with columns showing Timestamp, Recipient, Message Content preview, and Delivery Status. Pagination controls appear at bottom if needed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Refresh",
+                "description": "Refreshing the dashboard re-fetches latest message history from backend API."
+            },
+            {
+                "interaction": "Sort",
+                "description": "Clicking column headers sorts table rows ascending/descending based on selected attribute."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profile_update_endpoint": "PUT /api/users/profile",
+            "avatar_upload_url": "/api/users/avatar/upload"
+        },
+        "function": "Enable users to view and update their personal information such as name, email, phone number, and avatar.",
+        "static_description": "Profile section displays editable form pre-filled with existing user info including Name, Email, Phone Number, and Avatar upload option. Save and Cancel buttons positioned below form fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Edit",
+                "description": "Editing any field activates save/cancel options allowing changes to be submitted or discarded."
+            },
+            {
+                "interaction": "Upload",
+                "description": "Uploading new avatar triggers request to designated URL replacing previous image after successful upload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policy_config_endpoint": "PUT /api/policies/configure",
+            "default_policies": "{ max_daily_sends: 1000, rate_limit_per_minute: 10 }"
+        },
+        "function": "Offer interface for administrators or authorized users to define message sending policies and limitations.",
+        "static_description": "Configuration panel shows adjustable sliders or numeric inputs for parameters like daily maximum sends, per-minute rate limits, and allowed message length. Current values are shown alongside labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Adjust Slider/Input",
+                "description": "Changing slider/input value updates corresponding policy parameter temporarily until saved."
+            },
+            {
+                "interaction": "Save",
+                "description": "Saving applies updated policies globally affecting future message transmissions handled by backend logic."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "monitoring_stats_endpoint": "GET /api/monitoring/stats",
+            "chart_library": "Chart.js or similar library for rendering real-time graphs"
+        },
+        "function": "Visualize live metrics related to SMS traffic including volume, success/failure rates, and latency.",
+        "static_description": "Monitoring dashboard displays interactive charts representing real-time message throughput, delivery statuses over time, average response times, and top destinations. Charts auto-update periodically.",
+        "interaction_and_states": [
+            {
+                "interaction": "Toggle Filters",
+                "description": "Selecting date ranges or filtering criteria modifies chart datasets reflecting filtered statistical insights."
+            },
+            {
+                "interaction": "Hover Over Chart Elements",
+                "description": "Hovering reveals tooltips detailing exact metric values at specific timestamps or categories."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_css_framework": "TailwindCSS or Bootstrap configured for responsive layouts",
+            "theme_variables": ":root { --bg-color: azure-mist; --primary-color: darkslateblue; }"
+        },
+        "function": "Ensure complete UI responsiveness while applying consistent Azure Mist background and Dark Slate Blue component styling throughout.",
+        "static_description": "All pages utilize responsive grid systems ensuring compatibility across devices. Background consistently uses Azure Mist color/image whereas primary interactive elements adopt Dark Slate Blue hues.",
+        "interaction_and_states": [
+            {
+                "interaction": "Device Rotation",
+                "description": "Rotating device switches between portrait and landscape modes adjusting layout fluidly."
+            },
+            {
+                "interaction": "Zoom In/Out",
+                "description": "Text and components scale appropriately during browser zoom preserving readability and aesthetics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_schema_definition": "Tables: users(id, name, email, role), messages(id, sender_id, recipients, content, status, created_at), policies(id, user_id, config), monitoring_logs(id, event_type, timestamp, metadata)"
+        },
+        "function": "Define relational database schema to support core entities: users, messages, policies, and monitoring logs.",
+        "static_description": "Database schema consists of four interconnected tables – users for account info, messages storing transmission details, policies holding rule configurations, and monitoring_logs capturing operational events.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "message_send_endpoint": "POST /api/messages/send",
+            "message_retrieve_endpoint": "GET /api/messages/:id",
+            "status_update_endpoint": "PATCH /api/messages/:id/status"
+        },
+        "function": "Expose essential API endpoints enabling message submission, retrieval, and status modification.",
+        "static_description": "RESTful endpoints available under '/api' prefix facilitating CRUD operations on messages. Endpoints follow standard HTTP methods aligned with resource-based naming conventions.",
+        "interaction_and_states": [
+            {
+                "interaction": "HTTP POST",
+                "description": "Sending POST to /api/messages/send triggers creation and dispatch of new message entry in system."
+            },
+            {
+                "interaction": "HTTP GET",
+                "description": "Fetching individual message via GET /api/messages/{id} returns detailed record including current status and audit trail."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_user_mgmt_endpoint": "GET /api/admin/users, PUT /api/admin/users/:id/role",
+            "permission_matrix": "{ roles: ['admin', 'user'], permissions: { admin: ['manage_users', 'view_all_messages'] }}"
+        },
+        "function": "Supply administrative tools for managing user accounts, roles, and associated permissions.",
+        "static_description": "Admin interface lists registered users with ability to modify roles directly inline. Table includes columns like Username, Role, Last Active, and Actions (Edit/Delete).",
+        "interaction_and_states": [
+            {
+                "interaction": "Role Change",
+                "description": "Changing a user’s role updates their authorization level immediately impacting accessible features within app."
+            },
+            {
+                "interaction": "Delete User",
+                "description": "Deleting removes user permanently from system preventing further logins or actions unless recreated."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "error_log_endpoint": "POST /api/logs/error",
+            "structured_logger": "Winston or Bunyan structured logging implementation"
+        },
+        "function": "Implement centralized logging and robust error handling mechanisms to track failures during message delivery.",
+        "static_description": "Internal logger captures exceptions, warnings, and informational traces generated by backend services. Error responses include unique IDs linking to extended context in persistent store.",
+        "interaction_and_states": [
+            {
+                "interaction": "Error Occurrence",
+                "description": "Whenever internal failure occurs, relevant stack trace and contextual metadata logged asynchronously for later diagnostics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "validation_rules": "Zod/Joi/Yup schema definitions for validating message content, recipient formats, and policy constraints before persistence"
+        },
+        "function": "Enforce strict validation checks on incoming message data, recipient specifications, and policy configurations prior to database commits.",
+        "static_description": "Validation middleware intercepts every write operation checking compliance against predefined schemas covering acceptable lengths, character sets, and structural correctness.",
+        "interaction_and_states": [
+            {
+                "interaction": "Invalid Data Entry",
+                "description": "Submitting malformed or out-of-bounds data results in immediate client-side feedback highlighting problematic fields with suggested corrections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dev_script_commands": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+            "install_script_commands": "npm install && cd frontend && npm install && cd ../backend && npm install"
+        },
+        "function": "Configure package.json scripts to enable simultaneous installation and concurrent execution of frontend and backend development environments.",
+        "static_description": "Root-level package.json defines custom commands 'install:all' and 'dev'. Running these executes nested installations and launches both apps concurrently using terminal multiplexers or process managers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run install:all' installs dependencies for entire monorepo structure whereas 'npm run dev' boots up integrated development servers side-by-side."
+            }
+        ]
+    }
+]

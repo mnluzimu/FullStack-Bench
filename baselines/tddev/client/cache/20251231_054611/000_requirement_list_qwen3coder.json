@@ -1,0 +1,209 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/leads",
+            "databaseSchema": "CREATE TABLE leads (id SERIAL PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), phone VARCHAR(50), status VARCHAR(100), category VARCHAR(100), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Fetch and display dynamic sales leads data from the backend API.",
+        "static_description": "A table listing sales leads with columns for name, contact info, status, category, and timestamps. Background color set to papaya whip with dark orange borders around each cell.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a row opens a modal to view/edit lead details."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loads more leads when reaching the bottom of the table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "envVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "dbConnectionLibrary": "pg"
+        },
+        "function": "Establish connection to PostgreSQL database using provided environment variables.",
+        "static_description": "Backend server initializes a pool connection to PostgreSQL using pg library with configured credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loginApiEndpoint": "/api/auth/login",
+            "sessionStore": "Redis or in-memory store for session tokens"
+        },
+        "function": "Authenticate users and manage their sessions securely.",
+        "static_description": "Login form with username and password fields against a papaya whip background. Submit button styled with dark orange.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting logs in user and redirects to dashboard upon successful authentication."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardApiEndpoint": "/api/dashboard",
+            "searchBarIcon": "/icons/search.svg"
+        },
+        "function": "Provide an overview of sales leads with filtering and searching capabilities.",
+        "static_description": "Dashboard page featuring a search bar, filter dropdowns, and a responsive grid/table layout showing lead summaries. Papaya whip background with dark orange accents on buttons and filters.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Filter dropdown toggles visibility of available filters; applying filters refreshes the lead list dynamically."
+            },
+            {
+                "interaction": "Type",
+                "description": "Typing in search bar debounces requests to update filtered results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leadFormApiEndpoint": "/api/leads",
+            "statusOptions": [
+                "New",
+                "Contacted",
+                "Qualified",
+                "Lost"
+            ],
+            "categoryOptions": [
+                "Enterprise",
+                "SMB",
+                "Startup"
+            ]
+        },
+        "function": "Allow creation, editing, categorization, and updating of lead statuses.",
+        "static_description": "Modal form with input fields for name, email, phone, status dropdown, and category dropdown. Form has a save button styled with dark orange.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save button submits changes via POST/PUT request to update or create lead entry."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing dropdown values updates internal state before submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messageTemplateApi": "/api/templates",
+            "sendMessageApi": "/api/messages/send",
+            "cronScheduler": "node-cron or similar scheduling tool"
+        },
+        "function": "Enable automated messaging to leads based on predefined templates and schedules.",
+        "static_description": "Interface includes template editor, schedule configuration panel, and send now button. All components use papaya whip background with dark orange controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Send Now triggers immediate dispatch of selected message template to chosen leads."
+            },
+            {
+                "interaction": "Schedule",
+                "description": "Setting time/date activates cron job to trigger message delivery automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "settingsApiEndpoint": "/api/settings",
+            "dropdownOptionsSchema": "Table containing key-value pairs for dropdown options used across the app"
+        },
+        "function": "Allow administrators to modify application-wide settings and dropdown choices.",
+        "static_description": "Settings page with editable forms for configuring global parameters and managing dropdown lists. Styled with papaya whip background and dark orange form elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save button persists updated settings to backend through PUT request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportsApiEndpoint": "/api/reports",
+            "chartLibrary": "Chart.js or D3.js",
+            "exportButtonIcon": "/icons/export.svg"
+        },
+        "function": "Display visual analytics and performance metrics derived from sales data.",
+        "static_description": "Reports section displays charts and tables summarizing KPIs such as conversion rates, lead sources, etc. Export button allows downloading reports as CSV/PDF.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Export button generates downloadable report file after fetching latest data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adviceContentSource": "Markdown documents stored in /content/advice/*.md",
+            "markdownRenderer": "React Markdown or equivalent"
+        },
+        "function": "Present curated content about CRM best practices and integration tips.",
+        "static_description": "Advice section rendered as clean articles with papaya whip background and dark orange headings. Articles sourced from markdown files.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --background-color: papayawhip; --primary-color: darkorange; }"
+        },
+        "function": "Apply consistent styling theme throughout UI using CSS variables.",
+        "static_description": "Entire application uses CSS custom properties for background (papaya whip) and primary color (dark orange) applied globally.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "rbacMiddleware": "Custom middleware checking user roles in JWT token or session",
+            "rolesDefinition": "{ admin: ['read', 'write', 'delete'], manager: ['read', 'write'], viewer: ['read'] }"
+        },
+        "function": "Control access to features based on user roles.",
+        "static_description": "Role-specific views and actions are conditionally rendered depending on logged-in user’s assigned role.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "validationLibrary": "Joi or Yup schema validators",
+            "errorHandler": "Express error-handling middleware returning structured JSON responses"
+        },
+        "function": "Ensure robust validation and informative feedback for all user-submitted data.",
+        "static_description": "All forms include inline validation indicators and error messages displayed below invalid fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Validation runs client-side prior to API call; errors shown immediately without full-page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auditLogSchema": "CREATE TABLE audit_logs (id SERIAL PRIMARY KEY, user_id INT, action TEXT, entity_type VARCHAR(100), entity_id INT, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);",
+            "loggingMiddleware": "Express middleware capturing relevant CRUD operations"
+        },
+        "function": "Record all significant user activities and modifications for auditing purposes.",
+        "static_description": "Each auditable action writes a record to the audit_logs table including who performed what action on which entity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "exportApiEndpoint": "/api/export",
+            "fileDownloadHandler": "Server-side stream generation of CSV/XLSX files"
+        },
+        "function": "Support exporting datasets such as reports and lead lists into downloadable formats.",
+        "static_description": "Buttons labeled 'Export' next to relevant sections allow users to download current dataset in various formats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers export endpoint to generate file and return it as attachment."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentScriptCommand": "\"dev\": \"concurrently \\\"npm run dev --prefix frontend\\\" \\\"npm run dev --prefix backend\\\"\"",
+            "installAllCommand": "\"install:all\": \"npm install && cd frontend && npm install && cd ../backend && npm install\""
+        },
+        "function": "Streamline local development workflow by enabling simultaneous startup of frontend and backend services.",
+        "static_description": "Defined package.json scripts enable running both apps together or installing dependencies recursively.",
+        "interaction_and_states": []
+    }
+]

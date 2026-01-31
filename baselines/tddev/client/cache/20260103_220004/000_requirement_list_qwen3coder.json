@@ -1,0 +1,162 @@
+[
+    {
+        "resource_dependency": {
+            "registrationFormSchema": "Database table 'users' with fields: id (UUID), username (string, unique), email (string, unique), password_hash (string), created_at (timestamp).",
+            "validationRules": "Username required, min 3 chars; Email must be valid format; Password min 8 chars with uppercase, lowercase, number, special char."
+        },
+        "function": "Allows new users to register an account by submitting their credentials.",
+        "static_description": "A centered form with input fields for Username, Email, and Password, each labeled accordingly. A Submit button below the form. All inputs have associated labels and placeholders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Submit button triggers client-side validation. If valid, sends POST request to /api/register endpoint with form data. Displays success message or error messages based on server response."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginFormSchema": "Database query against 'users' table using email and password_hash for authentication.",
+            "authTokenStorage": "JWT token stored in localStorage upon successful login."
+        },
+        "function": "Enables existing users to log into their accounts securely.",
+        "static_description": "A centered form with input fields for Email and Password, each labeled accordingly. A Login button below the form. Optional link to Registration page.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Login button submits credentials to /api/login. On success, stores JWT and redirects to dashboard. Shows error message if invalid credentials."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "toolDataSchema": "Database table 'tools' with fields: id (UUID), name (string), description (text), function (text), price (decimal), category (string), created_at (timestamp).",
+            "toolCardComponent": "Reusable card component displaying tool name, brief description, function preview, and price."
+        },
+        "function": "Displays a grid or list of available engineering tools with basic information.",
+        "static_description": "A responsive grid layout showing multiple tool cards. Each card contains the tool's name in bold, truncated description, function summary line, and clearly displayed price.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchEndpoint": "GET /api/tools?search=:query parameter passed to backend which performs ILIKE search on name and description columns."
+        },
+        "function": "Allows users to find tools by entering keywords or tool names.",
+        "static_description": "A prominent search bar positioned above the tool listing area with a magnifying glass icon. Placeholder text says 'Search tools...'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates a GET request to the search endpoint with the entered term. Results update dynamically without page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterOptionsSchema": "Categories derived from distinct values in 'category' column of tools table. Price ranges predefined (e.g., $0-$50, $51-$200, $200+). Function filters match entries in 'function' field.",
+            "filterAPIQueryParams": "Supports query parameters like ?category=:value&minPrice=:num&maxPrice=:num&function=:value"
+        },
+        "function": "Provides filtering options so users can narrow down tools based on attributes.",
+        "static_description": "Sidebar or collapsible panel next to tool listings containing filter sections: Category dropdown, Price Range radio buttons, Function checkboxes. Apply/Clear buttons at bottom.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting any filter option updates URL query params and re-fetches tool list via GET /api/tools with applied filters. Clicking Clear resets filters and reloads default view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "detailedToolViewSchema": "Full record from 'tools' table including all fields plus related comments and average rating.",
+            "commentDataJoin": "JOIN between 'comments', 'tools', and 'users' tables to show user avatars/names alongside comments."
+        },
+        "function": "Shows complete details about a specific tool when selected.",
+        "static_description": "Dedicated page with large header showing tool name and main image. Below, structured sections for full Description, Function, Price, Category. Comments section listed below with each having avatar, username, date, and text. Star rating display shown prominently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "commentSubmissionSchema": "Table 'comments' with fields: id (UUID), tool_id (foreign key), user_id (foreign key), content (text), created_at (timestamp).",
+            "authenticatedUserCheck": "Requires valid JWT to associate comment with user."
+        },
+        "function": "Permits logged-in users to add textual feedback on individual tools.",
+        "static_description": "Below the tool details, a textarea labeled 'Add Comment' with a Post button. Only visible when user is authenticated. Previous comments appear above this input area.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Post sends POST /api/comments with tool_id and content. On success, appends new comment to list and clears textarea. Requires auth; shows login prompt otherwise."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ratingSubmissionSchema": "Table 'ratings' with fields: id (UUID), tool_id (foreign key), user_id (foreign key), score (integer 1-5), created_at (timestamp).",
+            "averageRatingCalculation": "Computed as AVG(score) grouped by tool_id."
+        },
+        "function": "Enables authenticated users to give star ratings to tools.",
+        "static_description": "Five-star interactive rating widget below the tool title. Stars turn green on hover/select. Average rating displayed nearby as X.X/5 stars from N ratings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a star submits a PUT or POST to /api/ratings with tool_id and score. Updates UI immediately to reflect selection and recalculates average. Prevents duplicate ratings per user-tool pair."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Uses env vars DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp for connecting to PostgreSQL instance.",
+            "toolDataEndpoint": "RESTful GET /api/tools returning paginated JSON array of tool objects matching schema."
+        },
+        "function": "Serves dynamic tool data through RESTful endpoints connected to PostgreSQL.",
+        "static_description": "Not directly visible; this is the backend infrastructure ensuring all frontend tool displays pull live data rather than static content.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiClientLibrary": "Axios or fetch API used throughout frontend to make HTTP requests to backend services.",
+            "dataLoadingStates": "Loading spinners, skeleton screens during async data fetch operations."
+        },
+        "function": "Ensures frontend components retrieve all dynamic content exclusively from backend APIs.",
+        "static_description": "During initial load or navigation, loading indicators appear where dynamic content will populate until API responses resolve.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgresqlDriver": "Node.js pg library or equivalent ORM configured to use provided environment variables for database connectivity."
+        },
+        "function": "Establishes secure connection to PostgreSQL database using fixed environment configuration.",
+        "static_description": "Backend configuration file reading from environment variables to initialize database pool/connection. Not user-facing but foundational for all data access layers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\" } }"
+        },
+        "function": "Provides unified command to install dependencies for both frontend and backend projects simultaneously.",
+        "static_description": "Defined within root-level package.json file under scripts.install:all key. Executes concurrent installation processes inside frontend/ and backend/ directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "{ \"scripts\": { \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Launches development servers for both frontend and backend applications concurrently.",
+        "static_description": "Root package.json script entry allowing execution of parallel dev environments via single terminal command.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalCSSVariable": ":root { --background-color: ivory; } body { background-color: var(--background-color); }"
+        },
+        "function": "Sets consistent ivory background color globally across entire application.",
+        "static_description": "Applied universally to <body> element through CSS variable assignment ensuring all pages inherit ivory backdrop unless explicitly overridden.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiComponentStyles": "All buttons, links, borders, form controls utilize forest green (#228B22) via CSS class definitions or theme variables."
+        },
+        "function": "Applies forest green styling consistently to all interactive and decorative UI elements.",
+        "static_description": "Buttons, form borders, active navigation items, icons, and highlights rendered in forest green color scheme throughout site.",
+        "interaction_and_states": []
+    }
+]

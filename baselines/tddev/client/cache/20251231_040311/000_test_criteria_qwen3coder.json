@@ -1,0 +1,282 @@
+[
+    {
+        "requirement_tested": "Display a homepage with navigation to Menus, Private Poker Room, Events & Promotions, and Reservations/Purchases",
+        "user_persona": "A first-time visitor curious about what The All-In Bourbon Bar offers.",
+        "user_goal": "To navigate from the homepage to the Menus section.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens the website and sees the homepage with a header bar.",
+                "action": "Observe the homepage layout.",
+                "expected_outcome": "The homepage loads with a header containing navigation links: Menus, Private Poker Room, Events & Promotions, and Reservations/Purchases. Background is peach puff with indian red accents."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Menus",
+                "description": "Sarah wants to see what drinks are available and clicks the 'Menus' link.",
+                "action": "Click on the 'Menus' navigation link.",
+                "expected_outcome": "The page scrolls or navigates to the Menus section or a dedicated Menus page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Showcase bourbon and cocktail menus with descriptions and pricing fetched dynamically from backend",
+        "user_persona": "A customer interested in exploring drink options before visiting.",
+        "user_goal": "To view the bourbon menu with accurate prices and descriptions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Menu Page",
+                "description": "Mike clicks on the 'Menus' link from the homepage.",
+                "action": "Navigate to the Menus page.",
+                "expected_outcome": "The Menus page loads showing a grid/list of items with names, descriptions, prices, and images. All content is styled with peach puff containers and indian red accents."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Dynamic Content",
+                "description": "Mike scrolls through the menu to find his favorite bourbon.",
+                "action": "Scroll down the menu list.",
+                "expected_outcome": "All menu items display dynamically fetched data from the backend without any hardcoded values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Introduce the membership-only private poker room with details and access requirements",
+        "user_persona": "A potential member wanting to learn about exclusive offerings.",
+        "user_goal": "To understand how to gain access to the private poker room.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Discovering Poker Room Section",
+                "description": "Emily clicks on 'Private Poker Room' from the navigation.",
+                "action": "Click on the 'Private Poker Room' link.",
+                "expected_outcome": "She lands on a section/page detailing the private poker room with images, amenities, and membership requirements. Styled with brand colors."
+            },
+            {
+                "step": 2,
+                "title": "Attempting Access Without Authentication",
+                "description": "Curious, Emily tries to access more details by clicking 'Access Now'.",
+                "action": "Click on the 'Access Now' button.",
+                "expected_outcome": "A login/signup modal appears prompting her to authenticate since she's not logged in."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "List upcoming events and ongoing promotions with dates, descriptions, and registration options",
+        "user_persona": "A local resident looking for weekend entertainment.",
+        "user_goal": "To find out about current events and sign up for one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Events & Promotions",
+                "description": "James visits the 'Events & Promotions' section from the main navigation.",
+                "action": "Click on 'Events & Promotions' link.",
+                "expected_outcome": "He sees a list of cards/timeline entries representing events and promotions with titles, dates, and descriptions. Styled appropriately with brand colors."
+            },
+            {
+                "step": 2,
+                "title": "Registering for an Event",
+                "description": "James finds an interesting event and decides to register.",
+                "action": "Click on the registration CTA associated with an event card.",
+                "expected_outcome": "He is either redirected to a registration form or the card expands to reveal a registration option."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to make online reservations for tables or private poker room sessions",
+        "user_persona": "A customer planning a night out with friends.",
+        "user_goal": "To book a table reservation for Saturday evening.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Reservation Process",
+                "description": "Anna clicks on 'Reservations/Purchases' to plan her dinner visit.",
+                "action": "Click on the 'Reservations/Purchases' link.",
+                "expected_outcome": "She is taken to a page where she can choose to reserve a table or schedule a poker session."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Reservation Form",
+                "description": "Anna fills out the form selecting 'Table' as her reservation type.",
+                "action": "Fill in personal info, select date/time, specify number of guests, choose 'Table', then click submit.",
+                "expected_outcome": "Upon submission, a confirmation message appears indicating successful receipt of her reservation request."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to purchase items from the menu online with secure checkout functionality",
+        "user_persona": "A regular patron who prefers ordering ahead.",
+        "user_goal": "To buy two cocktails online for pickup.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding Items to Cart",
+                "description": "David browses the menu and selects two cocktails he likes.",
+                "action": "Click 'Add to Cart' icons next to two cocktail items.",
+                "expected_outcome": "Each item gets added to a visible shopping cart indicator using indian red styling."
+            },
+            {
+                "step": 2,
+                "title": "Proceeding to Secure Checkout",
+                "description": "Ready to complete his order, David clicks 'Checkout'.",
+                "action": "Click the 'Checkout' button.",
+                "expected_outcome": "A secure payment interface opens, allowing him to finalize his purchase using integrated payment gateway (Stripe/PayPal)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive design with peach puff container backgrounds and indian red component visuals",
+        "user_persona": "A mobile user checking the bar's offerings while commuting.",
+        "user_goal": "To comfortably browse the site on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile Device",
+                "description": "Lisa opens the website on her smartphone.",
+                "action": "Load the homepage on a mobile browser.",
+                "expected_outcome": "The layout adapts responsively, maintaining readability and usability. Peach puff backgrounds and indian red accents remain consistent across devices."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a contact section with location, hours, and customer service information",
+        "user_persona": "A tourist unfamiliar with the area seeking directions.",
+        "user_goal": "To locate the bar and confirm its operating hours.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Contact Information",
+                "description": "Tom scrolls to the bottom of the homepage looking for contact details.",
+                "action": "Scroll to the footer/contact section.",
+                "expected_outcome": "He sees address, phone number, business hours, embedded map, and support email—all presented within a peach puff background and indian red headings."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Embedded Map",
+                "description": "Wanting precise directions, Tom clicks on the embedded map.",
+                "action": "Click on the embedded Google Map.",
+                "expected_outcome": "The map opens in full view or a new tab, helping him get directions easily."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide user authentication for accessing member-only areas like the private poker room details",
+        "user_persona": "A registered member wanting to access exclusive content.",
+        "user_goal": "To log in and view private poker room details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Login Flow",
+                "description": "Alex, a known member, wants to access the private poker room info.",
+                "action": "Click on 'Private Poker Room' > then 'Access Now'.",
+                "expected_outcome": "A login modal appears styled with brand colors."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Valid Credentials",
+                "description": "Alex enters his correct login details.",
+                "action": "Enter valid email/password and click submit.",
+                "expected_outcome": "Authentication succeeds, granting access to the private poker room details page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support dynamic content updates via a backend connected to an external PostgreSQL database",
+        "user_persona": "A returning visitor expecting updated event listings.",
+        "user_goal": "To see fresh events listed after some were recently added.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Updated Events",
+                "description": "Jordan returns to the site after hearing about new events.",
+                "action": "Visit the 'Events & Promotions' section again.",
+                "expected_outcome": "Newly added events appear automatically due to real-time fetching from the PostgreSQL-connected backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all data is fetched from backend APIs; no hardcoded or mock data in the frontend",
+        "user_persona": "A developer verifying that frontend adheres to clean architecture principles.",
+        "user_goal": "To confirm that no static data exists in the rendered UI components.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Data Sources",
+                "description": "Developer inspects network activity when loading the menus page.",
+                "action": "Open DevTools Network tab and reload the Menus page.",
+                "expected_outcome": "API calls are made to /api/menus endpoint; no static data found in JSX templates or source files."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure environment variables for database connection: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+        "user_persona": "A deployment engineer preparing the app for production.",
+        "user_goal": "To verify that the backend connects properly using configured environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Environment Configuration",
+                "description": "Engineer checks the deployed backend logs during startup.",
+                "action": "Review backend console/logs on server start.",
+                "expected_outcome": "Logs indicate successful connection to PostgreSQL using values from .env file matching specified variables: DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up package.json scripts: `npm run install:all` for frontend and backend installation, `npm run dev` for concurrent development startup",
+        "user_persona": "A new contributor setting up the project locally.",
+        "user_goal": "To quickly install dependencies and launch both frontend and backend together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies Concurrently",
+                "description": "Jamie clones the repo and sets up the environment.",
+                "action": "Run command `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend folders install their respective dependencies simultaneously."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers Together",
+                "description": "Jamie now wants to run the entire stack for local development.",
+                "action": "Run command `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend servers start concurrently, ready for active development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement API endpoints for menus, events, promotions, reservations, and purchases",
+        "user_persona": "A QA tester validating API behavior independently of frontend.",
+        "user_goal": "To ensure each required API endpoint responds correctly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Menus Endpoint",
+                "description": "Tester makes a direct GET request to the menus API.",
+                "action": "Send HTTP GET to `/api/menus`.",
+                "expected_outcome": "Returns JSON list of menu items with proper structure and status code 200."
+            },
+            {
+                "step": 2,
+                "title": "Testing Reservations Submission",
+                "description": "Tester submits a sample reservation payload.",
+                "action": "POST valid reservation data to `/api/reservations`.",
+                "expected_outcome": "Server accepts the data and returns a success confirmation with appropriate status code."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design UI components that align with branding colors: peach puff for containers and indian red for visual elements",
+        "user_persona": "A designer auditing the UI consistency post-development.",
+        "user_goal": "To validate that all UI components reflect the defined brand palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Auditing Visual Consistency",
+                "description": "Designer reviews various pages for color adherence.",
+                "action": "Manually inspect multiple pages/components visually.",
+                "expected_outcome": "All container backgrounds consistently use peach puff (#FFDAB9), and interactive/highlight elements use indian red (#CD5C5C)."
+            }
+        ]
+    }
+]

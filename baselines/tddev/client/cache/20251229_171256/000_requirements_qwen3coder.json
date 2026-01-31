@@ -1,0 +1,17 @@
+[
+    "Frontend application that fetches all stock data dynamically from backend APIs",
+    "Backend API service that connects to external PostgreSQL database using provided environment variables",
+    "Stock search functionality allowing users to input stock codes or names",
+    "Report generation feature that creates customized stock reports based on user selections",
+    "User interface for selecting report formats and content options",
+    "Display of basic stock information in generated reports",
+    "Inclusion of market trends data in stock reports",
+    "Integration of financial data in stock reports",
+    "White background color applied throughout the website",
+    "Navy color scheme for all UI components",
+    "Package.json configuration with 'install:all' script for simultaneous frontend and backend dependency installation",
+    "Package.json configuration with 'dev' script to concurrently start frontend and backend services",
+    "Database operations strictly using the configured PostgreSQL connection",
+    "No hardcoded or mock data - all information fetched from backend APIs",
+    "Responsive web design compatible with standard browser dimensions"
+]

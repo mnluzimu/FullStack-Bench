@@ -1,0 +1,278 @@
+[
+    {
+        "resource_dependency": {
+            "dashboardLayoutImage": "/assets/dashboard-layout.png",
+            "financialDataAPI": "GET /api/companies/{companyId}/financials, GET /api/reports/consolidated, GET /api/companies",
+            "tealColorPalette": "#008080",
+            "mintCreamBackground": "#F5FFFA"
+        },
+        "function": "Display a centralized dashboard interface showing financial data from multiple companies with consolidated views and navigation.",
+        "static_description": "The dashboard shows a header bar styled with teal (#008080) against a mint cream (#F5FFFA) background. Below is a grid layout featuring cards for each company, summary statistics panels, and quick links to reports. Cards include company logos, names, and key financial indicators like revenue and profit margin.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a company card navigates to that company’s detailed financial page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on 'View Consolidated Report' loads the aggregated report view."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on ‘Compare Companies’ opens the cross-company comparison tool."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaDefinition": "CREATE TABLE companies (id SERIAL PRIMARY KEY, name VARCHAR(255), industry TEXT); CREATE TABLE financial_data (id SERIAL PRIMARY KEY, company_id INT REFERENCES companies(id), date DATE, revenue DECIMAL, expenses DECIMAL, profit DECIMAL);"
+        },
+        "function": "Establish connection to PostgreSQL database and define schema for storing company and financial data.",
+        "static_description": "The backend initializes a connection pool to PostgreSQL using provided environment variables. It sets up two tables: `companies` containing basic company info and `financial_data` holding time-series financial records linked via foreign key.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": "POST /api/auth/login, POST /api/auth/logout, GET /api/users/me",
+            "jwtSecretEnvVar": "JWT_SECRET=mysecretkey",
+            "userDatabaseSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(255) UNIQUE, password_hash TEXT, role VARCHAR(50));"
+        },
+        "function": "Provide secure login/logout mechanism and protect access to financial data based on user roles.",
+        "static_description": "A login form appears when unauthenticated users try to access protected routes. After successful authentication, JWT tokens are issued and used for subsequent requests.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials to the auth endpoint. On success, redirects to dashboard; otherwise, displays error message."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Logout' clears session token and redirects to login screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyManagementAPI": "GET /api/companies, POST /api/companies, PUT /api/companies/{id}, DELETE /api/companies/{id}",
+            "companyFormFields": [
+                "name",
+                "industry",
+                "contact_email"
+            ]
+        },
+        "function": "Allow administrators to manage company profiles through CRUD operations.",
+        "static_description": "An administrative panel lists existing companies in a table format with columns for name, industry, and actions (edit/delete). A modal form allows adding new companies with fields such as name, industry, and contact email.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Company' opens an empty form modal for creating a new profile."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit' next to a company row pre-fills the form with current values."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save' sends updated data to the server and refreshes the list."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Delete' prompts confirmation before removing the selected company."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataIngestionAPI": "POST /api/companies/{companyId}/financials/bulk-upload, POST /api/companies/{companyId}/financials/manual-entry",
+            "supportedFileFormats": [
+                ".csv",
+                ".xlsx"
+            ],
+            "manualEntryFields": [
+                "date",
+                "revenue",
+                "expenses",
+                "profit"
+            ]
+        },
+        "function": "Enable collection and storage of financial data either manually or via bulk file uploads per company.",
+        "static_description": "Each company's detail page includes a tab labeled 'Upload Financial Data'. This section contains options for uploading files or entering data manually through a form with date, revenue, expense, and profit inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Choose File' lets users select a supported file type (.csv/.xlsx) for upload."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Upload' processes the file and stores parsed data in the database."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Manual Entry' validates input fields and saves the record."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Chart.js or D3.js",
+            "metricsVisualizationAPI": "GET /api/companies/{companyId}/financials/trends?metric=revenue&period=monthly",
+            "visualizationTypes": [
+                "line chart",
+                "bar graph",
+                "pie chart"
+            ]
+        },
+        "function": "Visualize financial metrics over time using interactive charts within the dashboard.",
+        "static_description": "Within each company's financial view, there are chart containers showing revenue trends, expense breakdowns, and profitability ratios. These charts are rendered dynamically based on API responses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements highlights corresponding data points and shows tooltips with exact figures."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of respective datasets."
+            },
+            {
+                "interaction": "Drag and Select",
+                "description": "Dragging across the timeline zooms into selected date ranges."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "consolidatedReportAPI": "GET /api/reports/consolidated?start_date={}&end_date={}",
+            "reportTemplateFiles": "/templates/report-template.html"
+        },
+        "function": "Generate consolidated reports aggregating financial data across all registered companies.",
+        "static_description": "The consolidated report view presents a summary table of total revenues, profits, and expenses across all companies during a chosen period. Visualizations include stacked bar graphs comparing contributions from different firms.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a date range updates the displayed report data accordingly."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Refresh Report' re-fetches latest data from backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonToolAPI": "GET /api/companies/compare?ids=[{id1},{id2}]&metrics=[revenue,profit]",
+            "comparisonMetricsList": [
+                "Revenue",
+                "Profit",
+                "Expenses",
+                "Growth Rate"
+            ]
+        },
+        "function": "Facilitate side-by-side comparison of key financial metrics between multiple companies.",
+        "static_description": "Users can choose up to three companies from a dropdown menu and select which metrics they want to compare. Results appear in a responsive table with side-by-side values for each metric.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Adding a company adds another column to the comparison table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Removing a company removes its column from the table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting/deselecting metrics filters rows shown in the table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "individualCompanyDetailsAPI": "GET /api/companies/{companyId}/financials?start_date={}&end_date={}"
+        },
+        "function": "Allow browsing of granular financial data specific to one company.",
+        "static_description": "Upon clicking a company card, this view displays detailed financial entries in tabular form along with trend visualizations. Filters allow narrowing down data by date range.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Changing filter dates reloads financial data for the selected period."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling reveals more historical data beyond initially loaded set."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeFetchMechanism": "WebSocket or polling every 60 seconds",
+            "dataUpdateEndpoint": "GET /api/companies/{companyId}/financials/latest"
+        },
+        "function": "Ensure all displayed financial data reflects most recent available information without relying on static mocks.",
+        "static_description": "All financial dashboards automatically update periodically, fetching fresh data from backend endpoints without requiring manual reloads.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "themeStylesheet": "/styles/theme.css"
+        },
+        "function": "Apply consistent styling theme throughout the application using mint cream background and teal accents.",
+        "static_description": "Entire UI adopts a cohesive color scheme where backgrounds use #F5FFFA and primary interactive elements (buttons, links, headers) utilize #008080.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS Media Queries + Flexbox/Grid"
+        },
+        "function": "Ensure optimal usability and readability across desktop, tablet, and mobile devices.",
+        "static_description": "Dashboard layouts adapt fluidly depending on viewport size, rearranging components and adjusting font sizes for accessibility on smaller screens.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "exportServiceAPI": "GET /api/reports/export?format=pdf|csv",
+            "exportButtonIcons": "/icons/pdf-icon.svg, /icons/csv-icon.svg"
+        },
+        "function": "Support exporting generated reports in standard formats like PDF and CSV.",
+        "static_description": "Each report view features export buttons styled with appropriate icons for PDF and CSV downloads.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Export as PDF' generates and downloads a formatted document version of the report."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Export as CSV' creates a spreadsheet-compatible file with raw data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchFilterAPI": "GET /api/companies/search?q={query}&filters={fields}",
+            "filterOptionsList": [
+                "by date",
+                "by amount",
+                "by category"
+            ]
+        },
+        "function": "Enable efficient search and filtering mechanisms for navigating large volumes of financial data.",
+        "static_description": "At the top of data listings, a search bar allows keyword queries alongside dropdown menus for applying advanced filters such as date ranges or numerical thresholds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Typing into the search bar filters results in real-time."
+            },
+            {
+                "interaction": "Click",
+                "description": "Applying filters narrows down dataset according to specified criteria."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentStartupScript": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+            "installAllCommand": "npm install && cd client && npm install && cd ../server && npm install"
+        },
+        "function": "Configure development workflow scripts to simplify local setup and execution of both frontend and backend services together.",
+        "static_description": "Root-level `package.json` defines custom commands `install:all` and `dev` to streamline dependency installation and simultaneous launch of full-stack application.",
+        "interaction_and_states": []
+    }
+]

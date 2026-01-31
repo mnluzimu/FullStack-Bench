@@ -1,0 +1,183 @@
+[
+    {
+        "resource_dependency": {
+            "wheelComponentLibrary": "A third-party or custom-built library for rendering SVG-based spinning wheels with physics-based animations.",
+            "spinSoundEffect": "/assets/sounds/spin.mp3",
+            "winSoundEffect": "/assets/sounds/win.mp3",
+            "prizeDataSchema": "Database table named 'prizes' with fields: id (UUID), name (string), description (text), image_url (string), probability_weight (float).",
+            "spinHistoryDataSchema": "Database table named 'spin_history' with fields: id (UUID), user_identifier (string), prize_id (foreign key to prizes.id), spin_timestamp (datetime with timezone)."
+        },
+        "function": "Render an interactive Wheel of Fortune interface allowing users to spin the wheel and see results via realistic animation.",
+        "static_description": "The main area features a large circular wheel centered on screen with segments representing different prizes. Each segment includes a label and icon from the prize data. Below the wheel is a prominent 'SPIN' button styled in dark red. Background is light gray (#f0f0f0).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the SPIN button initiates the wheel rotation animation with sound effect. Button becomes disabled during spin. After completion, result displays briefly before navigating to win confirmation modal or updating UI accordingly."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the SPIN button slightly increases its scale and adds a subtle shadow for feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "prizeListEndpoint": "/api/prizes",
+            "prizeIconsDirectory": "/public/images/prizes/",
+            "prizeDataSchema": "Database table named 'prizes' with fields: id (UUID), name (string), description (text), image_url (string), probability_weight (float)."
+        },
+        "function": "Display a complete list of all available prizes that can be won on the wheel.",
+        "static_description": "A dedicated section titled 'All Prizes'. Grid layout shows cards for each prize featuring an image (from image_url), name, and brief description. Cards are styled with dark red accents. Background remains light gray.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Users scroll vertically through the grid of prize cards if content exceeds viewport height."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userWinRecordsEndpoint": "/api/user/history?identifier={userIdentifier}",
+            "spinHistoryDataSchema": "Database table named 'spin_history' with fields: id (UUID), user_identifier (string), prize_id (foreign key to prizes.id), spin_timestamp (datetime with timezone).",
+            "prizeDataJoinSchema": "Join with 'prizes' table to get full prize details for each record."
+        },
+        "function": "Show a personalized page listing past wins for the current user.",
+        "static_description": "A titled section 'My Winning History'. Displays a chronological list of previous spins showing date/time and associated prize name/image. Empty state message shown when no records exist. Styled consistently with dark red headers on light gray background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Vertical scrolling allows browsing through long histories of user wins."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "prizeManagementAPIEndpoints": "[GET] /api/prizes, [POST] /api/spins, [GET] /api/user/history",
+            "prizeDataSchema": "Database table named 'prizes' with fields: id (UUID), name (string), description (text), image_url (string), probability_weight (float).",
+            "spinHistoryDataSchema": "Database table named 'spin_history' with fields: id (UUID), user_identifier (string), prize_id (foreign key to prizes.id), spin_timestamp (datetime with timezone)."
+        },
+        "function": "Provide RESTful endpoints to handle wheel spins, retrieve prizes, and access user-specific winning records.",
+        "static_description": "Not applicable – this defines backend routes without direct visual representation.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaDefinitionSQL": "CREATE TABLE prizes (...); CREATE TABLE spin_history (...);"
+        },
+        "function": "Establish persistent storage for prize definitions and user spin outcomes using PostgreSQL.",
+        "static_description": "Not applicable – this specifies database setup only.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "prizeFetchEndpoint": "/api/prizes",
+            "historyFetchEndpoint": "/api/user/history?identifier={userIdentifier}",
+            "spinTriggerEndpoint": "/api/spins"
+        },
+        "function": "Ensure all dynamic content such as prizes and user history are fetched live from backend services rather than hardcoded.",
+        "static_description": "Not directly visible but underlies accurate rendering of prize lists and user history sections by pulling fresh data upon load or refresh.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spinRecordingEndpoint": "/api/spins",
+            "spinHistoryDataSchema": "Database table named 'spin_history' with fields: id (UUID), user_identifier (string), prize_id (foreign key to prizes.id), spin_timestamp (datetime with timezone)."
+        },
+        "function": "Capture and persist each successful wheel spin outcome linked to the participating user.",
+        "static_description": "Operates silently after a spin concludes to log the event into the database via API call.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "wheelSpinTriggerButton": "Primary interactive element beneath the wheel graphic",
+            "spinActionHandler": "JavaScript handler calling POST /api/spins endpoint"
+        },
+        "function": "Allow users to initiate the physical-like motion of the virtual wheel.",
+        "static_description": "Large central button labeled 'SPIN', prominently placed below the wheel component. Colored dark red per styling guidelines.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers the start of the wheel’s animated rotation sequence while disabling further clicks until finished."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "prizeListViewRoute": "/prizes",
+            "prizeListPageContent": "Grid-based presentation layer populated from /api/prizes"
+        },
+        "function": "Make public access to view all potential rewards offered by the wheel game.",
+        "static_description": "Accessible navigation link leads to standalone page where all prizes are displayed in card format.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the navigation item loads the prize list page dynamically or via routing mechanism."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userHistoryPageRoute": "/history",
+            "personalizedHistoryEndpoint": "/api/user/history?identifier={userIdentifier}"
+        },
+        "function": "Enable authenticated or identified users to review their personal collection of past winnings.",
+        "static_description": "Dedicated route/page presenting filtered historical data based on unique user identifier passed in query parameter.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load/Navigate",
+                "description": "Upon visiting the route, frontend automatically requests relevant history data from backend and renders it chronologically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "siteWideCSSVariables": ":root { --bg-color: #f0f0f0; } body { background-color: var(--bg-color); }"
+        },
+        "function": "Apply consistent background tone across entire application interface.",
+        "static_description": "Every page uses #f0f0f0 hexadecimal value as base canvas color behind all other elements.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "primaryColorThemeFile": ":root { --primary-color: #8B0000; } .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }"
+        },
+        "function": "Define unified accent hue for actionable components throughout the UI.",
+        "static_description": "Buttons, highlights, and key graphical elements utilize dark red (#8B0000) as their dominant color scheme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\""
+        },
+        "function": "Facilitate one-command installation of dependencies for both client-side and server-side projects.",
+        "static_description": "Defined within root-level package.json scripts block enabling parallel execution of nested installations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartScript": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Allow simultaneous launch of development servers for frontend and backend modules.",
+        "static_description": "Entry in top-level package.json which boots both environments concurrently during local testing phase.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignMediaQueries": "@media (max-width: 768px) {...} @media (max-width: 480px) {...}",
+            "mobileTouchHandlers": "touchstart/touchend events alongside mouse equivalents"
+        },
+        "function": "Support seamless experience across varying device screen sizes including smartphones and tablets.",
+        "static_description": "Layout adjusts fluidly between desktop and handheld formats using CSS breakpoints and scalable units. Interactive elements sized appropriately for touch input.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "UI reflows and resizes components proportionally according to predefined media queries ensuring readability and usability."
+            },
+            {
+                "interaction": "Touch",
+                "description": "Equivalent behavior to click/hover maintained on touchscreen devices using appropriate gesture handlers."
+            }
+        ]
+    }
+]

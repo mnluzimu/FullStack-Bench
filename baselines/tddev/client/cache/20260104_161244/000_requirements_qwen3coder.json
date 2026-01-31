@@ -1,0 +1,17 @@
+[
+    "User registration functionality with account creation",
+    "User login and authentication system",
+    "Friend invitation feature allowing users to invite others to join",
+    "Content voting mechanism for user-generated posts",
+    "Image upload capability for sharing pictures",
+    "Points/rewards system for user activities",
+    "Personal homepage displaying user profile information and updates",
+    "Dynamic data handling through backend APIs",
+    "PostgreSQL database integration using specified environment variables",
+    "Frontend styled with light cyan background and cadet blue components",
+    "Responsive UI design for social media interactions",
+    "User feed displaying shared content from friends",
+    "Friend management system (add, remove, view friends)",
+    "Content sharing functionality beyond just images",
+    "Repository configuration with npm scripts for installation and development"
+]

@@ -1,0 +1,189 @@
+[
+    {
+        "resource_dependency": {
+            "gameBoardSchema": "Set up a database with fields: game_id (UUID), grid_state (array of integers representing 4x4 grid), score (integer), best_score (integer), game_status (enum: 'active', 'won', 'over'), created_at (timestamp), updated_at (timestamp).",
+            "tileMoveAPI": "POST /api/move - Accepts direction ('up','down','left','right') and returns updated grid_state, score, and game_status.",
+            "newGameAPI": "POST /api/new-game - Initializes a new game session and returns initial grid_state and score.",
+            "reviveGameAPI": "POST /api/revive - Revives the current game state after game over and returns updated grid_state.",
+            "keyboardNavigationHandler": "JavaScript event listener for ArrowUp, ArrowDown, ArrowLeft, ArrowRight key presses mapped to corresponding move actions."
+        },
+        "function": "Implement a 2048 game board with a 4x4 grid layout",
+        "static_description": "A 4x4 grid displayed on a linen-colored background with maroon borders around each cell. Empty cells appear as blank squares with light maroon shading.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking anywhere on the grid does not trigger any action unless it’s part of a larger container element such as a restart button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "moveDirectionAPI": "POST /api/move - Requires direction parameter ('up', 'down', 'left', 'right'). Returns updated grid_state, score, and game_status.",
+            "keyboardEventMapper": "Arrow key events mapped to directional moves via JavaScript listeners."
+        },
+        "function": "Support tile movement in four directions: up, down, left, and right",
+        "static_description": "The game board displays a 4x4 grid where tiles are arranged according to their numerical values. No visible controls except the grid itself.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Arrow Keys",
+                "description": "Pressing an arrow key sends a request to the backend API with the respective direction. The grid updates based on the returned state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mergeLogicAPI": "Backend logic within POST /api/move handles merging of identical adjacent tiles and updates the grid accordingly before returning results.",
+            "scoreUpdateAPI": "Score increment handled server-side during tile merges and included in response payload from /api/move."
+        },
+        "function": "Enable merging of identical adjacent tiles during movement",
+        "static_description": "Identical numbered tiles positioned next to each other along the movement path will visually merge into one tile with the sum of their values.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Arrow Keys",
+                "description": "Tiles slide and merge automatically when moved. Merged tiles update their value display and increase the total score dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "scoreTrackingField": "Database field 'score' tracks current game points; also includes 'best_score' for persistent tracking across sessions.",
+            "updateScoreEndpoint": "Score updated server-side with every successful move and sent back in API responses."
+        },
+        "function": "Track and display the current game score",
+        "static_description": "Score panel located above the game grid showing two sections: 'Score' and 'Best'. Both show integer values styled in maroon text against the linen background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tile Movement",
+                "description": "Each time a merge occurs, the score increases by the merged tile's value. The score panel updates immediately after receiving the new score from the backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameOverDetectionAPI": "Server checks for possible moves after each turn. If none exist, sets game_status to 'over' and returns this status in API response.",
+            "gameOverModalContent": "Modal overlay displaying 'Game Over!' message with options to revive or start new game."
+        },
+        "function": "Detect and handle game over state when no moves are available",
+        "static_description": "Entire screen dims slightly with a centered modal appearing that reads 'Game Over!' in large maroon font, offering buttons labeled 'Revive' and 'New Game'.",
+        "interaction_and_states": [
+            {
+                "interaction": "No Valid Moves Available",
+                "description": "After a move, if no further moves are possible, the game transitions to a 'Game Over' state, triggering a modal popup."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newGameButtonIcon": "/icons/new-game-icon.svg",
+            "startNewGameAPI": "POST /api/new-game initializes fresh grid_state and resets score to zero."
+        },
+        "function": "Allow users to start a new game at any time",
+        "static_description": "A circular maroon button with a white '+' icon placed near the top-right corner of the game area. Text label beneath says 'New Game'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the button triggers a call to the /api/new-game endpoint which resets the game board and score, then refreshes the UI with new initial state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "winConditionCheckAPI": "Server evaluates grid_state after each move to check if any tile equals 2048. If true, sets game_status to 'won'.",
+            "winCelebrationPopup": "Popup modal saying 'You Win!' with option to keep playing or start a new game."
+        },
+        "function": "Implement win condition detection when a tile reaches 2048",
+        "static_description": "Upon reaching 2048, a celebratory modal appears featuring bold maroon text stating 'You Win!', accompanied by confetti animation effects.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tile Value Reaches 2048",
+                "description": "Once a tile hits 2048, the game pauses and shows a win modal while still allowing continued play without resetting."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reviveGameAPI": "POST /api/revive resumes gameplay from the last known grid_state after game over, keeping existing score intact.",
+            "reviveOptionButton": "Button inside Game Over modal labeled 'Revive'."
+        },
+        "function": "Provide a revive option after game over to continue playing",
+        "static_description": "Within the Game Over modal, alongside the New Game button, there is another button labeled 'Revive', styled identically in maroon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Revive' dismisses the modal and reactivates the game board, restoring previous state but preventing additional scoring until a new tile spawns."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorCSS": "body { background-color: linen; }"
+        },
+        "function": "Design the game interface with a linen background color",
+        "static_description": "Entire page background rendered in soft linen tone (#FAF0E6) covering full viewport behind the main game interface.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "primaryColorPalette": ".maroon-style { color: maroon; border-color: maroon; } applied globally to all interactive and structural elements."
+        },
+        "function": "Style all game components using maroon as the primary color",
+        "static_description": "All buttons, grid lines, score numbers, and modal headers use maroon (#800000) as the dominant accent color throughout the interface.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "cssTransitionRules": "CSS transitions applied to tile movements and merges for fluid animation experience."
+        },
+        "function": "Ensure smooth tile animations during movement and merging",
+        "static_description": "Tiles glide smoothly between positions with subtle fade-in effects upon creation and scaling animations during merges.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tile Movement Triggered",
+                "description": "Tiles animate from original position to final destination using CSS transform and transition properties over ~150ms duration."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fontStylingResource": "Use clear sans-serif fonts like Arial or Helvetica for legibility of numeric tile values."
+        },
+        "function": "Display numeric values clearly on each tile",
+        "static_description": "Each tile contains a bold, centered number matching its value, sized appropriately to fill most of the tile space with high contrast against tile background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "sessionStorageMechanism": "Client-side sessionStorage used temporarily to preserve ongoing game progress between browser reloads or tabs.",
+            "persistGameStateAPI": "Optional enhancement where POST /api/save-state stores current game snapshot in database under user session."
+        },
+        "function": "Maintain game state persistence during gameplay",
+        "static_description": "Game continues seamlessly even if user navigates away briefly or refreshes the page due to local storage caching of active session.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Reload",
+                "description": "On reload, system attempts to restore latest saved game state either from localStorage or backend if authenticated."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveGridMediaQueries": "@media queries adjust grid size, font sizing, and control spacing for mobile, tablet, desktop breakpoints."
+        },
+        "function": "Include responsive design for different screen sizes",
+        "static_description": "Layout adapts gracefully from compact mobile viewports to wide desktop screens, maintaining readability and usability across devices.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "keyboardEventListener": "Global window.addEventListener('keydown') captures arrow key inputs and maps them to directional movement functions."
+        },
+        "function": "Add keyboard support for arrow key navigation",
+        "static_description": "Users can navigate the game solely through keyboard without needing mouse interaction thanks to registered arrow key handlers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Arrow Keys",
+                "description": "ArrowUp, ArrowDown, ArrowLeft, ArrowRight keys initiate tile movement calls equivalent to swipe gestures on touchscreens."
+            }
+        ]
+    }
+]

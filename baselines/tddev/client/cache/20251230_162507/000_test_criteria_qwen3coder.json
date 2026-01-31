@@ -1,0 +1,310 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A trivia enthusiast named Alex who wants to participate in online knowledge competitions.",
+        "user_goal": "Alex wants to browse available contests and view contest details without seeing any hardcoded content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Alex opens the trivia app homepage expecting to see a list of live contests.",
+                "action": "Navigate to the root URL of the application.",
+                "expected_outcome": "The frontend makes an API call to http://localhost:3001/api/contests and displays dynamically loaded contest cards with titles and descriptions."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Contest Details",
+                "description": "Alex clicks on a contest card to learn more about it before enrolling.",
+                "action": "Click on a contest card.",
+                "expected_outcome": "The app navigates to the contest detail page and fetches question data via the /contests/{contestId}/questions endpoint, rendering the information dynamically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Taylor deploying the trivia app backend service.",
+        "user_goal": "Taylor wants to ensure the backend connects securely to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Taylor sets up the required environment variables and starts the backend server.",
+                "action": "Run `npm run dev` in the server directory with environment variables set: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "The backend initializes successfully and establishes a secure connection to the PostgreSQL database instance using the provided credentials."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Database Records",
+                "description": "Taylor verifies that the backend can retrieve contest records from the connected database.",
+                "action": "Make a GET request to /api/contests endpoint.",
+                "expected_outcome": "The backend responds with a list of contests retrieved directly from the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management for contest participation",
+        "user_persona": "Jordan, a new user interested in joining a trivia contest.",
+        "user_goal": "Jordan wants to sign up, log in, and remain authenticated throughout the contest session.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Signing Up",
+                "description": "Jordan visits the site for the first time and decides to create an account.",
+                "action": "Navigate to /signup and fill out the registration form with valid details.",
+                "expected_outcome": "Upon submitting the form, Jordan receives a confirmation message and is redirected to the login page."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Jordan logs into the newly created account to access the contest features.",
+                "action": "Enter valid credentials on the /login page and click the 'Login' button.",
+                "expected_outcome": "Jordan is authenticated with a JWT token stored in localStorage and redirected to the homepage showing available contests."
+            },
+            {
+                "step": 3,
+                "title": "Session Persistence",
+                "description": "After some time, Jordan returns to continue participating in a contest.",
+                "action": "Return to the site within 2 hours of last activity.",
+                "expected_outcome": "Jordan remains logged in and can access protected routes like contest enrollment and question answering without re-authentication."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest browsing interface displaying available knowledge competitions",
+        "user_persona": "Morgan, an avid trivia participant looking for new challenges.",
+        "user_goal": "Morgan wants to explore currently available trivia contests easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Contest Browser",
+                "description": "Morgan lands on the homepage eager to find interesting trivia contests.",
+                "action": "Visit the homepage which automatically loads the contest browser.",
+                "expected_outcome": "A responsive grid layout populated with contest cards featuring titles, descriptions, start/end times, and default images appears."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Contest Cards",
+                "description": "Morgan scrolls through several contest cards to understand what's offered.",
+                "action": "Scroll down the contest listing page.",
+                "expected_outcome": "Additional contest cards load smoothly without full page refresh, maintaining beige background and saddle brown accents throughout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest enrollment functionality allowing users to join competitions",
+        "user_persona": "Casey, a regular trivia player wanting to compete in upcoming contests.",
+        "user_goal": "Casey aims to enroll in an open contest and confirm successful registration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding an Open Contest",
+                "description": "Casey browses the available contests and identifies one starting soon.",
+                "action": "Browse contests and locate an open contest card labeled 'Enroll Now'.",
+                "expected_outcome": "The contest card shows a prominent 'Enroll Now' button styled in saddle brown."
+            },
+            {
+                "step": 2,
+                "title": "Enrolling in the Contest",
+                "description": "Excited about the contest topic, Casey clicks to join.",
+                "action": "Click the 'Enroll Now' button on the selected contest card.",
+                "expected_outcome": "A modal confirms successful enrollment, and the button text changes to 'Already Enrolled'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive question display interface showing one question at a time",
+        "user_persona": "Riley, a focused contestant ready to tackle today’s trivia challenge.",
+        "user_goal": "Riley wants to navigate through contest questions efficiently and intuitively.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Quiz",
+                "description": "Riley has enrolled in a contest and begins answering questions.",
+                "action": "Click 'Start Quiz' on the contest detail page.",
+                "expected_outcome": "The first question is displayed prominently with multiple-choice options or free-text input field, accompanied by a countdown timer icon."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Between Questions",
+                "description": "After selecting an answer, Riley moves forward to the next question.",
+                "action": "Select an answer choice and click the 'Next' button.",
+                "expected_outcome": "The screen transitions smoothly to the next question while preserving the saddle brown-styled navigation controls."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Answer submission system for users to provide responses to contest questions",
+        "user_persona": "Quinn, a competitive trivia lover aiming for top scores.",
+        "user_goal": "Quinn wants to submit answers quickly and accurately during the contest.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Answering a Multiple Choice Question",
+                "description": "Quinn encounters a multiple-choice question and selects the best option.",
+                "action": "Choose a radio button representing the preferred answer and click 'Submit Answer'.",
+                "expected_outcome": "The selected answer is sent to the backend via POST /contests/{contestId}/answers, and Quinn proceeds to the next question or receives immediate feedback."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Final Answers",
+                "description": "At the end of the quiz, Quinn submits all remaining answers.",
+                "action": "Click the final 'Submit Answers' button after completing the last question.",
+                "expected_outcome": "All unsubmitted answers are sent to the backend, ending the quiz session and redirecting Quinn to the score dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time scoring mechanism calculating user performance",
+        "user_persona": "Sam, a strategic player tracking progress during the contest.",
+        "user_goal": "Sam wants to monitor real-time score updates as they answer questions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Score Display",
+                "description": "Before starting the quiz, Sam checks their baseline score status.",
+                "action": "Load the contest question interface.",
+                "expected_outcome": "A score panel displays initial value (e.g., 0 out of total possible points) in the top corner with beige background and saddle brown borders."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Instant Feedback",
+                "description": "After submitting an answer, Sam expects immediate scoring feedback.",
+                "action": "Submit an answer to a question.",
+                "expected_outcome": "The score panel instantly updates to reflect earned points, including potential time-based bonuses, providing instant gratification."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Personal score dashboard displaying individual user results and rankings",
+        "user_persona": "Taylor, a stats-oriented trivia fan reviewing personal achievements.",
+        "user_goal": "Taylor wants to analyze past performances and track overall ranking trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Personal Dashboard",
+                "description": "After finishing a contest, Taylor heads to the personal score dashboard.",
+                "action": "Navigate to /dashboard/scores.",
+                "expected_outcome": "The dashboard renders a visual chart showing historical scores alongside a rank indicator badge and list of past contests with individual rankings."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Detailed Results",
+                "description": "Curious about a specific contest result, Taylor dives deeper.",
+                "action": "Click on a contest listed under the history section.",
+                "expected_outcome": "Detailed results including correct/incorrect answers and performance breakdown appear, helping Taylor identify strengths and areas for improvement."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Public leaderboard showcasing top performers in each contest",
+        "user_persona": "Jordan, a socially competitive trivia buff checking global standings.",
+        "user_goal": "Jordan wants to see where they stand compared to other contestants.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Leaderboard Rankings",
+                "description": "Eager to compare scores, Jordan navigates to the public leaderboard.",
+                "action": "Go to /leaderboards/{contestId} route.",
+                "expected_outcome": "Top-ranked players are shown with gold/silver/bronze medals next to names, updating every 30 seconds to maintain accuracy."
+            },
+            {
+                "step": 2,
+                "title": "Loading More Participants",
+                "description": "Wanting to see further down the rankings, Jordan scrolls for additional entries.",
+                "action": "Scroll vertically through the leaderboard list.",
+                "expected_outcome": "More ranked participants load progressively without refreshing the entire dataset, enhancing user experience."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Performance comparison feature allowing users to view how they rank against others",
+        "user_persona": "Morgan, a reflective competitor analyzing comparative performance.",
+        "user_goal": "Morgan wants to visualize how their score stacks up against the average and top performers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Comparison View",
+                "description": "Having completed a contest, Morgan seeks insight into relative performance.",
+                "action": "Access the performance comparison section from the score dashboard.",
+                "expected_outcome": "A side-by-side bar graph comparing Morgan’s score against the average and top scorer loads dynamically."
+            },
+            {
+                "step": 2,
+                "title": "Understanding Percentile Rank",
+                "description": "Morgan looks for context around their placement among peers.",
+                "action": "Examine the comparison visualization and associated metrics.",
+                "expected_outcome": "A percentile ranking message such as 'You're in the top 15%' is displayed beneath the chart, giving clear performance context."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with beige as the base color and saddle brown for all components",
+        "user_persona": "Alex, a mobile-first user accessing the app on various devices.",
+        "user_goal": "Alex wants a visually consistent and responsive interface regardless of device type.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using App on Mobile Device",
+                "description": "Alex accesses the trivia app using a smartphone.",
+                "action": "Open the app on a mobile browser.",
+                "expected_outcome": "Layout adapts seamlessly to mobile dimensions with beige background (#F5F5DC) and saddle brown (#8B4513) buttons and headers."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Desktop Experience",
+                "description": "Later, Alex switches to a desktop computer to continue playing.",
+                "action": "Resize browser window to simulate desktop viewport size.",
+                "expected_outcome": "UI elements scale appropriately with no loss of color consistency; beige remains dominant background tone and saddle brown highlights interactive components."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'install:all' script to install both frontend and backend dependencies",
+        "user_persona": "DevOps engineer Sam setting up the project locally for development.",
+        "user_goal": "Sam wants to simplify dependency installation across both client and server sides.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Sam clones the repository and prepares to install dependencies for both parts of the stack.",
+                "action": "Execute `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently using the defined script logic, streamlining setup."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'dev' script to start both frontend and backend concurrently",
+        "user_persona": "Developer Riley beginning daily work on the trivia app.",
+        "user_goal": "Riley wants to launch both frontend and backend services quickly for local development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Ready to code, Riley initiates both development environments at once.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Concurrent processes spawn for both frontend and backend, launching development servers simultaneously for efficient workflow."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, contests, questions, answers, and leaderboard data",
+        "user_persona": "Database administrator Taylor validating schema integrity.",
+        "user_goal": "Taylor ensures that all necessary tables exist and relationships are properly enforced.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Structures",
+                "description": "Taylor connects directly to the PostgreSQL database to verify table creation.",
+                "action": "Query the database for existing tables matching the defined schema.",
+                "expected_outcome": "Five distinct tables—users, contests, questions, answers, and leaderboard—are present with appropriate columns and constraints including foreign key relationships."
+            },
+            {
+                "step": 2,
+                "title": "Validating Data Relationships",
+                "description": "Taylor checks whether data inserted respects relational integrity.",
+                "action": "Insert sample records referencing related entities (e.g., a question linked to a contest).",
+                "expected_outcome": "Foreign key constraints prevent orphaned or invalid references, ensuring robust data modeling."
+            }
+        ]
+    }
+]

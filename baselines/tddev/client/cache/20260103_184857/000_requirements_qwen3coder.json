@@ -1,0 +1,17 @@
+[
+    "A fitness statistics homepage displaying user-specific fitness data",
+    "Exercise recording functionality allowing users to log fitness activities",
+    "Fitness diary feature enabling users to write and manage diary entries",
+    "Fitness leaderboard showing user rankings based on activity data",
+    "User authentication system to manage individual fitness data",
+    "Backend API to serve fitness data to the frontend",
+    "Frontend application that fetches all data dynamically from backend APIs",
+    "Database connection to PostgreSQL using specified environment variables",
+    "UI styled with white background and navy-colored components",
+    "Ability for users to browse their own recorded exercises",
+    "Data visualization components for fitness statistics",
+    "Input forms for recording new exercises and diary entries",
+    "Real-time updating of leaderboard and statistics",
+    "User profile management for personal fitness settings",
+    "Repository configuration with package.json supporting npm run install:all and npm run dev"
+]

@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "Display a responsive webpage with ghost white background and slate gray components",
+        "user_persona": "A casual sports fan browsing the website on a desktop computer.",
+        "user_goal": "To view the website with consistent styling and layout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading the Website",
+                "description": "Alex opens the sports analytics website in their browser and observes the overall look and feel of the page.",
+                "action": "Visit the homepage of the sports analytics website.",
+                "expected_outcome": "The entire page background is displayed in ghost white (#f8f9fa), and all major components like headers, cards, and containers have slate gray (#708090) borders and accents."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show a navigation bar with links to main sections: Home, Matches, Teams, Players, Analysis, Betting",
+        "user_persona": "A user looking to explore different aspects of the basketball analytics platform.",
+        "user_goal": "To navigate between various sections of the website easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Navigation Bar",
+                "description": "Sam lands on the homepage and notices the top navigation bar which contains all the main sections.",
+                "action": "Look at the top of the screen for the navigation bar.",
+                "expected_outcome": "The navigation bar is visible at the top of the page with six links: Home, Matches, Teams, Players, Analysis, and Betting."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Sections",
+                "description": "Sam decides to check out the player performance section and clicks on the 'Players' link.",
+                "action": "Click on the 'Players' link in the navigation bar.",
+                "expected_outcome": "The browser navigates to the Players section of the website, displaying relevant content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a dashboard showing live and upcoming basketball matches with key details",
+        "user_persona": "A user interested in viewing current and future basketball games.",
+        "user_goal": "To quickly see all upcoming and live basketball matches with important information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Dashboard",
+                "description": "Taylor visits the homepage and scrolls down to the dashboard section where match cards are displayed.",
+                "action": "Scroll to the dashboard area of the homepage.",
+                "expected_outcome": "A central dashboard shows match cards representing live and upcoming games with teams, time, status, and score."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Match Details",
+                "description": "Taylor clicks on an upcoming match card to get more details about the game.",
+                "action": "Click on a match card in the dashboard.",
+                "expected_outcome": "A detailed view of the selected match appears, showing stats, predictions, and betting options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to browse detailed match history with scores, dates, and teams",
+        "user_persona": "A basketball enthusiast wanting to review past games.",
+        "user_goal": "To access and review detailed information about previous matches.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Match History",
+                "description": "Jordan navigates to the 'Matches' section and sees a table listing historical games.",
+                "action": "Click on the 'Matches' link in the navigation bar.",
+                "expected_outcome": "A table appears with columns for Date, Teams, Score, and Match Result."
+            },
+            {
+                "step": 2,
+                "title": "Sorting and Filtering",
+                "description": "Jordan wants to see only recent games, so he uses the filter options above the table.",
+                "action": "Use the sort/filter controls to change the view by date.",
+                "expected_outcome": "The match history table updates to show only the most recent matches based on the selected filter."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display team rankings with win-loss records, points, and statistics",
+        "user_persona": "A user interested in seeing the overall strength of different basketball teams.",
+        "user_goal": "To find out which teams are performing best in the league.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Team Rankings",
+                "description": "Morgan goes to the 'Teams' section to view team standings.",
+                "action": "Click on the 'Teams' link in the navigation bar.",
+                "expected_outcome": "A ranked list of teams is displayed with columns for Rank, Team Name, Wins, Losses, and Points."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Team",
+                "description": "Morgan clicks on the top-ranked team to see more detailed stats.",
+                "action": "Click on the first team in the ranking list.",
+                "expected_outcome": "More detailed stats and historical performance data for the selected team are shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show individual player performance metrics including scoring, assists, rebounds",
+        "user_persona": "A fan who wants to track specific player stats.",
+        "user_goal": "To analyze the performance of a particular basketball player.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Player Stats",
+                "description": "Casey looks up a favorite player's performance in the 'Players' section.",
+                "action": "Navigate to the 'Players' section.",
+                "expected_outcome": "A bar chart and a table showing player statistics including PPG, Assists, and Rebounds are displayed."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Charts",
+                "description": "Casey hovers over the bar chart to see exact numbers for each metric.",
+                "action": "Hover over the chart bars.",
+                "expected_outcome": "Tooltips appear showing precise numerical values for each stat."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement data visualization charts for trends in team and player performance",
+        "user_persona": "A data-driven sports analyst reviewing long-term trends.",
+        "user_goal": "To understand how teams and players have performed over time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Visualization Section",
+                "description": "Riley accesses the 'Analysis' section to view performance trends.",
+                "action": "Click on the 'Analysis' link in the navigation bar.",
+                "expected_outcome": "Interactive charts such as line and bar charts are displayed showing trends in performance."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Chart Data",
+                "description": "Riley selects a specific time range to focus on recent trends.",
+                "action": "Click on the time range control to select 'Last Month'.",
+                "expected_outcome": "The charts update to show performance trends over the last month instead of all time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer match prediction models with confidence levels based on historical data",
+        "user_persona": "A bettor seeking reliable predictions before placing wagers.",
+        "user_goal": "To determine which team is likely to win based on statistical models.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Prediction Cards",
+                "description": "Jamie checks the prediction section to see forecasts for upcoming matches.",
+                "action": "Navigate to the 'Analysis' or 'Betting' section.",
+                "expected_outcome": "Prediction cards display the predicted winner and a confidence percentage for each match."
+            },
+            {
+                "step": 2,
+                "title": "Getting More Info",
+                "description": "Jamie clicks on a prediction card to learn more about how it was calculated.",
+                "action": "Click on a prediction card.",
+                "expected_outcome": "Additional details explaining the methodology behind the prediction are shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide betting recommendations with odds and risk assessments",
+        "user_persona": "A user looking for expert betting advice.",
+        "user_goal": "To find recommended bets with associated odds and risk levels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Betting Recommendations",
+                "description": "Alex visits the 'Betting' section to see suggested wagers.",
+                "action": "Click on the 'Betting' link in the navigation bar.",
+                "expected_outcome": "Recommendation cards display recommended bets along with odds and risk assessments."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Full Details",
+                "description": "Alex clicks on a recommendation card to see full betting details.",
+                "action": "Click on a recommendation card.",
+                "expected_outcome": "A modal opens with comprehensive betting information and user-specific advice."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow filtering and sorting of data by date, team, player, or category",
+        "user_persona": "A user wanting to narrow down large datasets to relevant entries.",
+        "user_goal": "To refine data views based on specific criteria.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Filter Controls",
+                "description": "Jordan opens the filter panel and selects a date range to narrow results.",
+                "action": "Open the filter/sort controls panel.",
+                "expected_outcome": "Filter controls including date picker, team dropdown, and player search field become available."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Jordan applies the selected filters to update the displayed data.",
+                "action": "Click the 'Apply Filters' button.",
+                "expected_outcome": "The data view updates to reflect only the filtered results."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support real-time updates for live match scores and betting odds",
+        "user_persona": "A user watching a live game and checking for score updates.",
+        "user_goal": "To stay informed about live match progress and changing odds.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Live Matches",
+                "description": "Lee scrolls through the dashboard and identifies live matches.",
+                "action": "Browse the dashboard section.",
+                "expected_outcome": "Live matches are highlighted with a live indicator icon and updated scores."
+            },
+            {
+                "step": 2,
+                "title": "Observing Updates",
+                "description": "Lee watches the live match cards refresh periodically with new scores and odds.",
+                "action": "Wait for automatic updates or scroll through the live matches.",
+                "expected_outcome": "Scores and betting odds update automatically every few seconds."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a search functionality to find specific teams, players, or matches",
+        "user_persona": "A user searching for a specific basketball team or player.",
+        "user_goal": "To quickly locate a desired team, player, or match.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Pat searches for a particular team using the search bar at the top of the page.",
+                "action": "Type the name of a team into the search bar.",
+                "expected_outcome": "Auto-complete suggestions appear as the user types."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Search Result",
+                "description": "Pat selects a suggestion to go directly to the team's profile page.",
+                "action": "Click on a search result.",
+                "expected_outcome": "The browser navigates to the appropriate team page or related content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable user account creation and login for personalized experience",
+        "user_persona": "A new user who wants to save preferences and track betting history.",
+        "user_goal": "To create an account and log in for personalized features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Modal",
+                "description": "Sam clicks on the user icon in the top right corner to open the login interface.",
+                "action": "Click on the user icon in the navigation bar.",
+                "expected_outcome": "A login/register modal pops up with fields for email and password."
+            },
+            {
+                "step": 2,
+                "title": "Creating Account",
+                "description": "Sam fills in the required fields and clicks 'Register' to create a new account.",
+                "action": "Fill in the registration form and click 'Register'.",
+                "expected_outcome": "The system validates the input and creates a new user account."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Store and display user betting history and predictions in a profile section",
+        "user_persona": "A returning user interested in tracking their past bets and predictions.",
+        "user_goal": "To review their personal betting history and predictions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Alex logs into their account using the login modal.",
+                "action": "Log in using email and password.",
+                "expected_outcome": "Alex is redirected to their profile page upon successful login."
+            },
+            {
+                "step": 2,
+                "title": "Checking Profile",
+                "description": "Alex navigates to the 'Profile' section to view betting history.",
+                "action": "Click on the 'Profile' link in the navigation bar.",
+                "expected_outcome": "The profile section displays tabs for Betting History, Predictions Made, and Favorites."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all frontend data is fetched from backend APIs without hardcoded values",
+        "user_persona": "A QA engineer verifying that no mock data is used.",
+        "user_goal": "To confirm that all data comes from backend APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Data Sources",
+                "description": "The QA engineer opens browser developer tools to inspect network requests.",
+                "action": "Open browser DevTools and monitor network activity.",
+                "expected_outcome": "All data displayed on the page is fetched via API calls to the backend server, not hardcoded."
+            }
+        ]
+    }
+]

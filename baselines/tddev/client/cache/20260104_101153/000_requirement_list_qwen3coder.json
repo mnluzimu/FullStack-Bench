@@ -1,0 +1,305 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "auth_token_key": "detective_app_auth_token"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "The frontend will consist of multiple views connected via routing. Each page fetches data dynamically through RESTful API calls to the backend. All components use beige background (#F5F5DC) and saddle brown (#8B4513) styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "On initial load, the frontend makes authenticated requests to the backend using stored auth tokens. If no token is found, redirect to login."
+            },
+            {
+                "interaction": "Refresh Data",
+                "description": "Users can manually refresh any view to update displayed data by clicking a refresh icon, which re-fetches data from the backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_connection_env_vars": {
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            }
+        },
+        "function": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend server listens on port 3001 and connects to a PostgreSQL instance using provided credentials. It exposes RESTful endpoints for all core entities and handles request authentication and validation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Start Server",
+                "description": "Upon startup, the backend initializes connection pool to PostgreSQL using environment variables and logs success or failure."
+            },
+            {
+                "interaction": "Handle Request",
+                "description": "Each incoming HTTP request is parsed, validated, and routed to appropriate handler functions that interact with the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "login_form_fields": [
+                "username",
+                "password"
+            ],
+            "session_storage_key": "detective_app_session",
+            "jwt_secret": "process.env.JWT_SECRET"
+        },
+        "function": "User authentication and authorization system for secure access",
+        "static_description": "Login screen with username and password fields centered on beige background. Submit button styled with saddle brown. Unauthorized users redirected here from protected routes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Login Form",
+                "description": "Upon valid credentials submission, generates JWT token and stores session info. Redirects user to dashboard."
+            },
+            {
+                "interaction": "Logout",
+                "description": "Clears local session storage and redirects to login page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "case_list_endpoint": "/cases",
+            "search_icon_svg": "<svg>...</svg>",
+            "filter_options": [
+                "Open",
+                "Closed",
+                "Pending"
+            ]
+        },
+        "function": "Case information browsing interface with search and filter capabilities",
+        "static_description": "Main case listing page showing cards/tiles of cases. Search bar at top with magnifying glass icon. Filter dropdown showing status options aligned right.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type in Search Bar",
+                "description": "Filters displayed cases in real-time based on matching title, client name, or case number."
+            },
+            {
+                "interaction": "Select Filter Option",
+                "description": "Updates displayed cases to only show those matching selected status filter."
+            },
+            {
+                "interaction": "Click Case Card",
+                "description": "Navigates to detailed case view displaying full case information and related data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realtime_report_endpoint": "/reports/live",
+            "websocket_url": "ws://localhost:3001/reports/ws",
+            "save_report_button_text": "Save Report"
+        },
+        "function": "Real-time report submission functionality with live updates",
+        "static_description": "Report editor area with rich text input field, timestamp display, autosave indicator, and Save button. Live preview panel shows formatted output.",
+        "interaction_and_states": [
+            {
+                "interaction": "Edit Text Field",
+                "description": "As user types, changes are reflected immediately in live preview. Auto-saves draft every 30 seconds."
+            },
+            {
+                "interaction": "Click Save Button",
+                "description": "Submits current report content to backend endpoint and displays confirmation message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "work_hours_log_endpoint": "/hours",
+            "timer_controls_icons": [
+                "/icons/start.svg",
+                "/icons/pause.svg",
+                "/icons/reset.svg"
+            ],
+            "task_dropdown_options": [
+                "Surveillance",
+                "Interview",
+                "Documentation",
+                "Travel"
+            ]
+        },
+        "function": "Work hours logging feature with time tracking capabilities",
+        "static_description": "Time tracker module featuring start/pause/reset controls, task selection dropdown, notes textbox, and total logged hours summary above timer.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Start Timer",
+                "description": "Initiates active time recording. Button changes to Pause icon/state."
+            },
+            {
+                "interaction": "Select Task Type",
+                "description": "Sets category for current time log entry before saving."
+            },
+            {
+                "interaction": "Click Save Hours",
+                "description": "Posts completed time log entry along with selected task type and optional note to backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "expense_sheet_endpoint": "/expenses/sheet",
+            "generate_pdf_button_label": "Export PDF",
+            "print_icon_url": "/icons/print.svg"
+        },
+        "function": "Estimated expense sheet generation and viewing functionality",
+        "static_description": "Expense sheet viewer presenting categorized line items (travel, equipment, personnel, etc.) with editable fields for estimation. Export buttons located above table header.",
+        "interaction_and_states": [
+            {
+                "interaction": "Edit Expense Value",
+                "description": "Allows editing individual expense amounts inline. Total recalculated automatically upon blur."
+            },
+            {
+                "interaction": "Click Generate PDF",
+                "description": "Triggers export of current sheet as downloadable PDF file."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "assignment_sheet_endpoint": "/assignments",
+            "add_assignment_button_text": "+ Add Assignment",
+            "agent_list_dropdown": []
+        },
+        "function": "Service assignment sheet creation and management interface",
+        "static_description": "Assignment grid showing rows per assigned detective with columns for case ID, role, start date, end date, and status. Header includes '+ Add Assignment' control.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click + Add Assignment",
+                "description": "Opens modal form to assign new detective to case with role selection and dates."
+            },
+            {
+                "interaction": "Update Row Status",
+                "description": "Dropdown allows changing assignment status (Active, Completed, Cancelled). Change persists after save."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "data_entities_schema": "Cases, Reports, WorkHours, Expenses, Assignments tables with defined relationships",
+            "postgres_table_ddl_files": "./migrations/*.sql"
+        },
+        "function": "Data collection and storage system for all application entities",
+        "static_description": "PostgreSQL schema containing normalized tables representing each entity. Foreign key constraints maintain referential integrity across linked records.",
+        "interaction_and_states": [
+            {
+                "interaction": "Insert New Record",
+                "description": "New entries added via INSERT statements respecting foreign key constraints and unique identifiers."
+            },
+            {
+                "interaction": "Delete Linked Records",
+                "description": "Cascading delete removes dependent child records when parent entity deleted."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboard_chartjs_config": "{type:'line',options:{responsive:true}}",
+            "live_data_stream_endpoint": "/dashboard/stream"
+        },
+        "function": "Real-time reporting dashboard with live data visualization",
+        "static_description": "Dashboard presents KPI metrics including open cases count, average resolution time, weekly workload chart, and recent activity feed. Charts rendered using Chart.js library.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Dashboard",
+                "description": "Fetches latest statistics from backend and renders visualizations. Establishes WebSocket connection for live metric updates."
+            },
+            {
+                "interaction": "Receive Live Update",
+                "description": "WebSocket pushes updated dataset causing charts and counters to animate transition to new values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "color_palette": {
+                "background": "#F5F5DC",
+                "primary_accent": "#8B4513"
+            },
+            "responsive_breakpoints": [
+                "mobile",
+                "tablet",
+                "desktop"
+            ]
+        },
+        "function": "Responsive UI design with beige background and saddle brown styled components",
+        "static_description": "All pages utilize responsive CSS grid/flexbox layouts adapting to device breakpoints. Background set globally to beige with primary accents in saddle brown throughout forms, headers, and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts fluidly between mobile-first stacked column arrangement to multi-column desktop grid depending on viewport size."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrently_package_script": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+            "dev_server_ports": {
+                "frontend": 3000,
+                "backend": 3001
+            }
+        },
+        "function": "Concurrent development server setup for frontend and backend",
+        "static_description": "Root package.json defines `npm run dev` command launching both frontend (port 3000) and backend (port 3001) servers simultaneously using concurrently utility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run npm run dev",
+                "description": "Spawns two terminal processes running respective dev servers. Output streams merged into unified console window."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "install_all_script": "npm install && cd client && npm install && cd ../server && npm install",
+            "root_package_json_path": "./package.json"
+        },
+        "function": "Automated installation script for both frontend and backend dependencies",
+        "static_description": "Root level package.json contains custom script named `install:all` which sequentially installs node_modules for root, frontend, and backend directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Execute npm run install:all",
+                "description": "Triggers sequential dependency installations ensuring consistent versions and ready-to-run environment."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_schema_ddl": "CREATE TABLE cases(...); CREATE TABLE reports(...); ...",
+            "entity_relationship_diagram": "ERD diagram linking Cases to Reports, Hours, Expenses, Assignments"
+        },
+        "function": "Database schema design supporting cases, reports, work hours, expenses, and assignments",
+        "static_description": "Normalized relational schema consisting of five main tables: Cases, Reports, WorkHours, Expenses, Assignments. Relationships defined via foreign keys referencing primary IDs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Apply Migration Scripts",
+                "description": "Executes DDL commands creating empty tables with proper indexing and constraint definitions within PostgreSQL instance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crud_endpoints_mapping": {
+                "GET /cases": "List all cases",
+                "POST /cases": "Create new case",
+                "PUT /cases/:id": "Update existing case",
+                "DELETE /cases/:id": "Remove case"
+            }
+        },
+        "function": "API endpoints for CRUD operations on all core application entities",
+        "static_description": "REST-compliant API exposing standard Create, Read, Update, Delete methods mapped to specific URL paths for each core entity. Endpoints return structured JSON responses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Call GET Endpoint",
+                "description": "Returns paginated list of requested entity records filtered by query parameters if present."
+            },
+            {
+                "interaction": "Call POST Endpoint",
+                "description": "Creates new record from request body after validating required fields. Returns created object with generated ID."
+            }
+        ]
+    }
+]

@@ -1,0 +1,212 @@
+[
+    {
+        "requirement_tested": "Frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A visitor interested in reading startup stories.",
+        "user_goal": "To browse and read articles fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Sarah opens the mini-program and expects to see a list of articles loaded from the backend.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Homepage renders with articles fetched dynamically via `/api/articles` endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend server connecting to external PostgreSQL database using provided environment variables",
+        "user_persona": "A developer deploying the app.",
+        "user_goal": "Ensure backend connects securely to PostgreSQL using correct env vars.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Developer starts the backend service expecting it to connect to PostgreSQL using predefined environment variables.",
+                "action": "Run `npm run dev` in project root.",
+                "expected_outcome": "Server logs confirm successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User registration functionality with account creation",
+        "user_persona": "A new user wanting to join the community.",
+        "user_goal": "Register for a new account.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Registration Page",
+                "description": "Alex clicks on the Register link and fills out the form.",
+                "action": "Navigate to `/register`, fill in username, email, password, and click Submit.",
+                "expected_outcome": "New user is created in the database and redirected to login or home page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User login/authentication system",
+        "user_persona": "A returning user.",
+        "user_goal": "Log into their existing account.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Jordan enters their credentials and submits the login form.",
+                "action": "Fill in email and password on login page, then click Submit.",
+                "expected_outcome": "JWT token is issued and stored in HTTP-only cookie; user is redirected to dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article browsing interface organized by categories",
+        "user_persona": "A reader looking for content in specific topics.",
+        "user_goal": "Browse articles filtered by category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Categories",
+                "description": "Taylor sees available categories and selects one to filter articles.",
+                "action": "Click on 'Startup Funding' category button.",
+                "expected_outcome": "Only articles tagged under 'Startup Funding' are displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality to find articles by keywords",
+        "user_persona": "A curious reader seeking specific information.",
+        "user_goal": "Find articles containing a keyword.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Casey types 'growth hacking' into the search bar and hits Enter.",
+                "action": "Type 'growth hacking' in search input field and press Enter key.",
+                "expected_outcome": "List of articles matching the query is shown via `/api/articles/search?q=growth+hacking`."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article collection feature allowing users to save favorites",
+        "user_persona": "An avid reader building a personal library.",
+        "user_goal": "Save an interesting article to their collection.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Collecting Article",
+                "description": "Morgan finds an inspiring article and decides to save it.",
+                "action": "Click the empty heart icon next to the article titled 'Bootstrapping Success'.",
+                "expected_outcome": "Heart icon turns filled, and article ID is added to user's collection via API call."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article sharing capability to external platforms",
+        "user_persona": "A user who loves to spread good reads.",
+        "user_goal": "Share an article they found insightful.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sharing Article",
+                "description": "Riley wants to share an article about remote work culture on LinkedIn.",
+                "action": "Click the share icon below the article and choose LinkedIn option.",
+                "expected_outcome": "LinkedIn share dialog opens with pre-filled article link."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reading history tracking for logged-in users",
+        "user_persona": "A frequent reader revisiting past reads.",
+        "user_goal": "Access previously read articles easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading an Article",
+                "description": "Jamie clicks on an article to read more details.",
+                "action": "Click on article titled 'Building MVP Fast'.",
+                "expected_outcome": "Article view triggers silent API call to record reading history in background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile management for collection and history access",
+        "user_persona": "A registered user organizing their reading experience.",
+        "user_goal": "Manage saved articles and reading history from a central location.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Profile Page",
+                "description": "Pat navigates to their profile to review collections and reading history.",
+                "action": "Click on the Profile link in navigation bar.",
+                "expected_outcome": "Profile page loads showing 'My Collections' and 'Reading History' sections populated from backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout styled with old lace background and rosy brown interface elements",
+        "user_persona": "A design-conscious user evaluating aesthetics.",
+        "user_goal": "Experience visually appealing UI consistent with brand colors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Layout Design",
+                "description": "Dana visits the homepage and notices the overall look and feel.",
+                "action": "Open homepage in desktop browser window.",
+                "expected_outcome": "Page background is Old Lace (#FDF5E6) and interface components like headers/buttons are Rosy Brown (#BC8F8F)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'install:all' script for simultaneous frontend and backend dependency installation",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "Install all dependencies quickly with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Devon clones the repo and runs the install-all script.",
+                "action": "Execute `npm run install:all` in terminal at project root.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'dev' script to run frontend and backend concurrently",
+        "user_persona": "A developer starting local development.",
+        "user_goal": "Run both frontend and backend servers together seamlessly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Dev Servers",
+                "description": "Elliot needs to develop both frontend and backend simultaneously.",
+                "action": "Run `npm run dev` in terminal.",
+                "expected_outcome": "Frontend dev server and backend API server start concurrently, accessible at respective ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, articles, categories, collections, and reading history",
+        "user_persona": "A database administrator reviewing schema design.",
+        "user_goal": "Verify that database supports core application features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Schema Structure",
+                "description": "Admin inspects the PostgreSQL database structure.",
+                "action": "Query database schema using psql or pgAdmin tool.",
+                "expected_outcome": "Tables exist: Users, Articles, Categories, Collections, ReadingHistory with proper relationships defined."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for user authentication, article retrieval, search, and user-specific data management",
+        "user_persona": "A frontend engineer integrating with backend services.",
+        "user_goal": "Use backend APIs to build interactive features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Calling Authentication Endpoint",
+                "description": "Engineer sends a POST request to register a new user.",
+                "action": "Send POST request to `/api/auth/register` with valid payload.",
+                "expected_outcome": "Returns 201 Created status with user object confirming successful registration."
+            }
+        ]
+    }
+]

@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Display a dashboard interface with mint cream background and teal-stonented components",
+        "user_persona": "A finance manager accessing the dashboard for the first time.",
+        "user_goal": "To visually confirm that the dashboard has a professional look with correct color theming.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard",
+                "description": "Sarah opens her browser and navigates to the financial dashboard URL. She expects to see a clean interface with consistent styling.",
+                "action": "Navigate to dashboard homepage.",
+                "expected_outcome": "Page loads with mint cream background and teal-themed UI components including headers, cards, and navigation elements."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Navigation",
+                "description": "Sarah clicks on a navigation item to switch sections and notices how the active state changes.",
+                "action": "Click on a navigation menu item.",
+                "expected_outcome": "Selected menu item is highlighted in teal indicating active state."
+            },
+            {
+                "step": 3,
+                "title": "Exploring Interactive Elements",
+                "description": "Curious about interactivity, Sarah hovers over a button to observe its behavior.",
+                "action": "Hover over a teal-themed button.",
+                "expected_outcome": "Button shows subtle hover effect such as darkened background or enhanced shadow."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support multi-company financial data collection and storage",
+        "user_persona": "A system administrator responsible for maintaining company data integrity.",
+        "user_goal": "To verify that financial data from multiple companies is properly stored in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Database Schema",
+                "description": "Alex accesses the backend database to inspect if company and financial data schemas match documented requirements.",
+                "action": "Query database schema tables 'companies' and 'financial_data'.",
+                "expected_outcome": "Tables exist with defined fields and relationships: 'company_id' linking 'companies' and 'financial_data'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show individual company financial data in browseable format",
+        "user_persona": "An analyst reviewing quarterly performance of a specific company.",
+        "user_goal": "To view paginated financial data for a selected company without full page reloads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Financial Data Table",
+                "description": "Jamie selects a company from the dropdown and sees a tabular view of its financial data.",
+                "action": "Select a company from the company selector dropdown.",
+                "expected_outcome": "Tabular view updates to show financial data specific to the selected company."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Through Pages",
+                "description": "Noticing there's more data than fits on one page, Jamie uses pagination controls to navigate forward.",
+                "action": "Click the 'Next' pagination button.",
+                "expected_outcome": "Next page of financial data loads dynamically without refreshing the entire page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide consolidated financial reports across all companies",
+        "user_persona": "A CFO preparing for an executive meeting needing overall financial summaries.",
+        "user_goal": "To get up-to-date consolidated financial reports for presentation purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Consolidated Reports Section",
+                "description": "Taylor navigates to the consolidated reports section after logging in.",
+                "action": "Navigate to the 'Reports' section and click on 'Consolidated Summary'.",
+                "expected_outcome": "Displays aggregated financial summaries in both tabular and chart formats."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Report Data",
+                "description": "Wanting the most current figures, Taylor decides to manually refresh the report.",
+                "action": "Click the 'Refresh' button.",
+                "expected_outcome": "Report regenerates using latest available input data and updates display immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable cross-company financial data comparison functionality",
+        "user_persona": "A business strategist evaluating market positioning among competitors.",
+        "user_goal": "To compare profitability metrics across several companies visually.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Comparison",
+                "description": "Jordan selects two companies from a list and chooses 'Profit' as the metric to compare.",
+                "action": "Check boxes for two companies and select 'Profit' from metric dropdown.",
+                "expected_outcome": "Bar graph updates to show profit comparison between selected companies over time."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Graph Details",
+                "description": "Looking closely at the chart, Jordan hovers over bars to get exact numbers.",
+                "action": "Hover over a segment of the comparison chart.",
+                "expected_outcome": "Tooltip appears showing precise value and label for hovered data point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include financial management tools for user interaction",
+        "user_persona": "An operations lead who needs to make corrections to financial entries.",
+        "user_goal": "To edit incorrect financial data efficiently using built-in tools.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Management Tools",
+                "description": "Casey identifies a row in the financial table that requires correction and looks for editing options.",
+                "action": "Find the 'Edit' icon in the row actions toolbar.",
+                "expected_outcome": "Row contains actionable icons like 'Edit', 'Delete', etc., styled consistently."
+            },
+            {
+                "step": 2,
+                "title": "Performing Edit Action",
+                "description": "Casey clicks the edit icon to open a form for modifying the entry.",
+                "action": "Click the 'Edit' icon.",
+                "expected_outcome": "Modal form opens pre-filled with existing data for adjustment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer reporting capabilities for financial data analysis",
+        "user_persona": "A department head preparing monthly analytics reports.",
+        "user_goal": "To generate and download a customized financial report for internal review.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Configuring Report Parameters",
+                "description": "Morgan goes to the report generator and sets desired filters and format.",
+                "action": "Choose report type, date range, and output format (e.g., PDF).",
+                "expected_outcome": "Form fields allow selection of criteria needed for report generation."
+            },
+            {
+                "step": 2,
+                "title": "Generating Final Report",
+                "description": "Satisfied with settings, Morgan initiates the report creation process.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "System processes request and automatically downloads the formatted report file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement company selection mechanism for viewing specific financial data",
+        "user_persona": "A portfolio manager tracking investments across various firms.",
+        "user_goal": "To quickly switch between views of different companies’ financial statuses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Selector Component",
+                "description": "Riley arrives at the dashboard and notices a dropdown near the top for choosing companies.",
+                "action": "Locate and click the company selector dropdown.",
+                "expected_outcome": "Dropdown expands showing a list of registered companies fetched from backend."
+            },
+            {
+                "step": 2,
+                "title": "Switching Company Views",
+                "description": "Riley picks another company from the list to examine its finances.",
+                "action": "Select a different company from the dropdown.",
+                "expected_outcome": "Displayed financial data and related components instantly update to reflect newly selected company."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display real-time or periodic financial data updates",
+        "user_persona": "A trader monitoring live financial movements for investment decisions.",
+        "user_goal": "To ensure displayed financial data stays current without manual intervention.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Auto-Update Mechanism",
+                "description": "Pat waits passively while watching financial data panels, expecting automatic refreshes.",
+                "action": "Wait for configured interval duration (e.g., 5 minutes).",
+                "expected_outcome": "Financial data automatically updates either via WebSocket or scheduled polling."
+            },
+            {
+                "step": 2,
+                "title": "Manually Triggering Refresh",
+                "description": "Impatient for new data, Pat hits the manual refresh button instead of waiting.",
+                "action": "Click the 'Manual Refresh' button.",
+                "expected_outcome": "Current financial data immediately reloads regardless of auto-update schedule."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide filtering options for financial data by date ranges",
+        "user_persona": "A compliance officer auditing past fiscal periods.",
+        "user_goal": "To isolate financial records falling within specific historical date spans.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Date Picker Controls",
+                "description": "Dana locates the date range picker above a financial data table and sets start/end dates.",
+                "action": "Open date range picker and enter custom start and end dates.",
+                "expected_outcome": "Picker allows accurate date selection and reflects chosen values visually."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "With dates set, Dana applies the filter to narrow down the data shown.",
+                "action": "Click the 'Apply Filter' button.",
+                "expected_outcome": "Table contents update to show only records matching selected date range."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include export functionality for financial reports",
+        "user_persona": "A researcher gathering data for academic publication.",
+        "user_goal": "To export filtered financial datasets into usable document formats.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing Export Options",
+                "description": "Quinn finishes analyzing data and now wants to export it for offline use.",
+                "action": "Navigate to export toolbar and choose preferred format (e.g., Excel).",
+                "expected_outcome": "Export toolbar presents available formats including PDF, Excel (.xlsx), and CSV."
+            },
+            {
+                "step": 2,
+                "title": "Downloading File",
+                "description": "Having picked Excel, Quinn proceeds to trigger the actual download.",
+                "action": "Click the selected export option.",
+                "expected_outcome": "File matching current view configuration begins downloading automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support user authentication and authorization for dashboard access",
+        "user_persona": "A new employee gaining first-time access to the financial dashboard.",
+        "user_goal": "To securely log in and gain appropriate level of dashboard access.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Credentials",
+                "description": "Taylor reaches the login screen and enters assigned username and password.",
+                "action": "Enter valid username and password into respective fields.",
+                "expected_outcome": "Fields accept input and enable submission upon completion."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Login Request",
+                "description": "Confident in accuracy, Taylor submits the login form.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "Credentials validated against stored hashes; successful authentication redirects to dashboard with role-based permissions applied."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Maintain audit trails for financial data modifications",
+        "user_persona": "An IT security auditor verifying data integrity practices.",
+        "user_goal": "To confirm all financial edits are tracked and auditable.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Audit Logs",
+                "description": "Rey logs in with administrative privileges and accesses the audit trail viewer.",
+                "action": "Navigate to audit logs section.",
+                "expected_outcome": "Audit log viewer displays chronological record of all financial data modifications."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable customizable dashboard views for different user preferences",
+        "user_persona": "A senior analyst preferring personalized dashboard layout.",
+        "user_goal": "To tailor dashboard appearance and default filters according to personal workflow.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Customization Panel",
+                "description": "Nina clicks the gear icon to adjust her dashboard setup.",
+                "action": "Click the gear icon in upper right corner.",
+                "expected_outcome": "Customization modal dialog opens with layout and preference adjustment options."
+            },
+            {
+                "step": 2,
+                "title": "Saving Layout Preferences",
+                "description": "After rearranging widgets and setting favorite filters, Nina saves her preferences.",
+                "action": "Click the 'Save Preferences' button.",
+                "expected_outcome": "Layout and filter selections are persisted under Nina’s user profile for future sessions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate data visualization components for financial metrics display",
+        "user_persona": "A marketing director interpreting ROI trends through visuals.",
+        "user_goal": "To interact with charts to understand deeper insights behind financial KPIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Visual Representations",
+                "description": "Kai examines revenue trend charts placed within dashboard panels.",
+                "action": "View integrated charts showing key financial indicators.",
+                "expected_outcome": "Charts render smoothly using D3.js or Chart.js with labeled axes and legends."
+            },
+            {
+                "step": 2,
+                "title": "Engaging With Tooltips",
+                "description": "Kai moves cursor over chart elements to see numeric breakdowns.",
+                "action": "Hover over chart elements.",
+                "expected_outcome": "Detailed tooltips appear showing exact numerical values and contextual labels."
+            },
+            {
+                "step": 3,
+                "title": "Drilling Down Into Data",
+                "description": "Interested in specifics, Kai clicks a chart area to explore underlying data.",
+                "action": "Click on a chart element.",
+                "expected_outcome": "Redirect occurs to detailed page or expanded layer revealing additional data depth."
+            }
+        ]
+    }
+]

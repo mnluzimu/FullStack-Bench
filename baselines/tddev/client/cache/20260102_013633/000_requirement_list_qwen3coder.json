@@ -1,0 +1,172 @@
+[
+    {
+        "resource_dependency": {
+            "postSchema": "Table 'posts': id (UUID), title (string), content (text), topic_id (foreign key to topics.id), created_at (timestamp), updated_at (timestamp)",
+            "topicSchema": "Table 'topics': id (UUID), name (string), description (text)",
+            "replySchema": "Table 'replies': id (UUID), post_id (foreign key to posts.id), content (text), created_at (timestamp)"
+        },
+        "function": "Allow users to create anonymous discussion posts under predefined topics.",
+        "static_description": "A form with a title input field, a content text area, and a dropdown menu populated with available topics. Submit button styled with dark olive green background and honeydew text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends the new post data to the backend API endpoint /api/posts. Form clears after successful submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "replySchema": "Table 'replies': id (UUID), post_id (foreign key to posts.id), content (text), created_at (timestamp)"
+        },
+        "function": "Enable users to respond anonymously to existing forum posts.",
+        "static_description": "Below each post, display a reply form containing a text area and a submit button styled with dark olive green background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the reply submit button sends the reply content along with the associated post ID to the backend API endpoint /api/replies."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPI": "Endpoint /api/search?q={query}",
+            "browsePostsAPI": "Endpoint /api/posts?page={page}&limit={limit}"
+        },
+        "function": "Allow users to find relevant discussions through browsing or searching.",
+        "static_description": "At the top of the main page, show a search bar with placeholder 'Search posts...' and a list view displaying paginated posts with titles, excerpts, and topic tags.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing enter in the search bar triggers a GET request to the search API with the query parameter."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling near the bottom loads more posts dynamically using pagination parameters sent to the browse posts API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "followTopicSchema": "Table 'user_follows': id (UUID), topic_id (foreign key to topics.id), created_at (timestamp)",
+            "followButtonIcon": "SVG icon indicating follow/unfollow state"
+        },
+        "function": "Let users subscribe to specific topics to track related activity.",
+        "static_description": "Each topic tag displays next to its respective posts, accompanied by a toggle-style button labeled 'Follow'/'Unfollow', styled with dark olive green border and text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling the follow button sends a POST/DELETE request to /api/topics/{id}/follow depending on current state, updating local UI accordingly without reloading the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notificationSchema": "Table 'notifications': id (UUID), user_id (not directly tied to identity due to anonymity), topic_id (foreign key to topics.id), message (text), read_status (boolean), created_at (timestamp)",
+            "websocketConnection": "WebSocket connection established at ws://localhost:PORT/ws/notifications"
+        },
+        "function": "Notify users about new activity within their followed topics.",
+        "static_description": "A bell-shaped icon placed in the header navigation bar changes color when unread notifications exist; clicking opens a dropdown panel showing recent alerts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opening the notification panel marks visible items as read and makes a PATCH call to update statuses server-side."
+            },
+            {
+                "interaction": "Real-time Event",
+                "description": "New replies matching subscribed topics trigger instant WebSocket messages which appear in the notification dropdown automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "privacyPolicyURL": "/privacy-policy",
+            "noTrackingScripts": "No third-party analytics scripts included"
+        },
+        "function": "Maintain complete user anonymity by avoiding collection of identifying information.",
+        "static_description": "Footer includes a link to Privacy Policy accessible via resource dependency URL. No cookies banner or tracking pixels present anywhere on site.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authMiddlewareConfig": "JWT-based session management disabled; all routes publicly accessible but rate-limited",
+            "rateLimitRules": "Apply throttling per IP address to prevent abuse"
+        },
+        "function": "Prevent unauthorized access while preserving open participation.",
+        "static_description": "All pages load normally regardless of login status. Behind-the-scenes middleware enforces rate limits silently without user-facing prompts.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "themeVariablesCSS": ":root { --background-color: #F0FFF0; }"
+        },
+        "function": "Establish consistent background styling across entire application.",
+        "static_description": "Entire webpage uses honeydew (#F0FFF0) as base background color applied globally through CSS variable referenced in resource dependency.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentStylesCSS": ":root { --primary-color: #556B2F; }"
+        },
+        "function": "Define uniform component accent coloring throughout interface.",
+        "static_description": "Buttons, form borders, active links, and other interactive elements utilize dark olive green (#556B2F) sourced from global CSS theme variable.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "getAllPostsAPI": "GET /api/posts",
+            "getPostRepliesAPI": "GET /api/posts/{id}/replies",
+            "getTopicsAPI": "GET /api/topics"
+        },
+        "function": "Ensure all displayed content originates exclusively from backend services.",
+        "static_description": "Initial rendering waits for asynchronous data fetches before populating views such as homepage feeds, individual post threads, and topic listings.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseInitScript": "SQL file defining tables for posts, topics, replies, follows, notifications"
+        },
+        "function": "Connect backend logic to persistent storage layer using provided credentials.",
+        "static_description": "Backend initializes once during startup by reading environment variables listed in resource dependency and executing schema setup script if needed.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"cd frontend && npm install && cd ../backend && npm install\""
+        },
+        "function": "Automate full-stack dependency resolution with single command execution.",
+        "static_description": "Running 'npm run install:all' from root directory sequentially installs packages for both frontend and backend modules as defined in package.json scripts section.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentDevScript": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Streamline development workflow by launching frontend and backend simultaneously.",
+        "static_description": "Executing 'npm run dev' launches both client-side and server-side watchers concurrently using concurrently library configured in package.json script definition.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "realtimeWebSocketAPI": "Establish bidirectional communication channel at /ws for live updates",
+            "notificationPollingFallback": "Fallback mechanism polling /api/notifications every 30 seconds if WebSocket fails"
+        },
+        "function": "Deliver immediate feedback upon new replies and notifications.",
+        "static_description": "Client establishes persistent WebSocket connection on app load. Fallback polling activates only if WebSocket handshake fails.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "moderationDashboardSchema": "Table 'reported_content': id (UUID), report_type (enum: spam/inappropriate/offensive), target_id (UUID referencing either post or reply), reporter_ip_hash (anonymized identifier), resolved (boolean), reported_at (timestamp)",
+            "adminModerationAPI": "Protected endpoints requiring manual authentication for reviewing flagged content"
+        },
+        "function": "Empower administrators to review potentially harmful contributions.",
+        "static_description": "Hidden administrative route exposes dashboard listing pending reports grouped by severity level, featuring inline actions to delete or dismiss flagged entries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Moderator clicks 'Delete' or 'Dismiss' buttons send DELETE/PATCH requests respectively to moderation-specific endpoints to alter database records accordingly."
+            }
+        ]
+    }
+]

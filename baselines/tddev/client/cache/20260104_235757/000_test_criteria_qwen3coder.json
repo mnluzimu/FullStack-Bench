@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all dynamic data from backend APIs",
+        "user_persona": "A traveler looking for available tickets.",
+        "user_goal": "To view updated ticket information on the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Homepage",
+                "description": "Maria opens the website and waits for the page to load dynamic content like featured routes and promotions.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Frontend makes a GET request to /api/data, displays loading indicators, then populates UI components with fetched data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using environment variables",
+        "user_persona": "System administrator deploying the application.",
+        "user_goal": "Ensure the backend successfully connects to the database upon startup.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Admin starts the backend server to verify it connects to the PostgreSQL database using environment variables.",
+                "action": "Start the backend server.",
+                "expected_outcome": "Backend reads DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME and establishes a persistent connection to PostgreSQL."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User registration functionality with account creation and validation",
+        "user_persona": "New user signing up for the first time.",
+        "user_goal": "Successfully register for a new account.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Registration Form",
+                "description": "John fills out the registration form with his details and watches real-time validation feedback.",
+                "action": "Enter values into username, email, password, and confirm password fields.",
+                "expected_outcome": "Client-side validation provides immediate feedback; submit button enables only when all validations pass."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Valid Information",
+                "description": "Confident that everything is correct, John clicks the submit button.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "Data sent to /api/auth/register. System responds with success message and creates a new user record."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User login functionality with authentication and session management",
+        "user_persona": "Returning user accessing their account.",
+        "user_goal": "Log in securely to access personal dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Credentials",
+                "description": "Emily enters her registered email and password into the login form.",
+                "action": "Fill in email and password fields.",
+                "expected_outcome": "Fields accept input without errors."
+            },
+            {
+                "step": 2,
+                "title": "Authenticating",
+                "description": "Emily submits the form hoping to be redirected to her dashboard.",
+                "action": "Click the 'Login' button.",
+                "expected_outcome": "Credentials submitted to /api/auth/login. On success, receives JWT token and gets redirected to dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for bus and railway tickets with filters for date, time, origin, and destination",
+        "user_persona": "Traveler planning a trip between two cities.",
+        "user_goal": "Find available bus or train options matching specific criteria.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Filters",
+                "description": "David selects 'New York' as origin, 'Boston' as destination, picks tomorrow's date, sets preferred time range, and chooses 'Railway'.",
+                "action": "Select values in origin, destination, date/time pickers, and transport type toggle.",
+                "expected_outcome": "Selected filters update visually and prepare for submission."
+            },
+            {
+                "step": 2,
+                "title": "Searching Tickets",
+                "description": "David initiates the search by clicking the search button.",
+                "action": "Click the 'Search' button.",
+                "expected_outcome": "API call made to /api/search/tickets with selected parameters. Results displayed below the search panel."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time display of seat availability and pricing for selected routes",
+        "user_persona": "Passenger selecting a seat for their journey.",
+        "user_goal": "Choose an available seat and see updated pricing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Seat Map",
+                "description": "Lisa sees the interactive seat map after choosing a route and wants to pick a comfortable spot.",
+                "action": "Observe the SVG seat grid showing available, reserved, and selected seats.",
+                "expected_outcome": "Seats are color-coded appropriately: dim gray for available, lighter gray for reserved, highlighted for selected."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Seat",
+                "description": "She clicks on an open seat near the window.",
+                "action": "Click on an available seat.",
+                "expected_outcome": "Seat becomes highlighted, total price updates instantly based on chosen class and distance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Secure payment processing integration for ticket purchases",
+        "user_persona": "Customer ready to finalize purchase.",
+        "user_goal": "Complete a secure payment for selected ticket.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Payment",
+                "description": "Mark reviews his booking summary and proceeds to pay using credit card.",
+                "action": "Click the 'Confirm Booking & Pay' button.",
+                "expected_outcome": "Payment modal appears with card input fields styled in dim gray over snow background."
+            },
+            {
+                "step": 2,
+                "title": "Processing Transaction",
+                "description": "He fills in card info and confirms payment.",
+                "action": "Enter card details and click 'Pay Now'.",
+                "expected_outcome": "Encrypted data sent to /api/payments/process. Loading indicator shown during transaction with external gateway."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Booking confirmation system that sends notifications via email or SMS",
+        "user_persona": "Recently booked passenger awaiting confirmation.",
+        "user_goal": "Receive booking confirmation through preferred channel.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Completing Purchase",
+                "description": "Anna finishes paying for her ticket and expects to get a confirmation.",
+                "action": "Finish entering payment details and click 'Pay Now'.",
+                "expected_outcome": "Upon successful payment, backend calls /api/bookings/confirm, generates confirmation, and sends notification via email/SMS."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User dashboard displaying booking history and past transactions",
+        "user_persona": "Frequent traveler checking previous bookings.",
+        "user_goal": "Review past trips and related details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Robert logs in and navigates to his dashboard to find old bookings.",
+                "action": "Navigate to the user dashboard.",
+                "expected_outcome": "Dashboard loads and lists past bookings in reverse chronological order with ID, date, route, amount, and status."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Past Booking",
+                "description": "He clicks on one entry to see more information about the trip.",
+                "action": "Click on a booking item.",
+                "expected_outcome": "Detailed view expands showing additional info and a print option."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ticket printing functionality for confirmed bookings",
+        "user_persona": "Passenger preparing for travel.",
+        "user_goal": "Print a physical copy of the ticket.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Print Option",
+                "description": "Sophia finds her upcoming trip in the dashboard and looks for a way to print the ticket.",
+                "action": "Identify the print icon next to the booking details.",
+                "expected_outcome": "Printer icon (printer-icon.svg) is visible beside each confirmed booking."
+            },
+            {
+                "step": 2,
+                "title": "Printing Ticket",
+                "description": "She clicks the icon to generate and print the ticket.",
+                "action": "Click the print icon.",
+                "expected_outcome": "New tab opens with printer-friendly ticket preview. Browser print dialog automatically triggers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design that adapts to both mobile and desktop devices",
+        "user_persona": "Mobile user browsing the site.",
+        "user_goal": "Use the platform seamlessly on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Viewport",
+                "description": "Tommy resizes his browser window to simulate different device sizes.",
+                "action": "Resize browser window to less than 768px width.",
+                "expected_outcome": "Layout adjusts per CSS media queries; navigation changes to hamburger menu; seat selection optimized for touch."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "All page backgrounds configured with snow theme",
+        "user_persona": "Casual visitor exploring the site aesthetics.",
+        "user_goal": "Experience consistent visual branding across pages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Pages",
+                "description": "Claire visits multiple sections of the site to admire the visuals.",
+                "action": "Navigate to various pages including home, search, and account.",
+                "expected_outcome": "Each page displays a full-screen snow-themed background referenced from /assets/snow-background.jpg."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "All UI components styled with dim gray color scheme",
+        "user_persona": "Design-conscious user evaluating interface consistency.",
+        "user_goal": "Verify uniformity in UI element styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Interface Elements",
+                "description": "Nina examines buttons, forms, and other controls for consistent coloring.",
+                "action": "Look at various UI components like buttons, forms, and text fields.",
+                "expected_outcome": "All interactive and static components utilize #A9A9A9 as the primary color consistently throughout the app."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run install:all to install both frontend and backend dependencies",
+        "user_persona": "Developer setting up project locally.",
+        "user_goal": "Install all necessary packages quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Devon clones the repo and wants to install dependencies for both parts of the app.",
+                "action": "Run command: npm run install:all.",
+                "expected_outcome": "Concurrent installation scripts execute for frontend and backend directories via concurrently package."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run dev to start both frontend and backend concurrently",
+        "user_persona": "Developer beginning local development.",
+        "user_goal": "Launch both frontend and backend servers efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Devon prepares to work on features requiring both frontend and backend running.",
+                "action": "Run command: npm run dev.",
+                "expected_outcome": "Development servers for both frontend and backend launch simultaneously using concurrently package."
+            }
+        ]
+    }
+]

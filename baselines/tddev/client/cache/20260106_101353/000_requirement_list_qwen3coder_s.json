@@ -1,0 +1,214 @@
+[
+    {
+        "resource_dependency": {
+            "search_input_placeholder": "Enter stock code or name",
+            "report_format_options": [
+                "PDF",
+                "CSV",
+                "HTML"
+            ],
+            "background_color": "#FFFFFF",
+            "component_color": "#000080"
+        },
+        "function": "Provides a user interface to search for stocks and retrieve real-time stock information.",
+        "static_description": "A clean search bar with a placeholder text 'Enter stock code or name', accompanied by a search button. The entire component has a white background (#FFFFFF) and uses navy blue (#000080) for interactive elements and text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On the search button to initiate a search query for stock information."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Over the search button to highlight its clickable state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stock_info_schema": "Database schema includes: stock_id (primary key), ticker_symbol (string), company_name (string), current_price (decimal), volume (integer), last_updated (timestamp).",
+            "backend_stock_api": "API endpoint '/api/stocks' that accepts GET requests with query parameters for stock_code or company_name.",
+            "database_connection_config": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+        },
+        "function": "Fetches and displays real-time stock information from backend APIs connected to an external PostgreSQL database.",
+        "static_description": "Displays a table or card layout showing stock details including ticker symbol, company name, current price, and volume. Uses navy color (#000080) for headers and important values.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On a row in the results table to view detailed stock information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "report_format_dropdown": "Dropdown menu offering options: PDF, CSV, HTML.",
+            "content_preference_checkboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ]
+        },
+        "function": "Allows users to customize their report generation by selecting desired formats and content.",
+        "static_description": "A panel with a dropdown for choosing report format (PDF, CSV, HTML) and checkboxes for selecting content preferences such as Basic Info, Market Trends, and Financial Data. Background is white, with navy text and accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On a checkbox to toggle content inclusion in the report."
+            },
+            {
+                "interaction": "Click",
+                "description": "On the dropdown to select a report format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generate_report_button": "Button labeled 'Generate Report'.",
+            "report_preview_area": "Area to preview the generated report before downloading.",
+            "download_button": "Button labeled 'Download Report'."
+        },
+        "function": "Generates customized stock reports based on user selections for format and content.",
+        "static_description": "A central area displaying a summary of selected options and a button labeled 'Generate Report'. Once generated, a preview area shows a snippet of the report and a download button appears.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On 'Generate Report' to process the request and build the report."
+            },
+            {
+                "interaction": "Click",
+                "description": "On 'Download Report' to save the file locally in the chosen format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basic_info_fields": [
+                "ticker_symbol",
+                "current_price",
+                "volume"
+            ],
+            "data_visualization_component": "Charting library for displaying market trends (e.g., Chart.js or D3.js)."
+        },
+        "function": "Displays essential stock information including price, volume, and ticker symbol.",
+        "static_description": "Card layout containing fields for ticker symbol, current price, and trading volume. Uses navy color (#000080) for labels and values. Includes a chart component for visualizing market trends.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Over the chart to show detailed data points."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "market_trend_chart": "Interactive chart showing historical price movements over time.",
+            "trend_analysis_text": "Summary text explaining recent market trends."
+        },
+        "function": "Provides market trend analysis and visualization of stock performance.",
+        "static_description": "A chart component visualizing stock price changes over time, along with a short analysis paragraph summarizing the latest trends. Uses navy color (#000080) for annotations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On chart elements to see detailed data points."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financial_data_table": "Table displaying financial metrics such as P/E ratio, EPS, debt-to-equity ratio, etc.",
+            "financial_api_integration": "Integration with a third-party financial data provider API."
+        },
+        "function": "Integrates financial data into generated reports to offer deeper insights.",
+        "static_description": "A scrollable table presenting key financial indicators related to the selected stock. Text and headers use navy color (#000080) against a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "To view additional rows in the financial data table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "format_selection_ui": "Dropdown or radio buttons for choosing report format.",
+            "supported_formats": [
+                "PDF",
+                "CSV",
+                "HTML"
+            ]
+        },
+        "function": "Supports multiple report formats for download and sharing.",
+        "static_description": "UI controls allowing users to choose between PDF, CSV, and HTML formats. All formats are displayed clearly in navy color (#000080) on a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On a format option to set the preferred export type."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "save_download_button": "Button labeled 'Save/Download Report'.",
+            "file_extension_mapping": {
+                "PDF": ".pdf",
+                "CSV": ".csv",
+                "HTML": ".html"
+            }
+        },
+        "function": "Enables users to save or download generated reports in various formats.",
+        "static_description": "A prominent download button labeled 'Save/Download Report'. The button changes dynamically based on selected format (e.g., .pdf, .csv, .html). Uses navy color (#000080) for visibility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On the download button to initiate file saving."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_layout_framework": "CSS framework ensuring responsiveness across devices.",
+            "color_scheme": {
+                "background": "#FFFFFF",
+                "components": "#000080"
+            }
+        },
+        "function": "Ensures the website maintains a consistent white background and navy-colored components across all screen sizes.",
+        "static_description": "The overall layout uses a white background (#FFFFFF) with navy blue (#000080) accents for buttons, links, and headers. Responsive design ensures proper rendering on mobile and desktop.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresql_database_setup": "Newly created PostgreSQL database configured with tables for storing stock data using environment variables.",
+            "environment_variables": {
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            }
+        },
+        "function": "Establishes a connection to an external PostgreSQL database for dynamic stock data retrieval.",
+        "static_description": "Configuration settings defined via environment variables ensuring secure access to the PostgreSQL database. Database schema includes tables for storing stock data and metadata.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "backend_api_endpoints": [
+                "/api/stocks",
+                "/api/reports"
+            ],
+            "api_security": "Authentication token handling required for accessing protected endpoints."
+        },
+        "function": "Provides backend API endpoints to serve stock data to the frontend application.",
+        "static_description": "Endpoints available for fetching stock information and generating reports. Secure authentication is implemented for API access.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_scripts": {
+                "install:all": "npm run install:fe && npm run install:be",
+                "dev": "concurrently \"npm run dev:fe\" \"npm run dev:be\""
+            }
+        },
+        "function": "Configures the repository's package.json to manage installation and development workflows.",
+        "static_description": "The package.json file defines scripts for installing frontend and backend dependencies together and starting both services concurrently during development.",
+        "interaction_and_states": []
+    }
+]

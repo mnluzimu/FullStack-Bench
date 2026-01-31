@@ -1,0 +1,17 @@
+[
+    "A question submission form with fields for question title and content",
+    "A page displaying a list of submitted questions with titles and excerpts",
+    "A detailed question page showing the full question and associated answers",
+    "An answer submission form accessible on each question's detail page",
+    "Answer display section under each question showing all submitted answers",
+    "Rating functionality allowing users to upvote or downvote answers",
+    "Real-time updating of answer ratings without page refresh",
+    "Persistent storage of questions, answers, and ratings in a PostgreSQL database",
+    "Backend API endpoints for creating, retrieving, and rating questions and answers",
+    "Frontend components styled with a beige background and saddle brown accents",
+    "User interface for browsing and navigating between questions and answers",
+    "Database schema including tables for questions, answers, and answer ratings",
+    "Environment variable configuration for connecting to PostgreSQL database",
+    "Package.json scripts for concurrent development server startup and dependency installation",
+    "Responsive design ensuring usability across desktop and mobile devices"
+]

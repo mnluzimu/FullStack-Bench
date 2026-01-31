@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement a comprehensive car rental platform for booking car rental services. The platform should have a user-friendly interface, allowing users to easily browse and book car rental services. Users should be able to browse different types of cars, select rental dates and times, book selected cars, and view booking records. The platform should support multiple payment methods and provide order management functionality. Set the background to papaya whip, and apply dark orange to components.

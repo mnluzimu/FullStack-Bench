@@ -1,0 +1,233 @@
+[
+    {
+        "requirement_tested": "A homepage displaying general office information and a welcome message",
+        "user_persona": "A new patient looking to learn about the clinic before scheduling an appointment.",
+        "user_goal": "To view the clinic's welcome message and contact details on the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens her browser and navigates to the clinic's website. She expects to see a welcoming introduction and basic information about the office.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The page loads with a light cyan background, showing the clinic’s name in a centered header and a welcome message fetched from the database below it."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Office Details",
+                "description": "Sarah scrolls down to look for the clinic's address, phone number, and email displayed clearly on the page.",
+                "action": "Scroll down the homepage.",
+                "expected_outcome": "Office details including address, phone, and email are visible within cadet blue UI components below the welcome section."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An 'About Us' page providing details about the clinical office and its mission",
+        "user_persona": "A prospective patient interested in understanding the clinic's values and history.",
+        "user_goal": "To read detailed information about the clinic’s mission and background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the About Us Page",
+                "description": "Curious about the clinic’s background, Sarah clicks on the 'About Us' link in the navigation menu.",
+                "action": "Click on the 'About Us' link in the navigation bar.",
+                "expected_outcome": "The About Us page loads with a light cyan background and cadet blue text presenting the clinic’s story and mission retrieved from the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A 'Services' page listing all medical services offered by the office",
+        "user_persona": "A returning patient wanting to explore additional services offered by the clinic.",
+        "user_goal": "To review the list of services provided along with their descriptions and durations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Services",
+                "description": "Sarah selects the 'Services' option from the top navigation menu to see what treatments are available.",
+                "action": "Click on the 'Services' link in the navigation menu.",
+                "expected_outcome": "The Services page displays a responsive grid of cards with each service's name, description, and duration, styled with cadet blue on a light cyan background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A 'Contact Us' page with a form allowing users to send messages to the office",
+        "user_persona": "A visitor who has questions about insurance coverage and wants to reach out directly.",
+        "user_goal": "To submit a question through the contact form on the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contact Page",
+                "description": "Having specific questions, Sarah clicks the 'Contact Us' link to get in touch with the office.",
+                "action": "Click on the 'Contact Us' link in the navigation menu.",
+                "expected_outcome": "The Contact Us page loads with a centered form featuring fields for name, email, subject, and message, styled appropriately."
+            },
+            {
+                "step": 2,
+                "title": "Submitting the Form",
+                "description": "Sarah fills out the form carefully and submits it, hoping for a prompt reply.",
+                "action": "Fill in the required fields and click the 'Submit' button.",
+                "expected_outcome": "If all fields are valid, the form submits successfully and displays a confirmation message indicating the inquiry was sent."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A navigation menu enabling quick access to all main pages",
+        "user_persona": "A frequent visitor navigating between different sections of the site.",
+        "user_goal": "To easily move between the homepage, About Us, Services, and Contact pages using the navigation menu.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "While browsing, Sarah uses the fixed top navigation menu to jump to other sections of the website.",
+                "action": "Click on various links in the navigation menu (e.g., Home, About Us, Services).",
+                "expected_outcome": "Each click smoothly transitions to the selected page without requiring a full reload, maintaining consistent styling throughout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend styled with a light cyan background and cadet blue UI components",
+        "user_persona": "A visually-oriented user paying attention to design consistency.",
+        "user_goal": "To experience a cohesive visual theme across all pages of the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Site Styling",
+                "description": "As Sarah browses multiple pages, she notices how consistently the site maintains its color scheme.",
+                "action": "Visit several pages including Home, About, Services, and Contact.",
+                "expected_outcome": "Every page displays a light cyan background with cadet blue headings, buttons, and structural elements, ensuring visual harmony."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across desktop and mobile devices",
+        "user_persona": "A mobile user accessing the website on their smartphone.",
+        "user_goal": "To navigate and use the website effectively on a smaller screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Website on Mobile",
+                "description": "On her phone, Sarah visits the clinic’s website and checks whether it adapts well to her device.",
+                "action": "Open the website on a mobile device or resize browser window to simulate mobile view.",
+                "expected_outcome": "The layout adjusts responsively—navigation collapses into a hamburger menu, fonts resize, and content stacks vertically for optimal readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API support for handling contact form submissions",
+        "user_persona": "A user submitting feedback via the contact form.",
+        "user_goal": "To have the submitted contact form data processed and stored securely by the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Valid Contact Form",
+                "description": "After filling out the contact form completely and accurately, Sarah hits the submit button.",
+                "action": "Complete and submit the contact form with valid data.",
+                "expected_outcome": "The frontend sends a POST request to '/api/contact/submit', which processes and stores the data in the PostgreSQL database, returning a success response."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database integration using PostgreSQL with specified environment variables",
+        "user_persona": "A developer verifying backend connectivity.",
+        "user_goal": "To confirm that the backend successfully connects to the PostgreSQL database using provided credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "During setup, the developer ensures that the backend properly initializes the database connection.",
+                "action": "Start the backend server and check initialization logs.",
+                "expected_outcome": "The backend connects to PostgreSQL at localhost:5432 using the username 'myappuser' and database 'myapp', logging successful connection status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetches dynamic data from backend APIs where applicable",
+        "user_persona": "An end-user viewing up-to-date office information.",
+        "user_goal": "To see real-time data pulled from the backend instead of static placeholders.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Data",
+                "description": "When visiting the homepage, Sarah sees fresh content pulled live from the backend rather than hardcoded text.",
+                "action": "Load the homepage.",
+                "expected_outcome": "The frontend makes an API call to '/api/office-info/homepage' and renders the dynamic welcome message and office details received from the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `install:all` script to install frontend and backend dependencies",
+        "user_persona": "A new team member setting up the project locally.",
+        "user_goal": "To easily install all necessary dependencies for both frontend and backend with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Cloning the repo for the first time, the developer runs the setup command to prepare the working environment.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully in their respective directories."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `dev` script to start frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work on the project.",
+        "user_goal": "To launch both frontend and backend servers simultaneously for efficient development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Ready to begin coding, the developer starts both servers with a single command.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Concurrently launches the React development server and Node.js backend, making both accessible for testing and debugging."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Static page rendering for informational content",
+        "user_persona": "A user reading the clinic's mission statement.",
+        "user_goal": "To access fast-loading, readable content without unnecessary interactivity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Static Content",
+                "description": "While exploring the About Us page, Sarah reads through the clinic’s core values presented as plain text.",
+                "action": "Navigate to the About Us page.",
+                "expected_outcome": "The page renders quickly with static HTML content fetched from the backend, providing a clean and distraction-free reading experience."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Form validation on the contact page to ensure proper user input",
+        "user_persona": "A hurried user accidentally leaving required fields blank.",
+        "user_goal": "To be guided to correct mistakes before submitting the contact form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Leaving Required Fields Blank",
+                "description": "In a rush, Sarah tries to submit the contact form but forgets to fill some fields.",
+                "action": "Attempt to submit the form with empty name and email fields.",
+                "expected_outcome": "Inline validation messages immediately appear next to the empty fields, prompting Sarah to provide the missing information."
+            },
+            {
+                "step": 2,
+                "title": "Entering Invalid Email Format",
+                "description": "Trying again, Sarah enters an incorrectly formatted email address.",
+                "action": "Type an invalid email and attempt to submit.",
+                "expected_outcome": "An error message shows beneath the email field indicating that a valid email format is required."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "SEO-friendly page titles and meta descriptions for each page",
+        "user_persona": "A potential patient searching online for nearby clinics.",
+        "user_goal": "To find accurate and compelling search results when browsing for the clinic online.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching Online",
+                "description": "Sarah searches for 'clinical office near me' and looks at the search engine results page.",
+                "action": "Perform a search query simulating organic traffic.",
+                "expected_outcome": "Each indexed page displays a unique, descriptive title and meta description matching the content, improving click-through rates from search engines."
+            }
+        ]
+    }
+]

@@ -1,0 +1,26 @@
+services:
+  workspace:
+    image: luzimu/openhands-postgres:latest
+    tty: true
+    stdin_open: true
+    command:
+    - sleep
+    - infinity
+    volumes:
+    - postgres_data_000004:/var/lib/postgresql/17/main
+    - /mnt/cache/agent/Zimu/OpenHands/workspaces_root/tests/000002/logging.conf:/etc/postgresql/17/main/conf.d/90-logging.conf:ro
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USERNAME: myappuser
+      DB_PASSWORD: myapppassword
+      DB_NAME: myapp
+    ports:
+    - 5432:5432
+volumes:
+  postgres_data_000004:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/cache/agent/Zimu/OpenHands/workspaces_root/tests/000002/db

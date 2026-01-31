@@ -1,0 +1,17 @@
+[
+    "Real-time data display for solar power generation",
+    "Real-time data display for power consumption",
+    "Real-time data display for battery percentage",
+    "Historical data querying capability",
+    "Chart analysis tools for historical trends",
+    "Frontend fetching all data from backend APIs",
+    "Backend connecting to PostgreSQL database using specified environment variables",
+    "Dashboard UI with honeydew background color",
+    "UI components styled with dark olive green",
+    "Data visualization charts for solar metrics",
+    "User interface for selecting date ranges for historical data",
+    "Live updating of real-time data values",
+    "Responsive layout suitable for desktop and tablet viewing",
+    "Package.json configured with install:all script for frontend and backend dependencies",
+    "Package.json configured with dev script to start frontend and backend concurrently"
+]

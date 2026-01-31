@@ -1,0 +1,268 @@
+[
+    {
+        "requirement_tested": "Display a course catalog page with a list of available courses",
+        "user_persona": "A prospective student browsing for cybersecurity courses.",
+        "user_goal": "To view all available courses on the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah visits the Global Institute of Information Security website and wants to explore available courses. She notices a 'Courses' link in the navigation menu.",
+                "action": "Click on the 'Courses' link in the navigation menu.",
+                "expected_outcome": "Redirected to the course catalog page with a grid of course cards displayed against a lavender background."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Course Cards",
+                "description": "Sarah scrolls through the course listings and sees several cards with titles like 'Ethical Hacking 101', each styled with indigo text and borders.",
+                "action": "Scroll down the course catalog page.",
+                "expected_outcome": "Additional courses load dynamically as she scrolls, maintaining the lavender background and indigo-styled cards."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show detailed course information pages for each course",
+        "user_persona": "A student interested in learning more about a specific cybersecurity course.",
+        "user_goal": "To read detailed information about a selected course.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting a Course",
+                "description": "While browsing the course catalog, Alex finds a course titled 'Network Security Fundamentals' and decides to learn more by clicking on it.",
+                "action": "Click on the 'Network Security Fundamentals' course card.",
+                "expected_outcome": "Navigated to the detailed course page with full description, syllabus, instructor bio, and an 'Enroll Now' button styled in indigo."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to enroll in courses through an online enrollment form",
+        "user_persona": "A registered user ready to sign up for a cybersecurity course.",
+        "user_goal": "To successfully enroll in a selected course.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Enrollment",
+                "description": "Jamie is logged in and viewing the details of 'Advanced Cryptography'. He clicks the 'Enroll Now' button to begin registration.",
+                "action": "Click the 'Enroll Now' button on the course detail page.",
+                "expected_outcome": "An enrollment modal form appears with fields for personal information, styled with indigo components."
+            },
+            {
+                "step": 2,
+                "title": "Completing the Form",
+                "description": "Jamie fills out the required fields and checks the terms acceptance box before submitting the form.",
+                "action": "Fill in name, email, phone number, emergency contact, check terms box, then click Submit.",
+                "expected_outcome": "Form validates inputs, processes payment if needed, creates an enrollment record, and displays a confirmation message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a chatbot integration for user assistance",
+        "user_persona": "A visitor needing help finding specific course information.",
+        "user_goal": "To get assistance using the integrated chatbot.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Activating Chat Support",
+                "description": "Taylor is confused about which courses are suitable for beginners and sees a floating chat icon at the bottom right corner of the page.",
+                "action": "Click the chatbot icon.",
+                "expected_outcome": "Chat interface expands with a greeting message and input field for typing questions, maintaining indigo styling."
+            },
+            {
+                "step": 2,
+                "title": "Asking a Question",
+                "description": "Taylor types a question asking for beginner-friendly courses and sends the message.",
+                "action": "Type 'Which courses are best for beginners?' and press send.",
+                "expected_outcome": "Message is sent via API to backend, response is generated and displayed within the chat window."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a contact form for users to reach the institute",
+        "user_persona": "A potential student wanting to inquire about course offerings.",
+        "user_goal": "To submit a general inquiry to the institute.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contact Page",
+                "description": "Jordan wants to ask about upcoming course schedules and finds the 'Contact' link in the navigation menu.",
+                "action": "Click the 'Contact' link in the navigation menu.",
+                "expected_outcome": "Directed to the contact page featuring a form with indigo-styled input fields and institute contact information in the sidebar."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Inquiry",
+                "description": "Jordan fills out the contact form with his name, email, subject, and message, then submits it.",
+                "action": "Enter details in the form fields and click the Submit button.",
+                "expected_outcome": "Form data is validated, saved to database, an email notification is sent to institute staff, and a success message is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display certification pathways and their requirements",
+        "user_persona": "A student planning a long-term educational path in cybersecurity.",
+        "user_goal": "To understand the certification pathways offered by the institute.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Certification Pathways",
+                "description": "Casey is curious about structured learning paths and clicks on the 'Certifications' link in the navigation menu.",
+                "action": "Click the 'Certifications' link.",
+                "expected_outcome": "Redirected to the certification pathways page showing cards with pathway names, descriptions, and required courses in indigo text."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Related Courses",
+                "description": "Casey selects the 'Cybersecurity Specialist' pathway and wants to see the courses included in this track.",
+                "action": "Click the 'View Courses' button on the certification card.",
+                "expected_outcome": "Course catalog is filtered to display only courses associated with the selected certification pathway."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all pages have a lavender background and indigo components styling",
+        "user_persona": "A visually-oriented learner checking the website's appearance.",
+        "user_goal": "To experience a consistent color scheme throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Multiple Pages",
+                "description": "Morgan explores various sections of the website including Home, Courses, and Contact to assess visual consistency.",
+                "action": "Navigate between different pages using the main navigation menu.",
+                "expected_outcome": "Each page maintains a lavender background with indigo-colored headers, buttons, links, and form elements consistently applied."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fetch course data dynamically from backend APIs",
+        "user_persona": "A returning student checking for new course additions.",
+        "user_goal": "To see the most up-to-date course listings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Course Catalog",
+                "description": "Riley returns to the course catalog page and expects to see any newly added courses.",
+                "action": "Load or reload the course catalog page.",
+                "expected_outcome": "Frontend makes an API call to /api/courses, retrieves latest course data, and populates the page with current information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect backend to PostgreSQL database using provided environment variables",
+        "user_persona": "A developer deploying the application for production use.",
+        "user_goal": "To ensure the backend connects properly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Application Server",
+                "description": "Devon deploys the backend server and verifies that it connects to the PostgreSQL database upon startup.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "Server initializes database connection using environment variables (DB_HOST, DB_PORT, etc.) and establishes a successful connection pool."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support user authentication for enrollment functionality",
+        "user_persona": "A new user wanting to register and enroll in a course.",
+        "user_goal": "To create an account and log in to access enrollment features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering New Account",
+                "description": "Patricia visits the website and wants to enroll in a course but first needs to create an account.",
+                "action": "Click 'Login/Register' in the navigation menu and choose to register.",
+                "expected_outcome": "Registration form appears with indigo-styled input fields. After submission, account is created and user receives confirmation."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "After registering, Patricia logs in with her new credentials to access enrollment features.",
+                "action": "Enter username/email and password, then click login.",
+                "expected_outcome": "Credentials are validated, JWT token is generated and stored in cookie, and Patricia is redirected to the previous page with access to enrollment functions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide search and filter options for the course catalog",
+        "user_persona": "A student looking for specific cybersecurity courses.",
+        "user_goal": "To find relevant courses using search and filtering tools.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Courses",
+                "description": "Quinn is interested in ethical hacking courses and uses the search bar to find them.",
+                "action": "Type 'ethical hacking' into the search bar on the course catalog page.",
+                "expected_outcome": "Course list updates in real-time to show only courses matching the search term."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Quinn refines results further by selecting 'Beginner' level and choosing a specific certification pathway.",
+                "action": "Check 'Beginner' difficulty level and select a certification pathway from the filter options.",
+                "expected_outcome": "Course catalog re-fetches and displays only beginner-level courses aligned with the selected certification pathway."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive design for all pages",
+        "user_persona": "A mobile user accessing the website on a smartphone.",
+        "user_goal": "To navigate the website easily on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Website on Mobile",
+                "description": "Drew opens the website on his smartphone and observes how the layout adapts to fit the smaller screen.",
+                "action": "Open website on a mobile device or resize browser to mobile width.",
+                "expected_outcome": "Navigation transforms into a hamburger menu, course cards stack vertically, and forms adjust to fit the screen while preserving lavender background and indigo styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include navigation menu with links to key sections",
+        "user_persona": "A frequent visitor navigating between different parts of the site.",
+        "user_goal": "To quickly jump between important sections of the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "Bailey is exploring the website and uses the top navigation bar to switch between pages.",
+                "action": "Click on various links in the fixed header navigation menu (Home, Courses, Certifications, Contact).",
+                "expected_outcome": "Each click smoothly navigates to the respective section/page, with hover effects providing visual feedback on menu items."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add footer with contact information and quick links",
+        "user_persona": "A user seeking additional resources and contact details.",
+        "user_goal": "To find institute contact information and legal policies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Footer Content",
+                "description": "Ashley scrolls to the bottom of any page to locate contact information and policy links.",
+                "action": "Scroll to the bottom of any webpage.",
+                "expected_outcome": "Footer displays consistent contact info, quick links (Privacy Policy, Terms of Service), and social media icons, all styled with indigo text on lavender background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with install:all and dev scripts for frontend and backend",
+        "user_persona": "A developer setting up the project locally for development.",
+        "user_goal": "To set up and run both frontend and backend services efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Corey clones the repository and needs to install all frontend and backend dependencies.",
+                "action": "Run 'npm run install:all' in the root directory.",
+                "expected_outcome": "Dependencies are installed in both frontend and backend directories sequentially without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With dependencies installed, Corey wants to start both development servers simultaneously.",
+                "action": "Run 'npm run dev' in the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently in the same terminal session, ready for development work."
+            }
+        ]
+    }
+]

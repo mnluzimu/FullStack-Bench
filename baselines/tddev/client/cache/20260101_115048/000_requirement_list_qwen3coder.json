@@ -1,0 +1,207 @@
+[
+    {
+        "resource_dependency": {
+            "officeInfoSchema": "Table 'office_info' with fields: id (primary key), name (string), address (text), phone (string), email (string), welcome_message (text), about_us_content (text)",
+            "seoMetaContent": {
+                "home": {
+                    "title": "Home - Clinical Office",
+                    "description": "Welcome to our clinical office. Learn more about our practice and services."
+                },
+                "about": {
+                    "title": "About Us - Clinical Office",
+                    "description": "Discover our mission, vision, and commitment to patient care."
+                },
+                "services": {
+                    "title": "Our Services - Clinical Office",
+                    "description": "Explore the comprehensive medical services we offer to our patients."
+                },
+                "contact": {
+                    "title": "Contact Us - Clinical Office",
+                    "description": "Get in touch with us via phone, email, or our contact form."
+                }
+            }
+        },
+        "function": "Display general office information and a welcome message fetched dynamically from the database.",
+        "static_description": "The homepage features a light cyan background with a centered header containing the clinic’s name, followed by a welcome message retrieved from the database. Cadet blue UI components frame sections such as address, phone number, and email. SEO metadata includes title and description tags for search engine visibility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On page load, the frontend makes an API request to '/api/office-info/homepage' to retrieve the welcome message and office details."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "aboutUsContentSchema": "Field 'about_us_content' within table 'office_info'",
+            "seoMetaContent": "{ \"about\": { \"title\": \"About Us - Clinical Office\", \"description\": \"Discover our mission, vision, and commitment to patient care.\" } }"
+        },
+        "function": "Present detailed information about the clinical office, including its history and mission statement.",
+        "static_description": "This page displays a light cyan background with cadet blue headings and paragraphs presenting the clinic's story and mission. Content is loaded from the 'about_us_content' field in the database.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon loading, the frontend fetches data from '/api/office-info/about-us' to populate the content area."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "servicesListSchema": "Table 'services' with fields: id (primary key), name (string), description (text), duration_minutes (integer)",
+            "seoMetaContent": "{ \"services\": { \"title\": \"Our Services - Clinical Office\", \"description\": \"Explore the comprehensive medical services we offer to our patients.\" } }"
+        },
+        "function": "List all medical services offered by the office with descriptions and estimated durations.",
+        "static_description": "A responsive grid layout presents each service on a cadet blue card against a light cyan background. Each card contains the service name, description, and approximate time required.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On page load, the frontend calls '/api/services/list' to retrieve and render the full list of available services."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactFormSubmissionAPI": "POST endpoint at '/api/contact/submit' expecting body with fields: name (string), email (string), subject (string), message (text)",
+            "formValidationRules": "Required fields: name, email, message. Email must match standard format.",
+            "seoMetaContent": "{ \"contact\": { \"title\": \"Contact Us - Clinical Office\", \"description\": \"Get in touch with us via phone, email, or our contact form.\" } }"
+        },
+        "function": "Allow users to submit inquiries directly to the office through a validated contact form.",
+        "static_description": "A centered form on a light cyan background allows visitors to enter their name, email, subject, and message. Submit button uses cadet blue styling. Validation messages appear inline when inputs fail checks.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Click",
+                "description": "Triggers client-side validation. If valid, sends POST request to '/api/contact/submit'. Displays success/error feedback accordingly."
+            },
+            {
+                "interaction": "Input Blur",
+                "description": "Each field validates upon losing focus, showing error messages if criteria aren't met."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "/",
+                "/about",
+                "/services",
+                "/contact"
+            ]
+        },
+        "function": "Provide easy access to all major website sections through a consistent top navigation bar.",
+        "static_description": "Fixed-position horizontal menu bar with links styled in cadet blue over a light cyan background. Links include Home, About Us, Services, and Contact Us.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigates to the selected page without reloading the entire application."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Highlights the hovered link with a subtle underline effect while maintaining cadet blue color."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --background-color: #E0FFFF; --component-color: #5F9EA0; }"
+        },
+        "function": "Apply global styles with light cyan backgrounds and cadet blue UI elements.",
+        "static_description": "All pages utilize CSS variables setting background color to light cyan (#E0FFFF) and component colors to cadet blue (#5F9EA0). Consistent typography and spacing enhance readability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Ensure cross-device compatibility with responsive layouts tailored for desktop and mobile viewing.",
+        "static_description": "Media queries adjust font sizes, padding, margins, and element stacking order based on screen width. Navigation collapses into hamburger menu on small screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout adjusts smoothly between breakpoints to maintain usability and aesthetics across device types."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactSubmissionEndpoint": "POST /api/contact/submit"
+        },
+        "function": "Process incoming contact form submissions securely and store them in the database.",
+        "static_description": "Backend receives POST requests at '/api/contact/submit', parses input data, performs server-side validation, then inserts records into the 'contact_submissions' table.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request Received",
+                "description": "Server logs the submission, stores it in PostgreSQL under 'contact_submissions', and returns HTTP 200 OK or appropriate error code."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish secure connection to PostgreSQL database using predefined environment variables.",
+        "static_description": "Database connection initialized during backend startup using provided credentials. Tables created automatically if missing.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "officeDataEndpoints": [
+                "/api/office-info/homepage",
+                "/api/office-info/about-us",
+                "/api/services/list"
+            ]
+        },
+        "function": "Serve dynamic content from backend endpoints to corresponding frontend views.",
+        "static_description": "Frontend components make asynchronous GET requests to defined routes to populate office info, about us copy, and services listings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Mount",
+                "description": "Each component triggers useEffect hook calling respective API endpoint to fetch and set local state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Configure package.json scripts to simplify installation of frontend and backend dependencies together.",
+        "static_description": "'scripts' block defines 'install:all' which runs npm install in both frontend and backend directories sequentially.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Enable simultaneous development of frontend and backend using a unified command.",
+        "static_description": "'scripts' block defines 'dev' which utilizes concurrently to launch React dev server and Node.js backend simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Render informational content statically where no interactivity or dynamic updates are needed.",
+        "static_description": "Pages like About Us and Services initially render HTML content returned from the backend before hydration occurs.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "validationLibrary": "Use Yup schema definitions for contact form validation logic"
+        },
+        "function": "Prevent invalid entries in the contact form by enforcing input constraints.",
+        "static_description": "Client-side validation prevents submission until required fields are filled correctly. Real-time hints guide corrections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Form Field Blur",
+                "description": "Validates individual field and displays immediate feedback beneath it."
+            },
+            {
+                "interaction": "Form Submit Attempt",
+                "description": "Runs complete validation suite; blocks submission and highlights errors if any exist."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "metaTagsTemplate": "<title>{{pageTitle}}</title><meta name='description' content='{{pageDescription}}'>"
+        },
+        "function": "Improve discoverability of webpages through optimized SEO metadata.",
+        "static_description": "Each route injects unique <title> and <meta description> tags generated from pre-defined templates stored in configuration files.",
+        "interaction_and_states": [
+            {
+                "interaction": "Route Change",
+                "description": "Updates document head with relevant SEO metadata matching current page context."
+            }
+        ]
+    }
+]

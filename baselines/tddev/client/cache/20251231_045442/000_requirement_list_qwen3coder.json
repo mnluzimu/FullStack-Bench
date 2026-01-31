@@ -1,0 +1,304 @@
+[
+    {
+        "resource_dependency": {
+            "clientDataAPI": "RESTful endpoint at /api/clients for fetching client data",
+            "clientSearchEndpoint": "GET /api/clients/search?q={query} for client search functionality",
+            "clientCreationAPI": "POST /api/clients for creating new clients",
+            "clientUpdateAPI": "PUT /api/clients/{id} for updating client information"
+        },
+        "function": "Client identification functionality with search and selection capabilities",
+        "static_description": "A search input field with placeholder 'Search clients...' followed by a dropdown list container that displays matching clients. Selected client is displayed in a highlighted card with client name, ID, and contact information using medium violet red text on light pink background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search input field focuses it and shows a dropdown list when results are available"
+            },
+            {
+                "interaction": "Key Press",
+                "description": "Typing in the search field triggers API call to clientSearchEndpoint and populates dropdown with results"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a client from the dropdown selects that client and populates the client information card"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "callTypesAPI": "GET /api/call-types returning array of call type objects with id and name fields",
+            "callTypesDataSchema": "Database table 'call_types' with fields: id (UUID), name (string), description (text)"
+        },
+        "function": "Call type selection dropdown or radio button component",
+        "static_description": "A dropdown select element labeled 'Call Type' with options populated from callTypesAPI. Default state shows placeholder 'Select call type'. Selected value displays in medium violet red text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the dropdown expands it to show all available call types fetched from callTypesAPI"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking an option selects it and collapses the dropdown, displaying the selected call type"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "callLogsAPI": "REST endpoints at /api/calls for CRUD operations on call logs",
+            "callLogDataSchema": "Database table 'call_logs' with fields: id (UUID), client_id (foreign key), call_type_id (foreign key), call_details (text), created_at (timestamp), updated_at (timestamp), status (enum: open, closed, todo)"
+        },
+        "function": "Information recording form fields for capturing call details",
+        "static_description": "A textarea field labeled 'Call Details' with placeholder 'Enter call information...' styled with medium violet red border on light pink background. Accompanied by timestamp display showing creation date.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the textarea focuses it for text input"
+            },
+            {
+                "interaction": "Key Press",
+                "description": "Typing in the textarea updates the internal state with entered text"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "actionsDataSchema": "Database table 'call_actions' with fields: id (UUID), call_log_id (foreign key), action_description (text), created_at (timestamp), completed (boolean)",
+            "actionsAPI": "REST endpoints at /api/actions for managing call actions"
+        },
+        "function": "Action step recording section for documenting actions taken during calls",
+        "static_description": "A section titled 'Actions Taken' containing a list of action items (initially empty) and an input field with 'Add Action' button. Each action item displays description and completion checkbox.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Action' button creates new action item with text from input field"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking action checkbox toggles completion status of that action"
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in action input field triggers addition of new action item"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "followupsDataSchema": "Database table 'follow_ups' with fields: id (UUID), call_log_id (foreign key), followup_description (text), due_date (date), completed (boolean)",
+            "followupsAPI": "REST endpoints at /api/follow-ups for managing follow-up items"
+        },
+        "function": "Follow-up step recording functionality for scheduling future actions",
+        "static_description": "A section titled 'Follow-up Items' with date picker input, textarea for description, and 'Add Follow-up' button. List of existing follow-ups shows description and due date.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking date picker opens calendar for date selection"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Follow-up' creates new follow-up item with selected date and description"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking follow-up checkbox toggles completion status"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notesDataSchema": "Database table 'call_notes' with fields: id (UUID), call_log_id (foreign key), note_content (text), created_at (timestamp)",
+            "notesAPI": "REST endpoints at /api/notes for managing additional notes"
+        },
+        "function": "Additional information recording field for miscellaneous notes",
+        "static_description": "A textarea labeled 'Additional Notes' with placeholder 'Enter any additional information...' and a save button. Textarea styled with medium violet red border.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the textarea focuses it for text input"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking save button persists the note content via notesAPI"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createCallLogAPI": "POST /api/calls for creating new call logs",
+            "formValidationLogic": "Frontend validation ensuring all required fields are completed before submission"
+        },
+        "function": "New call log creation form with all required data entry components",
+        "static_description": "A form containing client selector, call type dropdown, call details textarea, actions section, follow-ups section, and additional notes textarea. Submit and cancel buttons at bottom, all styled with medium violet red on light pink background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Submit validates all fields and sends data to createCallLogAPI if valid"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Cancel clears form and returns to previous view"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "openCallsAPI": "GET /api/calls?status=open returning array of open call log objects",
+            "callLogListSchema": "Fields: id, client_name, call_type, created_at, last_updated"
+        },
+        "function": "View open calls page displaying unresolved customer service calls",
+        "static_description": "A page titled 'Open Calls' with a list of call log cards. Each card shows client name, call type, creation date, and last update time in a grid layout with medium violet red headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a call log card navigates to detailed view of that call log"
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads additional open call logs if pagination is implemented"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "todoCallsAPI": "GET /api/calls?status=todo returning array of to-do call log objects",
+            "todoListSchema": "Fields: id, client_name, call_type, due_date, priority_level"
+        },
+        "function": "View to-do calls page showing pending follow-up items",
+        "static_description": "A page titled 'To-Do Calls' displaying a sortable list of pending call logs. Each row shows client name, call type, due date, and priority level with medium violet red accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a to-do item navigates to its detailed call log view"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the list by that field"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportsAPI": "GET /api/reports/call-logs for generating call log reports",
+            "exportAPI": "GET /api/reports/call-logs/export for exporting reports in various formats",
+            "reportGenerationService": "Backend service that aggregates call log data and generates report documents"
+        },
+        "function": "Call log reports generation feature with export capabilities",
+        "static_description": "A reports dashboard with date range selectors, filter options, and export buttons (PDF, CSV, Excel). Display area shows generated report preview with charts and summary statistics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Generate Report' button triggers report generation via reportsAPI"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking export buttons downloads report in selected format via exportAPI"
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing date range or filters automatically updates report parameters"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "clientWizardAPI": "POST /api/clients for submitting new client data from wizard",
+            "wizardStepsSchema": "Multi-step form with steps: Basic Info, Contact Details, Additional Information",
+            "wizardNavigationAPI": "State management for tracking current step and form data between steps"
+        },
+        "function": "Client creator wizard with multi-step form for adding new clients",
+        "static_description": "A modal wizard with step indicators at top, form fields appropriate to current step in middle, and navigation buttons (Back, Next, Submit) at bottom. Progress bar shows completion status.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Next advances to next step after validating current step data"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Back returns to previous step preserving entered data"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Submit on final step sends all collected data to clientWizardAPI"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "clientUpdateAPI": "PUT /api/clients/{id} for updating existing client information",
+            "clientDetailsAPI": "GET /api/clients/{id} for fetching current client data",
+            "clientDataSchema": "Database table 'clients' with fields: id (UUID), name (string), email (string), phone (string), address (text), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Client information modification interface for updating existing client data",
+        "static_description": "An editable form displaying current client information with input fields for each data point. Save and Cancel buttons at bottom, all styled with medium violet red on light pink background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking input fields enables editing of client data"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Save button validates changes and sends updated data to clientUpdateAPI"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Cancel discards changes and reverts to original client data from clientDetailsAPI"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "permissionsAPI": "REST endpoints at /api/users and /api/roles for managing user permissions",
+            "authService": "Authentication service handling user login and session management",
+            "permissionsDataSchema": "Database tables: users (id, username, password_hash, role_id), roles (id, name, permissions), permissions (id, name, description)"
+        },
+        "function": "Permission control system for managing user access levels",
+        "static_description": "User interface elements (buttons, menu items, data fields) that are conditionally visible or enabled based on user role. Admin users see additional configuration options in medium violet red.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Page load checks user permissions via permissionsAPI and renders UI elements accordingly"
+            },
+            {
+                "interaction": "Login/Logout",
+                "description": "Authentication state changes trigger re-evaluation of accessible features"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "frontendFramework": "React.js application structure with component hierarchy",
+            "stylingResources": "CSS modules with light pink background (#FFB6C1) and medium violet red (#C71585) color scheme",
+            "dataFetchingLibrary": "Axios or Fetch API for making HTTP requests to backend"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "Single-page application with navigation menu, main content area, and footer. All pages use light pink background with medium violet red text and borders. Components fetch data dynamically from backend APIs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate",
+                "description": "Route changes trigger data fetching from appropriate backend endpoints"
+            },
+            {
+                "interaction": "Refresh",
+                "description": "Page refresh maintains current state and refetches displayed data"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresqlConnection": "PostgreSQL database connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchema": "Complete schema including tables: clients, call_types, call_logs, call_actions, follow_ups, call_notes, users, roles, permissions",
+            "apiFramework": "Node.js/Express REST API framework with PostgreSQL integration"
+        },
+        "function": "A backend API layer connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "RESTful API server with endpoints for clients, calls, actions, follow-ups, notes, and reports. Server connects to PostgreSQL database using provided environment variables for configuration.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request",
+                "description": "Incoming HTTP requests are routed to appropriate handlers which query PostgreSQL database using configured connection"
+            },
+            {
+                "interaction": "Database Error",
+                "description": "Connection failures or query errors return appropriate HTTP error responses"
+            }
+        ]
+    }
+]

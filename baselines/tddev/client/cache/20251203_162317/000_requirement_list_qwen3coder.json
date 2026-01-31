@@ -1,0 +1,211 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDatabaseSchema": "Create a database named 'stocks' with tables: stocks(stock_id, symbol, name, sector, industry, market_cap, pe_ratio), prices(price_id, stock_id, date, open, close, high, low, volume), financials(financial_id, stock_id, revenue, net_income, eps, dividend_yield, quarter_end_date)."
+        },
+        "function": "Allow users to search for stocks by entering either a stock code or name.",
+        "static_description": "A centered search bar with a magnifying glass icon on the left side, placeholder text 'Enter stock code or name', navy-colored border and text input field against a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search box focuses it for text entry."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates the search query using the entered value."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summaryCardLayout": "<div class='summary-card'><h3>Stock Name</h3><p>Symbol | Sector</p><ul><li>Price: $XX.XX</li><li>Change: +X.XX%</li><li>Market Cap: $XXB</li></ul></div>",
+            "stockSummaryAPI": "Integration with a real-time stock summary API that returns current price, daily change percentage, market cap, P/E ratio, and sector information based on stock symbol."
+        },
+        "function": "Display summarized key information about the selected stock.",
+        "static_description": "A card-style container showing stock name, symbol, sector, latest price, percent change, and market capitalization. Background remains white with navy text and borders.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "reportTemplateFiles": "/templates/report-template-[type].html",
+            "reportGenerationEngine": "An internal engine or third-party tool capable of dynamically compiling user-selected data into structured reports in various formats such as PDF, DOCX, or HTML."
+        },
+        "function": "Generate customized stock reports based on user-defined parameters including format and content selections.",
+        "static_description": "Not directly visible but operates behind the scenes when triggered by user actions; displays loading indicator during processing until complete.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Upon clicking the 'Generate Report' button, the system begins compiling the selected data into the chosen report format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptionsList": [
+                "PDF",
+                "Word Document (.docx)",
+                "HTML Web Page"
+            ],
+            "dropdownArrowIcon": "/assets/icons/dropdown-arrow.svg"
+        },
+        "function": "Provide users with options to choose their preferred output format for generated reports.",
+        "static_description": "Dropdown menu labeled 'Select Format', containing three selectable items: PDF, Word Document, and HTML. Navy-themed styling with white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking opens/closes the dropdown list revealing available format choices."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting an item from the list updates the selected format and closes the dropdown."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentCheckboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "News Summary"
+            ],
+            "checkboxCheckedIcon": "/assets/icons/checkmark.svg"
+        },
+        "function": "Enable users to customize which sections appear in the generated report.",
+        "static_description": "Group of checkboxes arranged vertically under a heading 'Choose Content'. Each checkbox corresponds to a different section type. All elements styled with navy color theme over white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling any checkbox selects or deselects the associated content section for inclusion in the final report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basicInfoFields": [
+                "Company Name",
+                "Ticker Symbol",
+                "Sector",
+                "Industry",
+                "Website URL"
+            ],
+            "companyLogoPlaceholder": "/assets/placeholders/company-logo-placeholder.png"
+        },
+        "function": "Show essential identifying details about the selected stock entity.",
+        "static_description": "Section titled 'Basic Information' displaying company logo placeholder alongside listed fields in tabular form. White background with navy headers and text.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "trendChartLibrary": "Integrate Chart.js library for rendering interactive line charts.",
+            "marketTrendDataEndpoint": "Connect to time-series endpoint returning historical closing prices grouped by date range (daily/weekly/monthly) for plotting."
+        },
+        "function": "Visualize historical performance trends of the selected stock through graphical representations.",
+        "static_description": "Interactive chart area titled 'Market Trends' showing dynamic line graph of past performance. Uses navy axes labels and grid lines against a white canvas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over points reveals tooltip with exact date and price values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTableSchema": "Table columns: Quarter End Date, Revenue ($M), Net Income ($M), Earnings Per Share (EPS), Dividend Yield (%).",
+            "financialDataSourceAPI": "External API providing quarterly financial statements including revenue, net income, EPS, and dividend yield per stock."
+        },
+        "function": "Fetch and present financial metrics relevant to evaluating the stock’s fiscal health.",
+        "static_description": "Tabular view titled 'Financial Data' listing recent quarters along with respective financial figures. Styled with alternating row colors, navy header rows, and white body cells.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalCSSVariables": ":root { --bg-color: #FFFFFF; } body { background-color: var(--bg-color); }"
+        },
+        "function": "Apply a consistent white background throughout the entire website interface.",
+        "static_description": "Entire webpage uses solid white (#FFFFFF) as base background color across all views and components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorPalette": "Define CSS variable '--navy': #001F54 used for buttons, links, icons, headings, and other interactive elements."
+        },
+        "function": "Ensure all interactive components use navy as the primary accent color.",
+        "static_description": "Buttons, navigation bars, icons, and highlighted text utilize navy blue (#001F54) consistently across the site while maintaining contrast against the white backdrop.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "inputFieldStyleGuide": ".input-field { border: 1px solid #001F54; padding: 8px; font-size: 16px; width: 300px; }",
+            "submitButtonText": "Search Stock"
+        },
+        "function": "Present a clear and accessible method for users to enter stock identifiers.",
+        "static_description": "Text input field with navy border and label above reading 'Enter Stock Code or Name'. Adjacent submit button labeled 'Search Stock' also in navy style.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search Stock' button triggers validation and submission of the entered value for lookup."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "customizationParameterGroups": [
+                "Time Range",
+                "Metrics Displayed",
+                "Comparison Indices"
+            ],
+            "parameterControlTypes": "{ Time Range: ['1 Month','3 Months','YTD','1 Year'] }, { Metrics: ['Price','Volume','P/E Ratio'] }, { Indices: ['S&P 500','Dow Jones'] }"
+        },
+        "function": "Offer adjustable settings allowing fine-grained control over report contents.",
+        "static_description": "Collapsible panels or tabs grouping related parameter sets like Time Range, Metrics, and Comparison Indices. Each group includes appropriate controls (radio buttons, dropdowns, etc.) styled in navy theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking panel headers expands/collapses each parameter group for better organization."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportCompilerService": "Internal logic or microservice responsible for collecting selected data segments and formatting them according to the chosen template before export.",
+            "loadingSpinnerAsset": "/assets/animations/loading-spinner.gif"
+        },
+        "function": "Compile requested data into downloadable reports automatically upon user request.",
+        "static_description": "Invisible process running server-side; visually represented by a spinning loader animation displayed temporarily during report creation phase.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiating report generation starts this automated workflow and shows temporary status feedback via spinner animation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stockMarketDataProviderAPI": "Third-party finance API offering real-time and historical stock data feeds including pricing, fundamentals, news, and metadata.",
+            "dataAggregationLogic": "Backend script or service aggregating raw feed inputs into normalized structures suitable for frontend consumption and storage."
+        },
+        "function": "Collect and normalize live and archived stock market data sourced externally.",
+        "static_description": "No direct UI element; acts as underlying infrastructure ensuring timely delivery of accurate financial datasets to populate various features.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "exportButtonIcons": [
+                "/assets/icons/pdf-download.svg",
+                "/assets/icons/docx-download.svg",
+                "/assets/icons/html-download.svg"
+            ],
+            "downloadHandlerScript": "Client-side JavaScript handling blob creation and browser-native file saving mechanisms for each supported format."
+        },
+        "function": "Allow users to save generated reports locally in their preferred digital format.",
+        "static_description": "Download buttons positioned beneath completed report preview, each featuring distinct icon representing file type (PDF/DOCX/HTML) and navy-styled appearance.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any download button triggers immediate client-side generation and prompt-based saving of the full report in that format."
+            }
+        ]
+    }
+]

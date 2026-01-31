@@ -1,0 +1,144 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint_companyInfo": "/api/company-info",
+            "dbSchema_companyInfo": "Table 'company_info' with columns: id (primary key), history (text), mission (text), values (text)"
+        },
+        "function": "Display the company's history, mission, and values fetched dynamically from the backend.",
+        "static_description": "A section titled 'About Us' with three subsections: History, Mission, and Values. Each subsection displays text content retrieved via API. Background uses lemon chiffon (#FFFACD) and components use chocolate (#D2691E).",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On page load, data is fetched from /api/company-info endpoint and displayed in respective sections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint_products": "/api/products",
+            "dbSchema_products": "Table 'products' with columns: id (primary key), name (string), description (text), image_url (string), price (decimal)",
+            "productImageFolder": "/public/images/products"
+        },
+        "function": "Showcase all available solar products with images, descriptions, and pricing.",
+        "static_description": "A grid-based layout presenting each product as a card containing an image, title, short description, and price. Cards are styled with chocolate backgrounds on lemon chiffon page background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a product card navigates to a dedicated product detail page showing full information."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Product cards slightly elevate or highlight when hovered over for better interactivity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint_news": "/api/news",
+            "dbSchema_news": "Table 'news' with columns: id (primary key), title (string), date (timestamp), summary (text), content (text), image_url (string)"
+        },
+        "function": "Display latest company news and events in chronological order.",
+        "static_description": "A vertical timeline or list of articles with titles, dates, summaries, and optional thumbnails. Styled with lemon chiffon background and chocolate text/cards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an article expands its content or redirects to a full news detail page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint_submitContact": "/api/contact",
+            "dbSchema_contactMessages": "Table 'contact_messages' with columns: id (primary key), name (string), email (string), message (text), submitted_at (timestamp)"
+        },
+        "function": "Allow users to send messages directly to the company through a web form.",
+        "static_description": "A form with labeled fields for Name, Email, and Message, along with a Submit button. Form elements have chocolate borders/backgrounds against lemon chiffon backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Click",
+                "description": "Form validates inputs; shows error messages if invalid, otherwise sends POST request to /api/contact and displays success confirmation."
+            },
+            {
+                "interaction": "Input Focus",
+                "description": "Each field highlights on focus for accessibility purposes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "About Us",
+                "Products",
+                "News",
+                "Contact"
+            ]
+        },
+        "function": "Provide easy access to major sections of the website via persistent navigation.",
+        "static_description": "A horizontal menu bar fixed at the top featuring links to Home, About Us, Products, News, and Contact pages. Uses chocolate background with white text over lemon chiffon context.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any menu item scrolls smoothly to the corresponding section or navigates to the relevant standalone page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Menu items change color subtly to indicate they're interactive."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "seoMetadataSchema": "{ title: string, metaDescription: string } for each route"
+        },
+        "function": "Ensure SEO best practices by providing unique titles and meta descriptions per section.",
+        "static_description": "Each HTML document includes custom <title> and <meta name='description'> tags generated server-side based on current route/path.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "accessibilityStandards": "WCAG 2.1 AA compliance guidelines"
+        },
+        "function": "Make the entire site accessible using standard keyboard navigation and screen readers.",
+        "static_description": "All interactive elements such as buttons, links, and forms are fully focusable and operable via keyboard. Semantic HTML is used throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tab Navigation",
+                "description": "Users can tab through focusable elements in logical sequence without getting trapped."
+            },
+            {
+                "interaction": "Enter/Space Key Press",
+                "description": "Pressing Enter or Space activates focused buttons and links."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "structuredDataFormat": "JSON-LD schema markup for Organization, Product, Article, and WebSite"
+        },
+        "function": "Improve search engine understanding and visibility using structured data.",
+        "static_description": "Relevant JSON-LD scripts embedded within head tags across pages to define entity relationships for crawlers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS Media Queries + Flexbox/Grid Layout"
+        },
+        "function": "Ensure consistent usability and appearance across desktop and mobile devices.",
+        "static_description": "Layout adjusts fluidly between screen sizes using flexible grids, scalable fonts, and adaptive spacing. Mobile menu collapses into hamburger icon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Content reflows automatically to fit smaller screens while maintaining readability and usability."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "imageOptimizationTool": "Next.js Image Component or equivalent responsive image solution"
+        },
+        "function": "Deliver optimized media assets quickly regardless of device resolution.",
+        "static_description": "Images rendered responsively with appropriate srcset attributes ensuring optimal quality and performance.",
+        "interaction_and_states": []
+    }
+]

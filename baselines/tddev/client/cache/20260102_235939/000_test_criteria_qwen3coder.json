@@ -1,0 +1,345 @@
+[
+    {
+        "requirement_tested": "User registration and login functionality for students and training providers",
+        "user_persona": "A new student named Alex who wants to register for the portal.",
+        "user_goal": "Successfully register as a student and log into the portal.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Registration",
+                "description": "Alex visits the homepage and sees the 'Register' button. He clicks it to begin signing up.",
+                "action": "Click on the 'Register' button.",
+                "expected_outcome": "Additional registration fields such as name, confirm password, and role selection appear."
+            },
+            {
+                "step": 2,
+                "title": "Completing Registration Form",
+                "description": "Alex fills out his name, email, password, confirms the password, and selects 'Student' as his role.",
+                "action": "Fill in all required registration fields and select 'Student' from the role dropdown.",
+                "expected_outcome": "The 'Submit' button becomes enabled after filling all fields correctly."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Registration",
+                "description": "Alex submits the form to create his account.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "Alex receives a success message and is redirected to the login page."
+            },
+            {
+                "step": 4,
+                "title": "Logging In",
+                "description": "Alex enters his registered email and password to log in.",
+                "action": "Enter email and password into the login form and click 'Login'.",
+                "expected_outcome": "Alex is authenticated and redirected to the student dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Profile management for students to input and update personal details, qualifications, and career preferences",
+        "user_persona": "A student named Taylor who recently completed a course and wants to update her profile.",
+        "user_goal": "Update her qualifications and career preferences in her profile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile Management",
+                "description": "Taylor logs in and navigates to her profile section to make updates.",
+                "action": "Navigate to the profile management page.",
+                "expected_outcome": "A form with editable fields for personal details, qualifications, and career preferences is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Updating Qualifications",
+                "description": "Taylor adds her newly acquired certification under the qualifications section.",
+                "action": "Add new qualification data in the qualifications field.",
+                "expected_outcome": "The field accepts the input and reflects the new qualification."
+            },
+            {
+                "step": 3,
+                "title": "Saving Changes",
+                "description": "After making changes, Taylor clicks 'Save Changes' to update her profile.",
+                "action": "Click the 'Save Changes' button.",
+                "expected_outcome": "A success confirmation message appears, indicating that the profile has been updated."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard for students to view matched training programs and application status",
+        "user_persona": "Jordan, a student exploring training opportunities.",
+        "user_goal": "View matched training programs and check the status of his applications.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Matched Programs",
+                "description": "Jordan logs into the portal and lands on his dashboard where he sees a list of matched training programs.",
+                "action": "Load the student dashboard.",
+                "expected_outcome": "The dashboard displays two panels: one with matched programs and another with application statuses."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Program Details",
+                "description": "Jordan hovers over one of the matched programs to see more information about it.",
+                "action": "Hover over a program item in the matched programs panel.",
+                "expected_outcome": "A tooltip appears showing additional context like match score or deadlines."
+            },
+            {
+                "step": 3,
+                "title": "Checking Application Status",
+                "description": "Jordan clicks on a program to view its detailed information and application status.",
+                "action": "Click on a program item.",
+                "expected_outcome": "The system navigates to the detailed view page of the selected program."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Advanced matching algorithm to suggest training programs based on qualifications, location, field of study, and career interests",
+        "user_persona": "Casey, a student who just updated her profile with new interests.",
+        "user_goal": "See updated training program suggestions based on her latest profile changes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Matching Algorithm",
+                "description": "After updating her career interests, Casey saves her profile which triggers the matching algorithm.",
+                "action": "Save updated profile information.",
+                "expected_outcome": "The system automatically runs the matching algorithm in the background."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Updated Matches",
+                "description": "Casey refreshes her dashboard to see if there are new training program matches.",
+                "action": "Refresh the dashboard page.",
+                "expected_outcome": "New or updated program matches reflecting her interests appear in the matched programs panel."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Intuitive interface for students to apply to training programs directly through the portal",
+        "user_persona": "Riley, a student interested in applying to a digital marketing course.",
+        "user_goal": "Apply to a training program directly from the portal.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Application",
+                "description": "Riley finds a digital marketing course she likes and clicks the 'Apply Now' button.",
+                "action": "Click the 'Apply Now' button on the program listing.",
+                "expected_outcome": "A modal window opens with the program details and a pre-filled application form."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Application",
+                "description": "Riley reviews the pre-filled information and submits her application.",
+                "action": "Click the 'Submit Application' button in the modal.",
+                "expected_outcome": "Her application is recorded, and a confirmation message is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Training provider dashboard to manage program listings and view matched student profiles",
+        "user_persona": "A training provider named Morgan managing skill development programs.",
+        "user_goal": "Create a new training program and view matched student profiles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Program Listing",
+                "description": "Morgan logs in and navigates to the 'My Programs' tab, then clicks the '+' icon to add a new program.",
+                "action": "Click the '+' icon in the 'My Programs' tab.",
+                "expected_outcome": "A popup form for creating a new program listing appears."
+            },
+            {
+                "step": 2,
+                "title": "Filling Program Details",
+                "description": "Morgan fills in the title, description, location, and field of study for the new program.",
+                "action": "Fill in all required fields in the new program form.",
+                "expected_outcome": "All fields accept the input and the form is ready for submission."
+            },
+            {
+                "step": 3,
+                "title": "Saving New Program",
+                "description": "Morgan saves the new program listing.",
+                "action": "Click the 'Save' button.",
+                "expected_outcome": "The new program appears in the 'My Programs' list."
+            },
+            {
+                "step": 4,
+                "title": "Viewing Matched Students",
+                "description": "Morgan switches to the 'Matched Students' tab to see potential applicants.",
+                "action": "Click the 'Matched Students' tab.",
+                "expected_outcome": "A list of student profiles matching the provider's criteria is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability for training providers to search and filter student profiles based on predefined criteria",
+        "user_persona": "A training provider named Quinn looking for qualified students.",
+        "user_goal": "Find students with specific qualifications using the filtering options.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "Quinn uses the filter options to narrow down students by qualification level and study area.",
+                "action": "Select desired options in the qualification level and study area filters.",
+                "expected_outcome": "The student list dynamically updates to show only those matching the selected criteria."
+            },
+            {
+                "step": 2,
+                "title": "Resetting Filters",
+                "description": "After reviewing, Quinn resets the filters to see all students again.",
+                "action": "Click the 'Reset Filters' button.",
+                "expected_outcome": "All filter selections are cleared and the full list of students is restored."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Secure messaging or communication system between students and training providers",
+        "user_persona": "A student named Devon who wants to ask questions about a program.",
+        "user_goal": "Send a message to a training provider through the portal.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Chat Interface",
+                "description": "Devon navigates to the messaging section and selects a training provider to communicate with.",
+                "action": "Click on a training provider's chat thread in the messaging sidebar.",
+                "expected_outcome": "The conversation history with that provider loads in the main panel."
+            },
+            {
+                "step": 2,
+                "title": "Sending Message",
+                "description": "Devon types his question and sends it to the provider.",
+                "action": "Type a message in the input area and click the 'Send' button.",
+                "expected_outcome": "The message is sent instantly and appears in the conversation view for both parties."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data persistence using PostgreSQL with connection via specified environment variables",
+        "user_persona": "System administrator validating database connectivity.",
+        "user_goal": "Ensure the application persists data correctly using PostgreSQL.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "The admin checks that the backend service connects to PostgreSQL using the correct environment variables.",
+                "action": "Inspect backend logs for successful database connection messages.",
+                "expected_outcome": "Logs indicate successful connection to PostgreSQL using DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Data Storage",
+                "description": "The admin verifies that user registration data is stored in the database.",
+                "action": "Query the users table in PostgreSQL.",
+                "expected_outcome": "Newly registered user data is present in the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "Developer testing frontend-backend integration.",
+        "user_goal": "Verify that the frontend correctly fetches dynamic data from backend APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "The developer opens the student dashboard to verify data is fetched dynamically.",
+                "action": "Load the student dashboard page.",
+                "expected_outcome": "Dashboard content such as matched programs and application status is loaded via API calls."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Network Requests",
+                "description": "The developer inspects network traffic to confirm API endpoints are called.",
+                "action": "Open browser DevTools and check Network tab for API requests.",
+                "expected_outcome": "API requests to endpoints like /api/student/matched-programs are observed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API layer that interfaces with PostgreSQL database for data storage and retrieval",
+        "user_persona": "QA engineer validating backend API functionality.",
+        "user_goal": "Ensure backend APIs properly interact with the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing API Endpoint",
+                "description": "The QA engineer sends a request to the profile update API endpoint.",
+                "action": "Send a PUT request to /api/profile/:userId with updated data.",
+                "expected_outcome": "The API responds with a success status and the data is updated in the PostgreSQL database."
+            },
+            {
+                "step": 2,
+                "title": "Validating Database Update",
+                "description": "The QA engineer checks the database to confirm the profile was updated.",
+                "action": "Query the user_profiles table for the updated record.",
+                "expected_outcome": "The record in the database reflects the changes made via the API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Role-based access control to differentiate student and training provider functionalities",
+        "user_persona": "A user attempting to access restricted features.",
+        "user_goal": "Verify that role-based access control prevents unauthorized access.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "A student tries to access the training provider dashboard.",
+                "action": "Navigate to the training provider dashboard URL while logged in as a student.",
+                "expected_outcome": "Access is denied and the student is redirected or shown an error message."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Authorized Features",
+                "description": "The same student accesses features allowed for their role.",
+                "action": "Navigate to the student dashboard.",
+                "expected_outcome": "The student dashboard loads successfully without restrictions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with Azure-themed background and midnight blue UI controls",
+        "user_persona": "End user browsing the portal on different devices.",
+        "user_goal": "Experience a consistent and responsive interface across devices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing on Desktop",
+                "description": "The user opens the portal on a desktop browser and observes the layout.",
+                "action": "Load the portal homepage on a desktop browser.",
+                "expected_outcome": "The page displays with Azure background and Midnight Blue controls, laid out appropriately for desktop."
+            },
+            {
+                "step": 2,
+                "title": "Viewing on Mobile",
+                "description": "The user resizes the browser or uses a mobile device to check responsiveness.",
+                "action": "Resize browser window or open portal on a mobile device.",
+                "expected_outcome": "Layout adjusts fluidly to smaller screens, maintaining readability and usability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script to install frontend and backend dependencies",
+        "user_persona": "Developer setting up the project for the first time.",
+        "user_goal": "Install all project dependencies with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "The developer clones the repository and runs the install script.",
+                "action": "Run 'npm run install:all' in the project root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'dev' script to start frontend and backend concurrently",
+        "user_persona": "Developer beginning work on the project.",
+        "user_goal": "Start both frontend and backend development servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "The developer runs the dev script to launch both frontend and backend.",
+                "action": "Run 'npm run dev' in the project root directory.",
+                "expected_outcome": "Both frontend and backend servers start concurrently, ready for development."
+            }
+        ]
+    }
+]

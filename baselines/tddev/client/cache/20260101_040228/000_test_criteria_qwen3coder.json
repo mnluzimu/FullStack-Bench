@@ -1,0 +1,345 @@
+[
+    {
+        "requirement_tested": "Real-time data display for solar power generation",
+        "user_persona": "A homeowner monitoring their home's solar energy production.",
+        "user_goal": "To see the current solar power generation value updating every 5 seconds.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard",
+                "description": "Alex opens the solar dashboard to check how much power his panels are generating now. He looks for the 'Solar Generation' card.",
+                "action": "Navigate to the dashboard homepage.",
+                "expected_outcome": "A card labeled 'Solar Generation' with an icon and a numeric value field is visible, styled with honeydew background and dark olive green border."
+            },
+            {
+                "step": 2,
+                "title": "Initial Load Fetch",
+                "description": "Upon loading, the system fetches the latest solar generation data from the backend API.",
+                "action": "Component mounts and triggers GET /api/solar/generation.",
+                "expected_outcome": "The numeric value field displays the current solar power generation in kW returned by the API."
+            },
+            {
+                "step": 3,
+                "title": "Live Update Verification",
+                "description": "Alex waits to confirm that the value updates automatically without refreshing the page.",
+                "action": "Wait for 5 seconds.",
+                "expected_outcome": "The numeric value in the 'Solar Generation' card updates with new data fetched from the API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data display for power consumption",
+        "user_persona": "A facility manager checking real-time energy usage of a building.",
+        "user_goal": "To monitor live power consumption levels on the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Consumption Card",
+                "description": "Jordan navigates to the dashboard and looks for the 'Power Consumption' section to track current usage.",
+                "action": "View the dashboard homepage.",
+                "expected_outcome": "A card labeled 'Power Consumption' with an icon and numeric value field appears, styled appropriately."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Initial Value",
+                "description": "On load, the system retrieves the latest consumption data from the backend.",
+                "action": "Component mounts and calls GET /api/consumption.",
+                "expected_outcome": "The numeric field shows the current power consumption in kW retrieved from the API."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Auto-Refresh",
+                "description": "Jordan confirms that the value refreshes every 5 seconds to reflect ongoing changes.",
+                "action": "Wait 5 seconds after initial load.",
+                "expected_outcome": "The displayed value updates automatically with fresh data from the API endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data display for battery percentage",
+        "user_persona": "A renewable energy technician overseeing battery storage systems.",
+        "user_goal": "To observe live updates of battery charge level.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Battery Card",
+                "description": "Taylor logs into the dashboard to monitor the battery status of a client's solar setup.",
+                "action": "Access the main dashboard view.",
+                "expected_outcome": "A 'Battery Level' card with an icon and numeric percentage value is visible, matching design specs."
+            },
+            {
+                "step": 2,
+                "title": "Loading Live Data",
+                "description": "The system loads the most recent battery percentage from the backend upon initial render.",
+                "action": "Component mounts and requests GET /api/battery.",
+                "expected_outcome": "The numeric value field displays the current battery percentage followed by '%' symbol."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Periodic Updates",
+                "description": "Taylor watches to ensure the battery level updates every 5 seconds without manual input.",
+                "action": "Wait for next scheduled update interval (5 seconds).",
+                "expected_outcome": "The battery percentage value refreshes with updated information from the API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Historical data querying capability",
+        "user_persona": "An analyst reviewing past performance of a solar installation.",
+        "user_goal": "To retrieve historical solar data for a specific date range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Historical Query Section",
+                "description": "Riley goes to the dashboard to analyze historical trends and finds the date selection area.",
+                "action": "Scroll down or locate the historical data query section.",
+                "expected_outcome": "Date input fields labeled 'Start Date' and 'End Date' appear with calendar pickers ready for interaction."
+            },
+            {
+                "step": 2,
+                "title": "Setting Date Range",
+                "description": "Riley selects the desired start and end dates using the calendar widgets.",
+                "action": "Click 'Start Date' input, choose May 1st. Click 'End Date' input, choose May 7th.",
+                "expected_outcome": "Both date fields populate with the selected dates in readable format."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Query Request",
+                "description": "After choosing dates, Riley submits the form to get historical data.",
+                "action": "Click the 'Submit' or 'Query' button associated with the form.",
+                "expected_outcome": "A request is made to GET /api/history?start=...&end=..., passing the selected dates as parameters."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chart analysis tools for historical trends",
+        "user_persona": "A project manager evaluating long-term efficiency of installed solar systems.",
+        "user_goal": "To visualize historical solar metrics through interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Default Chart Data",
+                "description": "Casey visits the dashboard to review overall system performance over time and sees default charts.",
+                "action": "Load the dashboard page containing historical charts.",
+                "expected_outcome": "Three line charts—Solar Generation, Power Consumption, and Battery Percentage—are rendered with last 7 days’ data."
+            },
+            {
+                "step": 2,
+                "title": "Updating Charts with New Data",
+                "description": "Casey uses the date range picker to filter data and expects the charts to update accordingly.",
+                "action": "Use the date selector to specify April 1–April 30 and submit the query.",
+                "expected_outcome": "Each chart redraws dynamically to show only data points within the selected date range."
+            },
+            {
+                "step": 3,
+                "title": "Interacting with Chart Tooltips",
+                "description": "While analyzing the graphs, Casey hovers over data points to see precise values.",
+                "action": "Hover mouse cursor over a point on the Solar Generation chart line.",
+                "expected_outcome": "A tooltip appears showing the exact timestamp and value at that point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all data from backend APIs",
+        "user_persona": "A developer verifying integration between frontend and backend services.",
+        "user_goal": "To ensure no hardcoded or mock data exists in the frontend components.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Real-Time Component Sources",
+                "description": "Dev inspects the dashboard to verify all real-time metrics come from actual backend endpoints.",
+                "action": "Inspect browser network tab while visiting the dashboard.",
+                "expected_outcome": "Network activity logs show calls to /api/solar/generation, /api/consumption, and /api/battery returning real data."
+            },
+            {
+                "step": 2,
+                "title": "Validating Historical Data Flow",
+                "description": "Dev checks if historical queries correctly hit backend APIs instead of relying on mocks.",
+                "action": "Select a custom date range and submit the query form.",
+                "expected_outcome": "A call to /api/history is recorded in the network tab with correct query parameters and real response body."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer validating deployment configurations.",
+        "user_goal": "To confirm the backend connects securely to PostgreSQL using predefined credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Environment Setup",
+                "description": "Sam reviews the deployed backend service to make sure it's configured with the right DB settings.",
+                "action": "Check backend environment variable configuration files or secrets management store.",
+                "expected_outcome": "Environment variables match exactly: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, etc."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Connectivity",
+                "description": "Sam runs a diagnostic to test whether the backend can establish a successful connection.",
+                "action": "Execute a health check endpoint or run a connectivity script against the backend.",
+                "expected_outcome": "Response indicates successful connection to PostgreSQL instance with schema initialized properly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard UI with honeydew background color",
+        "user_persona": "A UI designer auditing visual consistency of the application.",
+        "user_goal": "To validate that the entire dashboard has a consistent honeydew background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Overall Layout",
+                "description": "Jamie opens the dashboard to assess the general aesthetic and notices the background tone.",
+                "action": "Visit the dashboard landing page.",
+                "expected_outcome": "Main wrapper and container elements have their background-color set to honeydew (#F0FFF0)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI components styled with dark olive green",
+        "user_persona": "A brand compliance officer ensuring thematic adherence.",
+        "user_goal": "To verify that all UI elements use dark olive green theming consistently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Evaluating Visual Elements",
+                "description": "Morgan browses the dashboard inspecting various components like cards, text labels, and borders.",
+                "action": "Examine multiple UI sections including headers, metric cards, and buttons.",
+                "expected_outcome": "All relevant textual content, borders, and accents utilize dark olive green (#556B2F) styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization charts for solar metrics",
+        "user_persona": "A product owner demonstrating features to stakeholders.",
+        "user_goal": "To showcase responsive and informative data visualization charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Chart Presentation",
+                "description": "Pat presents the dashboard to investors, highlighting the clarity of the solar data visualizations.",
+                "action": "Load the dashboard and focus on the chart sections.",
+                "expected_outcome": "Three distinct charts for Solar Output, Energy Usage, and Battery Status are visible with appropriate icons."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Viewport for Responsiveness Check",
+                "description": "Pat resizes the browser window to demonstrate adaptability across devices.",
+                "action": "Adjust browser width to simulate tablet-sized screen.",
+                "expected_outcome": "Charts resize smoothly and maintain readability without overlapping or clipping issues."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for selecting date ranges for historical data",
+        "user_persona": "A customer support agent helping users navigate historical reports.",
+        "user_goal": "To guide clients through selecting accurate date ranges for report generation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Date Selector",
+                "description": "Ashley directs a client to find the historical reporting section and open the date picker.",
+                "action": "Click on the 'From' date input field.",
+                "expected_outcome": "Calendar modal pops up allowing date selection."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Dates",
+                "description": "The client chooses March 15 as the start date and April 15 as the end date.",
+                "action": "Select March 15 in first calendar, then click 'To' field and select April 15.",
+                "expected_outcome": "Both date fields update with the selected values in proper format."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Selection",
+                "description": "Once both dates are picked, the client applies the filters.",
+                "action": "Click 'Apply' or similar confirmation button.",
+                "expected_outcome": "Form submits and initiates a call to the historical data API with the chosen date parameters."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Live updating of real-time data values",
+        "user_persona": "A remote monitoring operator tracking multiple installations.",
+        "user_goal": "To ensure continuous updates of real-time metrics without page reloads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Initial Values",
+                "description": "Drew logs into the dashboard and notes the current readings before stepping away briefly.",
+                "action": "Observe initial real-time card values upon page load.",
+                "expected_outcome": "Cards display latest values pulled from respective APIs immediately."
+            },
+            {
+                "step": 2,
+                "title": "Waiting for Next Update Cycle",
+                "description": "Without touching anything, Drew returns after a few moments to see if numbers changed.",
+                "action": "Wait approximately 5 seconds.",
+                "expected_outcome": "Values in all real-time cards have refreshed with newer data fetched silently in the background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout suitable for desktop and tablet viewing",
+        "user_persona": "A field technician accessing dashboards remotely on different devices.",
+        "user_goal": "To use the dashboard effectively on both desktop and tablet screens.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Desktop Experience",
+                "description": "Rob accesses the dashboard on his office computer and views the full layout.",
+                "action": "Open dashboard in desktop browser at standard resolution (~1920x1080).",
+                "expected_outcome": "Components are arranged optimally in multi-column layout with ample spacing and readability."
+            },
+            {
+                "step": 2,
+                "title": "Tablet Simulation",
+                "description": "Later, Rob switches to his tablet to continue working and checks responsiveness.",
+                "action": "Resize browser to ~768px width or switch to tablet device mode in dev tools.",
+                "expected_outcome": "Layout adjusts gracefully—columns stack or compress, font sizes remain legible, and touch targets are accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with install:all script for frontend and backend dependencies",
+        "user_persona": "A new team member setting up the development environment locally.",
+        "user_goal": "To quickly install all necessary packages for both frontend and backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "Taylor clones the repository and prepares to install dependencies.",
+                "action": "Clone repo and navigate to root directory.",
+                "expected_outcome": "Root folder contains package.json with defined scripts."
+            },
+            {
+                "step": 2,
+                "title": "Running Unified Install Command",
+                "description": "Taylor executes the single command to install everything needed for local development.",
+                "action": "Run `npm run install:all` in terminal.",
+                "expected_outcome": "Dependencies for both frontend and backend folders are installed sequentially without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with dev script to start frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work on the solar dashboard project.",
+        "user_goal": "To launch both frontend and backend servers with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing Development Session",
+                "description": "Jordan arrives at work and wants to begin coding by starting both environments together.",
+                "action": "Navigate to project root directory.",
+                "expected_outcome": "Project structure includes a root-level package.json with defined dev script."
+            },
+            {
+                "step": 2,
+                "title": "Launching Servers Together",
+                "description": "Jordan runs the convenience script to bring up both frontend and backend simultaneously.",
+                "action": "Execute `npm run dev` in terminal.",
+                "expected_outcome": "Both frontend (port 3000) and backend (port 5000) servers start concurrently, ready for development."
+            }
+        ]
+    }
+]

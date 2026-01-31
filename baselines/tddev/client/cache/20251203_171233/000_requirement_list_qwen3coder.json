@@ -1,0 +1,229 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDataAPI": "Integration with a financial data API such as Alpha Vantage, Yahoo Finance, or IEX Cloud to fetch real-time or delayed stock data.",
+            "autoSuggestionListSchema": "Database table: stocks(suggestion_id: unique ID, ticker_symbol: string, company_name: string)"
+        },
+        "function": "Enable users to search for stocks by entering either a stock code or name.",
+        "static_description": "A centered search bar with a magnifying glass icon on the left. Placeholder text reads 'Enter stock code or name'. Background is white and input field border is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "User clicks inside the search bar to begin typing."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers the search action when pressed while the search bar is focused."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "suggestionDropdownStyle": "Navy-themed dropdown list appearing below the search bar.",
+            "autoSuggestionDataSchema": "Database table: stocks(ticker_symbol: string, company_name: string)"
+        },
+        "function": "Provide dynamic auto-suggestions or dropdown options as the user types in the search bar.",
+        "static_description": "A dropdown menu appears beneath the search bar showing matching stock suggestions in a list format with ticker symbols and company names.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a suggestion populates the search bar with the chosen stock identifier and initiates a lookup."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Highlights individual suggestions in the dropdown list with a light navy background."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyLogoPlaceholder": "/assets/images/company-placeholder.png",
+            "stockInfoDataSchema": "Database table: stock_info(stock_id: unique ID, ticker_symbol: string, company_name: string, current_price: decimal, last_updated: datetime)"
+        },
+        "function": "Display essential stock information including the company name, ticker symbol, and current price after a successful search.",
+        "static_description": "A card-style panel below the search bar displays the company logo (or placeholder), company name in bold, ticker symbol in parentheses, and current price prominently displayed in large font size. All text uses navy color over a white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "financialDataFields": [
+                "Revenue",
+                "Earnings Per Share (EPS)",
+                "Market Capitalization",
+                "Dividend Yield"
+            ],
+            "financialDataSchema": "Database table: financial_data(stock_id: foreign key, revenue: decimal, eps: decimal, market_cap: decimal, dividend_yield: decimal, fiscal_year: integer)"
+        },
+        "function": "Show detailed financial metrics relevant to the selected stock.",
+        "static_description": "Below the basic info card, a section titled 'Financial Data' lists key metrics such as Revenue, Earnings Per Share, Market Cap, and Dividend Yield in a two-column grid layout. Values are shown next to labels in navy-colored text.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with charting library like Chart.js or D3.js for rendering interactive charts.",
+            "priceHistoryAPISchema": "API endpoint returning historical prices: /api/stock/{symbol}/history?range={days}",
+            "marketTrendIcons": [
+                "/assets/icons/up-trend.svg",
+                "/assets/icons/down-trend.svg"
+            ]
+        },
+        "function": "Visualize market trends through interactive price charts and performance graphs.",
+        "static_description": "Two side-by-side panels under the financial data show line charts for price history and performance comparison. Charts use navy lines against a white background with axis labels and legend included.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays tooltip with exact value and timestamp when hovering over data points on the chart."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on legend items toggles visibility of respective datasets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportSectionOptions": [
+                "Basic Info",
+                "Financial Data",
+                "Market Trends",
+                "Company Profile",
+                "Analyst Recommendations"
+            ],
+            "customReportSchema": "Database table: user_reports(report_id: unique ID, user_id: foreign key, selected_sections: array of strings, created_at: datetime)"
+        },
+        "function": "Allow users to select which sections they want included in their custom report.",
+        "static_description": "A checklist-style section titled 'Customize Report Content' shows checkboxes for various report components such as Basic Info, Financial Data, etc., aligned vertically with navy checkmarks and labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling checkboxes selects or deselects report sections for inclusion in the final document."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatIcons": [
+                "/assets/icons/pdf-icon.svg",
+                "/assets/icons/html-icon.svg",
+                "/assets/icons/excel-icon.svg"
+            ],
+            "exportFormatOptions": [
+                "PDF",
+                "HTML",
+                "Excel"
+            ]
+        },
+        "function": "Enable selection among different output formats for generated reports.",
+        "static_description": "Three horizontally-aligned buttons labeled PDF, HTML, and Excel with respective icons above each label. Selected format is indicated with a navy underline or highlight.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a format highlights it visually and stores the choice for report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGenerationEngine": "Backend logic that compiles selected data sections and applies formatting rules to produce the desired output.",
+            "generatedReportSchema": "Database table: generated_reports(report_id: unique ID, user_id: foreign key, content_html: text, file_path_pdf: string, file_path_excel: string, created_at: datetime)"
+        },
+        "function": "Automatically compile and generate a full stock report based on user selections.",
+        "static_description": "After customization, a 'Generate Report' button centered below all settings triggers the creation process. Upon completion, a success message appears along with download links/buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiates the automated report compilation workflow based on previously selected parameters."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summaryTemplate": "Predefined template containing placeholders for key insights and recommendations derived from stock data.",
+            "insightsAPISchema": "Endpoint returning AI-generated insights: /api/report/{report_id}/insights"
+        },
+        "function": "Summarize critical findings and offer actionable investment advice within the report.",
+        "static_description": "At the top of the generated report, a dedicated 'Summary & Insights' section presents bullet-pointed key takeaways and analyst-style recommendations in italicized text.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "downloadButtonIcons": [
+                "/assets/icons/download-pdf.svg",
+                "/assets/icons/download-html.svg",
+                "/assets/icons/download-excel.svg"
+            ],
+            "fileExportService": "Integration with server-side export utilities capable of producing downloadable files in specified formats."
+        },
+        "function": "Offer seamless downloading of completed reports in the user’s preferred format.",
+        "static_description": "Once the report is ready, three distinct download buttons appear—one for each supported format—with corresponding icons and clear labeling ('Download PDF', 'Download HTML', 'Download Excel').",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Downloads the fully formatted report in the selected file type directly to the user's device."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "{background: '#FFFFFF', primary: '#000080'}",
+            "uiComponentStylesheet": "CSS stylesheet defining global styles using the defined palette."
+        },
+        "function": "Maintain consistent styling across the entire application with a clean aesthetic featuring white backgrounds and navy accents.",
+        "static_description": "All pages utilize a solid white background (#FFFFFF) with navigation bars, buttons, headers, and borders styled in navy blue (#000080). Text defaults to black unless otherwise noted.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dateRangePickerLibrary": "Third-party date picker component compatible with React/Vue/Angular.",
+            "dataSourceOptions": [
+                "Real-Time",
+                "Delayed",
+                "Historical Archive"
+            ]
+        },
+        "function": "Provide controls for refining data views based on timeframes and source reliability.",
+        "static_description": "Adjacent to the main search area, two filter controls allow users to specify a custom date range via calendar pickers and choose between real-time, delayed, or archived data sources.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens the date range selector modal or dropdown menu; selecting a data source filters subsequent queries accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketConnection": "WebSocket connection established for pushing live updates without page refresh.",
+            "pollingMechanism": "Fallback mechanism to periodically request updated data every X seconds if WebSocket fails."
+        },
+        "function": "Ensure displayed stock data reflects recent changes either instantly or near-real-time.",
+        "static_description": "Live indicators (e.g., pulsating dot or small badge) beside price figures denote whether the feed is currently active and up-to-date.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "profileImagePlaceholder": "/assets/images/profile-placeholder.png",
+            "companyProfileSchema": "Database table: company_profiles(stock_id: foreign key, sector: string, industry: string, headquarters_location: string, ceo_name: string, employees_count: integer)",
+            "sectorIndustryData": "Predefined taxonomy or sourced dataset mapping sectors to industries."
+        },
+        "function": "Present extended corporate overview beyond just financials.",
+        "static_description": "Under a tab labeled 'Company Profile', structured blocks present sector, industry, location, leadership, and workforce statistics with appropriate icons and spacing.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authSystem": "OAuth or JWT-based authentication system handling login/logout flows.",
+            "userPreferencesSchema": "Database table: user_preferences(user_id: foreign key, saved_stocks: array of strings, default_report_format: enum(PDF, HTML, Excel), notification_settings: JSON object)",
+            "loginPageURL": "/login",
+            "signupPageURL": "/register"
+        },
+        "function": "Support secure access and retention of personal configurations for registered users.",
+        "static_description": "Top-right corner includes a user avatar or generic silhouette icon linking to account settings. Unauthenticated users see 'Login / Sign Up' links instead.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigates authenticated users to their profile dashboard; unauthenticated users redirected to the login page."
+            }
+        ]
+    }
+]

@@ -1,0 +1,345 @@
+[
+    {
+        "requirement_tested": "Frontend application with dynamic data fetching from backend APIs",
+        "user_persona": "A maritime industry professional looking for the latest news and events.",
+        "user_goal": "To browse the latest news, company profiles, and upcoming events on the shipping blog.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Sarah navigates to the homepage and expects to see various sections populated with live data.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Homepage loads successfully showing dynamically fetched news snippets, company cards, event listings, and ad banners."
+            },
+            {
+                "step": 2,
+                "title": "Browsing News Articles",
+                "description": "Sarah sees several news cards and decides to read more about one that catches her interest.",
+                "action": "Click on a news card titled 'Global Shipping Rates Surge'.",
+                "expected_outcome": "Navigates to the full article view displaying complete content fetched from /api/news endpoint."
+            },
+            {
+                "step": 3,
+                "title": "Exploring Company Profiles",
+                "description": "Curious about featured companies, Sarah clicks on a company card to learn more.",
+                "action": "Click on a company card labeled 'Oceanic Logistics Inc.'.",
+                "expected_outcome": "Redirected to the detailed company profile page with information retrieved from /api/companies endpoint."
+            },
+            {
+                "step": 4,
+                "title": "Checking Upcoming Events",
+                "description": "Interested in networking opportunities, Sarah explores the events section.",
+                "action": "Click on an event card titled 'Annual Maritime Conference 2024'.",
+                "expected_outcome": "Directed to the event details page showing date, location, and description pulled from /api/events endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the application for production use.",
+        "user_goal": "Ensure backend services connect securely to the PostgreSQL database as configured.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Services",
+                "description": "Alex starts up the backend service after setting the correct environment variables.",
+                "action": "Run `npm run dev` command ensuring DB_HOST=localhost, DB_PORT=5432, etc., are set.",
+                "expected_outcome": "Backend server initializes and establishes connection to PostgreSQL database without errors."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Data Retrieval",
+                "description": "Alex checks if the backend can retrieve sample records from each major table.",
+                "action": "Send GET requests to /api/news, /api/companies, and /api/events endpoints.",
+                "expected_outcome": "Each request returns valid JSON responses containing data from corresponding PostgreSQL tables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "News section displaying latest shipping industry news articles",
+        "user_persona": "A regular reader interested in staying updated with shipping news.",
+        "user_goal": "Read the most recent news articles published on the platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing News Section",
+                "description": "Jamie clicks the 'News' link in the navigation bar wanting to catch up on recent headlines.",
+                "action": "Click on the 'News' navigation link.",
+                "expected_outcome": "Redirected to the news listing page showing a chronological list of articles fetched from /api/news."
+            },
+            {
+                "step": 2,
+                "title": "Reading Full Article",
+                "description": "Jamie finds an interesting headline and clicks to read the entire piece.",
+                "action": "Click on the article titled 'New Regulations Impact Container Shipping'.",
+                "expected_outcome": "Full article content is displayed including title, summary, body, publication date, and image."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Company profiles section showcasing detailed company information",
+        "user_persona": "A procurement manager searching for potential vendor partners.",
+        "user_goal": "Discover and review detailed information about shipping companies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Companies Section",
+                "description": "Patricia selects 'Companies' from the top menu to explore vendor options.",
+                "action": "Click on the 'Companies' navigation link.",
+                "expected_outcome": "Lands on the company directory page displaying a grid of company cards loaded from /api/companies."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Detailed Profile",
+                "description": "Patricia clicks on a company she’s considering for future contracts.",
+                "action": "Click on 'Marine Transport Solutions' company card.",
+                "expected_outcome": "Displays the company's detailed profile including description, logo, and website link."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Events section listing upcoming and past industry events",
+        "user_persona": "An event coordinator planning attendance at industry gatherings.",
+        "user_goal": "Find upcoming events and check details about past ones.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Events Page",
+                "description": "Raj visits the events section to find conferences happening this year.",
+                "action": "Click on the 'Events' link in the navigation bar.",
+                "expected_outcome": "Redirected to the events calendar page showing sorted upcoming and past events from /api/events."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Event Details",
+                "description": "He notices an upcoming seminar and wants to know more before registering.",
+                "action": "Click on the 'Digital Transformation in Shipping' event card.",
+                "expected_outcome": "Event detail page appears with date, venue, description, and whether it's past or upcoming."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Newsletter subscription functionality with email capture",
+        "user_persona": "A visitor interested in receiving periodic updates from the blog.",
+        "user_goal": "Subscribe to the newsletter to stay informed about new posts and events.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Email Address",
+                "description": "Morgan scrolls down to the bottom of the homepage and enters their email to subscribe.",
+                "action": "Type 'morgan@example.com' into the newsletter subscription input field.",
+                "expected_outcome": "Email address is accepted in the input field, enabling the Subscribe button."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Subscription Request",
+                "description": "Morgan clicks the Subscribe button hoping to get weekly updates.",
+                "action": "Click the 'Subscribe' button next to the email input.",
+                "expected_outcome": "Email is submitted via POST to /api/newsletter/subscribe, and a success message appears."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend administration panel for managing ad spaces",
+        "user_persona": "A marketing administrator responsible for placing ads on the site.",
+        "user_goal": "Upload and manage advertising placements through the admin interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Admin Panel",
+                "description": "Taylor accesses the admin login page to begin managing ads.",
+                "action": "Navigate to /admin and enter valid admin credentials.",
+                "expected_outcome": "Successfully logged in and redirected to the admin dashboard with multiple tabs available."
+            },
+            {
+                "step": 2,
+                "title": "Managing Ad Placements",
+                "description": "Taylor switches to the Ads tab to add a new promotional banner.",
+                "action": "Click on the 'Ads' tab and then click 'Create New Ad Space'.",
+                "expected_outcome": "Modal form opens with fields for title, image URL, target URL, and placement area."
+            },
+            {
+                "step": 3,
+                "title": "Saving New Advertisement",
+                "description": "After filling out the form, Taylor saves the new advertisement.",
+                "action": "Fill in the ad details and click 'Save'.",
+                "expected_outcome": "New ad is created via POST to /api/admin/ads and now appears in the ad listings table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive website layout with old lace background color",
+        "user_persona": "A mobile user reading industry news during commute.",
+        "user_goal": "Browse the website smoothly across different devices with consistent visual theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile Device",
+                "description": "Jordan opens the website on their smartphone while commuting.",
+                "action": "Open website URL on mobile browser.",
+                "expected_outcome": "Site renders responsively adjusting layout for smaller screen, maintaining #FDF5E6 background."
+            },
+            {
+                "step": 2,
+                "title": "Scrolling Through Content",
+                "description": "Jordan scrolls through various sections noticing uniformity in design.",
+                "action": "Scroll vertically through the homepage content.",
+                "expected_outcome": "All sections maintain proper spacing and alignment with old lace background consistently applied."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI components styled with rosy brown color scheme",
+        "user_persona": "A UI reviewer checking brand consistency across the site.",
+        "user_goal": "Verify that all interactive elements follow the designated color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Component Styling",
+                "description": "Casey reviews the styling of key UI components like buttons and headers.",
+                "action": "Examine CSS styles or inspect element colors using DevTools.",
+                "expected_outcome": "Buttons, borders, and text elements utilize #BC8F8F (rosy brown) as defined in style guide."
+            },
+            {
+                "step": 2,
+                "title": "Testing Interactive States",
+                "description": "Casey verifies hover and focus states match the intended design.",
+                "action": "Hover over buttons and links, observe color changes.",
+                "expected_outcome": "Interactive states reflect appropriate transitions within the rosy brown theme."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting news articles, company profiles, events, and advertisements",
+        "user_persona": "A database administrator validating initial setup.",
+        "user_goal": "Confirm that all required tables exist with correct schemas.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Database",
+                "description": "Dana connects directly to the PostgreSQL instance to verify table structures.",
+                "action": "Use psql or another tool to connect to myapp database.",
+                "expected_outcome": "Connection established using DB_USERNAME=myappuser and DB_PASSWORD=myapppassword."
+            },
+            {
+                "step": 2,
+                "title": "Listing Tables",
+                "description": "Dana queries for existing tables to ensure they were created properly.",
+                "action": "Execute '\\dt' command or equivalent SQL query.",
+                "expected_outcome": "Returns list of tables including news_articles, companies, events, advertisements, etc."
+            },
+            {
+                "step": 3,
+                "title": "Validating Table Schemas",
+                "description": "Dana inspects individual table schemas for correctness.",
+                "action": "Run '\\d+ news_articles' and similar commands for other tables.",
+                "expected_outcome": "Each table shows correct column names, types, constraints matching specification."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User browsing capabilities for all content sections",
+        "user_persona": "A casual visitor exploring the breadth of content offered.",
+        "user_goal": "Effortlessly navigate between News, Companies, and Events sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Bar",
+                "description": "Cameron uses the top navigation to switch between content categories.",
+                "action": "Click on 'News', then 'Companies', then 'Events' links sequentially.",
+                "expected_outcome": "Each click seamlessly transitions to respective section pages loading dynamic content."
+            },
+            {
+                "step": 2,
+                "title": "Returning to Homepage",
+                "description": "After exploring, Cameron wants to return to the main page.",
+                "action": "Click on the website logo or 'Home' link.",
+                "expected_outcome": "Redirected back to homepage where all major sections remain accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Administrative authentication system for backend management access",
+        "user_persona": "System administrator securing backend access.",
+        "user_goal": "Prevent unauthorized access to sensitive admin functionalities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "Someone tries to reach the admin panel without logging in.",
+                "action": "Directly navigate to /admin/dashboard without authentication.",
+                "expected_outcome": "Redirected to /admin login page due to missing or invalid authorization token."
+            },
+            {
+                "step": 2,
+                "title": "Successful Login with Valid Credentials",
+                "description": "Admin logs in with proper username and password.",
+                "action": "Enter admin credentials and submit login form.",
+                "expected_outcome": "Receives JWT token upon successful POST to /api/admin/login and gains access to dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Content management system for creating and editing news articles",
+        "user_persona": "Editorial staff publishing breaking news stories.",
+        "user_goal": "Publish timely news articles through the CMS interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Article",
+                "description": "Wesley logs into the admin panel to post a breaking story.",
+                "action": "Log into admin panel, go to News tab, click 'Create New Article'.",
+                "expected_outcome": "Blank article creation form modal opens ready for input."
+            },
+            {
+                "step": 2,
+                "title": "Saving Published Article",
+                "description": "Wesley fills in article details and publishes immediately.",
+                "action": "Complete form fields and click 'Save'.",
+                "expected_outcome": "Article is posted via POST to /api/admin/news and instantly visible on frontend news feed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Company profile creation and editing interface in admin panel",
+        "user_persona": "Business development executive updating partner listings.",
+        "user_goal": "Maintain accurate and current company directory listings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding New Company Entry",
+                "description": "Ashley adds a newly partnered logistics firm to the company directory.",
+                "action": "In admin panel, navigate to Companies tab and click 'Create New Company'.",
+                "expected_outcome": "Empty company form modal appears prompting for name, description, logo, and website."
+            },
+            {
+                "step": 2,
+                "title": "Editing Existing Company Info",
+                "description": "Later, Ashley realizes a company's website has changed and needs updating.",
+                "action": "Locate the company in the table, click 'Edit', modify website field, click 'Save'.",
+                "expected_outcome": "Changes are saved via PUT to /api/admin/companies/:id and reflected immediately on frontend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Event management system with date and location details",
+        "user_persona": "Event planner organizing industry meetups.",
+        "user_goal": "Schedule and promote upcoming industry events accurately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Scheduling Future Event",
+                "description": "Tristan schedules a new maritime conference for later this year.",
+                "action": "Go to Events tab in admin panel, click 'Create New Event', fill in details.",
+                "expected_outcome": "New event form accepts title, date, location, and marks it as future event automatically."
+            },
+            {
+                "step": 2,
+                "title": "Updating Event Information",
+                "description": "Closer to the date, Tristan updates the event location based on venue change.",
+                "action": "Find the event in the list, click 'Edit', update location, save changes.",
+                "expected_outcome": "PUT request updates event details via /api/admin/events/:id and reflects on public event page."
+            }
+        ]
+    }
+]

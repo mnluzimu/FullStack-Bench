@@ -1,0 +1,17 @@
+[
+    "A student panel with authentication and authorization",
+    "A company panel with authentication and authorization",
+    "Internship browsing and search functionality for students",
+    "Internship application submission for students",
+    "Internship posting management for companies",
+    "User profiles for both students and companies",
+    "Responsive design optimized for speed and user experience",
+    "Navigation menu with links to key sections",
+    "Backend API to serve dynamic data to the frontend",
+    "Frontend fetching all data dynamically from backend APIs",
+    "PostgreSQL database connection using specified environment variables",
+    "Repository package.json configured with install:all and dev scripts",
+    "Mint cream background color applied throughout the site",
+    "Teal color scheme for all UI components",
+    "Role-based access control for student and company panels"
+]

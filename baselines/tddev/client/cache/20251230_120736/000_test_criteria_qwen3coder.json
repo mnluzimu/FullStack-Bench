@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "A frontend dashboard interface that displays financial data from multiple companies",
+        "user_persona": "A financial analyst named Sarah who needs to monitor the performance of several client companies.",
+        "user_goal": "Sarah wants to quickly navigate to a specific company's financial details from the main dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Dashboard",
+                "description": "Sarah logs in and lands on the main dashboard which shows an overview of all her client companies with key metrics.",
+                "action": "Load the dashboard page.",
+                "expected_outcome": "The dashboard loads successfully, showing company cards with names, logos, and key financial indicators like revenue and profit margin against a mint cream background with teal accents."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Company Details",
+                "description": "Sarah identifies the card for 'TechCorp' and clicks on it to view detailed financial data.",
+                "action": "Click on the 'TechCorp' company card.",
+                "expected_outcome": "The page navigates to TechCorp’s detailed financial page, displaying its specific financial records and charts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Alex responsible for setting up the backend infrastructure.",
+        "user_goal": "Alex wants to ensure the backend service connects correctly to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Alex starts the backend service after configuring the required environment variables for PostgreSQL connection.",
+                "action": "Run the backend server with environment variables set.",
+                "expected_outcome": "The backend initializes successfully and establishes a connection pool to the PostgreSQL database using DB_HOST=localhost, DB_PORT=5432, etc."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Database Schema",
+                "description": "Alex checks if the necessary tables are created and accessible via the connected database.",
+                "action": "Query the database for the existence of `companies` and `financial_data` tables.",
+                "expected_outcome": "Both `companies` and `financial_data` tables exist with correct schema definitions including foreign key relationships."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system to manage access to financial data",
+        "user_persona": "A new user, Jordan, trying to access the dashboard for the first time.",
+        "user_goal": "Jordan needs to log into the system to gain access to the financial dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Protected Route",
+                "description": "Jordan tries to go directly to the dashboard URL but is redirected to the login page since he's not authenticated.",
+                "action": "Navigate to the dashboard route without logging in.",
+                "expected_outcome": "Redirected to the login form with fields for username and password."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Jordan enters his valid credentials and clicks the login button.",
+                "action": "Enter username and password, then click the 'Login' button.",
+                "expected_outcome": "Successfully authenticated and redirected to the dashboard with a welcome message displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Company management module allowing users to add, edit, and remove company profiles",
+        "user_persona": "An admin user, Taylor, tasked with maintaining company information in the system.",
+        "user_goal": "Taylor wants to add a new company profile to the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Add Company Form",
+                "description": "Taylor navigates to the company management section and clicks the 'Add Company' button.",
+                "action": "Click the 'Add Company' button.",
+                "expected_outcome": "A modal form appears with fields for name, industry, and contact email."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Company",
+                "description": "Taylor fills out the form with 'InnovateX', 'Technology', and 'contact@innovatex.com', then clicks save.",
+                "action": "Fill in company details and click 'Save'.",
+                "expected_outcome": "The new company 'InnovateX' is added to the company list, and the modal closes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Financial data ingestion capability to collect and store financial information per company",
+        "user_persona": "A finance manager, Morgan, who needs to input quarterly financial results for a company.",
+        "user_goal": "Morgan wants to manually enter financial data for Q1 results of 'GlobalTrade Inc.'",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Data Entry Section",
+                "description": "Morgan navigates to GlobalTrade Inc.'s detail page and selects the 'Upload Financial Data' tab.",
+                "action": "Go to the company's detail page and click on the 'Upload Financial Data' tab.",
+                "expected_outcome": "Manual entry form with fields for date, revenue, expenses, and profit becomes visible."
+            },
+            {
+                "step": 2,
+                "title": "Entering Financial Data",
+                "description": "Morgan inputs the Q1 financials: Date = 2023-03-31, Revenue = 500000, Expenses = 300000, Profit = 200000.",
+                "action": "Fill in the manual entry form fields and click 'Submit Manual Entry'.",
+                "expected_outcome": "The financial record is saved in the database and reflected in the company's financial view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization components for displaying financial metrics and trends",
+        "user_persona": "A business executive, Riley, reviewing quarterly performance visually.",
+        "user_goal": "Riley wants to analyze revenue trends for 'EcoSolutions Ltd.' using interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Financial Charts",
+                "description": "Riley visits EcoSolutions Ltd.'s financial page and sees various charts showing revenue trends over time.",
+                "action": "Navigate to the company's financial detail page.",
+                "expected_outcome": "Charts load dynamically showing revenue trends, expense breakdowns, and profitability ratios."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Chart Elements",
+                "description": "Riley hovers over a point on the revenue line chart to get exact figures.",
+                "action": "Hover over a data point on the chart.",
+                "expected_outcome": "A tooltip appears showing the exact date and revenue value for that point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Consolidated reporting feature that aggregates financial data across all companies",
+        "user_persona": "A CFO, Casey, preparing a board report summarizing overall company performance.",
+        "user_goal": "Casey wants to generate a consolidated financial report for the last fiscal year.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Consolidated Reports",
+                "description": "Casey clicks on the 'View Consolidated Report' link from the dashboard.",
+                "action": "Click on 'View Consolidated Report'.",
+                "expected_outcome": "The consolidated report view loads, showing summary tables and visualizations of total revenues, profits, and expenses."
+            },
+            {
+                "step": 2,
+                "title": "Setting Report Period",
+                "description": "Casey sets the date range for the report to cover the entire previous fiscal year.",
+                "action": "Select start and end dates for the fiscal year and click 'Refresh Report'.",
+                "expected_outcome": "The report updates to show aggregated data for the selected period with stacked bar graphs comparing contributions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Cross-company comparison tools enabling users to compare financial performance",
+        "user_persona": "A venture capitalist, Avery, evaluating investment opportunities among several startups.",
+        "user_goal": "Avery wants to compare revenue and profit margins between three potential investments.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Comparison Tool",
+                "description": "Avery clicks on the 'Compare Companies' option from the dashboard menu.",
+                "action": "Click on 'Compare Companies'.",
+                "expected_outcome": "The comparison tool opens with options to select companies and metrics."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Companies and Metrics",
+                "description": "Avery chooses 'StartupA', 'StartupB', and 'StartupC', then selects 'Revenue' and 'Profit' for comparison.",
+                "action": "Select companies and metrics from dropdowns.",
+                "expected_outcome": "A responsive table displays side-by-side values for selected metrics across the chosen companies."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive browsing interface for viewing individual company financial details",
+        "user_persona": "An auditor, Logan, auditing financial records of a particular company.",
+        "user_goal": "Logan needs to review detailed financial transactions for 'BuildIt Corp.' within a specific date range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Detailed Financial View",
+                "description": "Logan clicks on BuildIt Corp.'s card from the dashboard to see detailed financial data.",
+                "action": "Click on BuildIt Corp. company card.",
+                "expected_outcome": "Navigated to the company's detailed financial page showing transaction tables and trend visualizations."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Date Range",
+                "description": "Logan adjusts the date filter to focus only on Q2 2023 financials.",
+                "action": "Change the date filter to Q2 2023 and apply changes.",
+                "expected_outcome": "Financial data table reloads to show only entries from April 1 to June 30, 2023."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data fetching from backend APIs with no hardcoded or mock data",
+        "user_persona": "A portfolio manager, Skylar, monitoring live market impacts on holdings.",
+        "user_goal": "Skylar wants assurance that the dashboard reflects the most current financial data without needing to refresh.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Live Updates",
+                "description": "Skylar keeps the dashboard open while waiting for end-of-day financial updates from multiple companies.",
+                "action": "Leave the dashboard open and observe periodic updates.",
+                "expected_outcome": "Dashboard automatically refreshes every 60 seconds, updating displayed financial data with latest backend values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Styling with mint cream background and teal-colored UI components throughout the application",
+        "user_persona": "A UX reviewer, Jamie, checking brand consistency across the platform.",
+        "user_goal": "Jamie wants to verify that all UI components follow the specified color theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Dashboard Theme",
+                "description": "Jamie opens the dashboard and inspects the overall color scheme applied to backgrounds and interactive elements.",
+                "action": "Load the dashboard and visually inspect UI components.",
+                "expected_outcome": "Background color is consistently mint cream (#F5FFFA), and primary interactive elements like buttons and headers are styled in teal (#008080)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring dashboard usability across different device sizes",
+        "user_persona": "A remote worker, Quinn, accessing the dashboard from a tablet during travel.",
+        "user_goal": "Quinn needs to use the dashboard effectively on a smaller touchscreen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard on Tablet",
+                "description": "Quinn opens the dashboard URL on a tablet browser.",
+                "action": "Open dashboard in tablet browser.",
+                "expected_outcome": "Layout adapts to tablet screen size, rearranging components and adjusting font sizes for readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Export functionality for financial reports in common formats (PDF, CSV)",
+        "user_persona": "A compliance officer, Dakota, needing to archive quarterly reports.",
+        "user_goal": "Dakota wants to download the consolidated report as a PDF for record keeping.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Consolidated Report",
+                "description": "Dakota generates the consolidated report for Q1 and views it on screen.",
+                "action": "Navigate to consolidated report view and generate report.",
+                "expected_outcome": "Report displays correctly with summary tables and visualizations."
+            },
+            {
+                "step": 2,
+                "title": "Exporting to PDF",
+                "description": "Dakota clicks the 'Export as PDF' button to save a copy of the report.",
+                "action": "Click 'Export as PDF' button.",
+                "expected_outcome": "A formatted PDF version of the report downloads automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search and filtering capabilities for navigating financial data efficiently",
+        "user_persona": "A researcher, Charlie, looking for specific financial entries among thousands.",
+        "user_goal": "Charlie wants to find all transactions related to 'Marketing' expenses in 2023.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Charlie types 'Marketing' into the search bar at the top of the financial data listing.",
+                "action": "Type 'Marketing' into the search bar.",
+                "expected_outcome": "Results filter in real-time to show only entries matching the keyword 'Marketing'."
+            },
+            {
+                "step": 2,
+                "title": "Applying Additional Filters",
+                "description": "Charlie applies a date range filter to narrow results to the year 2023.",
+                "action": "Set date range filter from Jan 1 to Dec 31, 2023, and apply.",
+                "expected_outcome": "Dataset further narrows down to show only Marketing-related entries within 2023."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json to support concurrent frontend and backend development startup",
+        "user_persona": "A new developer, Morgan, joining the project and setting up the local environment.",
+        "user_goal": "Morgan wants to easily install dependencies and start both frontend and backend services simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing All Dependencies",
+                "description": "Morgan clones the repository and runs the command to install all frontend and backend dependencies.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Dependencies for both client and server are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "After installation, Morgan starts both frontend and backend development servers with one command.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Both frontend and backend servers start concurrently, ready for development work."
+            }
+        ]
+    }
+]

@@ -1,0 +1,233 @@
+[
+    {
+        "requirement_tested": "Stock search functionality by code or name",
+        "user_persona": "A new investor looking to quickly find information about a specific stock.",
+        "user_goal": "To successfully search for a stock using its name or ticker symbol.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Search Query",
+                "description": "Sarah visits the homepage and sees the search bar. She wants to look up Apple Inc. and types 'Apple' into the input field.",
+                "action": "Type 'Apple' into the search input field.",
+                "expected_outcome": "The text appears in the navy-colored input box with a white background."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Request",
+                "description": "After typing, Sarah presses Enter to initiate her search.",
+                "action": "Press Enter key.",
+                "expected_outcome": "The system processes the query and displays a list of matching stocks including 'AAPL'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Stock information summarization feature",
+        "user_persona": "An active trader who needs quick insights before making decisions.",
+        "user_goal": "To view key summarized data for a selected stock without delay.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Stock from Results",
+                "description": "Mark identifies AAPL from the search results and clicks on it to get an overview.",
+                "action": "Click on the 'AAPL' result.",
+                "expected_outcome": "A summary card appears showing Apple's name, symbol, sector, latest price, change percentage, and market cap."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Customized stock report generation capability",
+        "user_persona": "A financial analyst preparing materials for a client presentation.",
+        "user_goal": "To generate a custom stock report tailored to his client's interests.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Report Generation",
+                "description": "After reviewing Apple’s summary, Daniel decides he wants a detailed report and clicks the Generate Report button.",
+                "action": "Click on the 'Generate Report' button.",
+                "expected_outcome": "A loading spinner is shown while the system compiles the report based on selected options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Report format selection options",
+        "user_persona": "A researcher who prefers working offline in Word documents.",
+        "user_goal": "To choose the desired output format for the generated report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Format Dropdown",
+                "description": "Lisa notices the 'Select Format' dropdown and clicks it to see available export types.",
+                "action": "Click the 'Select Format' dropdown.",
+                "expected_outcome": "The dropdown menu expands showing options: PDF, Word Document, and HTML."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Preferred Format",
+                "description": "She selects Word Document since she plans to edit the report later.",
+                "action": "Click on 'Word Document (.docx)' option.",
+                "expected_outcome": "The dropdown closes and 'Word Document' is now selected as the report format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Content selection controls for reports",
+        "user_persona": "A student writing a paper focusing only on financial data.",
+        "user_goal": "To include only relevant sections in the downloaded report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Customizing Report Sections",
+                "description": "Jamie checks the 'Financial Data' checkbox because that's the focus of her assignment.",
+                "action": "Click the 'Financial Data' checkbox.",
+                "expected_outcome": "Only the Financial Data section will be included in the final report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Basic stock information display",
+        "user_persona": "A curious retail investor wanting to know more about a company.",
+        "user_goal": "To review fundamental identifying details of a stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Basic Info Section",
+                "description": "Robert scrolls down to read general facts about Apple after selecting the stock.",
+                "action": "Scroll to the 'Basic Information' section.",
+                "expected_outcome": "Displays company name, ticker symbol, sector, industry, and website URL in a clean table layout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Market trends visualization",
+        "user_persona": "A day trader analyzing short-term performance patterns.",
+        "user_goal": "To understand how a stock has performed historically through visual cues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting with Market Trend Chart",
+                "description": "Ethan moves his cursor over points on the trend chart to inspect specific values.",
+                "action": "Hover over data points on the 'Market Trends' chart.",
+                "expected_outcome": "Tooltip displays exact date and closing price at hovered point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Financial data integration and display",
+        "user_persona": "An equity analyst assessing corporate profitability.",
+        "user_goal": "To evaluate quarterly earnings and other fiscal indicators.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Financial Statements",
+                "description": "Chloe examines Apple's quarterly financial figures in tabular form.",
+                "action": "Navigate to the 'Financial Data' tab.",
+                "expected_outcome": "Table shows quarter-end dates with corresponding revenue, net income, EPS, and dividend yield."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "White background design",
+        "user_persona": "A visually impaired user requiring high contrast interfaces.",
+        "user_goal": "To comfortably navigate the site with minimal eye strain.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Site Background",
+                "description": "Thomas notes that every page maintains a solid white background for readability.",
+                "action": "Load any page on the website.",
+                "expected_outcome": "All pages render with a consistent white background across all elements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navy component color scheme",
+        "user_persona": "A brand-conscious designer checking consistency.",
+        "user_goal": "To verify that all interactive components match the specified navy color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Component Colors",
+                "description": "Zoe confirms that buttons, icons, and links use navy blue as the accent color.",
+                "action": "Look at various UI components like buttons and icons.",
+                "expected_outcome": "All interactive components are rendered in navy (#001F54) against the white background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User input interface for stock codes/names",
+        "user_persona": "A beginner investor unsure of proper stock symbols.",
+        "user_goal": "To easily locate a stock even if they don’t remember the exact code.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Input Field for Lookup",
+                "description": "Alex types 'Microsoft' instead of MSFT into the search bar hoping for autocomplete help.",
+                "action": "Enter 'Microsoft' into the search field.",
+                "expected_outcome": "Input field accepts the full name and prepares for submission or auto-suggestion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Report customization parameters",
+        "user_persona": "A portfolio manager comparing stocks within a set timeframe.",
+        "user_goal": "To adjust reporting parameters for focused comparative analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Expanding Parameter Controls",
+                "description": "Maya clicks on the 'Time Range' panel to limit the report scope to YTD data.",
+                "action": "Click the 'Time Range' collapsible header.",
+                "expected_outcome": "Panel expands to show radio buttons for different time ranges."
+            },
+            {
+                "step": 2,
+                "title": "Setting Time Range Option",
+                "description": "She selects 'YTD' to compare year-to-date performance metrics.",
+                "action": "Click the 'YTD' radio button.",
+                "expected_outcome": "Selected time range updates dynamically in preview settings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Automated report generation engine",
+        "user_persona": "A busy executive needing fast access to investment summaries.",
+        "user_goal": "To obtain a ready-to-use report without manual formatting delays.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Automated Workflow",
+                "description": "Carlos hits the 'Generate Report' button to compile his selections instantly.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "System begins automatic compilation and presents a loading indicator during processing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data aggregation from stock market sources",
+        "user_persona": "A data scientist validating source reliability.",
+        "user_goal": "To ensure that all displayed numbers come from credible external sources.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Confirming Real-Time Data Source",
+                "description": "Priya checks whether the stock prices update in real-time via trusted APIs.",
+                "action": "Observe changing numerical values in summary cards over time.",
+                "expected_outcome": "Numbers reflect live updates pulled from integrated third-party financial data providers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Export or download functionality for generated reports",
+        "user_persona": "A professor sharing educational material with students.",
+        "user_goal": "To distribute professionally formatted reports among colleagues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Downloading Final Report",
+                "description": "Dr. Lee clicks the PDF download icon once the report finishes generating.",
+                "action": "Click the PDF download icon beneath the report preview.",
+                "expected_outcome": "Browser prompts to save the fully compiled PDF version of the report locally."
+            }
+        ]
+    }
+]

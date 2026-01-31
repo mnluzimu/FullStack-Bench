@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "Display an interactive map interface",
+        "user_persona": "A local researcher exploring neighborhood trends.",
+        "user_goal": "To navigate the map smoothly using zoom and pan controls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Map Load",
+                "description": "Sarah opens the app and sees a full-screen map centered on her city. She notices the zoom controls in the top-left corner.",
+                "action": "Observe the map loading with default view and visible zoom controls.",
+                "expected_outcome": "The map loads fully with zoom buttons visible, featuring forest green icons on an ivory background."
+            },
+            {
+                "step": 2,
+                "title": "Zooming In",
+                "description": "Curious about a specific district, Sarah clicks the '+' button to get a closer look at neighborhood boundaries.",
+                "action": "Click the '+' zoom button.",
+                "expected_outcome": "The map zooms in smoothly without page reload, showing more detailed boundaries."
+            },
+            {
+                "step": 3,
+                "title": "Panning Across the Map",
+                "description": "Sarah wants to see adjacent areas, so she clicks and drags the map to move around.",
+                "action": "Click and drag the map canvas.",
+                "expected_outcome": "The map pans smoothly in the direction of the drag, revealing surrounding regions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to select and compare multiple neighborhoods",
+        "user_persona": "A community planner evaluating development needs.",
+        "user_goal": "To select two neighborhoods for comparative analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "First Neighborhood Selection",
+                "description": "Maria identifies a neighborhood of interest on the map and clicks it to add to her comparison set.",
+                "action": "Click on a neighborhood polygon.",
+                "expected_outcome": "The neighborhood becomes visually highlighted and appears in the comparison panel below."
+            },
+            {
+                "step": 2,
+                "title": "Adding Another Area",
+                "description": "Maria selects a second nearby neighborhood by clicking it, intending to compare both areas.",
+                "action": "Click on another neighborhood polygon.",
+                "expected_outcome": "Both neighborhoods are now highlighted, and their basic stats show side-by-side in the comparison panel."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show demographic data visualization",
+        "user_persona": "An urban sociologist studying population dynamics.",
+        "user_goal": "To analyze age distribution differences between selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Demographics Section",
+                "description": "After selecting two neighborhoods, Dr. Lee looks at the demographic charts to understand population makeup.",
+                "action": "Navigate to the demographic visualization section.",
+                "expected_outcome": "Charts like Age Distribution Pie Chart appear in collapsible cards with forest green headers."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Chart Data",
+                "description": "Dr. Lee hovers over segments of the pie chart to see exact percentages for each age group.",
+                "action": "Hover over chart elements.",
+                "expected_outcome": "Tooltips display precise percentage values for hovered data points."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show economic data visualization",
+        "user_persona": "A policy analyst reviewing regional economic health.",
+        "user_goal": "To compare employment rates across selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Economic Charts",
+                "description": "James navigates to the economic data section to examine job market conditions.",
+                "action": "Open the economic visualization panel.",
+                "expected_outcome": "Employment Rate Line Chart and other relevant graphs load within expandable panels."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Time Range",
+                "description": "Wanting recent data, James clicks on the year axis label to focus on the last five years.",
+                "action": "Click on axis labels.",
+                "expected_outcome": "Chart updates to show only data from the selected time range."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show crime data visualization",
+        "user_persona": "A safety advocate researching local crime patterns.",
+        "user_goal": "To identify which types of crimes are most prevalent in selected areas.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Crime Charts",
+                "description": "Patricia goes to the crime data section to understand safety concerns in two neighborhoods.",
+                "action": "Access the crime visualization area.",
+                "expected_outcome": "Incident Type Bar Charts and Heatmaps load in collapsible containers themed with forest green."
+            },
+            {
+                "step": 2,
+                "title": "Focusing on Specific Crimes",
+                "description": "She toggles off less relevant categories by clicking on legend items to better see violent crimes.",
+                "action": "Click on legend items.",
+                "expected_outcome": "Selected crime categories disappear from the chart, simplifying the visualization."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide data dashboard with interactive charts",
+        "user_persona": "A data journalist compiling neighborhood insights.",
+        "user_goal": "To organize all charts into a single dashboard view for comprehensive analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Dashboard Initialization",
+                "description": "Lena opens the dashboard tab to see all her charts together in one place.",
+                "action": "Navigate to the main dashboard view.",
+                "expected_outcome": "A responsive grid layout displays all active charts in individual tiles with forest green borders."
+            },
+            {
+                "step": 2,
+                "title": "Rearanging Widgets",
+                "description": "Wanting easier comparison, Lena drags the demographic chart next to the economic one.",
+                "action": "Drag and drop chart widgets.",
+                "expected_outcome": "Widgets snap into new positions, maintaining visual organization."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable customizable dashboard layouts",
+        "user_persona": "A frequent user who prefers personalized workspace setups.",
+        "user_goal": "To save a preferred layout for future visits.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Widgets",
+                "description": "Tom adjusts the size of his favorite chart to make it more prominent.",
+                "action": "Resize a chart widget by dragging its edges.",
+                "expected_outcome": "Widget resizes smoothly, fitting the new dimensions within the grid."
+            },
+            {
+                "step": 2,
+                "title": "Saving Layout Preferences",
+                "description": "Satisfied with the arrangement, Tom saves the layout for later use.",
+                "action": "Click the 'Save Layout' option in the customization toolbar.",
+                "expected_outcome": "Current layout configuration is stored and applied automatically on next visit."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include neighborhood search functionality",
+        "user_persona": "A busy parent looking up school districts quickly.",
+        "user_goal": "To find a specific neighborhood using the search bar.",
+        "narrowative_steps": [
+            {
+                "step": 1,
+                "title": "Using Auto-complete Search",
+                "description": "Lisa starts typing her target neighborhood name into the search bar and watches suggestions appear.",
+                "action": "Type into the search input field.",
+                "expected_outcome": "A dropdown list of matching neighborhoods appears instantly below the search bar."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Match",
+                "description": "Seeing the correct result, Lisa clicks it to center the map on that area.",
+                "action": "Click on a suggested neighborhood.",
+                "expected_outcome": "Map centers on the selected neighborhood and highlights its boundaries."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support data filtering by area boundaries",
+        "user_persona": "A city official analyzing policy impact zones.",
+        "user_goal": "To isolate data for a custom-defined region.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Activating Drawing Tool",
+                "description": "David activates the drawing tool to outline a custom area affected by recent zoning changes.",
+                "action": "Click the drawing tool activation button.",
+                "expected_outcome": "Drawing cursor is enabled, ready to create a polygon on the map."
+            },
+            {
+                "step": 2,
+                "title": "Defining Custom Boundary",
+                "description": "He clicks several points on the map to trace the boundary and double-clicks to finalize it.",
+                "action": "Click to place vertices, then double-click to complete the polygon.",
+                "expected_outcome": "Polygon is created, and data updates automatically to reflect only the defined area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display data comparison side-by-side",
+        "user_persona": "A real estate agent helping clients choose locations.",
+        "user_goal": "To easily compare key metrics of two neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Comparison View",
+                "description": "Rey selects two neighborhoods and switches to side-by-side view for clearer comparison.",
+                "action": "Activate side-by-side comparison mode.",
+                "expected_outcome": "Screen splits into two panes, each showing metrics and charts for one neighborhood."
+            },
+            {
+                "step": 2,
+                "title": "Synchronized Scrolling",
+                "description": "While reading through details, Rey scrolls down one pane and notices the other scrolls too.",
+                "action": "Scroll in one comparison pane.",
+                "expected_outcome": "All panes scroll simultaneously, keeping related sections aligned."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide chart customization options",
+        "user_persona": "A presentation specialist preparing reports.",
+        "user_goal": "To style charts professionally before including them in presentations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Chart Settings",
+                "description": "Alex clicks the settings icon on a chart to modify its appearance for client review.",
+                "action": "Click the gear/settings icon on a chart header.",
+                "expected_outcome": "A modal window opens with form fields for adjusting chart properties."
+            },
+            {
+                "step": 2,
+                "title": "Applying Style Changes",
+                "description": "After choosing a minimalist theme and updating labels, Alex submits the changes.",
+                "action": "Fill out customization form and submit.",
+                "expected_outcome": "Chart instantly reflects the new styling choices."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable data export functionality",
+        "user_persona": "A researcher needing offline data access.",
+        "user_goal": "To download current chart data for further analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Export Format",
+                "description": "Jamie wants to share findings, so she clicks the export button and chooses CSV format.",
+                "action": "Click the export button and select CSV from dropdown.",
+                "expected_outcome": "Dropdown menu shows file format options including CSV, PDF, and PNG."
+            },
+            {
+                "step": 2,
+                "title": "Downloading File",
+                "description": "With CSV selected, Jamie confirms the download to save the data locally.",
+                "action": "Confirm export selection.",
+                "expected_outcome": "File downloads automatically with accurate representation of current chart data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include zoom and pan controls for the map",
+        "user_persona": "A tourist planning walking routes through neighborhoods.",
+        "user_goal": "To explore detailed street-level maps using intuitive controls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Mouse Wheel Zoom",
+                "description": "Exploring a potential route, Sam uses his mouse wheel to zoom in and out smoothly.",
+                "action": "Scroll mouse wheel over the map.",
+                "expected_outcome": "Map zooms continuously and smoothly in the direction of scrolling."
+            },
+            {
+                "step": 2,
+                "title": "Resetting View",
+                "description": "Lost after zooming in, Sam hits the home button to return to the starting view.",
+                "action": "Click the home (🏠) button.",
+                "expected_outcome": "Map resets to original default view and zoom level."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show data legends and key metrics",
+        "user_persona": "A student learning about urban geography.",
+        "user_goal": "To understand what the colors and numbers on the map represent.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Legend Information",
+                "description": "Trying to interpret the heat map, Mia glances at the floating legend panel on the right.",
+                "action": "Look at the legend panel.",
+                "expected_outcome": "Legend lists color codes and classifications clearly, explaining what each hue signifies."
+            },
+            {
+                "step": 2,
+                "title": "Identifying Key Metrics",
+                "description": "Mia notices small badges at the top showing average income and population density.",
+                "action": "Observe key metric badges near map top.",
+                "expected_outcome": "Key metrics are displayed in circular or rectangular badges with readable values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement ivory background with forest green components",
+        "user_persona": "A UX designer auditing interface consistency.",
+        "user_goal": "To verify that all UI elements follow the specified color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Background Color",
+                "description": "Verifying design standards, Casey inspects whether the main background is indeed ivory.",
+                "action": "Observe overall background color.",
+                "expected_outcome": "Entire application background renders as ivory (#FFFFF0)."
+            },
+            {
+                "step": 2,
+                "title": "Validating Accent Colors",
+                "description": "Casey checks that interactive elements like buttons and chart axes use forest green.",
+                "action": "Inspect actionable UI components like buttons and headers.",
+                "expected_outcome": "All interactive and accent elements consistently use forest green (#228B22)."
+            }
+        ]
+    }
+]

@@ -1,0 +1,247 @@
+[
+    {
+        "requirement_tested": "Create a homepage displaying general office information and a welcome message",
+        "user_persona": "A new patient looking for basic information about the clinic.",
+        "user_goal": "To quickly find the clinic's contact details and understand its purpose.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens her browser and types in the clinic's URL. She lands on the homepage and immediately sees a welcoming design with a light cyan background and cadet blue text.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The homepage loads with the office logo, a welcome message stating 'Welcome to our Clinical Office, where your health is our priority.', and office details below it."
+            },
+            {
+                "step": 2,
+                "title": "Reading Office Information",
+                "description": "Sarah scrolls down to read more about the clinic. As she scrolls, additional content fades in smoothly, showing more highlights about the office.",
+                "action": "Scroll down the homepage.",
+                "expected_outcome": "Additional office highlights or testimonials fade into view smoothly without any abrupt changes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement an 'About Us' page with details about the clinical office and its mission",
+        "user_persona": "A prospective patient curious about the clinic's values and team.",
+        "user_goal": "To learn about the clinic's mission and meet the healthcare professionals.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to About Us",
+                "description": "After browsing the homepage, Sarah wants to know more about the clinic. She clicks on the 'About Us' link in the navigation menu.",
+                "action": "Click on the 'About Us' link in the navigation bar.",
+                "expected_outcome": "The 'About Us' page loads, displaying a section titled 'About Our Office' with the mission statement and other descriptive content."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Team Member Details",
+                "description": "Sarah notices photos of the medical staff and decides to click on one to learn more about a particular doctor.",
+                "action": "Click on a team member photo.",
+                "expected_outcome": "A modal pops up showing the selected team member's professional biography."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop a 'Services' page listing all medical services offered by the office",
+        "user_persona": "A patient seeking specific medical care options available at the clinic.",
+        "user_goal": "To explore the range of medical services offered without leaving the current page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Services Page",
+                "description": "Curious about what treatments are available, Sarah navigates to the 'Services' page from the main menu.",
+                "action": "Click on the 'Services' link in the navigation menu.",
+                "expected_outcome": "The 'Services' page loads with a grid-based layout showcasing individual service cards, each containing an icon, name, and brief description fetched from the backend."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Service Details",
+                "description": "While browsing the services, Sarah hovers over a card to see if there's more interaction possible. She then clicks on a service card to get more information.",
+                "action": "Hover over a service card, then click on it.",
+                "expected_outcome": "On hover, the card elevates slightly with a shadow effect. On click, the card expands to reveal more detailed information without navigating away."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build a 'Contact Us' page with a form for users to submit inquiries and office contact details",
+        "user_persona": "A patient ready to book an appointment and needing to send a message.",
+        "user_goal": "To fill out a contact form and submit an inquiry to the clinic.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Going to Contact Page",
+                "description": "Ready to reach out, Sarah clicks on the 'Contact' link in the navigation menu to go to the contact page.",
+                "action": "Click on the 'Contact' link in the navigation menu.",
+                "expected_outcome": "The 'Contact Us' page loads with a two-column layout: a contact form on the left and a map plus contact info on the right."
+            },
+            {
+                "step": 2,
+                "title": "Filling and Submitting Form",
+                "description": "Sarah fills in her details in the contact form. While typing, she notices that the focused field gets highlighted with a cadet blue border. After filling everything, she submits the form.",
+                "action": "Fill in the contact form fields and click the submit button.",
+                "expected_outcome": "Fields highlight with a cadet blue border when focused. Upon submission, a success or error message appears inline below the form."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design a consistent navigation menu across all pages for easy access to main sections",
+        "user_persona": "A frequent visitor who knows what they're looking for but appreciates ease of navigation.",
+        "user_goal": "To navigate seamlessly between different sections of the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "While reading the homepage, John remembers he wanted to check the services. He moves his cursor over the navigation menu items and clicks on 'Services'.",
+                "action": "Hover over menu items and click on 'Services'.",
+                "expected_outcome": "Menu items change background to a lighter shade of cyan on hover. Clicking 'Services' navigates to the services page."
+            },
+            {
+                "step": 2,
+                "title": "Testing Mobile Menu Toggle",
+                "description": "Later, John views the site on his phone. He taps the menu toggle icon since the full menu isn't visible.",
+                "action": "Click the menu toggle icon on a small screen.",
+                "expected_outcome": "A mobile-friendly dropdown menu overlay opens, allowing easy access to all main sections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply a light cyan background color to all pages",
+        "user_persona": "A user sensitive to bright colors who prefers soft backgrounds.",
+        "user_goal": "To have a visually comfortable experience across the entire website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Different Pages",
+                "description": "Emily visits multiple pages of the website—home, about, services, and contact—to gather information about the clinic.",
+                "action": "Visit each main page of the website.",
+                "expected_outcome": "Each page consistently displays a light cyan background (#E0FFFF) regardless of the content or device used."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style all UI components using a cadet blue color scheme",
+        "user_persona": "A user who appreciates cohesive and professional-looking websites.",
+        "user_goal": "To experience a unified visual style throughout the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting with UI Elements",
+                "description": "While exploring the site, Mark interacts with various UI elements like buttons and links, noticing their consistent styling.",
+                "action": "Hover over buttons and interactive elements.",
+                "expected_outcome": "All UI components use cadet blue (#5F9EA0). Buttons and interactive elements darken slightly on hover while maintaining the same base hue."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all pages are responsive and accessible on different device sizes",
+        "user_persona": "A busy parent checking the clinic's info on a tablet while waiting at school pickup.",
+        "user_goal": "To easily navigate and read content on a tablet without horizontal scrolling or tiny text.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "Lisa resizes her browser window to simulate how the site looks on smaller devices.",
+                "action": "Resize the browser window to various widths.",
+                "expected_outcome": "Layout adjusts fluidly between breakpoints, reorganizing content stacks vertically on small screens, ensuring readability and usability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up frontend to fetch any dynamic content via backend APIs if needed",
+        "user_persona": "A developer verifying that the frontend properly consumes backend data.",
+        "user_goal": "To confirm that dynamic content is fetched correctly from backend endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "When visiting the services page, the frontend must fetch the list of services from the backend API.",
+                "action": "Load the Services page.",
+                "expected_outcome": "Upon DOMContentLoaded, scripts automatically initiate API requests to '/api/services' and populate the service cards dynamically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure backend to connect to PostgreSQL database using specified environment variables",
+        "user_persona": "A system administrator deploying the application.",
+        "user_goal": "To ensure the backend successfully connects to the PostgreSQL database using correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The administrator starts the backend server and checks logs for successful database connection messages.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "The backend initializes a secure connection to the PostgreSQL database using host=localhost, port=5432, username=myappuser, password=myapppassword, and database=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Initialize repository structure with separate directories for frontend and backend",
+        "user_persona": "A developer setting up the project locally for the first time.",
+        "user_goal": "To clone and set up the project with clearly separated frontend and backend code.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "Mike clones the repository and inspects the folder structure to begin development.",
+                "action": "Clone the repository and inspect root directory contents.",
+                "expected_outcome": "The project root contains two main folders: 'frontend/' for client-side assets and 'backend/' for server logic, promoting clean separation of concerns."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with install:all script to set up both frontend and backend dependencies",
+        "user_persona": "A new contributor joining the development team.",
+        "user_goal": "To quickly install all necessary dependencies for both frontend and backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Anna has just cloned the repo and wants to set up her local environment by installing all dependencies.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently using the command: concurrently \"cd frontend && npm install\" \"cd backend && npm install\"."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add dev script in package.json to run both frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work on the project.",
+        "user_goal": "To start both frontend and backend servers with a single command for development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Development Servers",
+                "description": "Tom begins his day by starting the development environment so he can test recent changes.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Both frontend build watcher and backend server launch together in parallel terminal sessions using the command: concurrently \"cd frontend && npm start\" \"cd backend && npm run start-server\"."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include static asset handling for images, stylesheets, and client-side JavaScript",
+        "user_persona": "A frontend developer adding new assets to the project.",
+        "user_goal": "To store and reference static assets efficiently within the project.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding New Assets",
+                "description": "Jill needs to add a new stylesheet and some images for an upcoming feature update.",
+                "action": "Place new assets in appropriate directories under /public/assets/.",
+                "expected_outcome": "Assets placed in /public/assets/images/, /public/assets/styles/, and /public/assets/js/ are served statically by the web server, enabling efficient caching and direct linking."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement SEO-friendly page titles and meta descriptions for each page",
+        "user_persona": "An SEO specialist optimizing the clinic's online presence.",
+        "user_goal": "To improve the clinic's visibility in search engine results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Page Metadata",
+                "description": "The SEO specialist reviews each page to verify that unique and relevant metadata is present.",
+                "action": "Inspect the <head> section of each page.",
+                "expected_outcome": "Each page incorporates distinct SEO metadata including <title> and <meta name=\"description\"> tags populated with relevant keywords and summaries, enhancing crawlability and organic reach."
+            }
+        ]
+    }
+]

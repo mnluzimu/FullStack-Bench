@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement a customer service call logging system to record and manage customer service calls. The system should have functionalities for client identification, call type selection, information recording, action step recording, follow-up step recording, and additional information recording. Users should be able to create new call logs, view open calls, view to-do calls, and generate call log reports. The system should also have a client creator wizard, client information modification functionality, and permission control. Set page background to light pink; color all components with medium violet red.

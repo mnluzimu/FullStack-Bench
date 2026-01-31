@@ -1,0 +1,233 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all poll data dynamically from backend APIs",
+        "user_persona": "A curious voter named Alex who wants to participate in online polls.",
+        "user_goal": "Alex wants to browse through all available polls fetched dynamically from the server.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Alex opens the website and expects to see a list of polls loaded from the backend.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "The frontend makes an API request to /api/polls and displays returned poll data as navy-styled cards on a white background."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Polls",
+                "description": "Alex scrolls down to look at more polls if they exceed the initial view.",
+                "action": "Scroll vertically through the page.",
+                "expected_outcome": "Additional poll cards load smoothly without breaking layout or causing errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the polls app for production use.",
+        "user_goal": "Ensure the backend can connect securely to the PostgreSQL database with correct credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Developer runs the backend server expecting it to establish a secure connection to PostgreSQL.",
+                "action": "Start the backend service locally or in deployment.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema to store polls, voting options, and vote counts",
+        "user_persona": "Database administrator setting up the system infrastructure.",
+        "user_goal": "Verify that required tables are created correctly in the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Database Tables",
+                "description": "Admin inspects the database to confirm presence of 'polls' and 'options' tables with proper schemas.",
+                "action": "Run SQL queries to describe table structures.",
+                "expected_outcome": "Tables exist with defined columns: polls(id, title, description, created_at) and options(id, poll_id, option_text, vote_count)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface to browse available polls and their voting options",
+        "user_persona": "A new visitor named Taylor exploring the poll platform.",
+        "user_goal": "Taylor wants to find interesting polls and explore the voting options within each one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Poll List",
+                "description": "Taylor visits the home page which shows several polls listed as navy cards.",
+                "action": "Navigate to the main poll listing page.",
+                "expected_outcome": "Each card clearly displays the poll title and description on a white background."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Voting Options",
+                "description": "Taylor clicks on a poll card to view its voting choices.",
+                "action": "Click on a specific poll card.",
+                "expected_outcome": "Redirected to the voting page showing the selected poll's options rendered in navy style."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for users to cast votes for specific poll options",
+        "user_persona": "Voter Jordan ready to make their voice heard by selecting an option.",
+        "user_goal": "Jordan aims to select an option and submit their vote successfully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Option",
+                "description": "Jordan views available options and selects one by clicking its radio button.",
+                "action": "Click on a radio button next to the preferred option.",
+                "expected_outcome": "Radio button becomes checked and visually highlighted in navy color."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Vote",
+                "description": "Jordan confirms their choice and submits the vote.",
+                "action": "Click the 'Submit Vote' button.",
+                "expected_outcome": "System sends POST request to /api/vote endpoint and redirects to results page upon success."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time display of voting results after a user submits their vote",
+        "user_persona": "Observer Maya interested in seeing updated poll statistics instantly.",
+        "user_goal": "Maya wants to see real-time visualization of the latest voting outcomes right after casting her vote.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Updated Data",
+                "description": "After submitting her vote, Maya is redirected to the results page.",
+                "action": "Redirect to results view after voting.",
+                "expected_outcome": "Frontend fetches updated vote counts from /api/results/:pollId and renders a bar chart showing current distribution."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Persistent storage and retrieval of vote data in the database",
+        "user_persona": "Auditor checking data consistency post-vote submission.",
+        "user_goal": "Confirm that every submitted vote increments the correct counter in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Update",
+                "description": "Auditor checks whether the vote count increased appropriately after a simulated vote.",
+                "action": "Query the options table to retrieve vote_count value for a particular option.",
+                "expected_outcome": "vote_count reflects accurate tally including newly added votes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Page layout with white background and navy-styled components as per design instructions",
+        "user_persona": "Designer reviewing the implementation of visual guidelines.",
+        "user_goal": "Designer wants assurance that UI matches brand colors consistently across all pages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Visual Style",
+                "description": "Designer examines key elements like headers, buttons, and forms to verify adherence to color scheme.",
+                "action": "Open browser DevTools and inspect CSS properties of major components.",
+                "expected_outcome": "All relevant UI components utilize #000080 (navy) for text/borders and #FFFFFF (white) for backgrounds."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navigation between poll browsing, voting, and results viewing sections",
+        "user_persona": "Frequent user Sam navigating between features seamlessly.",
+        "user_goal": "Sam wants smooth transitions between browsing, voting, and viewing results without full page reloads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Bar",
+                "description": "Sam uses the fixed top navigation bar to switch contexts quickly.",
+                "action": "Click on 'Browse Polls' then 'Results' links in the nav bar.",
+                "expected_outcome": "Routes update dynamically via client-side routing without refreshing the entire page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for invalid poll selections or submission issues",
+        "user_persona": "Tester probing edge-case behavior under faulty conditions.",
+        "user_goal": "Ensure meaningful feedback appears when something goes wrong during voting.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Invalid Selection",
+                "description": "Tester attempts to submit a vote without choosing an option first.",
+                "action": "Click 'Submit Vote' without selecting any radio button.",
+                "expected_outcome": "Error modal pops up displaying message like 'Please select an option before submitting.'"
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading states during data fetching from backend APIs",
+        "user_persona": "Impatient user Riley experiencing slow network speeds.",
+        "user_goal": "Riley wants reassurance that the app is still functioning even when things take time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Waiting for Data Load",
+                "description": "Riley opens the site on a slower connection and waits for content to appear.",
+                "action": "Visit the homepage while simulating throttled internet speed.",
+                "expected_outcome": "Loading spinner overlays the screen until data arrives, maintaining usability context."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI compatible across desktop and mobile devices",
+        "user_persona": "Mobile-first user Casey accessing the site from a smartphone.",
+        "user_goal": "Casey wants a seamless experience regardless of device type used.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Layout Adaptation",
+                "description": "Casey resizes browser window or switches between orientations to test responsiveness.",
+                "action": "Resize browser viewport or rotate mobile device screen.",
+                "expected_outcome": "UI elements reflow appropriately; no overlapping or clipping occurs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `install:all` script to install both frontend and backend dependencies",
+        "user_persona": "New contributor Emma joining the project for the first time.",
+        "user_goal": "Emma needs to set up the development environment efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Emma clones the repo and tries to install everything with one command.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend node_modules folders populate with necessary packages concurrently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `dev` script to start both frontend and backend concurrently",
+        "user_persona": "Developer Dan preparing to work on a feature locally.",
+        "user_goal": "Dan wants to boot up both servers quickly for integrated development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Dan executes the combined startup command to begin coding session.",
+                "action": "Execute `npm run dev` from project root.",
+                "expected_outcome": "Frontend and backend services start simultaneously, enabling live interaction with the app."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Security measures to prevent duplicate votes from the same user or session",
+        "user_persona": "Ethical hacker Pat testing the integrity of the polling mechanism.",
+        "user_goal": "Pat attempts to manipulate the system by submitting multiple votes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Duplicate Vote",
+                "description": "Pat tries to vote again after already casting a ballot.",
+                "action": "Attempt second vote submission from the same browser/device.",
+                "expected_outcome": "System blocks the attempt and presents an error message stating 'You have already voted.'"
+            }
+        ]
+    }
+]

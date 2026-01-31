@@ -1,0 +1,208 @@
+[
+    {
+        "resource_dependency": {
+            "chatInterfaceIcon": "/assets/icons/chatbot-icon.svg",
+            "sendMessageAPI": "POST /api/chat/send",
+            "fetchMessagesAPI": "GET /api/chat/messages",
+            "sessionManagementAPI": "POST /api/session/start"
+        },
+        "function": "Provide a user-facing chat interface to interact with the chatbot.",
+        "static_description": "A fixed-position chat widget in the bottom-right corner of the screen featuring a dim gray header bar with the title 'Support Chat'. Below the header is a scrollable message history area showing alternating user and bot messages styled with snow background and dim gray text containers. At the bottom is a dim gray input textbox with a send button icon (referenced via chatInterfaceIcon).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the chat header toggles visibility of the message panel. Clicking the send button submits the current input text to the sendMessageAPI endpoint and clears the input field."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while the input textbox is focused sends the message to the sendMessageAPI endpoint."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling within the message history area allows users to view older messages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chatLogsSchema": "Table: chat_logs { id SERIAL PRIMARY KEY, session_id UUID NOT NULL, sender_type VARCHAR(10) NOT NULL, message TEXT NOT NULL, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP }",
+            "faqDataSchema": "Table: faq { id SERIAL PRIMARY KEY, question TEXT UNIQUE NOT NULL, answer TEXT NOT NULL, category VARCHAR(50) }",
+            "productInfoSchema": "Table: products { id SERIAL PRIMARY KEY, name TEXT NOT NULL, description TEXT, price DECIMAL(10, 2), stock_quantity INT }",
+            "orderAssistSchema": "Table: order_sessions { id SERIAL PRIMARY KEY, session_id UUID NOT NULL, user_id INT, status VARCHAR(20), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP }"
+        },
+        "function": "Define backend API endpoints to manage chatbot conversations and responses.",
+        "static_description": "RESTful API endpoints exposed under '/api/chat/' namespace handling POST requests for sending messages, GET requests for retrieving message histories, and managing session contexts.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request: POST /api/chat/send",
+                "description": "Receives user message, processes it through chatbot logic, stores both user and bot messages in chatLogsSchema, and returns the bot's response."
+            },
+            {
+                "interaction": "API Request: GET /api/chat/messages?session_id={id}",
+                "description": "Fetches all messages associated with a given session_id from chatLogsSchema and returns them ordered by timestamp."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "Environment Variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "chatLogsSchema": "Table: chat_logs { id SERIAL PRIMARY KEY, session_id UUID NOT NULL, sender_type VARCHAR(10) NOT NULL, message TEXT NOT NULL, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP }",
+            "faqDataSchema": "Table: faq { id SERIAL PRIMARY KEY, question TEXT UNIQUE NOT NULL, answer TEXT NOT NULL, category VARCHAR(50) }"
+        },
+        "function": "Integrate with a PostgreSQL database to persist chat logs and structured FAQ data.",
+        "static_description": "Database tables named 'chat_logs' and 'faq' created during initialization phase, configured using dbConnectionConfig to connect to PostgreSQL instance.",
+        "interaction_and_states": [
+            {
+                "interaction": "Database Write",
+                "description": "Upon receiving a new message or chatbot reply, corresponding entries are inserted into the chat_logs table with appropriate session tracking."
+            },
+            {
+                "interaction": "Database Read",
+                "description": "When serving FAQs or analyzing previous interactions, relevant records are queried from faq and chat_logs tables respectively."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "faqDataSchema": "Table: faq { id SERIAL PRIMARY KEY, question TEXT UNIQUE NOT NULL, answer TEXT NOT NULL, category VARCHAR(50) }",
+            "faqMatchingLogic": "Natural language processing module to match user queries against stored questions in faq table."
+        },
+        "function": "Enable chatbot to respond to common inquiries using pre-defined answers sourced from database.",
+        "static_description": "Internal NLP engine maps incoming user messages to best-matching FAQ entries from faqDataSchema and retrieves corresponding answers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Message Processing",
+                "description": "Each received message is analyzed for keyword matches or semantic similarity with existing FAQ questions; if matched, the corresponding answer is returned."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "productInfoSchema": "Table: products { id SERIAL PRIMARY KEY, name TEXT NOT NULL, description TEXT, price DECIMAL(10, 2), stock_quantity INT }",
+            "productLookupAPI": "GET /api/products/{id}"
+        },
+        "function": "Allow the chatbot to retrieve and present detailed product information upon request.",
+        "static_description": "Product-related queries trigger lookups in the productInfoSchema to fetch item details such as name, description, pricing, and availability.",
+        "interaction_and_states": [
+            {
+                "interaction": "Query Interpretation",
+                "description": "Identifies product-specific keywords or IDs in user input and calls productLookupAPI to obtain matching product data from productInfoSchema."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "orderAssistSchema": "Table: order_sessions { id SERIAL PRIMARY KEY, session_id UUID NOT NULL, user_id INT, status VARCHAR(20), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP }",
+            "orderProcessingAPI": "POST /api/orders/create"
+        },
+        "function": "Guide users through order completion process via conversational flow.",
+        "static_description": "Conversational prompts collect necessary order parameters (e.g., product selection, quantity) which are then submitted via orderProcessingAPI to initiate transactions recorded in orderAssistSchema.",
+        "interaction_and_states": [
+            {
+                "interaction": "Multi-turn Dialog",
+                "description": "Sequential questioning gathers user preferences and validates inputs before invoking orderProcessingAPI to finalize purchase steps."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeMessagingProtocol": "WebSocket connection established at /ws/chat",
+            "chatLogsSchema": "Table: chat_logs { id SERIAL PRIMARY KEY, session_id UUID NOT NULL, sender_type VARCHAR(10) NOT NULL, message TEXT NOT NULL, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP }"
+        },
+        "function": "Facilitate instantaneous communication between user and chatbot without page reloads.",
+        "static_description": "Bidirectional WebSocket channel maintains live updates between client-side chat interface and server-side messaging handler ensuring immediate delivery of sent/received messages.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Connect",
+                "description": "Establishes persistent connection when chat window opens, enabling continuous exchange of messages streamed directly from chatLogsSchema."
+            },
+            {
+                "interaction": "WebSocket Message",
+                "description": "Transmits newly generated bot replies instantly to connected clients bypassing traditional HTTP polling mechanisms."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundStyleCSS": ".site-background { background-color: #fffafa; }"
+        },
+        "function": "Apply consistent snow-themed background across entire website.",
+        "static_description": "Global CSS rule sets body background color to snow (#fffafa) referenced in backgroundStyleCSS ensuring uniform aesthetic foundation throughout application.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorSchemeCSS": ".dim-gray-components { background-color: #696969; color: white; border: 1px solid #505050; }"
+        },
+        "function": "Implement cohesive dim gray styling theme for interactive UI components.",
+        "static_description": "All primary UI elements including buttons, headers, and input fields utilize dim gray palette defined in componentColorSchemeCSS to maintain visual consistency.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Configure secure and standardized access to PostgreSQL database instance using predefined environment variables.",
+        "static_description": "Application startup reads credentials from dbEnvVars to establish authenticated sessions with remote PostgreSQL database hosted locally.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingEndpoints": "GET /api/chat/messages, GET /api/products/{id}, GET /api/faq/list",
+            "frontendHTTPClient": "Axios or Fetch API used for asynchronous data retrieval"
+        },
+        "function": "Ensure frontend dynamically loads content exclusively through backend RESTful services.",
+        "static_description": "Client-side JavaScript modules leverage frontendHTTPClient to query dataFetchingEndpoints and populate DOM elements with retrieved dynamic content rather than embedding static values.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "\"dev\": \"concurrently \\\"npm run dev --prefix frontend\\\" \\\"npm run dev --prefix backend\\\"\""
+        },
+        "function": "Streamline local development workflow by simultaneously launching frontend and backend servers.",
+        "static_description": "Execution of npm run dev command triggers parallel execution of separate frontend and backend development servers orchestrated by concurrently utility described in devScriptCommand.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "\"install:all\": \"npm install && npm run install:frontend && npm run install:backend\"",
+            "frontendInstallCmd": "cd frontend && npm install",
+            "backendInstallCmd": "cd backend && npm install"
+        },
+        "function": "Automate setup procedure for installing required packages in both frontend and backend environments.",
+        "static_description": "Running npm run install:all executes chained installation commands per installAllScriptCommand that sequentially invoke frontendInstallCmd and backendInstallCmd to prepare full-stack dependencies.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "sessionTrackingMechanism": "UUID-based session tokens managed server-side and stored in-memory/cache with fallback to database",
+            "sessionStartEndpoint": "POST /api/session/start"
+        },
+        "function": "Maintain continuity of conversation context across multiple exchanges between user and chatbot.",
+        "static_description": "Upon initiating chat session, unique identifier assigned and tracked via sessionTrackingMechanism to associate subsequent messages with correct interaction thread.",
+        "interaction_and_states": [
+            {
+                "interaction": "Session Initialization",
+                "description": "First user interaction triggers call to sessionStartEndpoint creating new session record and associating future communications with same token."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingMiddleware": "Centralized error catching middleware logging failures and returning standardized JSON error responses",
+            "fallbackResponseTemplate": "{ error: true, message: 'Service temporarily unavailable. Please try again later.' }"
+        },
+        "function": "Gracefully manage unexpected issues occurring during chatbot operations or database connectivity attempts.",
+        "static_description": "Comprehensive error handling framework intercepts exceptions thrown by API routes or database queries and responds with fallbackResponseTemplate while logging underlying cause internally.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Failure",
+                "description": "If sendMessageAPI or any dependent service fails, system returns fallbackResponseTemplate to inform user of temporary outage."
+            },
+            {
+                "interaction": "DB Connection Error",
+                "description": "Loss of database connectivity results in logged alerts and presentation of fallbackResponseTemplate until reconnection restored."
+            }
+        ]
+    }
+]

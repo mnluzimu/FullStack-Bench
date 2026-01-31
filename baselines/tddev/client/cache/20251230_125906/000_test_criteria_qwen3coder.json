@@ -1,0 +1,338 @@
+[
+    {
+        "requirement_tested": "Frontend application with data visualization components for basketball analytics",
+        "user_persona": "A basketball analyst who wants to visualize player performance trends.",
+        "user_goal": "To interact with a data visualization chart to analyze player efficiency over time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard",
+                "description": "Alex navigates to the basketball analytics dashboard where several chart placeholders are visible.",
+                "action": "Page loads and makes API calls to fetch data.",
+                "expected_outcome": "Charts display 'Loading...' initially, then populate with interactive visualizations after data is fetched."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Chart View",
+                "description": "Alex sees a line chart showing player efficiency and decides to expand it for better visibility.",
+                "action": "Click on the chart container.",
+                "expected_outcome": "Chart expands to full-view mode within the grid layout."
+            },
+            {
+                "step": 3,
+                "title": "Inspecting Data Points",
+                "description": "While examining the expanded chart, Alex hovers over specific data points to see detailed values.",
+                "action": "Hover over data points on the chart.",
+                "expected_outcome": "Tooltip appears displaying detailed statistical values such as player efficiency rating."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API service that connects to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the application for the first time.",
+        "user_goal": "To verify that the backend successfully connects to the PostgreSQL database on startup.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Jordan starts the backend service expecting it to initialize the database connection.",
+                "action": "Start the backend server.",
+                "expected_outcome": "Backend connects to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Schema Creation",
+                "description": "Jordan checks whether the necessary tables were created if they didn't already exist.",
+                "action": "Check logs or database directly.",
+                "expected_outcome": "Tables 'matches', 'teams', and 'players' are present in the database with correct schemas."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data fetching from backend APIs for all dynamic content with no hardcoded data",
+        "user_persona": "A new visitor exploring the website for the first time.",
+        "user_goal": "To view up-to-date basketball analytics without seeing any placeholder or mock data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Taylor visits the homepage and expects to see real-time basketball data immediately.",
+                "action": "Load the webpage.",
+                "expected_outcome": "All dynamic sections show loading spinners briefly before rendering actual data retrieved via API calls."
+            },
+            {
+                "step": 2,
+                "title": "Handling Network Failure",
+                "description": "During peak traffic, Taylor experiences network issues causing API failures.",
+                "action": "Simulate slow or failed API response.",
+                "expected_outcome": "Error messages appear instead of blank spaces indicating data could not be loaded."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Basketball match history browsing functionality",
+        "user_persona": "A fan wanting to look up past game results between two favorite teams.",
+        "user_goal": "To find and sort historical match records involving their favorite teams.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Match History Page",
+                "description": "Casey clicks on the 'Match History' link in the main navigation menu.",
+                "action": "Navigate to /matches/history route.",
+                "expected_outcome": "Paginated table of past matches loads with columns: Date, Teams, Final Score, Result, sorted descending by date."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Matches by Date",
+                "description": "Casey wants to see the oldest games first and clicks the date column header.",
+                "action": "Click on the 'Date' column header.",
+                "expected_outcome": "Table re-sorts ascending by date."
+            },
+            {
+                "step": 3,
+                "title": "Loading More Matches",
+                "description": "After scrolling down, Casey reaches the end of the current list and waits for more matches.",
+                "action": "Scroll to the bottom of the match list.",
+                "expected_outcome": "Additional pages of match history load automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Team rankings display with up-to-date statistics",
+        "user_persona": "A fantasy basketball manager checking league standings.",
+        "user_goal": "To quickly identify top-performing teams and navigate to a team's detailed stats page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Team Rankings",
+                "description": "Riley goes to the 'Team Rankings' section to assess how teams are performing this season.",
+                "action": "Visit the team rankings page.",
+                "expected_outcome": "Teams are displayed in ranked order with logos, names, win-loss records, and ranking positions."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Top Team",
+                "description": "Riley notices the leading team and clicks its card to explore deeper insights.",
+                "action": "Click on the top-ranked team card.",
+                "expected_outcome": "Redirected to the selected team’s dedicated stats profile page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Player performance tracking and visualization",
+        "user_persona": "A scout evaluating potential draft picks.",
+        "user_goal": "To review individual player stats and access detailed profiles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Player Stats",
+                "description": "Morgan accesses the player performance section to compare key metrics among prospects.",
+                "action": "Go to the player stats page.",
+                "expected_outcome": "Sortable roster lists per team are shown with headshots, names, jersey numbers, and average stats in slate gray rows."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Detailed Profile",
+                "description": "Morgan finds an interesting player and clicks their row to view career stats and advanced metrics.",
+                "action": "Click on a player row.",
+                "expected_outcome": "Redirected to the player's full-profile page with career timeline and metric breakdowns."
+            },
+            {
+                "step": 3,
+                "title": "Previewing Season Trend",
+                "description": "Before making a decision, Morgan hovers over the player row to preview seasonal progress.",
+                "action": "Hover over the player row.",
+                "expected_outcome": "Season progression trendline appears beneath basic stats."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Match prediction algorithm with results display",
+        "user_persona": "A casual bettor interested in informed predictions.",
+        "user_goal": "To get a prediction for an upcoming match and understand the reasoning behind it.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Match Prediction",
+                "description": "Jamie looks at a match detail page and sees a prediction summary generated by the system.",
+                "action": "Open a match detail view.",
+                "expected_outcome": "Prediction panel displays predicted winner, margin of victory, and confidence level icon."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Prediction Logic",
+                "description": "Curious about how the prediction was made, Jamie taps the 'View Details' button.",
+                "action": "Click 'View Details' next to the prediction.",
+                "expected_outcome": "Modal opens showing underlying data inputs like recent form and injury reports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Betting recommendation engine based on analytical data",
+        "user_persona": "An experienced gambler seeking high-value bets.",
+        "user_goal": "To discover and act on betting opportunities derived from analytical models.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Discovering Betting Recommendations",
+                "description": "Pat browses the betting recommendations feed to find promising wagers.",
+                "action": "Visit the Predictions tab and locate the Betting Recommendations module.",
+                "expected_outcome": "Feed shows entries with recommended bet type, stake percentage, EV ratio, and linked match previews."
+            },
+            {
+                "step": 2,
+                "title": "Placing a Recommended Bet",
+                "description": "Seeing a favorable pick, Pat decides to place the bet through a trusted sportsbook.",
+                "action": "Click 'Place Bet' on a recommendation entry.",
+                "expected_outcome": "Modal prompts selection of bookmaker and redirects externally to complete the wager securely."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with ghost white background and slate gray components",
+        "user_persona": "A designer reviewing UI consistency across devices.",
+        "user_goal": "To ensure the site maintains its intended color scheme throughout all views.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Theme",
+                "description": "Dana inspects the homepage layout to confirm theme adherence.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Entire background is ghost white; navigation bars, buttons, and panels are styled in slate gray."
+            },
+            {
+                "step": 2,
+                "title": "Checking Subpages Consistency",
+                "description": "Dana navigates to various subpages to verify consistent theming.",
+                "action": "Browse different sections/pages.",
+                "expected_outcome": "All pages maintain the same ghost white background and slate gray component styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive charts and graphs for sports data visualization",
+        "user_persona": "A researcher analyzing basketball trends over seasons.",
+        "user_goal": "To manipulate and explore complex datasets using interactive chart features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting With Axes",
+                "description": "Quinn drags an axis label to change what variable is plotted on the x-axis.",
+                "action": "Drag and drop an axis label.",
+                "expected_outcome": "Chart updates dynamically to reflect the new axis assignment."
+            },
+            {
+                "step": 2,
+                "title": "Zooming Into Data",
+                "description": "While inspecting clustered data, Quinn uses the scroll wheel to zoom in.",
+                "action": "Use mouse wheel over chart region.",
+                "expected_outcome": "Chart zooms into the selected area for detailed inspection."
+            },
+            {
+                "step": 3,
+                "title": "Resetting Selection",
+                "description": "After exploring, Quinn double-clicks to reset the chart view.",
+                "action": "Double-click on the chart canvas.",
+                "expected_outcome": "Chart returns to default scale and deselected state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema for storing basketball match data, team info, and player statistics",
+        "user_persona": "A database administrator setting up the system.",
+        "user_goal": "To validate that the correct schema has been applied to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Confirming Table Structures",
+                "description": "Sam connects to the PostgreSQL instance to verify the presence and structure of core tables.",
+                "action": "Query database metadata.",
+                "expected_outcome": "Tables 'matches', 'teams', and 'players' exist with defined columns matching the schema."
+            },
+            {
+                "step": 2,
+                "title": "Checking Index Definitions",
+                "description": "Sam ensures indexes are properly defined for optimized queries.",
+                "action": "Review index configurations.",
+                "expected_outcome": "Indexes exist on matches.date, teams.name, and players.team_id for fast lookups."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving match history, rankings, and player data",
+        "user_persona": "A frontend developer integrating backend data.",
+        "user_goal": "To consume RESTful endpoints and render accurate data in the UI.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Match History",
+                "description": "Devon makes a GET request to retrieve match history data.",
+                "action": "Call GET /api/v1/matches/history endpoint.",
+                "expected_outcome": "Returns JSON payload with match logs ordered by date."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving Team Rankings",
+                "description": "Devon integrates team rankings into the standings page.",
+                "action": "Call GET /api/v1/rankings/teams endpoint.",
+                "expected_outcome": "Receives JSON containing team leaderboard standings and stats."
+            },
+            {
+                "step": 3,
+                "title": "Loading Player Statistics",
+                "description": "Devon populates the player stats table with backend data.",
+                "action": "Call GET /api/v1/stats/players endpoint.",
+                "expected_outcome": "Gets JSON with comprehensive player performance summaries."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time or scheduled data update mechanism for current basketball information",
+        "user_persona": "An operations engineer monitoring data freshness.",
+        "user_goal": "To ensure the system keeps internal data synchronized with external sources.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Scheduled Sync",
+                "description": "Omar checks if the scheduled sync process ran as expected overnight.",
+                "action": "Review sync logs or simulate cron trigger.",
+                "expected_outcome": "Fresh data from external APIs ingested and updated in PostgreSQL database."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Sync Logs",
+                "description": "Omar reviews logs to catch any errors during synchronization.",
+                "action": "Query sync_logs table.",
+                "expected_outcome": "Logs indicate successful sync attempts with timestamps and statuses."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with install:all script for frontend and backend dependencies",
+        "user_persona": "A new contributor joining the project.",
+        "user_goal": "To set up the development environment quickly with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Taylor clones the repo and runs the unified install command.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with dev script to run frontend and backend concurrently",
+        "user_persona": "A developer starting daily work on the project.",
+        "user_goal": "To launch both frontend and backend servers simultaneously for efficient development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Jordan begins working by running the dev script to start both environments.",
+                "action": "Execute `npm run dev` from the root folder.",
+                "expected_outcome": "Frontend dev server and backend API listener start concurrently in a shared terminal session."
+            }
+        ]
+    }
+]

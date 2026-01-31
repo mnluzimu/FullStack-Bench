@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please develop a construction management website for managing projects and documents. The website should have functionalities for document management, project scheduling, communication tools, estimating job costing, time tracking, and resource management. Users should be able to create and manage projects, schedule project timelines, communicate with team members, estimate project costs, track project progress, and manage resources. Assign light gray to the background and dark red to the UI elements.

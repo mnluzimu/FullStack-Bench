@@ -1,0 +1,17 @@
+[
+    "Create a one-page website for promoting Fundraiser Day",
+    "Include an introduction section for the Fundraiser Day event",
+    "Implement an automatically moving carousel to display offers",
+    "Add a testimonials section for displaying fundraiser stories",
+    "Include a company information section",
+    "Set cornsilk as the main background color",
+    "Use peru for control elements such as buttons and navigation",
+    "Ensure all sections are accessible via smooth scrolling or direct links",
+    "Make the website fully responsive across desktop, tablet, and mobile devices",
+    "Provide a clear call-to-action for users to learn more about the event",
+    "Enable users to pause the carousel on hover or interaction",
+    "Support keyboard navigation for accessibility compliance",
+    "Optimize page load performance with compressed assets",
+    "Include semantic HTML structure for improved SEO and screen reader support",
+    "Add social media sharing capabilities for event promotion"
+]

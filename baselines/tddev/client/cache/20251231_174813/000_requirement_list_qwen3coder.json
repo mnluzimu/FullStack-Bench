@@ -1,0 +1,209 @@
+[
+    {
+        "resource_dependency": {
+            "stockDataAPI": "An API for fetching real-time stock data including company details, pricing, market trends, and financials.",
+            "authAPI": "Authentication endpoints for login, signup, session management, and user validation.",
+            "reportGenerationAPI": "An internal API endpoint to generate customized stock reports based on user selections.",
+            "exportServiceAPI": "External or internal service capable of exporting documents in PDF, Excel, and HTML formats.",
+            "databaseSchema": "PostgreSQL schema with tables: users (id, email, password_hash), stocks (symbol, name, sector, etc.), reports (id, user_id, stock_symbol, format, content_selections, created_at, file_path), and report_history (user_id, report_id)."
+        },
+        "function": "Fetch all stock data dynamically from backend APIs for display and processing.",
+        "static_description": "The main dashboard displays a clean white background with navy-colored UI components. It includes a header bar with navigation links, a search bar for entering stock codes or names, and a loading spinner when data is being fetched.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search button triggers an API call to fetch stock data using the entered symbol or name."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing in the search field initiates the same stock data fetch action."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "apiEndpoints": "/api/stocks, /api/reports, /api/auth"
+        },
+        "function": "Provide backend API services that connect to a PostgreSQL database using specified environment variables.",
+        "static_description": "Backend server initialized with secure connection to PostgreSQL database using provided credentials. Exposes RESTful API endpoints under /api namespace.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchIcon": "/icons/search-icon.svg",
+            "inputFieldPlaceholderText": "Enter stock code or company name"
+        },
+        "function": "Allow users to input stock codes or names to initiate searches.",
+        "static_description": "A centered search container featuring a navy-themed input textbox with placeholder text 'Enter stock code or company name' and a magnifying glass icon aligned to the right side.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon or pressing enter submits the query to the backend API to retrieve matching stock results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptions": [
+                "PDF",
+                "Excel",
+                "HTML"
+            ],
+            "contentSectionsList": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ]
+        },
+        "function": "Enable users to customize their stock report by selecting preferred formats and content sections.",
+        "static_description": "Below the search results appears a customization panel with checkboxes for selecting report sections ('Basic Info', 'Market Trends', 'Financial Data') and radio buttons for choosing output format ('PDF', 'Excel', 'HTML'). All controls use navy styling against a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting any checkbox toggles inclusion of that section in the generated report; clicking a format option sets the desired export type."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportTemplateEngine": "A templating engine (like Handlebars or Jinja) used to render dynamic content into selected formats.",
+            "generatedReportStoragePath": "/reports/generated/"
+        },
+        "function": "Generate customized stock reports automatically upon user request based on selected options.",
+        "static_description": "Upon submission, a progress indicator shows while the system generates the requested report behind the scenes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "After configuring preferences, submitting triggers automated generation via the reportGenerationAPI which returns either success status with download link or error message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyLogoPlaceholder": "/images/default-company-logo.png",
+            "stockInfoFields": [
+                "Company Name",
+                "Sector",
+                "Current Price",
+                "Change %"
+            ]
+        },
+        "function": "Display essential stock information such as company details and current pricing metrics.",
+        "static_description": "Following successful search, this area presents structured company info including logo image, company name, industry sector, live price value, and percentage change – styled consistently with navy headers over white cards.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with chart.js or similar library for rendering interactive line/bar graphs showing historical performance.",
+            "trendAnalysisLabels": [
+                "1 Month",
+                "3 Months",
+                "YTD",
+                "1 Year"
+            ]
+        },
+        "function": "Visualize market trend analysis through charts or graphs derived from historical data.",
+        "static_description": "This section renders responsive graphical representations of stock movements across different time intervals using line or candlestick charts rendered in dark navy tones.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Users can toggle between various timeline views (e.g., 1 month, YTD) which reloads updated chart data accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialMetricsList": [
+                "Earnings Per Share",
+                "Revenue",
+                "Net Income",
+                "P/E Ratio",
+                "Dividend Yield"
+            ]
+        },
+        "function": "Showcase critical financial indicators including earnings, revenue figures, and key ratios.",
+        "static_description": "Displays tabulated financial statistics in clearly labeled rows beneath other informational sections, maintaining consistent typography and spacing within navy-accented boxes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Apply a uniform aesthetic theme throughout the application with a white background and navy-colored interface elements.",
+        "static_description": "All pages feature a solid white canvas backdrop complemented by rich navy hues applied to buttons, headers, footers, and form controls ensuring visual consistency.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Ensure optimal viewing experience across desktop and mobile platforms through adaptive layouts.",
+        "static_description": "Layout adjusts fluidly depending on screen size, stacking vertical elements on smaller screens while expanding horizontally on larger ones without compromising usability or readability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loginPageRoute": "/login",
+            "signupPageRoute": "/signup",
+            "sessionTimeoutHandler": "Redirects unauthenticated users attempting to access protected routes back to login page."
+        },
+        "function": "Implement authentication mechanism to control access and maintain individual user sessions.",
+        "static_description": "At the top-right corner lies a profile menu accessible only after logging in, displaying username initials or avatar alongside logout option.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' navigates to dedicated sign-in view where credentials are submitted securely via POST request handled by authAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "savedReportsTableSchema": "Database table storing previous report metadata including timestamps, associated stock symbols, and downloadable paths.",
+            "historyViewRoute": "/reports/history"
+        },
+        "function": "Permit saving and retrieving past generated reports tied to authenticated user accounts.",
+        "static_description": "Accessible via navigation menu, this section lists previously created reports chronologically with titles indicating relevant stocks and creation dates shown in compact card-style entries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting any listed entry retrieves full stored document either inline or prompts direct download depending on original format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormatsSupported": [
+                "PDF",
+                "Excel (.xlsx)",
+                "HTML"
+            ],
+            "downloadButtonLabel": "Download Report"
+        },
+        "function": "Support exporting generated reports into multiple file types suitable for offline consumption or sharing.",
+        "static_description": "Each completed report view features prominently placed 'Download Report' button offering dropdown choices among supported formats before initiating file transfer.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing an export method triggers respective handler which processes existing report content accordingly then serves resulting file directly to browser."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "externalFinanceDataProvider": "Third-party finance API providing up-to-the-minute stock quotes, news feeds, analyst ratings, and macroeconomic indicators."
+        },
+        "function": "Continuously pull fresh data from authoritative external financial sources to ensure accuracy and timeliness.",
+        "static_description": "Underlying systems poll trusted market data providers periodically or reactively upon significant events ensuring displayed values remain current even during active usage.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorMessagesDictionary": "{INVALID_STOCK_CODE: 'Please enter a valid stock ticker.', DB_CONNECTION_FAILED: 'Unable to reach database. Try again later.', API_FAILURE: 'Data retrieval failed due to upstream issue.'}"
+        },
+        "function": "Gracefully handle exceptional conditions such as incorrect inputs, connectivity problems, or broken dependencies.",
+        "static_description": "In case of failure, informative alerts appear near affected areas explaining nature of problem along with guidance steps or retry suggestions using subtle red coloring contrasting navy base palette.",
+        "interaction_and_states": [
+            {
+                "interaction": "Retry",
+                "description": "Some errors present optional retry button allowing immediate reattempt once transient issues resolve themselves."
+            }
+        ]
+    }
+]

@@ -1,0 +1,226 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "poetry_data_schema": "Set up a database with fields: id (unique ID), title (string), content (text), category (string), author_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp).",
+            "user_data_schema": "Set up a database with fields: id (unique ID), username (string, unique), email (string, unique), password_hash (string), created_at (timestamp).",
+            "comment_data_schema": "Set up a database with fields: id (unique ID), poetry_id (foreign key to poetry.id), user_id (foreign key to users.id), content (text), created_at (timestamp)."
+        },
+        "function": "Fetch all poetry entries from the backend API for display on the homepage.",
+        "static_description": "A responsive grid layout with cards containing poetry titles, authors, excerpts, and categories. Background uses light goldenrod (#FAFAD2). Cards have an olive drab border (#6B8E23) and padding. Each card displays placeholder text until data loads.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loading more poetry entries when reaching near bottom of page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_connection_env_vars": {
+                "DB_HOST": "localhost",
+                "DB_PORT": 5432,
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "postgres_setup_instructions": "Initialize PostgreSQL instance with extensions: uuid-ossp for UUID generation. Create tables: users, poetry, comments with proper foreign key constraints and indexes."
+        },
+        "function": "Establish connection to PostgreSQL database using provided environment variables and define table structures for storing poetry, user accounts, and comments.",
+        "static_description": "N/A – Backend-only component handling database connectivity and schema definition.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "category_list": [
+                "Sonnet",
+                "Haiku",
+                "Free Verse",
+                "Limerick",
+                "Epic",
+                "Narrative",
+                "Lyric"
+            ],
+            "api_endpoint_poems_by_category": "GET /api/poetry?category={category}",
+            "poetry_card_styling": "Olive drab background (#6B8E23) with white text and rounded corners."
+        },
+        "function": "Allow users to browse poetry by selecting predefined categories.",
+        "static_description": "Horizontal navigation bar listing available poetry categories. Default view shows all poetry sorted by latest first. Selected category highlights with underline or color change.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a category filter updates displayed poetry to only show entries matching selected category via API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_api_endpoint": "GET /api/poetry/search?q={query}&filters={author|title|content}",
+            "search_icon_svg": "<svg>...</svg>",
+            "filter_dropdown_options": [
+                "Author",
+                "Title",
+                "Content"
+            ]
+        },
+        "function": "Enable keyword-based search across poetry titles, contents, and authors with optional filtering.",
+        "static_description": "Search bar positioned above main content area with magnifying glass icon aligned left. Dropdown menu next to input allows filtering options. Submit button labeled 'Search'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking submit triggers GET request to search endpoint with query parameters based on user input and selected filters."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused in search field submits the search."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "login_form_fields": [
+                "Username",
+                "Password"
+            ],
+            "signup_form_fields": [
+                "Email",
+                "Username",
+                "Password",
+                "Confirm Password"
+            ],
+            "auth_api_endpoints": {
+                "login": "POST /api/auth/login",
+                "signup": "POST /api/auth/signup",
+                "logout": "POST /api/auth/logout"
+            },
+            "session_token_storage": "Store JWT token in localStorage after successful login."
+        },
+        "function": "Provide secure authentication flow enabling registered users to log in, sign up, and maintain sessions.",
+        "static_description": "Modal overlay triggered by clicking 'Login' or 'Sign Up' buttons. Contains form fields relevant to chosen action. Olive drab buttons for primary actions ('Log In', 'Sign Up'). Error messages shown inline beneath respective inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting login credentials sends POST request to auth endpoint. Successful response stores session token and redirects user. Invalid credentials show error message."
+            },
+            {
+                "interaction": "Click",
+                "description": "Switching between Login and Sign Up toggles visible form fields and changes modal header/submission logic accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "post_poem_form_fields": [
+                "Title",
+                "Category",
+                "Content"
+            ],
+            "submit_button_style": "Olive drab background (#6B8E23)",
+            "create_poem_api": "POST /api/poetry"
+        },
+        "function": "Allow authenticated users to compose and submit new poetry entries.",
+        "static_description": "Form with labeled input fields: Title (text input), Category (dropdown selection), Content (textarea). Olive drab submit button at bottom right corner. Cancel option available.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking submit validates form data then sends POST request to poetry creation endpoint. Success redirects to newly created poem page. Validation errors highlighted inline."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comment_input_placeholder": "Write your thoughts...",
+            "submit_comment_button_text": "Post Comment",
+            "comments_api_endpoints": {
+                "get_comments": "GET /api/poetry/{id}/comments",
+                "add_comment": "POST /api/poetry/{id}/comments"
+            },
+            "comment_card_style": "Light goldenrod background (#FAFAD2)"
+        },
+        "function": "Enable users to read existing comments and contribute new ones under individual poetry posts.",
+        "static_description": "Section below each poem showing list of comments rendered as stacked cards with author name, timestamp, and comment body. Textarea and submit button placed at top of section for adding new comment.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Typing in textarea enables the submit button. Clicking it sends POST request to add comment endpoint. Page refreshes or dynamically appends new comment without full reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "layout_colors": {
+                "background": "#FAFAD2",
+                "primary_accent": "#6B8E23"
+            },
+            "responsive_breakpoints": "@media (max-width: 768px) { ... }"
+        },
+        "function": "Apply consistent styling theme throughout site ensuring accessibility and mobile responsiveness.",
+        "static_description": "Entire layout utilizes light goldenrod background with olive drab accents for interactive elements. Responsive breakpoints ensure readable layouts on small screens including collapsible navigation menus.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "button_styles": ".btn-primary { background-color: #6B8E23; color: white; }",
+            "card_styles": ".card { border: 1px solid #6B8E23; border-radius: 8px; }"
+        },
+        "function": "Style all buttons and cards uniformly using specified olive drab color palette.",
+        "static_description": "Buttons feature solid olive drab backgrounds with white text. Cards have thin olive drab borders and subtle shadows. Hover states darken colors slightly but do not introduce additional effects.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons lighten slightly on hover (~10% brightness increase). No animation applied."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "install_all_script": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\"",
+            "dev_script": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Configure package.json scripts to manage frontend/backend dependency installation and concurrent development startup.",
+        "static_description": "Root-level package.json includes two custom scripts: install:all and dev. Both utilize concurrently library to execute parallel commands targeting frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "poetry_crud_endpoints": {
+                "list": "GET /api/poetry",
+                "detail": "GET /api/poetry/{id}",
+                "create": "POST /api/poetry",
+                "update": "PUT /api/poetry/{id}",
+                "delete": "DELETE /api/poetry/{id}"
+            }
+        },
+        "function": "Expose RESTful endpoints for managing poetry lifecycle operations including listing, retrieving, creating, updating, and deleting poems.",
+        "static_description": "N/A – Backend-only component exposing HTTP routes mapped to corresponding CRUD database operations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_endpoints": {
+                "login": "POST /api/auth/login",
+                "logout": "POST /api/auth/logout",
+                "register": "POST /api/auth/register",
+                "me": "GET /api/auth/me"
+            },
+            "jwt_secret_config": "JWT_SECRET environment variable used for signing tokens."
+        },
+        "function": "Implement session management through token-based authentication system supporting login, logout, registration, and identity verification.",
+        "static_description": "N/A – Backend-only component providing authentication-related API endpoints secured via middleware validating JWT presence and integrity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "migration_tool": "Use Knex.js migrations",
+            "tables_to_create": [
+                "users",
+                "poetry",
+                "comments"
+            ],
+            "relationships": "poetry.author_id references users.id, comments.poetry_id references poetry.id, comments.user_id references users.id"
+        },
+        "function": "Define and apply database migration scripts to initialize required tables and establish referential integrity among entities.",
+        "static_description": "Migration files written in JavaScript using Knex syntax. Each file exports up/down functions creating/dropping tables respectively. Relationships enforced through foreign key constraints.",
+        "interaction_and_states": []
+    }
+]

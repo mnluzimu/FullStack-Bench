@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A risk analyst who needs up-to-date information for her assessments.",
+        "user_goal": "To load the latest risk items and related data dynamically when accessing the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard",
+                "description": "Sarah logs in and lands on the dashboard, expecting to see updated risk items loaded automatically.",
+                "action": "Navigate to the dashboard after successful login.",
+                "expected_outcome": "Dashboard loads with no hardcoded data, making API calls to populate risk item lists and charts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer verifying database connectivity.",
+        "user_goal": "To confirm the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Developer starts the backend service and monitors logs for database connection messages.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "Server initializes successfully and establishes a connection to PostgreSQL using provided environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and subscription management system",
+        "user_persona": "A new user signing up for a trial subscription.",
+        "user_goal": "To sign up, choose a subscription tier, and gain access to premium features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Jamie clicks the login button to access the authentication flow.",
+                "action": "Click on the 'Login' button.",
+                "expected_outcome": "Redirected to the authentication page with options to sign in or register."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Subscription Tier",
+                "description": "After registering, Jamie selects the 'Pro' subscription tier to unlock full features.",
+                "action": "Click on the 'Pro' subscription card.",
+                "expected_outcome": "Redirected to the checkout flow managed by the external payment provider."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Risk assessment item selection interface",
+        "user_persona": "A compliance officer conducting a quarterly review.",
+        "user_goal": "To select multiple risk items quickly using search and filtering.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Risk Item Selector",
+                "description": "Morgan opens the risk item checklist to begin her assessment.",
+                "action": "Open the risk item dropdown/checklist.",
+                "expected_outcome": "List of risk items fetched from the backend and displayed with steel blue styling."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Items",
+                "description": "She searches for 'cybersecurity' to narrow down the list.",
+                "action": "Type 'cybersecurity' into the search input field.",
+                "expected_outcome": "List filters in real-time to show only matching risk items."
+            },
+            {
+                "step": 3,
+                "title": "Selecting an Item",
+                "description": "Morgan selects a relevant cybersecurity item to add to her current assessment.",
+                "action": "Click on a filtered risk item.",
+                "expected_outcome": "Item is added to the active assessment set, triggering data auto-population."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Auto-population of risk assessment data from database",
+        "user_persona": "A junior auditor reviewing pre-filled risk data.",
+        "user_goal": "To verify that selecting a risk item auto-fills accurate data from the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting a Risk Item",
+                "description": "Riley selects a known risk item from the list.",
+                "action": "Click on a risk item in the checklist.",
+                "expected_outcome": "Relevant data fields below the selector update with pre-filled values fetched from the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chart generation based on selected risk assessment items",
+        "user_persona": "A project manager preparing visuals for a stakeholder meeting.",
+        "user_goal": "To generate a visual representation of selected risks for presentation purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Charts",
+                "description": "Patricia has selected several risk items and now wants to visualize them.",
+                "action": "Click the 'Generate Chart' button.",
+                "expected_outcome": "Chart is rendered in the canvas area, displaying data from selected risk items."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Report creation and export functionality",
+        "user_persona": "An executive needing a shareable summary of findings.",
+        "user_goal": "To compile and export a risk assessment report in PDF format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Report",
+                "description": "Alex finalizes his selections and wants to generate a formal report.",
+                "action": "Click the 'Create Report' button and select '.pdf' format.",
+                "expected_outcome": "System generates a formatted PDF report and initiates browser download."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design to support risk assessment data",
+        "user_persona": "A database administrator ensuring correct schema deployment.",
+        "user_goal": "To validate that the database contains properly structured tables for risk data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Database Tables",
+                "description": "DBA inspects the deployed database to ensure all necessary tables exist.",
+                "action": "Query the database for existence of tables: users, risk_items, reports, subscriptions.",
+                "expected_outcome": "All required tables are present with correct column structures and relationships."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for fetching risk assessment items and related data",
+        "user_persona": "A frontend engineer integrating risk data into the UI.",
+        "user_goal": "To consume risk item data from backend API endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Risk Items",
+                "description": "Engineer makes a GET request to retrieve the list of risk items.",
+                "action": "Send GET request to `/api/risk-items` endpoint.",
+                "expected_outcome": "Receive a JSON response containing a list of risk items with id, name, category, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with alice blue background and steel blue components",
+        "user_persona": "A designer validating brand consistency across the app.",
+        "user_goal": "To confirm that the UI follows the specified color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting UI Colors",
+                "description": "Designer inspects the homepage to verify background and component colors.",
+                "action": "View homepage and inspect CSS styles.",
+                "expected_outcome": "Site background is alice blue (#F0F8FF) and interactive components use steel blue (#4682B4)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Subscription feature to control access to risk assessment tools",
+        "user_persona": "A free-tier user attempting to use premium features.",
+        "user_goal": "To attempt to perform a restricted action and be prompted to upgrade.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Trying Premium Feature",
+                "description": "Free-tier user Noah tries to start a new risk assessment.",
+                "action": "Attempt to initiate a new risk assessment without a valid subscription.",
+                "expected_outcome": "Modal appears prompting Noah to upgrade to access the feature."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization components for displaying risk charts",
+        "user_persona": "A data scientist analyzing trends visually.",
+        "user_goal": "To explore chart data interactively through tooltips.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting with Chart",
+                "description": "Quinn hovers over a segment of the generated chart to get more details.",
+                "action": "Hover over a chart segment.",
+                "expected_outcome": "Tooltip appears showing numeric value and contextual label for that segment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Report template management system",
+        "user_persona": "An admin maintaining company-wide report standards.",
+        "user_goal": "To update an existing report template used across the organization.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Template",
+                "description": "Admin navigates to the template management section and edits a template.",
+                "action": "Click on the 'Edit' button next to an existing report template.",
+                "expected_outcome": "Template editor opens, allowing modifications to the structure and content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User dashboard for managing assessments and reports",
+        "user_persona": "A frequent user organizing her daily tasks.",
+        "user_goal": "To access recent assessments and reports from the centralized dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Dashboard Widgets",
+                "description": "Taylor clicks on a widget showing recent assessments to view details.",
+                "action": "Click on a dashboard widget titled 'Recent Assessments'.",
+                "expected_outcome": "Widget expands to show a detailed list of recent assessments with quick action links."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development setup with npm scripts for installation and execution",
+        "user_persona": "A new developer setting up the project locally.",
+        "user_goal": "To easily install dependencies and run both frontend and backend services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer runs the command to install all project dependencies.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Running Services",
+                "description": "Developer starts both services simultaneously for local development.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Frontend and backend services start concurrently, ready for development."
+            }
+        ]
+    }
+]

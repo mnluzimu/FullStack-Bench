@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Anonymous discussion forum with post creation and reply functionality",
+        "user_persona": "A first-year student who wants to ask questions about campus life without revealing their identity.",
+        "user_goal": "To anonymously post a question about dorm life and reply to another student's post.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Anonymous Post",
+                "description": "Alex visits the forum homepage and decides to ask about dorm life. They fill out the post form with a title and content, select a relevant topic, and submit.",
+                "action": "Fill in title and content fields, select topic from dropdown, then click Submit button.",
+                "expected_outcome": "New post appears in the topic feed with a timestamp but no author information."
+            },
+            {
+                "step": 2,
+                "title": "Replying to Existing Post",
+                "description": "Alex sees another student's post asking about dining options and wants to share their experience. They type their response and submit it.",
+                "action": "Type reply content in the text area under the post and click Reply button.",
+                "expected_outcome": "Reply appears beneath the original post in threaded format with timestamp, still maintaining anonymity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system supporting anonymous participation",
+        "user_persona": "A shy sophomore who prefers to engage with the community without creating an account or logging in.",
+        "user_goal": "To participate in discussions without providing any personal information or going through registration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "First Visit to Platform",
+                "description": "Taylor opens the forum for the first time and immediately sees they can start participating without any login or registration process.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Website loads normally with no prompts for login or registration; session token is generated automatically in background."
+            },
+            {
+                "step": 2,
+                "title": "Posting Anonymously",
+                "description": "Taylor creates their first post without entering any personal details, relying on the system's automatic anonymous session handling.",
+                "action": "Create a new post using the standard form and submit it.",
+                "expected_outcome": "Post is successfully created and attributed to anonymous session; Taylor can continue interacting without authentication."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Post browsing and searching capabilities",
+        "user_persona": "A junior student looking for previous discussions about course registration deadlines.",
+        "user_goal": "To find existing conversations about registration deadlines using search and browse features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Recent Posts",
+                "description": "Jordan lands on the homepage and scrolls through the main feed of recent posts to get a feel for current discussions.",
+                "action": "Scroll down the main post feed.",
+                "expected_outcome": "Additional posts load automatically as Jordan reaches the bottom, showing pagination working correctly."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Specific Topic",
+                "description": "Jordan remembers hearing about registration issues and uses the search bar to look for related posts.",
+                "action": "Type 'registration deadlines' into the search bar and press Enter.",
+                "expected_outcome": "Search results page displays relevant posts and topics matching the query terms."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Topic following and subscription feature",
+        "user_persona": "A senior student interested in staying updated on career-related discussions.",
+        "user_goal": "To follow the 'Career Advice' topic to easily access new posts in that category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Discovering Topic to Follow",
+                "description": "Casey browses the topics list and finds 'Career Advice' which aligns with their interests. They decide to follow it.",
+                "action": "Navigate to topics list and click the follow icon (heart) next to 'Career Advice'.",
+                "expected_outcome": "Follow icon becomes filled, indicating successful subscription to the topic."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Subscription",
+                "description": "Casey wants to confirm they're now following the topic and checks if it appears in their followed topics list.",
+                "action": "Access the manage topics section from user menu.",
+                "expected_outcome": "'Career Advice' appears in the list of followed topics with an option to unfollow."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time notification system for followed topics and replies",
+        "user_persona": "A graduate student who posted a question about research methodology and wants to know when someone responds.",
+        "user_goal": "To receive immediate notification when someone replies to their post or posts in followed topics.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Reply Notification",
+                "description": "Riley posted a question earlier and has the notification bell icon visible in the header. Suddenly, someone replies to their post.",
+                "action": "Wait for another user to reply to Riley's post.",
+                "expected_outcome": "Bell icon shows an unread notification badge, and a real-time alert appears indicating a new reply."
+            },
+            {
+                "step": 2,
+                "title": "Checking Notifications",
+                "description": "Riley clicks on the notification bell to see what alerts they've received.",
+                "action": "Click the notification bell icon in the header.",
+                "expected_outcome": "Dropdown menu opens showing recent notifications including the new reply, with unread indicator cleared after viewing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API integration with PostgreSQL database using specified environment variables",
+        "user_persona": "A developer setting up the platform for the first time on their local machine.",
+        "user_goal": "To verify that the backend properly connects to the PostgreSQL database using the specified environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Developer sets up the environment variables and starts the backend server to test database connectivity.",
+                "action": "Set environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp and start backend service.",
+                "expected_outcome": "Backend service starts successfully and establishes connection to PostgreSQL database without errors."
+            },
+            {
+                "step": 2,
+                "title": "Performing Database Operations",
+                "description": "Developer tests basic CRUD operations to ensure data is being properly stored and retrieved from the database.",
+                "action": "Make API calls to create, read, update, and delete posts through the REST endpoints.",
+                "expected_outcome": "Database records are created, retrieved, updated, and deleted correctly with proper data persistence."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all data dynamically from backend APIs",
+        "user_persona": "A user accessing the forum from different devices and networks.",
+        "user_goal": "To experience consistent content delivery regardless of device or location.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "Morgan opens the forum on their mobile phone and expects to see the latest posts loaded from the server.",
+                "action": "Load the forum homepage on a mobile device.",
+                "expected_outcome": "Page displays dynamically fetched content including recent posts, topics, and user settings without any hardcoded data."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Live Data",
+                "description": "Morgan creates a new post and immediately expects to see it appear in the feed without refreshing the page manually.",
+                "action": "Create a new post and submit it.",
+                "expected_outcome": "New post appears in the feed automatically through dynamic API fetching, confirming real-time data updates."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Privacy and security measures to protect student personal information",
+        "user_persona": "A privacy-conscious student concerned about their online anonymity.",
+        "user_goal": "To verify that their personal information remains protected while using the forum.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Anonymous Participation",
+                "description": "Quinn creates several posts and replies while checking that no personal information is associated with their contributions.",
+                "action": "Create multiple posts and replies using the forum interface.",
+                "expected_outcome": "All posts and replies appear without any identifying information linking them to Quinn's personal identity."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Secure Communication",
+                "description": "Quinn examines network traffic to ensure all communications with the server are encrypted.",
+                "action": "Use browser developer tools to inspect network requests.",
+                "expected_outcome": "All API requests are made over HTTPS with encrypted session tokens, confirming secure communication."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Theme configuration with honeydew background and dark olive green components",
+        "user_persona": "A visually-oriented student who appreciates well-designed interfaces.",
+        "user_goal": "To enjoy a consistent visual experience that matches the specified color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Background Color",
+                "description": "Pat loads the forum homepage and immediately notices the background color scheme.",
+                "action": "Load the forum homepage and observe the overall site appearance.",
+                "expected_outcome": "Entire site background is rendered in honeydew color (#F0FFF0) as specified in the theme configuration."
+            },
+            {
+                "step": 2,
+                "title": "Examining Component Styling",
+                "description": "Pat interacts with various UI components to verify they follow the dark olive green color scheme.",
+                "action": "Interact with buttons, forms, and navigation elements throughout the site.",
+                "expected_outcome": "All interactive components display dark olive green (#556B2F) styling for borders, text, or other visual elements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design for posts, replies, topics, and user preferences",
+        "user_persona": "A database administrator tasked with maintaining the forum's backend systems.",
+        "user_goal": "To verify that the database schema supports all required forum functionalities efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Structure",
+                "description": "DBA reviews the database schema to ensure all necessary tables exist with correct relationships and constraints.",
+                "action": "Query database information schema to examine table structures for posts, replies, topics, and preferences.",
+                "expected_outcome": "Tables exist with proper primary keys, foreign key relationships, and required fields as defined in the schema specifications."
+            },
+            {
+                "step": 2,
+                "title": "Testing Data Relationships",
+                "description": "DBA verifies that the hierarchical relationships between posts, replies, and topics work correctly in practice.",
+                "action": "Insert test data including posts with replies and nested replies, then query to retrieve complete discussion threads.",
+                "expected_outcome": "Data relationships function correctly, allowing retrieval of complete discussion threads with proper parent-child associations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful API endpoints for forum operations (create, read, update, delete)",
+        "user_persona": "A frontend developer integrating forum functionality into a mobile application.",
+        "user_goal": "To successfully consume all necessary API endpoints for building a complete forum experience.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing CRUD Operations for Posts",
+                "description": "Developer tests all basic operations for managing posts through the API endpoints.",
+                "action": "Make HTTP requests to /api/posts endpoint using GET, POST, PUT, and DELETE methods.",
+                "expected_outcome": "API responds correctly to all CRUD operations with appropriate HTTP status codes and data formats."
+            },
+            {
+                "step": 2,
+                "title": "Managing Replies Through API",
+                "description": "Developer tests the ability to create and retrieve replies using the designated API endpoints.",
+                "action": "Make POST request to /api/replies endpoint and GET request to retrieve post with replies.",
+                "expected_outcome": "Replies are successfully created and retrieved with proper association to parent posts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality across posts and topics",
+        "user_persona": "A research-focused student looking for academic resources shared in previous discussions.",
+        "user_goal": "To efficiently locate relevant information using the platform's search capabilities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Performing Keyword Search",
+                "description": "Sam needs information about internship opportunities and uses the search bar to find relevant discussions.",
+                "action": "Enter 'internship opportunities' into the search bar and submit the query.",
+                "expected_outcome": "Search results display relevant posts and topics containing the searched keywords, with highlighted matches."
+            },
+            {
+                "step": 2,
+                "title": "Evaluating Search Relevance",
+                "description": "Sam examines the search results to ensure the most relevant content appears first.",
+                "action": "Review the ordering and relevance of returned search results.",
+                "expected_outcome": "Results are sorted by relevance with the most pertinent posts and topics appearing at the top of the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for managing followed topics",
+        "user_persona": "A busy student who follows many topics and needs to organize their interests.",
+        "user_goal": "To easily review and modify their list of followed topics through an intuitive interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Topic Management",
+                "description": "Taylor wants to clean up their followed topics list and accesses the management interface.",
+                "action": "Open user menu and select the 'Manage Topics' option.",
+                "expected_outcome": "Modal dialog opens displaying a list of all currently followed topics with clear unsubscribe options."
+            },
+            {
+                "step": 2,
+                "title": "Unfollowing Topics",
+                "description": "Taylor identifies several topics they no longer want to follow and removes them from their list.",
+                "action": "Click the remove/unfollow button next to unwanted topics in the management interface.",
+                "expected_outcome": "Selected topics are immediately removed from the followed list and no longer appear in the user's personalized feed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Notification preferences and management system",
+        "user_persona": "A student who wants to customize how they receive alerts about forum activity.",
+        "user_goal": "To adjust notification settings to match their preferred level of engagement.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Notification Settings",
+                "description": "Jordan navigates to the settings page to configure their notification preferences.",
+                "action": "Go to user settings and locate the notification preferences section.",
+                "expected_outcome": "Settings page displays checkboxes for different notification types with current preferences pre-selected."
+            },
+            {
+                "step": 2,
+                "title": "Updating Preferences",
+                "description": "Jordan decides they only want notifications for replies to their own posts, not for new posts in followed topics.",
+                "action": "Uncheck 'Notify me about new posts in followed topics' and save changes.",
+                "expected_outcome": "Preference change is saved successfully and Jordan only receives notifications for replies to their posts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development setup with npm run dev for both frontend and backend",
+        "user_persona": "A software engineering student contributing to the forum platform's development.",
+        "user_goal": "To efficiently develop and test both frontend and backend components simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Development Environment",
+                "description": "Alex clones the repository and needs to set up both frontend and backend development servers quickly.",
+                "action": "Run 'npm run install:all' followed by 'npm run dev' in the project root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently with hot reloading enabled for efficient development."
+            },
+            {
+                "step": 2,
+                "title": "Testing Concurrent Operation",
+                "description": "Alex makes changes to both frontend and backend code to verify that both servers respond appropriately.",
+                "action": "Modify a frontend component and a backend API endpoint, then observe the automatic reload behavior.",
+                "expected_outcome": "Both servers automatically reload and reflect the changes without requiring manual restart of either service."
+            }
+        ]
+    }
+]

@@ -1,0 +1,247 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A health-conscious reader visiting the blog for the first time.",
+        "user_goal": "To view a list of published health articles without seeing any mock or hard-coded content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens the health blog website and expects to see real articles loaded dynamically from a server.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "The page displays a grid of article cards populated via an API call to the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "user_persona": "A developer setting up the backend service locally.",
+        "user_goal": "To confirm the backend connects securely to the PostgreSQL database using environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Alex runs the backend service after configuring the environment variables as instructed.",
+                "action": "Start the backend server with configured environment variables.",
+                "expected_outcome": "The backend successfully establishes a connection to the PostgreSQL database using the provided environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for publishing health-related articles",
+        "user_persona": "An admin managing content for the health blog.",
+        "user_goal": "To publish a new health article using the article creation form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Article Creation Form",
+                "description": "Admin logs into the CMS and navigates to the article publishing section.",
+                "action": "Navigate to the article creation form.",
+                "expected_outcome": "A form with title, content, category dropdown, and publish button appears with correct styling."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Article",
+                "description": "Admin fills out the form and submits the article for publication.",
+                "action": "Fill in form fields and click the 'Publish' button.",
+                "expected_outcome": "The article is submitted to the backend API and stored in the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for browsing and searching articles",
+        "user_persona": "A visitor looking for specific health information.",
+        "user_goal": "To find relevant articles using either keyword search or category filters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Jamie types 'heart health' into the search bar hoping to find related articles.",
+                "action": "Type 'heart health' into the search bar and press Enter.",
+                "expected_outcome": "Articles matching the keyword are displayed in the grid below."
+            },
+            {
+                "step": 2,
+                "title": "Applying Category Filter",
+                "description": "Not satisfied with search results, Jamie decides to browse by category instead.",
+                "action": "Click on the 'Nutrition' category chip.",
+                "expected_outcome": "Only articles categorized under Nutrition are shown in the article grid."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Commenting system for users to post comments on articles",
+        "user_persona": "A regular reader who wants to share thoughts on an article.",
+        "user_goal": "To leave a comment on a recently read article.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading an Article",
+                "description": "Taylor finishes reading an article about mental wellness and wants to comment.",
+                "action": "Scroll to the bottom of the article page to the comment section.",
+                "expected_outcome": "Existing comments are displayed and a text area for new comments is visible."
+            },
+            {
+                "step": 2,
+                "title": "Posting a Comment",
+                "description": "Taylor writes a thoughtful comment and submits it.",
+                "action": "Type a comment in the text area and click 'Post Comment'.",
+                "expected_outcome": "The comment is sent to the backend and immediately appears in the comment list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Categorization feature for organizing articles by topic",
+        "user_persona": "A user interested in exploring content within a specific health category.",
+        "user_goal": "To view articles exclusively from the 'Fitness' category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Categories",
+                "description": "Jordan notices several category tags while browsing the homepage.",
+                "action": "Click on the 'Fitness' category chip.",
+                "expected_outcome": "The article grid updates to show only Fitness-related articles."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for users to follow specific topics",
+        "user_persona": "A frequent visitor wanting personalized content.",
+        "user_goal": "To subscribe to the 'Mental Health' topic for future updates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Subscription Option",
+                "description": "Casey sees a 'Follow' button next to the Mental Health category.",
+                "action": "Click the 'Follow' button for the 'Mental Health' category.",
+                "expected_outcome": "The button indicates that Casey is now following the topic and the preference is saved via API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search bar component for finding articles by keywords",
+        "user_persona": "A user seeking quick answers on a health issue.",
+        "user_goal": "To quickly locate articles about 'diabetes management'.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching Articles",
+                "description": "Riley remembers reading something about diabetes and uses the search bar to find it again.",
+                "action": "Enter 'diabetes management' into the search bar and press Enter.",
+                "expected_outcome": "Relevant articles appear in the results grid below the search bar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article display page with title, content, author, and publication date",
+        "user_persona": "A user who clicked on an article teaser.",
+        "user_goal": "To read the full article with all relevant metadata.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Full Article",
+                "description": "Morgan clicks on an article card titled 'Benefits of Morning Workouts'.",
+                "action": "Click on the article card.",
+                "expected_outcome": "Morgan is taken to a dedicated article page displaying the full content along with the author and publication date."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Category filtering mechanism on the main blog page",
+        "user_persona": "A user wanting to narrow down articles to a preferred category.",
+        "user_goal": "To filter articles by the 'Diet' category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Category Filter",
+                "description": "Patricia scrolls down past the search bar and sees various category chips.",
+                "action": "Click on the 'Diet' category chip.",
+                "expected_outcome": "The displayed articles update to show only those tagged with 'Diet'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User comment display section under each article",
+        "user_persona": "A reader curious about others’ opinions on an article.",
+        "user_goal": "To read what other users have said about a particular article.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Comments",
+                "description": "Drew scrolls to the end of an article to see if anyone else commented.",
+                "action": "Scroll to the comments section of the article.",
+                "expected_outcome": "A list of user comments with usernames and timestamps is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Topic subscription management for users",
+        "user_persona": "A logged-in user reviewing their topic preferences.",
+        "user_goal": "To stop following a topic they're no longer interested in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile Subscriptions",
+                "description": "Quinn visits their profile to manage followed topics.",
+                "action": "Navigate to the profile subscriptions section.",
+                "expected_outcome": "A list of currently followed topics with unsubscribe options is shown."
+            },
+            {
+                "step": 2,
+                "title": "Unsubscribing from Topic",
+                "description": "Quinn finds 'Weight Loss' in the list and unsubscribes.",
+                "action": "Click the 'Unsubscribe' button next to 'Weight Loss'.",
+                "expected_outcome": "The topic is removed from Quinn's subscription list via an API call."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Global styling with misty rose background color",
+        "user_persona": "A designer verifying visual consistency.",
+        "user_goal": "To ensure the entire site has a misty rose background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Taylor inspects the background color of different pages to verify uniformity.",
+                "action": "Open multiple pages and inspect body background style.",
+                "expected_outcome": "Every page renders with a consistent misty rose background as defined in the global CSS."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Component styling using firebrick color for all UI elements",
+        "user_persona": "A front-end reviewer checking design compliance.",
+        "user_goal": "To verify that all UI components use firebrick for text and borders.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Component Styles",
+                "description": "Jordan reviews buttons, inputs, and links across the site.",
+                "action": "Inspect styles of various UI components like buttons and input fields.",
+                "expected_outcome": "All interactive components are styled with firebrick text and border colors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configuration with package.json supporting `npm run install:all` and `npm run dev`",
+        "user_persona": "A developer cloning the project for local setup.",
+        "user_goal": "To install dependencies and start both frontend and backend services easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Alex clones the repo and needs to install dependencies for both frontend and backend.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "After installation, Alex wants to start both services simultaneously.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently."
+            }
+        ]
+    }
+]

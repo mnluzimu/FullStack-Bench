@@ -1,0 +1,161 @@
+[
+    {
+        "resource_dependency": {
+            "formSubmitEndpoint": "/api/leads",
+            "creditScoreInquiryEndpoint": "/api/credit-score"
+        },
+        "function": "A form-filling function for users to input personal information and credit status",
+        "static_description": "The form includes fields for full name, email address, phone number, current credit score range (dropdown), and a brief description of their credit issue (textarea). All fields are outlined in rosy brown. The background of the page is old lace.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside any input field focuses it and allows text entry."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Submit' button sends the form data to the /api/leads endpoint after client-side validation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "creditScoreInquiryAPI": "External API for retrieving credit score estimates based on provided data inputs such as SSN or financial history summary"
+        },
+        "function": "A credit score inquiry function",
+        "static_description": "A section with a heading 'Check Your Credit Score', containing minimal input fields required for estimation (e.g., last four digits of SSN, date of birth) and a 'Get Estimate' button. Background is old lace, UI elements use rosy brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Get Estimate' button submits the entered data to the configured external credit score inquiry API and displays the result below the form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "serviceContentText": "Detailed descriptions of credit repair services including debt negotiation, credit report disputes, identity restoration, and legal assistance"
+        },
+        "function": "An introduction section to credit repair services",
+        "static_description": "A dedicated section titled 'Our Services' featuring descriptive paragraphs about various credit repair offerings. Content sourced from serviceContentText. Styled with old lace background and rosy brown headings.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "serviceDetailsPageURLs": [
+                "/services/debt-negotiation",
+                "/services/report-disputes",
+                "/services/identity-restoration"
+            ]
+        },
+        "function": "A browsing interface for users to learn about credit repair services",
+        "static_description": "A navigation menu listing links to individual service pages under the main 'Services' tab. Each link opens a detailed explanation page. Menu bar uses rosy brown accents over an old lace body background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a service link navigates the user to the corresponding detailed service description page at the defined URL path."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leadSubmissionEndpoint": "/api/leads"
+        },
+        "function": "A lead submission form for collecting user information",
+        "static_description": "Identical to the primary form described earlier but specifically labeled for lead generation purposes. Includes all relevant contact info fields and optional notes area. Page background is old lace with rosy brown borders around the form container.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form via the 'Send Information' button triggers POST request to /api/leads endpoint which stores the lead data in the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backendAPIBaseURL": "http://localhost:3001/api"
+        },
+        "function": "Frontend that fetches all data from backend APIs",
+        "static_description": "All dynamic content sections (like service introductions and credit score results) pull data exclusively through HTTP requests made to backend endpoints located at backendAPIBaseURL. No hardcoded values appear anywhere on the frontend.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Backend that connects to an external PostgreSQL database using specified environment variables",
+        "static_description": "Server configuration initializes a connection pool to PostgreSQL instance using exact credentials listed in postgresConnectionConfig. Connection used across all modules needing database access.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\""
+        },
+        "function": "Repository package.json configured with npm run install:all to install both frontend and backend dependencies",
+        "static_description": "Root level package.json contains a script named 'install:all' executing command from installScriptCommand ensuring simultaneous installation of frontend and backend packages.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartCommand": "concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\""
+        },
+        "function": "Repository package.json configured with npm run dev to start both frontend and backend concurrently",
+        "static_description": "Root level package.json defines 'dev' script running devStartCommand to launch both development servers simultaneously for streamlined local testing.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "bodyBackgroundColorCSS": "#FDF5E6"
+        },
+        "function": "Body background styled with old lace color",
+        "static_description": "Entire webpage body has background-color set to value #FDF5E6 representing Old Lace throughout all views.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiElementColorCSS": "#BC8F8F"
+        },
+        "function": "UI elements styled with rosy brown color",
+        "static_description": "Borders, buttons, headers, and interactive components utilize #BC8F8F hex code consistently applied via CSS styling rules for cohesive theme presentation.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "validationRulesDefinition": "{ name: required|string, email: required|email, phone: required|regex(/^\\d{10}$/), creditScoreRange: required|enum(['300-500','501-600','601-700','701-850']) }"
+        },
+        "function": "Form validation for user input fields",
+        "static_description": "Client-side JavaScript enforces constraints defined in validationRulesDefinition before allowing submission of personal information forms. Error messages rendered inline beneath invalid fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Blur",
+                "description": "Leaving an improperly filled input field shows real-time error message next to the respective element until corrected."
+            },
+            {
+                "interaction": "Click",
+                "description": "Attempting to submit without meeting validation criteria prevents submission and highlights problematic fields visually."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leadsTableSchema": "CREATE TABLE leads (id SERIAL PRIMARY KEY, full_name VARCHAR(255), email VARCHAR(255), phone_number VARCHAR(20), credit_score_range VARCHAR(20), issue_description TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Data storage for lead information in PostgreSQL database",
+        "static_description": "Database schema initialized with leadsTableSchema during setup phase to store submitted lead records with appropriate column definitions matching form fields.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "leadSubmissionHandlerRoute": "POST /api/leads",
+            "creditInquiryHandlerRoute": "GET /api/credit-score?params..."
+        },
+        "function": "API endpoints for handling form submissions and credit score inquiries",
+        "static_description": "Two RESTful routes exposed: one accepting POST requests at leadSubmissionHandlerRoute to save incoming lead data, another supporting GET queries at creditInquiryHandlerRoute to proxy credit score lookup externally.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignMediaQueries": "@media screen and (max-width: 768px) { ... }"
+        },
+        "function": "Responsive design for cross-device compatibility",
+        "static_description": "CSS media queries defined per responsiveDesignMediaQueries ensure layout adjusts appropriately on mobile devices by stacking columns vertically, resizing fonts, and repositioning navigation menus.",
+        "interaction_and_states": []
+    }
+]

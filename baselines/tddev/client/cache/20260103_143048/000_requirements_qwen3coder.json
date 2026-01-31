@@ -1,0 +1,17 @@
+[
+    "A responsive frontend interface showcasing a personal portfolio of design works",
+    "A dedicated section displaying detailed information about the designer including background and experience",
+    "A portfolio browsing feature allowing users to view and navigate through design projects",
+    "A contact section providing clear contact information and methods for reaching the designer",
+    "Frontend styled with peach puff as the background color and indian red as the primary component color",
+    "Static website structure without dynamic data requirements",
+    "No backend implementation required due to static nature of content",
+    "Configuration of package.json with 'install:all' script to install dependencies for both frontend and backend",
+    "Configuration of package.json with 'dev' script to start both frontend and backend concurrently",
+    "Use of environment variables for database connection if dynamic data were needed",
+    "Connection to an external PostgreSQL database using specified credentials if dynamic data were needed",
+    "API integration for fetching dynamic data if the site required it",
+    "Support for real-time preview of content if markdown editing were involved",
+    "Interactive elements allowing user engagement with portfolio items",
+    "SEO-friendly page structures for improved visibility of portfolio content"
+]

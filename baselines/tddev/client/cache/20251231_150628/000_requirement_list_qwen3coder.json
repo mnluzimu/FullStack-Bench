@@ -1,0 +1,204 @@
+[
+    {
+        "resource_dependency": {
+            "questionFormFields": [
+                "title",
+                "content"
+            ],
+            "databaseSchema": "Table 'questions': id (UUID), title (TEXT), content (TEXT), created_at (TIMESTAMP)",
+            "apiEndpoint": "/api/questions"
+        },
+        "function": "Allow users to submit new questions via a form.",
+        "static_description": "A modal or inline form with two text inputs labeled 'Title' and 'Content', and a 'Submit Question' button. Background is beige (#F5F5DC) with saddle brown (#8B4513) borders and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Question' sends the form data to the /api/questions endpoint and closes the form upon success."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in the title field focuses the content field; pressing Enter in the content field submits the form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "questionListDataSchema": "Table 'questions': id (UUID), title (TEXT), content_excerpt (TEXT), created_at (TIMESTAMP)",
+            "apiEndpoint": "/api/questions"
+        },
+        "function": "Display a paginated list of submitted questions with titles and excerpts.",
+        "static_description": "A vertically stacked list of cards. Each card shows the question title in bold, followed by a truncated excerpt of the content. Cards have beige background and saddle brown borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a question card navigates to the detailed question view page using the question ID."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling to the bottom loads more questions dynamically if pagination is implemented."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "questionDetailDataSchema": "Table 'questions': id (UUID), title (TEXT), content (TEXT), created_at (TIMESTAMP); Table 'answers': id (UUID), question_id (UUID), content (TEXT), vote_count (INTEGER), created_at (TIMESTAMP)",
+            "apiEndpoints": [
+                "/api/questions/{id}",
+                "/api/questions/{id}/answers"
+            ]
+        },
+        "function": "Show the full content of a selected question along with its associated answers.",
+        "static_description": "Two sections: one displaying the full question title and content, and another listing all related answers. Both sections use beige background and saddle brown accents for headers and dividers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an answer's upvote/downvote button updates the vote count immediately without refreshing the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "answerFormFields": [
+                "content"
+            ],
+            "apiEndpoint": "/api/questions/{id}/answers"
+        },
+        "function": "Provide a form for submitting answers to a specific question.",
+        "static_description": "A textarea labeled 'Your Answer' and a 'Post Your Answer' button below it. Appears beneath the list of existing answers on the question detail page. Styled with beige background and saddle brown border.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Post Your Answer' submits the answer to the current question via POST /api/questions/{id}/answers and appends it to the list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "voteApiEndpoint": "/api/answers/{id}/vote",
+            "voteIcons": [
+                "upvote_icon.svg",
+                "downvote_icon.svg"
+            ]
+        },
+        "function": "Enable users to rate answers through upvoting or downvoting.",
+        "static_description": "Each answer displays two clickable icons – an upward arrow for upvote and a downward arrow for downvote – aligned to the left of the answer content. Icons are colored saddle brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking either icon sends a request to /api/answers/{id}/vote with the vote type ('up' or 'down') and updates the displayed vote count instantly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "voteCountField": "vote_count INTEGER in 'answers' table",
+            "apiResponseIncludes": "vote_count returned with each answer object"
+        },
+        "function": "Display the net vote score next to each answer.",
+        "static_description": "A numeric value shown adjacent to the voting controls for each answer, indicating the total number of upvotes minus downvotes. Text color matches saddle brown.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "tablesRequired": [
+                "questions",
+                "answers"
+            ]
+        },
+        "function": "Store all questions and answers persistently in a PostgreSQL database.",
+        "static_description": "No visible UI element; this defines backend storage requirements only.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoints": [
+                "/api/questions (POST)",
+                "/api/questions (GET)",
+                "/api/questions/{id} (GET)",
+                "/api/questions/{id}/answers (POST)",
+                "/api/questions/{id}/answers (GET)"
+            ]
+        },
+        "function": "Expose RESTful API endpoints for managing questions and answers.",
+        "static_description": "No visible UI element; specifies backend HTTP interfaces.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "voteApiEndpoint": "/api/answers/{id}/vote (POST)"
+        },
+        "function": "Provide an API endpoint for recording user votes on answers.",
+        "static_description": "No visible UI element; defines backend route for handling vote submissions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --bg-color: #F5F5DC; --accent-color: #8B4513; }"
+        },
+        "function": "Apply consistent styling across the application with beige background and saddle brown accents.",
+        "static_description": "Entire site uses beige (#F5F5DC) as the main background color, while interactive elements and borders utilize saddle brown (#8B4513).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mediaQueries": "@media screen and (max-width: 768px)"
+        },
+        "function": "Ensure the layout adapts seamlessly to different screen sizes including mobile devices.",
+        "static_description": "All pages adjust their layouts responsively. Question cards stack vertically on small screens, and navigation menus collapse into hamburger menus when needed.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigationLinks": [
+                "/questions",
+                "/questions/{id}"
+            ],
+            "routerLibrary": "React Router or equivalent"
+        },
+        "function": "Allow seamless navigation between the question list and individual question detail views.",
+        "static_description": "Top navigation bar includes links to 'Home' (/questions) and optionally breadcrumbs showing path to current question detail page.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Home' returns to the question list. Clicking a breadcrumb link navigates back to that level."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketOrPollingMechanism": "Optional WebSocket connection or periodic polling strategy",
+            "frontendStateManagement": "Redux or React Context for updating vote counts client-side"
+        },
+        "function": "Update answer ratings live without requiring a full page reload.",
+        "static_description": "No additional visual elements; behavior managed entirely through JavaScript and state updates.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "After clicking a vote button, the vote count updates immediately in the DOM without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalQuestionFormTrigger": "Floating '+' button or fixed header form trigger"
+        },
+        "function": "Make the question submission form accessible from any page.",
+        "static_description": "A floating action button shaped like a plus sign positioned at the bottom right corner on every page. Tapping opens the question submission form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the floating '+' button reveals the question submission form as a modal overlay."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "envVarConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "connectionPoolSetup": "pg library configuration for Node.js backend"
+        },
+        "function": "Establish secure and reliable database connectivity using predefined environment variables.",
+        "static_description": "No visible UI component; this describes how the backend service connects to PostgreSQL.",
+        "interaction_and_states": []
+    }
+]

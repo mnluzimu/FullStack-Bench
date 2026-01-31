@@ -1,0 +1,17 @@
+[
+    "A frontend that fetches all data from backend APIs",
+    "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+    "Product search functionality allowing users to select specific product categories and parameters",
+    "Automatic comparison of product prices across different states",
+    "Display of lowest-priced products in search results",
+    "Detailed product information pages showing price, quantity, and supplier information",
+    "User interface with seashell background color applied to the canvas",
+    "All visible UI components styled with crimson color",
+    "Category selection filters for refining product searches",
+    "State selection functionality for geographic filtering",
+    "Real-time price comparison updates",
+    "Supplier details display including contact or business information",
+    "Search result sorting options including by price, state, and relevance",
+    "Responsive design compatible with desktop and mobile views",
+    "Configuration of package.json to support `npm run install:all` for FE & BE dependencies and `npm run dev` for concurrent development startup"
+]

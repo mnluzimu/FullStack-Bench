@@ -1,0 +1,17 @@
+[
+    "A homepage showcasing leadership and business training services",
+    "An e-commerce section for purchasing services directly from the site",
+    "A workshops page displaying available workshops with descriptions and pricing",
+    "An online classes section with course listings and enrollment options",
+    "A podcasts page hosting audio content with playback functionality",
+    "A blog section featuring articles related to leadership and business training",
+    "User authentication system for account creation and login",
+    "Shopping cart functionality for selecting and managing purchases",
+    "Checkout process with payment integration for service purchases",
+    "User dashboard for managing purchased services and viewing order history",
+    "Responsive design ensuring usability across devices",
+    "Light cyan background with cadet blue components applied consistently across all pages",
+    "Frontend application fetching all dynamic data from backend APIs",
+    "Backend API connecting to a PostgreSQL database using specified environment variables",
+    "Repository configuration with package.json supporting npm run install:all and npm run dev commands"
+]

@@ -1,0 +1,191 @@
+[
+    {
+        "requirement_tested": "Frontend application with user-friendly interface for browsing and booking car rentals",
+        "user_persona": "A first-time visitor looking to rent a car for an upcoming trip.",
+        "user_goal": "To browse available cars and navigate to a car detail page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens the car rental website and sees a grid of car listings with images and basic details. The background is papaya whip, and the cards have dark orange accents.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "A responsive grid of car cards is displayed with make, model, year, category, and daily rate. Background is papaya whip."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Car Listings",
+                "description": "Sarah hovers her mouse over a car card to preview more interaction feedback.",
+                "action": "Hover over a car card.",
+                "expected_outcome": "The card gains a shadow effect and the cursor turns into a pointer."
+            },
+            {
+                "step": 3,
+                "title": "Selecting a Car",
+                "description": "Interested in a specific car, Sarah clicks on the card to learn more.",
+                "action": "Click on a car card.",
+                "expected_outcome": "The user is navigated to the car details page for the selected vehicle."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Date and time selection interface for rental periods",
+        "user_persona": "A user ready to specify rental dates for a selected car.",
+        "user_goal": "To choose pickup and return dates and times for the rental period.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Date Pickers",
+                "description": "On the booking form, Mark wants to set his rental duration. He clicks on the 'Pickup Date' field.",
+                "action": "Click on the 'Pickup Date' input field.",
+                "expected_outcome": "A calendar popup appears for selecting the pickup date."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Pickup Date",
+                "description": "Mark selects a date next week from the calendar.",
+                "action": "Select a date from the calendar popup.",
+                "expected_outcome": "The selected date populates the 'Pickup Date' field and the form validates that the return date is after the pickup."
+            },
+            {
+                "step": 3,
+                "title": "Setting Return Time",
+                "description": "Mark adjusts the return time by changing the hour in the time input.",
+                "action": "Change the value in the 'Return Time' input field.",
+                "expected_outcome": "The time updates and the form revalidates to ensure logical consistency between pickup and return."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Car booking system with reservation confirmation",
+        "user_persona": "A user who has filled out the booking form and is ready to submit.",
+        "user_goal": "To finalize the booking and receive a confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Booking Request",
+                "description": "Anna reviews her selected dates and clicks the 'Book Now' button.",
+                "action": "Click the 'Book Now' button.",
+                "expected_outcome": "The system processes the booking and redirects to a confirmation screen."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Confirmation Details",
+                "description": "Anna sees her booking summary including car details, dates, and total cost.",
+                "action": "Load the confirmation page.",
+                "expected_outcome": "A full-screen confirmation screen is displayed with booking ID, car info, dates, and total cost."
+            },
+            {
+                "step": 3,
+                "title": "Managing the Booking",
+                "description": "Curious about managing her booking, Anna clicks the 'Manage Booking' link.",
+                "action": "Click the 'Manage Booking' link.",
+                "expected_outcome": "Anna is redirected to the booking management section of her account."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and account management system",
+        "user_persona": "A new user wanting to create an account to manage bookings.",
+        "user_goal": "To register for an account and log in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Registration",
+                "description": "James visits the homepage and decides to register. He clicks the 'Register' button which opens a modal.",
+                "action": "Click the 'Register' button.",
+                "expected_outcome": "A registration modal appears with fields for name, email, and password. Background is papaya whip."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "James fills in his details. As he focuses on each input, the border highlights.",
+                "action": "Focus on each input field and enter valid registration details.",
+                "expected_outcome": "Each focused input field's border turns dark orange."
+            },
+            {
+                "step": 3,
+                "title": "Completing Registration",
+                "description": "James submits his registration information.",
+                "action": "Click the 'Register' submit button.",
+                "expected_outcome": "The modal closes, and the UI updates to show James is logged in, with access to account features."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Multiple payment method integration (credit card, PayPal, etc.)",
+        "user_persona": "A user ready to pay for their car rental booking.",
+        "user_goal": "To select a payment method and complete the transaction.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Payment Method",
+                "description": "At checkout, Maria sees options for payment methods. She chooses 'Credit Card'.",
+                "action": "Click the 'Credit Card' payment option.",
+                "expected_outcome": "The credit card form fields appear dynamically within the checkout flow."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Payment",
+                "description": "Maria enters her card details and clicks 'Pay Now'.",
+                "action": "Fill in credit card details and click 'Pay Now'.",
+                "expected_outcome": "The payment is processed, and the 'Pay Now' button is disabled until a response is received."
+            },
+            {
+                "step": 3,
+                "title": "Receiving Confirmation",
+                "description": "After successful payment, Maria is redirected to the booking confirmation page.",
+                "action": "Wait for redirect after payment processing.",
+                "expected_outcome": "Maria lands on the booking confirmation page indicating payment success."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Order management dashboard for tracking reservations",
+        "user_persona": "An administrator needing to view and manage bookings.",
+        "user_goal": "To filter and cancel an active booking from the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Admin logs into the system and navigates to the order management dashboard.",
+                "action": "Navigate to the order management dashboard.",
+                "expected_outcome": "A tabbed interface with 'Active', 'Past', and 'Cancelled' tabs is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Bookings",
+                "description": "Admin clicks on the 'Active' tab to see current reservations.",
+                "action": "Click the 'Active' tab.",
+                "expected_outcome": "Only active bookings are shown in the list below."
+            },
+            {
+                "step": 3,
+                "title": "Cancelling a Booking",
+                "description": "Admin finds a booking to cancel and clicks the 'Cancel' button.",
+                "action": "Click the 'Cancel' button for a specific booking.",
+                "expected_outcome": "A DELETE request is sent, and the booking status updates immediately in the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design with papaya whip background and dark orange components",
+        "user_persona": "A mobile user accessing the platform on a smartphone.",
+        "user_goal": "To use the platform seamlessly on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile",
+                "description": "Tom opens the car rental site on his phone and scrolls down to browse cars.",
+                "action": "Load the site on a mobile device and scroll.",
+                "expected_outcome": "The layout adjusts to a single-column grid, maintaining papaya whip background and dark orange accents. Scrolling is smooth."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Elements",
+                "description": "Tom taps on a car card to see details.",
+                "action": "Tap on a car card.",
+                "expected_outcome": "Navigation occurs to the car details page without misalignment or broken elements."
+            }
+        ]
+    }
+]

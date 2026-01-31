@@ -1,0 +1,17 @@
+[
+    "A wheel of fortune interface that users can spin to win prizes",
+    "A display section showing all available prizes",
+    "A user-specific section displaying their winning records",
+    "Frontend fetching all dynamic data from backend APIs",
+    "Backend connecting to a PostgreSQL database using specified environment variables",
+    "Database schema supporting prize definitions and user winning records",
+    "Functionality to record each user's spin result in the database",
+    "Visual feedback during the wheel spinning animation",
+    "Responsive design with light gray background and dark red styled components",
+    "Landing page explaining how to use the wheel of fortune",
+    "Authentication or identification mechanism to track individual user records",
+    "API endpoint to retrieve current user's winning history",
+    "API endpoint to fetch the list of available prizes",
+    "API endpoint to process a wheel spin and return the result",
+    "Package.json configured with `install:all` and `dev` scripts running both frontend and backend"
+]

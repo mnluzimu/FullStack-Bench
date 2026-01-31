@@ -1,0 +1,228 @@
+[
+    {
+        "resource_dependency": {
+            "registrationFormSchema": "Database table 'users' with fields: id (UUID), email (string, unique), password_hash (string), created_at (timestamp), updated_at (timestamp)",
+            "validationLibrary": "Use a frontend validation library such as Yup or Zod"
+        },
+        "function": "Allow new users to register on the platform with validated credentials.",
+        "static_description": "A centered form with fields for email, password, and confirm password, styled with lemon chiffon background and chocolate content blocks.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Register' button triggers client-side validation and sends a POST request to /api/register endpoint if valid."
+            },
+            {
+                "interaction": "Input",
+                "description": "As the user types, real-time validation feedback is displayed below each field (e.g., password strength, email format errors)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginAPIEndpoint": "/api/login",
+            "sessionStorageMechanism": "JWT tokens stored in HTTP-only cookies or localStorage depending on security requirements"
+        },
+        "function": "Authenticate existing users and manage their session securely.",
+        "static_description": "A login form containing email and password fields with a 'Login' button, placed centrally on the page against a lemon chiffon background and chocolate-styled input areas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials via POST to /api/login; success redirects to dashboard, failure shows error message."
+            },
+            {
+                "interaction": "Input",
+                "description": "Real-time inline validation of email format during typing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "photoUploadAPI": "/api/upload/photo",
+            "profileCreationSchema": "Table 'profiles' with fields: user_id (foreign key to users.id), name (string), age (integer), gender (enum), bio (text), photo_urls (array of strings), location (string), preferences (JSONB)",
+            "imageCropperLibrary": "Integrate a library like react-image-crop for image cropping before upload"
+        },
+        "function": "Enable users to create detailed profiles including uploading profile pictures.",
+        "static_description": "Multi-step form interface with sections for basic info, about me, location, preferences, and photo uploads. Styled with lemon chiffon background and chocolate content blocks.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Photo' opens file picker; after selection, image preview appears with crop option. Clicking 'Save Profile' sends data to backend."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging images onto the upload area automatically selects them for upload and previews them."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileEditAPI": "/api/profile/update",
+            "editableFieldsList": "name, age, gender, bio, location, preferences, photo_urls"
+        },
+        "function": "Provide users the ability to modify and update their personal profile information.",
+        "static_description": "Pre-filled form mirroring the profile creation interface, showing current profile data within editable fields. Background is lemon chiffon with chocolate-styled inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Update Profile' saves changes by sending PUT request to /api/profile/update endpoint."
+            },
+            {
+                "interaction": "Input",
+                "description": "Live character count updates for text-based fields like bio."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchFilterSchema": "Filters include: age range, gender, location proximity, religion, profession, education level, hobbies (tags)",
+            "searchResultsAPI": "/api/search/partners"
+        },
+        "function": "Allow users to perform targeted searches for potential partners using various filters.",
+        "static_description": "Sidebar or collapsible panel with filter options (sliders, checkboxes, dropdowns) and a main results grid displaying partner cards. Lemon chiffon background with chocolate-styled filter panels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Apply Filters' sends selected criteria to /api/search/partners which returns filtered matches."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loads more results when reaching the bottom of the list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "matchingAlgorithmLogic": "Match score calculated based on compatibility factors from user preferences vs. other profiles’ attributes",
+            "matchRecommendationAPI": "/api/matches/recommend"
+        },
+        "function": "Generate personalized partner recommendations based on user-defined preferences and behavior.",
+        "static_description": "Section on the dashboard or dedicated tab showing recommended profiles in card format, sorted by match percentage. Lemon chiffon background with chocolate-styled recommendation cards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Like' increases match score; clicking 'Dislike' removes recommendation and adjusts future suggestions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messagingAPISchema": "Messages stored in 'messages' table with sender_id, receiver_id, content, timestamp, read_status",
+            "inboxInterfaceDesign": "Threaded conversation view with contact list sidebar"
+        },
+        "function": "Facilitate private messaging between registered users.",
+        "static_description": "Split-screen layout with contacts/messages list on left and message thread on right. Lemon chiffon background with chocolate-styled chat containers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a contact initiates or resumes a conversation; clicking 'Send' posts message to /api/messages/send."
+            },
+            {
+                "interaction": "Input",
+                "description": "Typing in message box enables send button; pressing Enter also sends the message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeChatAPI": "WebSocket connection at /ws/chat for live message delivery",
+            "chatNotificationSystem": "Push notifications or toast alerts upon receiving messages while away from chat window"
+        },
+        "function": "Enable instant communication through real-time chat between matched users.",
+        "static_description": "Live chat window with message bubbles aligned left/right for received/sent messages, emoji picker, and typing indicator. Lemon chiffon background with chocolate-styled message bubbles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking emoji icon opens emoji selector; clicking 'Send' emits event over WebSocket."
+            },
+            {
+                "interaction": "Input",
+                "description": "Typing activates 'is typing...' status broadcasted to recipient via WebSocket."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardDataAPI": "/api/dashboard/data",
+            "widgetsToShow": "Profile completion progress, recent matches, unread messages count, quick links to edit profile and settings"
+        },
+        "function": "Serve as the central hub displaying user-specific insights and navigation shortcuts.",
+        "static_description": "Grid-based layout featuring profile summary widget, match recommendations carousel, and activity feed. Lemon chiffon background with chocolate-styled widgets.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any widget navigates to corresponding full-page view (e.g., profile, matches, inbox)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "galleryDisplaySchema": "Photos fetched from user's photo_urls array in profile object",
+            "lightboxComponent": "Lightbox modal component for enlarged photo viewing"
+        },
+        "function": "Present uploaded user photos in an organized gallery format.",
+        "static_description": "Horizontal scrollable row or grid of thumbnail images beneath user profile header. Lemon chiffon background with chocolate-bordered thumbnails.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a thumbnail opens lightbox modal with navigation arrows and close controls."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering highlights image border and shows zoom cursor."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries and flex/grid layouts for cross-device adaptability",
+            "mobileNavigationMenu": "Hamburger menu toggle for smaller screens"
+        },
+        "function": "Ensure consistent usability across desktop, tablet, and mobile devices.",
+        "static_description": "Fluid layout adjusting column widths, font sizes, and spacing dynamically. Lemon chiffon background with chocolate-styled elements maintained across breakpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout reflows appropriately at standard breakpoints (768px, 1024px); hamburger menu toggles visibility on small screens."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingMechanism": "Axios or Fetch API used throughout frontend to retrieve data from backend endpoints",
+            "loadingIndicatorComponent": "Spinner or skeleton loader shown during async requests"
+        },
+        "function": "Dynamically load all content from backend services rather than using static assets.",
+        "static_description": "Blank placeholders replaced by dynamic data once loaded, maintaining lemon chiffon/chocolate styling throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On initial render, loading indicators appear until data arrives from backend APIs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaDefinition": "Tables: users, profiles, messages, matches, photos. Relationships defined with foreign keys."
+        },
+        "function": "Establish secure connectivity to PostgreSQL database instance using provided environment variables.",
+        "static_description": "Backend configuration file referencing .env variables for database connection parameters without exposing secrets directly.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{ \"install:all\": \"concurrently \\\"npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev:client\\\" \\\"npm run dev:server\\\"\" }"
+        },
+        "function": "Define automation scripts for installing dependencies and running development servers concurrently.",
+        "static_description": "Standard package.json file with two custom scripts: install:all and dev, leveraging concurrently package.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "colorPaletteReference": "Primary background color: #FFFACD (lemon chiffon); Secondary/content block color: #D2691E (chocolate)"
+        },
+        "function": "Implement consistent visual theme adhering to specified color scheme.",
+        "static_description": "Entire UI utilizes lemon chiffon (#FFFACD) as base background color, with content sections styled using chocolate brown (#D2691E) accents and containers.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,180 @@
+[
+    {
+        "resource_dependency": {
+            "articleDataSchema": "Database table 'articles' with fields: id (UUID), title (string), content (text), author_id (foreign key to users), published_at (timestamp), category_id (foreign key to categories)",
+            "userDataSchema": "Database table 'users' with fields: id (UUID), username (string), email (string), created_at (timestamp)",
+            "categoryDataSchema": "Database table 'categories' with fields: id (UUID), name (string), description (text)"
+        },
+        "function": "Fetch and display published health-related articles from the backend API",
+        "static_description": "A grid layout displaying article cards with misty rose background and firebrick borders. Each card shows truncated article title, author name, publication date, and category tag.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an article card navigates to the full article display page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish connection to PostgreSQL database using provided environment variables for storing articles, users, comments, and categories",
+        "static_description": "Backend service configuration file referencing environment variables for database connectivity with no hardcoded credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "articlePublishSchema": "API endpoint POST /api/articles accepting JSON with title, content, author_id, category_id",
+            "categoryDropdownContent": "List of existing categories fetched from GET /api/categories"
+        },
+        "function": "Enable administrators to publish new health-related articles through a form interface",
+        "static_description": "Article creation form with misty rose background and firebrick input fields including title textbox, content textarea, category dropdown, and publish button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Publish' submits the form data to the backend API endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "GET /api/articles/search?q={query}",
+            "categoryFilterAPI": "GET /api/articles?category={categoryId}"
+        },
+        "function": "Allow users to browse articles through keyword search and category filtering",
+        "static_description": "Main blog page featuring a search bar at the top with firebrick border on misty rose background, followed by category filter chips and article grid below.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking category chips filters displayed articles by selected category via API call."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in search bar triggers keyword search across articles through backend API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "commentSubmissionAPI": "POST /api/comments with article_id and comment_text",
+            "commentsDisplaySchema": "Database table 'comments' with fields: id (UUID), article_id (foreign key), user_id (foreign key), comment_text (text), created_at (timestamp)"
+        },
+        "function": "Enable registered users to post comments on articles and view existing comments",
+        "static_description": "Comments section below each article showing existing comments with usernames and timestamps, plus a text area with firebrick border on misty rose background for new comment submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Post Comment' button sends comment text to backend API and refreshes comment list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "categoryManagementSchema": "Database table 'categories' with fields: id (UUID), name (string), description (text)",
+            "articleCategoryRelation": "Foreign key relationship between articles.category_id and categories.id"
+        },
+        "function": "Organize articles into predefined categories for easier navigation",
+        "static_description": "Category tags displayed on article cards and dedicated category filter chips on main blog page, all styled with firebrick color against misty rose background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a category chip applies filter to show only articles belonging to that category."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "topicSubscriptionSchema": "Database table 'user_subscriptions' with fields: id (UUID), user_id (foreign key), category_id (foreign key), subscribed_at (timestamp)",
+            "subscriptionToggleAPI": "POST /api/subscriptions/toggle with user_id and category_id"
+        },
+        "function": "Allow users to follow/unfollow specific health topics to customize their feed",
+        "static_description": "Subscribe toggle buttons next to category names throughout the site, displayed with firebrick styling on misty rose background when active.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggles subscription status for the selected category through backend API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBarAPI": "GET /api/articles/search?q={keyword}"
+        },
+        "function": "Provide keyword-based article search functionality",
+        "static_description": "Horizontal search bar positioned at the top of the main blog page with firebrick border and placeholder text 'Search articles...', set against misty rose background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers search API call with entered keywords and updates article display with results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "articleDetailSchema": "API endpoint GET /api/articles/{id} returning complete article data including title, content, author details, and publication timestamp"
+        },
+        "function": "Display complete article content with metadata on dedicated page",
+        "static_description": "Full-width article page with misty rose background featuring large firebrick title header, author byline with publication date, and full content text block.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "categoryFilterAPI": "GET /api/articles?category={categoryId}"
+        },
+        "function": "Enable filtering of articles by category on the main blog page",
+        "static_description": "Horizontal row of category filter chips below the search bar on main blog page, styled with firebrick color against misty rose background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Applies category filter to article grid by calling backend API with selected category ID."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "commentsDisplayAPI": "GET /api/comments?article_id={id}",
+            "userDisplayNameSchema": "Field in users table for displaying commenter names"
+        },
+        "function": "Show all comments associated with an article in chronological order",
+        "static_description": "Vertical list of comment blocks beneath each article, each containing user avatar placeholder, username in firebrick text, timestamp, and comment content on misty rose background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "subscriptionManagementAPI": "GET /api/subscriptions?user_id={id} and DELETE /api/subscriptions/{id}",
+            "userSubscriptionsSchema": "Database table linking users to followed categories"
+        },
+        "function": "Allow users to manage their topic subscriptions through a dedicated interface",
+        "static_description": "User profile section listing currently followed topics with unsubscribe buttons, styled with firebrick text on misty rose background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking unsubscribe button removes the topic subscription via backend API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalCSSFile": "body { background-color: mistyrose; }"
+        },
+        "function": "Apply misty rose as the global background color for consistent site-wide styling",
+        "static_description": "Entire website background rendered in misty rose color (#FFE4E1) as defined in global CSS stylesheet.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentStylesheet": "* { border-color: firebrick; color: firebrick; }"
+        },
+        "function": "Style all UI components consistently using firebrick color for text and borders",
+        "static_description": "All interactive elements including buttons, inputs, and navigation links styled with firebrick (#B22222) text and border colors against misty rose background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonConfig": "{ \"scripts\": { \"install:all\": \"cd frontend && npm install && cd ../backend && npm install\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Configure repository package.json to support unified installation and development commands",
+        "static_description": "Root package.json file containing scripts for installing dependencies in both frontend and backend directories and running both services concurrently during development.",
+        "interaction_and_states": []
+    }
+]

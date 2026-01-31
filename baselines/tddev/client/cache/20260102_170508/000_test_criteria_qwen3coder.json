@@ -1,0 +1,282 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A visitor interested in exploring barbers and services offered by the shop.",
+        "user_goal": "Browse the list of barbers and services dynamically loaded from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Alex visits the barber shop website and expects to see real-time data about barbers and services.",
+                "action": "Navigate to the homepage which loads barbers and services via API calls.",
+                "expected_outcome": "The page displays a grid of barbers and a list of services fetched from the backend API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer setting up the backend server.",
+        "user_goal": "Verify that the backend connects to the PostgreSQL database using correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer starts the backend server expecting it to connect to the PostgreSQL database.",
+                "action": "Start the backend server with environment variables set: DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "Server successfully establishes connection to the PostgreSQL database without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting barbers, services, and client notification records",
+        "user_persona": "A database administrator initializing the database schema.",
+        "user_goal": "Set up tables for barbers, services, and notifications in the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Database Tables",
+                "description": "The DBA runs SQL scripts to create necessary tables for barbers, services, and notifications.",
+                "action": "Execute CREATE TABLE statements for barbers, services, and notifications.",
+                "expected_outcome": "Tables 'barbers', 'services', and 'notifications' are created successfully in the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI for browsing existing barbers with name, photo and specialization details",
+        "user_persona": "A potential customer looking to choose a barber.",
+        "user_goal": "View a list of barbers with their photos, names, and specializations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Barber Section",
+                "description": "Jamie goes to the 'Barbers' section to find someone who suits their style.",
+                "action": "Click on the 'Barbers' link in the navigation menu.",
+                "expected_outcome": "A grid of barber cards is displayed, each showing the barber's photo, name, and specialization."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting a Barber Profile",
+                "description": "Jamie clicks on a barber card to learn more about them.",
+                "action": "Click on a specific barber card.",
+                "expected_outcome": "Redirected to the barber's detailed view page with full profile information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI for browsing available services with name, description and pricing information",
+        "user_persona": "A customer wanting to know what services are offered.",
+        "user_goal": "Explore the list of services with descriptions and prices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Services Page",
+                "description": "Taylor wants to see what haircuts and treatments are available.",
+                "action": "Click on the 'Services' link in the navigation menu.",
+                "expected_outcome": "A list of service cards appears, each displaying name, description, duration, and price."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Service Details",
+                "description": "Taylor clicks on a service to get more details.",
+                "action": "Click on a specific service card.",
+                "expected_outcome": "A modal or new page opens showing detailed information about the selected service."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to add new barbers including name, contact info, and specialization",
+        "user_persona": "An admin managing staff members.",
+        "user_goal": "Add a new barber to the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Panel",
+                "description": "Admin logs in and navigates to the 'Manage Barbers' section.",
+                "action": "Navigate to '/admin/dashboard' then click on 'Manage Barbers'.",
+                "expected_outcome": "The 'Add New Barber' form is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filling Barber Form",
+                "description": "Admin fills out the barber's name, contact info, and specialization.",
+                "action": "Fill in the form fields and upload a photo.",
+                "expected_outcome": "All fields validate properly; no errors shown."
+            },
+            {
+                "step": 3,
+                "title": "Submitting New Barber",
+                "description": "Admin submits the completed form.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "New barber is added to the database and reflected immediately on the barbers page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to add new services including name, description, duration and price",
+        "user_persona": "An admin updating service offerings.",
+        "user_goal": "Register a new service in the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Service Management Area",
+                "description": "Admin accesses the service management interface.",
+                "action": "Go to the 'Manage Services' section from the admin dashboard.",
+                "expected_outcome": "Presented with the 'Add New Service' form."
+            },
+            {
+                "step": 2,
+                "title": "Completing Service Information",
+                "description": "Admin enters service name, description, duration, and price.",
+                "action": "Input values into the respective fields.",
+                "expected_outcome": "Field validations pass with no issues."
+            },
+            {
+                "step": 3,
+                "title": "Saving New Service",
+                "description": "Admin saves the newly entered service.",
+                "action": "Click the 'Save' button.",
+                "expected_outcome": "Service is saved to the database and visible on the services page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integration capability to send WhatsApp notifications to clients",
+        "user_persona": "An admin scheduling appointments and informing clients.",
+        "user_goal": "Send a WhatsApp notification to a client regarding their appointment.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Composing Notification Message",
+                "description": "Admin composes a custom message for the client.",
+                "action": "Enter client phone number and write a personalized message.",
+                "expected_outcome": "Message content is ready to be sent."
+            },
+            {
+                "step": 2,
+                "title": "Sending the Notification",
+                "description": "Admin sends the composed message.",
+                "action": "Click the 'Send' button.",
+                "expected_outcome": "Message is dispatched through the WhatsApp API and recorded in the notification log."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface styled with snow-themed background and dim gray interface elements",
+        "user_persona": "A designer reviewing the UI aesthetics.",
+        "user_goal": "Confirm visual consistency with snow background and dim gray interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Website Layout",
+                "description": "Designer inspects the overall look and feel of the website.",
+                "action": "Load any page of the website.",
+                "expected_outcome": "Page has a repeating snow texture background and all interface components use dim gray color (#2f2f2f)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout suitable for desktop and mobile browsing",
+        "user_persona": "A mobile user accessing the site on a smartphone.",
+        "user_goal": "Use the website comfortably on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile Device",
+                "description": "User opens the website on their smartphone.",
+                "action": "Visit the homepage using a mobile browser.",
+                "expected_outcome": "Layout adjusts to fit the mobile screen with readable fonts and touch-friendly buttons."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication mechanism for admin access to manage barbers and services",
+        "user_persona": "An authorized administrator logging in to perform tasks.",
+        "user_goal": "Securely access the admin dashboard to manage content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Admin Panel",
+                "description": "Admin tries to access restricted areas of the site.",
+                "action": "Navigate to '/admin/login' and enter valid credentials.",
+                "expected_outcome": "Successfully redirected to the admin dashboard after authentication."
+            },
+            {
+                "step": 2,
+                "title": "Attempting Unauthorized Access",
+                "description": "Someone without credentials tries to reach admin pages directly.",
+                "action": "Try to go to '/admin/dashboard' without logging in.",
+                "expected_outcome": "Redirected back to the login page with an access denied message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Form validation for barber and service creation inputs",
+        "user_persona": "An admin entering incomplete data during creation process.",
+        "user_goal": "Receive helpful feedback when making mistakes in forms.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Leaving Required Fields Blank",
+                "description": "Admin leaves some required fields empty before submitting.",
+                "action": "Leave 'Name' field blank and tab away from it.",
+                "expected_outcome": "Inline error message appears indicating that the name is required."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Incomplete Form",
+                "description": "Admin tries to submit the form despite missing information.",
+                "action": "Click the 'Submit' button without filling all required fields.",
+                "expected_outcome": "Submission is blocked and error messages highlight problematic fields."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Client-side routing for navigation between barbers, services and management sections",
+        "user_persona": "A frequent user navigating between different parts of the site.",
+        "user_goal": "Move smoothly between sections without full page reloads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Switching Between Sections",
+                "description": "User moves from home to barbers, then to services.",
+                "action": "Click on 'Barbers' and then 'Services' in the main navigation.",
+                "expected_outcome": "URL changes instantly and corresponding views load seamlessly without reloading the whole page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Notification log or history tracking sent messages",
+        "user_persona": "An admin checking past communications.",
+        "user_goal": "Review previously sent WhatsApp notifications.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Notification History",
+                "description": "Admin wants to verify if a message was actually sent.",
+                "action": "Open the notification history panel within the admin dashboard.",
+                "expected_outcome": "Table displays a chronological list of all sent messages with recipient and timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server setup for frontend and backend via npm scripts",
+        "user_persona": "A developer starting work on the project.",
+        "user_goal": "Run both frontend and backend servers simultaneously for development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer prepares the local environment for development.",
+                "action": "Run command `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Developer begins working on the app locally.",
+                "action": "Run command `npm run dev`.",
+                "expected_outcome": "Frontend and backend servers start concurrently and communicate correctly."
+            }
+        ]
+    }
+]

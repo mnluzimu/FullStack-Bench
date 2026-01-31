@@ -1,0 +1,233 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "health_survey_form_fields": [
+                "age_group",
+                "pregnancy_status",
+                "menstrual_cycle_regular",
+                "contraceptive_use",
+                "chronic_conditions",
+                "medications",
+                "exercise_frequency",
+                "dietary_habits",
+                "mental_health_status"
+            ],
+            "survey_submit_endpoint": "/surveys/submit",
+            "whitesmoke_background_color": "#F5F5F5",
+            "dark_cyan_component_color": "#008B8B"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "The main page displays a navigation bar with links to Home, Survey, Dashboard, and Login pages. All content areas load dynamically via API calls to the backend.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on navigation links fetches corresponding views through API endpoints without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgres_connection_string": "postgresql://myappuser:myapppassword@localhost:5432/myapp",
+            "database_schema_definition": "CREATE TABLE surveys(id SERIAL PRIMARY KEY, user_id INTEGER NOT NULL, submission_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, age_group VARCHAR(50), pregnancy_status BOOLEAN, menstrual_cycle_regular BOOLEAN, contraceptive_use TEXT[], chronic_conditions TEXT[], medications TEXT[], exercise_frequency VARCHAR(50), dietary_habits TEXT, mental_health_status VARCHAR(50));"
+        },
+        "function": "A backend application that connects to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend server initializes connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp. It exposes RESTful endpoints for managing health survey data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "form_field_labels": {
+                "age_group": "Age Group",
+                "pregnancy_status": "Pregnancy Status",
+                "menstrual_cycle_regular": "Regular Menstrual Cycle?",
+                "contraceptive_use": "Contraceptive Methods Used",
+                "chronic_conditions": "Chronic Conditions",
+                "medications": "Current Medications",
+                "exercise_frequency": "Exercise Frequency",
+                "dietary_habits": "Dietary Habits",
+                "mental_health_status": "Mental Health Status"
+            },
+            "submit_button_label": "Submit Survey",
+            "validation_error_message": "Please complete all required fields before submitting.",
+            "success_submission_message": "Thank you! Your survey has been successfully submitted."
+        },
+        "function": "A health survey form interface for users to input and submit health information",
+        "static_description": "Health survey form displayed on a whitesmoke background with dark cyan styled components. Includes various input fields such as checkboxes, radio buttons, dropdowns, and text areas labeled according to form_field_labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Submit button validates inputs and sends POST request to /surveys/submit endpoint."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "As users enter data into form fields, real-time validation feedback updates field states."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "survey_data_table_structure": "Table name: surveys | Columns: id (PK), user_id (FK), submission_date, age_group, pregnancy_status, menstrual_cycle_regular, contraceptive_use (TEXT[]), chronic_conditions (TEXT[]), medications (TEXT[]), exercise_frequency, dietary_habits, mental_health_status"
+        },
+        "function": "Data management functionality to store and organize submitted survey responses",
+        "static_description": "Submitted surveys are stored in a PostgreSQL table named 'surveys' with structured columns matching the form fields.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "permission_levels": [
+                "survey_taker",
+                "reviewer",
+                "admin"
+            ],
+            "access_control_rules": "Survey takers can only fill forms. Reviewers can view submitted data. Admins can manage users and export data."
+        },
+        "function": "User permission management system to control access to data and features",
+        "static_description": "Permissions are managed internally within the backend logic using role-based access controls mapped to user accounts.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "data_review_interface_elements": [
+                "Submission List View",
+                "Individual Submission Details Panel",
+                "Validation Toggle Buttons"
+            ],
+            "authorized_roles": [
+                "reviewer",
+                "admin"
+            ]
+        },
+        "function": "Data review interface for authorized personnel to view and validate submissions",
+        "static_description": "Authorized users see a list of submitted surveys with options to drill down into individual entries for detailed viewing and approval actions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a submission entry opens its detailed view where reviewers can approve or flag it."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reporting_visualizations": [
+                "Bar Chart: Age Distribution",
+                "Pie Chart: Pregnancy Status",
+                "Line Graph: Exercise Trends Over Time"
+            ],
+            "aggregation_queries": "SELECT COUNT(*) FROM surveys GROUP BY age_group;"
+        },
+        "function": "Reporting dashboard to display aggregated health data insights",
+        "static_description": "Dashboard presents visual charts summarizing collected health data trends among female respondents across multiple categories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart segments reveals tooltip details about the represented segment."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "css_variables": ":root { --background-color: #F5F5F5; --component-color: #008B8B; }",
+            "responsive_breakpoints": "@media screen and (max-width: 768px)"
+        },
+        "function": "Responsive web design with whitesmoke background and dark cyan styled components",
+        "static_description": "Website uses CSS variables to define --background-color as whitesmoke (#F5F5F5) and --component-color as dark cyan (#008B8B). Layout adapts responsively for mobile devices.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "session_management_strategy": "JWT tokens issued upon successful login",
+            "login_endpoint": "/auth/login",
+            "logout_endpoint": "/auth/logout"
+        },
+        "function": "Authentication system to manage user sessions and roles",
+        "static_description": "Users authenticate through a login form which issues JWT tokens for session persistence throughout the app.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials to auth endpoint and stores token in browser storage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "required_fields_list": [
+                "age_group",
+                "pregnancy_status",
+                "mental_health_status"
+            ],
+            "error_messages": {
+                "missing_required": "This field is required.",
+                "invalid_format": "Please enter valid data."
+            }
+        },
+        "function": "Survey form validation to ensure complete and accurate data submission",
+        "static_description": "Form includes built-in client-side validation indicators showing error messages when required fields are left blank or contain invalid data formats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Attempt",
+                "description": "Attempting to submit incomplete form highlights empty required fields and shows associated error messages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "export_formats_supported": [
+                "CSV",
+                "PDF"
+            ],
+            "admin_export_endpoint": "/admin/export/surveys"
+        },
+        "function": "Data export functionality for administrators to download survey results",
+        "static_description": "Admin panel contains an Export button allowing downloads of compiled survey data in CSV or PDF format.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Export button triggers GET request to admin endpoint returning downloadable file stream."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "audit_log_table_structure": "Table name: audit_logs | Columns: log_id (PK), timestamp, user_id (FK), action_type, affected_resource_id, old_values, new_values",
+            "tracked_actions": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "function": "Audit logging for tracking data access and modifications",
+        "static_description": "System maintains logs of critical operations performed by users on sensitive health data in a dedicated audit_logs table.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "role_definitions": {
+                "survey_taker": "Can fill out and submit surveys",
+                "reviewer": "Can read and validate submitted surveys",
+                "admin": "Full access including user management and exports"
+            },
+            "rbac_middleware": "Middleware enforcing route protection based on user roles"
+        },
+        "function": "Role-based access control for different user types (e.g., survey takers, reviewers, admins)",
+        "static_description": "Each protected route checks user's assigned role against predefined permissions ensuring appropriate access levels.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_scripts": "{ \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" }"
+        },
+        "function": "Concurrent development setup with npm scripts for installing dependencies and running both frontend and backend",
+        "static_description": "Root package.json includes custom scripts 'install:all' and 'dev' that use concurrently to execute commands in both frontend and backend directories simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "schema_sql_files": "tables.sql containing CREATE statements for users, surveys, audit_logs, and permissions tables"
+        },
+        "function": "Database schema design to support health survey data storage and retrieval",
+        "static_description": "Initial database schema includes tables for storing user profiles, survey submissions, audit trails, and permission mappings necessary for supporting the full feature set.",
+        "interaction_and_states": []
+    }
+]

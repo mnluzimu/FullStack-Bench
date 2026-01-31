@@ -1,0 +1,17 @@
+[
+    "A forum homepage displaying a list of posts with titles, authors, categories, and timestamps",
+    "A navigation bar with links to Home, Categories, Search, and User Center",
+    "A search functionality allowing users to search posts by keywords in title or content",
+    "Category browsing feature showing a list of categories and ability to filter posts by selected category",
+    "Post creation form with fields for title, content (supporting rich text or markdown), and category selection",
+    "Individual post detail page showing full content, author info, timestamp, and associated replies",
+    "Reply functionality enabling users to add comments/replies to existing posts",
+    "User center page displaying logged-in user's profile information including username and email",
+    "User center section listing all posts created by the logged-in user",
+    "User center section listing all replies made by the logged-in user",
+    "Authentication system supporting user login and registration",
+    "Backend API for fetching, creating, and managing forum posts and replies",
+    "Backend API for handling user authentication and retrieving user-specific data",
+    "Connection to a PostgreSQL database using specified environment variables for storing posts, replies, users, and categories",
+    "Styling with ghost white background and slate gray components applied globally"
+]

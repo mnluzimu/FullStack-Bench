@@ -1,0 +1,188 @@
+[
+    {
+        "resource_dependency": {
+            "postSchema": "Table: posts; Fields: id (UUID), title (string), content (text), topic_id (foreign key to topics.id), created_at (timestamp), updated_at (timestamp)",
+            "replySchema": "Table: replies; Fields: id (UUID), post_id (foreign key to posts.id), content (text), parent_reply_id (self-referencing foreign key for nested replies), created_at (timestamp)",
+            "topicSchema": "Table: topics; Fields: id (UUID), name (string), description (text)"
+        },
+        "function": "Enable users to create anonymous discussion posts and reply to existing ones while maintaining data integrity through structured database relationships.",
+        "static_description": "A form with a title input field, content text area, topic selector dropdown populated from available topics, and a submit button. Replies appear beneath their respective posts in threaded format with timestamps but no author identifiers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button creates a new post with provided title, content, selected topic, and current timestamp. Reply submissions append to the corresponding thread without revealing identity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionManagementAPI": "REST endpoint /api/auth/session returning session validity status",
+            "anonymousTokenGenerator": "Internal service generating temporary UUID tokens for anonymous sessions"
+        },
+        "function": "Allow students to participate anonymously without requiring account registration or login credentials while preserving session continuity.",
+        "static_description": "No visible login/logout controls or user profile elements. All interactions occur under automatically assigned temporary identifiers managed server-side.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Upon visiting any page, client checks for existing session token. If absent, generates a new anonymous token via internal service and stores it securely for subsequent requests."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchEndpoint": "GET /api/search?q={query}&type=post|topic returns filtered results based on keyword matching",
+            "browsePostsEndpoint": "GET /api/posts?page={number}&limit={count} retrieves paginated list of public posts ordered by creation date"
+        },
+        "function": "Provide mechanisms for discovering relevant discussions through browsing latest posts or searching keywords within post titles, contents, and associated topics.",
+        "static_description": "Top navigation bar includes a search bar centered above main content feed showing latest posts. Search icon triggers query submission; clear button resets filters.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As user types into search bar, debounced live suggestions may appear below based on partial matches in titles/topics."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking search icon or pressing enter submits typed query to backend which responds with matching posts/topics displayed in dedicated view."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Reaching bottom of post feed triggers infinite scroll loading next batch of posts until exhausted."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "followTopicEndpoint": "POST /api/topics/{id}/follow toggles follow state for authenticated session",
+            "subscriptionsDataSchema": "Table: subscriptions; Fields: session_token (string), topic_id (foreign key to topics.id), followed_at (timestamp)"
+        },
+        "function": "Allow users to subscribe to topics they're interested in to easily access related future content.",
+        "static_description": "Each topic listing displays a toggleable heart/follow icon beside its name. Active follows show filled icon with tooltip indicating number of followers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping the follow icon adds/removes the current topic from user’s followed list stored server-side and updates local display accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notificationWebSocket": "Establish WebSocket connection at /ws/notifications to push real-time alerts about replies and followed-topic activity",
+            "notificationPreferencesSchema": "Table: notification_settings; Fields: session_token (string), notify_on_reply (boolean), notify_on_new_followed_topic_post (boolean)"
+        },
+        "function": "Deliver immediate feedback when someone replies to a user's post or when new content appears in followed topics.",
+        "static_description": "Bell-shaped icon in top right corner shows unread count badge when active notifications exist. Dropdown menu lists recent alerts chronologically.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Event",
+                "description": "Server emits events upon reply creation or new post in followed topic triggering visual alert and updating unread counter instantly."
+            },
+            {
+                "interaction": "Click",
+                "description": "Opening notification panel marks all as read and clears badge indicator temporarily."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "Connects to PostgreSQL instance using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Ensure persistent storage of forum data including posts, replies, topics, and user preferences using secure database connections.",
+        "static_description": "Not directly visible in UI but enables reliable backend operations handling CRUD actions against defined tables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchAPIClient": "All frontend components use standardized fetch wrapper making HTTP calls to defined REST endpoints"
+        },
+        "function": "Dynamically populate UI elements with live data sourced exclusively from backend services rather than hardcoded values.",
+        "static_description": "Initial render waits for API responses before displaying content such as posts, topics, or user settings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Mount",
+                "description": "On mounting, each interactive section initiates async request(s) to appropriate endpoint(s) retrieving required data for rendering."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataEncryptionPolicy": "Sensitive fields like session tokens encrypted at rest; communication secured over HTTPS only"
+        },
+        "function": "Protect student anonymity and prevent unauthorized tracking or exposure of personally identifiable information throughout usage lifecycle.",
+        "static_description": "Implements transparent privacy safeguards ensuring no direct linkage between individuals and posted content visible to others.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "themeCSSVariables": ":root { --background-color: honeydew; --component-color: #556B2F } applied globally across stylesheets"
+        },
+        "function": "Apply consistent visual styling aligned with requested color palette enhancing usability and brand identity.",
+        "static_description": "Site background rendered in honeydew (#F0FFF0). Interactive components styled with dark olive green (#556B2F) borders/text.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postsTableDefinition": "CREATE TABLE posts (id UUID PRIMARY KEY, title TEXT NOT NULL, content TEXT NOT NULL, topic_id UUID REFERENCES topics(id), created_at TIMESTAMP DEFAULT NOW(), updated_at TIMESTAMP DEFAULT NOW())",
+            "repliesTableDefinition": "CREATE TABLE replies (id UUID PRIMARY KEY, post_id UUID REFERENCES posts(id), content TEXT NOT NULL, parent_reply_id UUID REFERENCES replies(id), created_at TIMESTAMP DEFAULT NOW())",
+            "topicsTableDefinition": "CREATE TABLE topics (id UUID PRIMARY KEY, name VARCHAR(255) UNIQUE NOT NULL, description TEXT)",
+            "preferencesTableDefinition": "CREATE TABLE user_preferences (session_token TEXT UNIQUE NOT NULL, notify_on_reply BOOLEAN DEFAULT TRUE, notify_on_new_followed_topic_post BOOLEAN DEFAULT TRUE)"
+        },
+        "function": "Define relational database structure capable of storing hierarchical discussion threads, categorized topics, and individualized user settings.",
+        "static_description": "Logical organization of tables enabling efficient querying and indexing strategies for common forum operations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "CRUDEndpointsList": "/api/posts [GET, POST], /api/posts/:id [GET, PUT, DELETE], /api/replies [POST], /api/topics [GET]"
+        },
+        "function": "Expose standard web methods allowing full lifecycle management of core entities via predictable URL patterns.",
+        "static_description": "Well-documented interface facilitating frontend-backend synchronization during development and testing phases.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fullTextSearchIndex": "PostgreSQL tsvector index built on posts.title and posts.content columns for optimized text searches"
+        },
+        "function": "Support fast, accurate discovery of relevant content spanning multiple categories and posting histories.",
+        "static_description": "Search bar leverages indexed backend capabilities returning ranked results sorted by relevance score.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Query",
+                "description": "Submitting search term triggers backend lookup utilizing full-text indexing returning paginated result set with highlighted excerpts."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "manageSubscriptionsUI": "Modal dialog accessible via user menu presenting editable list of currently followed topics with remove option per item"
+        },
+        "function": "Offer centralized control panel for reviewing and modifying topic subscription choices after initial selection.",
+        "static_description": "Accessible dropdown menu contains link opening overlay window listing all subscribed topics alongside unsubscribe buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting 'Manage Topics' opens modal pre-populated with current subscriptions. Clicking X removes topic immediately from list and backend record."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notificationSettingsEndpoint": "PATCH /api/settings/notification updates user preference flags according to submitted changes"
+        },
+        "function": "Empower users to customize how and when they receive alerts regarding community engagement affecting them.",
+        "static_description": "Settings screen displays checkboxes labeled 'Notify me when someone replies to my post' and 'Notify me about new posts in followed topics'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Toggle Checkbox",
+                "description": "Changing checkbox states sends PATCH request updating corresponding boolean flags tied to current session identifier in backend table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentDevScript": "\"dev\": \"concurrently \\\"npm run dev --prefix frontend\\\" \\\"npm run dev --prefix backend\\\"\" added to root package.json scripts block"
+        },
+        "function": "Streamline local development workflow by simultaneously launching frontend and backend processes with single command execution.",
+        "static_description": "Developers execute one terminal command to initiate hot-reloading environments for both application layers side-by-side.",
+        "interaction_and_states": []
+    }
+]

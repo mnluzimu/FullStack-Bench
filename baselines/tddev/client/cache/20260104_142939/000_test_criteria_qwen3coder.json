@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all species biological data from backend APIs",
+        "user_persona": "A biology student exploring different animal species for a research project.",
+        "user_goal": "To view a list of species and navigate to detailed information about one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Maya opens the website to explore the species database. She sees a grid of species cards loaded dynamically.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "A responsive grid of species cards is displayed, each showing the common name, scientific name, and conservation status fetched from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Species Detail",
+                "description": "Maya clicks on a species card to learn more about it.",
+                "action": "Click on a species card.",
+                "expected_outcome": "The user is redirected to the species detail page with comprehensive biological information fetched from the backend API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer testing the backend setup.",
+        "user_goal": "Verify that the backend connects to the database and serves species data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Alex starts the backend server after setting up the correct environment variables.",
+                "action": "Start the backend server with environment variables configured.",
+                "expected_outcome": "The server initializes successfully and connects to the PostgreSQL database using the provided credentials."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Species Data",
+                "description": "Alex makes a request to the species list endpoint.",
+                "action": "Send a GET request to '/api/species'.",
+                "expected_outcome": "The API returns a JSON response containing species data retrieved from the connected PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design to store species biological information data",
+        "user_persona": "A database administrator validating the schema.",
+        "user_goal": "Ensure the species table exists with correct columns and constraints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Database",
+                "description": "Sam connects to the PostgreSQL database using admin tools.",
+                "action": "Connect to PostgreSQL database with admin credentials.",
+                "expected_outcome": "Successfully connected to the database instance."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Table Structure",
+                "description": "Sam queries the database to inspect the schema of the species table.",
+                "action": "Run '\\d species' or equivalent SQL command.",
+                "expected_outcome": "The table 'species' is found with columns: id, common_name, scientific_name, habitat, diet, conservation_status, and scientific_name has a unique constraint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Browse functionality to display lists of species with their biological information",
+        "user_persona": "A wildlife enthusiast looking to discover new species.",
+        "user_goal": "Browse through a list of species and view their basic information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Browse Page",
+                "description": "Jordan visits the browse section to see all available species.",
+                "action": "Navigate to the /browse URL.",
+                "expected_outcome": "A paginated or infinitely scrollable list of species cards is displayed showing common name, scientific name, and brief habitat/diet info."
+            },
+            {
+                "step": 2,
+                "title": "Loading More Items",
+                "description": "Jordan scrolls down to load more species.",
+                "action": "Scroll towards the bottom of the page.",
+                "expected_outcome": "Additional species cards are loaded dynamically without requiring a page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality allowing users to find specific species or biological data",
+        "user_persona": "A researcher needing quick access to specific species data.",
+        "user_goal": "Find a specific species by typing its name into the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Search Query",
+                "description": "Taylor types 'Lion' into the search bar located at the top of the page.",
+                "action": "Type 'Lion' into the search input field.",
+                "expected_outcome": "The search input accepts the text and enables submission options."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search",
+                "description": "Taylor presses Enter to submit the search query.",
+                "action": "Press Enter key in the search field.",
+                "expected_outcome": "The page updates to show only species matching the term 'Lion', fetched via the /api/search endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filtering capabilities to narrow down species data based on various criteria",
+        "user_persona": "An environmental scientist studying endangered animals.",
+        "user_goal": "Filter species by conservation status to focus on endangered ones.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Filter Panel",
+                "description": "Casey clicks the filter icon to reveal filtering options.",
+                "action": "Click the filter toggle button.",
+                "expected_outcome": "The filter control panel slides open, revealing options grouped under collapsible sections."
+            },
+            {
+                "step": 2,
+                "title": "Applying Conservation Status Filter",
+                "description": "Casey selects 'Endangered' from the conservation status checkboxes.",
+                "action": "Check the 'Endangered' checkbox under conservation status.",
+                "expected_outcome": "The species list updates instantly to show only those marked as endangered, fetched with updated filter parameters."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with linen as the base color and maroon for all UI components",
+        "user_persona": "A UX designer reviewing visual consistency.",
+        "user_goal": "Confirm that the website uses the correct color scheme and is responsive.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Riley inspects the background color on desktop.",
+                "action": "Open DevTools and inspect the body element's background-color.",
+                "expected_outcome": "Background color is set to linen (#FAF0E6)."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Colors",
+                "description": "Riley checks the color of interactive elements like buttons.",
+                "action": "Inspect a button's color properties.",
+                "expected_outcome": "Button background or border color is maroon (#800000)."
+            },
+            {
+                "step": 3,
+                "title": "Testing Responsiveness",
+                "description": "Riley resizes the browser window to simulate mobile viewing.",
+                "action": "Resize browser window to mobile dimensions.",
+                "expected_outcome": "Layout adjusts appropriately; species cards stack vertically instead of forming a grid."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Species detail pages displaying comprehensive biological information",
+        "user_persona": "A nature documentary producer gathering facts about species.",
+        "user_goal": "View detailed information and images for a selected species.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Detail Page",
+                "description": "Jamie navigates to the detail page for a specific species.",
+                "action": "Visit /species/123 where 123 is a valid species ID.",
+                "expected_outcome": "The page displays full name, photo gallery, habitat, diet, behavior notes, and conservation status in clearly separated sections."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Images in Lightbox",
+                "description": "Jamie clicks an image in the gallery to get a better look.",
+                "action": "Click on an image within the gallery.",
+                "expected_outcome": "Image opens in a modal/lightbox view overlaying the current page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Pagination or infinite scroll for browsing large datasets",
+        "user_persona": "A casual visitor browsing many species.",
+        "user_goal": "Effortlessly browse through a long list of species.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Load",
+                "description": "Morgan lands on the browse page and sees the first batch of species.",
+                "action": "Visit the /browse page.",
+                "expected_outcome": "First set of species cards is displayed with either pagination controls or scroll-triggered loading mechanism present."
+            },
+            {
+                "step": 2,
+                "title": "Loading Next Batch",
+                "description": "Morgan scrolls near the bottom of the list.",
+                "action": "Scroll down the list of species.",
+                "expected_outcome": "Next batch of species is automatically loaded without clicking anything, maintaining smooth user experience."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving species data with support for search and filter parameters",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "Fetch filtered species data using API calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making Filtered Request",
+                "description": "Devon constructs a request to fetch species living in forests with carnivorous diets.",
+                "action": "Send GET request to /api/species?habitat=forest&diet=carnivore.",
+                "expected_outcome": "API responds with a JSON array of species matching both habitat and diet criteria."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface components for search input and filter controls",
+        "user_persona": "A regular user exploring the site features.",
+        "user_goal": "Use search and filter UI elements effectively.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Bailey enters a keyword into the search bar and submits it.",
+                "action": "Enter 'Elephant' in the search bar and press Enter.",
+                "expected_outcome": "Main content area updates to show species whose names or descriptions contain 'Elephant'."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Filters",
+                "description": "Bailey opens the filter panel to refine results further.",
+                "action": "Click the filter toggle icon.",
+                "expected_outcome": "Filter control panel becomes visible on the left side of the screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data management capabilities for adding and updating species information",
+        "user_persona": "An admin user maintaining the species database.",
+        "user_goal": "Add a new species entry to the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Form",
+                "description": "Quinn logs in as admin and accesses the add species form.",
+                "action": "Navigate to /admin/add-species.",
+                "expected_outcome": "A form with fields for common name, scientific name, habitat, diet, and conservation status is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Entry",
+                "description": "Quinn fills out the form and saves the new species.",
+                "action": "Fill all required fields and click the Submit button.",
+                "expected_outcome": "New species record is created in the database and confirmation message is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script for installing frontend and backend dependencies",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "Install all necessary dependencies quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Dana clones the repo and runs the install script.",
+                "action": "Execute 'npm run install:all' in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'dev' script for running frontend and backend concurrently",
+        "user_persona": "A developer starting local development servers.",
+        "user_goal": "Launch both frontend and backend servers with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Dana wants to start working on the app and runs the dev script.",
+                "action": "Execute 'npm run dev' in the root directory.",
+                "expected_outcome": "Frontend and backend servers start concurrently, allowing simultaneous development and testing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for database connections and API requests",
+        "user_persona": "A system administrator monitoring application health.",
+        "user_goal": "Ensure graceful failure when backend services encounter issues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Simulating Database Failure",
+                "description": "SysAdmin simulates a broken database connection to test error handling.",
+                "action": "Shut down the PostgreSQL service temporarily.",
+                "expected_outcome": "Backend returns a standardized JSON error response indicating database unavailability rather than crashing."
+            },
+            {
+                "step": 2,
+                "title": "Testing API Error Response",
+                "description": "SysAdmin sends an invalid API request to verify error messaging.",
+                "action": "Make a malformed GET request to /api/species.",
+                "expected_outcome": "Server returns a clear, user-friendly JSON error message detailing the issue."
+            }
+        ]
+    }
+]

@@ -1,0 +1,345 @@
+[
+    {
+        "requirement_tested": "Display a list of available polls for users to browse",
+        "user_persona": "A casual visitor interested in participating in community polls.",
+        "user_goal": "Browse through the available polls to find something interesting to vote on.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens the polls website and expects to see a list of available polls right away.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "A vertically scrollable page with a white background and navy-colored poll cards is displayed, each showing the poll's title, short description, creation date, and category."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Poll Cards",
+                "description": "Sarah scrolls down to look at more poll options and notices the visually distinct cards.",
+                "action": "Scroll down the page.",
+                "expected_outcome": "More poll cards load dynamically as she scrolls, maintaining consistent styling with titles and descriptions clearly visible."
+            },
+            {
+                "step": 3,
+                "title": "Opening a Poll",
+                "description": "One poll catches Sarah’s attention. She clicks on it to learn more.",
+                "action": "Click on a poll card.",
+                "expected_outcome": "The detailed view of the selected poll opens, displaying full information and voting options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to select and vote for specific poll options",
+        "user_persona": "A registered user ready to participate in a poll.",
+        "user_goal": "Cast a vote for her preferred option in a chosen poll.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Voting Options",
+                "description": "On the poll detail page, Maria sees several voting options presented as clickable divs.",
+                "action": "Navigate to a poll detail page.",
+                "expected_outcome": "Radio buttons or clickable navy-ston divs representing each voting option are visible under the poll question."
+            },
+            {
+                "step": 2,
+                "title": "Selecting an Option",
+                "description": "Maria decides which option she supports and selects it.",
+                "action": "Click on one of the voting options.",
+                "expected_outcome": "The selected option becomes visually highlighted, indicating that it has been chosen."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Vote",
+                "description": "Satisfied with her choice, Maria submits her vote.",
+                "action": "Click the 'Submit Vote' button.",
+                "expected_outcome": "Her selection is sent via a POST request to the voting endpoint, and the system records her vote."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show real-time or updated voting results after submission",
+        "user_persona": "A curious participant wanting to know how others voted.",
+        "user_goal": "See the updated voting results immediately after casting a vote.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Casting a Vote",
+                "description": "Tom votes for his favorite movie genre in a poll about entertainment preferences.",
+                "action": "Select an option and click 'Submit Vote'.",
+                "expected_outcome": "His vote is recorded successfully, triggering an immediate update to the results."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Updated Results",
+                "description": "After submitting, Tom looks forward to seeing how others have voted so far.",
+                "action": "Wait for automatic redirection or observe changes on the same page.",
+                "expected_outcome": "A horizontal bar graph with navy bars appears instantly, showing percentage distribution among all options along with total votes count."
+            },
+            {
+                "step": 3,
+                "title": "Manual Refresh Check",
+                "description": "Curious whether there were additional votes since his submission, Tom manually refreshes the results.",
+                "action": "Click the refresh button next to the results chart.",
+                "expected_outcome": "Latest data is fetched from the results API and the chart updates to reflect the most current statistics."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a clean user interface with white background",
+        "user_persona": "A first-time user exploring the site’s layout.",
+        "user_goal": "Easily navigate the site without visual distractions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading the Site",
+                "description": "Jamie visits the polls website for the first time and notices the overall cleanliness of the design.",
+                "action": "Open the homepage.",
+                "expected_outcome": "The entire application presents a solid white background across all visible sections, providing a clean aesthetic."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Content",
+                "description": "As Jamie explores different parts of the site, he appreciates the uncluttered presentation.",
+                "action": "Navigate between various pages (e.g., poll list, poll detail, results).",
+                "expected_outcome": "Each page maintains the white background theme consistently, ensuring no abrupt shifts in visual tone."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style all UI components with navy color scheme",
+        "user_persona": "A returning user familiar with the platform’s look and feel.",
+        "user_goal": "Experience consistent branding throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Consistent Styling",
+                "description": "Dana logs into the site again and immediately recognizes the familiar navy-themed interface.",
+                "action": "Load any page within the application.",
+                "expected_outcome": "All buttons, headers, links, form controls, and active states utilize consistent navy coloring, reinforcing brand identity."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Elements",
+                "description": "While navigating, Dana interacts with various elements, noting their uniform appearance.",
+                "action": "Hover over buttons, click links, open menus.",
+                "expected_outcome": "Every interactive element responds with subtle hover effects but retains the dominant navy color palette."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to view detailed poll information before voting",
+        "user_persona": "An informed voter who wants context before making a decision.",
+        "user_goal": "Understand the full scope of a poll before deciding how to vote.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Detailed View",
+                "description": "Liam clicks on a poll titled “Favorite Programming Language” to get more insights.",
+                "action": "Click on a poll card from the main list.",
+                "expected_outcome": "He lands on a detailed view displaying the extended description, creation timestamp, creator name, and categorized tags beneath the main question heading."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Information",
+                "description": "Liam carefully reads through the provided details to make an educated decision.",
+                "action": "Read the detailed content and metadata associated with the poll.",
+                "expected_outcome": "Full information including long-form description and metadata helps him understand the poll better."
+            },
+            {
+                "step": 3,
+                "title": "Returning to Poll List",
+                "description": "Not yet convinced, Liam decides to go back and explore other polls.",
+                "action": "Click the back button.",
+                "expected_outcome": "He returns smoothly to the poll list without losing previous navigation state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide visual feedback when a vote is successfully submitted",
+        "user_persona": "A cautious user who likes confirmation of actions taken.",
+        "user_goal": "Receive clear acknowledgment that his vote was accepted.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Voting Successfully",
+                "description": "Emma casts her vote in a poll about favorite pizza toppings.",
+                "action": "Choose an option and click 'Submit Vote'.",
+                "expected_outcome": "A green checkmark animation briefly plays near the submit button, followed by a toast message confirming receipt of her vote."
+            },
+            {
+                "step": 2,
+                "title": "Acknowledging Feedback",
+                "description": "Emma watches the confirmation animation and feels reassured that her input was processed.",
+                "action": "Observe the visual feedback sequence.",
+                "expected_outcome": "The animated checkmark fades out gracefully, leaving Emma confident that her participation was recorded."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure poll results are displayed in an easily understandable format",
+        "user_persona": "A data-oriented user interested in interpreting poll outcomes.",
+        "user_goal": "Quickly grasp the distribution of votes across different options.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Poll Results",
+                "description": "Noah checks the results of a recently closed poll about travel destinations.",
+                "action": "Navigate to the results section of the poll.",
+                "expected_outcome": "Results are displayed as labeled horizontal bars with percentages overlaying each segment, accompanied by a total votes count above the chart."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Data Visually",
+                "description": "Noah examines the bar graph to compare popularity levels among the options.",
+                "action": "Study the visual representation of the results.",
+                "expected_outcome": "The proportional sizing of the bars makes it easy for Noah to interpret the relative popularity of each option at a glance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include navigation between different sections of the website",
+        "user_persona": "A frequent user who moves around the site often.",
+        "user_goal": "Effortlessly switch between browsing polls, checking results, and managing personal activity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Top Navigation Bar",
+                "description": "Grace starts on the homepage and wants to check her past votes.",
+                "action": "Click on the 'My Votes' link in the top navigation bar.",
+                "expected_outcome": "She transitions smoothly to the My Votes section without experiencing a full page reload."
+            },
+            {
+                "step": 2,
+                "title": "Switching Contexts",
+                "description": "From there, Grace wants to return to browsing new polls.",
+                "action": "Click on the 'Home' link in the navigation bar.",
+                "expected_outcome": "She is redirected back to the poll list, maintaining seamless navigation flow."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Maintain user session or tracking to prevent duplicate voting",
+        "user_persona": "A responsible user who respects fair voting practices.",
+        "user_goal": "Contribute once per poll while trusting the system to enforce integrity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "First-Time Voting",
+                "description": "Alex votes in a poll about preferred programming languages.",
+                "action": "Cast a vote in the poll.",
+                "expected_outcome": "His vote is accepted and recorded successfully with no issues."
+            },
+            {
+                "step": 2,
+                "title": "Attempting Duplicate Vote",
+                "description": "Later, Alex tries to vote again in the same poll, either intentionally or accidentally.",
+                "action": "Try to vote again in the same poll.",
+                "expected_outcome": "An alert pops up stating 'You’ve already voted in this poll,' preventing him from submitting another vote."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display poll creation date and relevant metadata",
+        "user_persona": "A researcher collecting historical polling data.",
+        "user_goal": "Identify when each poll was created and gather contextual information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Poll Card Metadata",
+                "description": "Taylor browses the poll list looking for recent topics.",
+                "action": "Scan through poll cards on the homepage.",
+                "expected_outcome": "Each card includes small italicized text showing the creation time, author, and category, helping Taylor assess relevance."
+            },
+            {
+                "step": 2,
+                "title": "Checking Detailed View Metadata",
+                "description": "Taylor opens a poll to verify exact timestamps and authorship.",
+                "action": "Click on a specific poll card to view details.",
+                "expected_outcome": "In the detailed view, extended metadata including creation timestamp, last updated time, and author name are clearly displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive design for various screen sizes",
+        "user_persona": "A mobile user accessing the site during commute hours.",
+        "user_goal": "Use the site effectively on smaller screens without loss of functionality.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Mobile Browsing Experience",
+                "description": "Jordan accesses the polls website from his smartphone while commuting.",
+                "action": "Visit the site on a mobile browser.",
+                "expected_outcome": "The layout adjusts automatically to fit the narrow screen, with columns stacking and fonts scaling appropriately for readability."
+            },
+            {
+                "step": 2,
+                "title": "Tablet Adaptation",
+                "description": "At home, Jordan switches to his tablet for a larger view.",
+                "action": "Resize the window or switch devices to a tablet.",
+                "expected_outcome": "The interface adapts once more, optimizing space usage and touch target sizes for improved usability on medium-sized screens."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include error handling for invalid selections or submissions",
+        "user_persona": "A user prone to occasional mistakes while interacting online.",
+        "user_goal": "Get helpful guidance when encountering errors during voting.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Invalid Submission Attempt",
+                "description": "Casey forgets to choose an option before clicking 'Submit Vote'.",
+                "action": "Click 'Submit Vote' without selecting any option.",
+                "expected_outcome": "An inline error message appears below the voting options, prompting Casey to make a selection before proceeding."
+            },
+            {
+                "step": 2,
+                "title": "Resolving Error",
+                "description": "Casey corrects his mistake by choosing an option this time.",
+                "action": "Select an option and try submitting again.",
+                "expected_outcome": "The error message disappears, and his vote is successfully submitted with proper feedback."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide accessibility features for inclusive user experience",
+        "user_persona": "A visually impaired user relying on assistive technologies.",
+        "user_goal": "Navigate and interact with the site independently using screen readers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Keyboard Navigation",
+                "description": "Riley prefers using keyboard shortcuts instead of a mouse due to motor limitations.",
+                "action": "Press the Tab key repeatedly to cycle through interactive elements.",
+                "expected_outcome": "Focus moves logically from one actionable item to the next, following standard reading order, with visible focus indicators."
+            },
+            {
+                "step": 2,
+                "title": "Screen Reader Compatibility",
+                "description": "Riley uses a screen reader to hear descriptions of UI elements.",
+                "action": "Activate screen reader software and navigate the site.",
+                "expected_outcome": "Descriptive labels accompany all interactive elements, and semantic HTML ensures accurate interpretation by assistive tools."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable sorting or filtering of polls by categories or dates",
+        "user_persona": "A power user who likes organizing content efficiently.",
+        "user_goal": "Find specific types of polls quickly using filters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Sort Menu",
+                "description": "Quinn wants to see only technology-related polls posted recently.",
+                "action": "Click the 'Filter' icon in the top navigation bar.",
+                "expected_outcome": "A dropdown menu labeled 'Sort By' opens, offering options like Recent, Popular, and By Category."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Quinn chooses 'Category' and then selects 'Technology' from the sub-menu.",
+                "action": "Select 'By Category' and then choose 'Technology'.",
+                "expected_outcome": "The poll list refreshes instantly, displaying only those categorized under Technology, sorted by recency."
+            }
+        ]
+    }
+]

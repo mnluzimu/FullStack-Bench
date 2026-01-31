@@ -1,0 +1,165 @@
+[
+    {
+        "resource_dependency": {
+            "postListEndpoint": "/api/posts",
+            "categoryFilterEndpoint": "/api/categories",
+            "searchEndpoint": "/api/search"
+        },
+        "function": "Display a list of forum posts fetched from the backend API on the homepage.",
+        "static_description": "The homepage displays a vertically scrollable list of forum posts. Each post shows its title, author name, category tag, creation date, and a brief preview of the content. Background color is ghost white (#F8F8FF), and all components use slate gray (#708090) styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a post navigates to the post detail page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads more posts dynamically via infinite scrolling or pagination."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchEndpoint": "/api/search"
+        },
+        "function": "Enable keyword-based search functionality for forum posts.",
+        "static_description": "A search bar appears at the top of the homepage with a magnifying glass icon. It allows users to enter keywords to filter posts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon triggers submission of the entered query."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing in the input field submits the search request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "categoryFilterEndpoint": "/api/categories"
+        },
+        "function": "Allow users to filter posts by selecting categories.",
+        "static_description": "Below the search bar, there is a horizontal scrollable list of category tags. All tags are displayed using slate gray styling against a ghost white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a category tag filters the displayed posts to show only those belonging to that category."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createPostEndpoint": "/api/posts/create",
+            "categoriesDropdownSource": "/api/categories"
+        },
+        "function": "Provide a form interface for authenticated users to create new forum posts.",
+        "static_description": "A modal or dedicated page includes fields for entering the post title, selecting a category from a dropdown menu, and writing the main content in a rich-text editor area. Submit and cancel buttons are present at the bottom.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit' sends the new post data to the server. Clicking 'Cancel' closes the form without saving changes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "replyEndpoint": "/api/replies/create",
+            "postIdReference": "from URL parameter or parent context"
+        },
+        "function": "Enable users to reply to existing forum posts directly within the post detail view.",
+        "static_description": "At the end of each post detail page, a reply box allows users to write responses. It contains a text input area and a submit button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button adds the reply under the current post."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userCenterEndpoint": "/api/user/profile",
+            "ownPostsEndpoint": "/api/user/posts",
+            "repliesHistoryEndpoint": "/api/user/replies"
+        },
+        "function": "Showcase a personalized dashboard containing user profile info, authored posts, and reply history.",
+        "static_description": "This page presents three sections: User Profile (name, email, join date), My Posts (list of titles and dates), and Reply History (list of excerpts and original post links). Styling uses ghost white background and slate gray components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loginEndpoint": "/api/auth/login",
+            "logoutEndpoint": "/api/auth/logout",
+            "sessionCheckEndpoint": "/api/auth/session"
+        },
+        "function": "Manage user authentication through login/logout flows and maintain session state.",
+        "static_description": "A navigation header displays either 'Login' or 'Logout' depending on whether the user is authenticated. When logged out, clicking 'Login' opens a modal with username/password inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' authenticates the user and redirects to the homepage. Clicking 'Logout' ends the session and returns to the public view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postDetailEndpoint": "/api/posts/{id}",
+            "repliesEndpoint": "/api/posts/{id}/replies"
+        },
+        "function": "Render full content of individual forum posts along with their associated replies.",
+        "static_description": "Displays the complete post content including title, author, timestamp, body, and attached media. Below this, nested or linear replies appear chronologically with usernames and timestamps.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "stylesCSS": "body { background-color: #F8F8FF; } .component { color: #708090; }"
+        },
+        "function": "Apply consistent color scheme throughout the application using CSS styles.",
+        "static_description": "All pages utilize ghost white (#F8F8FF) as the global background color and slate gray (#708090) for all interactive and static UI components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonFile": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Configure the root-level package.json file to support unified installation and development commands for both frontend and backend projects.",
+        "static_description": "The root directory contains a package.json file which defines two scripts: install:all to install dependencies for both subprojects, and dev to start both servers concurrently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchAllPostsAPI": "GET /api/posts",
+            "getPostByIdAPI": "GET /api/posts/{id}",
+            "createPostAPI": "POST /api/posts/create",
+            "getRepliesByPostIdAPI": "GET /api/posts/{id}/replies",
+            "createReplyAPI": "POST /api/replies/create",
+            "getUserProfileAPI": "GET /api/user/profile",
+            "getUserPostsAPI": "GET /api/user/posts",
+            "getUserRepliesAPI": "GET /api/user/replies",
+            "searchPostsAPI": "GET /api/search?query={keywords}",
+            "filterByCategoryAPI": "GET /api/categories/{categoryId}/posts"
+        },
+        "function": "Define RESTful API endpoints required for retrieving, creating, and managing posts, replies, user profiles, and search/filter operations.",
+        "static_description": "Each endpoint corresponds to a specific operation needed by the frontend to interact with the backend services.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "usersTableSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(100) UNIQUE NOT NULL, password_hash TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);",
+            "postsTableSchema": "CREATE TABLE posts (id SERIAL PRIMARY KEY, user_id INTEGER REFERENCES users(id), title VARCHAR(255) NOT NULL, content TEXT NOT NULL, category_id INTEGER REFERENCES categories(id), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);",
+            "repliesTableSchema": "CREATE TABLE replies (id SERIAL PRIMARY KEY, post_id INTEGER REFERENCES posts(id), user_id INTEGER REFERENCES users(id), content TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);",
+            "categoriesTableSchema": "CREATE TABLE categories (id SERIAL PRIMARY KEY, name VARCHAR(100) UNIQUE NOT NULL);"
+        },
+        "function": "Establish relational database schema for storing user accounts, forum posts, replies, and categories in PostgreSQL.",
+        "static_description": "Four tables — users, posts, replies, and categories — define relationships between entities such as authors, topics, discussions, and classifications.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignMediaQueries": "@media screen and (max-width: 768px) { /* mobile-specific styles */ }, @media screen and (min-width: 769px) { /* desktop-specific styles */ }"
+        },
+        "function": "Ensure responsive design compatibility across desktop and mobile devices using media queries.",
+        "static_description": "Layout adjusts automatically based on viewport size using predefined breakpoints. Mobile layouts stack elements vertically while desktop versions allow side-by-side arrangements.",
+        "interaction_and_states": []
+    }
+]

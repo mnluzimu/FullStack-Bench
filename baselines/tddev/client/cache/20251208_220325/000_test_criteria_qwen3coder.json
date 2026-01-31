@@ -1,0 +1,268 @@
+[
+    {
+        "requirement_tested": "Implement a search functionality allowing users to input stock codes or names",
+        "user_persona": "A financial analyst who needs to quickly find stock information.",
+        "user_goal": "To search for a stock using its name or ticker symbol.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing Search Bar",
+                "description": "Alex lands on the homepage and sees the centered search bar. He clicks on it to begin entering a stock name.",
+                "action": "Click on the search input field.",
+                "expected_outcome": "The search input field is focused and ready for text entry."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Identifier",
+                "description": "Alex types 'AAPL' into the search bar to look up Apple Inc.",
+                "action": "Type 'AAPL' into the search input field.",
+                "expected_outcome": "Text 'AAPL' appears in the search field."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide auto-suggested stock matches during search input",
+        "user_persona": "A new investor exploring different stocks.",
+        "user_goal": "To get suggestions while typing to find the correct stock easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Typing Partial Name",
+                "description": "Jamie starts typing 'Tesla' in the search bar and waits briefly.",
+                "action": "Type 'Tesla' into the search input field and wait for 300ms.",
+                "expected_outcome": "A dropdown list of suggested matches appears below the search bar."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Suggestion",
+                "description": "Jamie hovers over the first suggestion 'TSLA - Tesla, Inc.' and clicks it.",
+                "action": "Hover over the suggestion and click on it.",
+                "expected_outcome": "The search bar is populated with 'TSLA - Tesla, Inc.', and the stock details page loads."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display basic stock information including company name, ticker symbol, and current price",
+        "user_persona": "An investor checking a specific stock's key details.",
+        "user_goal": "To view essential information about a selected stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Stock Details",
+                "description": "Casey searches for 'GOOGL' and navigates to the stock overview page.",
+                "action": "Navigate to the stock details page for GOOGL.",
+                "expected_outcome": "A card titled 'Stock Overview' displays the company name, ticker symbol, and current price."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show market trend data with interactive charts and historical price movements",
+        "user_persona": "A trader analyzing price patterns.",
+        "user_goal": "To analyze historical price movements using interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Chart",
+                "description": "Morgan views the stock details and sees the interactive price chart.",
+                "action": "Load the stock details page.",
+                "expected_outcome": "An interactive line chart showing the last 30 days of price movement is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Changing Timeframe",
+                "description": "Morgan clicks on the '1Y' interval button to see a broader view.",
+                "action": "Click the '1Y' interval button.",
+                "expected_outcome": "The chart updates to show one year of historical price data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present comprehensive financial data including revenue, earnings, and key ratios",
+        "user_persona": "A financial analyst evaluating company health.",
+        "user_goal": "To review key financial metrics of a company.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Financial Summary",
+                "description": "Riley scrolls down to the financial summary section after selecting a stock.",
+                "action": "Navigate to the financial summary section.",
+                "expected_outcome": "A table with financial metrics like Revenue, Net Income, and P/E Ratio is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Switching Views",
+                "description": "Riley toggles to the quarterly view to see more frequent updates.",
+                "action": "Click the 'Quarterly' toggle.",
+                "expected_outcome": "The table updates to show quarterly financial data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer customizable report format options for users to select",
+        "user_persona": "A manager preparing a presentation.",
+        "user_goal": "To generate a report in a preferred format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Format",
+                "description": "Jordan selects the 'PDF' format for the report.",
+                "action": "Click the 'PDF' format button.",
+                "expected_outcome": "The PDF button is visually selected, and the choice is stored."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable content selection features allowing users to choose specific report sections",
+        "user_persona": "A researcher needing only specific data.",
+        "user_goal": "To customize the content included in the report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Customizing Sections",
+                "description": "Taylor unchaecks 'News & Sentiment' since it's not needed for the report.",
+                "action": "Click the checkbox next to 'News & Sentiment'.",
+                "expected_outcome": "The checkbox is unchecked, and the section is removed from the report content set."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate automated stock reports based on user-selected parameters",
+        "user_persona": "An analyst requiring regular stock summaries.",
+        "user_goal": "To generate a customized stock report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Report",
+                "description": "Miles clicks the 'Generate Report' button after selecting format and content.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A progress indicator appears, and the report is generated and downloaded."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include export functionality for generated reports in multiple formats",
+        "user_persona": "A consultant sharing findings with clients.",
+        "user_goal": "To export a report in a client-preferred format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exporting Report",
+                "description": "Casey clicks the download icon next to the generated report preview.",
+                "action": "Click the download icon.",
+                "expected_outcome": "A dropdown menu with export format options appears."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Export Format",
+                "description": "Casey selects 'DOCX' from the dropdown to export the report.",
+                "action": "Click the 'DOCX' option.",
+                "expected_outcome": "The report downloads in DOCX format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a clean user interface with white background and navy component colors",
+        "user_persona": "A user with visual sensitivity to clutter.",
+        "user_goal": "To navigate a clean and consistently styled interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing UI Design",
+                "description": "Sam lands on the homepage and notices the clean white background and navy components.",
+                "action": "Load the homepage.",
+                "expected_outcome": "The page displays a white background with all interactive elements in navy blue."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide real-time stock data updates and synchronization",
+        "user_persona": "A day trader monitoring live prices.",
+        "user_goal": "To see real-time updates of stock prices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Watching Live Updates",
+                "description": "Jules observes the stock price updating automatically every 30 seconds.",
+                "action": "Stay on the stock details page for over 30 seconds.",
+                "expected_outcome": "The stock price updates automatically without manual refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display news and market sentiment related to searched stocks",
+        "user_persona": "An investor interested in market perception.",
+        "user_goal": "To read recent news and sentiment about a stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Expanding News Panel",
+                "description": "Riley clicks to expand the 'Latest News & Market Sentiment' panel.",
+                "action": "Click the expand button for the news panel.",
+                "expected_outcome": "The panel expands to show a list of recent articles and sentiment scores."
+            },
+            {
+                "step": 2,
+                "title": "Reading Article",
+                "description": "Riley clicks on a news article title to read more.",
+                "action": "Click on an article title.",
+                "expected_outcome": "The article opens in a new browser tab."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include comparison tools to benchmark stocks against industry peers",
+        "user_persona": "An equity analyst comparing stock performance.",
+        "user_goal": "To compare a stock's metrics with industry peers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding Stock for Comparison",
+                "description": "Quinn clicks 'Add Stock to Compare' and enters a competitor's ticker.",
+                "action": "Click 'Add Stock to Compare' and enter a competitor ticker.",
+                "expected_outcome": "The comparison chart updates to include the new stock's metrics."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer saved report history and template management for returning users",
+        "user_persona": "A recurring user who frequently generates similar reports.",
+        "user_goal": "To access and reuse previous report configurations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Report History",
+                "description": "Dana navigates to the 'My Reports' section to find a past report.",
+                "action": "Navigate to the 'My Reports' section.",
+                "expected_outcome": "A list of previously generated reports with timestamps and formats is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Loading Previous Configuration",
+                "description": "Dana clicks on a past report to load its settings for a new generation.",
+                "action": "Click on a past report entry.",
+                "expected_outcome": "The report configuration loads into the editor for regeneration or modification."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure responsive design for accessibility across desktop and mobile devices",
+        "user_persona": "A mobile user accessing stock data on the go.",
+        "user_goal": "To use the website seamlessly on a mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Window",
+                "description": "Lee resizes the browser window to simulate a mobile screen size.",
+                "action": "Resize the browser window to 480px width.",
+                "expected_outcome": "The layout adapts using responsive design, rearranging elements for mobile view."
+            },
+            {
+                "step": 2,
+                "title": "Using Touch Interaction",
+                "description": "Lee swipes horizontally through a multi-page report preview.",
+                "action": "Perform a touch swipe gesture on the report preview.",
+                "expected_outcome": "The report pages scroll horizontally in response to the swipe."
+            }
+        ]
+    }
+]

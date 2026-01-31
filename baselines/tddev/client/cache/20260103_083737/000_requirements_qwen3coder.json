@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API service that connects to a PostgreSQL database using specified environment variables",
+    "Obituary publishing functionality allowing users to create and manage obituaries",
+    "Funeral arrangements publishing functionality allowing users to create and manage funeral details",
+    "Mortuary list display showing available mortuaries with relevant information",
+    "Condolences messaging system enabling users to view and leave messages on others' obituaries",
+    "Statistical analysis dashboard displaying relevant metrics and data visualizations",
+    "User authentication and authorization system for managing personal obituaries and arrangements",
+    "Multimedia memory storage and display capability for images and videos",
+    "Responsive web design with cornsilk colored outer layout and peru colored UI blocks",
+    "Search functionality to find obituaries and funeral arrangements",
+    "Data persistence layer using PostgreSQL database for all dynamic content",
+    "Package.json configuration with 'install:all' script for installing frontend and backend dependencies",
+    "Package.json configuration with 'dev' script for running frontend and backend concurrently",
+    "RESTful API endpoints for all data operations including CRUD for obituaries, arrangements, and messages"
+]

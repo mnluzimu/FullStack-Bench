@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "Frontend application that fetches all data from backend APIs with no hard-coded or mock data",
+        "user_persona": "A sales manager who needs to view real-time lead information.",
+        "user_goal": "To see an accurate list of all sales leads pulled from the live database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Leads Page",
+                "description": "Sarah logs into the CRM and navigates to the Sales Leads section expecting to see her team's latest prospects.",
+                "action": "Navigate to the /leads route.",
+                "expected_outcome": "The frontend makes a GET request to /api/leads and displays the retrieved data in a table without any mocked entries."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server that connects to PostgreSQL database using provided environment variables",
+        "user_persona": "A system administrator responsible for deployment.",
+        "user_goal": "To verify that the backend can successfully connect to the configured PostgreSQL instance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Alex sets up the environment variables and starts the backend server to ensure database connectivity.",
+                "action": "Run `npm run dev` in the backend directory after setting DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "The backend initializes successfully, logs a successful connection to the PostgreSQL database, and exposes API endpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema for storing sales leads with fields for contact information, status, and categorization",
+        "user_persona": "A database developer validating the schema implementation.",
+        "user_goal": "To confirm that the leads table matches the specified schema.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Database Table",
+                "description": "Devon inspects the database structure to make sure it aligns with the defined schema for sales leads.",
+                "action": "Connect to PostgreSQL and run '\\d leads' or equivalent SQL command to describe the table.",
+                "expected_outcome": "The output shows the leads table with columns: id (SERIAL PK), name (VARCHAR), email (VARCHAR), phone (VARCHAR), status (VARCHAR), category (VARCHAR), created_at (TIMESTAMP), updated_at (TIMESTAMP)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for browsing and managing sales leads with search and filtering capabilities",
+        "user_persona": "A sales representative looking for specific leads.",
+        "user_goal": "To quickly locate leads based on partial name match and status.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Jamie types part of a client's name into the search bar to narrow down the list.",
+                "action": "Type 'John' into the search input field.",
+                "expected_outcome": "Leads whose names contain 'John' appear instantly in the table below the search bar."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "After searching, Jamie wants only active leads, so he applies a status filter.",
+                "action": "Click the filter icon, select 'Active' from the status dropdown, then click 'Apply Filters'.",
+                "expected_outcome": "Only leads matching both the keyword 'John' and status 'Active' remain visible in the table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for updating lead information including contact details and pipeline status",
+        "user_persona": "A sales associate updating a prospect's progress.",
+        "user_goal": "To update a lead’s phone number and change their pipeline stage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Lead Details",
+                "description": "Taylor finds a lead named Alex Morgan and clicks on the row to modify contact info.",
+                "action": "Click on the lead row for Alex Morgan.",
+                "expected_outcome": "A modal or detail view opens showing Alex Morgan's lead information."
+            },
+            {
+                "step": 2,
+                "title": "Editing Information",
+                "description": "Taylor notices the phone number is outdated and decides to update it along with moving the lead forward.",
+                "action": "Click the edit icon, update the phone number to '+19876543210', change status to 'Qualified', then click Save.",
+                "expected_outcome": "The modal closes, and the lead list refreshes showing the new phone number and updated status for Alex Morgan."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Automated message sending system for lead nurturing and communication",
+        "user_persona": "Marketing coordinator configuring auto-emails for new leads.",
+        "user_goal": "To set up automatic welcome emails when a new lead enters the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Automation Rule",
+                "description": "Casey goes to the messaging automation section to configure a welcome email triggered upon lead creation.",
+                "action": "Select 'New Lead Created' from the trigger event dropdown in the message template configuration.",
+                "expected_outcome": "The setting is saved automatically, and future leads will receive the configured welcome email immediately after being added."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Lead organization and categorization features with customizable tags and segments",
+        "user_persona": "Sales operations specialist grouping leads by industry.",
+        "user_goal": "To assign a newly created 'Tech Industry' tag to several leads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Custom Tag",
+                "description": "Jordan creates a new tag called 'Tech Industry' to classify technology-related leads.",
+                "action": "In the Tags sidebar, type 'Tech Industry' into the add-tag input and press Enter.",
+                "expected_outcome": "The new tag appears in the tags list with a unique color badge next to it."
+            },
+            {
+                "step": 2,
+                "title": "Assigning Tags to Leads",
+                "description": "Jordan drags two tech leads onto the 'Tech Industry' tag to group them together.",
+                "action": "Drag the rows of two leads over the 'Tech Industry' tag label.",
+                "expected_outcome": "Both leads now display the 'Tech Industry' tag, and filtering by this tag shows these two leads."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Settings management interface for configuring application preferences and business rules",
+        "user_persona": "CRM administrator adjusting company-wide notification settings.",
+        "user_goal": "To enable daily digest emails for all users regarding new leads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Settings",
+                "description": "Morgan accesses the global settings panel to adjust notification behavior.",
+                "action": "Click the settings gear icon in the navigation bar.",
+                "expected_outcome": "The browser navigates to the Settings page which has sections like General, Notifications, Business Rules."
+            },
+            {
+                "step": 2,
+                "title": "Updating Notification Preferences",
+                "description": "Morgan enables the daily digest option under the Notifications section.",
+                "action": "Expand the Notifications panel, check the box for 'Daily Digest Emails', and click Save Changes.",
+                "expected_outcome": "All users begin receiving daily summary emails about new leads added during the previous day."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dropdown menu management system for maintaining configurable options and selections",
+        "user_persona": "System admin updating the available lead statuses.",
+        "user_goal": "To remove an obsolete status and add a new one used by the sales team.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dropdown Management",
+                "description": "Riley navigates to the dropdown management area to update lead status options.",
+                "action": "Go to the admin section and open the Dropdown Editor tool.",
+                "expected_outcome": "An editable list of current dropdown values for lead status appears."
+            },
+            {
+                "step": 2,
+                "title": "Editing Dropdown Options",
+                "description": "Riley removes the old 'Pending Review' status and adds 'Follow-Up Scheduled'.",
+                "action": "Delete the 'Pending Review' item, add 'Follow-Up Scheduled' as a new entry, and save the changes.",
+                "expected_outcome": "Future lead forms reflect the updated list excluding 'Pending Review' and including 'Follow-Up Scheduled'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reporting dashboard displaying sales metrics, lead conversion rates, and performance analytics",
+        "user_persona": "Sales director reviewing monthly performance.",
+        "user_goal": "To analyze how many leads were converted last month.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Conversion Metrics",
+                "description": "Patricia visits the reporting dashboard to assess team performance last month.",
+                "action": "Click the Reports link in the main navigation.",
+                "expected_outcome": "A dashboard loads showing various charts including a conversion rate graph over time."
+            },
+            {
+                "step": 2,
+                "title": "Drilling Down Into Data",
+                "description": "Patricia clicks on the peak point of the conversion chart to get more details.",
+                "action": "Click on the highest bar in the conversion chart.",
+                "expected_outcome": "A detailed breakdown appears showing exactly which leads converted on that date and what stages they passed through."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Advice and guidance section providing best practices for CRM usage and integration tips",
+        "user_persona": "New hire learning how to use the CRM effectively.",
+        "user_goal": "To read about recommended ways to follow up with leads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Best Practice Tips",
+                "description": "Dana looks for tips on improving her follow-up strategy with potential clients.",
+                "action": "Click the 'Best Practices' tab in the help section.",
+                "expected_outcome": "Articles related to CRM usage appear, including one titled 'Effective Follow-Up Strategies'."
+            },
+            {
+                "step": 2,
+                "title": "Reading Advice Content",
+                "description": "Dana clicks on the article she found interesting to learn more.",
+                "action": "Click on the title 'Effective Follow-Up Strategies'.",
+                "expected_outcome": "The full article content expands or loads on a new page with actionable advice for Dana."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for secure access control",
+        "user_persona": "Employee logging in remotely to access CRM resources.",
+        "user_goal": "To securely access the CRM dashboard using personal credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Login Credentials",
+                "description": "Sam arrives at work and needs to log into the CRM to start tracking leads.",
+                "action": "Visit the login page, enter correct username and password, and click Log In.",
+                "expected_outcome": "Sam is redirected to the CRM dashboard with personalized access rights applied."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with papaya whip background and dark orange styled components",
+        "user_persona": "Mobile user accessing CRM on a tablet during a client visit.",
+        "user_goal": "To navigate the CRM smoothly on a mobile device while retaining visual branding.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile Device",
+                "description": "Chris opens the CRM website on his iPad to review lead notes before meeting a prospect.",
+                "action": "Open Safari and go to the CRM URL.",
+                "expected_outcome": "Site renders responsively with layout optimized for touchscreens, background colored #FFEFD5, and buttons/styling in #FF8C00."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script for simultaneous frontend and backend dependency installation",
+        "user_persona": "Developer setting up the project locally for the first time.",
+        "user_goal": "To install all dependencies for both frontend and backend with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Jordan clones the repo and wants to prepare everything needed to run the app locally.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed concurrently without errors, preparing the entire stack for development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Development environment setup with 'dev' script to run frontend and backend concurrently",
+        "user_persona": "Developer beginning daily coding session.",
+        "user_goal": "To launch both frontend and backend services with a single command for efficient workflow.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Alex is ready to code and wants to spin up both the frontend and backend servers.",
+                "action": "Execute `npm run dev` in the root project folder.",
+                "expected_outcome": "Two servers start simultaneously—one hosting the frontend on port 3000 and the other running the backend API on port 3001."
+            }
+        ]
+    }
+]

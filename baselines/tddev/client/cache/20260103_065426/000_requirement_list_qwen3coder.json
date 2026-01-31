@@ -1,0 +1,212 @@
+[
+    {
+        "resource_dependency": {
+            "newsDataSchema": "Table: news_articles. Fields: id (UUID), title (string), summary (text), content (text), category (string), published_at (timestamp), image_url (string).",
+            "newsAPIEndpoint": "/api/news"
+        },
+        "function": "Display a list of agricultural news articles fetched dynamically from the backend.",
+        "static_description": "A grid or list layout showing news cards with title, summary, category tag, publication date, and thumbnail image sourced from image_url.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a news card navigates to the full article page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loads more articles when reaching the bottom of the list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "productDataSchema": "Table: farm_products. Fields: id (UUID), name (string), type (string), description (text), price (decimal), image_url (string), availability_status (boolean).",
+            "productAPIEndpoint": "/api/products"
+        },
+        "function": "Showcase various farm products with essential details such as type, pricing, and availability.",
+        "static_description": "Product cards displayed in a responsive grid showing name, type badge, brief description, price, and image. Each card includes an availability indicator.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a product card opens a modal or dedicated product detail page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a product card shows quick actions like 'Add to Favorites'."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "weatherForecastSchema": "Table: weather_forecasts. Fields: location_id (UUID), location_name (string), forecast_date (date), temperature_min (float), temperature_max (float), condition (string), humidity (integer), wind_speed (float).",
+            "weatherAPIEndpoint": "/api/weather",
+            "mapAPI": "Interactive map API for selecting locations"
+        },
+        "function": "Allow users to view current and upcoming weather forecasts relevant to agricultural activities.",
+        "static_description": "Displays weather cards grouped by location showing day-wise forecasts including min/max temperatures, conditions, humidity, and wind speed. Includes a map widget for location selection.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a location pin on the map updates the displayed forecast data."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a weather card highlights related entries in the map interface."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBarIcon": "/icons/search.svg",
+            "searchAPIEndpoint": "/api/search"
+        },
+        "function": "Enable global search across news articles, farm products, and weather locations.",
+        "static_description": "A prominent search bar positioned at the top of the page featuring a magnifying glass icon and placeholder text prompting users to enter keywords.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search bar focuses it and displays autocomplete suggestions."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter submits the query and redirects to a results page displaying matches from all sections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newsCategoryOptions": [
+                "Crop Updates",
+                "Market Trends",
+                "Technology",
+                "Policy Changes",
+                "Events"
+            ],
+            "filterNewsAPIEndpoint": "/api/news?category="
+        },
+        "function": "Provide filtering capabilities for news articles based on predefined categories.",
+        "static_description": "A horizontal filter bar beneath the main navigation containing category tags styled with cadet blue borders and text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a category tag filters the displayed news articles accordingly and highlights the selected tag."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "farmProductTypes": [
+                "Fruits",
+                "Vegetables",
+                "Grains",
+                "Livestock",
+                "Dairy",
+                "Seeds"
+            ],
+            "filterProductsAPIEndpoint": "/api/products?type="
+        },
+        "function": "Offer filtering of farm products by their respective types.",
+        "static_description": "Dropdown menu labeled 'Filter by Type' with options aligned to available product types. Default state shows all products.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a product type updates the product listing to show only items matching the chosen type."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "locationList": [
+                "North Region",
+                "South Region",
+                "East Plains",
+                "West Valleys"
+            ],
+            "filterWeatherAPIEndpoint": "/api/weather?location="
+        },
+        "function": "Allow filtering of weather forecasts by geographic location.",
+        "static_description": "A segmented control or dropdown selector allowing users to choose from predefined regions for which they want weather data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing a region refreshes the weather forecast panel to display data specific to that area."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorValue": "#E0FFFF"
+        },
+        "function": "Apply a consistent light cyan background color throughout the entire website.",
+        "static_description": "All pages use #E0FFFF as the base background color covering headers, body, footers, and sidebars uniformly.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "primaryColorValue": "#5F9EA0"
+        },
+        "function": "Style interactive and visual elements using cadet blue theme for consistency.",
+        "static_description": "Buttons, form inputs, navigation links, and highlight boxes utilize #5F9EA0 as their primary accent color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements slightly darken or gain shadow effect while maintaining cadet blue hue."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fetchAPIMiddleware": "Axios or Fetch-based middleware configured to call internal endpoints"
+        },
+        "function": "Ensure all frontend components retrieve dynamic content exclusively through backend APIs without using hardcoded or mock data.",
+        "static_description": "Each data-driven section makes HTTP GET requests via defined API routes upon initial load and during user interactions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish secure connection between backend services and PostgreSQL database instance using provided credentials.",
+        "static_description": "Backend server initializes database client pool on startup referencing environment-specific configuration parameters.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\""
+        },
+        "function": "Define a unified installation command that sets up dependencies for both frontend and backend modules simultaneously.",
+        "static_description": "The root-level package.json contains an install:all script executing concurrent installs within separate directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartScript": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
+        },
+        "function": "Implement a development launch command that starts both frontend and backend servers concurrently.",
+        "static_description": "Root package.json defines a dev script launching both application layers in parallel using concurrently utility.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "newsDBSchemaDefinition": "CREATE TABLE news_articles (id UUID PRIMARY KEY, title VARCHAR(255), summary TEXT, content TEXT, category VARCHAR(100), published_at TIMESTAMP, image_url TEXT);"
+        },
+        "function": "Define relational database structure for persisting news article records including metadata.",
+        "static_description": "PostgreSQL table named 'news_articles' with columns representing article attributes ensuring uniqueness and indexing of critical fields.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "productsDBSchemaDefinition": "CREATE TABLE farm_products (id UUID PRIMARY KEY, name VARCHAR(255), type VARCHAR(100), description TEXT, price DECIMAL, image_url TEXT, availability_status BOOLEAN);"
+        },
+        "function": "Structure database schema to store comprehensive information about farm products offered.",
+        "static_description": "Relational table 'farm_products' capturing product specifics with appropriate field types and constraints for efficient querying.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "weatherDBSchemaDefinition": "CREATE TABLE weather_forecasts (location_id UUID, location_name VARCHAR(255), forecast_date DATE, temperature_min FLOAT, temperature_max FLOAT, condition VARCHAR(100), humidity INTEGER, wind_speed FLOAT, PRIMARY KEY(location_id, forecast_date));"
+        },
+        "function": "Model database schema suitable for storing time-series weather forecast data per geographical location.",
+        "static_description": "Composite-keyed table 'weather_forecasts' linking location identifiers with daily forecast metrics optimized for temporal retrieval.",
+        "interaction_and_states": []
+    }
+]

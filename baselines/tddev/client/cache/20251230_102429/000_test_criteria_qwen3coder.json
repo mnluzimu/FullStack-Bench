@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A search input field for users to enter stock codes or names",
+        "user_persona": "A financial analyst who wants to quickly look up stock information.",
+        "user_goal": "To search for a stock using its code or name.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing the Search Field",
+                "description": "Sarah navigates to the homepage and sees the search bar. She clicks on it to begin her search.",
+                "action": "Click on the search input field.",
+                "expected_outcome": "The input field is focused, and a cursor appears, ready for typing."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Information",
+                "description": "Sarah types 'AAPL' into the search bar to find Apple Inc.'s stock data.",
+                "action": "Type 'AAPL' into the search input field.",
+                "expected_outcome": "The text 'AAPL' is displayed in the input field."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Search Query",
+                "description": "After entering the stock code, Sarah presses Enter to initiate the search.",
+                "action": "Press the Enter key.",
+                "expected_outcome": "A loading indicator appears, and a request is sent to the backend API to fetch matching stock summaries."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A results display area showing summarized stock information",
+        "user_persona": "An investor reviewing multiple stocks before making a decision.",
+        "user_goal": "To view summarized stock information after performing a search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Stocks",
+                "description": "John enters 'TSLA' into the search bar and hits Enter to find Tesla's stock summary.",
+                "action": "Enter 'TSLA' in the search field and press Enter.",
+                "expected_outcome": "A loading spinner is displayed while the system fetches data."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Successful Results",
+                "description": "The system successfully retrieves Tesla's stock information and displays it in a card format.",
+                "action": "Wait for the API response.",
+                "expected_outcome": "Stock summary cards appear below the search bar, showing Tesla's symbol, company name, and current price."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dropdown or selection options for users to choose report formats",
+        "user_persona": "A researcher preparing reports in different formats for colleagues.",
+        "user_goal": "To select a preferred format for the generated stock report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Format Dropdown",
+                "description": "Emma scrolls down to the report format section and clicks the dropdown menu to see available options.",
+                "action": "Click on the 'Report Format' dropdown.",
+                "expected_outcome": "The dropdown expands, revealing options: PDF, Markdown, and HTML."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Preferred Format",
+                "description": "Emma selects 'PDF' as she prefers formal documentation for sharing with clients.",
+                "action": "Click on the 'PDF' option from the dropdown.",
+                "expected_outcome": "The dropdown closes, and 'PDF' is now shown as the selected format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI controls for selecting specific content sections to include in the report",
+        "user_persona": "A finance student working on a project requiring selective data inclusion.",
+        "user_goal": "To customize which sections appear in the generated report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Content Sections",
+                "description": "Mark wants only essential information in his report. He checks 'Basic Stock Info' and 'Financial Data'.",
+                "action": "Click the checkboxes labeled 'Basic Stock Info' and 'Financial Data'.",
+                "expected_outcome": "Both checkboxes are marked, indicating those sections will be included in the report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A generate button to trigger custom stock report creation",
+        "user_persona": "A portfolio manager needing regular updates on selected stocks.",
+        "user_goal": "To generate a customized stock report based on previous selections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Report Generation",
+                "description": "Lisa has chosen a stock, selected 'HTML' as the format, and picked 'Market Trends' as the content. Now she clicks the generate button.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "The button becomes disabled, a loading spinner appears, and a POST request is made to generate the report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A report output section displaying generated stock reports",
+        "user_persona": "A business consultant presenting findings to stakeholders.",
+        "user_goal": "To review and download the completed stock report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Generated Report",
+                "description": "After clicking generate, the system finishes processing and displays the completed report.",
+                "action": "Wait for the report generation to complete.",
+                "expected_outcome": "The 'Generated Report' section appears with formatted content and a download link."
+            },
+            {
+                "step": 2,
+                "title": "Downloading the Report",
+                "description": "Eager to share the insights, David clicks the download link to save the report locally.",
+                "action": "Click the 'Download Report' link.",
+                "expected_outcome": "The browser initiates a file download of the generated report in the selected format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integration with backend APIs to fetch real-time stock data",
+        "user_persona": "A day trader relying on up-to-the-minute stock values.",
+        "user_goal": "To access live stock data through seamless API integration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting Live Data",
+                "description": "Raj searches for 'MSFT' expecting to get the most recent market price.",
+                "action": "Enter 'MSFT' in the search bar and press Enter.",
+                "expected_outcome": "The frontend sends a GET request to the backend, which fetches real-time data from an external API and returns updated stock information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend service connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer verifying backend connectivity during deployment.",
+        "user_goal": "To confirm that the backend connects properly to the configured PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "During setup, DevOps engineer starts the backend service and monitors logs for successful database connection.",
+                "action": "Start the backend server using environment variables.",
+                "expected_outcome": "Logs indicate successful connection to PostgreSQL at localhost:5432 with the correct username and database name."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Storage and retrieval of stock information, market trends, and financial data in the database",
+        "user_persona": "A QA tester validating data persistence features.",
+        "user_goal": "To verify that stock-related data is correctly stored and retrievable from the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Saving Stock Data",
+                "description": "Tester submits a new stock entry via the API to check if it persists in the database.",
+                "action": "Send a POST request to store a new stock record.",
+                "expected_outcome": "Database confirms insertion of the new stock record with unique symbol and timestamp."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving Stored Data",
+                "description": "Tester queries the same stock ID to ensure accurate retrieval of stored information.",
+                "action": "Send a GET request for the newly added stock ID.",
+                "expected_outcome": "Returns full stock details including company name, symbol, and last updated time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for searching stocks, retrieving summaries, and generating reports",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "To utilize exposed API endpoints for building interactive features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Endpoint",
+                "description": "Developer makes a call to the search endpoint to integrate auto-suggestions in the UI.",
+                "action": "Make a GET request to /api/stocks/search?q=AAPL.",
+                "expected_outcome": "Returns a list of stock summaries matching the query 'AAPL'."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Summary Endpoint",
+                "description": "Developer uses the summary endpoint to populate detailed views for individual stocks.",
+                "action": "Make a GET request to /api/stocks/123/summary.",
+                "expected_outcome": "Receives structured summary data including symbol, company name, and current price for stock ID 123."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend styled with a white background and navy-colored components",
+        "user_persona": "A UX designer checking brand consistency across devices.",
+        "user_goal": "To validate that the website follows the defined color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Page Styles",
+                "description": "Designer opens the homepage and inspects the global styles to confirm branding compliance.",
+                "action": "Open developer tools and inspect the <body> tag.",
+                "expected_outcome": "CSS rule shows body background-color set to #FFFFFF and component text color as #000080."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with desktop and mobile views",
+        "user_persona": "A remote worker accessing the site on a tablet during travel.",
+        "user_goal": "To navigate the website comfortably on a mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "User resizes their browser window to simulate a mobile screen size.",
+                "action": "Resize browser window to less than 768px wide.",
+                "expected_outcome": "Layout adjusts responsively—columns stack vertically, fonts remain readable, and navigation stays accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User session or state management for maintaining report preferences",
+        "user_persona": "A recurring visitor returning to continue unfinished work.",
+        "user_goal": "To retain previously selected report settings across sessions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Preferences",
+                "description": "Returning user selects 'Markdown' format and enables 'Market Trends' before leaving the site.",
+                "action": "Select 'Markdown' and check 'Market Trends', then close the browser.",
+                "expected_outcome": "Preferences are saved in session storage linked to a session cookie."
+            },
+            {
+                "step": 2,
+                "title": "Restoring Previous State",
+                "description": "When the user revisits the site later, their prior selections are restored automatically.",
+                "action": "Reload the webpage after closing the browser.",
+                "expected_outcome": "'Markdown' is pre-selected, and 'Market Trends' checkbox remains checked."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for invalid stock codes or unavailable data",
+        "user_persona": "A novice user accidentally mistyping a stock code.",
+        "user_goal": "To receive helpful feedback when encountering errors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Invalid Code",
+                "description": "New user mistakenly types 'XYZ123' into the search box and hits Enter.",
+                "action": "Enter 'XYZ123' in the search field and press Enter.",
+                "expected_outcome": "An inline error message appears stating 'Invalid stock code or name entered. Please check your input.'"
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading indicators during data fetching and report generation processes",
+        "user_persona": "An impatient user waiting for slow network responses.",
+        "user_goal": "To understand that the system is actively processing requests.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Long Process",
+                "description": "User searches for a large dataset that takes several seconds to load.",
+                "action": "Perform a search that triggers a long-running API call.",
+                "expected_outcome": "A semi-transparent overlay with a spinning loader appears, indicating activity."
+            },
+            {
+                "step": 2,
+                "title": "Completion Feedback",
+                "description": "Once the process completes, the loading indicator disappears and results are shown.",
+                "action": "Wait for the API response to finish.",
+                "expected_outcome": "Overlay fades out, and the results or generated report is displayed without delay."
+            }
+        ]
+    }
+]

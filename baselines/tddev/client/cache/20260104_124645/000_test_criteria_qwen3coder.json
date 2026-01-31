@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "A responsive frontend interface with a seashell background color and crimson-themed components",
+        "user_persona": "A medical student browsing the website on different devices.",
+        "user_goal": "To comfortably read medical articles regardless of screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Alex opens the website on a desktop computer to explore medical content.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Page loads with seashell background and crimson-themed interactive elements like buttons and links."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Browser Window",
+                "description": "Alex resizes the window to simulate mobile viewing.",
+                "action": "Manually resize browser window width from large to small.",
+                "expected_outcome": "Layout adjusts smoothly maintaining readability and usability across breakpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search functionality allowing users to find medical articles by keywords",
+        "user_persona": "A doctor looking for specific research on heart conditions.",
+        "user_goal": "To quickly locate relevant medical articles using keyword search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Dr. Lee sees the prominent search bar and types in 'heart disease'.",
+                "action": "Type 'heart disease' into the search input field.",
+                "expected_outcome": "Input reflects typed text; optional suggestions may appear below the input."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Query",
+                "description": "After typing, Dr. Lee presses Enter to initiate the search.",
+                "action": "Press Enter key or click the submit/search icon.",
+                "expected_outcome": "System makes API call to /api/articles/search?q=heart%20disease and displays filtered results."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to view individual medical articles with full content display",
+        "user_persona": "A nurse wanting to read more about a newly published article.",
+        "user_goal": "To access and thoroughly read the contents of an article.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Article",
+                "description": "Nina clicks on an article titled 'Latest Advances in Diabetes Treatment' from the results list.",
+                "action": "Click on the article link/card.",
+                "expected_outcome": "Navigates to article detail page at route matching its unique slug."
+            },
+            {
+                "step": 2,
+                "title": "Reading Full Content",
+                "description": "Nina begins reading the full content displayed clearly on the article page.",
+                "action": "Scroll through article content area.",
+                "expected_outcome": "Article title, abstract, author name, publication date, and full body content render cleanly with proper spacing and formatting."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Option to download medical articles as PDF files",
+        "user_persona": "A researcher who prefers offline reading material.",
+        "user_goal": "To save a copy of an article for later offline reference.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Article",
+                "description": "Dr. Patel opens an article on 'Neurological Disorders in Children' to evaluate its relevance.",
+                "action": "Navigate to the article page.",
+                "expected_outcome": "Article content loads fully including metadata and main body."
+            },
+            {
+                "step": 2,
+                "title": "Downloading PDF",
+                "description": "Finding the article useful, Dr. Patel decides to download it as a PDF.",
+                "action": "Click the 'Download PDF' button located beneath the article content.",
+                "expected_outcome": "Browser initiates a GET request to /api/articles/{id}/download and prompts file download dialog with generated PDF."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system supporting login and registration",
+        "user_persona": "A new contributor joining the platform.",
+        "user_goal": "To create an account and gain access to the author dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering New Account",
+                "description": "Sam visits the site and chooses to register as a new user.",
+                "action": "Fill out registration form with name, email, password, and confirm password then click Register.",
+                "expected_outcome": "System calls /api/auth/register, creates account, logs Sam in automatically, and redirects to dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Logging In Again",
+                "description": "Later, Sam returns and logs in using previously created credentials.",
+                "action": "Enter registered email and password into login form and click Login.",
+                "expected_outcome": "System authenticates via /api/auth/login, issues JWT token, stores it, and grants access to dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Author-specific account management dashboard",
+        "user_persona": "An existing author returning to check her contributions.",
+        "user_goal": "To access her personalized dashboard after logging in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Successful Login",
+                "description": "Dr. Kim enters correct login details and submits them.",
+                "action": "Submit valid email and password via login form.",
+                "expected_outcome": "Authentication succeeds, JWT token is issued and stored, redirect occurs to /dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Dashboard",
+                "description": "Dr. Kim lands on her dashboard which displays her profile and submitted articles.",
+                "action": "Visit /dashboard directly or get redirected post-login.",
+                "expected_outcome": "Dashboard renders showing sidebar navigation, profile summary card, and list of authored articles."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Profile editing capability for authors to update personal information",
+        "user_persona": "An author needing to update professional details.",
+        "user_goal": "To modify and save updated profile information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Profile Information",
+                "description": "Author Alex wants to update his specialty and bio.",
+                "action": "Navigate to Edit Profile section and change values in name, specialty, and bio fields.",
+                "expected_outcome": "Editable fields allow modification and reflect new inputs immediately."
+            },
+            {
+                "step": 2,
+                "title": "Saving Updated Details",
+                "description": "Alex confirms changes by clicking Save.",
+                "action": "Click the Save Changes button after entering updated data.",
+                "expected_outcome": "Form sends PUT request to /api/profile/update, saves new info, and refreshes UI with updated profile data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to serve medical article data dynamically",
+        "user_persona": "A developer verifying backend endpoints.",
+        "user_goal": "To confirm that API returns accurate article data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Articles List",
+                "description": "Developer hits the articles listing endpoint to verify connectivity and data shape.",
+                "action": "Send GET request to /api/articles.",
+                "expected_outcome": "Returns JSON array containing article objects retrieved from PostgreSQL database."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving Single Article",
+                "description": "Developer requests a specific article by ID.",
+                "action": "Send GET request to /api/articles/{valid-uuid}",
+                "expected_outcome": "Responds with complete article data matching record in articles table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all medical content exclusively via backend APIs",
+        "user_persona": "End-user visiting article pages without seeing any mock data.",
+        "user_goal": "To view live-updated medical content sourced only from backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Article Listing",
+                "description": "User navigates to homepage expecting real-time article feeds.",
+                "action": "Open homepage which lists latest articles.",
+                "expected_outcome": "Content loads dynamically via Axios/Fetch calling /api/articles instead of using static data."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Individual Article",
+                "description": "User selects one article to read full details.",
+                "action": "Click on article link leading to individual article view.",
+                "expected_outcome": "Article content fetched solely from backend endpoint /api/articles/{id} and rendered appropriately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "DevOps engineer deploying application infrastructure.",
+        "user_goal": "To ensure backend successfully connects to PostgreSQL with predefined settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Engineer sets up deployment environment with exact DB config.",
+                "action": "Configure environment variables DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "Application reads these vars correctly during startup sequence."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Server",
+                "description": "Server boots up attempting to establish DB connection.",
+                "action": "Start Node.js/Express backend service.",
+                "expected_outcome": "Successfully establishes PostgreSQL connection string postgresql://myappuser:myapppassword@localhost:5432/myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting storage and retrieval of medical articles",
+        "user_persona": "Database administrator reviewing schema design.",
+        "user_goal": "To validate correctness and efficiency of article-related database structures.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Definition",
+                "description": "Admin examines SQL schema defining how articles are stored.",
+                "action": "Review CREATE TABLE articles(...) definition.",
+                "expected_outcome": "Schema matches specification: UUID PK, title, abstract, content, foreign-key author_id, timestamp."
+            },
+            {
+                "step": 2,
+                "title": "Testing Data Retrieval",
+                "description": "Admin performs sample queries against the articles table.",
+                "action": "Execute SELECT * FROM articles LIMIT 5;",
+                "expected_outcome": "Returns rows conforming to defined schema structure with no constraint violations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database user management for author accounts and profiles",
+        "user_persona": "Security analyst auditing user handling procedures.",
+        "user_goal": "To ensure robust and secure handling of user identity data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking User Schema",
+                "description": "Analyst reviews the database schema for user records.",
+                "action": "Examine CREATE TABLE users(...) statement.",
+                "expected_outcome": "Table has required columns: id(UUID), name, email(UNIQUE), password_hash, bio, specialty."
+            },
+            {
+                "step": 2,
+                "title": "Validating Password Storage",
+                "description": "Ensures sensitive data like passwords aren't stored in plain text.",
+                "action": "Query example row from users table observing password field.",
+                "expected_outcome": "Password field shows hashed value, not raw input from registration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `install:all` script to set up both frontend and backend dependencies",
+        "user_persona": "New team member setting up project locally.",
+        "user_goal": "To easily install all necessary packages for both client and server sides.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Developer clones repo and runs unified dependency installer.",
+                "action": "Execute `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend/ and backend/ directories run npm install concurrently without error."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `dev` script to run frontend and backend concurrently",
+        "user_persona": "Developer beginning daily work session.",
+        "user_goal": "To launch both frontend and backend services seamlessly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Dev Servers",
+                "description": "Developer starts development servers with single command.",
+                "action": "Run `npm run dev` from root folder.",
+                "expected_outcome": "Concurrently executes frontend (e.g., React dev server) and backend (Node.js Express app)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "SEO-friendly URL structure for medical articles",
+        "user_persona": "Content publisher sharing articles online.",
+        "user_goal": "To share readable and indexed URLs pointing to specific articles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Article",
+                "description": "Publisher adds a new article titled 'Understanding Heart Disease'.",
+                "action": "Submit article creation form via dashboard UI or API.",
+                "expected_outcome": "Article gets inserted into DB with auto-generated slug 'understanding-heart-disease'."
+            },
+            {
+                "step": 2,
+                "title": "Sharing Article Link",
+                "description": "Publisher shares the public link to colleagues and social media.",
+                "action": "Copy/paste article URL from browser address bar.",
+                "expected_outcome": "URL follows pattern http://site.com/articles/understanding-heart-disease and resolves properly."
+            }
+        ]
+    }
+]

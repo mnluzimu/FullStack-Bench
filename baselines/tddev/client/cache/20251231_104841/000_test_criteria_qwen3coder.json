@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data via backend APIs",
+        "user_persona": "A visitor interested in browsing upcoming fishing contests.",
+        "user_goal": "To view a list of upcoming contests by navigating to the contests page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contests Page",
+                "description": "Sarah opens the website and sees the main navigation bar. She wants to see upcoming contests and clicks the 'Contests' link.",
+                "action": "Click on the 'Contests' navigation link.",
+                "expected_outcome": "The page content updates dynamically to show a list of contests fetched from the backend API without reloading the entire page."
+            },
+            {
+                "step": 2,
+                "title": "Scrolling for More Contests",
+                "description": "Sarah scrolls down to see more contests as the initial list only shows a few entries.",
+                "action": "Scroll down the page.",
+                "expected_outcome": "Additional contest data is loaded automatically through infinite scroll, fetching more contests from the backend API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API layer connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer checking backend connectivity.",
+        "user_goal": "To verify that the backend properly connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Alex starts the backend server to ensure it connects to the PostgreSQL database using the specified environment variables.",
+                "action": "Start the backend server using `npm run dev`.",
+                "expected_outcome": "Server starts successfully and logs indicate a successful connection to the PostgreSQL database using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest announcement posting functionality with title, description, date, and location fields",
+        "user_persona": "An admin user managing contest content.",
+        "user_goal": "To post a new fishing contest announcement.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Dashboard",
+                "description": "Admin logs into the admin dashboard and navigates to the contest creation form.",
+                "action": "Navigate to the 'Create Contest' form in the admin dashboard.",
+                "expected_outcome": "A form with fields for title, description, date, and location is displayed with teal-styled submit button."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Contest Details",
+                "description": "Admin fills out the contest details and submits the form.",
+                "action": "Fill in all required fields and click the 'Submit' button.",
+                "expected_outcome": "The form data is sent to the backend via POST request, and a success message confirms the new contest has been created."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest results display section showing participant names, scores, and rankings",
+        "user_persona": "A participant checking contest results.",
+        "user_goal": "To view the results of a completed fishing contest.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contest Results",
+                "description": "Jamie selects a past contest from the list and wants to see the results.",
+                "action": "Click on the 'View Results' button for a selected contest.",
+                "expected_outcome": "A results table is displayed showing participant names, scores, and rankings sorted by score in descending order."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Results",
+                "description": "Jamie wants to sort the results by participant name alphabetically.",
+                "action": "Click on the 'Participant Name' column header sorting arrow.",
+                "expected_outcome": "The table data is re-sorted alphabetically by participant name, with the sorting direction indicated visually."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Photo gallery section for showcasing contest photos with captions and upload dates",
+        "user_persona": "A visitor browsing contest memories.",
+        "user_goal": "To view photos from a past fishing contest.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Photo Gallery",
+                "description": "Taylor clicks on the photo gallery link for a past contest to see submitted photos.",
+                "action": "Click on the 'Photo Gallery' tab or link for a specific contest.",
+                "expected_outcome": "A grid layout of photo thumbnails with captions and upload dates is displayed with mint cream spacing and teal borders."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Photo Details",
+                "description": "Taylor clicks on a photo to see it in a larger view.",
+                "action": "Click on a photo thumbnail.",
+                "expected_outcome": "A modal opens showing the enlarged photo with full caption and upload date, along with navigation arrows to view other photos."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User registration form for signing up to participate in contests",
+        "user_persona": "A new angler wanting to join a fishing contest.",
+        "user_goal": "To register for an upcoming fishing contest.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Registration Form",
+                "description": "Jordan finds an upcoming contest and clicks the register button to sign up.",
+                "action": "Click the 'Register' button on the contest page.",
+                "expected_outcome": "A registration form modal appears with fields for name, email, phone, and emergency contact, along with a terms checkbox."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration",
+                "description": "Jordan fills out the form and submits it after agreeing to the terms.",
+                "action": "Fill in all fields, check the terms box, and click the teal 'Register' button.",
+                "expected_outcome": "Form data is validated, checked against existing users, and submitted successfully with a confirmation message displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest browsing page listing all upcoming and past contests with filtering options",
+        "user_persona": "A regular visitor looking for local contests.",
+        "user_goal": "To find upcoming fishing contests in a specific location.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Contests",
+                "description": "Casey visits the contest browsing page to look for upcoming events near his town.",
+                "action": "Navigate to the 'Contests' browsing page.",
+                "expected_outcome": "A grid of contest cards is displayed with filter options on the left side showing upcoming/past options and location filter."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Casey selects 'Upcoming' and chooses his town from the location dropdown.",
+                "action": "Select 'Upcoming' radio button and choose location from dropdown, then apply filters.",
+                "expected_outcome": "The contest list updates dynamically to show only upcoming contests in the selected location with teal-highlighted cards on hover."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Individual contest detail pages with full descriptions, schedules, and related media",
+        "user_persona": "A registered participant preparing for a contest.",
+        "user_goal": "To review contest schedule and media before participating.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Contest Details",
+                "description": "Morgan navigates to the detail page of a contest they've registered for.",
+                "action": "Click on the contest card to go to its detail page.",
+                "expected_outcome": "The page loads with contest title, full description, schedule timeline, and media gallery, with a prominent teal registration button."
+            },
+            {
+                "step": 2,
+                "title": "Checking Schedule Details",
+                "description": "Morgan wants to see more details about a specific schedule item.",
+                "action": "Click on a schedule item to expand its description.",
+                "expected_outcome": "The schedule item expands to show detailed activity description without leaving the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with mint cream background and teal-colored UI elements",
+        "user_persona": "A mobile user accessing the site on their phone.",
+        "user_goal": "To browse the site comfortably on a mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Riley opens the fishing contest website on their smartphone.",
+                "action": "Load the website on a mobile device.",
+                "expected_outcome": "The site layout adjusts to mobile view with hamburger menu, stacked content, and maintains mint cream background with teal UI elements."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Mobile Elements",
+                "description": "Riley taps on a contest card to view its details.",
+                "action": "Tap on a contest card.",
+                "expected_outcome": "The card shows teal highlight effect on tap and navigates smoothly to the contest detail page optimized for mobile viewing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication system for users to manage their contest registrations",
+        "user_persona": "A returning user checking their contest registrations.",
+        "user_goal": "To log in and view personal contest registrations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Account",
+                "description": "Pat wants to check which contests they're registered for and logs into their account.",
+                "action": "Click 'Login', enter credentials, and submit the form.",
+                "expected_outcome": "User is authenticated with JWT token stored, redirected to dashboard showing their registered contests and profile info."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Registered Contests",
+                "description": "Pat checks their dashboard for upcoming registered contests.",
+                "action": "View the 'My Registrations' section on the dashboard.",
+                "expected_outcome": "A list of contests Pat has registered for is displayed with relevant details and status indicators."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin dashboard for managing contest content, results, and photo submissions",
+        "user_persona": "An administrator maintaining site content.",
+        "user_goal": "To update contest results after completion.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Dashboard",
+                "description": "Admin logs in and accesses the admin dashboard to manage contest results.",
+                "action": "Log in as admin and navigate to the admin dashboard.",
+                "expected_outcome": "Admin interface loads with teal sidebar navigation and mint cream content area showing dashboard statistics."
+            },
+            {
+                "step": 2,
+                "title": "Updating Contest Results",
+                "description": "Admin goes to the results section and edits a participant's score.",
+                "action": "Navigate to 'Results' section, select a contest, edit a participant's score, and save changes.",
+                "expected_outcome": "Changes are saved via API call and the updated results are immediately reflected in the admin view and public contest page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality to find contests by keyword, date range, or location",
+        "user_persona": "A user searching for specific contests.",
+        "user_goal": "To find contests using specific search criteria.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Functionality",
+                "description": "Drew remembers a contest by keyword and wants to find it quickly.",
+                "action": "Type keyword into search bar and press Enter.",
+                "expected_outcome": "Search results page loads showing contests matching the keyword query with advanced search panel available."
+            },
+            {
+                "step": 2,
+                "title": "Refining Search with Filters",
+                "description": "Drew wants to narrow down results by date range.",
+                "action": "Open advanced search panel, set date range, and click 'Search'.",
+                "expected_outcome": "Results are filtered to show only contests within the specified date range alongside keyword matches."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time contest status updates indicating if contests are open, closed, or ongoing",
+        "user_persona": "A contestant monitoring contest status.",
+        "user_goal": "To get live updates about contest registration status.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Live Status",
+                "description": "Alex is waiting for registration to open for a popular contest and keeps the page open.",
+                "action": "Stay on the contest detail page with status badge visible.",
+                "expected_outcome": "WebSocket connection is established automatically and status badge updates in real-time when registration opens."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Status Change Notification",
+                "description": "The contest status changes from 'Closed' to 'Open' while Alex is viewing the page.",
+                "action": "Wait for WebSocket message indicating status change.",
+                "expected_outcome": "Status badge instantly updates to 'Open' and a visual notification appears alerting Alex to the change."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration enabling `npm run install:all` for combined dependency installation",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "To install dependencies for both frontend and backend with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Project Dependencies",
+                "description": "Dev clones the repository and needs to install all dependencies for development.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully as indicated by console output from each directory."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server startup using `npm run dev` for both frontend and backend",
+        "user_persona": "A developer starting work on the project.",
+        "user_goal": "To start both frontend and backend development servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Dev wants to start working and needs both frontend and backend running.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently with distinct colored output in the terminal showing both processes are running."
+            }
+        ]
+    }
+]

@@ -1,0 +1,199 @@
+[
+    {
+        "resource_dependency": {
+            "logo_image": "/assets/logo.png",
+            "hero_background_image": "/assets/hero-bg.jpg",
+            "contact_page_url": "/contact",
+            "search_icon": "/assets/search-icon.svg",
+            "case_study_thumbnail_placeholder": "/assets/case-study-placeholder.jpg"
+        },
+        "function": "Create a responsive website with a professional layout tailored for small to medium-sized businesses.",
+        "static_description": "A full-width header with logo aligned left, navigation menu centered, and contact button on the right. Background color set to misty rose (#FFE4E1). All UI components including buttons, headers, and links styled with firebrick color (#B22222). Main content area includes hero section with background image, featured content blocks, and footer with copyright information.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the navigation menu items scrolls the user to corresponding sections or loads new pages."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Navigation links and buttons change shade slightly when hovered over."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "value_propositions_text": "Clear statements about how our software solutions streamline operations, reduce costs, and enhance productivity for SMBs.",
+            "hero_cta_button_text": "Learn More About Our Services"
+        },
+        "function": "Include a homepage introducing software solutions and staffing services with clear value propositions.",
+        "static_description": "The homepage features a large hero banner with headline text highlighting core offerings. Below this are three prominent boxes showcasing key benefits such as 'Custom Software Solutions', 'Expert Staffing Services', and 'Proven Success Stories'. Text is written in simple, accessible language targeting non-technical decision-makers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the CTA button navigates to the services overview page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "service_descriptions_data_schema": "Database table named 'services' with columns: id (UUID), title (string), description (text), category (enum: 'software', 'staffing'), created_at (timestamp).",
+            "product_icon_set": "/assets/icons/products/",
+            "service_icon_set": "/assets/icons/services/"
+        },
+        "function": "Add dedicated sections for detailed product and service descriptions.",
+        "static_description": "Dedicated '/services' route displays categorized cards for each offering. Cards include icons, brief summaries, and 'Read More' links. Content is dynamically fetched from the backend via RESTful API endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a card expands it to show full details or redirects to a standalone detail page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "news_data_schema": "Table named 'news_articles' with fields: article_id (UUID), headline (string), summary (text), publish_date (date), content (text), tags (array of strings), source_url (optional string).",
+            "external_news_api": "Integration with an RSS feed or news API providing real-time updates relevant to tech industry trends."
+        },
+        "function": "Implement an industry news and trends section displaying latest updates in an engaging format.",
+        "static_description": "A '/news' page lists recent articles in chronological order with headlines, short excerpts, publication dates, and optional thumbnails. Articles can be filtered by tag or date range.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an article opens its full content view."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Endless scroll loading additional articles as the user reaches the bottom of the list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "case_studies_data_schema": "Table named 'case_studies' with fields: study_id (UUID), company_name (string), challenge (text), solution (text), outcome (text), testimonial (optional text), media_gallery (array of URLs).",
+            "testimonial_video_placeholder": "/assets/testimonial-video-placeholder.mp4"
+        },
+        "function": "Feature a customer cases and success stories section with real-world examples.",
+        "static_description": "Located under '/success-stories', this section presents case studies as visually distinct cards featuring client logos, problem statements, implemented solutions, quantifiable results, and optional embedded videos or images.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a case study card expands it to reveal complete story or navigates to individual case study page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Design all page backgrounds using misty rose color (#FFE4E1).",
+        "static_description": "All webpage body backgrounds rendered with solid fill color #FFE4E1 across every route and component unless explicitly overridden locally within specific modules.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Style all UI components such as buttons, headers, and links using firebrick color (#B22222).",
+        "static_description": "Buttons use #B22222 background with white text; headers and anchor tags inherit #B22222 text color throughout the site. Hover states apply slight darkening effect.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "UI elements darken slightly during hover state to indicate interactivity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigation_menu_items": [
+                "Home",
+                "Services",
+                "News",
+                "Success Stories",
+                "Contact"
+            ]
+        },
+        "function": "Enable users to browse content through intuitive navigation menus.",
+        "static_description": "Sticky top navigation bar contains clearly labeled menu items linking to major sections/pages. Mobile version collapses into hamburger-style toggleable menu.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping a menu item smoothly scrolls to or loads the associated section/page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Hamburger icon toggles visibility of mobile navigation drawer."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_results_endpoint": "/api/search?query={term}",
+            "search_bar_placeholder_text": "Search products, services, or topics..."
+        },
+        "function": "Integrate a search functionality allowing users to find specific information or products.",
+        "static_description": "Fixed-position search bar appears in header on all pages. It includes a magnifying glass icon and placeholder text prompting user input.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the search form triggers a query against the backend which returns matching records sorted by relevance."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused in the search field submits the current term."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contact_form_fields": [
+                "Full Name",
+                "Email Address",
+                "Company Name",
+                "Message"
+            ],
+            "contact_submission_api": "POST /api/contact with payload containing name, email, company, message fields."
+        },
+        "function": "Provide a contact form or contact page for visitors to request more information.",
+        "static_description": "Accessible via '/contact', this page presents a clean form with required fields for visitor details and inquiry. Submit button styled consistently with site theme colors.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Upon clicking 'Submit', form validates inputs before sending data to server endpoint. Displays confirmation message upon successful submission or error提示 if validation fails."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Ensure all content is written in clear, easy-to-understand language targeted at non-technical audiences.",
+        "static_description": "All textual content avoids jargon, uses active voice, maintains consistent tone, and focuses on business outcomes rather than technical implementation specifics.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "font_stack": "'Open Sans', sans-serif"
+        },
+        "function": "Optimize the website for engagement with visually appealing layouts and readable fonts.",
+        "static_description": "Site-wide typography utilizes web-safe font stack prioritizing readability. Spacing between lines and paragraphs optimized for legibility. Layouts emphasize whitespace and visual hierarchy.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "public_assets_directory": "./public"
+        },
+        "function": "Set up static file serving for images, stylesheets, and client-side scripts.",
+        "static_description": "Static assets like logos, icons, CSS files, JavaScript bundles placed inside public directory and served directly without processing. Paths referenced relatively in templates/components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_scripts": "{ \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" }"
+        },
+        "function": "Configure package.json with 'install:all' script to install frontend and backend dependencies concurrently.",
+        "static_description": "Root-level package.json defines custom script 'install:all' leveraging concurrently library to execute installation commands for frontend and backend simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_dev_script": "{ \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" }"
+        },
+        "function": "Configure package.json with 'dev' script to start both frontend and backend servers concurrently.",
+        "static_description": "Root-level package.json includes 'dev' command that initiates development servers for both frontend and backend processes side-by-side using concurrently utility.",
+        "interaction_and_states": []
+    }
+]

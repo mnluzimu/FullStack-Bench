@@ -1,0 +1,273 @@
+[
+    {
+        "resource_dependency": {
+            "heroImage": "/assets/images/leadership-training-hero.jpg",
+            "serviceIcons": [
+                "/assets/icons/workshop-icon.svg",
+                "/assets/icons/class-icon.svg",
+                "/assets/icons/podcast-icon.svg",
+                "/assets/icons/blog-icon.svg"
+            ],
+            "testimonialDataSchema": "Database table: testimonials(id SERIAL PRIMARY KEY, name TEXT, role TEXT, company TEXT, quote TEXT)",
+            "featuredServicesAPI": "GET /api/services/featured"
+        },
+        "function": "Display an engaging overview of the consulting business and highlight featured services.",
+        "static_description": "A full-width hero image with overlay text introducing the business. Below, four service icons with labels (Workshops, Online Classes, Podcasts, Blog) arranged horizontally. Testimonial carousel showing client feedback. Light cyan background with cadet blue text components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any service icon navigates to the corresponding section page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking testimonial navigation arrows cycles through different testimonials fetched from the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ecommerceProductListAPI": "GET /api/products",
+            "productDetailAPI": "GET /api/products/{id}",
+            "addToCartAPI": "POST /api/cart/add",
+            "cartIcon": "/assets/icons/cart-icon.svg",
+            "productImagePlaceholder": "/assets/images/product-placeholder.png"
+        },
+        "function": "Enable users to browse and purchase leadership and business training services.",
+        "static_description": "Grid layout of product cards showing title, price, short description, and 'Add to Cart' button. Each card includes a product image placeholder or actual image. Top right corner displays a persistent shopping cart icon with item count badge. Light cyan background with cadet blue borders and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a product card opens detailed view modal or navigates to product detail page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add to Cart' sends POST request to add item to session-based cart and updates cart icon count."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking cart icon navigates to the shopping cart page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "workshopListAPI": "GET /api/workshops",
+            "workshopRegistrationAPI": "POST /api/workshops/register",
+            "calendarIcon": "/assets/icons/calendar-icon.svg",
+            "locationIcon": "/assets/icons/location-icon.svg"
+        },
+        "function": "Present all available workshops with scheduling information and registration options.",
+        "static_description": "Vertical list of workshop cards, each containing title, date/time, location, duration, cost, brief description, and 'Register Now' button. Icons for calendar and location displayed next to relevant info. Light cyan background with cadet blue text and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Register Now' sends POST request to register user for workshop and shows confirmation message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "classListAPI": "GET /api/classes",
+            "enrollmentAPI": "POST /api/classes/enroll",
+            "playIcon": "/assets/icons/play-icon.svg",
+            "durationIcon": "/assets/icons/duration-icon.svg"
+        },
+        "function": "Allow users to explore and enroll in online classes.",
+        "static_description": "List or grid of class cards showing title, instructor, duration, module count, preview video thumbnail with play icon, and 'Enroll Now' button. Light cyan background with cadet blue accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enroll Now' enrolls user in the selected class via API call and redirects to user dashboard."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking play icon on video thumbnail plays a sample lesson in a modal player."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "podcastListAPI": "GET /api/podcasts",
+            "audioPlayerComponent": "<AudioPlayer /> reusable React component",
+            "playPauseIcons": [
+                "/assets/icons/play-podcast.svg",
+                "/assets/icons/pause-podcast.svg"
+            ]
+        },
+        "function": "Provide access to podcast episodes with integrated playback controls.",
+        "static_description": "Vertical list of podcast episode cards with episode number, title, release date, duration, and embedded audio player control bar. Play/pause icons visible within each player. Light cyan background with cadet blue player controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking play/pause toggles audio playback for that specific episode."
+            },
+            {
+                "interaction": "Click",
+                "description": "Dragging progress bar seeks to chosen time in the audio file."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "blogPostListAPI": "GET /api/blog/posts",
+            "blogPostDetailAPI": "GET /api/blog/posts/{id}",
+            "authorDataSchema": "Database table: authors(id SERIAL PRIMARY KEY, name TEXT, bio TEXT, avatar_url TEXT)",
+            "tagDataSchema": "Database table: tags(id SERIAL PRIMARY KEY, name TEXT)"
+        },
+        "function": "Publish and organize blog content related to leadership and business training.",
+        "static_description": "Blog index page displays article previews in a responsive grid. Each preview shows featured image, title, excerpt, author name/photo, publish date, and associated tags. Light cyan background with cadet blue text highlights.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a blog preview navigates to full article page displaying complete content, comments section, and social sharing buttons."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginAPI": "POST /api/auth/login",
+            "registerAPI": "POST /api/auth/register",
+            "forgotPasswordAPI": "POST /api/auth/forgot-password",
+            "userSessionSchema": "Database table: sessions(session_id UUID PRIMARY KEY, user_id INTEGER REFERENCES users(id), created_at TIMESTAMP)",
+            "lockIcon": "/assets/icons/lock-icon.svg",
+            "emailIcon": "/assets/icons/email-icon.svg"
+        },
+        "function": "Manage secure user account creation, authentication, and password recovery.",
+        "static_description": "Login/Register forms with email and password fields, 'Remember Me' checkbox, and submission buttons. Forgot Password link below login form. Lock and email icons inside respective input fields. Light cyan background with cadet blue form elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting Login form authenticates credentials and redirects to user dashboard upon success."
+            },
+            {
+                "interaction": "Click",
+                "description": "Submitting Register form creates new user account and logs them in automatically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Forgot Password' opens modal or navigates to reset password page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cartManagementAPI": "GET /api/cart, DELETE /api/cart/remove/{id}, PUT /api/cart/update/{id}",
+            "checkoutButtonIcon": "/assets/icons/checkout-icon.svg"
+        },
+        "function": "Allow users to manage selected items before proceeding to checkout.",
+        "static_description": "Cart summary table listing items with thumbnails, titles, prices, quantity selectors, and remove buttons. Subtotal calculation shown at bottom along with 'Proceed to Checkout' button featuring icon. Empty state shows message and link to shop. Light cyan background with cadet blue table headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking remove button deletes item from cart and refreshes display."
+            },
+            {
+                "interaction": "Change",
+                "description": "Adjusting quantity selector updates item total and subtotal dynamically via API calls."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Proceed to Checkout' navigates to secure checkout flow."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "paymentProcessingAPI": "POST /api/checkout/process",
+            "orderConfirmationAPI": "GET /api/orders/{orderId}",
+            "securePaymentGateway": "Integration with Stripe or PayPal for handling payments securely",
+            "lockIcon": "/assets/icons/security-lock.svg"
+        },
+        "function": "Facilitate secure transactions for purchased services with clear confirmation.",
+        "static_description": "Multi-step checkout form collecting billing/shipping info, payment method selection, order review section, and prominent 'Complete Purchase' button with lock icon indicating security. Order confirmation screen displays transaction ID, summary, and estimated delivery/access details. Light cyan background with cadet blue headings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Complete Purchase' processes payment via external gateway and redirects to order confirmation page on success."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userPurchasesAPI": "GET /api/user/purchases",
+            "orderHistoryAPI": "GET /api/user/orders",
+            "accessServiceAPI": "GET /api/user/services/{id}/access"
+        },
+        "function": "Provide centralized access to purchased content and transaction records.",
+        "static_description": "Dashboard tabs for 'My Services', 'Order History'. Services tab lists enrolled workshops/classes with access links. Orders tab shows past transactions with dates, amounts, and statuses. Light cyan background with cadet blue tab navigation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking service access link opens learning interface or downloads purchased material."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking order row expands to show detailed receipt information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mediaQueriesCSS": "@media (max-width: 768px) { ... }",
+            "mobileMenuIcon": "/assets/icons/mobile-menu.svg"
+        },
+        "function": "Ensure consistent usability and visual appeal across desktop, tablet, and mobile devices.",
+        "static_description": "Flexible grid layouts adapt column counts based on viewport size. Navigation transforms into hamburger menu on small screens. Font sizes scale appropriately. Touch targets meet minimum size requirements. Light cyan background with cadet blue interactive elements maintained throughout breakpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout adjusts fluidly between desktop (multi-column), tablet (two-column), and mobile (single-column) views."
+            },
+            {
+                "interaction": "Click",
+                "description": "Tapping hamburger menu icon reveals slide-in navigation drawer on mobile devices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalStylesheet": "src/styles/global.css defining --background-color: #E0FFFF and --component-color: #5F9EA0",
+            "colorPaletteDefinition": "#E0FFFF (Light Cyan) used for backgrounds; #5F9EA0 (Cadet Blue) for components/buttons"
+        },
+        "function": "Maintain brand consistency through standardized color usage across all website sections.",
+        "static_description": "All pages utilize light cyan (#E0FFFF) as primary background color and cadet blue (#5F9EA0) for interactive components like buttons, form inputs, and navigation bars. Consistent typography and spacing follow same theme palette.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingLibrary": "Axios or Fetch API configured with base URL pointing to backend origin",
+            "environmentConfig": "process.env.REACT_APP_API_BASE_URL = http://localhost:3001/api"
+        },
+        "function": "Retrieve all dynamic content exclusively from backend RESTful endpoints without local data mocking.",
+        "static_description": "Frontend components render data received asynchronously from backend API responses. Loading states indicate pending requests. Error messages appear when API calls fail. No hardcoded values present except UI strings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon mounting, components initiate GET requests to retrieve relevant data and populate DOM once resolved."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresqlConnectionConfig": "pg library connection string using DB_HOST=localhost DB_PORT=5432 DB_USERNAME=myappuser DB_PASSWORD=myapppassword DB_NAME=myapp",
+            "databaseSchemaFiles": [
+                "migrations/users.sql",
+                "migrations/products.sql",
+                "migrations/orders.sql",
+                "migrations/content.sql"
+            ]
+        },
+        "function": "Establish reliable data persistence layer using PostgreSQL relational database.",
+        "static_description": "Backend server initializes pool connection to PostgreSQL instance using provided environment variables. Database schema defined through migration files outlining tables for users, products, orders, blog posts, etc. API routes perform CRUD operations against this connected database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentScriptCommand": "\"dev\": \"concurrently \\\"npm run dev --prefix client\\\" \\\"npm run dev --prefix server\\\"\"",
+            "installAllScriptCommand": "\"install:all\": \"npm install && npm install --prefix client && npm install --prefix server\""
+        },
+        "function": "Streamline development workflow with unified setup and launch commands.",
+        "static_description": "Root-level package.json contains scripts enabling simultaneous installation of frontend and backend dependencies ('install:all') and concurrent execution during development ('dev'). Commands delegate to sub-project directories while maintaining monorepo structure.",
+        "interaction_and_states": []
+    }
+]

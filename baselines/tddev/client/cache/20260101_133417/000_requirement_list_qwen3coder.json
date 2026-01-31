@@ -1,0 +1,138 @@
+[
+    {
+        "resource_dependency": {
+            "fundraiserIntroContent": "Fundraiser Day is an annual community event aimed at raising funds for local causes. Join us for a day filled with activities, entertainment, and opportunities to make a difference.",
+            "background_color": "cornsilk",
+            "control_color": "peru"
+        },
+        "function": "Introduce the Fundraiser Day event to visitors and provide essential information about the cause and participation.",
+        "static_description": "A full-width section with a centered heading 'Fundraiser Day', subheading 'Supporting Our Community Together', and descriptive paragraph from fundraiserIntroContent. Background color set to cornsilk.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking anchor links scrolls smoothly to corresponding sections on the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "carousel_images": [
+                "/assets/offer1.jpg",
+                "/assets/offer2.jpg",
+                "/assets/offer3.jpg"
+            ],
+            "carousel_titles": [
+                "Early Bird Special",
+                "Group Discounts Available",
+                "VIP Experience Package"
+            ],
+            "carousel_descriptions": [
+                "Register early and save 20% on entry tickets.",
+                "Bring a group of 5 or more and get exclusive pricing.",
+                "Enjoy premium seating and meet-and-greet access."
+            ],
+            "auto_slide_interval": 5000,
+            "pause_on_hover": true
+        },
+        "function": "Display promotional offers in an automatically rotating carousel with pause functionality on user interaction.",
+        "static_description": "A horizontal carousel component occupying 80% width of the viewport, featuring images from carousel_images along with overlay titles and descriptions. Navigation arrows and indicators use per control_color. Auto-rotation every 5 seconds unless paused.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Pauses automatic sliding when mouse hovers over the carousel area."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking left/right arrow buttons navigates to previous/next slide manually."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking indicator dots jumps directly to respective slides."
+            },
+            {
+                "interaction": "Key Press: Left Arrow / Right Arrow",
+                "description": "Keyboard navigation moves between slides when focus is within the carousel."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "testimonial_schema": "Database table named 'testimonials' with columns: id (UUID), name (TEXT), role (TEXT), quote (TEXT), avatar_url (TEXT)",
+            "api_endpoint_testimonials": "/api/testimonials"
+        },
+        "function": "Fetch and display real user testimonials related to past fundraisers dynamically from backend.",
+        "static_description": "Three-column grid layout showing testimonial cards containing user photo, name, role, and quote. Cards maintain consistent padding and border-radius styling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "company_info_content": "Founded in 2010, Fundraiser Org has raised over $2 million for local charities through community-driven events like Fundraiser Day. We believe in empowering individuals to create lasting impact.",
+            "contact_email": "info@fundraiserday.org",
+            "social_links": {
+                "facebook": "https://facebook.com/fundraiserday",
+                "twitter": "https://twitter.com/fundraiserday",
+                "instagram": "https://instagram.com/fundraiserday"
+            }
+        },
+        "function": "Present organizational background, mission statement, contact info, and social presence.",
+        "static_description": "Two-column section layout – left side displays organization history text (from company_info_content) and right side shows embedded social icons linking to platforms listed under social_links.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking social media icons opens respective profiles in new tabs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cta_button_text": "Learn More About Fundraiser Day",
+            "target_section_id": "#event-intro"
+        },
+        "function": "Guide users toward learning more about the event through prominent call-to-action placement.",
+        "static_description": "Sticky bottom CTA bar with large button labeled Learn More About Fundraiser Day using per control_color against cornsilk background. Positioned above fold but visible during scroll.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Redirects smoothly to #event-intro section upon clicking the CTA button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_breakpoints": "{ mobile: max-width 768px, tablet: min-width 769px and max-width 1024px, desktop: min-width 1025px }"
+        },
+        "function": "Ensure optimal viewing experience across various device sizes without horizontal overflow or misalignment.",
+        "static_description": "All layout elements adapt fluidly to screen dimensions using CSS media queries. Carousel becomes vertical stack on small screens while testimonials shift from 3-col to 1-col view.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "seo_meta_tags": "<meta name=\"description\" content=\"Join Fundraiser Day, our annual community event supporting local causes.\"> <meta property=\"og:title\" content=\"Fundraiser Day\"> <meta property=\"og:description\" content=\"Support your community by joining this impactful fundraising event.\"> <meta property=\"og:image\" content=\"/images/event-preview.jpg\">"
+        },
+        "function": "Improve search engine visibility and enable rich previews during link sharing.",
+        "static_description": "Semantic HTML structure with proper H1-H3 hierarchy and meta tags defined in seo_meta_tags included in document head.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "share_buttons": [
+                "Facebook",
+                "Twitter",
+                "LinkedIn"
+            ],
+            "sharing_urls": {
+                "facebook": "https://www.facebook.com/sharer/sharer.php?u=[URL]",
+                "twitter": "https://twitter.com/intent/tweet?url=[URL]&text=Check out Fundraiser Day!",
+                "linkedin": "https://www.linkedin.com/shareArticle?mini=true&url=[URL]"
+            }
+        },
+        "function": "Allow users to easily share the event page on popular social networks.",
+        "static_description": "Floating sidebar positioned on the left edge of the screen includes branded share buttons aligned vertically. Icons styled with per control_color theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens native sharing dialog or popup window targeting respective platform URL templates."
+            }
+        ]
+    }
+]

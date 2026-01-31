@@ -1,0 +1,239 @@
+[
+    {
+        "resource_dependency": {
+            "stockSearchIcon": "/assets/icons/search-icon.svg",
+            "stockDatabaseSchema": "Create a database table named 'stocks' with fields: stock_id (unique ID), symbol (string), name (string), sector (string), exchange (string), current_price (float), last_updated (datetime)."
+        },
+        "function": "Allow users to search for stocks by entering either stock codes or names.",
+        "static_description": "A centered search bar with a navy border and white background, accompanied by a magnifying glass icon (stockSearchIcon) on the right side. Placeholder text reads 'Enter stock code or name'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search bar focuses it and enables typing. Clicking the magnifying glass icon initiates the search."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on the input field triggers the search operation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeStockDataAPI": "An API that provides real-time stock prices and updates every minute.",
+            "stockDetailsSchema": "Database schema includes fields such as stock_id, symbol, name, sector, industry, market_cap, pe_ratio, dividend_yield, etc."
+        },
+        "function": "Display real-time stock information including basic stock details.",
+        "static_description": "A card-style container with a navy header displaying the stock name and symbol. Below are rows showing key metrics like price, change percentage, market cap, P/E ratio, and dividend yield.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over any metric shows a tooltip explaining what the metric means."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "marketTrendChartLibrary": "Integration with Chart.js or similar charting library.",
+            "trendAnalysisAlgorithm": "A backend algorithm that analyzes moving averages, RSI, MACD, and other indicators."
+        },
+        "function": "Visualize market trends and provide analytical tools for trend interpretation.",
+        "static_description": "A line chart with time on the x-axis and price on the y-axis, rendered in navy tones. Additional tabs below show RSI, MACD, and volume charts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on different tabs switches between various technical analysis views (e.g., RSI, MACD)."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over points on the chart displays exact values and timestamps."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTableSchema": "Database schema containing quarterly and annual financial data such as revenue, net income, EPS, assets, liabilities, cash flow, etc.",
+            "externalFinancialDataAPI": "API providing access to comprehensive financial statements and filings (e.g., SEC EDGAR)"
+        },
+        "function": "Present detailed financial data for selected stocks.",
+        "static_description": "Tabular view with alternating row colors, showing columns for date, revenue, net income, earnings per share, total assets, and liabilities. Header is styled in navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table ascending/descending by that column’s value."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "customReportGeneratorEngine": "Backend engine responsible for compiling user-selected content into structured reports.",
+            "reportTemplateFiles": "Pre-designed templates stored server-side in HTML/PDF formats."
+        },
+        "function": "Enable generation of customizable stock reports based on user-defined criteria.",
+        "static_description": "Form layout with checkboxes and dropdowns allowing selection of sections (basic info, market trends, financials, news). A 'Generate Report' button in navy color sits below.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Generate Report' button processes the selections and renders a preview of the custom report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptionsList": [
+                "PDF",
+                "Word Document",
+                "HTML Page"
+            ],
+            "contentSelectionFields": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "News Summary"
+            ]
+        },
+        "function": "Let users choose their preferred report format and content options.",
+        "static_description": "Two sections: one with radio buttons labeled with format options (formatOptionsList), another with checkboxes listing content choices (contentSelectionFields). Both use navy-themed styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a radio button chooses a format. Checking/unchecking boxes toggles inclusion of respective content sections in the final report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "professionalReportTemplate": "Standardized template file ensuring consistent branding and structure across all generated reports.",
+            "reportExportAPI": "Service capable of exporting documents in PDF, DOCX, and HTML formats."
+        },
+        "function": "Automatically compile and format professional-quality stock reports.",
+        "static_description": "Preview pane showing a formatted document with title, executive summary, and selected sections clearly laid out. Export/download buttons appear beneath the preview.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking download/export buttons generates the full report in the chosen format and prompts the browser to save it."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "uiColorPalette": "{ background: '#FFFFFF', primary: '#000080' }",
+            "componentStyleGuide": "All UI components follow a minimalist design with white backgrounds and navy accents (#000080)."
+        },
+        "function": "Maintain a clean, accessible user interface with a consistent color scheme.",
+        "static_description": "Entire site uses a white background with navigation bars, buttons, and highlights in navy blue (#000080). Text remains dark gray for readability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "summaryGenerationEngine": "NLP-based system summarizing complex financial data into concise summaries.",
+            "summaryDataSchema": "Database storing pre-generated summaries linked to stock_id and timestamp."
+        },
+        "function": "Generate brief but informative summaries of stock performance and outlook.",
+        "static_description": "Text block titled 'Stock Summary', featuring a short paragraph synthesizing recent performance, market sentiment, and analyst outlook in navy-colored text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a 'Refresh Summary' button regenerates the summary using latest available data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalPriceDataAPI": "An API returning daily/hourly historical stock prices going back several years.",
+            "timeRangeSelectorValues": [
+                "1 Month",
+                "3 Months",
+                "YTD",
+                "1 Year",
+                "5 Years"
+            ]
+        },
+        "function": "Visualize historical price movements through interactive charts.",
+        "static_description": "Interactive line chart with a dropdown selector above it offering time range options (timeRangeSelectorValues). Chart area defaults to 1-year view.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing a different time range from the dropdown updates the chart dynamically to reflect that period."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Mouse hovering over chart lines reveals precise price and date tooltips."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonToolSchema": "Database logic supporting side-by-side comparisons of multiple stocks' key metrics.",
+            "multiStockSelectorComponent": "UI element enabling addition/removal of stocks to compare."
+        },
+        "function": "Facilitate side-by-side comparison of multiple stocks’ performance and characteristics.",
+        "static_description": "Side panel listing added stocks, each with a remove button. Main area displays a comparative table or overlayed charts showing metrics like price changes, P/E ratios, dividends.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Adding stocks via search populates the comparison panel. Removing a stock deletes it from the comparison view instantly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormatsList": [
+                "PDF",
+                "CSV",
+                "DOCX",
+                "HTML"
+            ],
+            "fileDownloadHandler": "Server endpoint handling file creation and streaming to client browsers."
+        },
+        "function": "Permit downloading of completed reports in common digital formats.",
+        "static_description": "Row of export buttons labeled with supported formats (exportFormatsList), positioned prominently after the report preview. Buttons styled in navy theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an export button triggers generation of the report in that format and starts a browser download prompt."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authDatabaseSchema": "User accounts table with fields: user_id, email, password_hash, created_at, last_login. Sessions managed via JWT tokens.",
+            "authenticationProvider": "OAuth2-compatible identity provider or self-hosted auth solution."
+        },
+        "function": "Securely manage user logins and maintain personalized profiles.",
+        "static_description": "Top-right corner contains login/logout links. Logged-in users see avatar and username. Profile page accessible from dropdown menu with settings and history.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' opens modal form. Successful login redirects to dashboard. Logout clears session and returns to homepage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "watchlistDatabaseSchema": "Table linking user_id to list of saved stock_ids with optional notes/tags.",
+            "bookmarkToggleIcon": "/assets/icons/bookmark-toggle.svg"
+        },
+        "function": "Allow users to save favorite stocks for quick future access.",
+        "static_description": "Bookmark icon next to each stock entry (bookmarkToggleIcon). When active, it appears filled; inactive version is outlined. Watchlist tab appears in user profile.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the bookmark icon adds/removes the stock from the user's watchlist. Visual feedback confirms the action immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newsFeedAPI": "External API delivering relevant financial news articles tagged by stock symbol.",
+            "relatedNewsSectionSchema": "Database table associating stock_id with fetched article metadata (title, source, URL, publish_date)."
+        },
+        "function": "Aggregate and present timely news related to searched stocks.",
+        "static_description": "Collapsible news feed section beneath the main stock info, displaying headlines with source names and publication dates. Articles open in new tabs when clicked.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Expanding/collamicing the news section toggles visibility. Clicking individual articles navigates to original sources."
+            }
+        ]
+    }
+]

@@ -1,0 +1,345 @@
+[
+    {
+        "requirement_tested": "User registration functionality with account creation",
+        "user_persona": "A new user named Alex who wants to join the social platform.",
+        "user_goal": "Alex wants to successfully create an account on the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Registration Page",
+                "description": "Alex visits the website and sees a centered registration form with fields for username, email, password, and confirm password. The background is light cyan, and the form elements are styled with cadet blue.",
+                "action": "Navigate to the registration page.",
+                "expected_outcome": "The registration form is displayed with correct styling: light cyan background and cadet blue form elements."
+            },
+            {
+                "step": 2,
+                "title": "Filling Registration Form",
+                "description": "Alex fills out the registration form with valid details, focusing on each input field which highlights with a cadet blue border when selected.",
+                "action": "Enter valid username, email, password, and confirm password. Focus on each field.",
+                "expected_outcome": "Each focused field shows a cadet blue border highlight. The 'Sign Up' button becomes enabled once all fields are filled."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Registration",
+                "description": "After filling in the required information, Alex clicks the 'Sign Up' button to submit the form.",
+                "action": "Click the 'Sign Up' button.",
+                "expected_outcome": "A loading spinner appears during submission, then the system redirects Alex to the login page with a success message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User login and authentication system",
+        "user_persona": "A returning user named Taylor who has already registered.",
+        "user_goal": "Taylor wants to log in to her account to access the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Page",
+                "description": "Taylor navigates to the homepage and clicks the 'Login' button, seeing a clean login form with email and password fields against a light cyan background.",
+                "action": "Click on the 'Login' button.",
+                "expected_outcome": "A centered login form with email and password inputs, along with 'Log In' button and links for registration and password recovery, is displayed with cadet blue styling."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "Taylor enters her email and password into the respective fields, noting how each field gets highlighted with cadet blue when focused.",
+                "action": "Enter valid email and password. Focus on each input field.",
+                "expected_outcome": "Focused fields display a cadet blue border. The 'Log In' button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Authenticating",
+                "description": "Taylor clicks the 'Log In' button to proceed with authentication.",
+                "action": "Click the 'Log In' button.",
+                "expected_outcome": "Credentials are sent to /api/auth/login. Upon successful authentication, Taylor is redirected to the dashboard with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Friend invitation feature allowing users to invite others to join",
+        "user_persona": "An active user named Jordan who wants to invite his friend to join the platform.",
+        "user_goal": "Jordan aims to send an invitation to his friend via email.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Invite Modal",
+                "description": "While browsing the site, Jordan finds and clicks the 'Invite Friends' option, which opens a modal dialog styled with light cyan background and cadet blue accents.",
+                "action": "Click on the 'Invite Friends' option.",
+                "expected_outcome": "A modal dialog appears containing an email input field, a pre-filled message textarea, and 'Send Invite' and 'Cancel' buttons."
+            },
+            {
+                "step": 2,
+                "title": "Filling Invitation Details",
+                "description": "Jordan types his friend's email address and reviews the default invitation message in the modal.",
+                "action": "Enter friend's email address and review the default message.",
+                "expected_outcome": "Email field accepts input. Default message is visible in the textarea."
+            },
+            {
+                "step": 3,
+                "title": "Sending Invitation",
+                "description": "Satisfied with the details, Jordan clicks the 'Send Invite' button to dispatch the invitation.",
+                "action": "Click the 'Send Invite' button.",
+                "expected_outcome": "The system sends a POST request to /api/user/invite. A confirmation toast appears indicating 'Invitation sent successfully!'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Content voting mechanism for user-generated posts",
+        "user_persona": "A regular user named Riley who enjoys engaging with others' content.",
+        "user_goal": "Riley wants to upvote a post she finds interesting.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Posts",
+                "description": "Riley scrolls through her feed where each post displays upvote and downvote icons next to the content, styled with cadet blue.",
+                "action": "Scroll through the feed to locate a post.",
+                "expected_outcome": "Posts are displayed with vote icons beside them, maintaining consistent light cyan background and cadet blue styling."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Vote Icons",
+                "description": "Riley hovers over the upvote icon, noticing it slightly increases in size and opacity, then clicks it to cast her vote.",
+                "action": "Hover over the upvote icon, then click it.",
+                "expected_outcome": "On hover, the icon enlarges and becomes more opaque. On click, a PUT request is made to /api/content/vote/{post_id}, updating the vote count instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Image upload capability for sharing pictures",
+        "user_persona": "A photography enthusiast named Casey who loves sharing photos online.",
+        "user_goal": "Casey wants to upload a new photo to share with friends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Upload Area",
+                "description": "Casey navigates to the upload section and sees a dashed rectangular drop zone with an upload icon and prompt text, styled with light cyan background and cadet blue borders.",
+                "action": "Navigate to the image upload section.",
+                "expected_outcome": "Upload area is displayed with proper styling: dashed rectangle, centered icon, and descriptive text about dragging or clicking to upload."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Image File",
+                "description": "Casey clicks the upload area, selects a .jpg file smaller than 5MB from her device, and previews it before uploading.",
+                "action": "Click the upload area and select a valid image file.",
+                "expected_outcome": "Native file browser opens. After selecting a valid image, a preview of the file appears."
+            },
+            {
+                "step": 3,
+                "title": "Uploading Image",
+                "description": "Once satisfied with the preview, Casey proceeds to upload the image.",
+                "action": "Confirm and upload the selected image.",
+                "expected_outcome": "Image is uploaded via POST /api/media/upload. Success message confirms upload completion and the image is now available for sharing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Points/rewards system for user activities",
+        "user_persona": "An engaged user named Morgan who tracks her activity rewards.",
+        "user_goal": "Morgan wants to see her updated point balance after participating in platform activities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Performing Activity",
+                "description": "Morgan uploads an image and receives points for doing so. She expects to see this reflected in her points display.",
+                "action": "Complete an eligible activity like uploading an image.",
+                "expected_outcome": "Backend records the activity and awards points accordingly based on the defined mapping."
+            },
+            {
+                "step": 2,
+                "title": "Checking Points Display",
+                "description": "Morgan looks at the top navigation bar where a badge indicates her current points total, featuring a star-shaped icon.",
+                "action": "Refresh the page or wait for live update.",
+                "expected_outcome": "Points badge in the navbar updates dynamically to reflect Morgan's new point total."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Personal homepage displaying user profile information and updates",
+        "user_persona": "A curious user named Devon who likes to keep track of his profile and recent activity.",
+        "user_goal": "Devon wants to view his personal profile page with updated information and recent activity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Personal Homepage",
+                "description": "Devon navigates to his personal homepage, expecting to see his profile picture, bio, location, and recent activity feed.",
+                "action": "Visit personal homepage URL.",
+                "expected_outcome": "Page loads and automatically fetches user details from GET /api/user/me. Sidebar displays profile info and main panel shows recent activity."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Information",
+                "description": "Devon checks that his profile information matches what he previously entered and scans his recent activity list.",
+                "action": "Scan profile information and recent activity feed.",
+                "expected_outcome": "Profile information is accurate and up-to-date. Recent activity feed displays chronological list of uploads, votes, and interactions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dynamic data handling through backend APIs",
+        "user_persona": "A developer tester named Quinn checking if frontend uses only backend APIs.",
+        "user_goal": "Quinn wants to verify that all data comes from backend endpoints and not hardcoded values.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Network Requests",
+                "description": "Quinn opens browser DevTools and monitors network traffic while navigating the app to ensure no static data is used.",
+                "action": "Open DevTools and navigate the application.",
+                "expected_outcome": "Network tab shows requests to defined RESTful endpoints such as /api/auth/register, /api/auth/login, etc., returning JSON formatted data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "PostgreSQL database integration using specified environment variables",
+        "user_persona": "A backend engineer named Sam verifying database connectivity.",
+        "user_goal": "Sam wants to confirm that the backend connects securely to PostgreSQL using provided environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Environment Setup",
+                "description": "Sam inspects the backend configuration to ensure it reads the correct database environment variables.",
+                "action": "Check backend initialization scripts and environment variable usage.",
+                "expected_outcome": "Initialization script correctly configures database pool connection using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Models",
+                "description": "Sam ensures that application models correspond properly to database tables like users, posts, media, etc.",
+                "action": "Verify ORM model mappings to database schema.",
+                "expected_outcome": "Models accurately represent database structures with appropriate relationships and constraints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend styled with light cyan background and cadet blue components",
+        "user_persona": "A UI designer named Robin auditing visual consistency.",
+        "user_goal": "Robin wants to validate that the entire site follows the specified color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Global Styles",
+                "description": "Robin examines the global CSS variables to ensure they define the correct light cyan and cadet blue colors.",
+                "action": "Review :root CSS variables in stylesheets.",
+                "expected_outcome": "CSS defines --bg-color as #E0FFFF and --primary-color as #5F9EA0, matching the design specification."
+            },
+            {
+                "step": 2,
+                "title": "Validating Component Styling",
+                "description": "Robin navigates through various pages to check that backgrounds and components use the correct colors.",
+                "action": "Browse multiple sections of the website.",
+                "expected_outcome": "All backgrounds are light cyan (#E0FFFF), and primary interactive elements (buttons, headers) are cadet blue (#5F9EA0)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design for social media interactions",
+        "user_persona": "A mobile user named Pat accessing the site on a smartphone.",
+        "user_goal": "Pat wants to comfortably navigate and interact with the site on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Pat opens the website on his phone and observes how the layout adapts to fit the narrow viewport.",
+                "action": "Load the website on a mobile device or simulate mobile resolution.",
+                "expected_outcome": "Navigation collapses into a hamburger menu. Layout adjusts to flexible grid, fonts scale appropriately, and content remains accessible."
+            },
+            {
+                "step": 2,
+                "title": "Interacting Responsively",
+                "description": "Pat tries scrolling, tapping buttons, and viewing posts to test responsiveness and touch interaction.",
+                "action": "Scroll, tap buttons, and view posts.",
+                "expected_outcome": "Site responds smoothly to gestures, buttons are tappable, and content reflows well without clipping or overflow issues."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User feed displaying shared content from friends",
+        "user_persona": "A social media user named Lee wanting to catch up on friends' posts.",
+        "user_goal": "Lee wants to scroll through a personalized feed of content from his friends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Feed Content",
+                "description": "Lee goes to the main feed page and waits for content from his friends to load.",
+                "action": "Navigate to the main feed.",
+                "expected_outcome": "Feed loads chronologically with posts from connected friends, showing avatars, usernames, timestamps, and content/images."
+            },
+            {
+                "step": 2,
+                "title": "Infinite Scrolling",
+                "description": "As Lee scrolls toward the bottom of the feed, more content loads seamlessly.",
+                "action": "Scroll to the end of the current feed.",
+                "expected_outcome": "Additional items load automatically via GET /api/feed?page=N+1, providing smooth continuous reading experience."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Friend management system (add, remove, view friends)",
+        "user_persona": "A user named Kim managing her list of friends.",
+        "user_goal": "Kim wants to add a new friend and remove an old one from her contacts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding a New Friend",
+                "description": "Kim searches for a username and clicks 'Add Friend' to initiate a connection request.",
+                "action": "Search for a friend by username and click 'Add Friend'.",
+                "expected_outcome": "System prompts for username/email lookup. Clicking 'Add Friend' sends a request and marks the friendship status as pending."
+            },
+            {
+                "step": 2,
+                "title": "Removing a Friend",
+                "description": "Later, Kim decides to remove someone from her friends list by clicking the 'Remove' button next to their name.",
+                "action": "Click 'Remove' next to a friend's name.",
+                "expected_outcome": "DELETE request is sent to /api/friends/remove/{id}. Friendship record is removed and the friend disappears from the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Content sharing functionality beyond just images",
+        "user_persona": "A versatile poster named Drew who shares different kinds of content.",
+        "user_goal": "Drew wants to post both text and link-based content in addition to images.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Text Post",
+                "description": "Drew writes a thought in the compose box and chooses to publish it as plain text.",
+                "action": "Write text in the compose box and toggle content type to 'text'.",
+                "expected_outcome": "Compose box accepts multiline text input. Toggling sets content type to 'text'."
+            },
+            {
+                "step": 2,
+                "title": "Sharing Link Content",
+                "description": "Next, Drew pastes a URL and attaches it to another post, choosing the 'link' content type.",
+                "action": "Paste a URL and toggle content type to 'link'.",
+                "expected_outcome": "Preview panel appears above the text area showing the attached link. Toggling sets content type to 'link'."
+            },
+            {
+                "step": 3,
+                "title": "Publishing Posts",
+                "description": "Drew submits both posts and verifies they appear correctly in the feed.",
+                "action": "Click 'Post' for each composed item.",
+                "expected_outcome": "Both posts are submitted via POST /api/posts/create and immediately appear at the top of the feed with correct formatting."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configuration with npm scripts for installation and development",
+        "user_persona": "A developer named Charlie setting up the project locally.",
+        "user_goal": "Charlie wants to quickly install dependencies and start both frontend and backend servers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Charlie clones the repository and runs the unified install command to set up everything.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Concurrently executes `npm install` in both client and server directories, installing all necessary packages."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With dependencies installed, Charlie starts both development environments with one command.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Concurrently launches frontend and backend development servers, enabling simultaneous development and testing."
+            }
+        ]
+    }
+]

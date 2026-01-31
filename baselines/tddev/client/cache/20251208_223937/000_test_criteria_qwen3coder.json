@@ -1,0 +1,380 @@
+[
+    {
+        "requirement_tested": "Implement a search functionality allowing users to input stock codes or names",
+        "user_persona": "A financial analyst who needs quick access to stock data.",
+        "user_goal": "To find the stock information for 'AAPL' by entering its code into the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "The user opens the website and sees a centered search bar with a placeholder prompting them to enter a stock code or name.",
+                "action": "Locate the search bar on the homepage.",
+                "expected_outcome": "A search bar with the placeholder 'Enter stock code or name' is visible, styled with a white background and navy border."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Code",
+                "description": "The user types 'AAPL' into the search bar to look up Apple Inc.'s stock information.",
+                "action": "Type 'AAPL' into the search input field.",
+                "expected_outcome": "The text 'AAPL' appears in the search input field."
+            },
+            {
+                "step": 3,
+                "title": "Initiating Search",
+                "description": "After typing the stock code, the user clicks the search icon to initiate the search process.",
+                "action": "Click the search icon next to the input field.",
+                "expected_outcome": "The system processes the query and redirects the user to the dashboard for AAPL stock."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide auto-suggest or autocomplete feature for stock search input",
+        "user_persona": "A new investor exploring different stocks.",
+        "user_goal": "To quickly locate 'Microsoft Corporation' using the autocomplete suggestions while typing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Search",
+                "description": "The user begins typing 'Microsoft' into the search bar to find the company's stock details.",
+                "action": "Begin typing 'Microsoft' in the search input.",
+                "expected_outcome": "A dropdown menu appears below the search bar showing matching stock suggestions dynamically."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Suggestions",
+                "description": "As the user continues typing, several matching companies appear in the suggestion list. They notice 'Microsoft Corporation (MSFT)' among the options.",
+                "action": "Observe the autocomplete suggestions.",
+                "expected_outcome": "Suggestions like 'Microsoft Corporation (MSFT)' are displayed with navy text on a white background."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Suggested Stock",
+                "description": "The user hovers over the suggested entry to highlight it and then clicks it to proceed.",
+                "action": "Hover over 'Microsoft Corporation (MSFT)', then click the suggestion.",
+                "expected_outcome": "The search bar populates with 'MSFT' and navigates to the Microsoft stock dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a dashboard displaying basic stock information including company name, ticker symbol, and current price",
+        "user_persona": "An active trader checking key stock metrics at a glance.",
+        "user_goal": "To verify the current price and basic info of Tesla Inc. (TSLA).",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Dashboard",
+                "description": "The user searches for TSLA and lands on the stock dashboard page.",
+                "action": "Navigate to the TSLA stock dashboard after searching.",
+                "expected_outcome": "The dashboard loads with a responsive grid layout featuring cards for essential stock information."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Basic Information",
+                "description": "On the dashboard, the user looks for the company name, ticker symbol, and current price.",
+                "action": "Scan the dashboard for relevant information cards.",
+                "expected_outcome": "Three distinct cards show 'Company Name: Tesla Inc.', 'Ticker Symbol: TSLA', and 'Current Price: $250.75', all styled with white background and navy text."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include market trends visualization with interactive charts showing historical price movements",
+        "user_persona": "A portfolio manager analyzing long-term performance.",
+        "user_goal": "To review Tesla's price movement over the past six months using the interactive chart.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Market Trends Section",
+                "description": "The user scrolls down to the Market Trends section on the Tesla stock dashboard.",
+                "action": "Scroll to the Market Trends chart area.",
+                "expected_outcome": "An interactive area chart titled 'Market Trends' is displayed with dates on the x-axis and prices on the y-axis."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Chart",
+                "description": "The user hovers over various points on the chart to inspect specific price values.",
+                "action": "Hover over different points on the chart line.",
+                "expected_outcome": "Tooltips appear showing exact date and price value at each hovered point."
+            },
+            {
+                "step": 3,
+                "title": "Filtering Time Range",
+                "description": "Wanting a clearer view, the user selects the '6 Months' option to narrow the displayed data range.",
+                "action": "Click the '6 Months' time range filter.",
+                "expected_outcome": "The chart updates to display only the last six months of price movements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display comprehensive financial data including revenue, earnings, and key financial ratios",
+        "user_persona": "A financial researcher conducting due diligence.",
+        "user_goal": "To analyze Tesla's latest quarterly financials including revenue and P/E ratio.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Financial Data Table",
+                "description": "The user scrolls further down to find the financial data section on the dashboard.",
+                "action": "Scroll to the financial data table.",
+                "expected_outcome": "A tabular representation of financial data is presented with labeled columns such as Revenue, Earnings, EPS, P/E Ratio, etc."
+            },
+            {
+                "step": 2,
+                "title": "Examining Key Metrics",
+                "description": "The user scans the rows to identify Tesla's revenue and P/E ratio figures.",
+                "action": "Read values under the Revenue and P/E Ratio columns.",
+                "expected_outcome": "Tesla's revenue is listed as $20B and P/E ratio as 45.3x, styled with alternating row colors and navy headers."
+            },
+            {
+                "step": 3,
+                "title": "Sorting Financial Data",
+                "description": "To compare performance, the user decides to sort the table by earnings in descending order.",
+                "action": "Click the 'Earnings' column header.",
+                "expected_outcome": "The table reorders itself with the highest earning entries appearing first."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer customizable report generation options based on user-selected parameters",
+        "user_persona": "A client advisor preparing tailored investment summaries.",
+        "user_goal": "To generate a report focusing solely on financial data and market trends for Tesla.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Report Options",
+                "description": "The user finds the report customization section beneath the financial data table.",
+                "action": "Scroll to the report generation form.",
+                "expected_outcome": "Toggle switches or checkboxes labeled Basic Info, Market Trends, Financial Data, and Company Profile are visible."
+            },
+            {
+                "step": 2,
+                "title": "Customizing Content Selection",
+                "description": "The user deselects Basic Info and Company Profile, leaving only Market Trends and Financial Data checked.",
+                "action": "Uncheck Basic Info and Company Profile; keep Market Trends and Financial Data selected.",
+                "expected_outcome": "Only the selected sections will be included in the generated report."
+            },
+            {
+                "step": 3,
+                "title": "Preparing Report Generation",
+                "description": "Satisfied with the selections, the user prepares to click the Generate Report button.",
+                "action": "Prepare to click the Generate Report button.",
+                "expected_outcome": "The system recognizes the selected content preferences for inclusion in the report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide report format selection including PDF, HTML, and spreadsheet export options",
+        "user_persona": "A compliance officer requiring formal documentation.",
+        "user_goal": "To export the customized Tesla stock report in PDF format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Export Format",
+                "description": "Before generating the report, the user specifies they want it exported as a PDF.",
+                "action": "Open the format selector dropdown and choose PDF.",
+                "expected_outcome": "The dropdown menu reveals options PDF, HTML, and Spreadsheet. After selecting PDF, it becomes the default choice."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Format Choice",
+                "description": "The user confirms that PDF is selected before proceeding with report creation.",
+                "action": "Verify that 'PDF' is selected in the format dropdown.",
+                "expected_outcome": "The dropdown closes and shows 'PDF' as the chosen format beside the Generate Report button."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include content customization options allowing users to choose which sections to include in reports",
+        "user_persona": "A marketing associate needing targeted insights.",
+        "user_goal": "To create a simplified report excluding detailed financials but including market trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Deselecting Sections",
+                "description": "In the report configuration panel, the user unchips the Financial Data checkbox.",
+                "action": "Uncheck the 'Financial Data' toggle switch.",
+                "expected_outcome": "The Financial Data section is removed from the report preview or generation queue."
+            },
+            {
+                "step": 2,
+                "title": "Finalizing Preferences",
+                "description": "The user verifies that only Market Trends remains selected before initiating report generation.",
+                "action": "Double-check remaining toggles—only Market Trends should be active.",
+                "expected_outcome": "The system registers that only Market Trends should be included in the final report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement automatic report generation engine that compiles selected data into formatted reports",
+        "user_persona": "An operations lead automating weekly reports.",
+        "user_goal": "To generate a fully compiled Tesla stock report based on previous selections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Report Creation",
+                "description": "Having configured content and format, the user clicks the Generate Report button.",
+                "action": "Click the Generate Report button.",
+                "expected_outcome": "The backend service starts compiling the requested data using predefined templates."
+            },
+            {
+                "step": 2,
+                "title": "Awaiting Completion",
+                "description": "The user waits briefly as the system processes and formats the report internally.",
+                "action": "Wait for processing completion indicator.",
+                "expected_outcome": "A loading spinner or progress bar indicates ongoing report compilation."
+            },
+            {
+                "step": 3,
+                "title": "Receiving Generated Report",
+                "description": "Once complete, the system presents a downloadable version of the report.",
+                "action": "Observe the appearance of the Download button/link.",
+                "expected_outcome": "A Download link or button becomes enabled, ready to deliver the finished report file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a clean user interface with white background and navy-colored components as specified",
+        "user_persona": "A UX designer validating UI consistency.",
+        "user_goal": "To ensure the entire application maintains the required color scheme of white background and navy components.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Overall Design",
+                "description": "The user navigates through multiple pages to assess visual consistency.",
+                "action": "Visit the homepage, search results, and stock dashboard pages.",
+                "expected_outcome": "All pages maintain a white background with navy-colored headers, buttons, and active states throughout."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Colors",
+                "description": "Focusing on individual elements like forms, buttons, and charts, the user checks for proper color usage.",
+                "action": "Inspect the colors of form inputs, buttons, and chart lines.",
+                "expected_outcome": "Inputs have navy borders, buttons use navy fill, and chart lines follow #000080 color standard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add sorting and filtering capabilities for financial data and market trend information",
+        "user_persona": "A quantitative analyst comparing stock performances.",
+        "user_goal": "To sort Tesla’s financial data by P/E Ratio in ascending order.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Sort Controls",
+                "description": "The user identifies the sort icon next to the P/E Ratio column header and clicks it.",
+                "action": "Click the sort icon adjacent to the P/E Ratio column.",
+                "expected_outcome": "A dropdown menu with sort options (ascending/descending) opens up."
+            },
+            {
+                "step": 2,
+                "title": "Applying Ascending Sort",
+                "description": "From the dropdown, the user chooses to sort by ascending order to see lower P/E stocks first.",
+                "action": "Select 'Sort Ascending' from the dropdown menu.",
+                "expected_outcome": "The financial data table reorders with the lowest P/E Ratio entries appearing at the top."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include real-time or delayed stock price updates",
+        "user_persona": "A day trader monitoring intraday movements.",
+        "user_goal": "To observe Tesla’s stock price updating automatically every five minutes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Current Price",
+                "description": "The user keeps the Tesla dashboard open to monitor the current price displayed on the main card.",
+                "action": "Stay on the dashboard viewing the 'Current Price' card.",
+                "expected_outcome": "The price figure updates automatically every 5 minutes without manual refresh."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Update Timestamp",
+                "description": "The user notes the timestamp next to the updated price to confirm recency.",
+                "action": "Check the timestamp label beside the current price.",
+                "expected_outcome": "A small note indicating 'Last Updated: HH:MM AM/PM' reflects the most recent fetch."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide company profile section with business description and key executives",
+        "user_persona": "A journalist researching corporate backgrounds.",
+        "user_goal": "To read about Tesla’s business model and learn about its CEO.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Company Profile",
+                "description": "The user scrolls to the bottom of the Tesla dashboard to find the Company Profile section.",
+                "action": "Scroll to the Company Profile section.",
+                "expected_outcome": "A titled section labeled 'Company Profile' displays descriptive text, industry, headquarters, and executive info."
+            },
+            {
+                "step": 2,
+                "title": "Reading Business Overview",
+                "description": "The user reads the introductory paragraph summarizing Tesla’s mission and core business activities.",
+                "action": "Read the company description paragraph.",
+                "expected_outcome": "A well-formatted paragraph outlines Tesla's focus on electric vehicles and sustainable energy solutions."
+            },
+            {
+                "step": 3,
+                "title": "Identifying Leadership",
+                "description": "Curious about leadership, the user looks for the CEO's name and other board members listed.",
+                "action": "Scan for the CEO and board member listings.",
+                "expected_outcome": "CEO Elon Musk is clearly identified along with a list of other key executives."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement bookmarking or watchlist feature for users to track multiple stocks",
+        "user_persona": "A retiree managing a diversified portfolio.",
+        "user_goal": "To add Tesla (TSLA) to their personal watchlist for easier tracking.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Bookmark Icon",
+                "description": "While viewing Tesla’s dashboard, the user notices a bookmark icon near the top right corner.",
+                "action": "Locate the bookmark icon on the dashboard.",
+                "expected_outcome": "A bookmark icon resembling '/icons/bookmark-outline.svg' is visible."
+            },
+            {
+                "step": 2,
+                "title": "Adding to Watchlist",
+                "description": "The user clicks the outline icon to save Tesla to their watchlist.",
+                "action": "Click the bookmark icon.",
+                "expected_outcome": "The icon changes to a filled version ('/icons/bookmark-filled.svg'), confirming addition to the watchlist."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Persistence",
+                "description": "Returning later, the user verifies that Tesla still appears in their watchlist.",
+                "action": "Return to the watchlist or revisit Tesla dashboard.",
+                "expected_outcome": "The bookmark icon remains filled, and Tesla persists in stored watchlist items."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add export functionality to save generated reports to user's device",
+        "user_persona": "A department head sharing findings with colleagues.",
+        "user_goal": "To download a generated Tesla stock report directly to their computer.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Final Report",
+                "description": "After configuring preferences, the user clicks Generate Report and waits for it to finish.",
+                "action": "Click Generate Report and wait for processing.",
+                "expected_outcome": "A success message appears along with a Download link or button."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Download",
+                "description": "Ready to share the report, the user clicks the Download button.",
+                "action": "Click the Download button/link.",
+                "expected_outcome": "The browser prompts the user to save the file locally using the native download dialog."
+            },
+            {
+                "step": 3,
+                "title": "Saving Locally",
+                "description": "The user saves the downloaded PDF to their desktop folder.",
+                "action": "Choose save location and confirm download.",
+                "expected_outcome": "The report file is successfully saved to the user's device in the selected directory."
+            }
+        ]
+    }
+]

@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all data from backend APIs",
+        "user_persona": "A production manager who needs real-time updates on raw materials inventory.",
+        "user_goal": "To view the latest raw materials data without any manual refresh.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Raw Materials Page",
+                "description": "Sarah navigates to the Raw Materials section of the system to check current stock levels.",
+                "action": "Navigate to /raw-materials route.",
+                "expected_outcome": "The page loads and automatically fetches raw materials data from the backend API and displays it in a table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A system administrator responsible for deployment.",
+        "user_goal": "To ensure the backend service connects to the correct database with provided credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Alex deploys the backend service and starts it with predefined environment variables set.",
+                "action": "Run 'npm run dev' in the backend directory.",
+                "expected_outcome": "Backend server starts successfully and establishes connection to PostgreSQL database at localhost:5432 using myappuser/myapppassword credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI with light goldenrod background and olive drab colored elements",
+        "user_persona": "A new user exploring the application for the first time.",
+        "user_goal": "To navigate through the app and confirm consistent visual design.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Homepage",
+                "description": "Jamie opens the application and observes the overall look and feel.",
+                "action": "Load the main dashboard page.",
+                "expected_outcome": "Page background is light goldenrod (#FAFAD2), and all UI elements like buttons and tables use olive drab (#6B8E23) color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Raw materials management functionality",
+        "user_persona": "A procurement officer adding a new plastic resin shipment.",
+        "user_goal": "To add a new raw material type into the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Add Form",
+                "description": "Taylor clicks the 'Add Raw Material' button after navigating to the raw materials page.",
+                "action": "Click on 'Add Raw Material' button.",
+                "expected_outcome": "A modal form opens allowing entry of raw material details such as name, description, unit, and quantity."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Material",
+                "description": "Taylor fills out the form and submits it to register the new material.",
+                "action": "Fill in form fields and click Submit.",
+                "expected_outcome": "New raw material appears in the raw materials table without requiring a manual page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Finished products management functionality",
+        "user_persona": "A product line manager introducing a new cup design.",
+        "user_goal": "To register a newly designed paper cup in the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Product Entry",
+                "description": "Jordan accesses the finished products section and initiates creation of a new product.",
+                "action": "Click on 'Add Finished Product' button.",
+                "expected_outcome": "Modal form appears for entering product details including name, description, unit, quantity, and price per unit."
+            },
+            {
+                "step": 2,
+                "title": "Saving Product Information",
+                "description": "After filling in all necessary information, Jordan saves the new product entry.",
+                "action": "Complete form and submit.",
+                "expected_outcome": "The new finished product is listed in the products table immediately after submission."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Inventory tracking for both raw materials and finished products",
+        "user_persona": "An inventory clerk recording incoming supplies.",
+        "user_goal": "To log an increase in raw material stock due to a supplier delivery.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Inventory Section",
+                "description": "Casey goes to the inventory section to record the receipt of additional raw materials.",
+                "action": "Navigate to /inventory and select 'Raw Materials Inventory' tab.",
+                "expected_outcome": "Displays a chronological list of raw material inventory transactions."
+            },
+            {
+                "step": 2,
+                "title": "Recording Stock Increase",
+                "description": "Casey logs the new shipment by clicking to record a transaction.",
+                "action": "Click 'Record Transaction', fill in details, and save.",
+                "expected_outcome": "Transaction is added to the inventory log showing increased quantity for the selected raw material."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Production management and tracking capabilities",
+        "user_persona": "A factory supervisor starting a new batch run.",
+        "user_goal": "To initiate and monitor a production run for standard paper cups.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Production Run",
+                "description": "Morgan navigates to the production section and starts a new run for standard cups.",
+                "action": "Click 'Start New Production Run' button.",
+                "expected_outcome": "Form opens to configure production parameters like product selection and quantity."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Run Progress",
+                "description": "Once started, Morgan checks the status of the production run.",
+                "action": "View production runs list and click on active run.",
+                "expected_outcome": "Details show real-time progress including raw material consumption and estimated completion time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Sales recording and tracking functionality",
+        "user_persona": "A sales representative completing a customer order.",
+        "user_goal": "To record a sale of finished paper cups to a regular client.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Sale Details",
+                "description": "Riley goes to the sales section and begins entering details for a completed sale.",
+                "action": "Click 'Record New Sale' button.",
+                "expected_outcome": "Sale form opens with fields for selecting customer, product, quantity, and price."
+            },
+            {
+                "step": 2,
+                "title": "Saving Completed Sale",
+                "description": "Riley fills in all required information and saves the transaction.",
+                "action": "Complete form and click Save.",
+                "expected_outcome": "Sale record is added to the sales history table with accurate totals and timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Customer information management",
+        "user_persona": "A customer service agent updating client contact info.",
+        "user_goal": "To modify an existing customer's phone number and address.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Customer Record",
+                "description": "Patricia searches for a specific customer in the customer management section.",
+                "action": "Use search bar to find customer by name and click on the result.",
+                "expected_outcome": "Customer details appear in an editable form view."
+            },
+            {
+                "step": 2,
+                "title": "Updating Contact Information",
+                "description": "Patricia updates the phone number and address fields and saves changes.",
+                "action": "Edit fields and click Save.",
+                "expected_outcome": "Updated customer information is saved and reflected immediately in the customer list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Sales history recording for customers",
+        "user_persona": "A regional sales manager reviewing quarterly performance.",
+        "user_goal": "To analyze past sales made to a key customer over the last quarter.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Customer Sales History",
+                "description": "Derek selects a major client from the customer list to review their purchasing pattern.",
+                "action": "Click on customer row and navigate to Sales History tab.",
+                "expected_outcome": "Displays a filtered list of all sales made to that customer with dates and amounts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Sales statistics generation and display",
+        "user_persona": "A business analyst preparing monthly performance metrics.",
+        "user_goal": "To generate and view aggregated sales data for executive reporting.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Sales Statistics",
+                "description": "Bailey navigates to the reports section to pull up monthly sales figures.",
+                "action": "Select 'Sales Analysis' report type.",
+                "expected_outcome": "Dashboard updates to show charts and summaries of total sales volume, revenue, and top-selling products."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Detailed reporting functionality for inventory, production, and sales",
+        "user_persona": "An operations director needing comprehensive operational insights.",
+        "user_goal": "To export a full inventory turnover report for board presentation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Report Type",
+                "description": "Cameron chooses the inventory summary report from available options.",
+                "action": "Click on 'Inventory Summary' report card.",
+                "expected_outcome": "Report loads with visualizations showing current stock levels and movement trends."
+            },
+            {
+                "step": 2,
+                "title": "Exporting Data",
+                "description": "Cameron exports the generated report for sharing with stakeholders.",
+                "action": "Click 'Export Report' and choose PDF format.",
+                "expected_outcome": "System generates and downloads a formatted PDF document containing the inventory report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting raw materials, finished products, inventory, production, sales, and customers",
+        "user_persona": "A database developer validating schema implementation.",
+        "user_goal": "To verify that all core business entity tables exist with correct structure.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Database",
+                "description": "Devon uses a database tool to connect to the configured PostgreSQL instance.",
+                "action": "Connect using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Connection established successfully with access to database tables."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Table Structures",
+                "description": "Devon inspects each critical table to ensure proper schema definition.",
+                "action": "Query information_schema.tables for tables: raw_materials, finished_products, inventory, production_runs, sales, customers.",
+                "expected_outcome": "All six tables exist with matching column names and data types as specified in requirements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for all core business entities and operations",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "To retrieve raw materials list via REST API endpoint.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making API Request",
+                "description": "Developer sends GET request to retrieve raw materials data.",
+                "action": "Send HTTP GET request to /api/raw-materials endpoint.",
+                "expected_outcome": "Server responds with JSON array containing raw materials objects with id, name, description, unit, and quantity fields."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with npm run install:all and npm run dev scripts",
+        "user_persona": "A new team member setting up the development environment.",
+        "user_goal": "To install all project dependencies and start both frontend and backend servers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Jamie clones the repository and runs the unified install command.",
+                "action": "Execute 'npm run install:all' in root directory.",
+                "expected_outcome": "Both frontend and backend node_modules folders are populated with required packages concurrently."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Jamie starts both development servers with one command.",
+                "action": "Execute 'npm run dev' in root directory.",
+                "expected_outcome": "Frontend development server starts on one port and backend API server starts on another port simultaneously."
+            }
+        ]
+    }
+]

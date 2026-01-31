@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all data from backend APIs",
+    "A backend application that connects to a PostgreSQL database using specified environment variables",
+    "Interactive map display for visualizing neighborhood boundaries and selecting areas",
+    "Area comparison functionality for demographic, economic, and crime data",
+    "Data dashboard with interactive charts for each data category",
+    "Customizable dashboard layout options for users",
+    "User interface styled with ivory background and forest green components",
+    "API endpoints for retrieving demographic data by area",
+    "API endpoints for retrieving economic data by area",
+    "API endpoints for retrieving crime data by area",
+    "Data visualization components for chart rendering",
+    "Area selection mechanism for choosing neighborhoods to compare",
+    "Responsive design compatible with desktop and tablet devices",
+    "Package.json configuration with install:all and dev scripts",
+    "Database connection management with error handling"
+]

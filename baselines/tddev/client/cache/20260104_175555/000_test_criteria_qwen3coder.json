@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "User registration and authentication system",
+        "user_persona": "A new user named Alex who wants to join the skill sharing platform.",
+        "user_goal": "To successfully register for an account and log in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Site",
+                "description": "Alex visits the homepage and sees the 'Sign Up' and 'Log In' tabs. He decides to create a new account.",
+                "action": "Click on the 'Sign Up' tab.",
+                "expected_outcome": "Registration fields including Email, Password, and Confirm Password appear."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration Details",
+                "description": "Alex fills out his email and creates a strong password, confirming it correctly before submitting.",
+                "action": "Enter valid email, password, and confirm password. Click the Submit button.",
+                "expected_outcome": "System registers Alex's account and redirects him to the login form with a success message."
+            },
+            {
+                "step": 3,
+                "title": "Logging Into Account",
+                "description": "Now registered, Alex enters his credentials to access his new profile dashboard.",
+                "action": "Switch to 'Log In' tab. Enter email and password. Click Submit.",
+                "expected_outcome": "Alex is redirected to his profile dashboard after successful authentication."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile creation and management",
+        "user_persona": "Jamie, a recently registered user wanting to personalize her profile.",
+        "user_goal": "To create and save a complete user profile with personal information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile Editor",
+                "description": "After logging in, Jamie navigates to her profile editing page to add details about herself.",
+                "action": "Navigate to the profile editor page.",
+                "expected_outcome": "Profile editor form with fields like Full Name, Bio, Location, and Avatar Upload appears."
+            },
+            {
+                "step": 2,
+                "title": "Uploading Avatar Image",
+                "description": "Jamie drags and drops a photo from her computer into the avatar area to set her profile picture.",
+                "action": "Drag and drop an image file onto the avatar upload zone.",
+                "expected_outcome": "Image preview updates instantly, showing the selected avatar ready for saving."
+            },
+            {
+                "step": 3,
+                "title": "Saving Updated Profile Information",
+                "description": "Jamie completes all fields and saves her changes to make them live on her public profile.",
+                "action": "Fill out remaining fields. Click the Save button.",
+                "expected_outcome": "Changes are saved successfully; updated profile information displays in the preview section."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to add, edit, and remove skills and certifications",
+        "user_persona": "Taylor, a professional looking to showcase his qualifications.",
+        "user_goal": "To manage his list of skills and certifications effectively.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding New Skill",
+                "description": "Taylor clicks to add a new programming language he just learned to his profile.",
+                "action": "Click the 'Add New Skill' button.",
+                "expected_outcome": "A modal form opens where Taylor can enter skill name and select proficiency level."
+            },
+            {
+                "step": 2,
+                "title": "Editing Existing Certification",
+                "description": "Taylor notices a typo in one of his certifications and chooses to correct it.",
+                "action": "Hover over the certification item to reveal the Edit icon. Click the Edit icon.",
+                "expected_outcome": "The same modal pre-filled with existing data appears for modification."
+            },
+            {
+                "step": 3,
+                "title": "Removing Outdated Entry",
+                "description": "Seeing an old skill that’s no longer relevant, Taylor deletes it permanently.",
+                "action": "Hover over the outdated skill and click the Delete icon. Confirm deletion.",
+                "expected_outcome": "Skill disappears immediately from the list without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality to find users by skills and certifications",
+        "user_persona": "Morgan, a recruiter seeking candidates with specific qualifications.",
+        "user_goal": "To locate users proficient in JavaScript and holding AWS certification.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Morgan types 'JavaScript' into the main search bar at the top of the site.",
+                "action": "Type 'JavaScript' in the search field. Press Enter.",
+                "expected_outcome": "Search results begin populating with users who have listed JavaScript as a skill."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "To narrow down further, Morgan applies an additional filter for AWS Certified professionals.",
+                "action": "Open the Certifications filter dropdown and select 'AWS Certified'. Click Apply.",
+                "expected_outcome": "Results update dynamically to show only those matching both criteria."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Detailed Profiles",
+                "description": "Interested in one candidate, Morgan clicks their profile card to learn more.",
+                "action": "Click on a user profile card from the filtered results.",
+                "expected_outcome": "Redirected to the detailed profile view showing full skill and certification listings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile browsing interface",
+        "user_persona": "Riley, a curious community member exploring the platform.",
+        "user_goal": "To browse through various user profiles efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Browsing Session",
+                "description": "Riley lands on the Browse page to see what kind of talent exists on the platform.",
+                "action": "Visit the Browse Users page.",
+                "expected_outcome": "Grid layout of user profile cards loads with avatars, names, locations, and key skills displayed."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Profiles",
+                "description": "Wishing to see most active members first, Riley sorts the profiles accordingly.",
+                "action": "Select 'Recently Active' from the sort options above the grid.",
+                "expected_outcome": "Profiles re-sort automatically to reflect activity timelines."
+            },
+            {
+                "step": 3,
+                "title": "Navigating Pages",
+                "description": "As Riley scrolls, new profiles keep loading seamlessly due to infinite scrolling.",
+                "action": "Scroll down continuously until reaching the end of current page.",
+                "expected_outcome": "New batches of user profiles load automatically without manual pagination clicks."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Detailed profile view showing skills and certifications",
+        "user_persona": "Jordan, interested in connecting with a potential mentor.",
+        "user_goal": "To review another user’s comprehensive profile thoroughly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Full Profile View",
+                "description": "Jordan clicks on a promising user card from the search results to see everything they offer.",
+                "action": "Click on a user profile card.",
+                "expected_outcome": "Redirected to the detailed profile page with full bio, skills, and certifications listed."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Certification Links",
+                "description": "Seeing a verified certificate, Jordan clicks to validate its authenticity externally.",
+                "action": "Click on a linked certification entry.",
+                "expected_outcome": "Certificate URL opens in a new browser tab displaying official verification."
+            },
+            {
+                "step": 3,
+                "title": "Initiating Contact",
+                "description": "Impressed, Jordan wants to reach out directly using the prominent contact button.",
+                "action": "Click the Contact button located near the top right corner.",
+                "expected_outcome": "Messaging modal opens allowing Jordan to compose a direct message to the user."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact functionality between users",
+        "user_persona": "Casey, a developer wanting to collaborate with peers.",
+        "user_goal": "To initiate a conversation with another platform member.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Message Interface",
+                "description": "From a colleague's profile, Casey presses the contact button to start communicating.",
+                "action": "Click the Contact button on the user's profile page.",
+                "expected_outcome": "Messaging modal overlay appears with previous messages (if any) and input box below."
+            },
+            {
+                "step": 2,
+                "title": "Sending First Message",
+                "description": "Casey writes a friendly introduction and hits send to introduce himself.",
+                "action": "Type a greeting message in the text area. Press Enter to send.",
+                "expected_outcome": "Message appears in the thread instantly and gets sent to the recipient."
+            },
+            {
+                "step": 3,
+                "title": "Closing Chat Window",
+                "description": "Having said hello, Casey closes the chat window to return to browsing.",
+                "action": "Click the close (X) button on the modal header.",
+                "expected_outcome": "Chat modal disappears cleanly, returning focus to the original profile page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application fetching all data from backend APIs",
+        "user_persona": "Developer Sam working locally during development.",
+        "user_goal": "To verify that frontend retrieves dynamic data exclusively from backend services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Environment",
+                "description": "Sam runs the unified development startup command to launch both frontend and backend servers.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Both frontend development server and backend API server start concurrently."
+            },
+            {
+                "step": 2,
+                "title": "Checking Data Flow",
+                "description": "Sam inspects network traffic while navigating to ensure no mock/static data is used.",
+                "action": "Open browser dev tools Network tab. Navigate to Browse Users page.",
+                "expected_outcome": "API calls to backend endpoints such as /api/users are observed fetching real-time data."
+            },
+            {
+                "step": 3,
+                "title": "Verifying JWT Authentication",
+                "description": "Sam logs in and confirms that subsequent API requests include proper authorization headers.",
+                "action": "Log in and monitor XHR requests in dev tools.",
+                "expected_outcome": "Requests contain Authorization: Bearer <token> headers proving secure API access."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "DevOps engineer Quinn setting up deployment environments.",
+        "user_goal": "To ensure backend connects securely to PostgreSQL using provided configurations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Quinn defines necessary environment variables exactly as instructed for database connectivity.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Environment variables are properly exported and accessible to backend processes."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Service",
+                "description": "With variables configured, Quinn starts the backend service to establish database connections.",
+                "action": "Start backend server process.",
+                "expected_outcome": "Service initializes successfully, connecting to PostgreSQL instance using configured settings."
+            },
+            {
+                "step": 3,
+                "title": "Testing Database Queries",
+                "description": "Quinn performs sample API requests to confirm database reads/writes function correctly.",
+                "action": "Make GET/POST requests to endpoints involving database operations.",
+                "expected_outcome": "Responses accurately reflect database contents, validating successful integration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run install:all for frontend and backend installation",
+        "user_persona": "New contributor Devon joining the project team.",
+        "user_goal": "To quickly get the entire project running locally with dependencies installed.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "Devon clones the codebase to begin contributing and prepares to install dependencies.",
+                "action": "Clone the repository and navigate to the root folder.",
+                "expected_outcome": "Local copy of source code is ready with package.json present at root level."
+            },
+            {
+                "step": 2,
+                "title": "Installing Dependencies Simultaneously",
+                "description": "Devon uses the convenience script to install packages for both frontend and backend parts.",
+                "action": "Execute `npm run install:all`.",
+                "expected_outcome": "Dependencies for both frontend and backend folders are installed sequentially without errors."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Setup Completion",
+                "description": "Devon verifies that node_modules exist in both frontend and backend directories post-installation.",
+                "action": "Check existence of node_modules folders in frontend and backend subdirectories.",
+                "expected_outcome": "node_modules folders found with required libraries populated in each."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run dev to start frontend and backend concurrently",
+        "user_persona": "Team lead Parker guiding junior developers on efficient workflow setup.",
+        "user_goal": "To streamline local development with a single command starting all services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing Local Environment",
+                "description": "Parker ensures all prerequisites are met before launching the development environment.",
+                "action": "Verify dependencies are installed and database is reachable.",
+                "expected_outcome": "All prerequisites satisfied, including PostgreSQL service availability."
+            },
+            {
+                "step": 2,
+                "title": "Executing Unified Startup Command",
+                "description": "Parker demonstrates how to use the single command to boot up the full stack.",
+                "action": "Run `npm run dev` from the root of the repository.",
+                "expected_outcome": "Frontend and backend services start together in parallel, displaying console logs."
+            },
+            {
+                "step": 3,
+                "title": "Validating Running Services",
+                "description": "Parker checks that both interfaces respond appropriately once started.",
+                "action": "Access localhost ports serving frontend and backend APIs.",
+                "expected_outcome": "Frontend renders UI successfully and backend responds to health-check endpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with cornsilk background color",
+        "user_persona": "Designer Luna auditing visual consistency across device sizes.",
+        "user_goal": "To confirm that the site maintains cornsilk background across responsive breakpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Desktop Layout",
+                "description": "Luna opens the site on a wide-screen monitor and examines the overall background tone.",
+                "action": "Load homepage in desktop browser. Inspect body background style.",
+                "expected_outcome": "Entire background renders consistently in cornsilk (#FFF8DC) across all sections."
+            },
+            {
+                "step": 2,
+                "title": "Testing Tablet Viewport",
+                "description": "Resizing the browser simulates tablet screen size to check adaptive layout behaviors.",
+                "action": "Resize browser window to simulate tablet resolution (~768px width).",
+                "expected_outcome": "Layout adjusts gracefully with columns collapsing but background remains cornsilk."
+            },
+            {
+                "step": 3,
+                "title": "Mobile Responsiveness Check",
+                "description": "On actual mobile device, Luna confirms readability and color fidelity under sunlight conditions.",
+                "action": "Open site on smartphone and scroll through major pages.",
+                "expected_outcome": "Background stays uniform cornsilk with legible content and touch-target spacing maintained."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive elements styled with peru color",
+        "user_persona": "UX researcher Kai evaluating usability cues and visual affordances.",
+        "user_goal": "To ensure interactive components stand out visually using the designated peru theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Evaluating Button Styling",
+                "description": "Kai focuses on primary action buttons throughout the app to assess color consistency.",
+                "action": "Locate several CTA buttons (e.g., Save, Submit, Contact) and inspect CSS properties.",
+                "expected_outcome": "Buttons utilize peru (#CD853F) as either background or border color distinctly from static elements."
+            },
+            {
+                "step": 2,
+                "title": "Checking Link Visibility",
+                "description": "Links within paragraphs or navigation menus must also follow the brand's interactive palette.",
+                "action": "Scan for hyperlinks embedded in text or standalone navigation items.",
+                "expected_outcome": "Anchor tags inherit peru coloring with hover effects enhancing clickability."
+            },
+            {
+                "step": 3,
+                "title": "Assessing Hover Feedback",
+                "description": "Hovering over interactive elements should give clear visual feedback per design specs.",
+                "action": "Move cursor over buttons, links, and form controls repeatedly.",
+                "expected_outcome": "Each interactive element transitions smoothly to a modified peru shade upon hover."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User-friendly navigation and layout structure",
+        "user_persona": "First-time visitor Zoe exploring the platform intuitively.",
+        "user_goal": "To easily understand how to navigate the site without assistance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Understanding Primary Navigation",
+                "description": "Zoe looks at the header to determine which sections are available for exploration.",
+                "action": "Examine top navigation bar items (Home, Browse, Search, Profile).",
+                "expected_outcome": "Menu items are clearly labeled and logically grouped for intuitive discovery."
+            },
+            {
+                "step": 2,
+                "title": "Using Dropdown Menus",
+                "description": "Hovering over certain items reveals submenu options offering deeper navigation paths.",
+                "action": "Hover over a main menu item with sub-options.",
+                "expected_outcome": "Submenu expands smoothly revealing secondary navigation choices beneath it."
+            },
+            {
+                "step": 3,
+                "title": "Accessing User-Specific Actions",
+                "description": "Upon logging in, Zoe finds quick access to her personalized tools via user dropdown.",
+                "action": "Click the user avatar/icon in the upper-right corner when logged in.",
+                "expected_outcome": "Dropdown menu opens showing account-specific actions like My Profile, Settings, Logout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data persistence for user profiles, skills, and certifications",
+        "user_persona": "Tester Maya verifying long-term data integrity during usage cycles.",
+        "user_goal": "To ensure that all edits and additions persist reliably beyond sessions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Initial Data Set",
+                "description": "Maya adds multiple skills and a certification to her profile before logging out.",
+                "action": "Add three skills and one certification. Log out completely.",
+                "expected_outcome": "Skills and certification saved successfully; logout clears session tokens."
+            },
+            {
+                "step": 2,
+                "title": "Reloading After Break",
+                "description": "Returning later, Maya logs back in to see if previously entered data still exists.",
+                "action": "Re-login and visit own profile page.",
+                "expected_outcome": "Previously added skills and certification remain intact and visible."
+            },
+            {
+                "step": 3,
+                "title": "Making Incremental Updates",
+                "description": "Maya updates some entries and removes others, checking that changes take effect immediately.",
+                "action": "Edit one skill and delete another. Refresh the page manually.",
+                "expected_outcome": "Edits persist across refreshes and deletions are reflected permanently in the database."
+            }
+        ]
+    }
+]

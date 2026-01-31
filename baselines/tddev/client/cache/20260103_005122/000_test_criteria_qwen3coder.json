@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A first-time user exploring the coaching platform.",
+        "user_goal": "To view the list of available coaches fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Coaches Page",
+                "description": "Alex navigates to the 'Find a Coach' section expecting to see a list of coaches.",
+                "action": "Click on the 'Find a Coach' navigation link.",
+                "expected_outcome": "The frontend makes an API call to /coaches/search and displays a grid of coach profiles retrieved from the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer testing the backend service.",
+        "user_goal": "Verify that the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making an API Request",
+                "description": "Developer sends a GET request to retrieve user data to confirm database connectivity.",
+                "action": "Send GET request to /api/users.",
+                "expected_outcome": "Server responds with user data retrieved from the PostgreSQL database using the configured environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for coaches and users",
+        "user_persona": "A new user signing up for the platform.",
+        "user_goal": "To register as a user and log in successfully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Registration",
+                "description": "Taylor visits the site and decides to sign up as a user.",
+                "action": "Click on the 'Sign Up' button.",
+                "expected_outcome": "Registration form appears with fields for name, email, password, and role selection."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Valid Credentials",
+                "description": "Taylor fills in valid details and selects 'User' as the role.",
+                "action": "Fill form fields and click 'Register'.",
+                "expected_outcome": "Account is created, and Taylor is redirected to the login page with a success message."
+            },
+            {
+                "step": 3,
+                "title": "Logging In",
+                "description": "Taylor logs in with newly registered credentials.",
+                "action": "Enter email and password, then click 'Login'.",
+                "expected_outcome": "JWT token is stored, and Taylor is redirected to the user dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Personality assessment functionality with interactive questionnaire interface",
+        "user_persona": "A user interested in finding compatible coaches.",
+        "user_goal": "Complete the personality assessment to get matched with suitable coaches.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Assessment",
+                "description": "Jordan clicks to begin the personality assessment.",
+                "action": "Click on 'Start Personality Assessment'.",
+                "expected_outcome": "First question is displayed with multiple choice options."
+            },
+            {
+                "step": 2,
+                "title": "Answering Questions",
+                "description": "Jordan answers several questions by selecting options and navigating forward.",
+                "action": "Select answers and click 'Next' through each question.",
+                "expected_outcome": "Each answer is saved locally and the next question is shown."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Assessment",
+                "description": "After answering all questions, Jordan reviews and submits the assessment.",
+                "action": "Click 'Submit' on the final review screen.",
+                "expected_outcome": "Assessment data is sent to backend and Jordan is redirected to the matching results page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile creation and management with editable personal information",
+        "user_persona": "An existing user wanting to update their profile.",
+        "user_goal": "Update their bio and avatar in the profile settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile",
+                "description": "Casey goes to their profile page to make updates.",
+                "action": "Navigate to the profile page and click 'Edit Profile'.",
+                "expected_outcome": "Editable form fields appear for name, email, bio, and avatar upload."
+            },
+            {
+                "step": 2,
+                "title": "Updating Information",
+                "description": "Casey uploads a new avatar and writes a new bio.",
+                "action": "Upload image and type new bio in respective fields.",
+                "expected_outcome": "New values are reflected in the input fields."
+            },
+            {
+                "step": 3,
+                "title": "Saving Changes",
+                "description": "Casey saves the updated profile information.",
+                "action": "Click 'Save Changes'.",
+                "expected_outcome": "Updated profile data is saved to backend and the profile page reflects the changes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Coach profile creation and management with specialization and experience details",
+        "user_persona": "A coach updating their professional details.",
+        "user_goal": "Modify their specialization and hourly rate in the coach profile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Coach Profile",
+                "description": "Riley accesses the coach dashboard and edits their profile.",
+                "action": "Click 'Edit Coach Profile'.",
+                "expected_outcome": "Form fields for specializations, experience, and hourly rate become editable."
+            },
+            {
+                "step": 2,
+                "title": "Changing Specialization and Rate",
+                "description": "Riley adds a new specialization and updates their hourly rate.",
+                "action": "Add new specialization and change hourly rate field value.",
+                "expected_outcome": "Fields update with new values."
+            },
+            {
+                "step": 3,
+                "title": "Saving Updates",
+                "description": "Riley saves the updated coach profile.",
+                "action": "Click 'Save Changes'.",
+                "expected_outcome": "Changes are saved to the backend and displayed on the public coach profile."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search and filtering functionality for users to find suitable coaches",
+        "user_persona": "A user looking for career-focused coaches within budget.",
+        "user_goal": "Use filters to find affordable career coaches.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching Coaches",
+                "description": "Morgan types 'career' into the search bar to look for relevant coaches.",
+                "action": "Type 'career' into the search input.",
+                "expected_outcome": "Search results update dynamically showing coaches specializing in career development."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Morgan applies filters to narrow down the results.",
+                "action": "Select 'Career' under specialization and adjust price slider to maximum $100/hour.",
+                "expected_outcome": "Filtered results load showing only career coaches within the selected price range."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Matching algorithm or mechanism to suggest coaches based on personality assessment results",
+        "user_persona": "A user who just finished their personality assessment.",
+        "user_goal": "View coach recommendations based on personality match.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Matching Results",
+                "description": "After completing the assessment, Alex lands on the matching results page.",
+                "action": "Page loads automatically.",
+                "expected_outcome": "Recommended coaches with compatibility scores are displayed based on assessment results."
+            },
+            {
+                "step": 2,
+                "title": "Exploring a Match",
+                "description": "Alex clicks on a highly compatible coach to learn more.",
+                "action": "Click on a coach card from the recommendations list.",
+                "expected_outcome": "Full coach profile page opens with detailed information and compatibility explanation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Scheduling system for booking one-to-one coaching sessions",
+        "user_persona": "A user ready to book a session with a chosen coach.",
+        "user_goal": "Book a coaching session at an available time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting a Time Slot",
+                "description": "Jamie views the coach's availability and picks a convenient time.",
+                "action": "Click on an available time slot in the calendar.",
+                "expected_outcome": "Booking confirmation modal appears with selected date and time."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Booking",
+                "description": "Jamie confirms the session booking.",
+                "action": "Click 'Confirm Booking' in the modal.",
+                "expected_outcome": "Session is booked in backend and Jamie receives a confirmation notification."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Session management dashboard to view upcoming and past coaching sessions",
+        "user_persona": "A user checking their scheduled sessions.",
+        "user_goal": "Review upcoming and past coaching sessions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Upcoming Sessions",
+                "description": "Patricia navigates to the session dashboard to see future appointments.",
+                "action": "Click on 'Sessions' tab and ensure 'Upcoming Sessions' is active.",
+                "expected_outcome": "List of upcoming sessions with dates, coach names, and statuses is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Past Sessions",
+                "description": "Patricia switches to view previously attended sessions.",
+                "action": "Click on the 'Past Sessions' tab.",
+                "expected_outcome": "List updates to show completed and cancelled sessions from the past."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Goal setting interface allowing users to define personalized coaching objectives",
+        "user_persona": "A user starting their coaching journey with specific goals.",
+        "user_goal": "Set a new personal development goal.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating a New Goal",
+                "description": "Drew wants to add a goal to improve communication skills.",
+                "action": "Click on 'Goals' and then 'Add New Goal'.",
+                "expected_outcome": "Goal creation form with title, description, target date, and category appears."
+            },
+            {
+                "step": 2,
+                "title": "Defining Goal Details",
+                "description": "Drew fills in the goal information.",
+                "action": "Enter 'Improve Communication Skills' as title, choose 'Personal' category, and set a target date.",
+                "expected_outcome": "Form captures Drew's inputs accurately."
+            },
+            {
+                "step": 3,
+                "title": "Saving the Goal",
+                "description": "Drew submits the new goal.",
+                "action": "Click 'Save Goal'.",
+                "expected_outcome": "Goal is added to Drew's list and stored in the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Progress tracking visualization to monitor goal achievement over time",
+        "user_persona": "A user reviewing their coaching progress.",
+        "user_goal": "Check visual progress toward achieving their goals.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Progress Charts",
+                "description": "Sam navigates to the progress tracking section to evaluate performance.",
+                "action": "Click on 'Progress Tracking' in the navigation menu.",
+                "expected_outcome": "Charts displaying progress data for active goals appear with default monthly view."
+            },
+            {
+                "step": 2,
+                "title": "Changing Time Frame",
+                "description": "Sam wants to see yearly progress instead.",
+                "action": "Select 'Yearly' from the timeframe toggle.",
+                "expected_outcome": "Chart updates to show progress aggregated by year."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with beige background and saddle brown colored components",
+        "user_persona": "A user accessing the app on different devices.",
+        "user_goal": "Experience consistent styling and responsive layout on mobile and desktop.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Desktop Layout",
+                "description": "On a laptop, Morgan browses the homepage.",
+                "action": "Open homepage in browser window.",
+                "expected_outcome": "Beige background and saddle brown components are applied consistently across all sections."
+            },
+            {
+                "step": 2,
+                "title": "Testing Mobile Responsiveness",
+                "description": "Morgan resizes the browser to simulate mobile usage.",
+                "action": "Resize browser window to mobile dimensions.",
+                "expected_outcome": "Layout adjusts responsively while maintaining correct colors and readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script for frontend and backend installation",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "Install dependencies for both frontend and backend simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Dev wants to quickly install all project dependencies.",
+                "action": "Run `npm run install:all` in root directory terminal.",
+                "expected_outcome": "Both client and server folders install dependencies concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'dev' script to start frontend and backend concurrently",
+        "user_persona": "A developer beginning work on the application.",
+        "user_goal": "Launch both frontend and backend servers for development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Dev needs to run both services for integrated development.",
+                "action": "Execute `npm run dev` in the root directory.",
+                "expected_outcome": "Frontend development server and backend API server start side-by-side and are accessible."
+            }
+        ]
+    }
+]

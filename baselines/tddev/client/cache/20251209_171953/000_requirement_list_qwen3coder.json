@@ -1,0 +1,227 @@
+[
+    {
+        "resource_dependency": {
+            "websocket_endpoint": "wss://api.sportsdata.io/v3/nba/scores/sportsdata",
+            "match_data_schema": "Database table named 'matches' with fields: match_id (UUID), home_team (string), away_team (string), date_time (datetime), venue (string), status (enum: scheduled, live, finished), score_home (integer), score_away (integer), updated_at (timestamp)."
+        },
+        "function": "Display real-time basketball match data with automatic updates.",
+        "static_description": "A section displaying upcoming, ongoing, and recently completed matches in a card-based layout. Each card shows teams involved, scores, time/status, and venue. Background is ghost white with slate gray cards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a match card expands it to show additional details such as quarter-by-quarter scores and referee information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "charting_library": "/libs/charting-library.min.js",
+            "team_stats_schema": "Database table named 'team_statistics' with fields: team_id (UUID), season_year (integer), wins (integer), losses (integer), avg_points_scored (float), avg_points_conceded (float), field_goal_percentage (float).",
+            "player_stats_schema": "Database table named 'player_statistics' with fields: player_id (UUID), match_id (UUID), points (integer), rebounds (integer), assists (integer), steals (integer), blocks (integer), turnovers (integer), minutes_played (integer)."
+        },
+        "function": "Provide interactive charts and graphs for analyzing team and player performance statistics.",
+        "static_description": "A tabbed interface showing line charts, bar graphs, and pie charts representing various stats. Default view displays average points scored per game over the last 10 games. Charts use slate gray lines against a ghost white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switch between different statistic views via tabs or dropdown menus. Hovering over chart elements highlights corresponding data points across linked visualizations."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Displays tooltip with exact numerical value when hovering over data points on the chart."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "match_history_schema": "Database table named 'match_history' with fields: match_id (UUID), home_team_id (UUID), away_team_id (UUID), result (string), date_played (date), location (string), attendance (integer).",
+            "team_icons_folder": "/assets/team-icons/"
+        },
+        "function": "Show historical match records and performance trends for teams and players.",
+        "static_description": "Timeline-style display listing past matches with outcomes, opponents, venues, and key highlights. Each entry includes small team icons and brief summaries. Ghost white background with slate gray text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a match opens a modal window with full box score and play-by-play breakdown."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads more entries dynamically without page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "rankings_schema": "Database table named 'team_rankings' with fields: ranking_id (UUID), team_id (UUID), league_position (integer), conference (string), division (string), win_loss_ratio (float), streak (string).",
+            "league_logo_folder": "/assets/league-logos/"
+        },
+        "function": "Display current team rankings within their respective conferences and divisions.",
+        "static_description": "Two-column layout showing Eastern and Western Conference rankings. Teams listed vertically with position number, logo, name, record, and recent form indicator. Background remains ghost white with slate gray headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a team navigates to its dedicated profile page featuring deeper analytics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "player_performance_schema": "Database table named 'detailed_player_metrics' with fields: metric_id (UUID), player_id (UUID), category (string), value (float), percentile_rank (float), season (integer), date_recorded (date).",
+            "player_headshot_folder": "/assets/player-headshots/"
+        },
+        "function": "Present granular performance metrics and comparative analytics for individual players.",
+        "static_description": "Grid layout showcasing selected player's headshot, basic info, and statistical radar chart comparing strengths vs league averages. Additional panels feature advanced shooting zones and efficiency ratings. Maintains ghost white background with slate gray borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping a stat category filters displayed data accordingly and adjusts radar chart axes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "prediction_model_api": "An internal ML inference API endpoint returning predicted match outcomes based on trained models.",
+            "prediction_schema": "Database table named 'predictions' with fields: prediction_id (UUID), match_id (UUID), predicted_winner (string), confidence_score (float), model_version (string), generated_at (timestamp)."
+        },
+        "function": "Use machine learning models to forecast future match results based on historical patterns.",
+        "static_description": "Section titled 'Match Predictions' presenting upcoming fixtures alongside AI-generated probabilities for each outcome. Cards include team names, logos, predicted winner, and confidence percentage. Styled consistently with ghost white and slate gray palette.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a prediction reveals underlying factors influencing the decision, such as recent form and head-to-head records."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "betting_recommendation_engine": "Custom recommendation engine that evaluates user preferences and risk tolerance to suggest optimal bets.",
+            "odds_comparison_api": "External API aggregating real-time odds from multiple bookmakers.",
+            "recommendation_schema": "Database table named 'personalized_bets' with fields: bet_id (UUID), user_id (UUID), match_id (UUID), suggested_bet_type (string), recommended_odds (float), expected_value (float), timestamp (timestamp)."
+        },
+        "function": "Deliver tailored betting advice aligned with user-defined criteria and market conditions.",
+        "static_description": "Personalized feed suggesting potential wagers categorized by safety level (safe, moderate, risky) and estimated ROI. Each suggestion lists match details, type of bet, suggested stake, and provider offering best odds. Uses consistent color scheme throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a recommendation adds it to the user’s watchlist and allows setting alerts for line movements."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboard_widgets_config": "[{\"name\": \"Live Scores\", \"type\": \"scoreboard\"}, {\"name\": \"Top Performers\", \"type\": \"leaderboard\"}, {\"name\": \"Prediction Accuracy\", \"type\": \"progress_chart\"}]",
+            "key_stats_schema": "Database table named 'key_overview_stats' with fields: stat_name (string), current_value (float), trend_direction (enum: up, down, stable), last_updated (timestamp)."
+        },
+        "function": "Aggregate critical basketball metrics into a centralized dashboard overview.",
+        "static_description": "Dashboard composed of modular widgets arranged in rows. Widgets include live scoreboard, top performers leaderboard, and prediction accuracy tracker. All components maintain ghost white background and slate gray accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can rearrange widget positions through drag-and-drop actions."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a widget header toggles expanded/collapsed mode for detailed inspection."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filter_options": "{\"teams\": [\"LAL\", \"BKN\", ...], \"leagues\": [\"NBA\", \"G-League\"], \"dates\": \"YYYY-MM-DD range picker\"}",
+            "filtering_mechanism": "Client-side filtering logic applied to pre-fingested datasets stored in local memory or indexed database tables."
+        },
+        "function": "Allow dynamic filtering of displayed data by team, player, date range, and league.",
+        "static_description": "Filter control panel positioned above main content area. Includes dropdown selectors for teams and leagues, date pickers for start/end times, and apply/reset buttons. Visual styling aligns with site theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Pressing 'Apply Filters' refreshes visible dataset while maintaining scroll position. Reset button clears selections and reverts to default view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparison_tool_schema": "Database schema combining two entities (e.g., Team A vs Team B) with side-by-side comparison attributes derived from existing tables.",
+            "comparison_template": "/templates/comparison-view.html"
+        },
+        "function": "Enable side-by-side statistical comparisons between teams and players.",
+        "static_description": "Split-screen interface showing two comparable items side-by-side. Columns contain matching categories like scoring averages, defensive stats, and matchup tendencies. Maintains standard color palette throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a row highlights differences numerically and visually through bar length or shading intensity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "odds_provider_api": "Third-party RESTful API providing real-time betting odds from major providers (Bet365, DraftKings, etc.)",
+            "odds_data_schema": "Database table named 'odds_listings' with fields: listing_id (UUID), match_id (UUID), bookmaker (string), moneyline_home (float), moneyline_away (float), spread_home (float), total_over (float), fetch_time (timestamp)."
+        },
+        "function": "Integrate and present live odds feeds from several leading betting platforms.",
+        "static_description": "Table format displaying latest odds offered by various bookmakers for active matches. Columns represent different types of bets (moneyline, point spread, totals). Site colors preserved in table design.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a specific odd redirects to the associated bookmaker's site for placing the bet."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "injury_report_schema": "Database table named 'injuries' with fields: report_id (UUID), player_id (UUID), team_id (UUID), injury_type (string), severity (enum: minor, moderate, severe), status (enum: questionable, doubtful, out), reported_on (date), estimated_return (date).",
+            "roster_change_schema": "Database table named 'roster_changes' with fields: change_id (UUID), team_id (UUID), player_added (string), player_removed (string), transaction_type (enum: trade, waiver, signing), effective_date (date)."
+        },
+        "function": "Inform users about injuries and roster modifications impacting team strategies and predictions.",
+        "static_description": "Separate sections labeled 'Injury Reports' and 'Roster Changes'. Lists affected individuals with descriptions, impact severity, and expected return timelines. Consistent styling with rest of application.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an injured player or transaction opens a pop-up summarizing how this affects team projections and betting lines."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_bar_icon": "/icons/search-icon.svg",
+            "autocomplete_endpoint": "/api/v1/search/autocomplete",
+            "search_results_template": "/templates/search-results.html"
+        },
+        "function": "Facilitate quick access to specific teams, players, or matches using keyword searches.",
+        "static_description": "Padded search input field located at top center of screen with magnifying glass icon inside. Placeholder text reads “Search teams, players, or matches...”. Matches site-wide aesthetic standards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Typing triggers auto-suggested dropdown menu updating in real-time beneath the input box."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a suggestion navigates directly to the entity’s profile or event page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_service_url": "https://auth.example.com/oauth2",
+            "jwt_token_storage": "Secure cookie or localStorage managed by frontend framework.",
+            "user_profile_schema": "Database table named 'users' with fields: user_id (UUID), email (string), password_hash (string), created_at (timestamp), preferences_json (JSON blob)."
+        },
+        "function": "Authenticate registered users to unlock customized dashboards and saved settings.",
+        "static_description": "Navigation bar containing 'Sign In' / 'Register' links on unauthenticated sessions; replaced with user avatar and dropdown menu upon login. Interface adapts to reflect personalization options once authenticated.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking sign-in initiates OAuth flow redirecting to secure authentication portal. Successful login populates user-specific dashboard modules and saves session tokens securely."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "theme_variables_css": ":root { --background-color: #f8f8ff; --component-color: #708090; }",
+            "design_tokens_file": "/styles/design-tokens.json"
+        },
+        "function": "Enforce a cohesive visual identity using specified background and component colors.",
+        "static_description": "Entire UI built around a ghost white (#F8F8FF) background with all interactive and static components rendered in slate gray (#708090). Typography, spacing, and element sizing follow unified design system guidelines.",
+        "interaction_and_states": []
+    }
+]

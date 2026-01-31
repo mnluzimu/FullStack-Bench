@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "Implement office management module with form design and workflow capabilities",
+        "user_persona": "An administrative officer who needs to set up a new office seating arrangement request form.",
+        "user_goal": "To create and configure a workflow for office seating change requests.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Office Management Module",
+                "description": "Sarah logs into the system and navigates to the office management dashboard where she sees tabs for office information, form design, and workflow configuration.",
+                "action": "Navigate to the office management module and locate the dashboard tabs.",
+                "expected_outcome": "The office management dashboard loads showing office locations, departments, and personnel assignments with accessible tabs for form design and workflow configuration."
+            },
+            {
+                "step": 2,
+                "title": "Designing New Form",
+                "description": "Sarah clicks on the 'Design Form' tab to create a new seating arrangement request form using the integrated form builder.",
+                "action": "Click on the 'Design Form' tab.",
+                "expected_outcome": "The form builder interface from formBuilderLibrary loads within the module, allowing Sarah to design her form."
+            },
+            {
+                "step": 3,
+                "title": "Configuring Workflow",
+                "description": "After saving her form, Sarah moves to configure the approval workflow by clicking the 'Configure Workflow' button.",
+                "action": "Click on the 'Configure Workflow' button.",
+                "expected_outcome": "The workflow engine interface from workflowEngineAPI loads, enabling Sarah to define and save the approval process for seating requests."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement infrastructure management module with asset tracking and maintenance workflows",
+        "user_persona": "A facilities manager responsible for maintaining office equipment.",
+        "user_goal": "To register a new printer and schedule its first maintenance check.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Infrastructure Module",
+                "description": "Mike enters the infrastructure management section to manage company assets and sees a list of existing equipment.",
+                "action": "Navigate to the infrastructure management module.",
+                "expected_outcome": "Asset grid displays with categories, statuses, and maintenance history of tracked assets."
+            },
+            {
+                "step": 2,
+                "title": "Scanning New Asset",
+                "description": "Mike clicks 'Scan Asset' to add a newly purchased printer to the system using the asset tracking API.",
+                "action": "Click the 'Scan Asset' button.",
+                "expected_outcome": "Integration with assetTrackingAPI is triggered, opening a scanner interface or form to input new asset details which are then saved."
+            },
+            {
+                "step": 3,
+                "title": "Scheduling Maintenance",
+                "description": "Once registered, Mike schedules the printer's first maintenance by clicking the 'Schedule Maintenance' option.",
+                "action": "Click the 'Schedule Maintenance' button for the newly added printer.",
+                "expected_outcome": "A new log entry is created in the maintenance_logs table with the scheduled maintenance details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement procurement management module with purchasing processes and vendor management",
+        "user_persona": "A procurement officer who needs to initiate a new purchase request.",
+        "user_goal": "To submit a requisition for new office supplies and get it approved.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Vendor Information",
+                "description": "Lisa accesses the procurement module and reviews the list of active vendors retrieved from the vendor management API.",
+                "action": "Navigate to the procurement management module.",
+                "expected_outcome": "Active vendors from vendorManagementAPI are displayed along with current purchase orders and requisitions."
+            },
+            {
+                "step": 2,
+                "title": "Creating New Requisition",
+                "description": "Lisa decides to order more stationery and clicks 'New Requisition' to start the procurement process.",
+                "action": "Click the 'New Requisition' button.",
+                "expected_outcome": "Navigates to a form for submitting procurement requests where Lisa can fill out item details."
+            },
+            {
+                "step": 3,
+                "title": "Approving Purchase Order",
+                "description": "After her manager approves the requisition, Lisa converts it to a purchase order and clicks 'Approve Order' to finalize it.",
+                "action": "Click the 'Approve Order' button for the converted requisition.",
+                "expected_outcome": "The status field in the purchase_orders table is updated to reflect the approved status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement personnel management module with employee records and role-based access control",
+        "user_persona": "An HR specialist managing employee information and access rights.",
+        "user_goal": "To review an employee's role permissions and update their access level.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Employee Directory",
+                "description": "John opens the personnel management module and searches for an employee in the organizational directory.",
+                "action": "Navigate to the personnel management module and search for an employee.",
+                "expected_outcome": "Searchable directory of employees is shown with organizational chart and individual profiles accessible."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Employee Details",
+                "description": "He clicks on the employee's card to expand their detailed view including current role and permissions.",
+                "action": "Click on an employee card to expand details.",
+                "expected_outcome": "Employee's detailed profile is displayed including role-specific permissions retrieved from employeeDirectoryAPI."
+            },
+            {
+                "step": 3,
+                "title": "Updating Role Assignment",
+                "description": "Seeing that the employee has been promoted, John clicks 'Edit Role' to assign them a higher access level.",
+                "action": "Click the 'Edit Role' button.",
+                "expected_outcome": "Role editing interface appears allowing John to update the role_id field in the employees table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement financial management module with budget tracking and expense processing",
+        "user_persona": "A finance officer monitoring departmental budgets and processing claims.",
+        "user_goal": "To check departmental budget status and approve a pending expense claim.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Budget Dashboard",
+                "description": "Emma visits the financial management dashboard to compare actual spending against allocated budgets.",
+                "action": "Navigate to the financial management module.",
+                "expected_outcome": "Dashboard presents comparison of actual vs. allocated budgets per department using real-time data from budgetTrackingAPI."
+            },
+            {
+                "step": 2,
+                "title": "Submitting an Expense Claim",
+                "description": "She notices a pending expense submission and clicks 'Submit Expense' to review and process it.",
+                "action": "Click the 'Submit Expense' button for a pending claim.",
+                "expected_outcome": "Expense form opens allowing Emma to validate inputs before saving to the expenses table."
+            },
+            {
+                "step": 3,
+                "title": "Approving the Expense",
+                "description": "After verifying receipts, Emma clicks 'Approve' to authorize payment of the expense.",
+                "action": "Click the 'Approve' button for the validated expense.",
+                "expected_outcome": "The approval_status field in the expenses table is updated to reflect the approved state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement decision-making management module with reporting and analytics dashboards",
+        "user_persona": "A senior manager needing insights from operational data.",
+        "user_goal": "To generate a performance report and analyze key metrics visually.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Analytics Dashboard",
+                "description": "Robert enters the decision-making module and views interactive charts showing aggregated business metrics.",
+                "action": "Navigate to the decision-making management module.",
+                "expected_outcome": "Interactive charts and graphs built with analyticsDashboardLibrary display aggregated metrics from the metrics table."
+            },
+            {
+                "step": 2,
+                "title": "Generating Performance Report",
+                "description": "He identifies a need for a comprehensive quarterly report and clicks 'Generate Report' to create it.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A new record is inserted into the reports table and corresponding metric entries are generated automatically."
+            },
+            {
+                "step": 3,
+                "title": "Filtering Data Points",
+                "description": "While reviewing the report, Robert clicks on a specific chart element to drill down into underlying data details.",
+                "action": "Click on a chart element to filter data.",
+                "expected_outcome": "Underlying data points are filtered based on selected dimensions providing more focused analysis."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide user authentication and authorization system with role-based permissions",
+        "user_persona": "A regular employee accessing the system for daily tasks.",
+        "user_goal": "To securely log into the system and access authorized features only.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Login Process",
+                "description": "David arrives at the login page which features a clean form with light pink background and medium violet red buttons.",
+                "action": "Navigate to the login page.",
+                "expected_outcome": "Login form with username/password fields and a 'Login' button is displayed with specified color scheme."
+            },
+            {
+                "step": 2,
+                "title": "Authenticating Credentials",
+                "description": "David enters his credentials and clicks the 'Login' button to gain access to the system.",
+                "action": "Enter valid username and password, then click the 'Login' button.",
+                "expected_outcome": "Credentials are sent to authSystemAPI and a valid session token is stored in the sessions table, granting access."
+            },
+            {
+                "step": 3,
+                "title": "Logging Out Securely",
+                "description": "At the end of his workday, David clicks 'Logout' to securely end his session.",
+                "action": "Click the 'Logout' button.",
+                "expected_outcome": "Session token is deleted from both client and sessions table, effectively logging David out."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to browse related information across all management modules",
+        "user_persona": "A project coordinator looking for cross-functional information.",
+        "user_goal": "To find relevant data about ongoing projects across different departments.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Global Search Feature",
+                "description": "Anna notices the global search bar at the top and begins typing keywords related to her project inquiry.",
+                "action": "Locate and begin typing in the global search bar.",
+                "expected_outcome": "Debounced calls are made to searchServiceAPI which returns filtered results grouped by module type."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Search Results",
+                "description": "As she types, relevant results from various modules appear below the search bar, helping her narrow down her focus.",
+                "action": "Continue typing to refine search results.",
+                "expected_outcome": "Results are dynamically updated showing matches from office, procurement, personnel, and other modules."
+            },
+            {
+                "step": 3,
+                "title": "Navigating to Specific Information",
+                "description": "Anna clicks on the most relevant result to view detailed information about a specific procurement related to her project.",
+                "action": "Click on a specific search result.",
+                "expected_outcome": "Navigation occurs to the specific entity page within its respective module, displaying full details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to submit applications through digital forms with workflow routing",
+        "user_persona": "An employee requesting official equipment through the procurement process.",
+        "user_goal": "To submit a procurement request form and attach necessary documentation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Digital Form",
+                "description": "James receives a link to a procurement request form and opens it, seeing a pre-filled digital form rendered properly.",
+                "action": "Open the unique URL to access the digital form.",
+                "expected_outcome": "Digital form is rendered using digitalFormRenderer showing all required fields ready for completion."
+            },
+            {
+                "step": 2,
+                "title": "Attaching Supporting Documents",
+                "description": "Before submitting, James clicks 'Attach File' to upload quotes from suppliers as supporting documentation.",
+                "action": "Click the 'Attach File' button and upload documents.",
+                "expected_outcome": "Documents are uploaded and references are added to the application_attachments table."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Application",
+                "description": "With all information entered and documents attached, James clicks 'Submit Application' to send his request.",
+                "action": "Click the 'Submit Application' button after validating all inputs.",
+                "expected_outcome": "Data is posted to submissionWorkflowAPI which validates inputs and updates the status in the applications table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement approval workflows with multi-level authorization capabilities",
+        "user_persona": "A department head reviewing multiple approval requests.",
+        "user_goal": "To evaluate and decide on pending procurement approvals requiring his authorization.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Approval Queue",
+                "description": "Patricia logs in and immediately sees her approval queue showing pending procurement requests awaiting her review.",
+                "action": "Log into the system and navigate to the approval section.",
+                "expected_outcome": "Queue of pending approvals relevant to Patricia is displayed with application details and action buttons."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Request Details",
+                "description": "She clicks on one of the pending items to examine the full context of the procurement request before making a decision.",
+                "action": "Click on a pending approval item.",
+                "expected_outcome": "Full application context including requester details and item specifications is revealed for review."
+            },
+            {
+                "step": 3,
+                "title": "Making Approval Decision",
+                "description": "Satisfied with the request details, Patricia clicks 'Approve' to move the procurement forward in the workflow.",
+                "action": "Click the 'Approve' button for the reviewed request.",
+                "expected_outcome": "Decision is sent to approvalRoutingAPI which updates the approvals table and advances the workflow accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable status querying for all submitted applications and processes",
+        "user_persona": "An applicant checking the progress of their submitted requests.",
+        "user_goal": "To track the current status and history of their leave application.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Status Query Interface",
+                "description": "Tom navigates to the status query section to check on his recently submitted leave application.",
+                "action": "Navigate to the status querying interface.",
+                "expected_outcome": "Timeline view showing historical status updates fetched from statusQueryAPI is presented with filtering options."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Detailed Status History",
+                "description": "He clicks on his leave application to see the complete timeline of status changes and decision points.",
+                "action": "Click on a specific process instance (leave application).",
+                "expected_outcome": "Expanded view shows detailed status_updates messages providing a clear audit trail of the application progress."
+            },
+            {
+                "step": 3,
+                "title": "Refreshing Current Status",
+                "description": "To ensure he has the latest information, Tom clicks 'Refresh Status' to get any recent updates.",
+                "action": "Click the 'Refresh Status' button.",
+                "expected_outcome": "Latest updates are re-fetched from statusQueryAPI and the timeline is redrawn with current information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include leave management functionality with request and approval workflows",
+        "user_persona": "An employee planning time off for personal reasons.",
+        "user_goal": "To request annual leave and await approval from their supervisor.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Leave Calendar",
+                "description": "Emily opens the leave management section and views the calendar showing already approved leaves.",
+                "action": "Navigate to the leave management module.",
+                "expected_outcome": "Calendar-style interface visualizes approved leaves and provides a panel for submitting new leave requests."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Leave Request",
+                "description": "She selects her desired dates and clicks 'Request Leave' to open the leave request form.",
+                "action": "Select dates and click 'Request Leave'.",
+                "expected_outcome": "leaveRequestForm modal opens allowing Emily to enter details and submit data to leaveManagementAPI."
+            },
+            {
+                "step": 3,
+                "title": "Awaiting Approval Decision",
+                "description": "Her supervisor receives the request and clicks 'Approve/Deny' to either grant or reject Emily's leave.",
+                "action": "Supervisor clicks 'Approve/Deny' for the submitted leave request.",
+                "expected_outcome": "Status column in the leave_requests table is updated reflecting the supervisor's decision."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement middle-level cadres leaving Shenzhen tracking with special approval processes",
+        "user_persona": "A mid-level cadre planning to travel outside Shenzhen for personal reasons.",
+        "user_goal": "To officially declare travel plans and obtain necessary approvals.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Travel Declaration Section",
+                "description": "Michael, a middle-level cadre, goes to the travel declaration section to inform authorities of his upcoming trip.",
+                "action": "Navigate to the travel declaration section within the system.",
+                "expected_outcome": "List of travel declarations submitted by cadres is displayed along with their current approval stages and filter options."
+            },
+            {
+                "step": 2,
+                "title": "Declaring Travel Plans",
+                "description": "He fills in his travel details and clicks 'Declare Travel' to formally notify the organization of his plans.",
+                "action": "Fill in travel details and click 'Declare Travel'.",
+                "expected_outcome": "travelDeclarationForm is opened and submission is routed through specialApprovalWorkflowAPI for processing."
+            },
+            {
+                "step": 3,
+                "title": "Handling Escalation Needs",
+                "description": "When his direct supervisor doesn't respond promptly, Michael's assistant clicks 'Escalate Approval' to advance the request.",
+                "action": "Click the 'Escalate Approval' button for the pending travel declaration.",
+                "expected_outcome": "Declaration is manually advanced to the next approver level in the cadre_profiles hierarchy as defined."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include attendance management with time tracking and reporting features",
+        "user_persona": "An employee starting their workday and later generating monthly reports.",
+        "user_goal": "To clock in for work and produce an attendance summary for payroll purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Recording Daily Check-In",
+                "description": "At the start of her shift, Lisa clicks 'Check In' to record her arrival time accurately.",
+                "action": "Click the 'Check In' button upon arriving at work.",
+                "expected_outcome": "Current timestamp is recorded in the attendance_records table via attendanceTrackerAPI."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Attendance Summary",
+                "description": "Later, Lisa reviews her daily logs and monthly summaries to verify accuracy before month-end reporting.",
+                "action": "Navigate to attendance summary views.",
+                "expected_outcome": "Daily attendance logs and monthly summaries are displayed showing hours worked and absences."
+            },
+            {
+                "step": 3,
+                "title": "Exporting Attendance Report",
+                "description": "For payroll processing, Lisa clicks 'Export Report' to generate a formatted document of her attendance data.",
+                "action": "Click the 'Export Report' button.",
+                "expected_outcome": "attendanceReportingAPI is called to generate a downloadable PDF or Excel summary of attendance records."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement 'five powers' management with customizable form designs and process circulation",
+        "user_persona": "An administrator tasked with creating compliance forms for internal audits.",
+        "user_goal": "To design a new compliance form and initiate its circulation among relevant stakeholders.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Designing Compliance Form",
+                "description": "Robert accesses the 'five powers' management interface and clicks to create a new form using advanced conditional logic.",
+                "action": "Navigate to 'five powers' management and click to design a new form.",
+                "expected_outcome": "Interface with tabs for designing new forms using fivePowersFormBuilder is accessible for form creation."
+            },
+            {
+                "step": 2,
+                "title": "Saving Form Structure",
+                "description": "After configuring all necessary fields and conditions, he clicks 'Save Form Design' to store the blueprint.",
+                "action": "Click the 'Save Form Design' button after completing form configuration.",
+                "expected_outcome": "Form structure is serialized into JSON format and stored in the power_forms table with metadata."
+            },
+            {
+                "step": 3,
+                "title": "Starting Document Circulation",
+                "description": "With the form ready, Robert clicks 'Start Circulation' to distribute it to designated reviewers according to established protocols.",
+                "action": "Click the 'Start Circulation' button for the saved form.",
+                "expected_outcome": "circulationEngineAPI is triggered which populates circulation_paths table according to predefined stakeholder rules."
+            }
+        ]
+    }
+]

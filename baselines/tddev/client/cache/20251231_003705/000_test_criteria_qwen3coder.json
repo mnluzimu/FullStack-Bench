@@ -1,0 +1,205 @@
+[
+    {
+        "requirement_tested": "Create a one-page website for promoting Fundraiser Day",
+        "user_persona": "A first-time visitor interested in learning about Fundraiser Day.",
+        "user_goal": "To land on the homepage and immediately understand what Fundraiser Day is about.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah discovers the Fundraiser Day website and lands on the homepage. She expects a clear introduction to the event right away.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The page loads with a full-width header titled 'Fundraiser Day', a welcoming message, and a logo image displayed prominently at the top."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include an introduction section for the Fundraiser Day event",
+        "user_persona": "A potential donor exploring the site for event details.",
+        "user_goal": "To read the introductory content explaining Fundraiser Day.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Intro Content",
+                "description": "John scrolls down slightly and focuses on the introductory section to get a quick overview of the event.",
+                "action": "View the introductory section.",
+                "expected_outcome": "He sees a centered title 'Fundraiser Day', descriptive text below it, and a logo image, all against a cornsilk background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement an automatically moving carousel to display offers",
+        "user_persona": "A supporter looking for ways to contribute or participate.",
+        "user_goal": "To see various offers related to Fundraiser Day without needing to interact.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Carousel Auto-Scroll",
+                "description": "Emily notices a slideshow of offers cycling automatically every few seconds as she reads further.",
+                "action": "Wait and observe the carousel behavior.",
+                "expected_outcome": "Slides change automatically every 5 seconds, showing different promotional offers with images, headlines, descriptions, and CTA buttons styled in peru."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over Carousel",
+                "description": "Curious how it works, Emily moves her cursor over the carousel to pause the automatic rotation.",
+                "action": "Hover over the carousel container.",
+                "expected_outcome": "Auto-scroll pauses while hovering, allowing her to examine the current slide more closely."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add a testimonials section to showcase fundraiser stories",
+        "user_persona": "A skeptical user seeking proof of impact before engaging.",
+        "user_goal": "To find real-life experiences shared by previous participants.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Testimonials",
+                "description": "Mark scrolls down to the testimonials section hoping to see authentic feedback from others involved.",
+                "action": "Scroll to the testimonials section.",
+                "expected_outcome": "A grid-based layout presents multiple testimonial cards, each with a profile picture, name, role, and quoted feedback, all styled consistently with a cornsilk background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a company information section",
+        "user_persona": "A corporate representative evaluating partnership opportunities.",
+        "user_goal": "To learn about the organization behind Fundraiser Day.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Company Info",
+                "description": "Lisa reaches the bottom of the page where she finds the company's mission and contact details.",
+                "action": "Scroll to the company info section.",
+                "expected_outcome": "She sees a paragraph detailing the mission, a clickable email link, and social media icons, all presented cleanly with subtle visual separation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set cornsilk as the main background color",
+        "user_persona": "A designer reviewing branding consistency.",
+        "user_goal": "To verify that the entire website uses cornsilk as the primary background color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Alex reviews the overall design to ensure brand guidelines are followed correctly.",
+                "action": "Visually inspect the background color across all sections.",
+                "expected_outcome": "Every section maintains a uniform cornsilk (#FFF8DC) background throughout the site."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use peru for control elements",
+        "user_persona": "A UI/UX auditor checking accessibility compliance.",
+        "user_goal": "To confirm that interactive components use the specified accent color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Control Colors",
+                "description": "Jamie inspects interactive elements like buttons and navigation controls for correct color usage.",
+                "action": "Examine buttons, arrows, and form elements.",
+                "expected_outcome": "All control elements are styled with the peru (#CD853F) color scheme as per the specification."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all sections are accessible via scrolling on a single page",
+        "user_persona": "A casual browser wanting to explore everything quickly.",
+        "user_goal": "To scroll seamlessly through all content areas without interruption.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Scrolling Through Sections",
+                "description": "Tom begins at the top and slowly scrolls downward to take in all parts of the page.",
+                "action": "Scroll vertically through the page.",
+                "expected_outcome": "Each section flows naturally beneath the last, allowing smooth transition from intro to offers, testimonials, and company info."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Make the website responsive across desktop and mobile devices",
+        "user_persona": "A mobile user accessing the site on their phone.",
+        "user_goal": "To navigate the website comfortably on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Rachel opens the Fundraiser Day site on her smartphone and checks if the layout adapts properly.",
+                "action": "Resize browser window or open site on mobile device.",
+                "expected_outcome": "Layout adjusts responsively—fonts resize, grids rearrange, and spacing optimizes for smaller screens."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide navigation aids for smooth browsing between sections",
+        "user_persona": "A frequent visitor who knows exactly what he wants to revisit.",
+        "user_goal": "To jump directly to specific sections using navigation links.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Bar",
+                "description": "David prefers clicking navigation items instead of scrolling long distances.",
+                "action": "Click on a navigation anchor like 'Testimonials'.",
+                "expected_outcome": "Page smoothly scrolls to the selected section using animated transitions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fetch dynamic content from backend APIs if applicable",
+        "user_persona": "A developer verifying data integration.",
+        "user_goal": "To confirm that frontend components pull live data from backend endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Offers",
+                "description": "Devon opens the browser console to monitor network activity upon page load.",
+                "action": "Open browser DevTools and refresh the page.",
+                "expected_outcome": "Network tab shows successful GET requests to '/api/offers' and '/api/testimonials' returning populated JSON data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'install:all' script for frontend and backend dependencies",
+        "user_persona": "A new team member setting up the project locally.",
+        "user_goal": "To install all necessary dependencies efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Mike clones the repo and needs to prepare both environments for development.",
+                "action": "Run 'npm run install:all' in the terminal.",
+                "expected_outcome": "Both frontend and backend folders execute their respective 'npm install' commands concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'dev' script to start both frontend and backend concurrently",
+        "user_persona": "A developer ready to begin coding and testing changes.",
+        "user_goal": "To launch the full application stack easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Anna wants to run the app locally to test her latest updates.",
+                "action": "Execute 'npm run dev' from the root directory.",
+                "expected_outcome": "Both frontend and backend servers boot up concurrently, enabling live reloading and API access."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect backend to PostgreSQL using provided environment variables if dynamic data is needed",
+        "user_persona": "A systems administrator validating infrastructure setup.",
+        "user_goal": "To ensure secure and reliable database connectivity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "Ben checks whether the backend service connects successfully to the configured PostgreSQL instance.",
+                "action": "Check logs after starting the backend server.",
+                "expected_outcome": "Log indicates successful connection established using environment variables: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME."
+            }
+        ]
+    }
+]

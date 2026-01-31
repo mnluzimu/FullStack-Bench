@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all data from backend APIs",
+        "user_persona": "A community researcher exploring local data trends.",
+        "user_goal": "To view neighborhood data loaded dynamically from backend APIs upon visiting the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Maya opens the neighborhood mapping app for the first time. She expects to see no hard-coded data and waits for the app to load content via API.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Page renders with blank visualizations and dashboards, then automatically triggers API requests to fetch neighborhood data, demographic summaries, and default dashboard configurations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer testing backend stability under normal usage conditions.",
+        "user_goal": "To verify that backend services initialize properly and connect securely to the PostgreSQL database when receiving an API request.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Backend Initialization",
+                "description": "Alex sends a GET request to the demographics endpoint, expecting the backend to establish a secure connection to the PostgreSQL database.",
+                "action": "Send a GET request to `/api/demographics/1`.",
+                "expected_outcome": "Backend successfully connects to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp and returns valid demographic data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive map display for visualizing neighborhood boundaries and selecting areas",
+        "user_persona": "A city planner evaluating regional differences across neighborhoods.",
+        "user_goal": "To select two distinct neighborhoods by clicking on their polygons on the interactive map.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Neighborhood Map",
+                "description": "Jordan views the full-width interactive map showing outlined neighborhood boundaries. They hover over one area to confirm its identity.",
+                "action": "Hover over a neighborhood polygon.",
+                "expected_outcome": "Tooltip appears displaying the neighborhood's name and area ID."
+            },
+            {
+                "step": 2,
+                "title": "Selecting First Area",
+                "description": "Jordan clicks on the first neighborhood they want to analyze.",
+                "action": "Click on a neighborhood polygon.",
+                "expected_outcome": "Polygon is visually highlighted with a border or fill color change indicating selection."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Second Area",
+                "description": "Jordan selects another neighborhood by clicking on it.",
+                "action": "Click on a second neighborhood polygon.",
+                "expected_outcome": "Second polygon is also highlighted, now both selections are active."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Area comparison functionality for demographic, economic, and crime data",
+        "user_persona": "A policy analyst comparing urban development indicators between districts.",
+        "user_goal": "To switch between tabs in the comparison panel and observe updated data views for selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Demographics Tab",
+                "description": "Taylor has selected three neighborhoods and wants to start analyzing demographic data.",
+                "action": "Click the 'Demographics' tab in the comparison panel.",
+                "expected_outcome": "Comparison table updates to show population, age distribution, and median income metrics side-by-side for each selected area."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Economic Data",
+                "description": "Taylor switches focus to evaluate economic factors among the same neighborhoods.",
+                "action": "Click the 'Economics' tab.",
+                "expected_outcome": "Table content dynamically changes to display employment rate, business count, and average income data for the selected neighborhoods."
+            },
+            {
+                "step": 3,
+                "title": "Reviewing Crime Statistics",
+                "description": "Finally, Taylor checks crime data for context in their analysis.",
+                "action": "Click the 'Crime' tab.",
+                "expected_outcome": "Crime-related metrics such as total incidents and incident types update accordingly in the table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data dashboard with interactive charts for each data category",
+        "user_persona": "A data journalist presenting findings visually to stakeholders.",
+        "user_goal": "To interact with dashboard charts by hovering legends and resizing widgets.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Dashboard Charts",
+                "description": "Casey navigates to the dashboard and sees multiple resizable chart widgets representing different datasets.",
+                "action": "Hover over the legend item of a population distribution pie chart.",
+                "expected_outcome": "Corresponding segment in the chart is visually emphasized for better clarity."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Chart Widget",
+                "description": "Wanting a closer look, Casey decides to resize the chart container.",
+                "action": "Drag the corner handle of the chart widget.",
+                "expected_outcome": "Widget resizes proportionally, adjusting adjacent widgets to fit the new layout."
+            },
+            {
+                "step": 3,
+                "title": "Focusing on Specific Chart",
+                "description": "To get a clearer view of the chart alone, Casey expands it into focus mode.",
+                "action": "Click on the chart widget.",
+                "expected_outcome": "Chart expands to occupy most of the screen space, temporarily hiding other widgets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Customizable dashboard layout options for users",
+        "user_persona": "A municipal officer customizing their workspace for daily monitoring tasks.",
+        "user_goal": "To rearrange and save preferred dashboard layouts for repeated use.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Dragging Widget Position",
+                "description": "Riley identifies a frequently used chart and drags it to a more prominent position on the dashboard.",
+                "action": "Click and hold the header of a widget, then drag it to a new location.",
+                "expected_outcome": "Widget moves smoothly within the grid system, pushing or shifting adjacent widgets appropriately."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Widget Dimensions",
+                "description": "Riley wants more visibility for this chart and adjusts its size.",
+                "action": "Grab the resize handle at the bottom-right corner of the widget and pull outward.",
+                "expected_outcome": "Widget expands proportionally, causing surrounding widgets to adapt to the new layout."
+            },
+            {
+                "step": 3,
+                "title": "Saving Custom Layout",
+                "description": "Satisfied with the adjustments, Riley saves the layout for future sessions.",
+                "action": "Click the 'Save Layout' button.",
+                "expected_outcome": "Current layout configuration is saved either locally or sent to the backend for persistence."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface styled with ivory background and forest green components",
+        "user_persona": "A UX reviewer checking brand consistency across the application.",
+        "user_goal": "To validate that the entire UI follows the prescribed color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Background Color",
+                "description": "Patricia inspects the overall page appearance to ensure correct background usage.",
+                "action": "Open any page in the application.",
+                "expected_outcome": "All backgrounds render with the ivory color (#FFFFF0) consistently applied."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Colors",
+                "description": "Patricia examines buttons and headers to confirm accent color compliance.",
+                "action": "Inspect a primary button or header element.",
+                "expected_outcome": "Component utilizes forest green (#228B22) as the primary accent color."
+            },
+            {
+                "step": 3,
+                "title": "Testing Interaction Feedback",
+                "description": "Patricia hovers over a green component to verify interactivity cues.",
+                "action": "Hover over a forest green button.",
+                "expected_outcome": "Button applies a subtle darkening effect to indicate hover state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving demographic data by area",
+        "user_persona": "A software tester validating backend API responses.",
+        "user_goal": "To retrieve and inspect demographic data for a specific neighborhood via API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Calling Demographic Endpoint",
+                "description": "Jamie sends a GET request to fetch demographic details for a known area ID.",
+                "action": "Make a GET request to `/api/demographics/101`.",
+                "expected_outcome": "Server responds with structured JSON containing population, age_distribution, and income_median values associated with area ID 101."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving economic data by area",
+        "user_persona": "An economist researching regional financial health.",
+        "user_goal": "To obtain economic indicators for a selected neighborhood through direct API access.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Economic Metrics",
+                "description": "Morgan uses a tool like Postman to call the economics endpoint for a specific area.",
+                "action": "Send a GET request to `/api/economics/202`.",
+                "expected_outcome": "API returns a well-formed JSON response including employment_rate, business_count, and avg_income fields linked to area ID 202."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving crime data by area",
+        "user_persona": "A public safety advocate gathering statistical evidence.",
+        "user_goal": "To collect crime statistics for a particular district using the designated API route.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Crime Records",
+                "description": "Devon queries the crime data endpoint to understand incident patterns in a specific zone.",
+                "action": "Issue a GET request to `/api/crimes/303`.",
+                "expected_outcome": "Response body contains total_incidents, incident_types breakdown, and year field related to area ID 303."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization components for chart rendering",
+        "user_persona": "A frontend developer ensuring dynamic chart updates.",
+        "user_goal": "To confirm that charts re-render correctly when underlying data changes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Chart Load",
+                "description": "Quinn loads a dashboard widget configured to visualize demographic data sourced from an API.",
+                "action": "Render the chart component with initial data URL prop pointing to `/api/demographics/404`.",
+                "expected_outcome": "Chart initially shows loading placeholder, then populates with accurate demographic visualization once data arrives."
+            },
+            {
+                "step": 2,
+                "title": "Updating Chart Data",
+                "description": "Quinn simulates a data refresh by changing the input data source.",
+                "action": "Update the chart’s data source prop to point to `/api/demographics/505`.",
+                "expected_outcome": "Chart re-renders automatically, reflecting the new dataset without requiring manual intervention."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Area selection mechanism for choosing neighborhoods to compare",
+        "user_persona": "A student working on a geography project involving neighborhood comparisons.",
+        "user_goal": "To filter and select specific neighborhoods using the search and checkbox interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Neighborhoods",
+                "description": "Bailey knows the names of several target neighborhoods and filters the list using the search bar.",
+                "action": "Type 'Westside' into the neighborhood search input.",
+                "expected_outcome": "List of neighborhoods narrows down in real-time to match the keyword 'Westside'."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Areas via Checkbox",
+                "description": "Bailey marks the checkbox next to each desired neighborhood to include in the comparison.",
+                "action": "Toggle checkboxes for 'Westside Park', 'Westside Heights', and 'Westside Commons'.",
+                "expected_outcome": "Each checked neighborhood gets marked for comparison and synchronized with map highlights."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and tablet devices",
+        "user_persona": "A mobile user accessing the platform remotely during fieldwork.",
+        "user_goal": "To seamlessly navigate and interact with the application on a tablet screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading App on Tablet",
+                "description": "Sam accesses the app using a tablet-sized viewport to review neighborhood insights while out in the field.",
+                "action": "Resize browser window to simulate tablet dimensions (~768px width).",
+                "expected_outcome": "Layout adapts by collapsing columns, scaling fonts, and transforming navigation into a collapsible menu where appropriate."
+            },
+            {
+                "step": 2,
+                "title": "Rotating Screen Orientation",
+                "description": "Sam rotates the tablet to landscape to maximize chart visibility.",
+                "action": "Change screen orientation from portrait to landscape.",
+                "expected_outcome": "UI elements adjust dynamically to maintain readability and usability regardless of rotation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with install:all and dev scripts",
+        "user_persona": "A team lead setting up a shared development environment.",
+        "user_goal": "To streamline setup and development workflow using predefined NPM commands.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies Simultaneously",
+                "description": "Ash clones the repository and needs to quickly set up both frontend and backend dependencies.",
+                "action": "Run command `npm run install:all` in terminal.",
+                "expected_outcome": "Both frontend and backend directories execute `npm install` concurrently, installing all required packages efficiently."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "After setup, Ash begins development work needing live reload capabilities.",
+                "action": "Execute `npm run dev` in terminal.",
+                "expected_outcome": "Development servers for both frontend and backend launch simultaneously, enabling hot-reloading during code edits."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database connection management with error handling",
+        "user_persona": "A DevOps engineer monitoring backend reliability during peak traffic.",
+        "user_goal": "To verify graceful degradation and informative error messages when database connectivity fails.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Simulating Connection Failure",
+                "description": "Kai intentionally disrupts the database connection to test how the backend handles failures.",
+                "action": "Shut down PostgreSQL service temporarily.",
+                "expected_outcome": "Subsequent API requests return standardized HTTP 500 responses indicating database connectivity issues, with detailed logs recorded internally."
+            },
+            {
+                "step": 2,
+                "title": "Reconnecting After Timeout",
+                "description": "Once restored, Kai ensures that the system recovers automatically.",
+                "action": "Restart PostgreSQL and make another API request.",
+                "expected_outcome": "Backend reconnects successfully and resumes serving data normally without manual restart."
+            }
+        ]
+    }
+]

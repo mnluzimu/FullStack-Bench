@@ -1,0 +1,218 @@
+[
+    {
+        "resource_dependency": {
+            "newsDataSchema": "Database table 'news_articles' with fields: id (UUID), title (string), summary (text), content (text), published_at (datetime), category (string), author (string), image_url (string).",
+            "newsIcons": "/assets/icons/news-icon.svg"
+        },
+        "function": "Display a list of agricultural news articles for users to browse.",
+        "static_description": "The page shows a grid or list of news cards, each containing a thumbnail image referenced by image_url, title, summary, publication date, and category. Background is light cyan (#E0FFFF) and card borders use cadet blue (#5F9EA0).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a news card navigates the user to the full article view."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a news card slightly elevates it and adds a shadow effect for emphasis."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "productDataSchema": "Database table 'farm_products' with fields: id (UUID), name (string), description (text), price (decimal), category (string), origin (string), availability (boolean), image_url (string).",
+            "productCategoryList": [
+                "Vegetables",
+                "Fruits",
+                "Grains",
+                "Dairy",
+                "Poultry",
+                "Livestock"
+            ]
+        },
+        "function": "Allow users to view detailed information about various farm products.",
+        "static_description": "Each product entry includes an image, name, category, brief description, and pricing. The layout uses light cyan background and cadet blue accents for titles and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a product opens a modal or dedicated page showing extended details such as origin, availability status, and full description."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "weatherAPIIntegration": "An external weather API providing current conditions and forecasts based on location input. Example parameters needed: latitude, longitude or city name.",
+            "weatherIcons": "/assets/icons/weather-icons/*.svg"
+        },
+        "function": "Provide local weather forecasts relevant to farming activities.",
+        "static_description": "Displays temperature, humidity, precipitation chance, wind speed, and UV index in a visually clear dashboard. Uses icons from weatherIcons and maintains the site’s light cyan and cadet blue theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Location",
+                "description": "Users can enter their location manually which triggers a refresh of displayed weather data via the integrated weatherAPIIntegration."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchEndpoint": "Backend endpoint /api/search supporting query parameter 'q' for keyword search across news titles, product names, categories, etc.",
+            "magnifyingGlassIcon": "/assets/icons/magnify-glass.svg"
+        },
+        "function": "Enable searching through agricultural content including news and products.",
+        "static_description": "A prominent search bar positioned at the top of the navigation bar, featuring a magnifying glass icon from magnifyingGlassIcon, with placeholder text 'Search news, products...'. Styled with light cyan background and cadet blue border.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type Query",
+                "description": "As the user types, auto-suggestions appear below the input field sourced dynamically from the searchEndpoint."
+            },
+            {
+                "interaction": "Submit Search",
+                "description": "Pressing Enter or clicking the search button redirects to a results page listing matching items from both news and products."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterOptionsSchema": "Predefined filter sets stored either in frontend constants or fetched from backend endpoints like /api/categories and /api/tags.",
+            "dropdownArrowIcon": "/assets/icons/dropdown-arrow.svg"
+        },
+        "function": "Allow filtering of news articles and farm products by predefined criteria.",
+        "static_description": "Dropdown menus labeled 'Category', 'Date Range', and 'Availability' located above the main content areas. Styled with cadet blue headers and light cyan backgrounds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Open Dropdown",
+                "description": "Clicking on any dropdown toggles visibility of available filter options using dropdownArrowIcon rotation animation."
+            },
+            {
+                "interaction": "Select Filter Option",
+                "description": "Choosing an option updates the displayed list of items instantly without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeCSSVariables": ":root { --bg-color: #E0FFFF; } applied globally throughout stylesheets."
+        },
+        "function": "Apply a consistent light cyan background theme across all pages.",
+        "static_description": "All sections and containers utilize light cyan (#E0FFFF) as the base background color defined in themeCSSVariables, ensuring visual consistency.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiElementColorScheme": "CSS class definitions applying cadet blue (#5F9EA0) to buttons, links, headings, and interactive components."
+        },
+        "function": "Implement a unified cadet blue color scheme for all UI elements.",
+        "static_description": "Buttons, form inputs, navigation tabs, and active states are styled with cadet blue (#5F9EA0) per uiElementColorScheme guidelines.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover Over Button",
+                "description": "Buttons darken slightly when hovered, maintaining accessibility contrast standards."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newsListingPageRoute": "/news",
+            "paginationControls": "Pagination logic handled client-side or server-side returning total_pages, next_page_url, prev_page_url."
+        },
+        "function": "Present a paginated list of news articles in chronological order.",
+        "static_description": "Articles are listed vertically or in responsive grids depending on screen size. Includes pagination controls at bottom styled with cadet blue highlights.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate Pages",
+                "description": "Clicking page numbers or next/previous arrows loads corresponding batches of articles via AJAX calls to backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "productCatalogRoute": "/products",
+            "detailedViewModal": "Modal overlay component rendering individual product details upon selection."
+        },
+        "function": "Organize and present a catalog of farm products with optional detailed views.",
+        "static_description": "Products are shown in a categorized grid layout. Each item displays name, image, and basic info. Detailed views open modals with additional specs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Product Card",
+                "description": "Triggers detailedViewModal to show expanded product information while preserving context of the catalog."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "weatherDashboardRoute": "/weather",
+            "localForecastDataModel": "Cached JSON structure holding recent forecast responses from weatherAPIIntegration indexed by location."
+        },
+        "function": "Serve a centralized dashboard for accessing localized weather forecasts.",
+        "static_description": "Main panel displays hourly and weekly forecasts with graphical representations. Sidebar contains quick access to saved locations and alerts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Refresh Data",
+                "description": "Manual refresh button fetches latest forecast from weatherAPIIntegration and updates cached entries accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalStylesheet": "Unified CSS file enforcing consistent color usage across breakpoints and components."
+        },
+        "function": "Ensure cohesive styling with light cyan and cadet blue themes on every screen.",
+        "static_description": "Every page inherits global styles from globalStylesheet that enforce background colors, font choices, spacing, and element coloring rules.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "contentManagementAPI": "Admin-facing RESTful API endpoints allowing CRUD operations on news articles: POST /api/news, PUT /api/news/{id}, DELETE /api/news/{id}",
+            "adminPanelAssets": "/admin/assets/*"
+        },
+        "function": "Support publishing, editing, and removing agricultural news articles by administrators.",
+        "static_description": "Admin interface features forms for entering article metadata, uploading images, selecting categories, and scheduling publish times. Styled consistently with existing theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Save Draft/Publish Article",
+                "description": "Submitting the form sends structured data to contentManagementAPI which stores or updates records in the news_articles database table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "categoryFilterEndpoint": "/api/products/categories",
+            "tagBasedFilteringMechanism": "Tag system enabling multi-select filtering capabilities backed by product.tags field in database."
+        },
+        "function": "Categorize farm products and enable tag-based filtering mechanisms.",
+        "static_description": "Sidebar or filter bar lists product categories retrieved from categoryFilterEndpoint. Tags associated with products allow refined selections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Toggle Category Tag",
+                "description": "Selecting multiple tags narrows product listings to those tagged accordingly, updating the DOM in real time."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeWeatherService": "WebSocket or polling mechanism connecting to external weatherAPIIntegration for live updates every X minutes.",
+            "updateIntervalSetting": "Configurable setting determining how frequently weather data should be refreshed."
+        },
+        "function": "Integrate real-time weather data into the application for timely farming insights.",
+        "static_description": "Live indicators reflect current atmospheric pressure, rainfall probability, sunrise/sunset times updated automatically using realTimeWeatherService.",
+        "interaction_and_states": [
+            {
+                "interaction": "Auto Refresh Triggered",
+                "description": "At intervals set by updateIntervalSetting, new readings replace outdated ones seamlessly within the UI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "Media queries targeting common device widths: mobile (<768px), tablet (768px–1024px), desktop (>1024px)",
+            "adaptiveComponentLibrary": "Prebuilt reusable components designed to scale proportionally under different viewport sizes."
+        },
+        "function": "Adapt layout and component sizing for optimal experience on mobile, tablet, and desktop devices.",
+        "static_description": "Layout shifts between stacked columns on small screens and side-by-side arrangements on larger ones. Font sizes adjust relative to container width.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Components reflow smoothly according to adaptiveComponentLibrary constraints ensuring readability and usability regardless of screen dimensions."
+            }
+        ]
+    }
+]

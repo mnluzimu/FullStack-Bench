@@ -1,0 +1,314 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDatabaseSchema": "A database table named 'stocks' with fields: stock_id (primary key), symbol (string), name (string), sector (string), market_cap (number), last_updated (datetime).",
+            "realTimeDataAPI": "Integration with a real-time stock data API such as Alpha Vantage or Yahoo Finance to fetch current stock prices and metadata.",
+            "searchResultsPopupStyle": "CSS class for displaying search results in a dropdown list with hover effects."
+        },
+        "function": "Allow users to search for stocks by entering either the stock code or name.",
+        "static_description": "A centered search bar with a magnifying glass icon on the right side. The background is white, and the input field has navy borders and text. Placeholder text says 'Enter stock code or name'. Below the search bar, there's a small dropdown area styled with 'searchResultsPopupStyle' that remains hidden until results appear.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search bar focuses it and allows typing."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing submits the query to the backend via the 'realTimeDataAPI' to retrieve matching stocks."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over individual items in the dropdown highlights them with a light gray background."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a result from the dropdown populates the search bar with the selected stock’s symbol and navigates to the summary page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summaryCardLayout": "HTML/CSS template for a card-based layout showing stock info sections.",
+            "stockSummaryDataSchema": "Fields: stock_symbol (string), company_name (string), current_price (float), price_change (float), percent_change (float), sector (string), market_cap (number), pe_ratio (float), dividend_yield (float), 52_week_high (float), 52_week_low (float)",
+            "marketTrendChartPlaceholder": "/assets/images/trend-placeholder.png"
+        },
+        "function": "Display summarized information about a selected stock including price changes, performance indicators, and quick stats.",
+        "static_description": "A clean card-style panel with a white background and navy borders. It includes a header section with the stock name and symbol, followed by key metrics displayed in rows (price, change, P/E ratio, etc.). A chart image placeholder labeled 'marketTrendChartPlaceholder' appears at the bottom.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any metric expands a tooltip explaining what it means."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the chart shows additional trend context or updates dynamically when connected to live data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportTemplateEngine": "Backend logic to generate customizable reports based on user selections using templates stored in a directory '/templates/report-template.html'.",
+            "reportOutputFormatOptions": [
+                "PDF",
+                "DOCX",
+                "Markdown"
+            ],
+            "customizableSectionsList": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "Analyst Opinions"
+            ]
+        },
+        "function": "Enable users to generate customized stock reports tailored to their needs.",
+        "static_description": "A form with checkboxes next to each item in 'customizableSectionsList', allowing users to choose which parts they want included. There is also a dropdown menu listing available formats ('PDF', 'DOCX', 'Markdown'). A large blue 'Generate Report' button sits below these options.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting checkboxes toggles inclusion of those sections in the generated report."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Generate Report' button sends the configuration to the 'reportTemplateEngine' to compile the final document according to chosen settings."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatSelectorDropdownOptions": [
+                "PDF",
+                "Word Document (.docx)",
+                "Plain Text (.txt)",
+                "Markdown (.md)"
+            ],
+            "exportIcon": "/assets/icons/export-icon.svg"
+        },
+        "function": "Provide users with multiple export format choices for downloading generated reports.",
+        "static_description": "A labeled dropdown box titled 'Choose Format' containing values from 'formatSelectorDropdownOptions'. Next to it, an icon labeled 'exportIcon' represents download actions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the dropdown opens a list of export formats; selecting one sets the preferred output type before initiating report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentSelectionCheckboxes": [
+                "Basic Stock Information",
+                "Market Trends Analysis",
+                "Historical Financial Data",
+                "News Sentiment Summary"
+            ],
+            "sectionDescriptions": {
+                "Basic Stock Information": "Includes company overview, ticker, sector, and fundamentals.",
+                "Market Trends Analysis": "Visual charts depicting historical movement and comparisons against benchmarks.",
+                "Historical Financial Data": "Quarterly earnings, revenue, balance sheet summaries.",
+                "News Sentiment Summary": "Aggregated sentiment derived from recent news articles related to the stock."
+            }
+        },
+        "function": "Allow users to select specific content sections for inclusion in their custom reports.",
+        "static_description": "A vertical checklist with labels beside each checkbox option listed under 'contentSelectionCheckboxes'. Each label displays a short description pulled from 'sectionDescriptions'. All elements use the standard white background and navy color theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Checking/unchecking boxes enables/disables respective sections during report creation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basicInfoFields": [
+                "Company Name",
+                "Ticker Symbol",
+                "Sector",
+                "Industry",
+                "Headquarters",
+                "CEO",
+                "Founded Year",
+                "Employees"
+            ],
+            "companyLogoPlaceholder": "/assets/images/company-logo-placeholder.png"
+        },
+        "function": "Present essential identifying details about a given stock.",
+        "static_description": "A two-column layout where the left column contains a placeholder logo ('companyLogoPlaceholder') and the right lists all entries from 'basicInfoFields' with corresponding values aligned neatly in rows beneath headings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over certain fields like CEO or Headquarters reveals brief tooltips with extra contextual info."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "trendGraphPlaceholder": "/assets/images/trend-graph-placeholder.png",
+            "timeRangeButtons": [
+                "1D",
+                "1W",
+                "1M",
+                "3M",
+                "YTD",
+                "1Y",
+                "5Y"
+            ],
+            "benchmarkComparisonOptions": [
+                "S&P 500",
+                "NASDAQ",
+                "Dow Jones"
+            ]
+        },
+        "function": "Visualize how the stock has performed historically compared to relevant indices.",
+        "static_description": "Above a graph image ('trendGraphPlaceholder'), a row of time range buttons ('timeRangeButtons') lets users adjust the view window. Another set of comparison selectors ('benchmarkComparisonOptions') appears just above the graph for index overlays.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking different time ranges reloads the graph with updated data points within that period."
+            },
+            {
+                "interaction": "Click",
+                "description": "Choosing a benchmark adds its line overlay onto the same chart to compare relative performance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTableSchema": "Table columns: Quarter (date), Revenue ($), Earnings Per Share ($), Net Income ($), Dividends Per Share ($)",
+            "fiscalYearFilter": [
+                "Annual View",
+                "Quarterly View"
+            ],
+            "dataExportOption": "Download raw data as CSV file."
+        },
+        "function": "Integrate and display financial data sourced externally for transparency and deeper analysis.",
+        "static_description": "Tabular representation of quarterly financial figures laid out horizontally across dates with headers matching 'financialDataTableSchema'. Toggle switches allow switching between annual and quarterly views ('fiscalYearFilter'). A link marked 'dataExportOption' sits below the table for exporting purposes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching views restructures the data accordingly — aggregated yearly totals vs. detailed quarters."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the export link downloads a CSV version of the visible dataset."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGenerationEngineAPI": "Internal processing module responsible for compiling inputs into formatted documents.",
+            "loadingSpinnerGIF": "/assets/animations/loading-spinner.gif",
+            "successMessageBanner": "HTML banner indicating successful completion with links to view/download."
+        },
+        "function": "Automatically build and deliver personalized reports upon user request.",
+        "static_description": "Upon clicking 'Generate Report', a modal overlay appears featuring a rotating spinner ('loadingSpinnerGIF') while processing occurs behind the scenes through 'reportGenerationEngineAPI'. Once done, a success banner replaces the spinner, offering direct access to the downloadable report.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiating generation triggers asynchronous execution handled by 'reportGenerationEngineAPI'; the UI reflects progress visually without blocking further interaction."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPaletteDefinition": "{ primaryBackground: '#FFFFFF', secondaryAccent: '#000080' }",
+            "globalStylesheetPath": "/styles/global.css"
+        },
+        "function": "Apply consistent styling throughout the site using a white background and navy components.",
+        "static_description": "All pages inherit base styles defined in 'globalStylesheetPath', applying solid white backgrounds everywhere except interactive controls, buttons, and headings which utilize navy (#000080) coloring.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "inputFieldPlaceholderText": "Type here...",
+            "submitButtonLabel": "Submit Query",
+            "formValidationRules": "Require at least one character input before submission becomes active."
+        },
+        "function": "Offer intuitive interface elements for submitting stock-related inquiries.",
+        "static_description": "An input textbox styled with navy borders and placeholder text 'Type here...' accompanied by a prominent navy-colored submit button labeled 'Submit Query'. Both reside within a simple container div maintaining the global white/navy aesthetic.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Typing activates the submit button only once validation passes ('formValidationRules')."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button forwards the entered query to the backend system for processing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "previewPaneContainer": "HTML iframe element pointing to temporary report rendering endpoint.",
+            "refreshPreviewButton": "Update Preview",
+            "downloadButtonIcon": "/assets/icons/download-preview-icon.svg"
+        },
+        "function": "Show users a live preview of their draft report prior to full generation.",
+        "static_description": "Side-by-side arrangement of a preview pane ('previewPaneContainer') alongside editing tools. Beneath lies a navy 'Refresh Preview' button and a download icon ('downloadButtonIcon') enabling immediate saves of rendered previews.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Hitting 'Refresh Preview' regenerates the iframe content reflecting latest edits made elsewhere."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the download icon initiates saving of the currently shown preview version."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "supportedExportFormats": [
+                ".pdf",
+                ".docx",
+                ".txt",
+                ".md"
+            ],
+            "fileConversionService": "Middleware capable of transforming internal HTML representations into various document types."
+        },
+        "function": "Ensure all generated reports can be saved locally in common digital formats.",
+        "static_description": "After generating a report, users see clickable icons representing supported extensions ('supportedExportFormats') arranged neatly beneath the preview section. Each corresponds to a unique converter method managed by 'fileConversionService'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting any format triggers automatic conversion and browser-initiated download prompt."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "externalStockDataStream": "WebSocket connection or polling mechanism tied to third-party finance APIs delivering near-real-time pricing updates.",
+            "autoUpdateIntervalSetting": "Configurable refresh rate ranging from every 5 seconds up to 1 minute."
+        },
+        "function": "Fetch up-to-the-minute stock data directly from authoritative sources.",
+        "static_description": "While viewing any stock-specific page, subtle notifications indicate ongoing synchronization with external feeds ('externalStockDataStream'). Settings panels expose adjustable intervals ('autoUpdateIntervalSetting') for controlling update frequency.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Adjusting the interval modifies how frequently new data gets fetched and reflected in real-time displays."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuBarItems": [
+                "Home",
+                "Search Stocks",
+                "My Reports",
+                "Settings"
+            ],
+            "responsiveLayoutFramework": "CSS Grid + Flexbox setup ensuring compatibility across desktop/tablet/mobile screensizes."
+        },
+        "function": "Deliver seamless browsing experience regardless of device or screen size used.",
+        "static_description": "Fixed horizontal menu bar positioned atop all pages containing links ('navigationMenuBarItems') spaced evenly along a white background with navy font/text styling. Layout adapts smoothly thanks to underlying 'responsiveLayoutFramework'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any menu item redirects the user to the associated section instantly."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling causes dynamic adjustments in spacing and visibility of sub-elements depending on viewport dimensions."
+            }
+        ]
+    }
+]

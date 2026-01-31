@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API server that connects to a PostgreSQL database using specified environment variables",
+    "Player statistics tracking with detailed views for individual player performance metrics",
+    "Team management functionality allowing users to create, edit, and manage baseball teams",
+    "Team roster management enabling users to add, remove, and organize players within teams",
+    "Financial management system for tracking and managing team finances",
+    "Live game simulation engine that processes games based on team strategies and lineups",
+    "Game result visualization displaying outcomes of simulated baseball games",
+    "Interactive controls for adjusting team strategies and lineups before game simulation",
+    "User interface with floral white background and dark goldenrod interactive elements",
+    "Authentication and user session management for personalized team and game data",
+    "Data persistence for storing player stats, team information, financial records, and game results",
+    "Real-time updates for game simulation progress and results",
+    "Responsive design compatible with desktop and mobile viewing",
+    "Repository configuration with package.json supporting npm run install:all and npm run dev"
+]

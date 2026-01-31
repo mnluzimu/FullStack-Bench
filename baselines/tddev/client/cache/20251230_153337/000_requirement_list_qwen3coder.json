@@ -1,0 +1,306 @@
+[
+    {
+        "resource_dependency": {
+            "gameRoomSchema": "Database schema with fields: roomId (UUID), roomName (string), maxPlayers (integer), currentPlayers (array of userIds), status (enum: waiting, in-progress, finished), createdAt (timestamp), createdBy (userId)",
+            "playerInfoSchema": "Database schema with fields: userId (UUID), username (string), avatarUrl (string), chips (integer), wins (integer), losses (integer)",
+            "lobbyApiEndpoint": "/api/lobby/rooms",
+            "createRoomApiEndpoint": "/api/lobby/rooms/create",
+            "joinRoomApiEndpoint": "/api/lobby/rooms/join"
+        },
+        "function": "Display a game lobby interface showing available game rooms, their current status, and player information",
+        "static_description": "The lobby page displays a grid or list of available game rooms with azure background. Each room card shows the room name, maximum players capacity, current number of players, game status (waiting/in-progress/finished), and list of current players with avatars. Midnight blue cards contain room details.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a room card navigates to that game room. Clicking 'Create Room' opens a modal form. Clicking 'Join' on a room joins the selected room."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a room card highlights it with a subtle shadow effect and shows additional details like creation time and creator."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createRoomApi": "/api/lobby/rooms/create",
+            "joinRoomApi": "/api/lobby/rooms/join",
+            "roomValidationSchema": "Fields: roomId (UUID), userId (UUID), action (enum: create, join)",
+            "maxPlayersConstraint": "Maximum 8 players per room"
+        },
+        "function": "Enable users to create new game rooms or join existing ones",
+        "static_description": "Lobby page includes a prominent 'Create Room' button and each room card has a 'Join' button. Creating a room shows a form modal with room name input and player limit selection.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Create Room' opens a modal form. After filling room details and submitting, user is redirected to the newly created room. Clicking 'Join' on a room adds user to that room."
+            },
+            {
+                "interaction": "Submit Form",
+                "description": "Submitting the create room form validates inputs and creates a new room entry in the database via API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pokerTableSchema": "Database schema with fields: tableId (UUID), roomId (UUID), communityCards (array of card objects), pot (integer), currentPlayerTurn (userId), gameState (object with player positions, bets, hands)",
+            "cardAssetPath": "/assets/cards/",
+            "playerHandApi": "/api/game/{roomId}/hand",
+            "communityCardsApi": "/api/game/{roomId}/community"
+        },
+        "function": "Render the Texas Hold'em poker table interface displaying player hands, community cards, and betting information",
+        "static_description": "Poker table with elliptical shape in midnight blue, set against azure background. Displays community cards area in center, player positions around table with placeholders for hole cards, chip stacks, and bet amounts. Shows pot value in center.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On entering room, component fetches player's hand cards and community cards via API and renders them in appropriate positions."
+            },
+            {
+                "interaction": "Real-time Update",
+                "description": "Community cards and pot update in real-time as new cards are dealt or bets are placed by other players."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameActionsApi": "/api/game/{roomId}/action",
+            "actionValidationSchema": "Fields: actionType (enum: fold, check, call, raise, bet), amount (integer, optional for raise/bet), userId (UUID), roomId (UUID)",
+            "actionButtonIcons": {
+                "fold": "/assets/icons/fold.svg",
+                "check": "/assets/icons/check.svg",
+                "call": "/assets/icons/call.svg",
+                "raise": "/assets/icons/raise.svg",
+                "bet": "/assets/icons/bet.svg"
+            }
+        },
+        "function": "Provide interactive action buttons for players to make game moves during their turn",
+        "static_description": "Action panel at bottom of table interface containing five midnight blue buttons: Fold, Check, Call, Raise, Bet. Buttons are horizontally aligned with appropriate icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any action button sends the corresponding move to the backend via API. Raise and Bet buttons open amount input modals before submission."
+            },
+            {
+                "interaction": "Disable",
+                "description": "Buttons are disabled when it's not the player's turn. Only valid actions are enabled based on current game state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chatMessageSchema": "Database schema with fields: messageId (UUID), roomId (UUID), userId (UUID), messageText (string), timestamp (timestamp), username (string)",
+            "sendMessageApi": "/api/chat/{roomId}/send",
+            "chatWebSocketEndpoint": "ws://localhost:PORT/api/chat/ws",
+            "chatHistoryApi": "/api/chat/{roomId}/history"
+        },
+        "function": "Implement real-time chat functionality within game rooms for player communication",
+        "static_description": "Chat sidebar on right side of game interface with azure background. Contains message display area, text input field, and send button. Messages show sender username, text, and timestamp in midnight blue styled bubbles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Users can type messages in the input field. Pressing Enter or clicking Send button transmits the message via WebSocket."
+            },
+            {
+                "interaction": "Receive Message",
+                "description": "New messages appear instantly in the chat display area through WebSocket connection without page refresh."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userAuthSchema": "Database schema with fields: userId (UUID), username (string), email (string), passwordHash (string), createdAt (timestamp), lastLogin (timestamp)",
+            "authApiEndpoints": {
+                "login": "/api/auth/login",
+                "register": "/api/auth/register",
+                "logout": "/api/auth/logout",
+                "profile": "/api/user/profile"
+            },
+            "jwtSecretEnv": "JWT_SECRET environment variable for token signing"
+        },
+        "function": "Manage user authentication and provide account information management capabilities",
+        "static_description": "Authentication forms for login/register with midnight blue themed inputs and buttons. User profile page shows username, email, registration date, win/loss statistics, and chip balance.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting login/register forms authenticates user and issues JWT token. Profile updates save changes to user data via API."
+            },
+            {
+                "interaction": "Session Expire",
+                "description": "Expired sessions redirect user to login page automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameHistorySchema": "Database schema with fields: gameId (UUID), roomId (UUID), players (array of player objects with userId, username, finalChips, result), startTime (timestamp), endTime (timestamp), winner (userId)",
+            "historyApiEndpoint": "/api/user/history",
+            "gameRecordDetailApi": "/api/game/record/{gameId}"
+        },
+        "function": "Allow users to view their past game records and detailed history",
+        "static_description": "Dedicated history page with tabular list of past games showing date, room name, result (win/loss), and chip change. Detailed view shows full game progression and final hands.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a game record opens detailed view showing complete game log, final hands of all players, and betting sequence."
+            },
+            {
+                "interaction": "Filter",
+                "description": "Users can filter history by date range, win/loss result, or specific rooms."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingLibraries": "Axios or Fetch API for HTTP requests",
+            "apiBaseURL": "http://localhost:PORT/api",
+            "authenticationHeader": "Bearer token in Authorization header for protected routes"
+        },
+        "function": "Ensure all dynamic frontend data is fetched exclusively from backend APIs without hardcoded values",
+        "static_description": "All dynamic content areas (lobby rooms, player info, game state, chat messages) initially show loading indicators before data is fetched from corresponding API endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Mount",
+                "description": "Upon mounting, components make API calls to fetch required data using configured base URL and authentication headers."
+            },
+            {
+                "interaction": "Data Refresh",
+                "description": "Components periodically refetch data or subscribe to real-time updates for dynamic content like game state and chat."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaFiles": "SQL migration files defining tables for users, rooms, games, chat, etc.",
+            "connectionPoolLibrary": "pg library for Node.js PostgreSQL connections"
+        },
+        "function": "Establish backend service connection to PostgreSQL database using specified environment variables",
+        "static_description": "Backend service initializes database connection pool using environment variables at startup. All data operations use parameterized queries through this connection.",
+        "interaction_and_states": [
+            {
+                "interaction": "Service Start",
+                "description": "Application reads environment variables and establishes connection pool to PostgreSQL database. Failed connections prevent service startup."
+            },
+            {
+                "interaction": "Query Execution",
+                "description": "API endpoints execute database queries through the established connection pool for CRUD operations on all data entities."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --azure-bg: #F0FFFF; --midnight-blue: #191970; }",
+            "responsiveBreakpoints": "Mobile (<768px), Tablet (768px-1024px), Desktop (>1024px)",
+            "designSystemTokens": "Consistent spacing, typography, and component sizing scales"
+        },
+        "function": "Implement responsive UI design with azure page background and midnight blue elements throughout the application",
+        "static_description": "Entire application uses azure (#F0FFFF) as primary background color and midnight blue (#191970) for interactive elements, cards, and text. Layout adapts to different screen sizes using CSS media queries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "UI elements reflow and resize appropriately for mobile, tablet, and desktop views while maintaining color scheme consistency."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements show hover states with color variations within the defined azure/midnight blue palette."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketLibrary": "Socket.IO or similar real-time communication library",
+            "gameStateSyncApi": "/api/game/{roomId}/sync",
+            "websocketEvents": "roomUpdate, gameStateChange, playerAction"
+        },
+        "function": "Maintain real-time synchronization of game state across all players in a room",
+        "static_description": "Game state updates (cards dealt, bets placed, turns changed) appear simultaneously for all players in the same room through WebSocket connections.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Connect",
+                "description": "Players join room-specific WebSocket channels upon entering a game room for real-time updates."
+            },
+            {
+                "interaction": "State Change",
+                "description": "Any player action triggers immediate broadcast to all connected players in the room, updating their UIs synchronously."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "seatingSchema": "Database schema tracking: roomId (UUID), playerId (UUID), seatPosition (integer 1-8), isDealer (boolean), isSmallBlind (boolean), isBigBlind (boolean)",
+            "positionManagementApi": "/api/game/{roomId}/seating",
+            "blindAssignmentLogic": "Automatic dealer/button rotation and blind assignment algorithm"
+        },
+        "function": "Manage player seating arrangements and positional roles (dealer, blinds) at the poker table",
+        "static_description": "Table displays up to 8 player positions numbered 1-8 with clear indicators for current dealer button and blind positions. Empty seats show 'Empty Seat' placeholders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Seat Selection",
+                "description": "Players can choose available seats when joining a room. System automatically assigns dealer and blinds for new games."
+            },
+            {
+                "interaction": "Position Update",
+                "description": "Seating positions and roles rotate automatically after each hand according to standard poker rules."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chipTrackingSchema": "Database fields: playerId (UUID), roomId (UUID), currentBet (integer), totalChips (integer), betHistory (array of bet objects)",
+            "bettingApi": "/api/game/{roomId}/bet",
+            "potCalculationLogic": "Algorithm for aggregating all player bets into main and side pots"
+        },
+        "function": "Track player chip counts and implement betting mechanics including pot calculation",
+        "static_description": "Each player position shows current chip stack and active bet amount. Central pot display shows accumulating bets. Betting controls show minimum raise amounts and available chip denominations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Place Bet",
+                "description": "Betting actions deduct chips from player stack and add to current bet/pot. Minimum bets and raises follow standard poker rules."
+            },
+            {
+                "interaction": "Pot Distribution",
+                "description": "Winning hands trigger automatic pot distribution to winners based on hand rankings and side pot calculations."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "handEvaluationLibrary": "Standard poker hand evaluation algorithm (e.g., Texas Hold'em hand ranking logic)",
+            "gameRulesEngine": "/api/game/rules",
+            "handRankingSchema": "Predefined rankings: High Card, One Pair, Two Pair, Three of a Kind, Straight, Flush, Full House, Four of a Kind, Straight Flush, Royal Flush"
+        },
+        "function": "Execute complete Texas Hold'em game logic including dealing, hand evaluation, and rule enforcement",
+        "static_description": "Backend service handles complete game flow: shuffling/dealing cards, determining hand strengths, enforcing betting rounds (pre-flop, flop, turn, river), and declaring winners.",
+        "interaction_and_states": [
+            {
+                "interaction": "Game Progression",
+                "description": "System automatically progresses through betting rounds, deals community cards at appropriate times, and evaluates final hands to determine winners."
+            },
+            {
+                "interaction": "Rule Validation",
+                "description": "All player actions are validated against Texas Hold'em rules before being processed (e.g., insufficient chips for call, invalid raise amounts)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionManagementSchema": "Database fields: sessionId (UUID), userId (UUID), expiresAt (timestamp), ipAddress (string), userAgent (string)",
+            "sessionApiEndpoints": {
+                "validate": "/api/session/validate",
+                "refresh": "/api/session/refresh"
+            },
+            "sessionTimeout": "Configurable session expiration time"
+        },
+        "function": "Manage persistent user sessions for authenticated access across the application",
+        "static_description": "Authenticated users maintain logged-in state across navigation with session tokens stored securely. Session information tracked server-side with expiration times.",
+        "interaction_and_states": [
+            {
+                "interaction": "Login",
+                "description": "Successful authentication creates new session record and issues session token to client for subsequent requests."
+            },
+            {
+                "interaction": "Activity",
+                "description": "User activity extends session lifetime. Inactive sessions expire automatically and redirect to login."
+            }
+        ]
+    }
+]

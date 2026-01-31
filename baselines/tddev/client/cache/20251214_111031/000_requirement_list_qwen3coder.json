@@ -1,0 +1,215 @@
+[
+    {
+        "resource_dependency": {
+            "userRegistrationAPI": "Set up a RESTful API endpoint for user registration with fields: username (string), email (string), password (hashed string), created_at (timestamp).",
+            "userLoginAPI": "Set up a RESTful API endpoint for user authentication with fields: email (string), password (string), returns JWT token upon successful login.",
+            "userDatabaseSchema": "Create a users table with fields: user_id (UUID), username (string), email (string), password_hash (string), created_at (timestamp), last_login (timestamp)."
+        },
+        "function": "Enable users to register and log in to access personalized features such as collections and reading history.",
+        "static_description": "A centered form panel with two tabs labeled 'Register' and 'Login'. Each tab contains input fields for email and password. The Register tab includes an additional field for username. Both tabs have a primary action button ('Sign Up' or 'Log In').",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the 'Register' tab switches the view to the registration form. Clicking on the 'Login' tab switches the view to the login form. Clicking 'Sign Up' submits the registration form via POST /api/register. Clicking 'Log In' submits the login form via POST /api/login."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on any input field triggers the corresponding form submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "categoryListAPI": "RESTful API returning list of categories with fields: category_id (UUID), name (string), description (text), article_count (integer).",
+            "articleByCategoryAPI": "API endpoint that fetches articles filtered by category_id with pagination support.",
+            "categoriesDatabaseSchema": "Create a categories table with fields: category_id (UUID), name (string), description (text), icon_path (string, optional)."
+        },
+        "function": "Allow users to browse articles organized under different predefined categories.",
+        "static_description": "A horizontal navigation bar located above the main article area. Each item represents a distinct category name fetched from the backend. Categories are displayed as clickable labels styled in rosy brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a category label fetches articles associated with that category through GET /api/articles?category={categoryId} and updates the article listing below."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a category label slightly increases font weight and adds a subtle shadow effect."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchArticlesAPI": "RESTful API endpoint accepting query parameters like q (search term), filters (optional), sort_by (optional) with pagination support.",
+            "searchIconSVG": "<svg>...</svg>"
+        },
+        "function": "Enable users to find specific articles using keywords or phrases.",
+        "static_description": "A prominent search bar positioned at the top of the page featuring a magnifying glass icon aligned left inside the input box. Placeholder text says 'Search articles...'. Background is old lace, border styled in rosy brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search bar focuses it for typing. Clicking the magnifying glass icon initiates a search request with current input value to /api/search?q={query}."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after entering text triggers the same search behavior as clicking the magnifying glass icon."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "toggleCollectionAPI": "POST endpoint to toggle article collection status for authenticated user: /api/users/me/collections/toggle with body { article_id }.",
+            "collectionStatusCheckAPI": "GET endpoint to check if an article is collected by current user: /api/users/me/collections/check?article_id={id}",
+            "collectionsDatabaseSchema": "Create a collections table linking users and articles: collection_id (UUID), user_id (foreign key), article_id (foreign key), collected_at (timestamp)."
+        },
+        "function": "Allow logged-in users to save favorite articles for later reference.",
+        "static_description": "Each article preview displays a heart-shaped icon next to the title. The icon appears unfilled by default but turns filled when the article has been previously collected by the user.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the heart icon toggles the collection status for the article. Sends a POST request to /api/users/me/collections/toggle with article ID. Icon visually updates to reflect new state immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "socialShareAPIs": "Integrate third-party SDKs or use native sharing mechanisms for platforms like Facebook, Twitter, LinkedIn, WhatsApp, etc.",
+            "shareButtonIcons": "SVG icons representing each supported platform (Facebook, Twitter, LinkedIn, WhatsApp)"
+        },
+        "function": "Enable users to share interesting articles directly to popular social media platforms.",
+        "static_description": "Below each article preview or full article view, there’s a row of branded social media icons (Facebook, Twitter, LinkedIn, WhatsApp) arranged horizontally. Icons are styled consistently with rosy brown theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any social media icon opens a native sharing dialog pre-filled with the article URL and title, ready for distribution on that platform."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "readingHistoryAPI": "Endpoint to record and retrieve user's recently read articles: GET /api/users/me/history and POST /api/users/me/history with article metadata.",
+            "historyDatabaseSchema": "Table storing user-article views: history_id (UUID), user_id (foreign key), article_id (foreign key), viewed_at (timestamp)."
+        },
+        "function": "Track and store the articles that logged-in users have viewed during their sessions.",
+        "static_description": "Within user profile or dedicated history section, a chronological list of article previews showing titles, authors, dates read, and brief excerpts. List items appear faded compared to actively browsed articles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an article entry navigates the user to the full article page and records this visit in the reading history database via POST /api/users/me/history."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "manageCollectionsAPI": "Endpoints to list, remove, and organize saved articles: GET /api/users/me/collections, DELETE /api/users/me/collections/{articleId}, PATCH /api/users/me/collections/reorder.",
+            "collectionsManagementUIAssets": "Drag handle SVG, delete bin icon SVG"
+        },
+        "function": "Provide users with tools to review, organize, and manage their collected articles.",
+        "static_description": "Dedicated dashboard page accessible only to logged-in users, displaying a scrollable grid or list of collected articles. Each item shows thumbnail image, title, summary, and date added. Edit controls include drag handles and trash bin icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the trash bin icon removes the article from the collection list and sends DELETE /api/users/me/collections/{articleId}."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging articles reorders them within the collection. Reordering triggers PATCH /api/users/me/collections/reorder with updated order indices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveCSSFramework": "Use CSS Grid/Flexbox with media queries to ensure layouts adapt across mobile, tablet, desktop breakpoints."
+        },
+        "function": "Ensure consistent usability and aesthetics regardless of screen size or device orientation.",
+        "static_description": "Layout adjusts dynamically based on viewport width. Article cards stack vertically on small screens and arrange in grids on larger ones. Navigation bars collapse into hamburger menus on mobile devices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Resizing browser window causes layout elements to rearrange according to responsive rules defined in CSS media queries."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundStyleAsset": "Apply #FDF5E6 (old lace) as the global background color in CSS stylesheet."
+        },
+        "function": "Define visual atmosphere and readability context using warm-toned background palette.",
+        "static_description": "Entire application background rendered in soft off-white tone (#FDF5E6). All content containers maintain sufficient contrast against this backdrop.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "interfaceColorPalette": "Define rosy brown (#BC8F8F) as primary accent color for borders, buttons, highlights, and interactive elements in CSS variables."
+        },
+        "function": "Establish cohesive branding identity through consistent use of thematic accent colors.",
+        "static_description": "Primary interface components such as buttons, active links, category tags, and selection indicators utilize rosy brown (#BC8F8F) styling throughout the app.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "articlePreviewComponentSchema": "Standardized component structure including: title (string), excerpt (text), author (string), publish_date (date), category_tag (string), thumbnail_url (optional string)."
+        },
+        "function": "Present essential information about each article clearly and attractively without requiring full-page navigation.",
+        "static_description": "Grid-based card layout where each card displays a headline-sized title, short paragraph excerpt, author name, publication timestamp, and category tag. Optional thumbnail image aligned left or top depending on breakpoint.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking anywhere on the card navigates to the complete article detail page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": "Predefined list of top-level categories retrieved from /api/categories endpoint."
+        },
+        "function": "Offer quick access points to various content sections and organizational themes.",
+        "static_description": "Fixed-position vertical sidebar or collapsible horizontal menu strip containing categorized navigation links. Menu items match available topic areas and highlight currently selected category.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a menu item loads related articles and updates the main content area accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileEditFormFields": "Editable user attributes: username (string), bio (text), avatar (file upload), preferred_categories (multi-select dropdown)",
+            "updateProfileAPI": "PATCH /api/users/me with multipart/form-data payload supporting text fields and file uploads."
+        },
+        "function": "Empower users to customize personal details and preferences influencing content recommendations.",
+        "static_description": "User profile page presenting editable form with standard inputs for name, biography, uploaded photo, and multi-select dropdown for preferred topics. Save button prominently placed beneath form fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Changes' submits modified profile data via PATCH /api/users/me and refreshes local cache with updated information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filteredSearchResultsAPI": "Extend base search functionality with filter parameters like category, date range, author, relevance score, etc.",
+            "filterOptionsConfig": "Dropdown lists populated dynamically from available facet values returned alongside initial search results."
+        },
+        "function": "Refine broad searches into more targeted subsets matching user interests or criteria.",
+        "static_description": "Search results page supplemented with collapsible side panel offering filtering options grouped by category, date published, popularity metrics, and source credibility ratings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Activating filter checkboxes or selecting dropdown values triggers real-time refinement of displayed results without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "socialSharingIntegrationSDKs": "Official JavaScript libraries or meta tags compliant with Facebook OG, Twitter Cards, LinkedIn OGP standards for rich link previews."
+        },
+        "function": "Facilitate seamless propagation of curated content beyond the boundaries of the mini-program itself.",
+        "static_description": "Embedded deep-link sharing capabilities integrated into every article view. Share buttons automatically populate correct URLs, titles, descriptions, and featured images suitable for optimal rendering on target networks.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiates system-level or web-based sharing prompt tailored to destination platform specifications, ensuring accurate attribution and presentation."
+            }
+        ]
+    }
+]

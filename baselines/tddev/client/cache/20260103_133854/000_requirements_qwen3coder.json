@@ -1,0 +1,17 @@
+[
+    "Frontend application that fetches all data from backend APIs",
+    "Backend API server connecting to PostgreSQL database using provided environment variables",
+    "User interface with light goldenrod layout color scheme",
+    "Buttons and cards styled with olive drab color",
+    "Poetry browsing functionality with categorized views",
+    "Search functionality for finding specific poetry content",
+    "User authentication system for posting poetry and commenting",
+    "Poetry submission form with title, content, and category fields",
+    "Commenting system allowing users to comment on poetry posts",
+    "Database schema for storing poetry posts, user accounts, and comments",
+    "RESTful API endpoints for poetry CRUD operations",
+    "API endpoints for user authentication and session management",
+    "Search API endpoint with query parameters for filtering poetry",
+    "Package.json configured with 'install:all' script for frontend and backend dependencies",
+    "Package.json configured with 'dev' script to run frontend and backend concurrently"
+]

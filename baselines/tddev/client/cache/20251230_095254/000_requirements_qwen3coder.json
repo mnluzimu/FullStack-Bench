@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all stock data dynamically from backend APIs",
+    "A backend API service that connects to a PostgreSQL database using specified environment variables",
+    "A search functionality allowing users to input stock codes or names",
+    "A form interface for users to select report formats and content preferences",
+    "A report generation feature that creates customized stock reports based on user inputs",
+    "Display of basic stock information including company name, ticker symbol, and current price",
+    "Presentation of market trend analysis with charts or graphs",
+    "Inclusion of financial data such as earnings, revenue, and key financial ratios",
+    "A white background color applied throughout the website",
+    "Navy color used for all primary components and interactive elements",
+    "Responsive design compatible with desktop and mobile devices",
+    "User authentication system to manage access to premium report features",
+    "Export functionality for generated reports in PDF and Excel formats",
+    "Caching mechanism to improve performance for frequently requested stock data",
+    "Error handling for invalid stock codes or unavailable data"
+]

@@ -1,0 +1,251 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "mint cream",
+            "primary_color": "teal",
+            "dashboard_layout_grid": "Responsive grid system with 12-column layout",
+            "company_data_schema": "Database schema includes: company_id (UUID), company_name (string), industry (string), headquarters_location (string), fiscal_year_end (date), created_at (timestamp), updated_at (timestamp).",
+            "financial_data_schema": "Database schema includes: financial_id (UUID), company_id (foreign key to companies table), report_period (date), revenue (decimal), expenses (decimal), profit (decimal), assets (decimal), liabilities (decimal), equity (decimal), created_at (timestamp), updated_at (timestamp).",
+            "auth_api": "Authentication API for user login/logout and session management. Requires JWT tokens for secure access.",
+            "external_db_config": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "To display a teal-themed financial dashboard with a mint cream background that enables users to manage and visualize financial data from multiple companies.",
+        "static_description": "The dashboard features a responsive layout with teal-styled components and a mint cream background. It displays a header bar with navigation links, a sidebar menu for company selection, and a main content area showing financial data cards or charts grouped by company. All UI elements are styled using the teal color scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On a company name in the sidebar to switch between different companies and view their respective financial data."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Over a financial metric card to show additional details or tooltip information about the value."
+            },
+            {
+                "interaction": "Click",
+                "description": "On a 'View Details' button within a financial card to navigate to a detailed page for that company’s financials."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "company_table_api": "API endpoint to retrieve list of companies with basic info such as company_id, company_name, and industry.",
+            "financial_report_api": "API endpoint to fetch financial reports for a selected company including revenue, expenses, profit, assets, liabilities, and equity.",
+            "consolidated_summary_api": "API endpoint to fetch aggregated financial summary data across multiple companies.",
+            "comparison_chart_component": "Component to render interactive charts comparing financial metrics between companies."
+        },
+        "function": "To allow users to browse financial data from each company in a structured and organized manner.",
+        "static_description": "Displays a structured view of financial data categorized by company. Each company is represented by a card or section containing key financial metrics like revenue, profit, and equity. Cards are arranged in a responsive grid layout with consistent spacing and styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On a company card to expand and show more detailed financial metrics."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Through the list of company cards to load additional data dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "consolidated_report_api": "API endpoint to retrieve consolidated financial summaries across all companies, including total revenue, combined profit, and overall asset valuation.",
+            "report_generation_ui": "UI element to trigger generation of consolidated reports with filters for date range and company selection."
+        },
+        "function": "To provide consolidated financial reports that aggregate data across multiple companies.",
+        "static_description": "Includes a dedicated section for consolidated financial summaries showing totals and averages across all companies. This area presents key financial indicators such as total revenue, combined profit, and asset distribution using visualizations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On the 'Generate Report' button to initiate the creation of a consolidated financial report."
+            },
+            {
+                "interaction": "Click",
+                "description": "On filter options to customize the report based on selected date ranges or specific companies."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparison_tool_api": "API endpoint to compare financial metrics between selected companies, returning comparative data sets.",
+            "chart_visualization_component": "Charting library component capable of rendering line graphs, bar charts, and pie charts for comparison purposes.",
+            "multi_select_ui": "User interface element allowing selection of multiple companies for side-by-side financial comparisons."
+        },
+        "function": "To enable cross-company financial comparisons and reporting capabilities.",
+        "static_description": "Features a comparison tool panel that allows users to select two or more companies and view their financial performance side-by-side. Charts and tables are displayed in a tabbed interface with toggleable views.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On the 'Compare Companies' button to open the multi-select modal for choosing companies."
+            },
+            {
+                "interaction": "Click",
+                "description": "On chart tabs to switch between different types of visualizations (line, bar, etc.)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "frontend_api_integration": "Frontend codebase configured to fetch all financial data from backend endpoints via RESTful APIs."
+        },
+        "function": "To implement a frontend that fetches all financial data from backend APIs without using hard-coded or mock data.",
+        "static_description": "The frontend application is built to communicate directly with backend services through HTTP requests. Data is fetched dynamically upon user actions and rendered in real-time within the dashboard UI components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon initial page load, frontend calls API endpoints to fetch company list and latest financial data."
+            },
+            {
+                "interaction": "Click",
+                "description": "On refresh buttons or navigation links to re-fetch updated financial data from the backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backend_db_connection": "Backend service configured to connect to an external PostgreSQL database using environment variables.",
+            "db_tables_setup": "PostgreSQL database setup script to create tables for companies and financial records."
+        },
+        "function": "To include a backend service that connects to an external PostgreSQL database.",
+        "static_description": "The backend service handles database connectivity to an external PostgreSQL instance. It manages data storage and retrieval for company profiles and financial records.",
+        "interaction_and_states": [
+            {
+                "interaction": "Startup",
+                "description": "On server start-up, backend establishes connection to PostgreSQL database using provided environment variables."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "env_vars": "Environment variables set to DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "To configure the backend to use specific environment variables for database connection.",
+        "static_description": "The backend configuration reads and applies environment variables for connecting to the PostgreSQL database. These variables are used during runtime to establish secure database connections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Startup",
+                "description": "During application boot-up, environment variables are read to initialize database connection parameters."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "api_endpoints": "All data endpoints are dynamically connected to the database to prevent usage of hardcoded or mock data.",
+            "dynamic_data_fetch": "Frontend uses asynchronous API calls to ensure real-time data updates."
+        },
+        "function": "To support dynamic retrieval of financial data without hard-coded or mock data.",
+        "static_description": "All financial data presented in the dashboard is retrieved dynamically from the backend database through API calls. No static values are embedded in the frontend code.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On data refresh button to force reload current financial data from backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "teal_color_scheme": "CSS framework applying teal as primary color throughout all components.",
+            "responsive_design": "Media queries and flexible layouts to maintain consistency across screen sizes."
+        },
+        "function": "To ensure all components are styled consistently with a teal color scheme.",
+        "static_description": "Every UI component adheres to a consistent teal-based color palette. Buttons, headers, cards, and visual elements utilize shades of teal for branding and visual hierarchy.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsive_layout_framework": "CSS grid and flexbox layout system supporting mobile-first responsive design principles.",
+            "financial_data_visualization": "Charting libraries integrated to handle responsive chart rendering."
+        },
+        "function": "To create a responsive dashboard layout suitable for financial data visualization.",
+        "static_description": "Dashboard layout adjusts dynamically based on viewport size. Financial data is presented in responsive grids, charts resize appropriately, and navigation adapts for smaller screens while maintaining usability.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "When browser window is resized, layout rearranges components to fit available space."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "detailed_view_ui": "Detailed financial information page accessible via click events from company cards.",
+            "financial_metrics_display": "Structured presentation of detailed metrics including revenue breakdowns, expense categories, and balance sheet items."
+        },
+        "function": "To provide functionality to view detailed financial information per company.",
+        "static_description": "Each company card includes a link to a detailed view page. This page shows in-depth financial statements including income statements, balance sheets, and cash flow reports with full transparency of underlying figures.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On a company card or detail link to navigate to a detailed financial overview page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summary_generation_api": "API endpoint to calculate and return consolidated financial summaries.",
+            "summary_display_ui": "UI component to render and present summarized financial data in an easy-to-understand format."
+        },
+        "function": "To enable users to generate and view consolidated financial summaries.",
+        "static_description": "A centralized section within the dashboard presents summarized financial insights derived from all companies. Summaries include totals, percentages, trends, and highlights relevant to executive decision-making.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On the 'Generate Summary' button to update the consolidated financial overview with latest data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filter_sort_ui": "Filter and sort controls applied to financial data listings.",
+            "sorting_options": "Options for sorting by company name, time period, revenue, or profit.",
+            "filter_criteria": "Filters for selecting companies, date ranges, or financial categories."
+        },
+        "function": "To support filtering and sorting of financial data by company or time period.",
+        "static_description": "Provides a control panel above financial data displays allowing users to filter by company, date range, and financial category. Sorting options appear as dropdown menus or toggle switches next to data lists.",
+        "interaction_and_states": [
+            {
+                "interaction": "Select",
+                "description": "From dropdown menus to apply filters to financial data listings."
+            },
+            {
+                "interaction": "Click",
+                "description": "On sorting indicators to reorder data by various criteria."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authentication_service": "Backend API for handling user authentication and role-based access control.",
+            "login_form_ui": "Secure login form with username/password fields and remember me option.",
+            "role_based_access": "User roles such as admin, manager, viewer with differing permissions."
+        },
+        "function": "To implement user authentication and authorization for accessing financial data.",
+        "static_description": "Access to the dashboard requires successful login with credentials. User roles determine which parts of the dashboard they can see or modify. Authentication status is reflected in the top-right corner of the UI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting login form initiates authentication process and redirects authenticated users to the dashboard."
+            },
+            {
+                "interaction": "Click",
+                "description": "On logout button to terminate session and redirect to login page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_config": "Configuration in package.json file specifying scripts for installing both frontend and backend dependencies, and running both servers concurrently.",
+            "concurrent_execution": "Use of npm-run-all or similar tools to execute frontend and backend servers simultaneously."
+        },
+        "function": "To configure package.json with npm run install:all and npm run dev scripts for concurrent frontend and backend startup.",
+        "static_description": "The root directory contains a package.json file with predefined scripts. Running 'npm run install:all' installs dependencies for both frontend and backend projects. Running 'npm run dev' starts both applications concurrently.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run install:all' installs all required packages for frontend and backend projects."
+            },
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run dev' launches the development servers for both frontend and backend."
+            }
+        ]
+    }
+]

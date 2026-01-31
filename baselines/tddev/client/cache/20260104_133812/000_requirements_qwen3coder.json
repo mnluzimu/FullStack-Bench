@@ -1,0 +1,17 @@
+[
+    "Frontend application with pages for band listings, band profiles, advertiser ads, registration, and login",
+    "Backend API server to manage bands, advertisers, and advertisements data",
+    "Database connection to PostgreSQL using environment variables: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+    "Band registration form capturing band name, bio, picture link, audio sample links, and YouTube video links",
+    "Advertiser registration form capturing advertiser details and ad content uploads",
+    "User authentication system for bands and advertisers with login/logout functionality",
+    "Band profile pages displaying bio, images, audio players for samples, and embedded YouTube videos",
+    "Advertisement display system integrated throughout the site",
+    "Browse page for users to explore band profiles and listen to audio samples",
+    "Admin or dashboard views for bands and advertisers to manage their own content",
+    "Responsive UI design implementing floral white background and dark goldenrod elements",
+    "API endpoints for user registration, login, band data management, and advertisement handling",
+    "Media handling for storing and serving band images, audio files, and ad content",
+    "Role-based access control distinguishing between bands, advertisers, and general users",
+    "Package.json scripts: `install:all` for installing frontend and backend dependencies, `dev` for concurrent development startup"
+]

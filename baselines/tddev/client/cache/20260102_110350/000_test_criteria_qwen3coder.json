@@ -1,0 +1,352 @@
+[
+    {
+        "requirement_tested": "A frontend application with a user interface for composing emails",
+        "user_persona": "A marketing manager preparing a campaign email.",
+        "user_goal": "Compose a new email with subject and body content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Compose Interface",
+                "description": "Sarah navigates to the email platform and clicks the 'Compose Email' button to start drafting her message.",
+                "action": "Click on the 'Compose Email' button.",
+                "expected_outcome": "A form titled 'Compose Email' appears with fields for Subject, To, CC, BCC, and Body, styled with cornsilk background and peru borders."
+            },
+            {
+                "step": 2,
+                "title": "Filling in Email Details",
+                "description": "Sarah fills in the subject line and writes the main content of her email in the body field.",
+                "action": "Enter text into the Subject and Body fields.",
+                "expected_outcome": "The fields accept input and display the typed content accurately."
+            },
+            {
+                "step": 3,
+                "title": "Saving Draft",
+                "description": "Before finalizing, Sarah decides to save her work as a draft for later review.",
+                "action": "Click the 'Save Draft' button.",
+                "expected_outcome": "The email is saved with status 'draft', and a confirmation message is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend feature allowing users to select recipients from a list or input manually",
+        "user_persona": "A project coordinator sending a status update to team members.",
+        "user_goal": "Select recipients from an existing list and add one new email address.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Recipient Selection",
+                "description": "John opens the email composer and focuses on the 'To' field to choose recipients.",
+                "action": "Click on the 'To' dropdown field.",
+                "expected_outcome": "A searchable contact list panel appears below the field."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Existing Contacts",
+                "description": "John selects two colleagues from the list by clicking their checkboxes.",
+                "action": "Click checkboxes next to two contact names.",
+                "expected_outcome": "Their email addresses are added to the recipient list in the 'To' field."
+            },
+            {
+                "step": 3,
+                "title": "Adding New Recipient",
+                "description": "He remembers he needs to include another stakeholder whose email isn't in the list, so he types it directly.",
+                "action": "Type a new email address into the 'To' field.",
+                "expected_outcome": "The email address is accepted and included in the recipient list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend form for attaching files to emails before sending",
+        "user_persona": "An HR specialist sending offer letters to candidates.",
+        "user_goal": "Attach a PDF document to an email before sending it.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating File Attachment",
+                "description": "Lisa composes her email and wants to attach an offer letter. She clicks the 'Attachments' button.",
+                "action": "Click the 'Attachments' button.",
+                "expected_outcome": "An attachment section with a drag-and-drop zone and 'Browse Files' button appears."
+            },
+            {
+                "step": 2,
+                "title": "Uploading File",
+                "description": "She chooses to browse for the file and selects a PDF from her computer.",
+                "action": "Click 'Browse Files' and select a PDF file.",
+                "expected_outcome": "The file begins uploading and shows a progress indicator. Once complete, it appears as a tagged attachment."
+            },
+            {
+                "step": 3,
+                "title": "Removing Incorrect Attachment",
+                "description": "Realizing she picked the wrong file, Lisa removes it and re-uploads the correct one.",
+                "action": "Click the 'X' icon on the attachment tag.",
+                "expected_outcome": "The incorrect file is removed from the attachments list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend section for managing sent emails including viewing and tracking status",
+        "user_persona": "A sales representative checking if client proposals were received.",
+        "user_goal": "View sent emails and check delivery status of a specific proposal.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Sent Emails",
+                "description": "Mike finishes sending several emails and goes to the 'Sent Emails' section to verify delivery.",
+                "action": "Navigate to the 'Sent Emails' tab.",
+                "expected_outcome": "A table listing sent emails appears, showing date, recipient count, subject, and status summary."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Delivery Status",
+                "description": "He locates the proposal email and clicks on its row to see individual recipient delivery statuses.",
+                "action": "Click on the row corresponding to the proposal email.",
+                "expected_outcome": "The row expands to show detailed delivery statuses for each recipient."
+            },
+            {
+                "step": 3,
+                "title": "Refreshing List",
+                "description": "After waiting a few minutes, Mike refreshes the list to get updated status information.",
+                "action": "Click the refresh icon above the table.",
+                "expected_outcome": "The sent emails list reloads with the latest status updates without a full page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend module for creating, saving, and selecting email templates",
+        "user_persona": "A customer support agent responding to frequent inquiries.",
+        "user_goal": "Use a saved template to quickly respond to a recurring issue.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Templates",
+                "description": "Emily opens the email composer and clicks the 'Templates' button to access predefined responses.",
+                "action": "Click the 'Templates' button.",
+                "expected_outcome": "A modal dialog titled 'Email Templates' opens with tabs for 'My Templates' and 'Create New Template'."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Template",
+                "description": "She finds a suitable refund policy template and clicks on it to populate her email.",
+                "action": "Click on a template card.",
+                "expected_outcome": "The email composer is populated with the subject and body content from the selected template."
+            },
+            {
+                "step": 3,
+                "title": "Creating a New Template",
+                "description": "Emily realizes she needs a new template for shipping delays, so she creates and saves one.",
+                "action": "Switch to 'Create New Template' tab, fill in details, and click 'Save Template'.",
+                "expected_outcome": "The new template is saved and now appears in her list of available templates."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend recipient management system allowing users to add, edit, and remove contacts",
+        "user_persona": "An event planner updating her guest list.",
+        "user_goal": "Add a new attendee, edit an existing contact, and remove someone who canceled.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding New Contact",
+                "description": "Rachel goes to the Contacts section and adds a newly registered attendee using the floating action button.",
+                "action": "Click the '+' FAB and fill in the new contact's details.",
+                "expected_outcome": "The new contact is added to the contact list table."
+            },
+            {
+                "step": 2,
+                "title": "Editing Existing Contact",
+                "description": "She notices a phone number is missing for one contact and edits the entry to include it.",
+                "action": "Click the pencil icon next to the contact and update the phone number field.",
+                "expected_outcome": "The contact's phone number is updated and reflected in the table."
+            },
+            {
+                "step": 3,
+                "title": "Deleting Contact",
+                "description": "One person canceled attendance, so Rachel removes them from her contact list.",
+                "action": "Click the trash bin icon next to the contact and confirm deletion.",
+                "expected_outcome": "The contact is removed from the list permanently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API for handling email composition data submitted from the frontend",
+        "user_persona": "A developer testing the email composition flow.",
+        "user_goal": "Ensure email data is properly validated and processed by the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Valid Data",
+                "description": "The developer sends a well-formed email composition request to the backend API.",
+                "action": "POST to `/api/send-email` with valid email data.",
+                "expected_outcome": "The backend validates the data, processes it, and returns a success response."
+            },
+            {
+                "step": 2,
+                "title": "Handling Invalid Submission",
+                "description": "Next, they submit incomplete data to test validation errors.",
+                "action": "POST to `/api/send-email` with missing required fields.",
+                "expected_outcome": "The backend rejects the request and returns appropriate validation error messages."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend service for connecting to an external PostgreSQL database using provided environment variables",
+        "user_persona": "A DevOps engineer deploying the application.",
+        "user_goal": "Verify the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "The engineer starts the backend service with the correct environment variables set.",
+                "action": "Run `npm run dev` in the backend directory.",
+                "expected_outcome": "The backend initializes and establishes a successful connection to the PostgreSQL database using the provided credentials."
+            },
+            {
+                "step": 2,
+                "title": "Performing Database Query",
+                "description": "They trigger a query to retrieve templates to confirm database connectivity.",
+                "action": "Make a GET request to `/api/templates`.",
+                "expected_outcome": "The backend successfully retrieves and returns the list of templates from the connected database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend endpoint for sending emails through an email service provider",
+        "user_persona": "A QA tester validating email delivery.",
+        "user_goal": "Confirm that emails are successfully sent through the external email service.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Email Send",
+                "description": "The tester composes an email and submits it through the frontend, which calls the backend send endpoint.",
+                "action": "Click 'Send' in the email composer.",
+                "expected_outcome": "The backend forwards the email to the external email service provider and returns a success response."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Delivery",
+                "description": "They check the recipient inbox to ensure the email arrived correctly.",
+                "action": "Check recipient's email inbox.",
+                "expected_outcome": "The email is received in the inbox with correct subject and content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend module for storing and retrieving email templates from the database",
+        "user_persona": "A content manager maintaining email templates.",
+        "user_goal": "Store and retrieve custom email templates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Saving New Template",
+                "description": "The manager creates a new welcome email template and saves it via the API.",
+                "action": "POST to `/api/templates` with template data.",
+                "expected_outcome": "The template is stored in the 'templates' table in the database."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving Templates",
+                "description": "Later, they fetch all templates to verify the new one was saved correctly.",
+                "action": "GET from `/api/templates`.",
+                "expected_outcome": "The backend returns a list of all templates, including the newly added one."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend feature for uploading and associating file attachments with emails",
+        "user_persona": "A support agent attaching documents to a ticket reply.",
+        "user_goal": "Upload an attachment and associate it with an outgoing email.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Attachment",
+                "description": "The agent uploads a troubleshooting guide through the frontend attachment interface.",
+                "action": "Use the frontend to upload a file via `/api/upload-attachment`.",
+                "expected_outcome": "The file is uploaded to storage, and metadata is saved in the 'attachments' table with a unique ID."
+            },
+            {
+                "step": 2,
+                "title": "Linking to Email",
+                "description": "When composing the email, the agent selects the uploaded file to attach it.",
+                "action": "Include the attachment ID in the email composition data sent to `/api/send-email`.",
+                "expected_outcome": "The backend associates the attachment with the email and includes it when sending."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend recipient management system with CRUD operations for contact data",
+        "user_persona": "A CRM administrator managing client contacts.",
+        "user_goal": "Manage client contact information through CRUD operations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Contact",
+                "description": "The admin adds a new client contact using the API.",
+                "action": "POST to `/api/contacts` with new contact data.",
+                "expected_outcome": "The contact is created in the 'contacts' table with a unique ID."
+            },
+            {
+                "step": 2,
+                "title": "Updating Contact Info",
+                "description": "They update the client's phone number after receiving new information.",
+                "action": "PUT to `/api/contacts/{id}` with updated phone number.",
+                "expected_outcome": "The contact's record is updated in the database."
+            },
+            {
+                "step": 3,
+                "title": "Deleting Contact",
+                "description": "Upon request, the admin removes the client's data from the system.",
+                "action": "DELETE to `/api/contacts/{id}`.",
+                "expected_outcome": "The contact record is deleted from the 'contacts' table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend logging mechanism to track sent emails and their statuses",
+        "user_persona": "A system administrator monitoring email delivery performance.",
+        "user_goal": "Track the delivery status of sent emails through backend logs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sending Email",
+                "description": "An email is sent through the system, triggering the logging mechanism.",
+                "action": "Send an email via the frontend and backend.",
+                "expected_outcome": "Delivery data is recorded in the 'email_logs' table with initial status 'queued'."
+            },
+            {
+                "step": 2,
+                "title": "Checking Status Updates",
+                "description": "The admin inspects the logs to see updated delivery statuses.",
+                "action": "Query the 'email_logs' table.",
+                "expected_outcome": "Log entries reflect updated statuses such as 'delivered' or 'bounced' based on provider feedback."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A package.json configuration enabling `npm run install:all` to install frontend and backend dependencies",
+        "user_persona": "A new developer joining the team.",
+        "user_goal": "Set up the development environment by installing all dependencies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "The developer clones the repository and runs the unified install command.",
+                "action": "Run `npm run install:all` from the project root.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A package.json script for `npm run dev` to start both frontend and backend servers concurrently",
+        "user_persona": "A developer beginning daily work on the project.",
+        "user_goal": "Start both development servers simultaneously for integrated testing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "The developer runs the combined dev script to bring up both frontend and backend.",
+                "action": "Run `npm run dev` from the project root.",
+                "expected_outcome": "Both the frontend (port 3000) and backend (port 5000) servers start concurrently and are ready for development."
+            }
+        ]
+    }
+]

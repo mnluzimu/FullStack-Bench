@@ -1,0 +1,17 @@
+[
+    "A homepage displaying general office information and a welcome message",
+    "An 'About Us' page providing details about the clinical office and its mission",
+    "A 'Services' page listing all medical services offered by the office",
+    "A 'Contact Us' page with a form allowing users to send messages to the office",
+    "A navigation menu enabling quick access to all main pages",
+    "Frontend styled with a light cyan background and cadet blue UI components",
+    "Responsive design ensuring usability across desktop and mobile devices",
+    "Backend API support for handling contact form submissions",
+    "Database integration using PostgreSQL with specified environment variables",
+    "Frontend fetches dynamic data from backend APIs where applicable",
+    "Package.json configured with `install:all` script to install frontend and backend dependencies",
+    "Package.json configured with `dev` script to start frontend and backend concurrently",
+    "Static page rendering for informational content",
+    "Form validation on the contact page to ensure proper user input",
+    "SEO-friendly page titles and meta descriptions for each page"
+]

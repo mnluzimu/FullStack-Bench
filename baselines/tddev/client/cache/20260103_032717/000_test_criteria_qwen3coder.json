@@ -1,0 +1,233 @@
+[
+    {
+        "requirement_tested": "A frontend application with cartoon-style visual design using seashell for container backgrounds and crimson for component visuals",
+        "user_persona": "An 8-year-old child visiting the recycling game website for the first time.",
+        "user_goal": "To immediately feel welcomed by a fun, colorful interface that looks like a cartoon game.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on the Homepage",
+                "description": "Emma opens the website and sees a bright, playful interface with containers that look like seashells and buttons in crimson red.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "The page loads with a cartoon-style layout featuring seashell backgrounds for containers and crimson-colored interactive components."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Game interface allowing children to sort waste items into correct recycling containers",
+        "user_persona": "A curious 9-year-old eager to play the recycling game.",
+        "user_goal": "To drag and drop a cartoon waste item into the matching recycling bin.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Game",
+                "description": "Jake sees several waste item icons on the left and four labeled recycling bins on the right.",
+                "action": "Observe the game interface with draggable items and bins.",
+                "expected_outcome": "Cartoon-style waste items are displayed on one side, and four clearly labeled recycling bins with seashell backgrounds appear on the other."
+            },
+            {
+                "step": 2,
+                "title": "Dragging an Item",
+                "description": "Jake picks up a cartoon plastic bottle and drags it toward the plastic bin.",
+                "action": "Drag the plastic bottle image onto the 'Plastic' bin.",
+                "expected_outcome": "The item follows the cursor during drag and can be dropped into the bin."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time feedback system that informs kids whether their sorting decisions are correct or incorrect",
+        "user_persona": "A 7-year-old learning how to recycle properly.",
+        "user_goal": "To know instantly if she sorted the item correctly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sorting a Waste Item",
+                "description": "Sophie drops a paper item into the paper bin and waits to see if she did it right.",
+                "action": "Drop a paper item into the 'Paper' bin.",
+                "expected_outcome": "A popup appears saying 'Great job!' with a happy emoji and a cheerful sound plays."
+            },
+            {
+                "step": 2,
+                "title": "Making a Mistake",
+                "description": "Next, Sophie accidentally drops a glass jar into the paper bin.",
+                "action": "Drop a glass item into the 'Paper' bin.",
+                "expected_outcome": "A popup says 'Try again!' with a gentle correction message and a soft chime plays."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reward and recognition system that provides incentives for correct recycling choices",
+        "user_persona": "A competitive 10-year-old aiming to earn as many stars as possible.",
+        "user_goal": "To earn a star every time he sorts an item correctly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Correct Sorting Action",
+                "description": "Leo drops a correct item into the matching bin and watches his reward counter.",
+                "action": "Drag and drop a correct item into its bin.",
+                "expected_outcome": "A star icon animates near the top-right corner, and the reward counter increases by one."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Leaderboard feature displaying top-performing players to encourage competition",
+        "user_persona": "A determined 11-year-old wanting to see if she made it to the top of the leaderboard.",
+        "user_goal": "To scroll through the leaderboard and find her name among the top players.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Leaderboard",
+                "description": "Maya scrolls down to the bottom of the page to see the leaderboard.",
+                "action": "Scroll to the leaderboard section.",
+                "expected_outcome": "A scrollable panel shows player names, avatars, and scores in descending order."
+            },
+            {
+                "step": 2,
+                "title": "Finding Her Name",
+                "description": "She scrolls down further and spots her username ranked 5th.",
+                "action": "Scroll vertically within the leaderboard container.",
+                "expected_outcome": "More leaderboard entries become visible, including Maya's entry with her avatar and score."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to manage game data, player scores, and leaderboard information",
+        "user_persona": "A returning player logging in to continue improving his score.",
+        "user_goal": "To have his sorting actions recorded and reflected in the leaderboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Playing the Game",
+                "description": "Ethan completes a round of sorting items correctly.",
+                "action": "Complete a sorting round and submit results via frontend.",
+                "expected_outcome": "POST request is sent to /api/game endpoint, and Ethan's score updates in real-time on the leaderboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database connection to PostgreSQL using environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+        "user_persona": "A developer checking if the app connects to the database correctly.",
+        "user_goal": "To confirm that the backend service successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Developer runs the backend service locally and checks logs.",
+                "action": "Start the backend server using npm run dev.",
+                "expected_outcome": "Logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Player authentication or identification system to track individual progress and scores",
+        "user_persona": "A new player joining the game for the first time.",
+        "user_goal": "To enter a username and start playing with a unique identity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering a Username",
+                "description": "Nina fills out a simple form with her chosen username.",
+                "action": "Enter a unique username and click Register.",
+                "expected_outcome": "System creates a new player profile with a UUID and returns an identifier for tracking."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive game elements with engaging animations and sound effects for children",
+        "user_persona": "A playful 6-year-old enjoying the game's lively interactions.",
+        "user_goal": "To hear fun sounds and see animations when sorting items.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Dropping an Item",
+                "description": "Zoe drops a correct item and watches it bounce before disappearing.",
+                "action": "Drop an item into the correct bin.",
+                "expected_outcome": "Item bounces slightly, disappears with animation, and a cheerful jingle plays."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Educational content explaining proper waste recycling methods integrated into gameplay",
+        "user_persona": "A curious 9-year-old wanting to learn more about recycling.",
+        "user_goal": "To understand what items go in each bin by clicking the info icons.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Recycling Info",
+                "description": "Owen clicks the info icon next to the plastic bin.",
+                "action": "Click the 'i' icon beside the Plastic bin.",
+                "expected_outcome": "A modal pops up showing cartoon illustrations and text explaining what goes in the plastic bin."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Progress tracking system to show children's improvement over time",
+        "user_persona": "A motivated 10-year-old checking how much better she's gotten.",
+        "user_goal": "To view her progress chart and celebrate improvements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Progress Dashboard",
+                "description": "Lily clicks the 'My Progress' tab to see her stats.",
+                "action": "Click the 'My Progress' navigation link.",
+                "expected_outcome": "A dashboard loads showing line charts of her accuracy rate and score growth over time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design that works across different devices including tablets and desktops",
+        "user_persona": "A kid accessing the game from his mom’s tablet during a car ride.",
+        "user_goal": "To play the game smoothly on a tablet without layout issues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Game on Tablet",
+                "description": "Max opens the game on his mom’s tablet and begins playing.",
+                "action": "Open the game URL on a tablet browser.",
+                "expected_outcome": "The layout adjusts to fit the tablet screen with appropriately sized touch targets and readable fonts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'npm run install:all' script to install both frontend and backend dependencies",
+        "user_persona": "A developer setting up the project for the first time.",
+        "user_goal": "To quickly install all necessary dependencies for frontend and backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Dev runs the command to install everything at once.",
+                "action": "Run 'npm run install:all' in terminal.",
+                "expected_outcome": "Both client and server dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'npm run dev' script to start both frontend and backend concurrently",
+        "user_persona": "A developer ready to begin coding on both frontend and backend.",
+        "user_goal": "To launch both development servers with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Dev runs the command to start both frontend and backend dev servers.",
+                "action": "Run 'npm run dev' in terminal.",
+                "expected_outcome": "Both frontend and backend servers start concurrently with logs prefixed as CLIENT and SERV."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data persistence for storing player scores, leaderboard rankings, and game statistics",
+        "user_persona": "A frequent player returning after a week to continue improving.",
+        "user_goal": "To see that his previous scores and progress are still saved.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resuming Play",
+                "description": "Alex logs in and checks his leaderboard position and past scores.",
+                "action": "Log in and navigate to leaderboard and progress sections.",
+                "expected_outcome": "Previous scores, ranking, and historical data are accurately retrieved from the database."
+            }
+        ]
+    }
+]

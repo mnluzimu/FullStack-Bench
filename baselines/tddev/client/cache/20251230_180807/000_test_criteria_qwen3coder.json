@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "A wheel of fortune interface with visual spinning animation",
+        "user_persona": "A casual visitor excited to try their luck.",
+        "user_goal": "To spin the wheel and see a smooth animation indicating the result.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens the website and immediately sees the large Wheel of Fortune centered on the screen with a big SPIN button below it.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "The homepage loads successfully, showing the wheel and a dark red SPIN button against a light gray background."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over Spin Button",
+                "description": "Curious about how it feels, Sarah hovers her mouse over the SPIN button to see if there's any feedback.",
+                "action": "Hover over the SPIN button.",
+                "expected_outcome": "The button slightly increases in size and gains a subtle shadow, providing visual feedback."
+            },
+            {
+                "step": 3,
+                "title": "Spinning the Wheel",
+                "description": "Ready to play, Sarah clicks the SPIN button to start the wheel's rotation.",
+                "action": "Click the SPIN button.",
+                "expected_outcome": "The wheel begins rotating with a sound effect. The SPIN button becomes disabled during the spin."
+            },
+            {
+                "step": 4,
+                "title": "Receiving Result",
+                "description": "After the wheel slows down and stops, Sarah sees the result highlighted and hears a win sound.",
+                "action": "Wait for the spin animation to complete.",
+                "expected_outcome": "The wheel stops smoothly on a prize segment. A brief display confirms the result before transitioning to a win confirmation modal or updating the UI accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Prize display section showing all available prizes",
+        "user_persona": "A curious user wanting to know what prizes are available.",
+        "user_goal": "To view a complete list of all available prizes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Prize List Page",
+                "description": "Mark notices a link to 'All Prizes' and decides to explore what he could potentially win.",
+                "action": "Click the 'All Prizes' navigation link.",
+                "expected_outcome": "The prize list page loads, displaying a grid of cards showing images, names, and descriptions of all prizes."
+            },
+            {
+                "step": 2,
+                "title": "Scrolling Through Prizes",
+                "description": "There are many prizes, so Mark scrolls down to see more options.",
+                "action": "Scroll vertically through the prize cards.",
+                "expected_outcome": "The page scrolls smoothly, revealing additional prize cards as they come into view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User winning records page displaying individual history",
+        "user_persona": "A returning player interested in reviewing past wins.",
+        "user_goal": "To view a history of previously won prizes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Win History",
+                "description": "Anna remembers winning something last week and wants to check her records.",
+                "action": "Navigate to the '/history' route.",
+                "expected_outcome": "The My Winning History page loads, showing a chronological list of Anna’s previous spins with dates and associated prizes."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Long History",
+                "description": "Anna has spun the wheel many times and needs to scroll to see older wins.",
+                "action": "Scroll vertically through the history list.",
+                "expected_outcome": "Older entries become visible as she scrolls down without performance issues."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to manage wheel spins and prize data",
+        "user_persona": "A developer validating backend functionality.",
+        "user_goal": "To verify that backend endpoints respond correctly to frontend requests.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Prizes",
+                "description": "A developer sends a GET request to the prize endpoint to confirm prize data is retrievable.",
+                "action": "Send GET request to /api/prizes.",
+                "expected_outcome": "Returns a JSON array containing all active prize objects with correct schema fields."
+            },
+            {
+                "step": 2,
+                "title": "Recording a Spin Outcome",
+                "description": "After simulating a spin, the developer posts the outcome to record it.",
+                "action": "Send POST request to /api/spins with a valid payload.",
+                "expected_outcome": "Server responds with success status and stores the spin result in the database."
+            },
+            {
+                "step": 3,
+                "title": "Retrieving User History",
+                "description": "Developer checks whether a specific user’s history can be retrieved.",
+                "action": "Send GET request to /api/user/history?identifier=user123.",
+                "expected_outcome": "Returns a JSON array of spin history records linked to user123."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database integration using PostgreSQL with specified environment variables",
+        "user_persona": "System administrator setting up production deployment.",
+        "user_goal": "To ensure the app connects properly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Admin configures the required environment variables for database connectivity.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Environment variables are set correctly in the backend runtime context."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Database Connection",
+                "description": "Admin runs a test query to validate that the backend can connect to the database.",
+                "action": "Run a sample query via backend service to access 'prizes' table.",
+                "expected_outcome": "Query executes successfully, returning rows from the prizes table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all dynamic data from backend APIs",
+        "user_persona": "End-user loading pages with real-time content.",
+        "user_goal": "To see accurate and updated information pulled from backend services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading the Prize Page",
+                "description": "Jamie visits the prize list page expecting to see current offerings.",
+                "action": "Visit the /prizes route.",
+                "expected_outcome": "Frontend makes a call to /api/prizes and populates the grid with live prize data."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing User History",
+                "description": "Jamie reloads their history page to make sure new wins appear.",
+                "action": "Refresh the /history page.",
+                "expected_outcome": "New spin results are fetched from /api/user/history and rendered instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to record and store user winning results",
+        "user_persona": "Player completing a spin session.",
+        "user_goal": "To have their latest win saved and accessible later.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Completing a Spin",
+                "description": "After spinning the wheel, Alex wins a prize and expects it to be recorded.",
+                "action": "Complete a spin cycle initiated by clicking the SPIN button.",
+                "expected_outcome": "Once the spin finishes, a POST request is made to /api/spins to save the outcome."
+            },
+            {
+                "step": 2,
+                "title": "Checking Saved Record",
+                "description": "Alex navigates to their history to confirm the recent win was logged.",
+                "action": "Navigate to /history page.",
+                "expected_outcome": "The newly added entry appears at the top of the history list with matching timestamp and prize."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive spin button to trigger wheel rotation",
+        "user_persona": "First-time user exploring core gameplay.",
+        "user_goal": "To use the SPIN button to initiate a round.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating the Spin Button",
+                "description": "Emma finds the SPIN button beneath the wheel and prepares to interact.",
+                "action": "Identify and hover over the SPIN button.",
+                "expected_outcome": "Button visually reacts with scaling and shadow effects."
+            },
+            {
+                "step": 2,
+                "title": "Triggering the Spin",
+                "description": "Eager to begin, Emma clicks the button to start the game.",
+                "action": "Click the SPIN button.",
+                "expected_outcome": "Wheel starts rotating with sound effect and button disables itself until the spin completes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Prize list page accessible to all users",
+        "user_persona": "Guest visitor without account access.",
+        "user_goal": "To browse available prizes without needing authentication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Public Prize List",
+                "description": "Without logging in, Noah clicks on the 'View All Prizes' link.",
+                "action": "Click the public prize list link.",
+                "expected_outcome": "The prize list page loads without requiring authentication."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Available Rewards",
+                "description": "Noah browses the displayed prize cards freely.",
+                "action": "Scroll and observe the prize details.",
+                "expected_outcome": "All prize cards render fully and provide clear visuals and descriptions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User-specific winning records retrieval and display",
+        "user_persona": "Logged-in user checking personal stats.",
+        "user_goal": "To view only my own spin history.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Personal History",
+                "description": "Lena logs in and goes straight to her win history page.",
+                "action": "Navigate to /history.",
+                "expected_outcome": "Page displays Lena’s exclusive history based on her user identifier."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Privacy of Data",
+                "description": "Lena verifies that none of her friend’s wins show up here.",
+                "action": "Scan the list for foreign identifiers.",
+                "expected_outcome": "Only Lena’s spins are present in the history list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Light gray background color applied site-wide",
+        "user_persona": "Design reviewer auditing consistency.",
+        "user_goal": "To confirm uniformity of background color across all pages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Background",
+                "description": "Auditor inspects the homepage for proper background color usage.",
+                "action": "Open homepage and inspect body styles.",
+                "expected_outcome": "Background color is set to #f0f0f0 globally."
+            },
+            {
+                "step": 2,
+                "title": "Cross-Page Consistency Check",
+                "description": "Auditor moves between multiple pages to verify consistent styling.",
+                "action": "Navigate to /prizes and /history pages.",
+                "expected_outcome": "Each page maintains the same light gray background tone."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dark red color used for primary component styling",
+        "user_persona": "UX designer verifying brand adherence.",
+        "user_goal": "To ensure primary interactive elements use the correct dark red theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking SPIN Button Styling",
+                "description": "Designer examines the most prominent UI element — the SPIN button.",
+                "action": "Inspect the SPIN button CSS properties.",
+                "expected_outcome": "Button background and border colors match #8B0000."
+            },
+            {
+                "step": 2,
+                "title": "Validating Other Components",
+                "description": "Designer checks other key components like headers and icons.",
+                "action": "Inspect headings and interactive elements throughout the app.",
+                "expected_outcome": "All primary styled components consistently apply the dark red color palette."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with install:all script",
+        "user_persona": "Developer setting up project locally.",
+        "user_goal": "To install dependencies for both frontend and backend simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Dev clones the repo and runs the convenience install command.",
+                "action": "Execute `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend dependency trees are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with dev script",
+        "user_persona": "Developer starting local development environment.",
+        "user_goal": "To launch both frontend and backend servers together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Dev Servers",
+                "description": "Dev wants to work on features involving both client and server logic.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend dev server starts on one port and backend server on another concurrently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and mobile views",
+        "user_persona": "Mobile user accessing the site on smartphone.",
+        "user_goal": "To navigate and interact seamlessly on smaller screens.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile Device",
+                "description": "Riley opens the site on their phone to try the wheel game.",
+                "action": "Load homepage on mobile browser.",
+                "expected_outcome": "Site layout adjusts responsively; wheel and buttons remain usable on small screen."
+            },
+            {
+                "step": 2,
+                "title": "Interacting via Touchscreen",
+                "description": "Riley taps the SPIN button instead of clicking it.",
+                "action": "Tap the SPIN button using touch interface.",
+                "expected_outcome": "Same behavior occurs as with mouse click — wheel spins and button disables appropriately."
+            }
+        ]
+    }
+]

@@ -1,0 +1,17 @@
+[
+    "A frontend HTML editor with live preview functionality",
+    "Code editing mode with syntax highlighting for HTML",
+    "Text editing mode that automatically converts to HTML",
+    "Project management system for organizing multiple HTML documents, images, and files",
+    "Ability to save and reuse template pages",
+    "Basic user guide accessible within the application",
+    "Cross-platform compatibility for the editor interface",
+    "Backend API integration for dynamic data handling",
+    "PostgreSQL database connection using specified environment variables",
+    "Frontend fetches all data dynamically from backend APIs",
+    "Repository package.json configured with npm run install:all for frontend and backend installation",
+    "Repository package.json configured with npm run dev to start frontend and backend concurrently",
+    "UI styled with honeydew background color and dark olive green component color",
+    "File upload and management capabilities for images and other assets",
+    "User session or local storage for saving project states and templates"
+]

@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "Display real-time solar power generation data",
+        "user_persona": "A homeowner monitoring their solar energy system.",
+        "user_goal": "To see the current solar power generation in kW on the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Solar Generation Card",
+                "description": "Maria opens the dashboard and looks for her solar system's live performance. She sees the 'Solar Power Generation' card prominently displayed.",
+                "action": "Navigate to the real-time data section.",
+                "expected_outcome": "The 'Solar Power Generation' card is visible with a numerical value indicating current kW output, styled with honeydew background and dark olive green text."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Data Manually",
+                "description": "Maria notices the value hasn't updated recently and decides to manually refresh it by clicking the refresh icon next to the title.",
+                "action": "Click the refresh icon located on the card.",
+                "expected_outcome": "The displayed value updates instantly to reflect the latest reading fetched from the realTimeDataAPI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display real-time power consumption data",
+        "user_persona": "An environmentally conscious user tracking home electricity usage.",
+        "user_goal": "To monitor how much power their household is currently consuming.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Consumption Metrics",
+                "description": "John logs into the dashboard to check his home’s current power consumption. He locates the 'Power Consumption' card among other real-time metrics.",
+                "action": "Look at the real-time data section.",
+                "expected_outcome": "The 'Power Consumption' card displays the current usage in kW, matching the specified honeydew and dark olive green styling."
+            },
+            {
+                "step": 2,
+                "title": "Manual Refresh of Consumption Value",
+                "description": "Curious if there was a change, John clicks the refresh icon to get an updated reading without waiting for auto-refresh.",
+                "action": "Click the refresh icon on the 'Power Consumption' card.",
+                "expected_outcome": "The consumption value updates immediately based on new data retrieved from the realTimeDataAPI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display real-time battery percentage data",
+        "user_persona": "A homeowner reliant on stored solar energy during off-peak hours.",
+        "user_goal": "To know how much charge remains in their solar battery storage unit.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Battery Status",
+                "description": "Lisa checks her dashboard after returning home to verify that her solar battery has enough charge to cover evening needs.",
+                "action": "View the real-time battery percentage card.",
+                "expected_outcome": "A progress bar-style card labeled 'Battery Level' visually indicates the current percentage with appropriate styling."
+            },
+            {
+                "step": 2,
+                "title": "Triggering a Manual Update",
+                "description": "Noticing the percentage seems unchanged, Lisa clicks the refresh button to confirm its accuracy.",
+                "action": "Click the refresh icon associated with the battery card.",
+                "expected_outcome": "The battery level updates dynamically with fresh data pulled from the realTimeDataAPI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide historical data query functionality",
+        "user_persona": "A facility manager reviewing monthly energy efficiency reports.",
+        "user_goal": "To retrieve past solar and consumption data for reporting purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Historical Query Interface",
+                "description": "David navigates to the historical data section where he finds a form to specify the date range and filters needed.",
+                "action": "Open the historical data query form.",
+                "expected_outcome": "A form appears with fields for Start Date, End Date, and filter checkboxes, all styled according to design guidelines."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Historical Data Request",
+                "description": "After selecting last month's dates and choosing relevant filters, David submits the request to fetch the data.",
+                "action": "Fill out the form and click 'Fetch Historical Data'.",
+                "expected_outcome": "The system sends the selected parameters to the historicalDataAPI and retrieves matching records for further analysis."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show trend analysis for historical solar data",
+        "user_persona": "An analyst evaluating long-term solar performance patterns.",
+        "user_goal": "To analyze solar generation trends over several weeks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Trend Visualization",
+                "description": "Sarah selects a wide date range and requests historical data which includes trend visualizations.",
+                "action": "Submit a query covering multiple weeks.",
+                "expected_outcome": "Charts appear showing solar generation trends over time, rendered with dark olive green lines against a honeydew background."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Different Trends",
+                "description": "She scrolls down to explore additional trend graphs provided below the main chart area.",
+                "action": "Scroll through the trend visualization section.",
+                "expected_outcome": "Different trend representations load smoothly as she scrolls, maintaining consistent visual style."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include chart visualization for data analysis",
+        "user_persona": "A technician diagnosing inconsistencies in solar output.",
+        "user_goal": "To inspect detailed solar data points using interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting With Chart Data Points",
+                "description": "Mike hovers over a spike in the solar generation line graph to understand more about that moment.",
+                "action": "Hover over a peak data point on the chart.",
+                "expected_outcome": "A tooltip appears displaying the exact timestamp and kW value for that data point."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Dataset Visibility",
+                "description": "To focus better, Mike hides the consumption dataset temporarily by clicking on its label in the chart legend.",
+                "action": "Click the legend item for 'Power Consumption'.",
+                "expected_outcome": "The consumption line disappears from the chart, leaving only the solar generation curve visible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set background color to honeydew",
+        "user_persona": "A UI designer ensuring brand consistency across dashboards.",
+        "user_goal": "To confirm the entire dashboard uses honeydew (#F0FFF0) as the background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Dashboard Background Color",
+                "description": "Emma inspects the dashboard layout to ensure the overall aesthetic aligns with company branding standards.",
+                "action": "Observe the full dashboard visually.",
+                "expected_outcome": "Every section of the dashboard—including real-time cards, forms, and charts—uses #F0FFF0 (honeydew) as the base background color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use dark olive green for component styling",
+        "user_persona": "A frontend developer validating UI implementation.",
+        "user_goal": "To verify that interactive elements use dark olive green (#556B2F) for styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Component Styling",
+                "description": "Tom examines various components such as buttons, card titles, and chart axes to confirm correct color usage.",
+                "action": "Review key UI components visually.",
+                "expected_outcome": "All borders, texts, and highlight elements on interactive components are styled with #556B2F (dark olive green)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Organize dashboard into real-time data display section",
+        "user_persona": "A first-time user exploring the dashboard layout.",
+        "user_goal": "To quickly locate real-time solar metrics at a glance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Real-Time Section Layout",
+                "description": "Alex lands on the dashboard and scans the upper portion expecting to find critical real-time information.",
+                "action": "Scan the top region of the dashboard.",
+                "expected_outcome": "Three clearly labeled cards—Solar Power Generation, Power Consumption, Battery Percentage—are arranged horizontally in the top section."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create historical data query interface",
+        "user_persona": "A regular user needing periodic access to archived data.",
+        "user_goal": "To efficiently input criteria and retrieve historical data entries.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using the Historical Query Form",
+                "description": "Raj enters specific start and end dates along with desired filters to extract meaningful historical insights.",
+                "action": "Input dates and select filters in the query form.",
+                "expected_outcome": "Form fields accept user input correctly, and submit button triggers proper API communication upon activation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement chart analysis tools",
+        "user_persona": "A researcher preparing visual documentation for stakeholders.",
+        "user_goal": "To manipulate and export chart visuals for inclusion in presentations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Activating Zoom Tool",
+                "description": "Nina wants to zoom into a specific fluctuation pattern shown in the chart to make precise observations.",
+                "action": "Click the 'Zoom In' tool beneath the chart.",
+                "expected_outcome": "Chart allows zooming into selected regions, enhancing readability of small variations."
+            },
+            {
+                "step": 2,
+                "title": "Exporting Chart as Image",
+                "description": "Having finalized the view, Nina exports the chart image for her presentation slides.",
+                "action": "Click the 'Export PNG' option.",
+                "expected_outcome": "A downloadable PNG file of the current chart view is generated and ready for download."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to view solar generation trends over time",
+        "user_persona": "A homeowner comparing seasonal solar production changes.",
+        "user_goal": "To observe how solar generation varied throughout the previous quarter.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting Quarterly Solar Trends",
+                "description": "Emily sets the date range to span the last three months and queries historical data focused on solar generation.",
+                "action": "Select quarterly date range and submit query.",
+                "expected_outcome": "A line chart loads showing solar generation fluctuations over the selected period, with axis labels reflecting timestamps and kW values."
+            },
+            {
+                "step": 2,
+                "title": "Examining Specific Data Points",
+                "description": "Emily hovers over certain peaks and dips to understand contributing factors behind those readings.",
+                "action": "Hover over individual data points on the chart.",
+                "expected_outcome": "Tooltip overlays provide precise datetime stamps and corresponding kW outputs for hovered data points."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow filtering and date range selection for historical data",
+        "user_persona": "A utility auditor cross-verifying reported energy figures.",
+        "user_goal": "To isolate specific types of historical data over custom periods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Customizing Filter Criteria",
+                "description": "Marcus specifies both a narrow date window and enables only the 'Solar Generation' filter to focus his review.",
+                "action": "Choose date range and enable 'Solar Generation' filter.",
+                "expected_outcome": "Selected dates and active filters update internally and prepare accurate data subset for retrieval."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Customized Query",
+                "description": "With settings confirmed, Marcus submits the refined query to pull targeted historical data.",
+                "action": "Click the 'Fetch Historical Data' button.",
+                "expected_outcome": "Only solar generation records falling within the chosen timeframe are returned and presented."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide real-time data refresh capability",
+        "user_persona": "A site supervisor overseeing continuous operations remotely.",
+        "user_goal": "To keep real-time data updated automatically but have control over frequency.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Disabling Auto Refresh Temporarily",
+                "description": "While troubleshooting an anomaly, Olivia disables auto-refresh to stabilize the numbers on screen.",
+                "action": "Toggle the auto-refresh switch off.",
+                "expected_outcome": "Automatic data fetching stops; values remain static until manually refreshed or re-enabled."
+            },
+            {
+                "step": 2,
+                "title": "Resuming Auto Updates",
+                "description": "Once satisfied with adjustments, Olivia turns auto-refresh back on to resume normal operation.",
+                "action": "Toggle the auto-refresh switch back on.",
+                "expected_outcome": "Dashboard resumes periodic updates every 30 seconds by default, pulling live data continuously."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include navigation between real-time and historical views",
+        "user_persona": "A casual user switching contexts frequently during a session.",
+        "user_goal": "To seamlessly alternate between viewing live stats and historical trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Switching to Historical View",
+                "description": "After checking current conditions, Ben clicks on the 'Historical View' tab to dive deeper into past performances.",
+                "action": "Click the 'Historical View' tab header.",
+                "expected_outcome": "Content area transitions smoothly to reveal the historical query form and chart sections."
+            },
+            {
+                "step": 2,
+                "title": "Returning to Real-Time View",
+                "description": "Having reviewed historical data, Ben switches back to see ongoing metrics again.",
+                "action": "Click the 'Real-Time View' tab header.",
+                "expected_outcome": "Dashboard content shifts back to show real-time cards and active metrics panels instantly."
+            }
+        ]
+    }
+]

@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A trivia enthusiast who wants to explore available contests.",
+        "user_goal": "To navigate to the Contests page and view the list of available trivia contests fetched from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contests Page",
+                "description": "Sarah opens the app and wants to see what trivia contests are available. She clicks on the 'Contests' link in the navigation bar.",
+                "action": "Click on the 'Contests' navigation link.",
+                "expected_outcome": "The URL updates and the content area dynamically loads the contests page, displaying a grid of contest cards fetched from the backend API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer checking if the backend is properly connected to the database.",
+        "user_goal": "To verify that the backend server can successfully connect to the PostgreSQL database using the specified environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer starts the backend server which attempts to establish a connection to the PostgreSQL database using the environment variables.",
+                "action": "Start the backend server using `npm run dev`.",
+                "expected_outcome": "The server initializes successfully and logs a message indicating a successful connection to the PostgreSQL database at localhost:5432 with the specified credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management system",
+        "user_persona": "A returning user who wants to log in to participate in a contest.",
+        "user_goal": "To log in to the application using valid credentials and gain access to the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Page",
+                "description": "Alex visits the app and wants to log in. He finds and clicks the 'Login' button.",
+                "action": "Click on the 'Login' button.",
+                "expected_outcome": "The login form with username/email and password fields is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "Alex enters his valid username and password and submits the form.",
+                "action": "Enter valid username and password, then click the 'Submit' button.",
+                "expected_outcome": "The system authenticates Alex, stores a JWT token, and redirects him to the dashboard with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest browsing and search functionality",
+        "user_persona": "A user looking for a specific type of trivia contest.",
+        "user_goal": "To find contests by applying filters and browsing the results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "Jamie wants to find easy-level Science contests. She selects 'Science' under category and 'Easy' under difficulty level.",
+                "action": "Select 'Science' from category dropdown and 'Easy' from difficulty dropdown.",
+                "expected_outcome": "The contest list updates dynamically to show only contests matching the selected filters."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Results",
+                "description": "Jamie scrolls through the filtered contest list to find one she likes.",
+                "action": "Scroll through the filtered contest list.",
+                "expected_outcome": "Additional contest cards load progressively as Jamie scrolls down the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest enrollment and registration feature",
+        "user_persona": "A user ready to join a contest.",
+        "user_goal": "To enroll in a selected trivia contest and get confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Contest Details",
+                "description": "Taylor clicks on a contest card to see more details about it.",
+                "action": "Click on a contest card.",
+                "expected_outcome": "The contest details page loads, showing title, description, schedule, and an 'Enroll Now' button."
+            },
+            {
+                "step": 2,
+                "title": "Enrolling in Contest",
+                "description": "Taylor decides to join the contest and clicks the 'Enroll Now' button.",
+                "action": "Click the 'Enroll Now' button.",
+                "expected_outcome": "A confirmation modal appears, confirming successful enrollment and offering a link to the contest lobby."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive question display interface for live contests",
+        "user_persona": "A contestant participating in a live trivia contest.",
+        "user_goal": "To answer contest questions and navigate through them until submission.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Answering First Question",
+                "description": "Jordan is in a live contest and sees the first multiple-choice question. He selects an answer.",
+                "action": "Select an answer option for the first question.",
+                "expected_outcome": "The selected option is visually highlighted, and the 'Next Question' button becomes active."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Questions",
+                "description": "Jordan clicks 'Next Question' to move to the second question.",
+                "action": "Click the 'Next Question' button.",
+                "expected_outcome": "The second question is loaded, preserving his previous answer selection."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Final Answer",
+                "description": "On the last question, Jordan selects his answer and clicks 'Submit Answers'.",
+                "action": "Select answer for last question and click 'Submit Answers'.",
+                "expected_outcome": "All answers are submitted to the backend, and Jordan is redirected to the score summary screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Answer submission form with validation",
+        "user_persona": "A contestant who accidentally skips a question.",
+        "user_goal": "To be prompted to fill in missing answers before submitting.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Skipping a Question",
+                "description": "Casey is answering questions but accidentally skips one and tries to proceed.",
+                "action": "Attempt to click 'Next Question' without selecting an answer.",
+                "expected_outcome": "An inline error message appears below the unanswered question, and the input field is highlighted in red."
+            },
+            {
+                "step": 2,
+                "title": "Correcting and Proceeding",
+                "description": "Casey fills in the skipped answer and tries again.",
+                "action": "Select an answer and click 'Next Question'.",
+                "expected_outcome": "The error message disappears, and the next question loads successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time scoring calculation and display",
+        "user_persona": "A contestant wanting immediate feedback on performance.",
+        "user_goal": "To see real-time score updates as answers are processed.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Answers",
+                "description": "Morgan finishes answering all questions and submits her responses.",
+                "action": "Click 'Submit Answers' button.",
+                "expected_outcome": "A WebSocket connection is established to receive real-time score updates."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Score Updates",
+                "description": "As answers are processed, Morgan sees her score updating live on the scoreboard.",
+                "action": "Wait for WebSocket events to trigger score updates.",
+                "expected_outcome": "The displayed score value increases dynamically without requiring a page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Leaderboard showing user rankings and scores",
+        "user_persona": "A competitive player checking how they rank against others.",
+        "user_goal": "To view the leaderboard and see their position among other contestants.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Leaderboard",
+                "description": "Riley wants to see how he ranks compared to others. He navigates to the leaderboard page.",
+                "action": "Click on the 'Leaderboard' navigation link.",
+                "expected_outcome": "The leaderboard page loads, showing a ranked list of contestants sorted by score and completion time."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Rankings",
+                "description": "Riley scrolls through the leaderboard to find his name.",
+                "action": "Scroll down the leaderboard list.",
+                "expected_outcome": "Additional entries load progressively as Riley scrolls, maintaining smooth performance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile page displaying personal stats and contest history",
+        "user_persona": "A user reviewing their past performance.",
+        "user_goal": "To view personal statistics and detailed history of participated contests.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Profile Page",
+                "description": "Casey wants to review his overall performance. He navigates to his profile page.",
+                "action": "Click on the 'Profile' navigation link.",
+                "expected_outcome": "The profile dashboard loads, showing performance summary cards and recent contest history."
+            },
+            {
+                "step": 2,
+                "title": "Checking Contest Details",
+                "description": "Casey clicks on a recent contest entry to see detailed results.",
+                "action": "Click on a contest entry in the history section.",
+                "expected_outcome": "A detailed result view opens, showing question-by-question breakdown of his answers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin panel for creating and managing trivia contests",
+        "user_persona": "An administrator setting up new trivia contests.",
+        "user_goal": "To create a new trivia contest using the admin panel.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Panel",
+                "description": "Admin Sam logs in and accesses the admin dashboard to create a new contest.",
+                "action": "Navigate to /admin/contests after logging in with admin privileges.",
+                "expected_outcome": "The admin dashboard loads with a sidebar menu showing administrative modules and a list of existing contests."
+            },
+            {
+                "step": 2,
+                "title": "Creating New Contest",
+                "description": "Sam clicks to create a new contest and fills out the contest creation form.",
+                "action": "Click 'Create New Contest' and fill in title, description, category, difficulty, start date, duration, and questions.",
+                "expected_outcome": "A multi-step form wizard opens, allowing Sam to configure and save the new contest as a draft or published version."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, contests, questions, answers, and scores",
+        "user_persona": "A database administrator verifying table relationships.",
+        "user_goal": "To confirm that database tables are correctly structured with proper relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Database Tables",
+                "description": "DBA Taylor connects to the PostgreSQL database to inspect the schema structure.",
+                "action": "Query the database to show table schemas and relationships.",
+                "expected_outcome": "Tables for users, contests, questions, answers, and scores are found with appropriate columns and foreign key constraints enforcing referential integrity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with beige as base color and saddle brown for components",
+        "user_persona": "A mobile user accessing the app on a smartphone.",
+        "user_goal": "To use the app comfortably on a mobile device with consistent styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing App on Mobile",
+                "description": "Alex opens the app on his smartphone and navigates to the homepage.",
+                "action": "Load the app on a mobile device with screen width < 768px.",
+                "expected_outcome": "The layout adjusts to a stacked mobile view with hamburger menu icon, maintaining beige background and saddle brown component accents."
+            },
+            {
+                "step": 2,
+                "title": "Resizing to Desktop",
+                "description": "Alex switches to desktop view to see how the layout adapts.",
+                "action": "Resize browser window to > 1024px width.",
+                "expected_outcome": "The layout transitions to a side-by-side desktop arrangement while preserving consistent color scheme and styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with npm run install:all for frontend and backend installation",
+        "user_persona": "A developer setting up the project for the first time.",
+        "user_goal": "To install all frontend and backend dependencies with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer Jordan clones the repository and needs to install all dependencies.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently, with terminal output showing progress from both installations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with npm run dev for concurrent frontend and backend development servers",
+        "user_persona": "A developer starting development work on the project.",
+        "user_goal": "To launch both frontend and backend development servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Developer Morgan is ready to start coding and needs to run both frontend and backend servers.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Both the Vite frontend development server and Node/Nodemon backend server start concurrently, with unified terminal output showing both processes running."
+            }
+        ]
+    }
+]

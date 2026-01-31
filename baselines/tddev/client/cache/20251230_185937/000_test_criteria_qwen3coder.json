@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Implement a multi-page web application with navigation between base, ranking, store, train, workers, upgrades, bank, messages, and reports pages",
+        "user_persona": "A new player exploring the game interface for the first time.",
+        "user_goal": "Navigate smoothly between different game sections using the top navigation menu.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Base Page",
+                "description": "Sarah opens the game and lands on her base page. She notices a navigation bar at the top with several options.",
+                "action": "Observe the fixed top navigation bar.",
+                "expected_outcome": "Navigation bar is visible with links to Base, Ranking, Store, Train, Workers, Upgrades, Bank, Messages, and Reports. Base link is highlighted as active."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Store",
+                "description": "Curious about what she can buy, Sarah clicks on the 'Store' link in the navigation bar.",
+                "action": "Click on the 'Store' navigation item.",
+                "expected_outcome": "Page navigates to the Store route, and the 'Store' link in the navigation bar is now highlighted as active."
+            },
+            {
+                "step": 3,
+                "title": "Checking Messages",
+                "description": "After browsing the store, Sarah wants to check if she received any messages and clicks the 'Messages' link.",
+                "action": "Click on the 'Messages' navigation item.",
+                "expected_outcome": "Page navigates to the Messages route, and the 'Messages' link in the navigation bar is now highlighted as active."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a race selection feature allowing players to choose from Humans, Dragonborns, Elves, and Dwarfs with unique attributes",
+        "user_persona": "A new player starting the game for the first time.",
+        "user_goal": "Choose a race to begin playing the game.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Race Selection Prompt",
+                "description": "On his first visit, Alex sees a modal with four race cards: Humans, Dragonborns, Elves, and Dwarfs. Each card shows unique bonuses.",
+                "action": "View the race selection modal.",
+                "expected_outcome": "Modal is displayed with four horizontal race cards, each showing name, icon, and attribute bonuses. Background is seashell, cards have crimson borders."
+            },
+            {
+                "step": 2,
+                "title": "Choosing a Race",
+                "description": "Alex decides to play as an Elf because of the magic bonus and clicks on the Elf card.",
+                "action": "Click on the 'Elves' race card.",
+                "expected_outcome": "A POST request is sent to /api/player/race assigning Elves to the player's profile, and the modal closes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create resource management system for gold, iron, wood, and wheat with real-time tracking",
+        "user_persona": "An active player managing her empire's economy.",
+        "user_goal": "Monitor her resource levels as they change during gameplay.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Resource Load",
+                "description": "Maria logs in and looks at the top of the screen to check her starting resources.",
+                "action": "Load any game page.",
+                "expected_outcome": "A GET request is made to /api/resources, and the status bar shows icons and counts for Gold, Iron, Wood, and Wheat with initial values."
+            },
+            {
+                "step": 2,
+                "title": "Real-Time Update",
+                "description": "While on the Workers page, Maria assigns a new worker, and her gold decreases instantly in the status bar.",
+                "action": "WebSocket event triggers a resource update.",
+                "expected_outcome": "Displayed resource numbers update in real-time without requiring a page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop city upgrade functionality allowing players to enhance their base infrastructure",
+        "user_persona": "A strategic player focused on building up his city.",
+        "user_goal": "Upgrade his Town Hall to increase city capacity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Upgrades Page",
+                "description": "James navigates to the Upgrades page to see what buildings he can improve.",
+                "action": "Navigate to the Upgrades page.",
+                "expected_outcome": "Grid layout is displayed showing structures like Barracks, Marketplace, Forge, Granary, and Town Hall with current levels and upgrade costs."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Upgrade",
+                "description": "James has enough resources and clicks the 'Upgrade' button next to his Town Hall.",
+                "action": "Click the 'Upgrade' button for Town Hall.",
+                "expected_outcome": "A POST request is sent to /api/city/upgrade/town_hall. Upon success, the Town Hall level increases and resources are deducted."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement worker management system for assigning and upgrading workforce",
+        "user_persona": "A player optimizing her resource production.",
+        "user_goal": "Assign an idle worker to gather more wood.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Workers Page",
+                "description": "Lisa goes to the Workers page to see how her workforce is allocated.",
+                "action": "Navigate to the Workers page.",
+                "expected_outcome": "Two-column view is displayed: left showing worker types and totals, right showing currently assigned workers by role."
+            },
+            {
+                "step": 2,
+                "title": "Assigning a Worker",
+                "description": "Seeing she has an idle Lumberjack, Lisa clicks 'Assign Worker' to put them to work.",
+                "action": "Click the 'Assign Worker' button for Lumberjacks.",
+                "expected_outcome": "A POST request is sent to /api/workers/assign, and the worker is added to the Lumberjack assignment list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design soldier training and upgrade capabilities with progression mechanics",
+        "user_persona": "A player preparing for upcoming battles.",
+        "user_goal": "Train a new Infantry unit to strengthen his army.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Going to Train Page",
+                "description": "Robert visits the Train page to see his military options.",
+                "action": "Navigate to the Train page.",
+                "expected_outcome": "Vertical tabs for Infantry, Archer, Mage, and Cavalry are displayed. Each tab shows stats and a 'Train Soldier' button."
+            },
+            {
+                "step": 2,
+                "title": "Starting Training",
+                "description": "Robert selects the Infantry tab and clicks 'Train Soldier' to begin the process.",
+                "action": "Click the 'Train Soldier' button under Infantry.",
+                "expected_outcome": "A POST request is sent to /api/train/soldier/infantry, adding the soldier to the training queue and starting a timer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build a ranking system displaying player standings and achievements",
+        "user_persona": "A competitive player aiming to climb the leaderboards.",
+        "user_goal": "Check his position in the Total Wealth rankings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Rankings",
+                "description": "Ethan navigates to the Ranking page to see how he compares to other players.",
+                "action": "Navigate to the Ranking page.",
+                "expected_outcome": "Leaderboard table is displayed showing rank, username, score, and category. Default sort may be by Total Wealth."
+            },
+            {
+                "step": 2,
+                "title": "Sorting by Metric",
+                "description": "Ethan wants to see the Military Power rankings and clicks the appropriate column header.",
+                "action": "Click on the 'Military Power' column header.",
+                "expected_outcome": "Table re-sorts to show players ranked by Military Power, with a GET request made to /api/ranking?sort_by=military_power."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create an in-game store for purchasing items, upgrades, and resources",
+        "user_persona": "A player looking to accelerate his progress with premium items.",
+        "user_goal": "Purchase a Resource Pack to boost his economy.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing the Store",
+                "description": "Nina visits the Store page to look for useful items.",
+                "action": "Navigate to the Store page.",
+                "expected_outcome": "Catalog grid is displayed showing items like Resource Packs, Worker Boosts, Training Speedups, and Special Artifacts with prices and 'Buy Now' buttons."
+            },
+            {
+                "step": 2,
+                "title": "Making a Purchase",
+                "description": "Nina finds a Resource Pack she wants and clicks the 'Buy Now' button.",
+                "action": "Click the 'Buy Now' button for a Resource Pack.",
+                "expected_outcome": "A POST request is sent to /api/store/buy/{item_id}. If successful, her resources increase and the item is applied."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop a banking system for resource storage and financial management",
+        "user_persona": "A cautious player who likes to save resources securely.",
+        "user_goal": "Deposit excess gold into the bank for safekeeping.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Bank",
+                "description": "Omar goes to the Bank page to manage his finances.",
+                "action": "Navigate to the Bank page.",
+                "expected_outcome": "Dashboard is displayed showing current bank balance, recent transactions, and forms for deposit/withdraw actions."
+            },
+            {
+                "step": 2,
+                "title": "Depositing Gold",
+                "description": "Omar fills in the amount of gold he wants to deposit and clicks the submit button.",
+                "action": "Fill deposit form and click submit.",
+                "expected_outcome": "A POST request is sent to /api/bank/deposit. His bank balance increases and his inventory gold decreases accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement messaging functionality for player communication",
+        "user_persona": "A social player who enjoys coordinating with allies.",
+        "user_goal": "Send a message to a fellow guild member.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Messages",
+                "description": "Priya navigates to the Messages page to catch up on conversations.",
+                "action": "Navigate to the Messages page.",
+                "expected_outcome": "Split-pane layout is displayed: left sidebar lists conversation threads with previews; main area shows message history for selected thread."
+            },
+            {
+                "step": 2,
+                "title": "Sending a Message",
+                "description": "Priya types a quick greeting into the reply box and hits the Send button.",
+                "action": "Type message and click 'Send' button.",
+                "expected_outcome": "A POST request is sent to /api/messages/send. The new message appears in the conversation thread."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design reporting system for battle outcomes and game events",
+        "user_persona": "A detail-oriented player who reviews all game activities.",
+        "user_goal": "Read a recent Battle Report to analyze his army's performance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Reports",
+                "description": "David visits the Reports page to see his latest activity logs.",
+                "action": "Navigate to the Reports page.",
+                "expected_outcome": "List view is displayed with collapsible report entries showing category icons, titles, dates, and unread indicators."
+            },
+            {
+                "step": 2,
+                "title": "Reading a Report",
+                "description": "David clicks on a Battle Results entry to expand and read the full details.",
+                "action": "Click on a Battle Results report entry.",
+                "expected_outcome": "Entry expands to show full content, and the report is marked as read (unread indicator disappears)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all game data is dynamically fetched from backend APIs with no hardcoded values",
+        "user_persona": "A player expecting accurate and up-to-date game information.",
+        "user_goal": "See fresh data every time he loads a page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading a Game Page",
+                "description": "When Marcus loads the Base page, he expects to see his current stats and resources.",
+                "action": "Load the Base page.",
+                "expected_outcome": "Parallel API calls are made to endpoints like /api/resources, /api/player, etc. UI components render data only after receiving responses."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Data Source",
+                "description": "Marcus inspects the network traffic to confirm that no mock data is being used.",
+                "action": "Inspect browser network requests.",
+                "expected_outcome": "All data originates from backend API endpoints under /api/*, with no local mock files or hardcoded values in use."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure backend to connect to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the game to a server.",
+        "user_goal": "Verify the backend connects correctly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "The developer sets the required database environment variables on the server.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Environment variables are correctly configured in the deployment environment."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Service",
+                "description": "The developer starts the backend service and checks the logs for successful database connection.",
+                "action": "Start the backend service.",
+                "expected_outcome": "Backend initializes successfully, connects to PostgreSQL using provided credentials, and creates necessary tables if they don't exist."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style the application with seashell background and crimson content blocks",
+        "user_persona": "A player with an eye for visual design consistency.",
+        "user_goal": "Experience a visually cohesive game interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Global Styling",
+                "description": "Amelia browses through different pages of the game, noting the visual theme.",
+                "action": "Navigate through multiple pages (Base, Store, Messages, etc.).",
+                "expected_outcome": "Every page has a seashell (#FFF5EE) background. Content blocks, buttons, and interactive elements consistently use crimson (#DC143C) styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up package.json with npm run install:all and npm run dev scripts for concurrent frontend and backend development",
+        "user_persona": "A new developer joining the project team.",
+        "user_goal": "Quickly set up and run the development environment locally.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The developer clones the repository and runs the installation command.",
+                "action": "Run 'npm run install:all' in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully in their respective directories."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With dependencies installed, the developer starts the development environment.",
+                "action": "Run 'npm run dev' in the root directory.",
+                "expected_outcome": "Frontend and backend servers start concurrently, allowing simultaneous development and testing of both layers."
+            }
+        ]
+    }
+]

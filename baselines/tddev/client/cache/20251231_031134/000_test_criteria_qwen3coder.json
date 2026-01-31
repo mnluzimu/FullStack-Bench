@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A new visitor exploring available phone service plans.",
+        "user_goal": "To view the list of service plans fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Service Plans Page",
+                "description": "Sarah opens the website and clicks on the 'Service Plans' link in the navigation bar to see what options are available.",
+                "action": "Click on the 'Service Plans' navigation link.",
+                "expected_outcome": "The page loads and displays a list of service plans retrieved from the backend API endpoint '/api/service-plans'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "user_persona": "A developer setting up the application locally.",
+        "user_goal": "To verify that the backend successfully connects to the PostgreSQL database using specified environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Backend Server",
+                "description": "Alex sets the required environment variables and starts the backend server to ensure it connects to the database.",
+                "action": "Run the backend server with correct environment variables set.",
+                "expected_outcome": "The backend initializes successfully and logs a successful connection to the PostgreSQL database at localhost:5432."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Service plan browsing functionality",
+        "user_persona": "A potential customer interested in comparing different phone service plans.",
+        "user_goal": "To browse through various service plans presented in a visually distinct layout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on the Service Plans Page",
+                "description": "Jamie visits the site and navigates to the service plans section to explore available offerings.",
+                "action": "Navigate to the Service Plans page.",
+                "expected_outcome": "A grid or list of service plan cards is displayed, each showing name, description, and price with olive drab borders on a light goldenrod background."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Plan Cards",
+                "description": "Jamie hovers over one of the plan cards to see a subtle elevation effect indicating interactivity.",
+                "action": "Hover over a service plan card.",
+                "expected_outcome": "The card slightly elevates or changes shade, providing visual feedback."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display detailed service plan information",
+        "user_persona": "A customer deciding between service plans.",
+        "user_goal": "To view comprehensive details of a selected service plan.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting a Plan",
+                "description": "Taylor sees a service plan they're interested in and clicks on it to learn more.",
+                "action": "Click on a service plan card.",
+                "expected_outcome": "The detailed view of the selected plan loads, showing full description, features, pricing, and other relevant details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Online customer support tool",
+        "user_persona": "An existing customer needing help with their account.",
+        "user_goal": "To submit a support ticket through the online tool.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Support Page",
+                "description": "Jordan goes to the support section to report an issue with their service.",
+                "action": "Click on the 'Support' link in the navigation bar.",
+                "expected_outcome": "The support page loads with a form for submitting tickets and a history panel."
+            },
+            {
+                "step": 2,
+                "title": "Submitting a Ticket",
+                "description": "Jordan fills out the subject and message fields and submits the form.",
+                "action": "Fill in the support form and click 'Submit Ticket'.",
+                "expected_outcome": "A success message appears confirming the ticket has been submitted, and the form resets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User account management functionality",
+        "user_persona": "An authenticated user updating their contact information.",
+        "user_goal": "To update their billing address and save the changes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Account Settings",
+                "description": "Casey logs in and navigates to the account management section to update personal details.",
+                "action": "Click on the 'Account' link after logging in.",
+                "expected_outcome": "The account settings page loads with editable fields for contact info and payment method."
+            },
+            {
+                "step": 2,
+                "title": "Updating Information",
+                "description": "Casey modifies the billing address field and clicks the save button.",
+                "action": "Edit the billing address field and click 'Save'.",
+                "expected_outcome": "The updated information is saved successfully, and a confirmation message is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Access to personal user details",
+        "user_persona": "A logged-in user checking their registered information.",
+        "user_goal": "To review their personal profile details securely.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Personal Details",
+                "description": "Morgan wants to confirm the phone number associated with their account.",
+                "action": "Navigate to the personal details section from the account menu.",
+                "expected_outcome": "A read-only display of Morgan's full name, date of birth, phone number, and registered email is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run install:all to install both frontend and backend dependencies",
+        "user_persona": "A developer setting up the project for the first time.",
+        "user_goal": "To install all necessary dependencies for both frontend and backend with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Riley clones the repository and runs the custom install script to prepare the development environment.",
+                "action": "Execute 'npm run install:all' in the terminal.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run dev to start both frontend and backend concurrently",
+        "user_persona": "A developer beginning local development work.",
+        "user_goal": "To launch both the frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Devon wants to begin working on a feature and needs both servers running.",
+                "action": "Run 'npm run dev' from the root directory.",
+                "expected_outcome": "Both the frontend development server and backend Node.js application start concurrently and are accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply light goldenrod color to body backgrounds",
+        "user_persona": "A designer reviewing the site's visual consistency.",
+        "user_goal": "To confirm that all pages have a light goldenrod background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Taylor inspects the background color of the homepage to ensure brand consistency.",
+                "action": "Open the homepage and inspect the body element's background color.",
+                "expected_outcome": "The body background is consistently light goldenrod (#FAFAD2) across all pages visited."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply olive drab color to main components",
+        "user_persona": "A UI reviewer ensuring design adherence.",
+        "user_goal": "To verify that main UI components use the specified olive drab color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Component Styling",
+                "description": "Jordan reviews the styling of key components like cards and headers.",
+                "action": "Inspect the styles of service plan cards and navigation bar.",
+                "expected_outcome": "Main components such as service plan cards and navigation bars are styled with olive drab (#6B8E23)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design for cross-device compatibility",
+        "user_persona": "A user accessing the site on a mobile device.",
+        "user_goal": "To navigate the site seamlessly on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "Alex resizes the browser window to simulate a mobile screen size.",
+                "action": "Resize the browser window to a width below 768px.",
+                "expected_outcome": "Layout adjusts fluidly, reorganizing elements for better readability and interaction on smaller screens."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management",
+        "user_persona": "A returning customer accessing their account.",
+        "user_goal": "To log in and access protected areas of the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Casey returns to the site and wants to access their account dashboard.",
+                "action": "Click the 'Login' button, enter valid credentials, and click 'Submit'.",
+                "expected_outcome": "Casey is redirected to the dashboard, and a session token is stored securely."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out",
+                "description": "After finishing, Casey decides to log out for security.",
+                "action": "Click the 'Logout' button from the account menu.",
+                "expected_outcome": "Session is cleared, and Casey is redirected to the public homepage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Secure API endpoints for sensitive data access",
+        "user_persona": "A security auditor verifying data protection measures.",
+        "user_goal": "To confirm that sensitive endpoints require proper authentication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Protected Endpoint Without Token",
+                "description": "Audrey attempts to access a user-specific endpoint without being authenticated.",
+                "action": "Make a direct request to '/api/user/account' without a valid JWT.",
+                "expected_outcome": "Request is denied with a 401 Unauthorized status, preventing unauthorized access."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for API requests and database connections",
+        "user_persona": "A user experiencing intermittent network issues.",
+        "user_goal": "To receive helpful feedback when data fails to load.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Network Failure",
+                "description": "While browsing service plans, Sam experiences a sudden loss of internet connectivity.",
+                "action": "Simulate a network disconnect while loading the service plans page.",
+                "expected_outcome": "An offline indicator or cached version is displayed with an option to retry once connectivity resumes."
+            }
+        ]
+    }
+]

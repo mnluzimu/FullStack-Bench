@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "Financial management module for collecting patient fees and managing hospital finances",
+    "Reporting module generating inventory reports, patient reports, and financial reports",
+    "Daily report submission feature for employees to provide detailed activity information to superiors",
+    "Pharmacy management module for medicine inventory tracking",
+    "Patient electronic files storing name, date of visit, diagnosis, and comments",
+    "Claim formulation functionality for processing medical claims",
+    "Laboratory management system for handling lab operations",
+    "Theater management module for operating room scheduling and tracking",
+    "User authentication and role-based access control for different employee types",
+    "Dashboard displaying key metrics across finance, inventory, and patient data",
+    "Data entry forms for patient information, inventory updates, and financial transactions",
+    "Background color configured to peach puff with components using indian red",
+    "Concurrent development server setup for frontend and backend via npm scripts"
+]

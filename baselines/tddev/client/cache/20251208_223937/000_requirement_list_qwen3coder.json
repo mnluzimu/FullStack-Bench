@@ -1,0 +1,202 @@
+[
+    {
+        "resource_dependency": {
+            "stockSearchAPI": "An API for retrieving stock data by code or name, supporting search and autocomplete suggestions.",
+            "searchIcon": "/icons/search-icon.svg"
+        },
+        "function": "Enable users to search for stocks using either stock codes or company names.",
+        "static_description": "A centered search bar with a placeholder 'Enter stock code or name', accompanied by a search icon (searchIcon) on the right side. Background is white, input field border is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon initiates the search query based on the input value."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on the input field triggers the search action."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autocompleteAPI": "An API that provides real-time autocomplete suggestions as the user types in the search field.",
+            "suggestionDropdownStyle": "Navy text on white background with hover effect highlighting selected item in light gray."
+        },
+        "function": "Provide real-time autocomplete suggestions when users type into the stock search input.",
+        "static_description": "A dropdown menu appears below the search bar showing matching stock suggestions dynamically. Each suggestion includes both the company name and ticker symbol.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a suggestion populates the search bar with the selected stock’s identifier and navigates to the stock dashboard."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a suggestion highlights it visually according to the defined style (suggestionDropdownStyle)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stockInfoSchema": "Database schema containing fields: ticker_symbol (string), company_name (string), current_price (float), last_updated (datetime).",
+            "dashboardLayout": "Grid-based layout with card components for each piece of information."
+        },
+        "function": "Display essential stock details such as company name, ticker symbol, and current price.",
+        "static_description": "A responsive grid layout featuring three cards arranged horizontally or vertically depending on screen size. Cards display 'Company Name:', 'Ticker Symbol:', and 'Current Price:' labels followed by their respective values retrieved from the database (stockInfoSchema). All elements use white background and navy text.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Integration with a charting library like Chart.js or D3.js for rendering interactive financial charts.",
+            "historicalDataAPI": "API providing time-series stock price data including date and closing prices.",
+            "trendChartColors": "#000080 for line graphs representing price movement"
+        },
+        "function": "Visualize historical stock price trends through interactive charts.",
+        "static_description": "An area chart displayed within a container titled 'Market Trends'. X-axis shows dates, Y-axis displays prices. Line color follows trendChartColors. Tooltips appear on hover showing exact values.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays tooltip with precise date and price value at hovered point."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selects a specific time range (e.g., 1 month, 6 months, 1 year) to filter the chart view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataSchema": "Database schema containing fields: revenue (float), net_income (float), eps (float), pe_ratio (float), debt_equity_ratio (float), roe (float), etc.",
+            "dataTableStyle": "Table styled with alternating row colors, navy headers, and white cells."
+        },
+        "function": "Present detailed financial metrics including revenue, earnings, and key ratios.",
+        "static_description": "Tabular representation of financial data with columns labeled Revenue, Earnings, EPS, P/E Ratio, Debt/Equity, ROE, etc. Data sourced from financialDataSchema. Styled using dataTableStyle.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table ascending/descending based on clicked metric."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportOptionsConfig": "Pre-defined set of report customization options including checkboxes or toggles for different sections (Basic Info, Market Trends, Financial Data, Company Profile)",
+            "generateReportButton": "/icons/generate-report-button.svg"
+        },
+        "function": "Allow users to customize what content appears in generated reports.",
+        "static_description": "Form-style interface presenting toggle switches or checkboxes labeled Basic Info, Market Trends, Financial Data, Company Profile. Generate Report button (generateReportButton) located beneath form. White background with navy controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling any checkbox adds/removes corresponding section from the final report preview or generation queue."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormatsList": [
+                "PDF",
+                "HTML",
+                "Spreadsheet"
+            ],
+            "formatSelectorStyle": "Dropdown styled with navy border and text, white background."
+        },
+        "function": "Permit users to choose desired output format for exporting generated reports.",
+        "static_description": "Dropdown menu listing available export formats (PDF, HTML, Spreadsheet). Default selection is PDF. Styled per formatSelectorStyle. Positioned near the Generate Report button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens dropdown menu to reveal available export format choices."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting an option updates the export preference used during report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportEngineService": "Backend logic responsible for compiling selected data into a structured document based on chosen format and content preferences.",
+            "templateFiles": "Pre-designed templates for PDF, HTML, and spreadsheet layouts."
+        },
+        "function": "Automatically compile selected stock data into formatted reports based on user inputs.",
+        "static_description": "Not visible directly but handles internal processing of combining data sources and applying formatting templates before delivering the final report file.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiThemeTokens": "{ background: '#FFFFFF', primaryColor: '#000080' }",
+            "fontFamily": "'Arial', sans-serif"
+        },
+        "function": "Maintain consistent visual styling across the application with a white background and navy components.",
+        "static_description": "Entire site utilizes uiThemeTokens for uniform coloring. Headers, buttons, borders, and active states utilize navy (#000080); backgrounds remain white (#FFFFFF). Fonts follow fontFamily setting throughout.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "filterIcons": [
+                "/icons/sort-asc.svg",
+                "/icons/sort-desc.svg"
+            ],
+            "filterDropdownStyle": "White background with navy borders and text."
+        },
+        "function": "Enable filtering and sorting capabilities for financial data tables and market trend visualizations.",
+        "static_description": "Filter icons placed next to table headers and chart controls. Dropdown menus styled with filterDropdownStyle allow selecting criteria like date ranges or numerical thresholds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens filter/sort modal or dropdown where users can define custom filters or sort orders."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimePriceAPI": "API endpoint returning live or delayed stock pricing data periodically updated.",
+            "refreshInterval": "5 minutes"
+        },
+        "function": "Update displayed stock prices in near real-time without manual refresh.",
+        "static_description": "Displayed price figures update automatically every 5 minutes via polling mechanism connected to realTimePriceAPI. Timestamp indicating last update shown alongside price.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "companyProfileSchema": "Database schema containing fields: company_name (string), description (text), industry (string), headquarters (string), ceo (string), board_members (array).",
+            "executivePhotoPlaceholder": "/images/executive-placeholder.jpg"
+        },
+        "function": "Show detailed company profiles including business overview and leadership team.",
+        "static_description": "Section titled 'Company Profile' displaying description paragraph, industry classification, location, CEO name, and executive photos if available. Uses executivePhotoPlaceholder for missing images. Layout uses white background and navy headings.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "watchlistStorage": "User-specific storage mechanism (localStorage/session or backend DB) to maintain tracked stocks.",
+            "bookmarkIconActive": "/icons/bookmark-filled.svg",
+            "bookmarkIconInactive": "/icons/bookmark-outline.svg"
+        },
+        "function": "Allow users to save favorite stocks into a personal watchlist for easy tracking.",
+        "static_description": "Bookmark icon positioned prominently on stock dashboards and search results. Icon changes between bookmarkIconInactive and bookmarkIconActive depending on whether the stock is currently saved.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Adds/removes current stock from user's watchlist. Updates icon accordingly and persists change in watchlistStorage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fileDownloadHandler": "Client-side handler triggering browser download dialog for generated reports.",
+            "supportedFileTypes": [
+                "application/pdf",
+                "text/html",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            ]
+        },
+        "function": "Enable downloading of completed reports onto the user's local device.",
+        "static_description": "After clicking 'Generate Report', a 'Download' link or button becomes enabled. File downloads immediately upon click using fileDownloadHandler, respecting supportedFileTypes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers browser-native download prompt allowing user to save the report locally."
+            }
+        ]
+    }
+]

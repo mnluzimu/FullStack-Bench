@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A customer service agent named Sam who needs real-time access to call logs.",
+        "user_goal": "Sam wants to load the latest open calls without refreshing the entire page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Open Calls",
+                "description": "Sam logs into the system and clicks on the 'Open Calls' link in the navigation bar to see unresolved issues.",
+                "action": "Click on the 'Open Calls' navigation link.",
+                "expected_outcome": "The content area updates dynamically to show a list of open calls fetched from the backend API without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Taylor responsible for deploying the backend service.",
+        "user_goal": "Ensure the backend connects properly to the PostgreSQL database with correct environment configuration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Taylor sets up the environment variables as instructed and starts the backend server.",
+                "action": "Start the backend server after setting DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Server initializes successfully and establishes connection to the PostgreSQL database without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Client identification functionality with search and selection capabilities",
+        "user_persona": "A support agent named Riley handling incoming calls.",
+        "user_goal": "Riley wants to quickly locate a client by name to associate with a new call log.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Client",
+                "description": "Riley begins typing the client's name into the 'Find Client' search bar.",
+                "action": "Type 'John Doe' into the client search input field.",
+                "expected_outcome": "A list of matching clients appears below the search bar, fetched dynamically from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Selecting the Correct Client",
+                "description": "Riley sees the correct client in the list and clicks on it to select.",
+                "action": "Click on the matching client entry from the search results.",
+                "expected_outcome": "The selected client is highlighted, and relevant fields such as name and contact info populate automatically in the form."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Call type selection dropdown or radio button component",
+        "user_persona": "A new agent named Alex learning how to log customer interactions.",
+        "user_goal": "Alex needs to categorize the reason for the customer's call accurately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Call Type Dropdown",
+                "description": "Alex clicks the 'Call Type' dropdown menu to choose the category of the interaction.",
+                "action": "Click on the 'Call Type' dropdown menu.",
+                "expected_outcome": "The dropdown expands to reveal options like 'Technical Support', 'Billing Inquiry', etc."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Appropriate Category",
+                "description": "Alex selects 'Technical Support' because the customer had trouble using the product.",
+                "action": "Click on the 'Technical Support' option in the dropdown.",
+                "expected_outcome": "The dropdown closes and 'Technical Support' is now displayed as the selected value."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Information recording form for capturing call details",
+        "user_persona": "An experienced agent named Jordan processing a high volume of calls daily.",
+        "user_goal": "Jordan aims to record essential information about the customer's issue efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Out Call Details",
+                "description": "Jordan fills out the 'Description', 'Caller Name', and 'Phone Number' fields with information gathered during the call.",
+                "action": "Enter text into the 'Description', 'Caller Name', and 'Phone Number' fields.",
+                "expected_outcome": "All entered data is captured visibly in the form fields ready for submission."
+            },
+            {
+                "step": 2,
+                "title": "Submitting the Form",
+                "description": "After filling out the necessary fields, Jordan clicks the submit button to save the log.",
+                "action": "Click the submit button at the bottom of the form.",
+                "expected_outcome": "The form data is sent to the backend API, and a success confirmation appears briefly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Action step recording section for documenting actions taken during calls",
+        "user_persona": "A team lead named Casey reviewing agent performance and ensuring quality documentation.",
+        "user_goal": "Casey wants to verify that agents document every action taken during a call.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding an Action Step",
+                "description": "While reviewing a call log, Casey notices an undocumented action and adds it manually.",
+                "action": "Enter 'Reset user password' into the 'Actions Taken' textarea and click 'Add Action'.",
+                "expected_outcome": "The action is submitted to the backend and immediately appears in the list of documented actions for that call."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Follow-up step recording functionality for scheduling future actions",
+        "user_persona": "A proactive agent named Morgan tracking required follow-ups after resolving complex issues.",
+        "user_goal": "Morgan schedules a reminder to check if the customer’s problem was fully resolved.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Follow-Up Date",
+                "description": "Morgan picks a date one week ahead in the date picker and enters a note explaining the purpose.",
+                "action": "Choose a date from the date picker and enter 'Confirm resolution with client' into the notes field.",
+                "expected_outcome": "Both the date and note are filled in the respective input fields."
+            },
+            {
+                "step": 2,
+                "title": "Saving Follow-Up Reminder",
+                "description": "Morgan saves the follow-up by clicking the designated button.",
+                "action": "Click the 'Add Follow-Up' button.",
+                "expected_outcome": "The follow-up task is saved and displayed in the follow-up list with the chosen date and note."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Additional information recording field for miscellaneous call notes",
+        "user_persona": "A detail-oriented agent named Quinn noting down unique observations during a call.",
+        "user_goal": "Quinn records contextual information that doesn’t fit into other sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Additional Context",
+                "description": "Quinn jots down some personal observations in the 'Additional Notes' section.",
+                "action": "Type 'Customer sounded frustrated but appreciative of quick help' into the Additional Notes textarea.",
+                "expected_outcome": "The text is stored temporarily in the textarea until explicitly saved."
+            },
+            {
+                "step": 2,
+                "title": "Saving Extra Notes",
+                "description": "Quinn decides to preserve these insights permanently by saving them.",
+                "action": "Click the 'Save Notes' button next to the Additional Notes section.",
+                "expected_outcome": "The notes are posted to the backend and remain visible even after page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "New call log creation form with all required data fields",
+        "user_persona": "A trainee agent named Drew getting familiar with logging procedures.",
+        "user_goal": "Drew completes and submits a new call log with all mandatory information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Completing Required Fields",
+                "description": "Drew ensures all required fields—client, call type, and description—are filled before submitting.",
+                "action": "Fill in client selection, call type dropdown, and description fields.",
+                "expected_outcome": "Each required field shows valid input, and the 'Create Log' button becomes active."
+            },
+            {
+                "step": 2,
+                "title": "Creating New Call Log",
+                "description": "Satisfied with the entries, Drew submits the new call log.",
+                "action": "Click the 'Create Log' button.",
+                "expected_outcome": "The system validates inputs, creates the log via the API, and redirects to the log details page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Open calls view displaying unresolved customer service calls",
+        "user_persona": "A supervisor named Blair monitoring ongoing unresolved tickets.",
+        "user_goal": "Blair reviews the list of open calls to assign priorities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Open Calls",
+                "description": "Blair navigates to the 'Open Calls' view to get an overview of pending issues.",
+                "action": "Navigate to the 'Open Calls' section.",
+                "expected_outcome": "A scrollable list of open calls loads dynamically, each showing caller name, call type, and creation time."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Specific Call",
+                "description": "Blair clicks on one of the more urgent-looking entries to investigate further.",
+                "action": "Click on a specific open call item in the list.",
+                "expected_outcome": "The system navigates to the detailed view of the selected call log."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "To-do calls view showing pending follow-up actions",
+        "user_persona": "An efficient agent named Avery managing scheduled tasks throughout the day.",
+        "user_goal": "Avery checks the 'Pending Tasks' list to stay on top of upcoming responsibilities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Pending Tasks",
+                "description": "Avery switches to the 'Pending Tasks' tab to review scheduled follow-ups.",
+                "action": "Click on the 'Pending Tasks' navigation link.",
+                "expected_outcome": "A chronological list of upcoming tasks appears, each labeled with a due date and brief description."
+            },
+            {
+                "step": 2,
+                "title": "Following Up on Scheduled Task",
+                "description": "Noticing a task due today, Avery clicks it to handle the follow-up promptly.",
+                "action": "Click on a task item from the list.",
+                "expected_outcome": "The system redirects to the related call log page where the original follow-up was set."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Call log reporting feature with export capabilities",
+        "user_persona": "A manager named Lee preparing monthly summaries for upper management.",
+        "user_goal": "Lee generates and exports a report summarizing recent activity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Report Data",
+                "description": "Lee selects the desired filters and prepares the report.",
+                "action": "Apply date range and user filters, then click 'Generate Report'.",
+                "expected_outcome": "The system compiles the filtered data and presents it in a preview table."
+            },
+            {
+                "step": 2,
+                "title": "Exporting as CSV",
+                "description": "Lee prefers to analyze the numbers offline and chooses to export the report.",
+                "action": "Click the 'Export as CSV' button.",
+                "expected_outcome": "A downloadable CSV file containing the report data is generated and downloaded automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Client creator wizard for adding new customer information",
+        "user_persona": "A receptionist named Zoe registering a first-time caller into the system.",
+        "user_goal": "Zoe captures complete client information through a guided process.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Client Creation Wizard",
+                "description": "Zoe initiates the client registration flow by opening the wizard.",
+                "action": "Click the 'Add New Client' button which launches the wizard modal.",
+                "expected_outcome": "The first step of the wizard ('Basic Info') is displayed with empty input fields."
+            },
+            {
+                "step": 2,
+                "title": "Progressing Through Steps",
+                "description": "Zoe fills in basic info and moves to the next stages until completion.",
+                "action": "Fill out Basic Info → Click 'Next' → Fill Contact Details → Click 'Next' → Review Preferences → Click 'Finish'.",
+                "expected_outcome": "Each step transitions smoothly, validating input, and upon finishing, the new client is added to the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Client information modification interface for updating existing client data",
+        "user_persona": "A long-term agent named Kai updating outdated client contact information.",
+        "user_goal": "Kai edits a client’s phone number and email after receiving corrected details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Edit Mode",
+                "description": "Kai finds the client profile and clicks the edit button to make changes.",
+                "action": "Locate client and click the 'Edit' button beside their profile.",
+                "expected_outcome": "The client information form becomes editable with current values pre-filled."
+            },
+            {
+                "step": 2,
+                "title": "Updating Contact Information",
+                "description": "Kai modifies the phone number and email fields based on the latest conversation.",
+                "action": "Change the values in the 'Phone' and 'Email' fields.",
+                "expected_outcome": "Updated values are reflected in the form fields."
+            },
+            {
+                "step": 3,
+                "title": "Saving Updated Information",
+                "description": "Once satisfied with the corrections, Kai saves the updated information.",
+                "action": "Click the 'Save Changes' button.",
+                "expected_outcome": "Changes are sent to the backend and persisted, with a success notification confirming the update."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Permission control system for managing user access levels",
+        "user_persona": "A security-conscious admin named Morgan overseeing user permissions.",
+        "user_goal": "Morgan verifies that restricted features are inaccessible to unauthorized users.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Restricted Access",
+                "description": "Morgan logs in as a viewer-level user and attempts to delete a call log.",
+                "action": "Log in as a 'Viewer' user and try navigating to the delete function on a call log detail page.",
+                "expected_outcome": "Delete option is either hidden or disabled, preventing unauthorized deletion attempts."
+            }
+        ]
+    }
+]

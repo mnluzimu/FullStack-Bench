@@ -1,0 +1,222 @@
+[
+    {
+        "resource_dependency": {
+            "chessboard_component": "A reusable chessboard component that renders SVG or canvas-based board with piece positions",
+            "move_validation_logic": "Logic implementing standard chess movement rules (e.g., pawn double-step, castling, en passant)",
+            "websocket_api": "WebSocket connection for real-time updates between players"
+        },
+        "function": "Interactive chessboard allowing users to move pieces according to chess rules",
+        "static_description": "A responsive chessboard grid consisting of 8x8 squares alternating between light and dark colors, populated with standard chess pieces in starting positions. Board theme is initially set to default.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a piece selects it, highlighting possible legal moves. Clicking a highlighted square moves the selected piece there."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a piece from its current square to a valid destination square executes the move after validation against chess rules."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "create_game_api": "POST /api/games endpoint expecting user session token",
+            "game_list_api": "GET /api/games/list endpoint returning paginated list of public games awaiting opponents"
+        },
+        "function": "Functionality for users to create new chess games",
+        "static_description": "A modal dialog titled 'New Game Setup' containing options to configure board theme, difficulty level, and whether the game is private or public.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Create New Game' button opens the setup modal. Clicking 'Confirm' submits the configuration via POST request to backend and redirects to the game lobby."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "join_game_api": "PUT /api/games/{id}/join endpoint requiring authentication token",
+            "game_list_refresh_api": "GET /api/games/list?refresh=true polling mechanism to update available games"
+        },
+        "function": "Functionality for users to join existing chess games",
+        "static_description": "A dedicated page section displaying a table of open games with columns for opponent name, time created, and join status indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a row's 'Join' button sends a PUT request to associate the authenticated user as the second player and navigates to the active game screen."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling down triggers additional fetch requests to load more available games dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "undo_move_api": "POST /api/moves/undo endpoint which validates turn ownership before reverting last move"
+        },
+        "function": "Ability for users to undo their last move",
+        "static_description": "An 'Undo Move' button positioned beneath the chessboard, disabled until a valid move has been made by the current player.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the enabled 'Undo Move' button triggers a confirmation prompt. Confirming sends a POST request to revert the previous move and updates the local board state accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resign_game_api": "POST /api/games/{id}/resign endpoint accepting reason field and updating game outcome"
+        },
+        "function": "Option for users to resign from a game",
+        "static_description": "A clearly visible 'Resign' button located above the chessboard alongside other control elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Resign' displays a modal confirming intent. Confirming sends a POST request marking the game as resigned and transitions the UI to show results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "theme_selector_options": [
+                "Classic Light",
+                "Classic Dark",
+                "Wooden",
+                "Marble"
+            ],
+            "theme_change_api": "PATCH /api/user/settings/theme endpoint storing preference server-side"
+        },
+        "function": "Interface controls for selecting different board themes",
+        "static_description": "A horizontal toggle group below the main navigation bar labeled 'Board Theme', featuring four distinct visual style options represented by small preview images.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting any option applies the corresponding visual styling immediately across the board and persists the choice through an API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "difficulty_selector_options": [
+                "Beginner",
+                "Intermediate",
+                "Advanced",
+                "Expert"
+            ],
+            "difficulty_change_api": "PATCH /api/user/settings/difficulty endpoint affecting AI engine behavior"
+        },
+        "function": "Interface controls for selecting difficulty levels",
+        "static_description": "Adjacent to the theme selector, another toggle group labeled 'Difficulty Level' showing ascending complexity labels with associated slider position indicator.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing a difficulty setting adjusts internal parameters used during AI-driven gameplay and saves this preference to user profile."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "game_history_api": "GET /api/games/{id}/history returning chronological list of formatted algebraic notation moves",
+            "move_formatter_utility": "Utility translating internal move representation into human-readable form"
+        },
+        "function": "Display area showing game history including all moves made",
+        "static_description": "A vertically scrollable sidebar panel on the right side of the screen listing each completed move with timestamps and player identifiers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling within the history panel reveals earlier turns without triggering additional network activity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "player_stats_api": "GET /api/users/me/stats providing aggregate metrics like total_games_played, wins, losses, draws, average_game_length_minutes",
+            "stats_visualizer_component": "Component rendering bar charts, pie graphs, or simple numeric summaries"
+        },
+        "function": "Section for viewing player statistics such as wins, losses, and win rate",
+        "static_description": "Dedicated tabbed interface accessible from user menu, presenting statistical overviews using graphical representations and numerical summaries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching tabs loads different categories of stats (overall performance, recent trends, etc.) from cached or fetched data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocket_connection": "Established WebSocket link to receive push notifications about board changes",
+            "sync_state_handler": "Handler reconciling incoming events with current client-side game model"
+        },
+        "function": "Real-time synchronization of game state between players",
+        "static_description": "Transparent overlay message indicating live connectivity status ('Connected' or 'Reconnecting...') placed at bottom-right corner.",
+        "interaction_and_states": [
+            {
+                "interaction": "Event",
+                "description": "Upon receiving move/resignation/undo event over WebSocket, the local board state updates instantly and animations reflect changes seamlessly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "login_page_url": "/login",
+            "auth_token_cookie": "Secure HTTP-only cookie named 'session_token'",
+            "authentication_api": "POST /api/auth/login with email/password payload returning JWT-like session identifier"
+        },
+        "function": "User authentication system to manage player sessions",
+        "static_description": "Top navigation bar includes a login/logout widget showing either 'Sign In' link or currently logged-in username with avatar placeholder.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Sign In' redirects to login page. After successful submission, redirect back to origin route with updated session context."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "css_variables": ":root { --bg-color: aliceblue; --ui-primary: steelblue; }",
+            "responsive_breakpoints": "@media queries targeting mobile/tablet/desktop viewports"
+        },
+        "function": "Responsive layout styled with alice blue background and steel blue interface elements",
+        "static_description": "Entire viewport features alice blue (#F0F8FF) background color while primary interactive components use steel blue (#4682B4) accents throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout reflows appropriately when browser window dimensions cross defined breakpoints, maintaining usability across devices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Configuration in package.json to install dependencies for both frontend and backend with 'npm run install:all'",
+        "static_description": "Root-level package.json file specifying two custom scripts under the 'scripts' property enabling unified dependency installation command execution.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_dev_script": "{ \"scripts\": { \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Configuration in package.json to start both frontend and backend concurrently with 'npm run dev'",
+        "static_description": "Same root package.json defines a development script launching both applications simultaneously using concurrent process management tool.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontend_data_fetcher": "Axios/fetch wrapper handling GET/POST requests with automatic retry logic",
+            "backend_api_routes": "RESTful endpoints defined in Express/Koa routing modules exposing CRUD operations for games, users, moves, sessions"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "Frontend app built using React/Vue/Angular framework structured around centralized data fetching utilities communicating exclusively with designated backend services.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresql_env_vars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "database_connection_pool": "Node.js pg/pg-promise/knex connection pool initialized with provided credentials"
+        },
+        "function": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend service written in Node.js leveraging ORM or raw SQL drivers to establish persistent connections to remote PostgreSQL instance configured via injected environment settings.",
+        "interaction_and_states": []
+    }
+]

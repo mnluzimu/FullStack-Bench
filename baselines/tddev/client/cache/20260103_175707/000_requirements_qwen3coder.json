@@ -1,0 +1,17 @@
+[
+    "A team introduction section displaying team members and their roles",
+    "A project showcase section listing team projects with descriptions and visuals",
+    "A skill showcase section highlighting the team's technical and soft skills",
+    "A contact information section providing ways to reach the team",
+    "Frontend pages to display team data fetched dynamically from backend APIs",
+    "Backend API endpoints to serve team, project, and skill data from a PostgreSQL database",
+    "Database schema supporting storage of team members, projects, skills, and contact details",
+    "Environment configuration for PostgreSQL connection using specified DB credentials",
+    "Frontend styled with a default background color of whitesmoke and component color of dark cyan",
+    "Navigation menu allowing users to access each main section of the site",
+    "Responsive design ensuring usability across desktop and mobile devices",
+    "Project case view allowing detailed exploration of individual projects",
+    "Contact form enabling visitors to send messages directly to the team",
+    "Package.json scripts for `install:all` to set up both frontend and backend dependencies",
+    "Package.json script for `dev` to run frontend and backend servers concurrently"
+]

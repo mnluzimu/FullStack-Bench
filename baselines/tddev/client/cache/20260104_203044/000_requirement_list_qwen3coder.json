@@ -1,0 +1,236 @@
+[
+    {
+        "resource_dependency": {
+            "database_connection": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "api_endpoints": {
+                "fetch_media": "/api/media",
+                "fetch_categories": "/api/categories",
+                "user_profile": "/api/user/profile",
+                "download_history": "/api/user/downloads",
+                "collections": "/api/user/collections"
+            },
+            "color_scheme": {
+                "background_color": "lightgoldenrodyellow",
+                "component_color": "olivedrab"
+            }
+        },
+        "function": "Establish connection to PostgreSQL database and define API endpoints for fetching media content, categories, user profile data, download history, and collections.",
+        "static_description": "Backend service configured with PostgreSQL connection using provided environment variables. RESTful API endpoints defined for media, categories, user data, downloads, and collections.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "logo_image": "/assets/logo.png",
+            "nav_menu_items": [
+                "Home",
+                "Categories",
+                "Search",
+                "Downloads",
+                "Profile"
+            ],
+            "login_button_text": "Login / Register",
+            "profile_icon": "/assets/icons/user-profile.svg"
+        },
+        "function": "Display a consistent header across all pages containing the site logo, main navigation menu, and user login/profile access.",
+        "static_description": "Header section at the top of every page featuring the site logo aligned to the left, a horizontal navigation menu centered, and a login/profile button aligned to the right. Background color set to light goldenrod with olive drab text/buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the logo navigates to the homepage. Clicking any nav menu item navigates to the respective section. Clicking the login/profile button either redirects to login/register page or opens the user profile dropdown."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "footer_links": {
+                "terms_of_service": "/terms",
+                "privacy_policy": "/privacy",
+                "contact_us": "/contact"
+            },
+            "social_media_icons": [
+                "/assets/icons/facebook.svg",
+                "/assets/icons/twitter.svg",
+                "/assets/icons/instagram.svg"
+            ]
+        },
+        "function": "Provide essential legal and contact links at the bottom of every page.",
+        "static_description": "Footer spanning full width at the bottom of each page with links to Terms of Service, Privacy Policy, and Contact Us. Also includes social media icons. Styled with light goldenrod background and olive drab links/icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any link navigates to the corresponding internal page. Clicking social media icons opens external sites in new tabs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "category_list_endpoint": "/api/categories",
+            "media_fetch_endpoint": "/api/media?category=",
+            "placeholder_image": "/assets/placeholder-content.jpg"
+        },
+        "function": "Present categorized ringtones and wallpapers on the homepage with visual previews and titles.",
+        "static_description": "Homepage layout divided into category sections (e.g., Popular Ringtones, Nature Wallpapers). Each section displays a grid of media cards with thumbnails, titles, and brief descriptions. Cards use placeholder images until loaded. Light goldenrod background with olive drab card borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a media card navigates to its individual content page. Clicking a category name filters the displayed content accordingly."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loads more content when reaching the end of current results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_input_placeholder": "Search ringtones or wallpapers...",
+            "search_button_icon": "/assets/icons/search-icon.svg",
+            "search_results_endpoint": "/api/search?q="
+        },
+        "function": "Enable users to search for specific ringtones or wallpapers using keywords.",
+        "static_description": "Search bar prominently placed above the content area with an input field and search icon button. Placeholder text guides the user. Background is light goldenrod with olive drab input border and button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon or pressing Enter submits the query and updates the content display with matching results."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers the search action when focus is on the input field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "category_menu_endpoint": "/api/categories",
+            "filter_icon": "/assets/icons/filter-icon.svg"
+        },
+        "function": "Allow filtering of content by type (ringtone/wallpaper) and subcategories through a dedicated menu.",
+        "static_description": "Vertical sidebar or collapsible mobile menu listing main categories (Ringtones, Wallpapers) with nested subcategories beneath each. Filter icon toggles visibility on smaller screens. Styled consistently with site theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a main category or subcategory filters the displayed content dynamically without reloading the page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the filter icon toggles the menu visibility on small screens."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "download_button_icon": "/assets/icons/download-icon.svg",
+            "add_to_collection_icon": "/assets/icons/add-collection-icon.svg",
+            "content_details_endpoint": "/api/media/{id}",
+            "download_endpoint": "/api/media/{id}/download",
+            "collection_add_endpoint": "/api/user/collections/add"
+        },
+        "function": "Display detailed information about a selected ringtone or wallpaper along with actions to download or save to collection.",
+        "static_description": "Dedicated content page showing large preview image/video, title, description, file size, upload date, and tags. Includes prominent Download and Add to Collection buttons with icons below the preview. Page uses light goldenrod background with olive drab accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Download' initiates the download process via API call. Clicking 'Add to Collection' adds the item to the user's saved list and provides feedback confirmation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "user_profile_endpoint": "/api/user/profile",
+            "download_history_endpoint": "/api/user/downloads",
+            "avatar_placeholder": "/assets/avatar-placeholder.png"
+        },
+        "function": "Show authenticated user's profile information and download history.",
+        "static_description": "Profile page with user avatar (placeholder if none uploaded), username, email, and joined date at the top. Below, a tabbed interface shows Download History and Collections. Download History lists previously downloaded items with dates and options to re-download. Styled with light goldenrod background and olive drab components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking tabs switches between Download History and Collections views. Clicking a download entry allows re-downloading the item."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "collections_endpoint": "/api/user/collections",
+            "remove_from_collection_endpoint": "/api/user/collections/remove"
+        },
+        "function": "Allow users to manage a personal collection of favorite ringtones for quick access later.",
+        "static_description": "Collections view within the profile page displaying saved ringtones in a grid similar to homepage. Each item includes thumbnail, title, and remove option. Uses same styling as other pages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an item navigates to its content page. Clicking the remove option deletes it from the collection and refreshes the view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "downloads_section_endpoint": "/api/user/downloads",
+            "re_download_endpoint": "/api/media/{id}/download"
+        },
+        "function": "Provide a centralized location for accessing all downloaded items.",
+        "static_description": "Dedicated Downloads section accessible from main navigation, presenting a chronological list or grid of downloaded ringtones and wallpapers with previews and metadata. Styled with light goldenrod background and olive drab elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an item initiates a re-download using the stored reference."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobile_menu_icon": "/assets/icons/menu-icon.svg",
+            "navigation_routes": {
+                "home": "/",
+                "categories": "/categories",
+                "search": "/search",
+                "downloads": "/downloads",
+                "profile": "/profile"
+            }
+        },
+        "function": "Ensure seamless navigation throughout the site across devices.",
+        "static_description": "Responsive navigation system utilizing a fixed header with horizontal menu on desktop and hamburger menu icon on mobile/tablet. Menu expands vertically on smaller screens covering part of the viewport. Consistent styling applied.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking menu items navigates to respective sections. On mobile, clicking the hamburger icon toggles the expanded menu overlay."
+            },
+            {
+                "interaction": "Resize Window",
+                "description": "Menu automatically switches between horizontal layout and hamburger icon based on screen width."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_endpoints": {
+                "login": "/api/auth/login",
+                "register": "/api/auth/register",
+                "logout": "/api/auth/logout"
+            },
+            "login_form_fields": [
+                "email",
+                "password"
+            ],
+            "register_form_fields": [
+                "username",
+                "email",
+                "password",
+                "confirm_password"
+            ]
+        },
+        "function": "Manage user authentication to enable access to personalized features such as download history and collections.",
+        "static_description": "Authentication forms for Login and Registration modals or separate pages with labeled input fields, submit buttons, and links to switch between forms. Styled with light goldenrod backgrounds and olive drab inputs/buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the login form authenticates the user and redirects to the previous page or dashboard. Submitting registration creates account and logs user in. Clicking logout ends session and redirects to homepage."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Submits the active form when focus is inside an input field."
+            }
+        ]
+    }
+]

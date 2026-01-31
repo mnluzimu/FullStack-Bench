@@ -1,0 +1,320 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "mistyrose",
+            "component_color": "firebrick",
+            "logo_image": "/assets/logo.png",
+            "hero_section_image": "/assets/hero-image.jpg",
+            "contact_form_endpoint": "POST /api/contact"
+        },
+        "function": "Display the homepage with navigation, hero section, featured content, and footer.",
+        "static_description": "The homepage features a fixed top navigation bar with links to all main sections. Below is a full-width hero image with overlay text introducing the company's mission. The background color is set to misty rose, and all components such as buttons and cards use firebrick accents. Featured sections include brief overviews of products, services, news, and customer stories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any navigation link scrolls smoothly to the corresponding section or loads the target page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "As the user scrolls down, the navigation bar remains fixed at the top of the viewport."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "mistyrose",
+            "component_color": "firebrick",
+            "service_icons": [
+                "/assets/service-icon-1.svg",
+                "/assets/service-icon-2.svg",
+                "/assets/service-icon-3.svg"
+            ],
+            "service_descriptions": [
+                {
+                    "title": "Custom Software Development",
+                    "content": "We build scalable and secure applications tailored to your business needs."
+                },
+                {
+                    "title": "IT Staffing Solutions",
+                    "content": "Access skilled professionals for short-term projects or long-term team augmentation."
+                }
+            ]
+        },
+        "function": "Present detailed information about software solutions and staffing services offered.",
+        "static_description": "This page displays two main service categories in card layouts with icons, titles, and descriptions. Background uses misty rose, and all interactive elements like 'Learn More' buttons are styled with firebrick. Content is structured for clarity and engagement targeting SMBs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Learn More' expands the service description inline without reloading the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "mistyrose",
+            "component_color": "firebrick",
+            "product_images": [
+                "/assets/product-1.png",
+                "/assets/product-2.png"
+            ],
+            "product_details": [
+                {
+                    "name": "Enterprise Resource Planning (ERP)",
+                    "description": "Integrated system to manage core business processes in real-time."
+                },
+                {
+                    "name": "Customer Relationship Management (CRM)",
+                    "description": "Tool to track interactions with current and potential customers."
+                }
+            ]
+        },
+        "function": "Showcase individual product offerings with descriptions and visuals.",
+        "static_description": "Each product is presented in a responsive grid layout with an image, title, and summary. Misty rose background with firebrick borders and call-to-action buttons. Designed for readability and visual appeal.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a product card navigates to a dedicated product detail page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "mistyrose",
+            "component_color": "firebrick",
+            "news_articles_schema": "Table named 'articles' with columns: id (UUID), title (string), excerpt (text), content (text), published_date (timestamp), author (string), tags (array of strings)."
+        },
+        "function": "Provide access to industry news and trend updates through categorized articles.",
+        "static_description": "News section presents articles in a masonry-style grid with thumbnails, headlines, excerpts, and publication dates. Filtering options allow sorting by category or date. All UI components follow the misty rose/firebrick theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an article card opens the full article view in a modal or new page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over filter tags highlights them temporarily."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "mistyrose",
+            "component_color": "firebrick",
+            "case_study_documents": [
+                "/docs/case-study-1.pdf",
+                "/docs/case-study-2.pdf"
+            ],
+            "success_story_summaries": [
+                {
+                    "client": "TechStart Inc.",
+                    "challenge": "Needed faster deployment cycles.",
+                    "solution": "Implemented CI/CD pipeline.",
+                    "result": "Reduced time-to-market by 40%"
+                },
+                {
+                    "client": "GlobalRetail Corp.",
+                    "challenge": "Legacy system inefficiencies.",
+                    "solution": "Migrated to cloud-based ERP.",
+                    "result": "Improved operational efficiency by 35%"
+                }
+            ]
+        },
+        "function": "Highlight customer success stories and case studies to demonstrate value.",
+        "static_description": "Success stories appear in expandable accordion panels showing client name, challenge faced, solution provided, and measurable results. Visual indicators guide users to download PDF versions. Styled consistently with the overall site palette.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a story header toggles its expanded/collapsed state displaying/hiding the detailed content."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Download PDF' initiates file download of the complete case study document."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "mistyrose",
+            "component_color": "firebrick",
+            "contact_form_fields": [
+                "Full Name",
+                "Email Address",
+                "Company Name",
+                "Message"
+            ],
+            "form_submission_api": "POST /api/contact"
+        },
+        "function": "Allow visitors to send inquiries directly via a web form.",
+        "static_description": "Contact page includes a centered form with labeled input fields for personal and message details, along with a submit button. Background is misty rose, and form elements feature firebrick styling. Confirmation message appears after submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit' sends data to the backend API endpoint and shows a confirmation toast notification upon successful delivery."
+            },
+            {
+                "interaction": "Key Press: Tab",
+                "description": "Tabbing moves focus sequentially between form fields improving accessibility."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "mistyrose",
+            "component_color": "firebrick",
+            "search_results_schema": "API returns JSON array of matching items with properties: type ('article', 'product', 'service'), title (string), url (string), snippet (text)",
+            "search_api_endpoint": "GET /api/search?q={query}"
+        },
+        "function": "Enable users to find relevant content quickly using keyword searches.",
+        "static_description": "A global search bar is placed prominently in the header across all pages. Results display dynamically in a dropdown list grouped by content type (articles, products, services) with titles and snippets. Maintains consistent styling throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types, autocomplete suggestions populate the dropdown based on partial matches."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a result navigates the user to the respective content page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobile_breakpoints": "max-width: 768px, max-width: 480px",
+            "tablet_breakpoint": "min-width: 769px and max-width: 1024px",
+            "desktop_layout": "min-width: 1025px"
+        },
+        "function": "Ensure optimal viewing experience across various device sizes.",
+        "static_description": "All pages utilize CSS media queries to adjust layouts, font sizes, spacing, and navigation behavior depending on screen size. Mobile-first approach ensures usability even on smaller screens while maintaining aesthetic consistency.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts fluidly when browser window resizes triggering different breakpoint styles."
+            },
+            {
+                "interaction": "Touch Swipe",
+                "description": "On mobile devices, swipe gestures can navigate between carousel items or tabs where applicable."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "engagement_elements": [
+                "animated_hero_text",
+                "hover_effects_on_cards",
+                "smooth_scrolling_transitions"
+            ],
+            "content_structure_guidelines": "Use clear headings, bullet points, and short paragraphs to improve readability."
+        },
+        "function": "Deliver compelling content that resonates with small to medium-sized businesses.",
+        "static_description": "Content is organized using semantic HTML with H1-H3 tags for hierarchy. Engaging micro-interactions like fade-in animations and hover effects enhance user interest. Language avoids jargon and emphasizes benefits over technical specs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Animated elements enter view progressively as the user scrolls enhancing engagement."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "color_palette": {
+                "background": "#FFE4E1",
+                "primary": "#B22222"
+            },
+            "design_tokens": "Defined in CSS variables for reuse across components"
+        },
+        "function": "Maintain visual coherence and brand identity through uniform color usage.",
+        "static_description": "Every page applies misty rose (#FFE4E1) as the base background color and firebrick (#B22222) for primary interactive and highlight elements. Consistent application reinforces branding and improves recognition.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigation_links": [
+                "/home",
+                "/services",
+                "/products",
+                "/news",
+                "/cases",
+                "/contact"
+            ],
+            "menu_icon": "/assets/menu-icon.svg"
+        },
+        "function": "Facilitate intuitive navigation throughout the website.",
+        "static_description": "Fixed horizontal navigation menu atop every page containing clickable links to major sections. On mobile, collapses into a hamburger menu icon which reveals vertical dropdown links when clicked.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping/clicking the menu icon toggles visibility of the mobile navigation drawer."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Desktop hover reveals submenu items if nested navigation exists."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "article_reading_interface_schema": "Database table 'articles' with fields: id (UUID), title (string), content (HTML), author (string), publish_date (timestamp), read_time (integer minutes)",
+            "reading_mode_toggle": true
+        },
+        "function": "Offer a clean reading environment for articles and news posts.",
+        "static_description": "Article pages present content in a distraction-free format with ample whitespace, legible typography, author info, and estimated read time. Optional dark/light mode toggle available. Misty rose background persists but subdued for better focus.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Reading Mode' dims surrounding areas focusing attention solely on article text."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "seo_metadata_fields": [
+                "meta_title",
+                "meta_description",
+                "open_graph_tags",
+                "structured_data_json_ld"
+            ],
+            "url_naming_convention": "kebab-case slugs derived from titles"
+        },
+        "function": "Optimize content discoverability through search engines.",
+        "static_description": "Each page includes properly formatted meta tags, canonical URLs, alt texts for images, and schema markup to boost SEO performance. URLs reflect content topics clearly using hyphenated keywords.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "accessibility_standards": "WCAG 2.1 AA compliance",
+            "keyboard_navigation_support": true,
+            "aria_labels_for_interactive_elements": true
+        },
+        "function": "Support inclusive access for users with disabilities.",
+        "static_description": "Site implements semantic HTML, ARIA attributes, skip-to-content links, sufficient contrast ratios, and keyboard operability ensuring usability for visually impaired, motor-impaired, and cognitively diverse users.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Tab",
+                "description": "Focus rings move logically through interactive controls allowing full keyboard navigation."
+            },
+            {
+                "interaction": "Screen Reader Usage",
+                "description": "Proper labeling and structure enable screen readers to announce content accurately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "performance_optimization_techniques": [
+                "lazy_loading_images",
+                "code_splitting_js",
+                "minified_css_js_assets",
+                "cdn_integration"
+            ],
+            "loading_spinner": "/assets/spinner.gif"
+        },
+        "function": "Ensure rapid load times and smooth browsing experience.",
+        "static_description": "Images load lazily only when entering viewport. Scripts and stylesheets are minified and split into bundles. Assets served via CDN. Loading spinners indicate progress during heavy operations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Minimal critical resources ensure near-instant rendering of above-the-fold content."
+            }
+        ]
+    }
+]

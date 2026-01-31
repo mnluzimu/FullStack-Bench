@@ -1,0 +1,263 @@
+[
+    {
+        "resource_dependency": {
+            "map_api": "An interactive map API such as Leaflet.js or Google Maps API for rendering neighborhood boundaries and data points.",
+            "charting_library": "A charting library like Chart.js or D3.js for creating interactive visualizations of demographic, economic, and crime data.",
+            "search_icon": "/assets/icons/search.svg",
+            "filter_icon": "/assets/icons/filter.svg",
+            "export_icon": "/assets/icons/export.svg",
+            "dashboard_layout_schema": "Database schema for storing user dashboard preferences including component positions and visibility settings.",
+            "user_auth_schema": "Database schema for user accounts including user_id (unique ID), username (string), email (string), password_hash (string), created_at (timestamp)."
+        },
+        "function": "Displays an interactive map interface that allows users to visualize neighborhood data on a geographical layer.",
+        "static_description": "The main view contains a full-screen map interface with a toolbar at the top containing search, filter, and export icons. The map displays neighborhood boundaries overlaid with data markers. The background color is set to ivory (#FFFFF0), and all UI controls use forest green (#228B22) accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a neighborhood boundary selects it for comparison. Clicking again deselects it."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a neighborhood shows a tooltip with basic information such as name and selected metric value."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling zooms in or out on the map."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "selected_neighborhoods_storage": "Frontend state management to track currently selected neighborhoods for comparison.",
+            "comparison_data_schema": "Database schema for storing neighborhood comparison metadata including area_id (foreign key), selected_metrics (array of strings), and timestamps."
+        },
+        "function": "Allows users to select and compare multiple neighborhoods by clicking on them in the map interface.",
+        "static_description": "Below the map is a horizontal bar showing selected neighborhoods. Each item includes the neighborhood name and a remove button. The bar scrolls horizontally when more than three items are selected.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a neighborhood on the map adds it to the selection bar. Clicking again removes it."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the remove button next to a neighborhood in the selection bar removes it from the comparison."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographic_data_api": "API endpoint for fetching demographic data including population count, age distribution (array of age groups), and average household income (number).",
+            "demo_chart_component": "Chart component configured to display demographic data using a bar or pie chart."
+        },
+        "function": "Shows demographic data for selected neighborhoods including population, age distribution, and household income.",
+        "static_description": "A section beneath the map displays demographic cards with population statistics and a chart visualization. Cards are arranged in a grid layout with each card representing one selected neighborhood. Chart uses forest green for bars and ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a demographic card opens a detailed modal showing breakdowns by age group and income levels."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements highlights corresponding data points."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "economic_data_api": "API endpoint for fetching economic data including employment rate (percentage), median household income (number), and industry breakdown (array of sectors).",
+            "economic_chart_component": "Chart component configured to display economic data using line or bar charts."
+        },
+        "function": "Shows economic data for selected neighborhoods including employment rates and median household income.",
+        "static_description": "A dedicated section below demographic data presents economic metrics in a tabular and graphical format. Includes a summary table and a chart component showing trends over time. Uses forest green accents for visual indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on an economic metric card expands to show a detailed breakdown of industries and income sources."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart lines or bars displays tooltips with precise values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crime_data_api": "API endpoint for fetching crime data including incident types (array of strings), frequency counts per category, and geographic clustering.",
+            "crime_chart_component": "Chart component configured to show crime incidents using heat maps or stacked bar graphs."
+        },
+        "function": "Shows crime data for selected neighborhoods including incident types and frequency.",
+        "static_description": "A separate panel displays crime statistics in a heatmap and bar chart format. Each neighborhood’s crime data is represented visually with color-coded categories and numerical summaries. Background remains ivory with forest green highlights.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a crime category filters the map and charts to only show that type of incident."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a crime cluster shows a popup with details about incidents in that zone."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "interactive_charts_library": "Library for creating dynamic charts (e.g., Chart.js or Plotly) that update based on selected neighborhoods and filters.",
+            "chart_config_schema": "Database schema to store chart configurations including type (line/bar/pie), axes labels, colors, and grouping options."
+        },
+        "function": "Provides interactive charts for visualizing demographic, economic, and crime data.",
+        "static_description": "Multiple chart containers are displayed side-by-side within the dashboard layout. Each chart corresponds to a specific dataset type (demographics, economy, crime). Charts feature axis labels, legends, and tooltips. Background is ivory, with forest green chart elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can drag and rearrange chart components within the dashboard to customize layout."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of chart series."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboard_layout_api": "Backend API endpoint for saving and retrieving user-customized dashboard layouts.",
+            "draggable_component_lib": "UI library enabling drag-and-drop functionality for dashboard components."
+        },
+        "function": "Enables customization of dashboard layouts with draggable components.",
+        "static_description": "Dashboard layout consists of resizable panels containing various widgets such as maps, tables, and charts. Panels can be moved, resized, and reorganized via drag-and-drop. All panels maintain a consistent color scheme with ivory backgrounds and forest green borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a widget to a new position updates the layout in real-time and persists changes to the backend."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the maximize/minimize icon toggles panel size between expanded and compact views."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backend_api_endpoint": "RESTful API endpoints for retrieving neighborhood data from the PostgreSQL database.",
+            "data_fetching_middleware": "Middleware logic for handling real-time data fetching and caching strategies."
+        },
+        "function": "Supports real-time data fetching from backend APIs to keep information current.",
+        "static_description": "Data refresh buttons appear periodically in the UI to manually trigger updates. Loading spinners indicate ongoing data requests. All data is fetched dynamically without hard-coded content.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the refresh button initiates a new data fetch from the backend API."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a loading spinner shows a tooltip indicating data status."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ui_theme_config": "CSS theme configuration setting background to ivory (#FFFFF0) and foreground elements to forest green (#228B22).",
+            "responsive_design_rules": "Media queries ensuring proper scaling for mobile and desktop screens."
+        },
+        "function": "Implements a clean UI with ivory background and forest green accents throughout the application.",
+        "static_description": "All major containers and headers utilize an ivory background while buttons, links, and interactive elements are styled with forest green. Typography and spacing follow a consistent design language. Layout adapts smoothly across device sizes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "time_range_filter": "Dropdown menu allowing users to select time ranges for filtering data (e.g., last month, last year).",
+            "metric_filters": "Checkboxes or toggle switches to enable/disable specific metrics for display."
+        },
+        "function": "Allows users to filter data by time range or specific metrics.",
+        "static_description": "At the top of the dashboard, a filter bar contains dropdowns for selecting date ranges and checkboxes for enabling/disabling certain data categories. Filtered data updates immediately upon selection.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a time range from the dropdown applies the filter to all charts and tables."
+            },
+            {
+                "interaction": "Click",
+                "description": "Toggling a metric checkbox hides or shows related data in charts and tables."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "export_functionality_api": "Backend API endpoint for generating downloadable reports in formats like PDF or CSV.",
+            "download_icon": "/assets/icons/download.svg"
+        },
+        "function": "Enables export functionality for dashboard data and charts.",
+        "static_description": "An export button is located in the top-right corner of the dashboard. When clicked, it generates a report including current data and visualizations in downloadable formats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the export button opens a dialog box to choose export format (PDF, CSV)."
+            },
+            {
+                "interaction": "Click",
+                "description": "After choosing a format, the system triggers a download of the generated file."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_backend_api": "Authentication service providing login/logout endpoints with JWT tokens for session management.",
+            "session_storage": "Frontend mechanism to store user sessions securely after login."
+        },
+        "function": "Provides user authentication and session management for personalized experiences.",
+        "static_description": "A login screen appears at startup requiring credentials. Once logged in, a profile icon appears in the header. Logged-in users can save custom dashboards and preferences.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the login button submits credentials to authenticate the user."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the logout link ends the session and redirects to the login screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "neighborhood_search_api": "API endpoint for searching neighborhoods by name or coordinates.",
+            "search_bar_input": "Text input field for entering neighborhood names or addresses."
+        },
+        "function": "Includes search functionality to find specific neighborhoods.",
+        "static_description": "A prominent search bar at the top of the page allows users to enter neighborhood names or locations. Search results are displayed in a dropdown below the input field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types, live suggestions appear based on matching neighborhood names."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a suggestion centers the map on that neighborhood and selects it for comparison."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobile_breakpoints": "Responsive CSS media queries targeting screen widths below 768px for mobile optimization.",
+            "touch_support_lib": "Touch event handlers for mobile-friendly interactions like pinch-to-zoom and swipe gestures."
+        },
+        "function": "Ensures responsive design for desktop and mobile devices.",
+        "static_description": "The layout adjusts automatically depending on screen width. On smaller screens, components stack vertically, and touch targets increase in size. Map and chart areas scale appropriately for small screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Swipe",
+                "description": "On mobile devices, swiping left/right navigates between tabs or datasets."
+            },
+            {
+                "interaction": "Pinch",
+                "description": "Pinching the map zooms in or out on mobile touchscreens."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgres_connection_env_vars": "Environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp used to connect to the PostgreSQL database.",
+            "database_tables_schema": "Schema definition for tables including neighborhoods (id, name, bounds), demographics (neighborhood_id, population, age_groups), economics (neighborhood_id, employment_rate, median_income), crimes (neighborhood_id, incident_type, count)."
+        },
+        "function": "Integrates PostgreSQL database with environment variables for secure connection.",
+        "static_description": "The backend connects to the PostgreSQL instance using predefined environment variables. Database tables store structured neighborhood data including demographic, economic, and crime metrics.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,192 @@
+[
+    {
+        "resource_dependency": {
+            "todoDataSchema": "Database table named 'todos' with columns: id (UUID, primary key), title (string, not null), description (text), due_date (timestamp), completed (boolean, default false), created_at (timestamp, default now()), updated_at (timestamp, default now())",
+            "apiEndpointGET": "/api/todos",
+            "apiEndpointPOST": "/api/todos",
+            "apiEndpointPUT": "/api/todos/{id}",
+            "apiEndpointDELETE": "/api/todos/{id}"
+        },
+        "function": "Fetch all to-do items from the backend API and display them in a list view.",
+        "static_description": "A page with a lavender background containing an indigo-themed header bar, a main content area showing a list of to-do items. Each item displays its title, truncated description, due date, and completion status using indigo-styled cards or rows.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "On initial load, the frontend makes a GET request to /api/todos to retrieve all to-do items and renders them in the list view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish connection to PostgreSQL database using provided environment variables for storing to-do data.",
+        "static_description": "Backend server configuration file specifying how to connect to PostgreSQL using the given environment variables. No visible UI element as this is a backend-only component.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "createTaskFormFields": [
+                "title",
+                "description",
+                "due_date"
+            ],
+            "apiEndpointPOST": "/api/todos"
+        },
+        "function": "Allow users to create new to-do items by submitting a form with title, description, and due date.",
+        "static_description": "An indigo-styled modal or form overlay on the lavender background with input fields for title (text), description (textarea), and due date (date picker). Submit and cancel buttons are present.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Add Task' button opens the creation form. Clicking 'Submit' sends a POST request to /api/todos with the form data after validating required fields."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on any input field triggers validation and submission of the form if valid."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "editTaskFormFields": [
+                "title",
+                "description",
+                "due_date"
+            ],
+            "apiEndpointPUT": "/api/todos/{id}"
+        },
+        "function": "Enable editing of existing to-do items including their title, description, and due date.",
+        "static_description": "A pre-filled indigo-styled form similar to the creation form but populated with the selected task’s current data. It includes save and cancel buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the edit icon/pencil next to a task opens the edit form. Saving updates the task via PUT request to /api/todos/{id}."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointDELETE": "/api/todos/{id}"
+        },
+        "function": "Permit deletion of to-do items permanently through a delete action.",
+        "static_description": "Each task card or row contains a trash/delete icon styled in indigo. There is no separate confirmation dialog shown in static view.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete/trash icon sends a DELETE request to /api/todos/{id}, removing the task from the list upon successful response."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "toggleCompletionAPI": "PATCH /api/todos/{id}/complete"
+        },
+        "function": "Provide ability to mark tasks as completed or uncompleted with immediate visual feedback.",
+        "static_description": "Each task shows a checkbox or toggle switch aligned left within an indigo-styled container indicating completion status.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling the checkbox sends a PATCH request to update the task's completed status. The UI reflects the change immediately without full reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterOptions": [
+                "All",
+                "Active",
+                "Completed"
+            ],
+            "apiQueryParamSupport": "?filter=all|active|completed"
+        },
+        "function": "Offer filtering options to show only All, Active, or Completed tasks.",
+        "static_description": "Three indigo-styled filter tabs/buttons labeled 'All', 'Active', and 'Completed' positioned above the task list on the lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a filter tab sends a GET request to /api/todos?filter=value which returns filtered results and updates the displayed list accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchInputField": "Text input field",
+            "apiQueryParamSupport": "?search={keyword}"
+        },
+        "function": "Implement search functionality allowing users to find tasks by keywords in title or description.",
+        "static_description": "A search bar/input field styled with indigo theme located at the top of the task list section against the lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types into the search box, debounced GET requests are sent to /api/todos?search=query updating the task list dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskListViewLayout": "Card-based or table layout displaying title, description snippet, due date, and status per task"
+        },
+        "function": "Present all to-do items in a clear list view with essential information visible at a glance.",
+        "static_description": "Main content area filled with vertically stacked indigo-styled cards or horizontally aligned rows showing each task's key details on a lavender background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignSpecs": "CSS media queries ensuring layout adapts to mobile/tablet/desktop screens maintaining lavender background and indigo components"
+        },
+        "function": "Ensure consistent styling with lavender background and indigo components across devices and screen sizes.",
+        "static_description": "Entire application interface uses lavender (#E6E6FA) as the base background color and indigo (#4B0082) for interactive components like buttons, inputs, headers, etc., regardless of viewport size.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "websocketOrPollingMechanism": "WebSocket or polling mechanism for real-time sync"
+        },
+        "function": "Maintain real-time synchronization between frontend and backend during all CRUD operations.",
+        "static_description": "No direct visual representation; involves underlying communication protocols keeping frontend and backend synchronized automatically.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingUI": "Toast notifications or inline error messages"
+        },
+        "function": "Handle errors gracefully such as failed API calls or database issues with informative feedback.",
+        "static_description": "Toast-style notification popups or inline error banners appear near relevant actions/forms when failures occur, styled consistently with the lavender-indigo theme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "validationRules": "Title is required; description optional; due date optional but must be future if provided"
+        },
+        "function": "Enforce validation on mandatory fields when creating or editing tasks before sending data to backend.",
+        "static_description": "Red-colored hint texts or border highlights appear beneath invalid fields in forms, prompting corrections before submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Form",
+                "description": "If title is empty, prevent form submission and highlight the title field with an error message until corrected."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "paginationControls": "Next/Previous buttons or infinite scroll trigger",
+            "apiQueryParamSupport": "?page={number}&limit={count}"
+        },
+        "function": "Support pagination or infinite scrolling for efficient browsing of large numbers of tasks.",
+        "static_description": "At the bottom of the task list, either numbered pagination links or a 'Load More' button appears depending on implementation choice.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll or Click",
+                "description": "Reaching end of list triggers loading more tasks via GET /api/todos?page=x&limit=y or clicking pagination loads next set of tasks."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{ \"install:all\": \"concurrently \\\"npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev --prefix frontend\\\" \\\"npm run dev --prefix backend\\\"\" }"
+        },
+        "function": "Configure package.json scripts to manage installation and development startup of both frontend and backend concurrently.",
+        "static_description": "The root level package.json file includes custom scripts under 'scripts' section enabling dual-installation and concurrent execution.",
+        "interaction_and_states": []
+    }
+]

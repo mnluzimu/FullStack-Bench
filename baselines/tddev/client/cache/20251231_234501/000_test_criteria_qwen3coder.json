@@ -1,0 +1,233 @@
+[
+    {
+        "requirement_tested": "A frontend interface with a white background and navy-colored components",
+        "user_persona": "A financial analyst visiting the site for the first time.",
+        "user_goal": "To visually confirm that the website follows a professional, clean design with consistent white and navy theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Alex opens the website and immediately scans the homepage for visual consistency. He expects a clean look with a white background and navy interactive elements.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Page loads with a white background and all interactive components like buttons and inputs styled in navy."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search input field allowing users to enter stock codes or names",
+        "user_persona": "A stock trader looking up a specific company quickly.",
+        "user_goal": "To find Apple Inc. by entering its name into the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing Search Field",
+                "description": "Jamie sees the search bar and clicks on it to begin typing.",
+                "action": "Click on the search input field.",
+                "expected_outcome": "Input field gains focus and cursor appears ready for entry."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Name",
+                "description": "Jamie types 'Apple Inc.' into the search box and presses Enter to initiate the search.",
+                "action": "Type 'Apple Inc.' into the input field and press Enter.",
+                "expected_outcome": "System sends a request to /api/stocks/search?q=Apple+Inc. and returns matching results."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A dropdown or selection panel for users to choose report formats and content options",
+        "user_persona": "A portfolio manager preparing a client presentation.",
+        "user_goal": "To customize a report by choosing PDF format and selecting Basic Info and Financial Data sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Report Format",
+                "description": "Taylor wants a PDF version of the report and clicks the dropdown to make the selection.",
+                "action": "Click the 'Report Format' dropdown and select 'PDF Report'.",
+                "expected_outcome": "'PDF Report' is now selected and reflected in the dropdown."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Content Sections",
+                "description": "Taylor checks the boxes for 'Basic Info' and 'Financial Data' to tailor the content.",
+                "action": "Click checkboxes next to 'Basic Info' and 'Financial Data'.",
+                "expected_outcome": "Both checkboxes become checked and included in user selections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A submit button to trigger report generation based on user inputs",
+        "user_persona": "A junior analyst tasked with generating daily stock summaries.",
+        "user_goal": "To generate a customized stock report after filling out all necessary fields.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Clicking Generate Button",
+                "description": "Casey has filled in the stock name, chosen format and content, and is ready to generate the report.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "Button triggers POST to /api/reports/generate with selected parameters and shows loading spinner."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A section to display generated stock reports including basic stock information",
+        "user_persona": "An investor reviewing multiple stocks before making decisions.",
+        "user_goal": "To view detailed and organized stock information once the report is generated.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Generated Report",
+                "description": "Riley waits as the report generates and then looks for key data points like latest price and financials.",
+                "action": "Wait for report generation to complete and observe the results section.",
+                "expected_outcome": "Section expands showing structured report with basic info cards, market chart placeholder, and financial tables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integration with backend APIs to fetch real-time stock data and analysis",
+        "user_persona": "A day trader needing accurate, current stock prices.",
+        "user_goal": "To get up-to-date pricing and market insights for Tesla.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Stock",
+                "description": "Morgan enters 'TSLA' and submits the search to retrieve updated data.",
+                "action": "Enter 'TSLA' in the search input and hit Enter.",
+                "expected_outcome": "Frontend calls /api/stocks/search and retrieves real-time data via external stock API integration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend service that connects to an external PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer validating deployment settings.",
+        "user_goal": "To verify the backend connects securely to the PostgreSQL database using correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Database Connection",
+                "description": "Jordan inspects logs during app startup to ensure database connection is initialized properly.",
+                "action": "Start backend server and inspect console/logs.",
+                "expected_outcome": "Log indicates successful connection to PostgreSQL using DB_HOST=localhost, DB_USERNAME=myappuser, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for searching stock information by code or name",
+        "user_persona": "A developer integrating stock search into another platform.",
+        "user_goal": "To programmatically search for Microsoft using the exposed API endpoint.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Calling Search Endpoint",
+                "description": "Dana constructs a GET request to the search endpoint with 'Microsoft' as query.",
+                "action": "Send GET request to /api/stocks/search?q=Microsoft.",
+                "expected_outcome": "Endpoint responds with JSON array containing matching stock symbols and names."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving market trends and financial data",
+        "user_persona": "A data scientist building predictive models.",
+        "user_goal": "To pull financial data for Amazon to analyze quarterly performance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Financials",
+                "description": "Quinn uses the financials endpoint to fetch Amazon's quarterly revenue and profit data.",
+                "action": "Send GET request to /api/stocks/AMZN/financials.",
+                "expected_outcome": "Returns structured financial data with Year, Revenue, and Profit fields."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to generate customized stock reports in selected formats",
+        "user_persona": "A compliance officer requiring standardized reports.",
+        "user_goal": "To download a formatted Excel summary of Google's stock data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Excel Report",
+                "description": "Patricia selects Excel format, chooses content sections, and clicks Generate.",
+                "action": "Select 'Excel Summary', check desired content boxes, and click 'Generate Report'.",
+                "expected_outcome": "System compiles data and returns a downloadable .xlsx file with selected content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A results display area showing summarized stock data and generated reports",
+        "user_persona": "A research associate compiling industry benchmarks.",
+        "user_goal": "To compare several stocks by viewing their summarized reports side-by-side.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Multiple Reports",
+                "description": "Blake generates reports for three different stocks and reviews them in sequence.",
+                "action": "Generate and view reports for each stock sequentially.",
+                "expected_outcome": "Each report renders cleanly within the same results container with distinct sections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible across desktop and mobile views",
+        "user_persona": "A remote worker checking stock updates on a phone.",
+        "user_goal": "To navigate and interact with the full functionality on a mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Sam opens the website on a smartphone and checks how elements rearrange for smaller screens.",
+                "action": "Open website on a mobile browser.",
+                "expected_outcome": "Layout stacks vertically, input fields and buttons remain accessible and usable."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading indicators during data fetching and report generation processes",
+        "user_persona": "A busy executive expecting fast responses.",
+        "user_goal": "To know when the system is working instead of appearing frozen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Loading State",
+                "description": "Alex initiates a report generation and watches for visual confirmation of processing.",
+                "action": "Click 'Generate Report' and watch the UI.",
+                "expected_outcome": "Spinner animation appears where report would be until process completes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for invalid stock codes, missing data, or API failures",
+        "user_persona": "A new user accidentally mistyping a stock symbol.",
+        "user_goal": "To understand why a report failed due to an incorrect input.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Invalid Symbol",
+                "description": "Jordan types 'XYZABC' and hits Enter, unsure if it's a valid ticker.",
+                "action": "Enter 'XYZABC' into search field and press Enter.",
+                "expected_outcome": "Displays error message: 'Invalid stock symbol provided.'"
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with scripts: 'install:all' for FE & BE installation and 'dev' for concurrent development startup",
+        "user_persona": "A new team member setting up the project locally.",
+        "user_goal": "To easily install dependencies and start both frontend and backend servers with one command each.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Taylor clones the repo and runs the setup script to prepare the environment.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Installs dependencies for both frontend and backend projects simultaneously."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With everything installed, Taylor starts both dev servers together.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Concurrently starts frontend and backend development servers successfully."
+            }
+        ]
+    }
+]

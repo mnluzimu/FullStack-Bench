@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A visitor interested in learning about the solar company's offerings.",
+        "user_goal": "To view dynamically loaded content on the website without seeing any hardcoded information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens her browser and navigates to the solar company's homepage. She expects real-time data rather than static placeholders.",
+                "action": "Navigate to the root URL of the website.",
+                "expected_outcome": "The page loads successfully, and all sections begin fetching data from backend endpoints immediately."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Dynamic Content",
+                "description": "As the page finishes loading, Sarah sees actual company history, product listings, and news articles pulled from the backend instead of dummy text.",
+                "action": "Observe the content rendering after initial load.",
+                "expected_outcome": "All displayed content originates from API responses, confirming dynamic data fetching is functioning correctly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using the specified environment variables",
+        "user_persona": "A developer deploying the application for production use.",
+        "user_goal": "To ensure the backend service establishes a secure connection to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer runs the backend server locally to verify connectivity to the configured PostgreSQL instance.",
+                "action": "Start the backend server using npm run dev or similar command.",
+                "expected_outcome": "Server initializes successfully and logs indicate successful database connection using DB_HOST, DB_PORT, etc., environment variables."
+            },
+            {
+                "step": 2,
+                "title": "Querying Database Tables",
+                "description": "Upon startup, the backend queries essential tables like 'company_info', 'products', and 'news' to confirm active database communication.",
+                "action": "Monitor server logs during initialization.",
+                "expected_outcome": "Database queries execute without errors, verifying correct table access and data retrieval through established connection."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A company introduction section displaying history, mission, and values",
+        "user_persona": "A potential client researching the credibility of the solar company.",
+        "user_goal": "To understand the company’s background, purpose, and principles by visiting the About Us section.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to About Us Section",
+                "description": "John clicks the 'About Us' link in the navigation menu to learn more about the company.",
+                "action": "Click on the 'About Us' navigation item.",
+                "expected_outcome": "Page scrolls smoothly to or loads the About Us section with distinct subheadings: History, Mission, and Values."
+            },
+            {
+                "step": 2,
+                "title": "Reading Company Details",
+                "description": "John reads through each subsection carefully to evaluate whether the company aligns with his environmental values.",
+                "action": "Scroll down and visually inspect content under each heading.",
+                "expected_outcome": "Each subsection displays accurate textual content retrieved dynamically from the backend database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A product showcase section with detailed product information",
+        "user_persona": "A homeowner looking to purchase solar panels for energy efficiency.",
+        "user_goal": "To explore various solar products offered by the company and compare features before making a decision.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Product Showcase",
+                "description": "Emily visits the 'Products' section to see what solar solutions are available.",
+                "action": "Navigate to the Products page or scroll to the Products section.",
+                "expected_outcome": "A responsive grid layout presents multiple product cards with names, descriptions, prices, and images."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Specific Product",
+                "description": "Intrigued by one panel model, Emily clicks its card to get comprehensive specifications.",
+                "action": "Click on a specific product card.",
+                "expected_outcome": "Redirected to a dedicated product detail page showing extended description, larger image, and pricing details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A news updates section displaying latest news and events",
+        "user_persona": "An investor keeping track of developments in renewable energy startups.",
+        "user_goal": "To stay informed about recent company milestones, partnerships, or press releases.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing News Updates",
+                "description": "David navigates to the News section to catch up on recent happenings at the company.",
+                "action": "Click on the 'News' link in the navigation menu.",
+                "expected_outcome": "A chronological list or timeline of news articles appears, each with a title, date, summary, and optional thumbnail."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Article Details",
+                "description": "Interested in a particular announcement, David clicks an article to read the full story.",
+                "action": "Click on a news article entry.",
+                "expected_outcome": "Either the article expands inline or redirects to a separate page with the complete content and imagery."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A contact us page with fields for name, email, and message",
+        "user_persona": "A prospective customer needing clarification on installation services.",
+        "user_goal": "To reach out to the company directly through a web-based contact form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Contact Page",
+                "description": "Lisa goes to the Contact page to inquire about residential solar installations.",
+                "action": "Click the 'Contact' link in the navigation bar.",
+                "expected_outcome": "A clean contact form with labeled Name, Email, and Message fields loads instantly."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Contact Form",
+                "description": "Lisa fills in her personal details and composes a question regarding pricing options.",
+                "action": "Enter name, valid email address, and a brief inquiry message into respective input fields.",
+                "expected_outcome": "Fields accept input normally, and the Submit button becomes enabled once required fields are filled."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Lemon chiffon background color applied throughout the website",
+        "user_persona": "A UX designer auditing visual consistency across platforms.",
+        "user_goal": "To verify that the lemon chiffon background theme is uniformly implemented across all pages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Background",
+                "description": "While reviewing the homepage, the designer checks if the base background matches the requested lemon chiffon tone.",
+                "action": "Open homepage and inspect CSS properties of body or main container element.",
+                "expected_outcome": "Background color is set to #FFFACD (lemon chiffon) consistently across all top-level containers."
+            },
+            {
+                "step": 2,
+                "title": "Checking Subpages Consistency",
+                "description": "Designer moves between different sections to ensure no deviations in background styling occur.",
+                "action": "Visit About, Products, News, and Contact pages individually.",
+                "expected_outcome": "Every visited page retains the same lemon chiffon background as defined in style guidelines."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chocolate-colored component layer styling",
+        "user_persona": "A brand manager ensuring adherence to corporate identity standards.",
+        "user_goal": "To validate that UI components follow prescribed chocolate-themed styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Component Colors",
+                "description": "Brand manager reviews primary interactive elements like buttons, headers, and cards to match approved color palette.",
+                "action": "Inspect styles of key UI components using browser developer tools.",
+                "expected_outcome": "Component backgrounds, borders, and text utilize shades of chocolate (#D2691E) as specified in branding documents."
+            },
+            {
+                "step": 2,
+                "title": "Cross-Section Verification",
+                "description": "Manager ensures chocolate styling persists even when navigating through various site sections.",
+                "action": "Cycle through all major sections—About, Products, News, Contact—and repeat inspection.",
+                "expected_outcome": "Consistent chocolate coloring remains intact regardless of page context or viewport size."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and mobile devices",
+        "user_persona": "A busy professional checking the website on their smartphone during commute.",
+        "user_goal": "To seamlessly navigate and consume content on a small-screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile Device",
+                "description": "Using a mobile phone, Alex types the website URL into the browser to explore services.",
+                "action": "Access the website using a mobile browser.",
+                "expected_outcome": "Website renders appropriately scaled for smaller screens, avoiding horizontal scrolling or tiny unreadable fonts."
+            },
+            {
+                "step": 2,
+                "title": "Interacting Across Sections",
+                "description": "Alex taps through menus and explores product cards to assess ease-of-use on mobile.",
+                "action": "Tap navigation items, product cards, and buttons.",
+                "expected_outcome": "All interactions work smoothly; layouts adjust responsively, and touch targets are adequately sized."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navigation menu linking to each main section of the website",
+        "user_persona": "A new visitor unfamiliar with the site structure seeking quick orientation.",
+        "user_goal": "To easily jump between core areas of the website using intuitive navigation controls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Navigation Menu",
+                "description": "Upon landing, Maria looks for clear guidance on where to find specific information.",
+                "action": "Look for the navigation bar positioned prominently near the top of the page.",
+                "expected_outcome": "A clearly visible menu with links to Home, About Us, Products, News, and Contact is present."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Between Sections",
+                "description": "Maria clicks each menu option to confirm they lead to intended destinations.",
+                "action": "Click sequentially on each navigation link.",
+                "expected_outcome": "Each click results in either smooth scrolling to anchor points or direct navigation to corresponding standalone pages."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "SEO-friendly page titles and meta descriptions for each section",
+        "user_persona": "A digital marketer optimizing online presence for organic search traffic.",
+        "user_goal": "To improve discoverability of the website through targeted keywords in metadata.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Meta Tags on Homepage",
+                "description": "Marketer inspects source code to confirm presence of descriptive SEO metadata.",
+                "action": "Right-click and choose 'View Page Source' on the homepage.",
+                "expected_outcome": "<title> tag reflects unique branding and keyword-rich phrasing; <meta name=\"description\"> contains compelling snippet."
+            },
+            {
+                "step": 2,
+                "title": "Checking Other Pages’ Metadata",
+                "description": "Continuing audit, marketer verifies consistency of metadata across secondary sections.",
+                "action": "Repeat viewing source process on About, Products, News, and Contact pages.",
+                "expected_outcome": "Each page has uniquely tailored <title> and <meta description> matching its topic and purpose."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Accessibility compliance including keyboard navigation and screen reader support",
+        "user_persona": "A visually impaired individual relying on assistive technology to browse websites.",
+        "user_goal": "To independently navigate the website using only keyboard commands and screen reader software.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Keyboard Navigation",
+                "description": "Using only Tab and Enter keys, user attempts to traverse the main navigation menu.",
+                "action": "Press Tab repeatedly starting from top of page.",
+                "expected_outcome": "Focus indicator moves predictably through actionable elements in logical reading order without getting lost."
+            },
+            {
+                "step": 2,
+                "title": "Activating Elements with Keys",
+                "description": "When reaching a menu item, user presses Enter to activate it.",
+                "action": "Focus on a navigation link and press Enter.",
+                "expected_outcome": "Link behaves identically to mouse click—scrolling or redirecting accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact form submission handling with validation and success/error feedback",
+        "user_persona": "A cautious consumer wanting assurance that their inquiries are properly received.",
+        "user_goal": "To submit a message confidently knowing the system will validate entries and provide clear feedback.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Empty Form",
+                "description": "Before entering anything, user accidentally hits Submit to test error handling.",
+                "action": "Leave all fields blank and click Submit button.",
+                "expected_outcome": "Inline error messages appear next to empty required fields indicating missing input."
+            },
+            {
+                "step": 2,
+                "title": "Sending Valid Inquiry",
+                "description": "After correcting mistakes, user submits a well-formed contact request.",
+                "action": "Fill all required fields accurately and click Submit again.",
+                "expected_outcome": "Form disappears or disables temporarily, replaced by a thank-you message confirming receipt."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Image optimization for fast loading of media assets",
+        "user_persona": "A frequent traveler accessing the site over slow cellular networks.",
+        "user_goal": "To experience minimal delays when browsing product images or news thumbnails.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Product Gallery",
+                "description": "User opens the product showcase expecting prompt display of numerous high-quality visuals.",
+                "action": "Visit the Products section and observe how quickly images render.",
+                "expected_outcome": "Images load progressively, appearing sharp yet optimized for bandwidth usage."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Browser Window",
+                "description": "Adjusts window width to simulate varying device resolutions.",
+                "action": "Gradually resize browser horizontally.",
+                "expected_outcome": "Images scale responsively, delivering appropriately sized versions based on current viewport dimensions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Structured data markup for improved search engine indexing",
+        "user_persona": "An SEO specialist auditing rich snippets implementation.",
+        "user_goal": "To confirm presence of structured data enhancing crawlability and SERP appearance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Structured Data",
+                "description": "Specialist examines raw HTML for inclusion of JSON-LD script blocks defining entities.",
+                "action": "View page source and search for '<script type=\"application/ld+json\">'.",
+                "expected_outcome": "Found embedded JSON-LD objects conforming to Organization, Product, Article schemas where applicable."
+            },
+            {
+                "step": 2,
+                "title": "Validating Markup Syntax",
+                "description": "Runs extracted markup through Google’s Rich Results Test tool.",
+                "action": "Copy JSON-LD snippet and paste into validator interface.",
+                "expected_outcome": "Validator reports no syntax errors and recognizes intended schema types for enhanced indexing."
+            }
+        ]
+    }
+]

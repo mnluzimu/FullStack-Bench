@@ -1,0 +1,232 @@
+[
+    {
+        "resource_dependency": {
+            "navigationBarItems": [
+                "Menus",
+                "Private Poker Room",
+                "Events & Promotions",
+                "Reservations/Purchases"
+            ],
+            "homePageBackgroundImage": "/assets/images/home-bg.jpg",
+            "logoImage": "/assets/images/logo.png"
+        },
+        "function": "Serve as the main entry point of the website with navigation links to all primary sections.",
+        "static_description": "The homepage displays a header with the bar's logo and a horizontal navigation bar containing links to Menus, Private Poker Room, Events & Promotions, and Reservations/Purchases. The background features a hero image with overlay text welcoming visitors. Peach puff colored containers display featured content such as special offers or upcoming events. Indian red accents highlight buttons and headings throughout the page.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any navigation link navigates the user to the corresponding section page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "As the user scrolls down, the navigation bar remains fixed at the top of the viewport."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "menuDataSchema": "Database table named 'menus' with columns: id (UUID), name (string), category (enum: 'bourbon', 'cocktail'), description (text), price (decimal), imageUrl (string)",
+            "fetchMenuAPI": "GET /api/menus endpoint returning list of menu items categorized under bourbons and cocktails"
+        },
+        "function": "Display dynamically loaded bourbon and cocktail menus with descriptions and pricing.",
+        "static_description": "Two tabs labeled 'Bourbons' and 'Cocktails'. Below each tab, cards are displayed in a grid layout. Each card contains an item image, title, short description, and price, all within peach puff containers. Indian red borders distinguish individual cards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking either 'Bourbons' or 'Cocktails' tab filters the displayed menu items accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pokerRoomImageData": "/assets/images/poker-room-gallery/",
+            "membershipDetailsContent": "Exclusive access to premium gaming tables, private lounge area, monthly tournaments with cash prizes, priority booking for special events."
+        },
+        "function": "Present information about the membership-only private poker room including access requirements and benefits.",
+        "static_description": "A dedicated page featuring a gallery of poker room images above the fold. Beneath the gallery, two columns present membership details and access requirements. Text is styled with standard font sizes and spacing, using peach puff for container backgrounds and indian red for section headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any image in the gallery opens a modal lightbox showing the full-size version."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "eventsPromosDataSchema": "Database table named 'events_promotions' with columns: id (UUID), title (string), eventType (enum: 'event', 'promotion'), startDate (timestamp), endDate (timestamp), description (text), imageUrl (string)",
+            "fetchEventsPromosAPI": "GET /api/events-promotions endpoint returning list of current and upcoming events and promotions"
+        },
+        "function": "List upcoming events and ongoing promotions with relevant details.",
+        "static_description": "A timeline-styled list of cards, each representing an event or promotion. Cards include a thumbnail image, title, date range, and brief description. Peach puff backgrounds with indian red accents used consistently across cards and headings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a card expands it to show more detailed information and related actions like sharing or RSVP."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reservationFormFields": [
+                "Name",
+                "Email",
+                "Phone Number",
+                "Date",
+                "Time",
+                "Party Size",
+                "Type (Table/Private Poker Room)",
+                "Special Requests"
+            ],
+            "submitReservationAPI": "POST /api/reservations endpoint accepting reservation data and returning confirmation status"
+        },
+        "function": "Enable users to book tables or private poker room sessions online.",
+        "static_description": "A form laid out vertically with labeled input fields arranged in a responsive grid. Submit button uses indian red styling. Background of the form container is peach puff. Validation messages appear inline beneath respective inputs when needed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends form data to the backend and shows success or error feedback."
+            },
+            {
+                "interaction": "Input Focus",
+                "description": "Focusing on date/time fields opens calendar/time pickers respectively."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "productCatalogDataSchema": "Database table named 'products' with columns: id (UUID), name (string), type (enum: 'bottle', 'merchandise'), description (text), price (decimal), stockQuantity (integer), imageUrl (string)",
+            "purchaseFlowAPIs": "GET /api/products for fetching product listings; POST /api/cart for adding items; POST /api/checkout for processing payments",
+            "paymentGatewayIntegration": "Integration with Stripe or similar payment gateway using client-side SDK"
+        },
+        "function": "Allow users to browse and purchase bottles and merchandise directly through the website.",
+        "static_description": "Product listing page displays items in a responsive grid. Each product card includes an image, name, description snippet, price, and an 'Add to Cart' button styled with indian red. Shopping cart icon in the header updates count dynamically. Peach puff background applied to main content area.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add to Cart' adds the item to the shopping cart and updates the cart counter. Clicking the cart icon opens a slide-in panel summarizing selected items."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting checkout form initiates secure payment flow via integrated payment gateway."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries and flexbox/grid layouts ensuring compatibility across devices",
+            "colorPaletteDefinition": "{ containerBackground: '#FFDAB9', componentAccent: '#CD5C5C' }"
+        },
+        "function": "Ensure consistent visual identity and usability across desktop, tablet, and mobile views.",
+        "static_description": "All pages utilize a base CSS framework applying peach puff (#FFDAB9) as container background color and indian red (#CD5C5C) for component highlights such as buttons, links, and section dividers. Layout adapts fluidly between screen sizes using responsive units and breakpoints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "contactFormDataSchema": "Database table named 'inquiries' with columns: id (UUID), name (string), email (string), subject (string), message (text), submittedAt (timestamp)",
+            "submitContactFormAPI": "POST /api/contact endpoint storing inquiry data and triggering notification",
+            "locationMapEmbed": "Google Maps embed URL pointing to The All-In Bourbon Bar’s physical address"
+        },
+        "function": "Provide business location, operating hours, and allow users to send inquiries.",
+        "static_description": "Contact section split into two parts: left side shows embedded Google Map and operating hours; right side hosts a vertical contact form with fields for Name, Email, Subject, and Message. Peach puff background applied to entire section, with indian red used for form labels and submit button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button validates form entries and submits data to backend API, displaying success/error message afterward."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": "POST /api/auth/login for login; GET /api/user/profile for retrieving member profile",
+            "memberOnlyContentAccessRule": "Route guard checking JWT presence and validity before serving protected content"
+        },
+        "function": "Authenticate members to grant exclusive access to poker room content.",
+        "static_description": "Login form appears when accessing restricted areas. Fields include Email and Password with a 'Sign In' button styled with indian red. Forgot password and register links also visible. Upon successful login, users gain access to exclusive poker room materials.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Sign In' authenticates credentials against backend and redirects to requested protected page upon success."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dynamicDataFetchingMechanism": "Axios/fetch-based HTTP clients calling defined API endpoints",
+            "stateManagementLibrary": "React Context API or Redux for managing global application state"
+        },
+        "function": "Load all dynamic content from backend APIs rather than using hardcoded data.",
+        "static_description": "Each dynamic section (menus, events, etc.) renders placeholder skeletons during loading states. Once data arrives, components update to show actual content retrieved from backend services. No static fallbacks beyond loading indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Mount",
+                "description": "Upon mounting, components initiate API calls to fetch required data and re-render once received."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp used by backend ORM or query builder",
+            "databaseSchemaFiles": "SQL migration scripts defining tables: menus, events_promotions, products, reservations, inquiries, users"
+        },
+        "function": "Establish connection between backend services and PostgreSQL database instance.",
+        "static_description": "Backend configuration loads environment variables automatically at startup. Database connection pool initialized using these settings. Migrations executed to set up schema structures matching defined models.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "npmScriptsDefinition": "Custom scripts in package.json: \"install:all\": \"concurrently \\\"npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev:client\\\" \\\"npm run dev:server\\\"\""
+        },
+        "function": "Streamline development workflow with unified installation and concurrent execution commands.",
+        "static_description": "Root-level package.json file includes custom npm scripts enabling simultaneous setup and launch of frontend and backend projects using concurrently utility.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "routeProtectionMiddleware": "Express middleware validating session/JWT tokens only on protected routes"
+        },
+        "function": "Restrict access to certain pages while keeping general browsing open.",
+        "static_description": "Public routes render immediately without authentication prompts. Member-specific pages check for valid session or token before rendering content or redirecting to login.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigation Request",
+                "description": "Attempting to navigate to a protected route triggers automatic redirection to login if unauthenticated."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "galleryImageDataSources": [
+                "/assets/images/menu-items/",
+                "/assets/images/poker-room-highlights/",
+                "/assets/images/event-galleries/"
+            ],
+            "lightboxComponentLibrary": "Pre-built React/Vue component for displaying image carousels/modals"
+        },
+        "function": "Enhance user engagement through visual storytelling via curated image collections.",
+        "static_description": "Galleries embedded in relevant sections display thumbnails in grids. Clicking any thumbnail opens a modal slideshow allowing users to scroll through larger versions. Navigation arrows and close button use indian red styling against peach puff backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a thumbnail opens the lightbox viewer. Arrow clicks cycle through images; clicking outside the image or pressing ESC closes the modal."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "socialSharingButtons": [
+                "Facebook",
+                "Twitter",
+                "Instagram"
+            ],
+            "socialMediaAPIIntegration": "ShareThis/AddToAny widgets or native platform share dialogs"
+        },
+        "function": "Facilitate easy sharing of events and promotions across popular social networks.",
+        "static_description": "Each event/promotion card includes small branded icons aligned horizontally near the bottom. Icons represent major platforms like Facebook, Twitter, Instagram. Hover effects apply subtle transitions but no immediate action until clicked.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a social icon invokes platform-specific sharing dialog pre-filled with event title, description, and URL."
+            }
+        ]
+    }
+]

@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "Display an interactive map interface",
+        "user_persona": "A local researcher exploring neighborhood data.",
+        "user_goal": "To navigate and select a region on the interactive map.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing the Map Interface",
+                "description": "Maria opens the app and sees the full-screen interactive map centered on her city. She notices the ivory background and forest green controls.",
+                "action": "Load the application homepage.",
+                "expected_outcome": "The map loads centered on a default region with correct styling applied."
+            },
+            {
+                "step": 2,
+                "title": "Zooming In",
+                "description": "Maria scrolls over the map to get a closer look at a specific neighborhood.",
+                "action": "Scroll over the map.",
+                "expected_outcome": "The map zooms in smoothly while keeping the cursor position centered."
+            },
+            {
+                "step": 3,
+                "title": "Selecting a Region",
+                "description": "She clicks on a particular neighborhood to select it for further analysis.",
+                "action": "Click on a geographic region.",
+                "expected_outcome": "The region's boundary is highlighted in forest green, and it appears in the side panel."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to select and compare multiple geographic areas",
+        "user_persona": "A policy analyst comparing urban development outcomes.",
+        "user_goal": "To select multiple neighborhoods and initiate a comparison.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding Areas to Compare",
+                "description": "David selects three different neighborhoods from the map, which appear in the right sidebar.",
+                "action": "Click on three separate regions.",
+                "expected_outcome": "Each selected area appears in the comparison list in the sidebar with a remove button."
+            },
+            {
+                "step": 2,
+                "title": "Removing One Area",
+                "description": "He realizes one area isn't relevant and removes it from the list.",
+                "action": "Click the remove icon next to an area.",
+                "expected_outcome": "The deselected area disappears from the comparison list."
+            },
+            {
+                "step": 3,
+                "title": "Starting Comparison",
+                "description": "Satisfied with his selections, he clicks the 'Compare Areas' button.",
+                "action": "Click the 'Compare Areas' button.",
+                "expected_outcome": "The dashboard switches to show visualizations comparing the remaining selected areas."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show demographic data visualization",
+        "user_persona": "A social worker assessing community needs.",
+        "user_goal": "To review demographic trends across selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Demographic Charts",
+                "description": "Sarah navigates to the demographic section and sees bar charts showing age distribution and income levels.",
+                "action": "Navigate to the demographic visualization section.",
+                "expected_outcome": "Collapsible bar charts render with forest green axes and labels on an ivory background."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Data Series",
+                "description": "She toggles off the 'Education Level' series to focus on income data.",
+                "action": "Click on the legend item for 'Education Level'.",
+                "expected_outcome": "The corresponding data series disappears from the chart."
+            },
+            {
+                "step": 3,
+                "title": "Inspecting Data Points",
+                "description": "She hovers over a bar to see exact figures for median household income.",
+                "action": "Hover over a data point in the chart.",
+                "expected_outcome": "A tooltip appears showing the exact value and time period."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show economic data visualization",
+        "user_persona": "An economist analyzing regional growth patterns.",
+        "user_goal": "To analyze employment and housing trends over time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Line Graphs",
+                "description": "James views line graphs displaying employment rates and housing prices over several years.",
+                "action": "Navigate to the economic visualization section.",
+                "expected_outcome": "Line graphs with titled axes render properly in forest green on ivory background."
+            },
+            {
+                "step": 2,
+                "title": "Isolating a Category",
+                "description": "He clicks on the employment rate line to isolate it for clearer viewing.",
+                "action": "Click on a line segment in the graph.",
+                "expected_outcome": "Only the selected data category is displayed prominently."
+            },
+            {
+                "step": 3,
+                "title": "Examining Specific Values",
+                "description": "James hovers over a peak in the housing price trend to see the exact value.",
+                "action": "Hover over a node in the line graph.",
+                "expected_outcome": "A floating label shows the precise value and date."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show crime data visualization",
+        "user_persona": "A public safety officer evaluating neighborhood risk.",
+        "user_goal": "To compare crime statistics between selected areas.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Stacked Charts",
+                "description": "Lisa examines stacked column charts showing total crimes, violent crimes, and property crimes.",
+                "action": "Navigate to the crime visualization section.",
+                "expected_outcome": "Stacked column charts are rendered with proper forest green and ivory theming."
+            },
+            {
+                "step": 2,
+                "title": "Drilling Down Into Crime Types",
+                "description": "She clicks on a segment representing violent crimes to isolate that category.",
+                "action": "Click on a stacked segment.",
+                "expected_outcome": "The chart updates to highlight only the selected crime type."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Detailed Breakdown",
+                "description": "She hovers over a segment to see exact counts and percentages.",
+                "action": "Hover over a segment in the chart.",
+                "expected_outcome": "A tooltip displays detailed counts and percentage breakdowns."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide data dashboard with interactive charts",
+        "user_persona": "A city planner monitoring urban metrics.",
+        "user_goal": "To organize and interact with various data visualizations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Dashboard Layout",
+                "description": "Robert sees a grid of draggable and resizable chart panels upon entering the dashboard.",
+                "action": "Navigate to the dashboard view.",
+                "expected_outcome": "Dashboard renders with a grid layout of chart panels styled correctly."
+            },
+            {
+                "step": 2,
+                "title": "Moving a Panel",
+                "description": "He drags a demographic chart to a new position to group similar metrics together.",
+                "action": "Drag a panel header.",
+                "expected_outcome": "The panel repositions smoothly within the grid without overlapping."
+            },
+            {
+                "step": 3,
+                "title": "Resizing a Chart",
+                "description": "He resizes a crime chart to give it more space for better readability.",
+                "action": "Resize the edges of a panel.",
+                "expected_outcome": "The panel adjusts its dimensions without disrupting adjacent panels."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable customizable dashboard layouts",
+        "user_persona": "A data analyst personalizing his workspace.",
+        "user_goal": "To save and later recall a preferred dashboard layout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Saving Current Layout",
+                "description": "After rearranging his dashboard, Alex clicks the save layout icon.",
+                "action": "Click the 'Save Layout' icon.",
+                "expected_outcome": "A prompt asks him to confirm and name the layout."
+            },
+            {
+                "step": 2,
+                "title": "Naming and Confirming Save",
+                "description": "He names the layout 'Q2 Analysis' and confirms saving.",
+                "action": "Enter a name and confirm save.",
+                "expected_outcome": "The layout is saved and appears in the saved layouts dropdown."
+            },
+            {
+                "step": 3,
+                "title": "Loading Saved Layout",
+                "description": "Later, he selects 'Q2 Analysis' from the dropdown to restore his setup.",
+                "action": "Select a saved layout from the dropdown.",
+                "expected_outcome": "The dashboard instantly reconfigures to match the saved layout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support area selection through map clicking or search",
+        "user_persona": "A real estate agent scouting new markets.",
+        "user_goal": "To quickly locate and select specific neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Location",
+                "description": "Patricia types 'Downtown' into the search bar and sees suggestions.",
+                "action": "Type into the search input field.",
+                "expected_outcome": "Auto-suggestions appear below the search bar matching the input."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Search Result",
+                "description": "She clicks on 'Downtown District' from the suggestions.",
+                "action": "Click on a suggested location.",
+                "expected_outcome": "The map pans and zooms to the selected area."
+            },
+            {
+                "step": 3,
+                "title": "Adding Area via Click",
+                "description": "With click-to-select enabled, she clicks on another nearby region.",
+                "action": "Click on a region with click-to-select mode enabled.",
+                "expected_outcome": "The newly clicked region is added to the comparison list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include demographic comparison functionality",
+        "user_persona": "A sociologist studying urban populations.",
+        "user_goal": "To compare demographic characteristics of different areas.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Comparison Table",
+                "description": "Nina navigates to the demographic comparison view and sees a table with selected areas.",
+                "action": "Navigate to demographic comparison view.",
+                "expected_outcome": "A tabular view appears with areas listed vertically and metrics horizontally."
+            },
+            {
+                "step": 2,
+                "title": "Sorting by Income",
+                "description": "She clicks the 'Median Income' column header to sort areas.",
+                "action": "Click on a column header.",
+                "expected_outcome": "Rows reorder based on descending median income values."
+            },
+            {
+                "step": 3,
+                "title": "Tracking Rows Visually",
+                "description": "As she scans the table, she hovers over rows for better readability.",
+                "action": "Hover over a table row.",
+                "expected_outcome": "The hovered row is highlighted to help track data across columns."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include economic comparison functionality",
+        "user_persona": "A financial advisor evaluating investment zones.",
+        "user_goal": "To compare economic health indicators between regions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Economic Comparison",
+                "description": "Mark selects the economic comparison tab and sees key metrics like employment rate and housing prices.",
+                "action": "Navigate to economic comparison view.",
+                "expected_outcome": "A structured table with economic KPIs is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Ranking by Employment Rate",
+                "description": "He sorts the table by 'Employment Rate' to identify top-performing areas.",
+                "action": "Click on the 'Employment Rate' column header.",
+                "expected_outcome": "Areas are reordered based on employment rate values."
+            },
+            {
+                "step": 3,
+                "title": "Reviewing Sorted Data",
+                "description": "Mark hovers over rows to keep track of data as he reviews.",
+                "action": "Hover over rows in the table.",
+                "expected_outcome": "Each row highlights on hover for improved readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include crime comparison functionality",
+        "user_persona": "A community organizer promoting safety awareness.",
+        "user_goal": "To compare crime levels among selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Crime Statistics Table",
+                "description": "Emily opens the crime comparison table and sees metrics like total incidents and violent crime ratios.",
+                "action": "Navigate to crime comparison view.",
+                "expected_outcome": "A table with crime-specific metrics is displayed correctly."
+            },
+            {
+                "step": 2,
+                "title": "Ranking Areas by Safety",
+                "description": "She sorts the table by 'Violent Crime Ratio' to identify safer areas.",
+                "action": "Click on the 'Violent Crime Ratio' column header.",
+                "expected_outcome": "Areas are sorted from lowest to highest violent crime ratio."
+            },
+            {
+                "step": 3,
+                "title": "Analyzing Results",
+                "description": "Emily hovers over rows to easily scan data across different metrics.",
+                "action": "Hover over table rows.",
+                "expected_outcome": "Row highlighting provides visual continuity during analysis."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to filter data by time periods",
+        "user_persona": "A journalist writing about neighborhood trends.",
+        "user_goal": "To focus data visualizations on a specific time range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Time Filter Dropdown",
+                "description": "Carlos clicks the 'Time Period' dropdown to adjust data scope.",
+                "action": "Click the time filter dropdown.",
+                "expected_outcome": "A list of predefined time ranges appears."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Custom Date Range",
+                "description": "He chooses 'Custom Range' and picks dates covering the last six months.",
+                "action": "Select 'Custom Range' and pick start/end dates.",
+                "expected_outcome": "Calendar pickers open to define the custom date range."
+            },
+            {
+                "step": 3,
+                "title": "Applying Time Filter",
+                "description": "After selecting dates, he applies the filter to update all visualizations.",
+                "action": "Confirm and apply the selected date range.",
+                "expected_outcome": "All active charts reload with data filtered to the chosen time period."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide export functionality for comparison reports",
+        "user_persona": "A government official preparing a presentation.",
+        "user_goal": "To download a formatted report of his analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Export",
+                "description": "Rey notices the export icon and clicks it to generate a report.",
+                "action": "Click the export floating action button.",
+                "expected_outcome": "A modal opens prompting him to choose a file format."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Export Format",
+                "description": "He selects PDF for easy sharing in presentations.",
+                "action": "Choose 'PDF' format from the options.",
+                "expected_outcome": "The system prepares the report in PDF format."
+            },
+            {
+                "step": 3,
+                "title": "Downloading Report",
+                "description": "The report generates and downloads automatically.",
+                "action": "Confirm export choice.",
+                "expected_outcome": "A downloadable PDF file is generated and saved to his device."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive design for different screen sizes",
+        "user_persona": "A student researching neighborhoods on a tablet.",
+        "user_goal": "To access the application seamlessly on a smaller screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading App on Tablet",
+                "description": "Jenny opens the app on her tablet and observes how the layout adapts.",
+                "action": "Load the application on a tablet-sized screen.",
+                "expected_outcome": "Content stacks vertically and font sizes adjust for readability."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Responsive Controls",
+                "description": "She taps on a map region to select it, noting touch-friendly controls.",
+                "action": "Tap on a geographic region.",
+                "expected_outcome": "The region is selected and appears in the adjusted sidebar layout."
+            },
+            {
+                "step": 3,
+                "title": "Testing Layout Changes",
+                "description": "She rotates her tablet to landscape mode to see how the layout responds.",
+                "action": "Rotate the device screen.",
+                "expected_outcome": "The layout reflows to accommodate the new orientation effectively."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use ivory background color and forest green component styling",
+        "user_persona": "A UX reviewer auditing visual consistency.",
+        "user_goal": "To verify the application follows the specified color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Background Color",
+                "description": "Tom inspects the overall page background to ensure it uses ivory.",
+                "action": "Observe the base page background.",
+                "expected_outcome": "The background color is consistently ivory (#FFFFF0) throughout."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Component Styling",
+                "description": "He checks that interactive elements like buttons and charts use forest green.",
+                "action": "Inspect actionable UI components.",
+                "expected_outcome": "All relevant elements use forest green (#228B22) as the accent color."
+            },
+            {
+                "step": 3,
+                "title": "Validating Contrast",
+                "description": "Tom ensures text and borders have sufficient contrast against the background.",
+                "action": "Check text and border visibility.",
+                "expected_outcome": "Contrast levels meet accessibility standards for readability."
+            }
+        ]
+    }
+]

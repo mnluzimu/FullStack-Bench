@@ -1,0 +1,246 @@
+[
+    {
+        "resource_dependency": {
+            "frontend_framework": "React.js with TypeScript",
+            "backend_framework": "Node.js with Express",
+            "database_connection": "PostgreSQL connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "color_scheme": "Background color: honeydew (#F0FFF0); Component layer color: dark olive green (#556B2F)",
+            "authentication_middleware": "JWT-based authentication middleware"
+        },
+        "function": "Frontend application with dynamic data fetching from backend APIs",
+        "static_description": "A responsive web application built with React.js that renders all content dynamically by fetching data through RESTful API calls to the backend server.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On page load, the frontend initializes and makes asynchronous API requests to fetch user data, course listings, and other dynamic content based on current route and session state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_config": "Connection to PostgreSQL using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "api_routes": "RESTful endpoints defined under /api/v1/* for handling CRUD operations related to users, courses, enrollments, assignments, and grades"
+        },
+        "function": "Backend application connecting to PostgreSQL database using specified environment variables",
+        "static_description": "Express.js server configured to connect to a PostgreSQL database using predefined environment variables. It exposes RESTful API endpoints for frontend consumption and handles business logic.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_endpoints": "/api/v1/auth/login, /api/v1/auth/logout, /api/v1/auth/register",
+            "token_storage": "Client-side localStorage for storing JWT tokens",
+            "protected_routes": "All course-related routes require valid JWT authentication header",
+            "user_role_schema": "Database table with role field indicating 'student', 'instructor', or 'admin'"
+        },
+        "function": "User authentication and authorization system",
+        "static_description": "Login and registration forms allowing users to authenticate. Protected routes ensure only authenticated users can access course materials, submit assignments, or view grades.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Login Form",
+                "description": "Upon successful validation of credentials, returns a signed JWT token stored in browser localStorage and redirects user to dashboard."
+            },
+            {
+                "interaction": "Access Protected Route",
+                "description": "Requests to protected routes include Authorization Bearer Token header; invalid/expired tokens redirect to login page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "course_list_endpoint": "/api/v1/courses",
+            "course_thumbnail_placeholder": "/assets/images/course-placeholder.png",
+            "search_icon": "/assets/icons/search-icon.svg",
+            "filter_dropdown_options": [
+                "Beginner",
+                "Intermediate",
+                "Advanced"
+            ]
+        },
+        "function": "Course browsing interface displaying available Python data science courses",
+        "static_description": "A grid layout showing cards representing each available Python data science course. Each card displays title, brief description, difficulty level, instructor name, and thumbnail image referenced via resource_dependency.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll pagination loads additional courses when reaching bottom of viewport by making subsequent API requests to /api/v1/courses?page=N."
+            },
+            {
+                "interaction": "Click Search Icon",
+                "description": "Activates search bar overlay enabling keyword filtering of displayed courses based on title or description."
+            },
+            {
+                "interaction": "Select Filter Dropdown Option",
+                "description": "Filters visible course cards by selected difficulty level by appending query parameter to API request e.g., ?level=Intermediate."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "enrollment_endpoint": "/api/v1/enrollments",
+            "course_detail_endpoint": "/api/v1/courses/{id}",
+            "success_notification": "Successfully enrolled in {course_title}!",
+            "user_progress_schema": "Database table linking user_id and course_id with completion percentage field"
+        },
+        "function": "Course selection and enrollment functionality",
+        "static_description": "Each course card includes an 'Enroll Now' button. Clicking navigates to course detail page which contains full description and another 'Enroll' option if not yet enrolled.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Enroll Button",
+                "description": "POST request sent to /api/v1/enrollments endpoint creating new enrollment record. Success message shown and navigation updated to reflect enrolled status."
+            },
+            {
+                "interaction": "Visit Already Enrolled Course Page",
+                "description": "Displays 'Continue Learning' button instead of 'Enroll'. Redirects directly to lesson modules rather than overview."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "lesson_content_endpoint": "/api/v1/courses/{id}/lessons",
+            "video_player_library": "ReactPlayer component library",
+            "markdown_renderer": "react-markdown for rendering text-based lessons",
+            "next_lesson_button": "Navigates to next sequential lesson within same module"
+        },
+        "function": "Learning content delivery system for enrolled courses",
+        "static_description": "Sidebar navigation listing all modules and lessons. Main content area presents either video player or markdown-rendered lesson material depending on content type.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Lesson Item in Sidebar",
+                "description": "Fetches corresponding lesson content from backend and updates main panel display without full page reload."
+            },
+            {
+                "interaction": "Complete Video Lesson",
+                "description": "Automatically marks lesson as completed after watching entire duration. Progress tracker increments accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "assignment_submit_endpoint": "/api/v1/assignments/{id}/submit",
+            "file_upload_component": "Drag-and-drop file upload zone accepting .ipynb, .py files",
+            "code_editor_integration": "Monaco Editor embedded for inline code submissions",
+            "submission_history_endpoint": "/api/v1/users/me/submissions"
+        },
+        "function": "Assignment submission interface for course assignments",
+        "static_description": "Dedicated assignment page presenting problem statement, due date, and two submission methods: file upload or direct code input using integrated editor.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop File",
+                "description": "Uploads chosen file to temporary storage and enables submit button upon successful validation of allowed formats (.ipynb/.py)."
+            },
+            {
+                "interaction": "Click Submit Button",
+                "description": "Submits solution to /api/v1/assignments/{id}/submit endpoint. Displays confirmation toast and adds entry to submission history list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "grades_endpoint": "/api/v1/users/me/grades",
+            "charting_library": "Chart.js for visualizing performance trends over time",
+            "export_grades_button": "Exports grade report as CSV file",
+            "grade_breakdown_schema": "Database table mapping assignment_id, user_id, score, max_score, submission_date"
+        },
+        "function": "Grade querying dashboard for users to view their learning grades",
+        "static_description": "Tabular representation of submitted assignments with columns: Assignment Name, Due Date, Score, Max Score, Submission Status. Additional chart visualization shows cumulative grade progression.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Export Grades Button",
+                "description": "Triggers download of CSV file containing all grade records accessible to current user."
+            },
+            {
+                "interaction": "Hover Over Chart Data Point",
+                "description": "Displays tooltip with detailed breakdown of specific assignment score and relative ranking percentile if available."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "users_table_definition": "Table with id (UUID), email (unique string), password_hash (string), created_at (timestamp), role (enum: student/instructor/admin)",
+            "courses_table_definition": "Table with id (UUID), title (string), description (text), difficulty_level (enum: beginner/intermediate/advanced), instructor_id (foreign key to users.id)",
+            "enrollments_table_definition": "Table with id (UUID), user_id (foreign key to users.id), course_id (foreign key to courses.id), enrolled_at (timestamp), progress_percentage (integer)",
+            "assignments_table_definition": "Table with id (UUID), course_id (foreign key to courses.id), title (string), description (text), due_date (timestamp)",
+            "grades_table_definition": "Table with id (UUID), assignment_id (foreign key to assignments.id), user_id (foreign key to users.id), score (float), max_score (float), submitted_at (timestamp)"
+        },
+        "function": "Database schema supporting users, courses, enrollments, assignments, and grades",
+        "static_description": "Five interconnected tables structured to support core platform features including user management, course catalog, enrollment tracking, assignment distribution, and grading systems.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "css_variables": ":root { --background-color: #F0FFF0; --component-color: #556B2F }",
+            "responsive_breakpoints": "@media queries targeting mobile (<768px), tablet (768px–1024px), desktop (>1024px)",
+            "mobile_navigation_menu": "Hamburger menu icon transforming into cross during active state"
+        },
+        "function": "Responsive UI design with honeydew background and dark olive green components",
+        "static_description": "Entire application styled using CSS custom properties setting base background to honeydew and primary interactive elements/components to dark olive green. Layout adapts fluidly across screen sizes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts breakpoints smoothly transitioning between stacked mobile view, split tablet layout, and multi-column desktop presentation."
+            },
+            {
+                "interaction": "Click Mobile Menu Icon",
+                "description": "Toggles slide-in navigation sidebar replacing top navbar on smaller screens."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\" } }",
+            "dependency_manager": "npm package manager used consistently across both client and server projects"
+        },
+        "function": "Package.json configuration with npm run install:all for frontend and backend installation",
+        "static_description": "Root-level package.json script definition executing parallel installations in both frontend and backend directories ensuring synchronized dependency setup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dev_server_commands": "client: react-scripts start, server: nodemon server.js",
+            "process_runner": "concurrently npm package orchestrating simultaneous execution of frontend and backend dev servers",
+            "package_json_dev_script": "{ \"scripts\": { \"dev\": \"concurrently \\\"cd client && npm start\\\" \\\"cd server && npm run dev\\\"\" } }"
+        },
+        "function": "Package.json configuration with npm run dev for concurrent frontend and backend development servers",
+        "static_description": "Defined npm run dev command launches both React development server and Node.js backend server concurrently using concurrently package, streamlining local development workflow.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "course_management_endpoints": "/api/v1/courses (GET, POST), /api/v1/courses/{id} (GET, PUT, DELETE)",
+            "course_retrieval_filters": "Query parameters such as ?instructor={id}, ?level={difficulty}, ?search={keyword}",
+            "pagination_support": "?page=1&limit=10 appended to GET /api/v1/courses"
+        },
+        "function": "API endpoints for course management and retrieval",
+        "static_description": "RESTful API exposing standard HTTP verbs for managing course entities. Supports filtering, searching, and paginated responses for scalable course listing.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "assignment_submission_endpoint": "/api/v1/assignments/{id}/submit",
+            "grade_reporting_endpoint": "/api/v1/users/me/grades",
+            "submission_payload_format": "{ \"files\": [binary], \"code\": \"string\" }",
+            "grade_response_structure": "[{ \"assignment_id\": UUID, \"title\": string, \"score\": float, \"max_score\": float, \"submitted_at\": timestamp }]"
+        },
+        "function": "API endpoints for assignment submission and grade reporting",
+        "static_description": "Secure endpoints facilitating student assignment uploads and providing programmatic access to personal academic records formatted for frontend consumption.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dashboard_layout_sections": "My Courses, Upcoming Deadlines, Recent Submissions, Performance Overview",
+            "progress_visualization": "Circular progress indicators per enrolled course",
+            "notification_badge_count": "Red badge indicating number of unread notifications or pending actions"
+        },
+        "function": "User dashboard for managing enrolled courses and tracking progress",
+        "static_description": "Centralized landing page post-login featuring quick links to ongoing courses, upcoming deadlines, recent activity feed, and personalized analytics widgets reflecting individual learner journey.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click My Courses Card",
+                "description": "Redirects to filtered course listing showing only currently enrolled items with resume points highlighted."
+            },
+            {
+                "interaction": "Dismiss Notification Badge",
+                "description": "Clears counter visually but retains underlying alert data until explicitly addressed or expired."
+            }
+        ]
+    }
+]

@@ -1,0 +1,268 @@
+[
+    {
+        "requirement_tested": "A frontend application with a drag-and-drop interface for creating and editing diagrams",
+        "user_persona": "A software architect named Alex who wants to visually design system workflows.",
+        "user_goal": "To create a new flowchart by dragging elements onto the canvas and arranging them.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the App",
+                "description": "Alex opens the diagram maker website and sees a clean ghost white canvas with a sidebar of components.",
+                "action": "Load the application in browser.",
+                "expected_outcome": "Application loads with a ghost white canvas area and a slate gray-themed sidebar containing draggable diagram elements."
+            },
+            {
+                "step": 2,
+                "title": "Dragging an Element",
+                "description": "Alex drags a rectangle shape from the 'Flowchart' section in the sidebar onto the canvas.",
+                "action": "Drag a 'Rectangle' element from the sidebar and drop it onto the canvas.",
+                "expected_outcome": "The rectangle appears at the drop location on the canvas and remains selected with resize handles visible."
+            },
+            {
+                "step": 3,
+                "title": "Moving an Element",
+                "description": "Alex decides to reposition the rectangle and drags it to a better spot on the canvas.",
+                "action": "Drag the placed rectangle to another position on the canvas.",
+                "expected_outcome": "The rectangle moves smoothly with the cursor and stays at the new position when released."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support for multiple diagram types including flowcharts, organizational charts, and mind maps",
+        "user_persona": "A project manager named Taylor who needs to visualize team structures.",
+        "user_goal": "To switch to an organizational chart view and begin placing team members.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Diagram Type",
+                "description": "Taylor lands on the homepage and notices the top selector bar with different diagram types.",
+                "action": "Click on the 'Organizational Chart' icon in the diagram type selector.",
+                "expected_outcome": "The canvas updates to show organizational chart templates and appropriate element options become active in the sidebar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to create new diagrams from scratch",
+        "user_persona": "A student named Jordan preparing for a presentation on decision trees.",
+        "user_goal": "To start a fresh mind map diagram for brainstorming ideas.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting New Diagram",
+                "description": "Jordan clicks the 'New Diagram' button located in the header.",
+                "action": "Click the 'New Diagram' button.",
+                "expected_outcome": "A modal pops up asking Jordan to choose a diagram type."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Diagram Type",
+                "description": "Jordan selects 'Mind Map' from the options presented in the modal.",
+                "action": "Click on the 'Mind Map' option in the modal.",
+                "expected_outcome": "The modal closes and a blank canvas tailored for mind mapping is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to edit existing diagrams by adding, removing, and modifying elements",
+        "user_persona": "A business analyst named Riley reviewing a previously saved flowchart.",
+        "user_goal": "To modify an existing process box by changing its label and then delete an unnecessary element.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Element Label",
+                "description": "Riley double-clicks on a process box to quickly change its label text.",
+                "action": "Double-click on a process box element.",
+                "expected_outcome": "An inline text editor appears allowing direct input; saving updates the label immediately."
+            },
+            {
+                "step": 2,
+                "title": "Deleting Unneeded Element",
+                "description": "Riley right-clicks on an obsolete arrow element and chooses delete from the context menu.",
+                "action": "Right-click on an arrow element and click 'Delete' in the context menu.",
+                "expected_outcome": "The arrow element disappears from the canvas without breaking the rest of the diagram."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Capability to adjust layout and styling of diagram elements",
+        "user_persona": "A UX designer named Casey making final touches to a client's org chart.",
+        "user_goal": "To customize the appearance of nodes in the organizational chart by adjusting fonts and spacing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Style Controls",
+                "description": "Casey selects a node and clicks the 'Modify' button in the contextual toolbar.",
+                "action": "Select a node and click the 'Modify' button.",
+                "expected_outcome": "A style adjustment panel slides out showing font size, color, and spacing controls."
+            },
+            {
+                "step": 2,
+                "title": "Changing Font Size",
+                "description": "Casey adjusts the font size slider to make the text more readable.",
+                "action": "Drag the font size slider to increase value.",
+                "expected_outcome": "The text inside the selected node resizes instantly according to the slider value."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with ghost white background for the main layout area",
+        "user_persona": "A frequent user named Morgan familiar with the app's interface.",
+        "user_goal": "To work comfortably on long diagramming sessions thanks to the soothing background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Canvas Background",
+                "description": "Morgan begins working on a new diagram and appreciates the soft background.",
+                "action": "View the main canvas area during normal usage.",
+                "expected_outcome": "The entire working canvas displays a consistent ghost white background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI components styled with slate gray for detail elements",
+        "user_persona": "A UI reviewer named Devon evaluating consistency of the application theme.",
+        "user_goal": "To verify that all secondary UI components use the correct slate gray styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Component Borders",
+                "description": "Devon examines various interface components like toolbars and sidebars.",
+                "action": "Visually inspect borders and icons of sidebar and toolbar components.",
+                "expected_outcome": "All supporting interface sections display slate gray borders, icons, and text."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to manage diagram data persistence",
+        "user_persona": "A developer named Sam deploying the backend infrastructure.",
+        "user_goal": "To confirm that the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "Sam checks the backend logs after startup to ensure database connectivity.",
+                "action": "Start the backend server and review console logs.",
+                "expected_outcome": "Logs indicate successful connection to PostgreSQL using specified environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetches all diagram data dynamically from backend APIs",
+        "user_persona": "A tester named Quinn validating data loading behavior.",
+        "user_goal": "To ensure diagrams load properly from the backend instead of hardcoded data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Existing Diagram",
+                "description": "Quinn navigates to the dashboard and clicks on an existing diagram to open it.",
+                "action": "Navigate to dashboard and click on a diagram card.",
+                "expected_outcome": "Diagram renders fully based on data fetched via GET /api/diagrams/:id endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "An operations engineer named Pat setting up production deployment.",
+        "user_goal": "To validate that database credentials are correctly applied in production.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Environment Configuration",
+                "description": "Pat verifies that the deployed backend service has proper access to DB environment variables.",
+                "action": "Check runtime environment configuration of the backend service.",
+                "expected_outcome": "Environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME match the required values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema to store diagram configurations, elements, and user preferences",
+        "user_persona": "A database administrator named Robin auditing schema setup.",
+        "user_goal": "To confirm that all necessary tables are created with correct relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Table Structures",
+                "description": "Robin inspects the initialized database to verify table schemas.",
+                "action": "Query database information_schema to describe tables.",
+                "expected_outcome": "Tables 'users', 'diagrams', and 'elements' exist with defined columns and foreign key constraints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for creating, reading, updating, and deleting diagrams",
+        "user_persona": "An API consumer named Drew integrating with the diagram platform.",
+        "user_goal": "To perform full lifecycle management of diagrams programmatically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Diagram",
+                "description": "Drew sends a POST request to create a new empty diagram entry.",
+                "action": "Send POST request to /api/diagrams with title and type.",
+                "expected_outcome": "Server responds with 201 Created and returns the newly assigned diagram ID."
+            },
+            {
+                "step": 2,
+                "title": "Updating Diagram Metadata",
+                "description": "Drew modifies the diagram title by sending an update request.",
+                "action": "Send PUT request to /api/diagrams/{id} with updated title.",
+                "expected_outcome": "Server responds with 200 OK and reflects the updated title in future retrievals."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication system to associate diagrams with user accounts",
+        "user_persona": "A security auditor named Ash verifying user isolation.",
+        "user_goal": "To ensure users can only access their own diagrams through authentication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Ash logs into the system using valid credentials.",
+                "action": "Submit POST request to /api/auth/login with email and password.",
+                "expected_outcome": "Server responds with JWT token granting access to user-specific resources."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Protected Resource",
+                "description": "Ash accesses their diagrams list using the issued token.",
+                "action": "Include Authorization: Bearer <token> header in GET /api/diagrams request.",
+                "expected_outcome": "Server returns only diagrams owned by the authenticated user."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updates or refresh mechanisms when diagram changes occur",
+        "user_persona": "A collaborative worker named Blair working simultaneously with teammates.",
+        "user_goal": "To see live updates made by other collaborators on the same diagram.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Remote Update",
+                "description": "While Blair edits locally, a teammate makes a remote change which gets broadcast.",
+                "action": "Teammate saves a change triggering WebSocket event; Blair listens on /diagram-sync.",
+                "expected_outcome": "Blair’s canvas automatically refreshes to reflect the teammate's latest edits without manual reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `install:all` and `dev` scripts to manage full-stack development",
+        "user_persona": "A new contributor named Charlie joining the development team.",
+        "user_goal": "To easily set up and run both frontend and backend for local development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Charlie clones the repo and runs the combined install command.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Charlie starts both development servers with one command.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend development servers launch concurrently and are accessible for development."
+            }
+        ]
+    }
+]

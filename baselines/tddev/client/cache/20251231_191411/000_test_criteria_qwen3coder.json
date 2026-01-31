@@ -1,0 +1,359 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all data from backend APIs",
+        "user_persona": "A local community researcher exploring neighborhood data.",
+        "user_goal": "To load and view real-time neighborhood data through the frontend application.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Application",
+                "description": "Sarah opens the neighborhood mapping application in her browser expecting to see live data.",
+                "action": "Navigate to the application URL.",
+                "expected_outcome": "Frontend loads successfully and begins fetching initial data from backend APIs."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Data Load",
+                "description": "She waits briefly as the app retrieves neighborhood boundaries and key metrics.",
+                "action": "Wait for data to populate the UI.",
+                "expected_outcome": "Map renders with neighborhood boundaries and dashboard sections display loading spinners before showing actual data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer verifying backend connectivity during deployment.",
+        "user_goal": "To confirm that the backend service connects properly to the configured PostgreSQL instance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Alex runs the backend service after setting up the correct environment variables.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "Backend initializes successfully and logs connection confirmation to the PostgreSQL database using provided credentials."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Query",
+                "description": "He sends a test request to retrieve neighborhood data.",
+                "action": "Send GET request to /api/neighborhoods endpoint.",
+                "expected_outcome": "Server responds with valid JSON data retrieved from the connected PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive map display for visualizing neighborhood boundaries and selecting areas",
+        "user_persona": "A city planner reviewing district boundaries.",
+        "user_goal": "To explore neighborhood boundaries visually and select one for detailed inspection.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Initial Map State",
+                "description": "Maria sees the interactive map centered on the default location with neighborhood outlines visible.",
+                "action": "Load the map view.",
+                "expected_outcome": "Map displays neighborhood boundaries styled with forest green strokes against an ivory background."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over Boundary",
+                "description": "She hovers her cursor over a neighborhood to preview its selection.",
+                "action": "Hover over a neighborhood boundary.",
+                "expected_outcome": "Boundary temporarily highlights with a semi-transparent forest green overlay."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Neighborhood",
+                "description": "Satisfied with the choice, Maria clicks the boundary to inspect it further.",
+                "action": "Click on a neighborhood boundary.",
+                "expected_outcome": "Neighborhood fills with forest green, and a basic info panel appears below the map."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Area comparison functionality allowing users to select multiple neighborhoods for side-by-side data analysis",
+        "user_persona": "A policy analyst comparing urban development impacts across districts.",
+        "user_goal": "To compare demographic profiles of three neighborhoods side by side.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Multiple Areas",
+                "description": "David clicks on three distinct neighborhoods he wants to compare.",
+                "action": "Click on three separate neighborhood boundaries.",
+                "expected_outcome": "Each clicked neighborhood is highlighted, and corresponding chips appear in the floating control bar above the map."
+            },
+            {
+                "step": 2,
+                "title": "Activating Comparison Mode",
+                "description": "Now ready, David clicks the Compare button which has become enabled.",
+                "action": "Click the 'Compare' button.",
+                "expected_outcome": "Application navigates to the comparison dashboard populated with data from the selected neighborhoods."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Demographic data visualization including population, age distribution, and household information",
+        "user_persona": "A sociologist studying residential patterns.",
+        "user_goal": "To analyze differences in age distributions among selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Demographics Section",
+                "description": "Emily navigates to the demographic charts section of the dashboard.",
+                "action": "Open the demographics tab.",
+                "expected_outcome": "Bar chart displaying total population per selected neighborhood is shown with forest green bars on ivory background."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Age Distribution View",
+                "description": "Curious about ages, she switches to view median age data instead.",
+                "action": "Click the 'Median Age' tab.",
+                "expected_outcome": "Chart updates to show median age values for each selected neighborhood."
+            },
+            {
+                "step": 3,
+                "title": "Inspecting Specific Values",
+                "description": "Emily hovers over individual bars to get exact figures.",
+                "action": "Hover over chart elements.",
+                "expected_outcome": "Tooltip appears showing precise numeric value for each hovered element."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Economic data visualization covering income levels, employment rates, and housing costs",
+        "user_persona": "An economist evaluating regional economic health.",
+        "user_goal": "To examine unemployment trends in selected neighborhoods.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Economic Metrics",
+                "description": "James scrolls to the economic indicators section of the dashboard.",
+                "action": "Scroll to the economic data visualization area.",
+                "expected_outcome": "Section shows KPI cards for each neighborhood featuring metrics like median income and unemployment rate."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Trend Details",
+                "description": "Wanting more detail, James clicks on an unemployment card to see historical trends.",
+                "action": "Click on an unemployment metric card.",
+                "expected_outcome": "Modal window opens displaying a line graph of unemployment trends over time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Crime statistics display with filtering options by crime type and time period",
+        "user_persona": "A public safety officer assessing neighborhood risk factors.",
+        "user_goal": "To review property crime incidents over the last six months.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Crime Filter Panel",
+                "description": "Officer Taylor locates the crime statistics section and opens the filter controls.",
+                "action": "Click on the crime statistics filter dropdowns.",
+                "expected_outcome": "Dropdown menus for crime type and date range become accessible."
+            },
+            {
+                "step": 2,
+                "title": "Setting Filters",
+                "description": "Taylor selects 'Property' crime type and sets the date range to the past six months.",
+                "action": "Select 'Property' from crime type dropdown and choose six-month date range.",
+                "expected_outcome": "Stacked bar chart redraws showing only property crimes within the selected timeframe."
+            },
+            {
+                "step": 3,
+                "title": "Analyzing Results",
+                "description": "He hovers over segments of the chart to understand monthly breakdowns.",
+                "action": "Hover over segments of the stacked bar chart.",
+                "expected_outcome": "Counts and percentages for each crime subcategory are displayed in a tooltip."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard with interactive charts for all major data categories",
+        "user_persona": "A data analyst building a comprehensive report.",
+        "user_goal": "To review all major data types in one consolidated view.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Dashboard View",
+                "description": "Rachel accesses the main dashboard to see integrated visualizations.",
+                "action": "Navigate to the dashboard page.",
+                "expected_outcome": "Grid-based layout presents demographic, economic, and crime charts simultaneously."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Charts",
+                "description": "She interacts with various chart elements to gain deeper insights.",
+                "action": "Hover over different chart points and bars.",
+                "expected_outcome": "Detailed tooltips provide precise data values for each interaction point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Customizable dashboard layout allowing users to arrange and resize chart widgets",
+        "user_persona": "A researcher customizing their workspace for efficiency.",
+        "user_goal": "To rearrange dashboard widgets to prioritize frequently used charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Edit Controls",
+                "description": "Dr. Lee notices drag handles on dashboard widgets indicating editability.",
+                "action": "Look for drag handles on chart widgets.",
+                "expected_outcome": "Visible drag handles indicate that widgets can be moved or resized."
+            },
+            {
+                "step": 2,
+                "title": "Repositioning Widget",
+                "description": "He drags the demographic chart to the top-left position for easy access.",
+                "action": "Drag the demographic chart widget to a new location.",
+                "expected_outcome": "Widget moves smoothly within the grid and snaps into place at the target position."
+            },
+            {
+                "step": 3,
+                "title": "Saving New Layout",
+                "description": "After organizing everything, Dr. Lee saves his preferred arrangement.",
+                "action": "Click the 'Save Layout' button.",
+                "expected_outcome": "New widget positions are persisted either locally or server-side depending on login status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data filtering and sorting capabilities for all displayed information",
+        "user_persona": "A journalist researching housing affordability.",
+        "user_goal": "To find the most expensive neighborhoods based on median rent.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Sort Controls",
+                "description": "Reporter Kim finds the economic data table and looks for sorting options.",
+                "action": "Click on the 'Median Rent' column header.",
+                "expected_outcome": "Column enters ascending sort mode and dataset refreshes accordingly."
+            },
+            {
+                "step": 2,
+                "title": "Applying Descending Order",
+                "description": "Kim clicks again to reverse the sort direction and see highest rents first.",
+                "action": "Click the same column header again.",
+                "expected_outcome": "Dataset now shows entries sorted by descending median rent values."
+            },
+            {
+                "step": 3,
+                "title": "Filtering by Range",
+                "description": "She applies additional filters to narrow down results to specific rent ranges.",
+                "action": "Click filter icon next to column header and enter min/max rent values.",
+                "expected_outcome": "Only neighborhoods matching the rent criteria remain visible in the dataset."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and tablet viewing",
+        "user_persona": "A mobile field worker checking data remotely.",
+        "user_goal": "To access the application effectively on a tablet device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing on Tablet Screen",
+                "description": "Field agent Jordan opens the application on his tablet-sized screen.",
+                "action": "Resize browser window to simulate tablet resolution (~1024px).",
+                "expected_outcome": "Layout shifts automatically to adapt to tablet format with condensed navigation."
+            },
+            {
+                "step": 2,
+                "title": "Using Collapsed Navigation",
+                "description": "Jordan taps the hamburger menu to access hidden navigation links.",
+                "action": "Tap the hamburger-style navigation icon.",
+                "expected_outcome": "Slide-in navigation drawer appears revealing full menu options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ivory background color (#FFFFF0) applied throughout the application",
+        "user_persona": "A UX designer validating brand consistency.",
+        "user_goal": "To verify consistent use of the ivory background theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Main Interface",
+                "description": "Designer Alex inspects the overall look of the application interface.",
+                "action": "Load any standard page of the application.",
+                "expected_outcome": "Body background color is consistently ivory (#FFFFF0) across all views."
+            },
+            {
+                "step": 2,
+                "title": "Checking Nested Elements",
+                "description": "Alex verifies nested containers maintain the same background tone.",
+                "action": "Examine inner panels and modals.",
+                "expected_outcome": "All enclosed areas retain the ivory background without unexpected color variations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Forest green color (#228B22) used for interactive components and highlights",
+        "user_persona": "A front-end developer ensuring UI styling compliance.",
+        "user_goal": "To validate that interactive elements use the correct forest green accent.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Interactive Buttons",
+                "description": "Developer Sam checks primary buttons for proper color implementation.",
+                "action": "Locate and inspect primary action buttons.",
+                "expected_outcome": "Buttons have background and border colors set to forest green (#228B22) as defined by CSS variables."
+            },
+            {
+                "step": 2,
+                "title": "Testing Hover Feedback",
+                "description": "Sam hovers over a button to observe hover effects.",
+                "action": "Hover over a primary button.",
+                "expected_outcome": "Button darkens slightly in shade, confirming hover state feedback."
+            },
+            {
+                "step": 3,
+                "title": "Validating Focus States",
+                "description": "He then focuses the button using keyboard navigation.",
+                "action": "Tab to focus on a primary button.",
+                "expected_outcome": "Focused button receives a subtle glow effect matching the forest green tone."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface controls for area selection and comparison management",
+        "user_persona": "A civic engagement coordinator preparing a presentation.",
+        "user_goal": "To quickly reset and start fresh with area selections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making Several Selections",
+                "description": "Coordinator Lisa selects five neighborhoods for preliminary review.",
+                "action": "Click on five neighborhood boundaries.",
+                "expected_outcome": "Five neighborhoods are highlighted and added to the comparison manager list."
+            },
+            {
+                "step": 2,
+                "title": "Clearing Current Selection",
+                "description": "Deciding to change approach, Lisa clears all previous selections.",
+                "action": "Click the 'Clear All' button in the comparison manager panel.",
+                "expected_outcome": "All selections are removed, map returns to base unselected state, and comparison chips disappear."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration in package.json for concurrent frontend and backend development startup",
+        "user_persona": "A DevOps engineer setting up a new developer workstation.",
+        "user_goal": "To streamline local development by starting both services together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Engineer Pat clones the repository and prepares dependencies.",
+                "action": "Run `npm run install:all` command in terminal.",
+                "expected_outcome": "Both frontend and backend dependencies install concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "Pat starts the development environment for active coding.",
+                "action": "Execute `npm run dev` command.",
+                "expected_outcome": "Frontend and backend servers launch concurrently, making both accessible for development work."
+            }
+        ]
+    }
+]

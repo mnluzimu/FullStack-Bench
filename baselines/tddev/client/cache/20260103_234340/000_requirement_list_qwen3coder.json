@@ -1,0 +1,171 @@
+[
+    {
+        "resource_dependency": {
+            "diagramTypesData": [
+                "flowchart",
+                "organizational chart",
+                "mind map"
+            ],
+            "dragAndDropLibrary": "https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js",
+            "layoutBackgroundStyle": "ghostwhite",
+            "componentDetailColor": "slategray"
+        },
+        "function": "Provide a drag-and-drop interface for users to create and edit diagrams.",
+        "static_description": "The canvas area features a ghost white background where users can place diagram elements. Sidebar contains draggable components categorized by diagram type, rendered with slate gray borders and icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can drag elements from the sidebar onto the canvas to add them to the diagram. Elements can also be moved around within the canvas after placement."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on an element selects it, enabling resizing handles and property panels."
+            },
+            {
+                "interaction": "Right-click",
+                "description": "Right-clicking on an element opens a context menu with options like delete, duplicate, or bring forward/send backward."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "diagramTypeSelectorOptions": [
+                "Flowchart",
+                "Organizational Chart",
+                "Mind Map"
+            ],
+            "icon_flowchart": "/icons/flowchart.svg",
+            "icon_org_chart": "/icons/org-chart.svg",
+            "icon_mind_map": "/icons/mind-map.svg"
+        },
+        "function": "Allow users to choose between different types of diagrams when starting a new creation session.",
+        "static_description": "A horizontal selector bar at the top displays available diagram types as labeled icons. Each option is visually distinct but unified under a consistent theme using slate gray accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a diagram type loads corresponding templates and default settings into the workspace."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newDiagramButtonIcon": "/icons/new-diagram.svg"
+        },
+        "function": "Enable users to start creating a new diagram from scratch.",
+        "static_description": "A prominent 'New Diagram' button appears in the header navigation bar, styled with slate gray text and border against a ghost white backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens a modal prompting the user to select a diagram type before initializing a blank canvas."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "editToolsPanel": "Contains buttons for Add Element, Remove Element, Modify Properties, Undo/Redo actions.",
+            "elementModificationModal": "Displays form fields for editing selected element properties such as label, color, size, etc."
+        },
+        "function": "Allow modification of existing diagrams through addition, removal, and adjustment of individual elements.",
+        "static_description": "An inline toolbar appears near selected elements showing relevant editing tools. Contextual modals appear upon initiating edits to configure detailed attributes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Add Element reveals palette of available shapes/text boxes/etc. Clicking Remove deletes currently selected item(s). Clicking Modify shows editable fields."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Directly edits text labels of nodes or connection lines if supported by the current diagram mode."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "styleAdjustmentSidebar": "Includes controls for font styles, line thickness, node colors, spacing parameters.",
+            "layoutConfigurationPanel": "Provides sliders/grid settings/auto-layout toggles."
+        },
+        "function": "Offer granular control over visual presentation and arrangement logic of diagram contents.",
+        "static_description": "Side panels slide out from edges containing grouped controls for styling and layout adjustments. All interactive widgets use slate gray themed borders/icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Sliders adjust numeric values instantly affecting previewed diagram rendering."
+            },
+            {
+                "interaction": "Click",
+                "description": "Toggle switches enable/disable auto-layout modes; dropdown menus let users pick predefined themes/styles."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mainLayoutCSS": "{ background-color: ghostwhite; }"
+        },
+        "function": "Apply ghost white as the primary background tone across main diagramming areas.",
+        "static_description": "Entire working canvas region uses solid ghost white fill without gradients or patterns ensuring clarity during editing sessions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiComponentBaseStyles": "{ color: slategray; border-color: slategray; }"
+        },
+        "function": "Implement slate gray coloring scheme consistently throughout secondary UI components like toolbars, sidebars, and dialogs.",
+        "static_description": "All supporting interface sections feature slate gray typography, outlines, and minor accent visuals maintaining thematic coherence.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "diagramsTableSchema": "CREATE TABLE diagrams (id SERIAL PRIMARY KEY, title TEXT NOT NULL, type VARCHAR(50), created_at TIMESTAMP DEFAULT NOW(), updated_at TIMESTAMP DEFAULT NOW(), owner_id INTEGER REFERENCES users(id));",
+            "elementsTableSchema": "CREATE TABLE elements (id SERIAL PRIMARY KEY, diagram_id INTEGER REFERENCES diagrams(id) ON DELETE CASCADE, type VARCHAR(50), position JSONB, style JSONB, content TEXT);",
+            "usersTableSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT NOT NULL, created_at TIMESTAMP DEFAULT NOW());"
+        },
+        "function": "Establish persistent storage layer for managing diagram metadata, constituent parts, and associated user identities via PostgreSQL.",
+        "static_description": "Database initialized with three tables: users, diagrams, and elements. Connections established using fixed environment variable credentials provided.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointsList": [
+                "GET /api/diagrams - retrieve list of user's diagrams",
+                "POST /api/diagrams - create new diagram entry",
+                "GET /api/diagrams/:id - fetch full diagram data including elements",
+                "PUT /api/diagrams/:id - update diagram metadata and/or element positions/styles",
+                "DELETE /api/diagrams/:id - remove entire diagram record and children"
+            ],
+            "authenticationMiddleware": "JWT-based token validation required for accessing protected routes."
+        },
+        "function": "Expose RESTful HTTP services allowing frontend applications to perform CRUD operations related to diagram management.",
+        "static_description": "Series of secured API endpoints defined accepting standard HTTP verbs mapped to database transactions involving diagrams and their nested elements.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authSystemEndpoints": [
+                "POST /api/auth/register - register new user account",
+                "POST /api/auth/login - authenticate returning user and issue JWT token",
+                "GET /api/auth/profile - return authenticated user info"
+            ],
+            "jwtSecretEnvVar": "JWT_SECRET=some-secret-key-here"
+        },
+        "function": "Implement authentication mechanism linking diagram ownership to registered user profiles.",
+        "static_description": "Dedicated auth module handles registration/login flows issuing signed tokens used to authorize subsequent API requests.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "websocketService": "Socket.IO server endpoint '/diagram-sync' broadcasting changes to subscribed clients.",
+            "pollingFallbackMechanism": "Periodic GET requests to '/api/diagrams/:id' checking last_modified timestamp."
+        },
+        "function": "Ensure real-time synchronization or timely refresh of displayed diagrams whenever concurrent modifications happen remotely.",
+        "static_description": "Either WebSocket channel or polling strategy employed depending on deployment capabilities to keep client-side representations synchronized with latest saved states.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{\"scripts\": {\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\"}}"
+        },
+        "function": "Configure package.json scripts to support unified installation and parallel execution of frontend/backend development environments.",
+        "static_description": "Root-level package.json includes two custom commands leveraging concurrently utility to orchestrate multi-package workflow seamlessly.",
+        "interaction_and_states": []
+    }
+]

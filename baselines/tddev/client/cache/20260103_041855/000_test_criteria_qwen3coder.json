@@ -1,0 +1,268 @@
+[
+    {
+        "requirement_tested": "A practice question bank feature allowing users to browse and select individual questions",
+        "user_persona": "A new driver preparing for their license exam who wants to focus on specific topics.",
+        "user_goal": "To browse and select a practice question from the 'Traffic Signs' topic.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Practice Questions",
+                "description": "Sarah opens the DMV practice test website and sees a list of topics. She wants to study traffic signs specifically.",
+                "action": "Click on the 'Select Topic' dropdown.",
+                "expected_outcome": "The dropdown menu expands, showing available topics including 'Traffic Signs'."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Topic",
+                "description": "Sarah selects 'Traffic Signs' from the dropdown to filter the questions.",
+                "action": "Select 'Traffic Signs' from the dropdown.",
+                "expected_outcome": "The question cards update to show only those related to Traffic Signs."
+            },
+            {
+                "step": 3,
+                "title": "Choosing a Question",
+                "description": "Sarah clicks on one of the filtered question cards to begin practicing.",
+                "action": "Click on a question card under the 'Traffic Signs' category.",
+                "expected_outcome": "The system navigates to the detailed view of the selected question."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Simulated exam functionality enabling users to take full practice tests",
+        "user_persona": "A learner who feels ready to simulate the actual driving exam experience.",
+        "user_goal": "To start and complete a timed simulated exam.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Exam",
+                "description": "Alex clicks the 'Start Exam' button to begin a full-length practice test.",
+                "action": "Click the 'Start Exam' button.",
+                "expected_outcome": "The timer starts counting down from 45 minutes, and the first question is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Answering Questions",
+                "description": "Alex reads each question carefully and selects an answer before moving forward.",
+                "action": "Select an answer option and click 'Next Question'.",
+                "expected_outcome": "The next question loads, and progress is tracked internally."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Exam",
+                "description": "After answering all questions, Alex submits the exam to see results.",
+                "action": "Click the 'Submit Exam' button at the end of the test.",
+                "expected_outcome": "The exam is submitted via API, scored, and redirected to the results page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error analysis dashboard displaying detailed feedback on incorrect answers",
+        "user_persona": "A student reviewing mistakes made during a recent practice exam.",
+        "user_goal": "To understand why they answered certain questions incorrectly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Error Analysis",
+                "description": "Jordan finishes an exam and chooses to review incorrect answers.",
+                "action": "Click the 'Review Answers' link on the results page.",
+                "expected_outcome": "Redirected to the error analysis dashboard showing incorrectly answered questions."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Explanation",
+                "description": "Jordan clicks on an incorrect question to read the explanation.",
+                "action": "Click on an expandable row representing an incorrect answer.",
+                "expected_outcome": "The row expands to reveal a detailed explanation about the correct reasoning."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Exam scoring system showing results and performance metrics after each test",
+        "user_persona": "A candidate eager to know how well they performed on their latest practice test.",
+        "user_goal": "To view their score and determine if they passed the simulated exam.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exam Completion",
+                "description": "Taylor completes a full practice exam and waits for the results.",
+                "action": "Submit the exam by clicking the 'Submit Exam' button.",
+                "expected_outcome": "Redirected to a results screen displaying score and pass/fail status."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Results",
+                "description": "Taylor checks the score displayed in percentage format along with other metrics.",
+                "action": "Read the score shown in the format '{score}% ({correct}/{total})'.",
+                "expected_outcome": "The score is clearly visible with a green checkmark indicating a pass or red X for fail."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with floral white background and dark goldenrod colored components",
+        "user_persona": "A visually-oriented user who appreciates consistent and accessible design.",
+        "user_goal": "To navigate the site comfortably with a pleasant and uniform visual theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Site Theme",
+                "description": "Maya visits the homepage and notices the consistent color scheme throughout.",
+                "action": "Observe the overall appearance of the page.",
+                "expected_outcome": "Background is floral white (#FFFAF0), and all components like buttons and headers are styled in dark goldenrod (#B8860B)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all practice questions and exam data from backend APIs",
+        "user_persona": "A user expecting up-to-date content without any preloaded fake data.",
+        "user_goal": "To interact with dynamically loaded questions and exam data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Practice Questions",
+                "description": "Riley lands on the main page and expects to see real questions fetched from the server.",
+                "action": "Visit the homepage which mounts the question list component.",
+                "expected_outcome": "Questions load dynamically from the GET /api/questions endpoint and render correctly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend server connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer verifying backend connectivity to the database.",
+        "user_goal": "To ensure the backend securely connects to PostgreSQL using environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Connection",
+                "description": "Dev starts the backend server and confirms it connects to the PostgreSQL instance.",
+                "action": "Check logs after starting the backend service.",
+                "expected_outcome": "Logs indicate successful connection using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting storage of questions, user responses, and exam results",
+        "user_persona": "A database administrator validating table structures.",
+        "user_goal": "To confirm proper relational schema exists for storing exam-related data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Tables",
+                "description": "DBA reviews the database to verify creation of required tables.",
+                "action": "Query the database to inspect existing tables.",
+                "expected_outcome": "Tables named 'users', 'questions', 'responses', and 'exams' exist with appropriate fields and relationships."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Question selection interface allowing users to choose topics or randomize practice questions",
+        "user_persona": "A user wanting variety in their practice routine.",
+        "user_goal": "To get a randomized set of practice questions across different topics.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Random Option",
+                "description": "Casey wants mixed-topic practice and chooses the random option.",
+                "action": "Open the topic selector dropdown and choose 'Random'.",
+                "expected_outcome": "Question list shuffles and presents a mix of questions from all topics."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Timer functionality for simulated exams to mimic real testing conditions",
+        "user_persona": "An anxious test-taker trying to manage time effectively.",
+        "user_goal": "To practice managing time under exam-like constraints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Time",
+                "description": "Jamie begins the exam and keeps an eye on the countdown timer.",
+                "action": "Start the exam and observe the timer in the top right corner.",
+                "expected_outcome": "Timer counts down from 45 minutes, updating every second visibly."
+            },
+            {
+                "step": 2,
+                "title": "Time Runs Out",
+                "description": "Jamie doesn't finish in time and the timer expires.",
+                "action": "Wait until the timer reaches zero.",
+                "expected_outcome": "Exam auto-submits and redirects to the results page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Score history tracking to allow users to review past exam performances",
+        "user_persona": "A diligent student monitoring improvement over time.",
+        "user_goal": "To review past exam scores and durations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting History Section",
+                "description": "Pat navigates to the history tab to check previous attempts.",
+                "action": "Click on the 'My Exam History' tab.",
+                "expected_outcome": "List of past exams appears with dates, scores, and durations."
+            },
+            {
+                "step": 2,
+                "title": "Drilling Into Past Performance",
+                "description": "Pat clicks on a past exam to revisit its results.",
+                "action": "Click on a specific exam entry from the history list.",
+                "expected_outcome": "Redirected to that exam’s detailed results and error analysis."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Answer explanation display for both correct and incorrect responses",
+        "user_persona": "A curious learner who always wants to understand the reasoning behind answers.",
+        "user_goal": "To learn from both correct and incorrect selections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Seeing Immediate Feedback",
+                "description": "Sam submits an answer and immediately gets feedback.",
+                "action": "Select an answer and submit it.",
+                "expected_outcome": "Explanation appears below the question detailing why the choice was right or wrong."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across desktop and mobile devices",
+        "user_persona": "A commuter studying on-the-go using a smartphone.",
+        "user_goal": "To seamlessly use the platform regardless of device type.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Mobile Device",
+                "description": "Lee accesses the site on a phone while commuting.",
+                "action": "Resize browser window to simulate mobile screen size or open on mobile device.",
+                "expected_outcome": "Layout adjusts responsively with larger touch targets and readable fonts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User session management to track progress and maintain state during exams",
+        "user_persona": "A busy parent multitasking while taking a practice exam.",
+        "user_goal": "To resume an exam after accidentally closing the browser.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accidentally Closing Browser",
+                "description": "Morgan closes the browser mid-exam but quickly reopens it.",
+                "action": "Close and reopen the browser tab during an ongoing exam.",
+                "expected_outcome": "System restores the exam state from sessionStorage, preserving answers and current position."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration enabling concurrent frontend and backend development startup",
+        "user_persona": "A developer setting up the project locally for development.",
+        "user_goal": "To easily run both frontend and backend services simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Development Servers",
+                "description": "Dev wants to launch both parts of the application quickly.",
+                "action": "Execute command `npm run dev` in the root directory.",
+                "expected_outcome": "Both frontend and backend servers start concurrently, ready for development."
+            }
+        ]
+    }
+]

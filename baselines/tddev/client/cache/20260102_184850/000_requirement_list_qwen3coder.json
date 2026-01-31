@@ -1,0 +1,240 @@
+[
+    {
+        "resource_dependency": {
+            "registrationFormSchema": "Database table 'users' with fields: id (UUID), email (string, unique), password_hash (string), role (enum: 'client', 'driver'), created_at (timestamp), updated_at (timestamp).",
+            "loginAPIEndpoint": "/api/auth/login",
+            "registerAPIEndpoint": "/api/auth/register"
+        },
+        "function": "Allow new users to register and existing users to log in to the system.",
+        "static_description": "A centered form on a white background with navy-colored input fields labeled 'Email', 'Password', and 'Confirm Password'. Buttons labeled 'Register' and 'Login' styled in navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Register' submits the form to the /api/auth/register endpoint. Clicking 'Login' submits credentials to /api/auth/login."
+            },
+            {
+                "interaction": "Input",
+                "description": "As the user types into the fields, validation messages appear below invalid inputs (e.g., mismatched passwords)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileDataSchema": "Database table 'profiles' with fields: user_id (foreign key to users.id), first_name (string), last_name (string), phone_number (string), address (text), bio (text), avatar_url (string), resume_url (string), created_at (timestamp), updated_at (timestamp).",
+            "profileAPIEndpoint": "/api/profiles/{userId}",
+            "avatarUploadAPI": "/api/uploads/avatar"
+        },
+        "function": "Enable users to create and manage personal profile information.",
+        "static_description": "Profile page with editable fields for name, phone number, address, bio, and file upload areas for avatar and resume. All elements use navy text on a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Changes' sends updated profile data to /api/profiles/{userId}. Clicking 'Upload Avatar' opens a file picker and uploads to /api/uploads/avatar."
+            },
+            {
+                "interaction": "Edit",
+                "description": "Fields become editable when clicked, showing save/cancel buttons upon modification."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "jobPostingsSchema": "Database table 'job_postings' with fields: id (UUID), client_id (foreign key to users.id), title (string), description (text), location (string), salary (string), status (enum: 'active', 'closed'), created_at (timestamp), updated_at (timestamp).",
+            "createJobAPI": "/api/jobs/create",
+            "manageJobsAPI": "/api/jobs/manage"
+        },
+        "function": "Allow clients to create and manage their job postings.",
+        "static_description": "Form with navy-themed input fields for job title, description, location, and salary. Toggle switch for activating/deactivating job posts. Table listing current job postings with status indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Post Job' submits the form to /api/jobs/create. Toggling job status updates via PATCH request to /api/jobs/{id}/status."
+            },
+            {
+                "interaction": "Edit",
+                "description": "Clicking a job entry populates the form with existing data for editing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "applicationsSchema": "Database table 'applications' with fields: id (UUID), job_id (foreign key to job_postings.id), applicant_id (foreign key to users.id), cover_letter (text), applied_at (timestamp), status (enum: 'pending', 'reviewed', 'accepted', 'rejected').",
+            "applyForJobAPI": "/api/applications/apply",
+            "trackApplicationAPI": "/api/applications/status"
+        },
+        "function": "Enable users to apply for jobs and track application statuses.",
+        "static_description": "Application form with a cover letter text area and file upload for resumes. Status tracking panel displays submitted applications with colored badges indicating status (pending, reviewed, accepted, rejected).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Application' sends data to /api/applications/apply. Clicking an application in the tracker reloads details from /api/applications/status."
+            },
+            {
+                "interaction": "File Upload",
+                "description": "Uploading a resume attaches it to the application before submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactFormSchema": "Database table 'contact_messages' with fields: id (UUID), name (string), email (string), subject (string), message (text), submitted_at (timestamp).",
+            "contactSubmitAPI": "/api/contact/submit"
+        },
+        "function": "Collect visitor inquiries through a contact form and store them for follow-up.",
+        "static_description": "Simple form with fields for Name, Email, Subject, and Message. Submit button styled in navy. Confirmation message appears after successful submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Send Message' submits the form to /api/contact/submit and shows a success confirmation."
+            },
+            {
+                "interaction": "Input",
+                "description": "Validation highlights empty or improperly formatted fields in real time."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "About Us",
+                "Clients",
+                "Drivers",
+                "Jobs",
+                "Contact"
+            ],
+            "logoImageSource": "/assets/logo.svg"
+        },
+        "function": "Provide centralized navigation across all primary website sections.",
+        "static_description": "Top horizontal navigation bar with logo aligned left and menu items aligned right. Background is white with navy text. Active page highlighted with underline.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any menu item navigates to the corresponding page route (e.g., /about-us, /jobs)."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over menu items slightly increases font weight for emphasis."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyInfoContent": "Static markdown content describing company history, mission, vision, team members, and values."
+        },
+        "function": "Present detailed information about the company to visitors.",
+        "static_description": "Full-width section with navy headings and paragraphs on a white background. May include embedded images or icons sourced from assets folder.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "clientTestimonialsSchema": "Database table 'testimonials' with fields: id (UUID), client_name (string), testimonial_text (text), rating (integer), published (boolean), created_at (timestamp).",
+            "testimonialAPIEndpoint": "/api/testimonials"
+        },
+        "function": "Display client feedback and services offered to build credibility.",
+        "static_description": "Grid layout featuring client quotes with star ratings. Each card includes client name/photo and short testimonial excerpt in navy text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loads more testimonials dynamically fetched from /api/testimonials."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "driverProfilesSchema": "Database view joining users and profiles tables filtered by role='driver'. Fields: user_id, full_name, bio, avatar_url, years_experience (calculated field).",
+            "driversListAPI": "/api/drivers/list"
+        },
+        "function": "Showcase driver profiles relevant to potential employers or clients.",
+        "static_description": "Card-based grid layout with driver avatars, names, bios, and experience levels. Cards have navy borders and text on white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a driver card navigates to a detailed profile view at /drivers/{userId}."
+            },
+            {
+                "interaction": "Filter/Search",
+                "description": "Typing in search bar filters displayed drivers based on name or bio keywords."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "jobListingSchema": "Database query selecting active job postings joined with client info. Includes title, description, location, posted date, and client name.",
+            "jobsListAPI": "/api/jobs/list"
+        },
+        "function": "Display available job opportunities to prospective applicants.",
+        "static_description": "List view with job cards containing title, brief description, location, and posting date. Filter options above the list allow sorting by location or date.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a job card expands details or redirects to the full job posting page."
+            },
+            {
+                "interaction": "Filter",
+                "description": "Selecting filter criteria updates the displayed list via API call with query parameters."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactDetails": "Predefined office locations, phone numbers, and email addresses stored as configuration constants.",
+            "mapAPIIntegration": "Interactive map API (e.g., Google Maps) to display office locations."
+        },
+        "function": "Provide multiple ways for visitors to get in touch with the organization.",
+        "static_description": "Two-column layout: left side shows contact form; right side lists office addresses, phones, emails, and embedded interactive map with markers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking map markers reveals associated office details in an overlay."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingLibrary": "Axios or Fetch API used throughout frontend components to retrieve data from backend endpoints."
+        },
+        "function": "Ensure all dynamic content is loaded asynchronously from backend services rather than hardcoded.",
+        "static_description": "Loading spinners shown during API requests. Error placeholders appear if data fails to load. Content rendered once received successfully.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On component mount, useEffect hook triggers API calls to populate dynamic content."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp used to establish connection pool."
+        },
+        "function": "Connect backend services securely to PostgreSQL database using predefined credentials.",
+        "static_description": "Backend initialization script establishes database connection using environment variables. Connection logs show successful authentication and readiness.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "Custom npm command defined in root package.json to execute 'npm install' in both frontend and backend directories concurrently."
+        },
+        "function": "Streamline dependency installation for entire project with a single command.",
+        "static_description": "Root-level package.json includes custom script that runs parallel installations in FE and BE folders without manual intervention.",
+        "interaction_and_states": [
+            {
+                "interaction": "CLI Execution",
+                "description": "Running 'npm run install:all' executes sequential or concurrent installs depending on platform support."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "devServerCommand": "Concurrently running dev servers for frontend (e.g., Vite) and backend (e.g., Node.js/Express) orchestrated via package.json scripts."
+        },
+        "function": "Enable simultaneous development of frontend and backend with hot-reloading capabilities.",
+        "static_description": "Root package.json defines 'dev' script that launches both frontend and backend development environments together.",
+        "interaction_and_states": [
+            {
+                "interaction": "CLI Execution",
+                "description": "Executing 'npm run dev' starts both servers and outputs logs from each in terminal/console."
+            }
+        ]
+    }
+]

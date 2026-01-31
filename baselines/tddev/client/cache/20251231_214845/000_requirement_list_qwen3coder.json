@@ -1,0 +1,209 @@
+[
+    {
+        "resource_dependency": {
+            "financialDataAPI": "RESTful API endpoint returning structured financial data per company",
+            "companyLogoImage": "/assets/company-logo-placeholder.png",
+            "tealColorPalette": "#008080",
+            "mintCreamBackground": "#F5FFFA"
+        },
+        "function": "Display aggregated financial data from multiple companies in a centralized dashboard.",
+        "static_description": "The dashboard presents a grid of cards, each representing a company with its logo (companyLogoImage), name, and key financial metrics such as revenue, profit, and expenses. The background color is set to mint cream (#F5FFFA) and all UI components use teal (#008080) for styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a company card navigates the user to the detailed financial page for that company."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a metric highlights it temporarily and shows a tooltip with additional context."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "aggregateFinancialDataEndpoint": "/api/v1/companies/financials",
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Aggregate financial data from various company sources via backend services.",
+        "static_description": "This backend module exposes an endpoint (/api/v1/companies/financials) which fetches and aggregates raw financial data stored in a PostgreSQL database configured through environment variables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresSchemaDefinition": "CREATE TABLE companies (id SERIAL PRIMARY KEY, name VARCHAR(255), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP); CREATE TABLE financial_records (id SERIAL PRIMARY KEY, company_id INT REFERENCES companies(id), date DATE, revenue NUMERIC, profit NUMERIC, expenses NUMERIC);"
+        },
+        "function": "Establish connection to PostgreSQL database using provided credentials and define schema for storing company and financial record data.",
+        "static_description": "A PostgreSQL database instance initialized with tables named 'companies' and 'financial_records'. Table structures are defined by postgresSchemaDefinition.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "companyDetailPageRoute": "/dashboard/company/:companyId",
+            "companySpecificFinancialDataEndpoint": "/api/v1/companies/{companyId}/financials"
+        },
+        "function": "Enable users to navigate and view detailed financial records of individual companies.",
+        "static_description": "A dedicated page for each company displaying historical charts and tabular financial data retrieved from the API route specified in companySpecificFinancialDataEndpoint. Navigation to this page occurs when clicking on a company card.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting different time ranges updates the displayed chart and table data dynamically without reloading the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "consolidatedReportEndpoint": "/api/v1/reports/consolidated",
+            "exportPDFService": "Integration with PDF generation library or external service"
+        },
+        "function": "Generate consolidated financial reports summarizing performance across all registered companies.",
+        "static_description": "A report panel showing total revenues, profits, and expenses summed across all companies. It includes options to download the full report in PDF format using exportPDFService.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Download Report' generates a downloadable PDF file containing consolidated financial summaries."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonChartComponent": "<canvas id='comparison-chart'></canvas>",
+            "crossCompanyComparisonEndpoint": "/api/v1/companies/compare?metrics=revenue,profit&companies=1,2,3"
+        },
+        "function": "Allow side-by-side comparison of selected financial metrics between multiple companies.",
+        "static_description": "A bar or line chart rendered within comparisonChartComponent that visualizes comparative financial data fetched from crossCompanyComparisonEndpoint. Metrics and companies can be selected via dropdown menus above the chart.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Changing selections in the metric or company dropdowns re-fetches and redraws the chart accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "managementToolIcons": [
+                "/icons/edit.svg",
+                "/icons/delete.svg",
+                "/icons/add.svg"
+            ],
+            "updateFinancialRecordEndpoint": "/api/v1/companies/{companyId}/financials/{recordId}",
+            "deleteFinancialRecordEndpoint": "/api/v1/companies/{companyId}/financials/{recordId}",
+            "createFinancialRecordEndpoint": "/api/v1/companies/{companyId}/financials"
+        },
+        "function": "Provide tools for authorized users to manage and modify existing financial entries.",
+        "static_description": "Each financial entry listed under a company's profile includes icons for editing, deleting, or adding new records. These actions trigger corresponding API calls to endpoints like updateFinancialRecordEndpoint.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the edit icon opens a modal form pre-filled with current values for modification."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete icon prompts a confirmation dialog before sending DELETE request to deleteFinancialRecordEndpoint."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the add icon reveals an inline form for entering new financial data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generateReportEndpoint": "/api/v1/reports/generate",
+            "supportedExportFormats": [
+                "PDF",
+                "CSV"
+            ]
+        },
+        "function": "Support generation and exporting of custom financial reports in multiple formats.",
+        "static_description": "A section with buttons labeled 'Export as PDF' and 'Export as CSV', linked to generateReportEndpoint with query parameters specifying desired format.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking either export button initiates a server-side report generation process and returns a downloadable file."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginPageRoute": "/auth/login",
+            "authenticationAPI": "/api/auth/login",
+            "authorizationMiddleware": "JWT-based middleware protecting authenticated routes"
+        },
+        "function": "Implement secure login system to control access to sensitive dashboard features.",
+        "static_description": "A standalone login page accessible at /auth/login featuring username and password fields, connected to authenticationAPI for validation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Form",
+                "description": "Upon successful submission, JWT token is issued and used for subsequent requests requiring authorization."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "visualizationLibrary": "Chart.js or D3.js implementation",
+            "metricDataSources": "Endpoints providing time-series data for visualization"
+        },
+        "function": "Render interactive visualizations of key financial indicators.",
+        "static_description": "Multiple embedded graphs throughout the dashboard built using visualizationLibrary, displaying trends like monthly revenue growth or expense distribution.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over points or bars reveals tooltips with exact numerical values."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of respective datasets in the graph."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveCSSFramework": "Tailwind CSS or Bootstrap",
+            "themeConfigurationFile": "{ backgroundColor: '#F5FFFA', primaryColor: '#008080' }"
+        },
+        "function": "Ensure consistent responsive layout and theming aligned with brand guidelines.",
+        "static_description": "All pages utilize responsiveCSSFramework to adapt layouts for mobile, tablet, and desktop views while applying theme settings from themeConfigurationFile.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "realTimeWebSocketConnection": "wss://api.example.com/ws",
+            "pollingFallbackInterval": "60 seconds"
+        },
+        "function": "Fetch latest financial updates in real-time from backend to keep frontend synchronized.",
+        "static_description": "Frontend establishes WebSocket connection via realTimeWebSocketConnection upon load to receive live updates. Falls back to polling every 60 seconds if WebSocket fails.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "multiTenantIsolationStrategy": "Separate database schemas or row-level security policies",
+            "tenantIdentificationHeader": "X-Tenant-ID"
+        },
+        "function": "Structure application logic to ensure strict separation of data among tenants (i.e., companies).",
+        "static_description": "Backend enforces tenant isolation by inspecting X-Tenant-ID headers and routing queries to appropriate scoped data layers according to multiTenantIsolationStrategy.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "adminPanelRoute": "/admin/data-sources",
+            "manageDataSourceAPI": "/api/admin/data-sources"
+        },
+        "function": "Provide administrative interface for configuring and managing external data sources.",
+        "static_description": "Accessible only to admin users, this panel lists all active data sources and provides forms for adding, modifying, or removing connections managed via manageDataSourceAPI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Source' opens a wizard guiding administrators through setup steps."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "concurrently \"cd client && npm install\" \"cd server && npm install\"",
+            "devStartCommand": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\""
+        },
+        "function": "Define package.json scripts to streamline installation and development startup processes.",
+        "static_description": "Two top-level NPM commands added to root package.json: 'install:all' executes installScriptCommand and 'dev' runs devStartCommand to launch both frontend and backend simultaneously.",
+        "interaction_and_states": []
+    }
+]

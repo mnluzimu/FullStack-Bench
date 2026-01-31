@@ -1,0 +1,232 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "player_stats_endpoint": "/players/{id}/stats",
+            "team_management_endpoint": "/teams",
+            "game_simulation_endpoint": "/games/simulate",
+            "authentication_endpoint": "/auth"
+        },
+        "function": "Fetch dynamic data from backend APIs for rendering player stats, team info, and game results.",
+        "static_description": "The frontend displays various sections including player statistics tables, team management panels, and game simulation outputs. All data is fetched dynamically via RESTful endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers API calls to refresh displayed data when navigating between tabs or pages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_connection_config": {
+                "DB_HOST": "localhost",
+                "DB_PORT": 5432,
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "postgresql_schema_definitions": "Define schemas for users, teams, players, games, stats, finances, and lineups with appropriate relationships."
+        },
+        "function": "Establish connection to PostgreSQL database using predefined environment variables and define required schemas.",
+        "static_description": "Backend server connects to a PostgreSQL instance using provided credentials. Schemas for entities such as users, teams, players, and game logs are created upon initialization.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "player_stats_icons": "/assets/icons/stats-icons/*.svg",
+            "stat_fields_schema": "Fields include batting_average (float), home_runs (int), rbis (int), era (float), strikeouts (int), etc.",
+            "player_detail_view_template": "<div class='player-card'>...</div>"
+        },
+        "function": "Display detailed performance metrics for individual baseball players.",
+        "static_description": "A card-based layout showing player headshots, names, positions, and key statistical indicators like batting average, ERA, RBIs, and more. Icons represent different stat categories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a player opens a modal with extended stats history and trend graphs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "team_form_fields": [
+                "name",
+                "logo",
+                "city",
+                "budget"
+            ],
+            "team_creation_api": "/teams/create",
+            "team_edit_api": "/teams/{id}/edit"
+        },
+        "function": "Allow users to create, modify, and manage baseball teams through form inputs.",
+        "static_description": "Form interface with fields for team name, logo upload, city selection, and initial budget setting. Buttons for saving changes or deleting teams.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button sends POST request to create or update team records in the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "roster_table_schema": "Columns: Player Name, Position, Status, Actions (Add/Remove)",
+            "add_player_to_roster_api": "/rosters/add",
+            "remove_player_from_roster_api": "/rosters/remove"
+        },
+        "function": "Enable adding, removing, and organizing players within team rosters.",
+        "static_description": "Sortable table listing current roster members with drag-and-drop capability to reorder players. Buttons to add new players or release existing ones.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Reorder players in lineup by dragging rows up or down."
+            },
+            {
+                "interaction": "Click",
+                "description": "Use '+' or '-' buttons to add/remove players directly from the roster."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "finance_dashboard_layout": "<section id='finances'>Balance: $X | Expenses: Y | Revenue: Z</section>",
+            "transaction_log_schema": "Fields: date (timestamp), type (income/expense), amount (decimal), description (text)"
+        },
+        "function": "Track and display team financial status including income, expenses, and balance.",
+        "static_description": "Dashboard panel showing total balance, recent transactions, and spending breakdowns by category. Graphical representation of cash flow over time.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigate to full transaction log page when clicking on balance summary."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "simulation_engine_api": "/games/simulate",
+            "strategy_parameters_schema": "{pitcher_rotation: [], batting_order: [], defensive_shifts: {}}",
+            "live_game_events_feed": "/games/{id}/events/stream"
+        },
+        "function": "Process and simulate baseball games based on selected team strategies and lineups.",
+        "static_description": "Control panel with dropdowns for selecting starting pitcher, batting order arrangement, and defensive positioning options. Start Simulation button initiates processing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Start Simulation triggers backend job that returns real-time event stream."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "game_result_visualizer_component": "<canvas id='scoreboard'></canvas>",
+            "box_score_template": "<table><thead>...</thead><tbody>...</tbody></table>",
+            "win_loss_icon_set": "/assets/icons/win-loss/*.png"
+        },
+        "function": "Visualize outcomes of completed baseball games with scores and key plays.",
+        "static_description": "Scoreboard graphic showing inning-by-inning scoring, final score, and winning pitcher. Tabular box score detailing hits, runs, errors per team.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Click on play-by-play highlights to view detailed descriptions of pivotal moments."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "strategy_control_panel_layout": "<form>...</form>",
+            "adjustable_parameters": [
+                "batting_order",
+                "pitcher_rotation",
+                "defensive_alignment"
+            ]
+        },
+        "function": "Provide interactive tools for modifying team strategy and lineup settings pre-simulation.",
+        "static_description": "Interactive form with draggable lists for batting order, selector for pitcher rotation, and toggle switches for defensive alignments.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Rearrange batting order by dragging player cards into desired slots."
+            },
+            {
+                "interaction": "Click",
+                "description": "Toggle defensive alignment presets using labeled switch controls."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "color_palette": {
+                "background_color": "#fffaf0",
+                "interactive_elements_color": "#b8860b"
+            },
+            "css_variables_file": ":root { --bg-color: #fffaf0; --interactive-color: #b8860b; }"
+        },
+        "function": "Apply specified color scheme throughout the UI for consistent branding.",
+        "static_description": "All backgrounds use floral white (#fffaf0) while buttons, links, and active states utilize dark goldenrod (#b8860b). Consistent styling across all pages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and interactive elements darken slightly on hover to indicate interactivity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "login_page_template": "<div>Login Form</div>",
+            "session_token_storage": "localStorage.setItem('authToken', token)",
+            "protected_routes_middleware": "Check auth header before serving sensitive routes"
+        },
+        "function": "Manage user authentication and maintain secure sessions for personalized access.",
+        "static_description": "Login screen with email/password fields and Submit button. Redirects authenticated users to dashboard automatically.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit login credentials which are verified against stored hashes; successful login sets JWT in localStorage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "persistent_storage_schema": "Tables for players, teams, games, stats, finances with foreign key constraints",
+            "data_backup_policy": "Daily backups of entire database"
+        },
+        "function": "Ensure long-term storage of all relevant application data including stats, teams, finances, and results.",
+        "static_description": "Database stores structured records of every entity involved in gameplay and management. Regular automated backups ensure data integrity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "websocket_connection_url": "ws://localhost:3001/events",
+            "event_stream_handler": "new WebSocket(url)",
+            "progress_bar_component": "<progress max='100' value='0'></progress>"
+        },
+        "function": "Deliver live updates during game simulations to keep UI synchronized with backend events.",
+        "static_description": "Progress bar indicating simulation advancement alongside streaming textual commentary of ongoing game actions.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Message Received",
+                "description": "Update UI elements like scoreboard and commentary feed in real-time without manual refresh."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_css_framework": "Tailwind CSS or Bootstrap grid system",
+            "mobile_viewport_meta_tag": "<meta name='viewport' content='width=device-width,initial-scale=1'>"
+        },
+        "function": "Adapt layout and functionality seamlessly across desktop and mobile devices.",
+        "static_description": "Flexible grids and scalable components adjust based on viewport size. Touch-friendly controls replace mouse-specific interactions on smaller screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout reflows and adjusts element sizes dynamically depending on available screen space."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{\"scripts\": {\"install:all\": \"concurrently \\\"cd client && npm i\\\" \\\"cd server && npm i\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\"}}"
+        },
+        "function": "Configure repository scripts for unified installation and development startup of frontend and backend.",
+        "static_description": "Root level package.json file contains two main commands: install:all and dev, managed using concurrently to execute parallel tasks.",
+        "interaction_and_states": []
+    }
+]

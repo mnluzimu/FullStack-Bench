@@ -1,0 +1,198 @@
+[
+    {
+        "resource_dependency": {
+            "stockDataAPI": "An external API for real-time stock data fetching, including endpoints for stock quotes, financials, and market trends.",
+            "authAPI": "External authentication service supporting user login, registration, and session management.",
+            "pdfExportLibrary": "A client-side library for PDF generation such as jsPDF or html2canvas.",
+            "chartingLibrary": "A charting library like Chart.js or D3.js for rendering market trend visualizations.",
+            "loadingSpinnerIcon": "/assets/icons/spinner.svg"
+        },
+        "function": "Fetch all stock-related data dynamically from backend APIs and display it on the frontend.",
+        "static_description": "The main page displays a white background with navy UI components. It includes a header bar, a search input field for entering stock codes or names, a section for displaying results, and a loading spinner icon when data is being fetched.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search button triggers an API call to retrieve stock data based on user input."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on the search input triggers the same API call as clicking the search button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "userTableSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(255) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT NOT NULL);",
+            "reportHistoryTableSchema": "CREATE TABLE report_history (id SERIAL PRIMARY KEY, user_id INTEGER REFERENCES users(id), stock_symbol VARCHAR(10), report_format VARCHAR(50), content_selection JSONB, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Provide a backend API service connecting to a PostgreSQL database using specified environment variables to support authentication and store report history.",
+        "static_description": "Backend server initialized with connection settings pointing to a local PostgreSQL instance using provided credentials. Tables are set up for storing user accounts and report generation history.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchInputField": "<input type='text' id='stock-search' placeholder='Enter stock code or name'>",
+            "searchButton": "<button id='search-btn'>Search</button>"
+        },
+        "function": "Allow users to input stock codes or names through a dedicated search interface.",
+        "static_description": "A centered search bar with a navy-themed input field labeled 'Enter stock code or name', accompanied by a navy-colored search button titled 'Search'. Both elements are placed within a white container.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button sends the entered value to the backend API for processing."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter inside the input field initiates the same action as clicking the search button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptions": [
+                "PDF",
+                "HTML",
+                "CSV"
+            ],
+            "contentOptions": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ]
+        },
+        "function": "Enable users to customize their report preferences via a form interface.",
+        "static_description": "Below the search area lies a collapsible form panel containing two sections: one for selecting report format from predefined options and another for choosing desired content sections. All controls use navy styling over a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Generate Report' button submits selected preferences along with the current stock identifier to trigger report creation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGenerationEndpoint": "/api/generate-report",
+            "downloadReportButton": "<a href='/download/report.pdf' download>Download Report</a>",
+            "pdfViewerComponent": "<iframe src='/report-preview'></iframe>"
+        },
+        "function": "Produce customized stock reports tailored to user selections and make them available for download.",
+        "static_description": "Upon successful submission, the generated report appears either inline via iframe preview or directly downloads depending on chosen format. A navy-styled download link is visible once processing completes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the download link retrieves and saves the file locally in the selected format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyLogoPlaceholder": "/assets/images/company-placeholder.png",
+            "basicInfoFields": [
+                "Company Name",
+                "Ticker Symbol",
+                "Sector",
+                "Industry",
+                "CEO"
+            ]
+        },
+        "function": "Present essential stock information including company details and ticker symbols clearly.",
+        "static_description": "A card-style layout shows company logo placeholder alongside text fields listing company name, ticker symbol, sector, industry, and CEO. Styled with navy headings against a clean white backdrop.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "marketTrendChartContainer": "<div class='chart-container'><canvas id='trend-chart'></canvas></div>",
+            "chartColorPalette": "{ borderColor: '#000080', backgroundColor: 'rgba(0,0,128,0.1)' }"
+        },
+        "function": "Visualize historical price movements and market trends using interactive charts.",
+        "static_description": "A responsive chart canvas embedded in a navy-bordered container displays line graphs representing stock performance over time. Color palette uses navy tones for consistency.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart points reveals tooltips showing date and closing price values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTable": "<table><thead><tr><th>Earnings</th><th>Revenue</th><th>P/E Ratio</th></tr></thead><tbody></tbody></table>"
+        },
+        "function": "Include relevant financial metrics such as earnings, revenue, and key valuation ratios.",
+        "static_description": "Tabular view lists quarterly or annual financial figures including earnings per share, total revenue, and important financial ratios. Headers styled in navy font on white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Apply consistent branding across the entire site using a white background with navy-colored UI components.",
+        "static_description": "All pages utilize a minimalist design featuring a pristine white background complemented by rich navy accents throughout buttons, headers, and interactive elements.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mobileBreakpoints": "@media (max-width: 768px)",
+            "responsiveGridSystem": "CSS Grid or Flexbox-based layout adapting to screen sizes"
+        },
+        "function": "Ensure optimal viewing experience across desktop and mobile devices.",
+        "static_description": "Layout adjusts fluidly between full desktop views and compact mobile screens using CSS media queries and flexible grid systems without compromising usability or visual appeal.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loginPageRoute": "/login",
+            "signupPageRoute": "/register",
+            "sessionManagementMiddleware": "JWT-based middleware ensuring authenticated access to protected routes"
+        },
+        "function": "Implement secure user authentication system managing access control and tracking past reports.",
+        "static_description": "Dedicated login/signup forms appear before accessing core features. Authenticated sessions persist via tokens stored securely in HTTP-only cookies.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting valid credentials redirects users to the dashboard where they can access previously generated reports."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormats": [
+                ".pdf",
+                ".html",
+                ".csv"
+            ],
+            "fileDownloadHandler": "Server-side logic to convert HTML/CSS content into downloadable documents"
+        },
+        "function": "Offer multiple export formats enabling easy sharing and offline access to generated reports.",
+        "static_description": "Post-generation, users see clearly marked links allowing immediate download in PDF, HTML, or CSV formats. Each option retains consistent navy styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a format prompts browser-native download behavior delivering the requested document version."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeWebSocketAPI": "WebSocket endpoint providing live updates for subscribed stock prices",
+            "liveUpdateIndicator": "<span class='live-indicator'>Live</span>"
+        },
+        "function": "Deliver timely and accurate stock insights leveraging real-time data streams.",
+        "static_description": "Active stocks show small 'Live' badges next to pricing info indicating ongoing updates. WebSocket ensures instantaneous refresh of displayed values without manual reloads.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorMessageComponent": "<p class='error-message'>Invalid stock code or data unavailable.</p>"
+        },
+        "function": "Gracefully handle errors arising from invalid inputs or missing data sources.",
+        "static_description": "Prominent error message appears below search bar whenever invalid ticker is submitted or no matching records found. Message styled in red but integrated harmoniously with overall navy-white theme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spinnerElement": "<img src='/assets/icons/spinner.svg' alt='Loading...' class='loading-spinner'>"
+        },
+        "function": "Provide clear feedback during asynchronous operations involving data retrieval or report generation.",
+        "static_description": "Rotating spinner graphic overlays affected areas during active requests. Positioned centrally above semi-transparent mask maintaining focus until completion.",
+        "interaction_and_states": []
+    }
+]

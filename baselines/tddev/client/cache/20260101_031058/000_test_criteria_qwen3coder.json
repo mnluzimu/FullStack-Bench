@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "A dashboard website for displaying regulatory policies",
+        "user_persona": "A compliance officer who needs to quickly access and review current regulatory policies.",
+        "user_goal": "To navigate to the dashboard and view a list of regulatory policies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Dashboard",
+                "description": "Sarah opens her browser and navigates to the regulatory policy dashboard website.",
+                "action": "Navigate to the dashboard URL.",
+                "expected_outcome": "The dashboard loads with a lavender background and indigo UI elements, showing a grid of policy cards."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Policy Cards",
+                "description": "Sarah scans the main content area and sees several policy cards displayed in a grid format.",
+                "action": "Visually inspect the policy grid.",
+                "expected_outcome": "Each policy card displays the title, category, status, and key metrics of a regulatory policy."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization capabilities for complex regulatory policies",
+        "user_persona": "A policy analyst who relies on visual data to understand policy impacts.",
+        "user_goal": "To examine interactive charts representing policy data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Charts Section",
+                "description": "John notices the right sidebar contains data visualizations related to the selected policy.",
+                "action": "Look at the right sidebar for charts.",
+                "expected_outcome": "Multiple interactive charts are visible, each with an indigo header and rendered using Chart.js."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Chart Tooltips",
+                "description": "John hovers over segments of a pie chart to see more detailed information.",
+                "action": "Hover over chart elements.",
+                "expected_outcome": "Tooltips appear showing precise values and additional context about the data points."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to browse different policies",
+        "user_persona": "A new intern tasked with compiling a report on various policies.",
+        "user_goal": "To explore different policies available on the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Policy List",
+                "description": "Emma scrolls through the list of policy cards displayed on the dashboard.",
+                "action": "Scroll vertically through the policy grid.",
+                "expected_outcome": "More policy cards load or become visible as she scrolls down the page."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Policy",
+                "description": "Emma finds a policy titled 'Data Privacy Compliance' and decides to view its details.",
+                "action": "Click on the policy card.",
+                "expected_outcome": "She is redirected to the detailed view page for that specific policy."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to analyze policies with related data and charts",
+        "user_persona": "A senior analyst preparing a briefing document for stakeholders.",
+        "user_goal": "To gather supporting data and visual representations for a specific policy.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Detailed View",
+                "description": "Michael clicks on a policy card to see comprehensive details and associated metrics.",
+                "action": "Click on a policy card.",
+                "expected_outcome": "The detailed policy view loads, showing full description, metadata, and related data tables."
+            },
+            {
+                "step": 2,
+                "title": "Examining Related Charts",
+                "description": "Michael looks at the charts section on the detail page to understand trends and distributions.",
+                "action": "Inspect the interactive charts displayed.",
+                "expected_outcome": "Charts accurately reflect the policy's data and update dynamically when interacted with."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filtering functionality for policies",
+        "user_persona": "A compliance manager needing to focus on active policies only.",
+        "user_goal": "To filter the policy list to show only active policies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Filter Panel",
+                "description": "Lisa identifies the filter panel on the left sidebar and expands the 'Status' filter group.",
+                "action": "Click on the 'Status' filter section header.",
+                "expected_outcome": "The filter options under 'Status' are revealed, including checkboxes for Active, Inactive, and Proposed."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Lisa checks the 'Active' checkbox to narrow down the displayed policies.",
+                "action": "Click the 'Active' checkbox.",
+                "expected_outcome": "The policy grid immediately updates to show only policies marked as active."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Sorting functionality for policies",
+        "user_persona": "A regulatory researcher organizing policies chronologically.",
+        "user_goal": "To sort the policy list by effective date in ascending order.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Sort Controls",
+                "description": "Robert looks at the row of headers above the policy grid to find sorting options.",
+                "action": "Locate the 'Effective Date' column header.",
+                "expected_outcome": "The 'Effective Date' header is clearly labeled and styled in indigo."
+            },
+            {
+                "step": 2,
+                "title": "Triggering Sort",
+                "description": "Robert clicks the 'Effective Date' header once to begin sorting.",
+                "action": "Click the 'Effective Date' header.",
+                "expected_outcome": "Policies are reordered from earliest to latest effective date, indicated by an upward arrow icon."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend that fetches all data from backend APIs",
+        "user_persona": "A developer verifying integration between frontend and backend services.",
+        "user_goal": "To confirm that policy data is loaded dynamically via API calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Initial Data",
+                "description": "Alex refreshes the dashboard page and observes network activity in browser dev tools.",
+                "action": "Refresh the dashboard page.",
+                "expected_outcome": "Network tab shows GET requests made to /api/policies and other related endpoints to fetch data."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Dynamic Content",
+                "description": "Alex confirms that no hardcoded data exists and all content comes from API responses.",
+                "action": "Inspect page source and network responses.",
+                "expected_outcome": "Policy data matches exactly what was returned by the backend API without any static placeholders."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend that connects to an external PostgreSQL database",
+        "user_persona": "A DevOps engineer validating backend connectivity setup.",
+        "user_goal": "To ensure the backend service properly connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Environment Configuration",
+                "description": "Taylor reviews the backend server's environment configuration file.",
+                "action": "Verify presence of DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME variables.",
+                "expected_outcome": "Environment variables match the required values: localhost, 5432, myappuser, myapppassword, myapp."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Connection",
+                "description": "Taylor triggers an API call that requires querying the database.",
+                "action": "Make a request to /api/policies endpoint.",
+                "expected_outcome": "Server successfully retrieves and returns real-time data from the connected PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use of specified environment variables for database connection: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "user_persona": "A deployment specialist ensuring secure credential handling.",
+        "user_goal": "To verify correct usage of predefined environment variables for database authentication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Backend Code",
+                "description": "Jordan inspects the backend code where database connections are established.",
+                "action": "Check database connection logic in backend files.",
+                "expected_outcome": "Database connection uses environment variables instead of hardcoded credentials."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Variable Values",
+                "description": "Jordan verifies that the actual runtime environment has the correct variable assignments.",
+                "action": "Echo or print environment variables during backend startup.",
+                "expected_outcome": "Output shows DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Lavender background color assigned to the website",
+        "user_persona": "A UX designer auditing visual consistency across platforms.",
+        "user_goal": "To validate consistent use of lavender as the primary background color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Patricia examines the overall site layout focusing on background styling.",
+                "action": "Open developer tools and inspect body or main container styles.",
+                "expected_outcome": "Background color is set to #E6E6FA which corresponds to lavender."
+            },
+            {
+                "step": 2,
+                "title": "Cross-Device Verification",
+                "description": "Patricia views the dashboard on desktop and mobile devices to check consistency.",
+                "action": "Resize browser window and switch between device modes.",
+                "expected_outcome": "Lavender background remains consistent regardless of screen size or orientation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Indigo color assigned to UI elements",
+        "user_persona": "A brand compliance reviewer checking adherence to company guidelines.",
+        "user_goal": "To confirm that indigo is used consistently for UI components like buttons and headers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Analyzing UI Element Colors",
+                "description": "Derek focuses on top navigation bars, filter headers, and chart titles to assess color usage.",
+                "action": "Use browser inspection tool to check CSS properties of UI elements.",
+                "expected_outcome": "UI components utilize #4B0082 (indigo) for text or background colors as per design specs."
+            },
+            {
+                "step": 2,
+                "title": "Validating Interactive States",
+                "description": "Derek interacts with elements such as hover states and active selections.",
+                "action": "Hover over and click interactive UI elements.",
+                "expected_outcome": "Indigo theme persists across different interaction states maintaining visual coherence."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json with 'npm run install:all' script to install both frontend and backend dependencies",
+        "user_persona": "A new team member setting up their local development environment.",
+        "user_goal": "To run a single command that installs all necessary dependencies for both frontend and backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Morgan clones the repository and runs the custom installation command.",
+                "action": "Execute 'npm run install:all' from terminal in project root.",
+                "expected_outcome": "Both frontend and backend directories have their dependencies installed automatically."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Installation Success",
+                "description": "Morgan checks if node_modules folders exist in both frontend and backend directories.",
+                "action": "List contents of frontend/node_modules and backend/node_modules.",
+                "expected_outcome": "Dependencies listed in respective package.json files are present in each node_modules folder."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json with 'npm run dev' script to start both frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work requiring simultaneous frontend and backend execution.",
+        "user_goal": "To launch both development servers using one unified command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Casey opens terminal and initiates concurrent development environments.",
+                "action": "Run 'npm run dev' from the project root directory.",
+                "expected_outcome": "Terminal output indicates both frontend and backend servers are starting concurrently."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Server Outputs",
+                "description": "Casey watches the console logs to ensure both services initialize correctly.",
+                "action": "Observe terminal messages from both frontend and backend processes.",
+                "expected_outcome": "Logs from both applications appear together, confirming successful parallel startup."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive charts and graphs for policy data representation",
+        "user_persona": "An executive presenting findings to leadership based on dashboard insights.",
+        "user_goal": "To manipulate and interpret interactive charts for presentation purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Chart Interactivity",
+                "description": "Jamie hovers over parts of a line graph to get precise figures.",
+                "action": "Hover over data points on the chart canvas.",
+                "expected_outcome": "Tooltip windows pop up displaying exact numerical values and timestamps."
+            },
+            {
+                "step": 2,
+                "title": "Customizing Chart Display",
+                "description": "Jamie clicks on legend items to toggle visibility of certain data series.",
+                "action": "Click on items within the chart legend.",
+                "expected_outcome": "Selected data series disappear or reappear on the chart accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with multiple device sizes",
+        "user_persona": "A remote worker accessing the dashboard on various personal devices.",
+        "user_goal": "To seamlessly use the dashboard whether on desktop, tablet, or smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Layout Adaptation",
+                "description": "Riley resizes the browser window to simulate smaller screens.",
+                "action": "Adjust browser window width manually or use responsive mode in dev tools.",
+                "expected_outcome": "Layout adjusts appropriately; sidebars stack vertically, fonts resize, and touch targets remain accessible."
+            },
+            {
+                "step": 2,
+                "title": "Checking Mobile Usability",
+                "description": "Riley views the dashboard on an actual smartphone to evaluate usability.",
+                "action": "Visit the dashboard URL on a mobile phone.",
+                "expected_outcome": "Dashboard renders cleanly, navigation is intuitive, and interactive features function smoothly on small screens."
+            }
+        ]
+    }
+]

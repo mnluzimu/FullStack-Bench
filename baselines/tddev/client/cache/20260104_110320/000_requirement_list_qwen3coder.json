@@ -1,0 +1,211 @@
+[
+    {
+        "resource_dependency": {
+            "frontend_api_client": "Axios or Fetch-based client configured to communicate with backend API endpoints",
+            "backend_db_connection": "PostgreSQL connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "The frontend displays various UI components such as forms, charts, tables, and dashboards which are populated dynamically via API calls to the backend.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgres_db_env_vars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "static_description": "The backend exposes RESTful endpoints consumed by the frontend to retrieve and store risk assessment data. It uses the provided PostgreSQL credentials for database connectivity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_flow_icons": [
+                "/assets/icons/login.svg",
+                "/assets/icons/logout.svg"
+            ],
+            "subscription_tiers_data": [
+                "Basic",
+                "Pro",
+                "Enterprise"
+            ]
+        },
+        "function": "User authentication and subscription management system",
+        "static_description": "Login/logout buttons with icons, subscription tier display cards showing features per plan, and account status indicators visible in header navigation bar.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking login redirects user to authentication page; clicking logout clears session tokens and returns to landing page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a subscription tier navigates to checkout flow managed by external payment provider."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "risk_item_list_endpoint": "/api/risk-items",
+            "risk_item_data_schema": "Table named risk_items with columns: id (UUID), name (string), category (enum), description (text), severity_level (integer)"
+        },
+        "function": "Risk assessment item selection interface",
+        "static_description": "Dropdown menu or searchable checklist displaying available risk items fetched from /api/risk-items endpoint, styled with steel blue borders and background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an item adds it to active assessment set and triggers auto-population of associated data fields."
+            },
+            {
+                "interaction": "Search Input",
+                "description": "Typing filters displayed options in real time based on matching keywords in name or description."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auto_populate_api": "/api/risk-data/{itemId}",
+            "risk_data_fields": [
+                "name",
+                "category",
+                "severity_score",
+                "historical_incidents",
+                "mitigation_steps"
+            ]
+        },
+        "function": "Auto-population of risk assessment data from database",
+        "static_description": "Form sections appear below selected items showing pre-filled values retrieved from database through /api/risk-data/{itemId} endpoint.",
+        "interaction_and_states": [
+            {
+                "interaction": "Selection Change",
+                "description": "Changing selected items updates form fields asynchronously with latest data from backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chart_component_library": "Chart.js or D3.js integration",
+            "chart_generation_endpoint": "/api/charts/generate"
+        },
+        "function": "Chart generation based on selected risk assessment items",
+        "static_description": "Interactive chart canvas area beneath form inputs where visualizations like bar graphs or radar plots render upon request.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Generate Chart' sends current selections to /api/charts/generate and renders returned image/chart data within container."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "export_formats": [
+                ".pdf",
+                ".docx",
+                ".xlsx"
+            ],
+            "report_template_schema": "Templates stored in DB with fields: id (UUID), title (string), content_structure (JSON)",
+            "generate_report_endpoint": "/api/reports/generate"
+        },
+        "function": "Report creation and export functionality",
+        "static_description": "Button labeled 'Create Report' alongside dropdown selector for choosing desired file format (.pdf/.docx/.xlsx). Preview panel shows formatted output before download.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Pressing 'Create Report' compiles selected items and generated charts into structured document using templates from DB then initiates browser download."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_schema_instructions": "CREATE TABLE users(id UUID PRIMARY KEY, email VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT NOT NULL, subscription_tier VARCHAR(50)); CREATE TABLE risk_items(id UUID PRIMARY KEY, name VARCHAR(255), category VARCHAR(100), description TEXT, severity_level INT); CREATE TABLE reports(id UUID PRIMARY KEY, user_id UUID REFERENCES users(id), title VARCHAR(255), created_at TIMESTAMP, file_path TEXT); CREATE TABLE subscriptions(id UUID PRIMARY KEY, tier_name VARCHAR(50), price NUMERIC, features JSONB);"
+        },
+        "function": "Database schema design to support risk assessment data",
+        "static_description": "Defined relational tables supporting storage of user accounts, risk items, historical reports, and subscription plans inside PostgreSQL instance.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetch_risk_items_endpoint": "GET /api/risk-items",
+            "fetch_risk_details_endpoint": "GET /api/risk-data/{itemId}"
+        },
+        "function": "API endpoints for fetching risk assessment items and related data",
+        "static_description": "RESTful routes exposing collections and individual records from risk_items table, returning JSON payloads consumable by frontend clients.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "background_color_style": "#F0F8FF",
+            "component_background_style": "#4682B4"
+        },
+        "function": "User interface with alice blue background and steel blue components",
+        "static_description": "Entire site background rendered in alice blue (#F0F8FF), while interactive elements like buttons, panels, and form containers use steel blue (#4682B4) styling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "payment_gateway_integration": "Stripe or PayPal API for processing payments",
+            "subscription_check_middleware": "Middleware validating JWT claims against user's subscription tier"
+        },
+        "function": "Subscription feature to control access to risk assessment tools",
+        "static_description": "Locked interface overlays prompting upgrade when free-tier limit exceeded, alongside billing settings accessible under profile menu.",
+        "interaction_and_states": [
+            {
+                "interaction": "Access Attempt",
+                "description": "Attempting to initiate new assessment without valid Pro/Enterprise license triggers modal redirecting to subscription upgrade screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "data_viz_lib_integration": "D3.js or Chart.js library inclusion",
+            "visualization_types": [
+                "bar",
+                "line",
+                "radar",
+                "pie"
+            ]
+        },
+        "function": "Data visualization components for displaying risk charts",
+        "static_description": "Canvas regions embedded throughout dashboard presenting graphical summaries of selected risks using supported visualization formats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart segments reveals tooltip containing numeric value and contextual label information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "template_management_ui": "CRUD interface for report templates",
+            "template_storage_table": "report_templates(id UUID, title VARCHAR(255), structure JSONB)"
+        },
+        "function": "Report template management system",
+        "static_description": "Admin-only section listing existing templates with edit/delete controls plus option to upload/create new ones using WYSIWYG editor.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Editing opens template editor; deleting prompts confirmation dialog prior to removal from DB."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboard_layout": "Grid-based layout with widgets for recent assessments, saved reports, quick actions",
+            "user_profile_icon": "/assets/icons/profile.svg"
+        },
+        "function": "User dashboard for managing assessments and reports",
+        "static_description": "Centralized homepage view presenting summary statistics, shortcuts to ongoing tasks, and lists of recently accessed documents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any widget tile expands detailed view or launches associated workflow directly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrent_dev_script": "\"dev\": \"concurrently \\\"npm run start --prefix client\\\" \\\"npm run start --prefix server\\\"\"",
+            "install_all_script": "\"install:all\": \"npm install && cd client && npm install && cd ../server && npm install\""
+        },
+        "function": "Concurrent development setup with npm scripts for installation and execution",
+        "static_description": "Root-level package.json defines custom commands enabling unified dependency resolution and parallel launching of frontend/backend services during local development.",
+        "interaction_and_states": []
+    }
+]

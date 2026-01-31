@@ -1,0 +1,429 @@
+[
+    {
+        "requirement_tested": "User registration and login functionality",
+        "user_persona": "A new driver named Alex looking to apply for driving jobs.",
+        "user_goal": "Alex wants to register an account and then log in to begin applying for jobs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Registration",
+                "description": "Alex visits the homepage and clicks the 'Login' link, which leads him to a page with both login and registration options.",
+                "action": "Click on the 'Register' option.",
+                "expected_outcome": "A registration form appears with fields for email, password, and confirm password, all styled in navy on a white background."
+            },
+            {
+                "step": 2,
+                "title": "Filling Registration Form",
+                "description": "Alex fills out his email and sets a password but mistakenly types a different password in the confirmation field.",
+                "action": "Enter mismatched passwords.",
+                "expected_outcome": "A validation message appears below the confirm password field indicating that the passwords do not match."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Valid Registration",
+                "description": "Alex corrects the confirmation password and submits the form.",
+                "action": "Click the 'Register' button after entering matching passwords.",
+                "expected_outcome": "The system registers Alex successfully and redirects him to the login form with a success message."
+            },
+            {
+                "step": 4,
+                "title": "Logging In",
+                "description": "Alex enters his newly created credentials and attempts to log in.",
+                "action": "Fill in email and password fields and click 'Login'.",
+                "expected_outcome": "Alex is authenticated and redirected to his dashboard where he can start applying for jobs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile creation and management",
+        "user_persona": "A registered user, Maria, who just logged in for the first time.",
+        "user_goal": "Maria wants to create her driver profile by adding personal details and uploading a resume.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile Page",
+                "description": "After logging in, Maria sees a prompt to complete her profile and clicks on the 'Create Profile' button.",
+                "action": "Click on 'Create Profile' button.",
+                "expected_outcome": "Maria is taken to the profile page with editable fields for name, phone number, address, bio, and file uploads."
+            },
+            {
+                "step": 2,
+                "title": "Editing Profile Information",
+                "description": "Maria begins filling in her first name, last name, phone number, and writes a short bio about herself.",
+                "action": "Type into the respective input fields.",
+                "expected_outcome": "Each field accepts input normally without error, and the 'Save Changes' button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Uploading Resume",
+                "description": "Maria clicks the 'Upload Resume' area to attach her latest CV.",
+                "action": "Click on the resume upload zone and select a PDF file.",
+                "expected_outcome": "The selected file is attached and indicated visually next to the upload area."
+            },
+            {
+                "step": 4,
+                "title": "Saving Profile",
+                "description": "Satisfied with the information, Maria clicks the 'Save Changes' button to finalize her profile setup.",
+                "action": "Click the 'Save Changes' button.",
+                "expected_outcome": "Her profile data is saved successfully, and she receives a notification confirming the update."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job posting creation and management by clients",
+        "user_persona": "A client named Robert who owns a delivery company.",
+        "user_goal": "Robert wants to post a new job opening for a local delivery driver and later deactivate it when filled.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Job Posting",
+                "description": "Robert logs into his account and navigates to the job management section, then clicks 'Post New Job'.",
+                "action": "Click on 'Post New Job' button.",
+                "expected_outcome": "A job posting form appears with fields for title, description, location, and salary."
+            },
+            {
+                "step": 2,
+                "title": "Filling Job Details",
+                "description": "Robert fills out the form with the position title, responsibilities, preferred location, and offered salary range.",
+                "action": "Complete all required fields in the job posting form.",
+                "expected_outcome": "All fields accept valid inputs, and the 'Post Job' button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Publishing the Job",
+                "description": "Once finished, Robert clicks the 'Post Job' button to make the listing live.",
+                "action": "Click the 'Post Job' button.",
+                "expected_outcome": "The job is successfully posted and now visible under Robert’s active job listings with a green 'Active' badge."
+            },
+            {
+                "step": 4,
+                "title": "Deactivating Filled Position",
+                "description": "Later, after hiring someone, Robert returns to the job management screen and toggles the job status to closed.",
+                "action": "Toggle the job's activation switch off.",
+                "expected_outcome": "The job status changes immediately to 'Closed', removing it from public view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job application submission and tracking by users",
+        "user_persona": "Driver applicant John looking for work opportunities.",
+        "user_goal": "John wants to apply for a job and later check the status of his application.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding a Suitable Job",
+                "description": "John browses the Jobs page and finds a delivery driver position that matches his experience.",
+                "action": "Click on the job listing card.",
+                "expected_outcome": "He is directed to the full job description page with an 'Apply Now' button."
+            },
+            {
+                "step": 2,
+                "title": "Preparing Application",
+                "description": "John clicks 'Apply Now' and writes a personalized cover letter explaining why he's suitable for the role.",
+                "action": "Write and submit a cover letter in the provided text area.",
+                "expected_outcome": "The text area saves his input, and the 'Submit Application' button activates."
+            },
+            {
+                "step": 3,
+                "title": "Attaching Resume",
+                "description": "Before submitting, John uploads his resume to accompany his application.",
+                "action": "Click the file upload button and choose his resume file.",
+                "expected_outcome": "His resume is uploaded and linked to the application form preview."
+            },
+            {
+                "step": 4,
+                "title": "Submitting Application",
+                "description": "Confident in his materials, John clicks the 'Submit Application' button.",
+                "action": "Click the 'Submit Application' button.",
+                "expected_outcome": "The application is sent successfully, and a confirmation message informs John that his application is pending review."
+            },
+            {
+                "step": 5,
+                "title": "Tracking Status",
+                "description": "Days later, John checks his application status through the tracking panel.",
+                "action": "Navigate to the Applications Tracker and refresh the list.",
+                "expected_outcome": "His application shows up with a yellow 'Reviewed' badge, indicating progress."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact form with submission capability",
+        "user_persona": "A visitor named Lisa interested in general inquiries.",
+        "user_goal": "Lisa wants to send a question to the recruitment team using the contact form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Contact Page",
+                "description": "Lisa navigates to the Contact page from the main menu to find how to reach out.",
+                "action": "Click on 'Contact' in the navigation bar.",
+                "expected_outcome": "She lands on the Contact page featuring a form alongside office details and a map."
+            },
+            {
+                "step": 2,
+                "title": "Completing Contact Form",
+                "description": "Lisa fills in her name, email, subject line, and composes a detailed message about her inquiry.",
+                "action": "Enter all necessary contact information and message content.",
+                "expected_outcome": "All fields validate properly as she types, ensuring proper formatting."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Inquiry",
+                "description": "Finished writing, Lisa clicks the 'Send Message' button to dispatch her query.",
+                "action": "Click the 'Send Message' button.",
+                "expected_outcome": "The form clears and a success message confirms receipt of her message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Home page with navigation to all main sections",
+        "user_persona": "First-time visitor Omar exploring the website.",
+        "user_goal": "Omar wants to quickly understand what the site offers by navigating through its main sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Omar arrives at the homepage and immediately notices the top navigation bar.",
+                "action": "View the homepage header.",
+                "expected_outcome": "A clean horizontal navigation menu with links like Home, About Us, Clients, Drivers, Jobs, and Contact is clearly visible."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Sections",
+                "description": "Curious about the company, Omar clicks each major navigation item to explore various sections.",
+                "action": "Click sequentially on About Us, Clients, Drivers, and Jobs menu items.",
+                "expected_outcome": "Each click smoothly transitions Omar to the corresponding page, maintaining consistent styling with white backgrounds and navy text."
+            },
+            {
+                "step": 3,
+                "title": "Returning to Home",
+                "description": "Having explored several pages, Omar decides to return to the homepage.",
+                "action": "Click the 'Home' link in the navigation menu.",
+                "expected_outcome": "Omar is redirected back to the homepage seamlessly, completing his initial exploration cycle."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "About Us page with company information",
+        "user_persona": "Prospective employee Sarah wanting to learn more about the company culture.",
+        "user_goal": "Sarah wants to read about the company’s history, mission, and core values before deciding whether to apply.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Company Info",
+                "description": "From the homepage, Sarah clicks on the 'About Us' link to get insights into the company.",
+                "action": "Click on 'About Us' in the navigation menu.",
+                "expected_outcome": "She reaches the About Us page with structured content including mission, vision, and team member introductions."
+            },
+            {
+                "step": 2,
+                "title": "Reading Detailed Content",
+                "description": "Sarah scrolls down and reads through the company's founding story, goals, and leadership team.",
+                "action": "Scroll through the page reading static markdown content.",
+                "expected_outcome": "The well-formatted content loads fully without errors, providing comprehensive insight into the company identity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Clients page showcasing client services or testimonials",
+        "user_persona": "Business owner David considering partnering with the recruitment agency.",
+        "user_goal": "David wants to assess trustworthiness by viewing client testimonials and service offerings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Client Showcase",
+                "description": "David clicks on the 'Clients' tab to see evidence of past successful partnerships.",
+                "action": "Click on 'Clients' in the navigation menu.",
+                "expected_outcome": "He lands on the Clients page displaying a grid of testimonials with star ratings and client photos."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Testimonials",
+                "description": "David scrolls through multiple testimonials and continues scrolling to load additional ones automatically.",
+                "action": "Scroll downward repeatedly.",
+                "expected_outcome": "New testimonials keep loading dynamically as he scrolls, enhancing engagement and credibility."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Drivers page with driver-related content or profiles",
+        "user_persona": "Client manager Emma searching for qualified drivers.",
+        "user_goal": "Emma wants to browse driver profiles to identify candidates for upcoming projects.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Driver Profiles",
+                "description": "Emma clicks on the 'Drivers' link to see available talent within the network.",
+                "action": "Click on 'Drivers' in the navigation menu.",
+                "expected_outcome": "She is presented with a responsive card-based grid of driver profiles, each showing name, bio, and avatar."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Specific Skills",
+                "description": "Emma uses the search bar to filter drivers based on keywords like 'long-haul' or 'experience'.",
+                "action": "Type keyword phrases into the search bar.",
+                "expected_outcome": "The displayed driver cards update instantly to reflect only those matching her search terms."
+            },
+            {
+                "step": 3,
+                "title": "Reviewing Individual Profiles",
+                "description": "Interested in one candidate, Emma clicks on his profile card to see further details.",
+                "action": "Click on a driver's profile card.",
+                "expected_outcome": "She is taken to a dedicated profile page with expanded bio, skills, and possibly downloadable resume."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Jobs listing page displaying available positions",
+        "user_persona": "Unemployed driver Tom seeking employment opportunities.",
+        "user_goal": "Tom wants to discover open driving jobs and sort them by relevance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Available Positions",
+                "description": "Tom clicks on the 'Jobs' link from the navigation bar to look for openings.",
+                "action": "Click on 'Jobs' in the navigation menu.",
+                "expected_outcome": "He lands on the Jobs Listing page with cards representing current vacancies and filtering tools above."
+            },
+            {
+                "step": 2,
+                "title": "Using Filters",
+                "description": "Tom applies filters to narrow down results by location and sorts by most recently posted.",
+                "action": "Select location filter and sort by date.",
+                "expected_outcome": "The job list updates dynamically to show only relevant positions sorted accordingly."
+            },
+            {
+                "step": 3,
+                "title": "Inspecting Job Details",
+                "description": "Seeing a promising job, Tom clicks on the card to learn more about the role and requirements.",
+                "action": "Click on a job card.",
+                "expected_outcome": "He views the complete job description, allowing informed decision-making before applying."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact page with contact form and information",
+        "user_persona": "Freelance designer Priya reaching out for collaboration possibilities.",
+        "user_goal": "Priya wishes to propose a design partnership and needs contact information and a way to communicate directly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reaching Out Through Contact Page",
+                "description": "Priya navigates to the Contact page to locate official communication channels.",
+                "action": "Click on 'Contact' in the navigation menu.",
+                "expected_outcome": "She sees the contact form on the left and physical addresses, phone numbers, and a map on the right."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Map",
+                "description": "Intrigued by the location, Priya clicks on a marker to see the associated branch details.",
+                "action": "Click on a map marker.",
+                "expected_outcome": "An overlay pops up showing the address and operational hours of the selected office location."
+            },
+            {
+                "step": 3,
+                "title": "Sending Partnership Proposal",
+                "description": "After gathering information, Priya fills out the contact form to suggest a creative collaboration.",
+                "action": "Complete and submit the contact form with proposal details.",
+                "expected_outcome": "Upon submission, a thank-you message confirms that her proposal has been received."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all dynamic data from backend APIs",
+        "user_persona": "Developer intern Kevin verifying integration between frontend and backend.",
+        "user_goal": "Kevin wants to ensure that all frontend components fetch and display real-time data from backend services instead of mocks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Data Load",
+                "description": "Kevin opens the browser console and visits the Drivers page to observe API calls.",
+                "action": "Open DevTools and navigate to the Drivers page.",
+                "expected_outcome": "Network tab logs show GET requests to `/api/drivers/list` fetching actual driver data."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Dynamic Rendering",
+                "description": "Kevin observes how the UI renders driver cards dynamically once data resolves.",
+                "action": "Watch component render behavior during data load.",
+                "expected_outcome": "Loading spinners appear initially, followed by seamless rendering of driver profiles retrieved from the server."
+            },
+            {
+                "step": 3,
+                "title": "Testing Error Handling",
+                "description": "To simulate failure, Kevin temporarily disables internet connectivity and reloads the page.",
+                "action": "Disconnect from the internet and reload the page.",
+                "expected_outcome": "Instead of crashing, the app gracefully displays placeholder messages indicating failed data retrieval."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "System administrator Linda deploying the backend infrastructure.",
+        "user_goal": "Linda wants to verify that the backend connects securely to the PostgreSQL database using pre-defined environment settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Prior to launching the backend, Linda configures the environment with the exact DB credentials.",
+                "action": "Set environment variables: DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "Environment reflects accurate configurations ready for backend initialization."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Server",
+                "description": "With variables set, Linda starts the backend server to initiate the database connection process.",
+                "action": "Run the backend startup script.",
+                "expected_outcome": "Console logs indicate successful establishment of a secure connection to the PostgreSQL instance."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Database Readiness",
+                "description": "Linda verifies that migrations were executed and tables exist as per schema definitions.",
+                "action": "Check database tables and migration status.",
+                "expected_outcome": "Database contains expected tables (`users`, `profiles`, `job_postings`, etc.) with correct structures."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with npm run install:all for FE & BE installation",
+        "user_persona": "New developer Mike joining the project team.",
+        "user_goal": "Mike wants to set up the entire development environment efficiently with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "Mike clones the repository locally and moves into the project directory.",
+                "action": "Clone repo and change directory.",
+                "expected_outcome": "Project files are present including separate frontend and backend folders along with root package.json."
+            },
+            {
+                "step": 2,
+                "title": "Installing Dependencies",
+                "description": "Without needing to manually go into each folder, Mike runs the unified install command.",
+                "action": "Execute `npm run install:all` from root.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with npm run dev to start FE & BE concurrently",
+        "user_persona": "Frontend engineer Anna working on rapid iteration features.",
+        "user_goal": "Anna wants to launch both frontend and backend development servers simultaneously for integrated testing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Anna opens the terminal and executes the shared development command from the root directory.",
+                "action": "Run `npm run dev` from project root.",
+                "expected_outcome": "Terminal shows both frontend and backend processes starting with distinct port assignments."
+            },
+            {
+                "step": 2,
+                "title": "Testing Live Reloading",
+                "description": "While developing, Anna makes code modifications and watches for automatic reloading.",
+                "action": "Modify source code in either FE or BE module.",
+                "expected_outcome": "Changes propagate instantly in the browser or backend responses due to hot-reload mechanisms."
+            }
+        ]
+    }
+]

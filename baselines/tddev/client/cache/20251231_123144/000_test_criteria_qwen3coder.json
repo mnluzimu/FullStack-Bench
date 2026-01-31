@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "A homepage displaying featured technical articles and solutions",
+        "user_persona": "A tech enthusiast visiting the site for the first time.",
+        "user_goal": "To quickly find interesting technical content from the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Alex visits the website and lands on the homepage. He sees a hero banner followed by sections for featured articles and solutions.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "Homepage loads successfully with a hero banner, and two distinct sections showing featured articles and solutions with titles, summaries, and authors."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Featured Content",
+                "description": "Intrigued by a featured article titled 'Understanding Kubernetes Networking', Alex clicks on it to read more.",
+                "action": "Click on a featured article card.",
+                "expected_outcome": "User is redirected to the detailed view page of the selected article."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A dedicated page for browsing technical articles with filtering options",
+        "user_persona": "A developer looking for web development resources.",
+        "user_goal": "To filter and find relevant technical articles by category and tags.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Articles Page",
+                "description": "Jamie clicks on the 'Articles' link in the navigation bar to explore available content.",
+                "action": "Click on the 'Articles' navigation link.",
+                "expected_outcome": "Redirected to the articles browsing page displaying a grid/list of articles."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Category",
+                "description": "Jamie selects 'Web Development' from the category filter dropdown to narrow down the list.",
+                "action": "Select 'Web Development' from the category filter.",
+                "expected_outcome": "Article list updates dynamically to show only articles under the 'Web Development' category."
+            },
+            {
+                "step": 3,
+                "title": "Further Filtering by Tag",
+                "description": "Wanting more precision, Jamie checks the 'React' tag checkbox to further refine results.",
+                "action": "Check the 'React' tag filter.",
+                "expected_outcome": "Only articles tagged with 'React' within the 'Web Development' category are displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search functionality to find technical information across articles and solutions",
+        "user_persona": "A DevOps engineer needing quick answers.",
+        "user_goal": "To search for specific technical topics using keywords.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Casey types 'CI/CD pipeline optimization' into the global search bar located in the header.",
+                "action": "Type 'CI/CD pipeline optimization' into the search input field.",
+                "expected_outcome": "Autocomplete dropdown appears showing matching articles and solutions with titles and snippets."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Query",
+                "description": "After seeing some suggestions, Casey presses Enter to see all results related to the query.",
+                "action": "Press Enter key or click the search icon.",
+                "expected_outcome": "Redirected to a full search results page listing all matching articles and solutions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A detailed view page for each technical article",
+        "user_persona": "A software engineer researching microservices architecture.",
+        "user_goal": "To read a full article and engage with the community through comments.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Article Content",
+                "description": "Morgan opens an article about 'Building Resilient Microservices' and scrolls through the formatted content.",
+                "action": "Navigate to the article detail page.",
+                "expected_outcome": "Complete article content is displayed in proper formatting along with author info and publish date."
+            },
+            {
+                "step": 2,
+                "title": "Adding a Comment",
+                "description": "Finding the article insightful, Morgan logs in and leaves a comment sharing additional insights.",
+                "action": "Log in if needed, then enter a comment and click 'Post Comment'.",
+                "expected_outcome": "Comment is posted successfully and appears immediately below the article without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A section for browsing and viewing solutions with categorization",
+        "user_persona": "An IT professional troubleshooting deployment issues.",
+        "user_goal": "To find categorized solutions based on problem domain and complexity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Solutions Section",
+                "description": "Taylor clicks on the 'Solutions' link in the navigation menu to look for troubleshooting guides.",
+                "action": "Click on the 'Solutions' navigation link.",
+                "expected_outcome": "Redirected to the solutions browsing page with categorized solution cards displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Difficulty Level",
+                "description": "Looking for something straightforward, Taylor chooses the 'Beginner' difficulty filter.",
+                "action": "Select 'Beginner' difficulty level.",
+                "expected_outcome": "Only beginner-level solutions are shown, each marked with a corresponding icon."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A detailed view page for each solution",
+        "user_persona": "A junior developer implementing a security fix.",
+        "user_goal": "To follow step-by-step instructions for applying a security patch.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Solution Details",
+                "description": "Jordan navigates to a solution titled 'Securing Node.js Applications Against XSS Attacks' to get implementation guidance.",
+                "action": "Click on a solution card from the browsing page.",
+                "expected_outcome": "Detailed view page loads showing step-by-step instructions, code snippets, and attachments."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Related Solutions",
+                "description": "At the bottom, Jordan notices a related solution on CSRF protection and clicks to learn more.",
+                "action": "Click on a related solution card.",
+                "expected_outcome": "Redirected to the detail page of the clicked related solution."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and registration system",
+        "user_persona": "A new visitor wanting to participate in discussions.",
+        "user_goal": "To create an account and log in to start contributing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering New Account",
+                "description": "Riley finds the 'Login/Register' link and decides to sign up by filling out the registration form.",
+                "action": "Fill out the registration form with username, email, password, and confirm password, then click 'Register'.",
+                "expected_outcome": "Account is created successfully and Riley is automatically logged in and redirected to the homepage."
+            },
+            {
+                "step": 2,
+                "title": "Logging In Again",
+                "description": "After logging out, Riley returns later and logs back in using the login form.",
+                "action": "Enter username/email and password in the login form, then click 'Login'.",
+                "expected_outcome": "Successfully authenticated and redirected to the homepage with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user profile page showing activity and contributions",
+        "user_persona": "An active contributor reviewing their impact.",
+        "user_goal": "To view personal activity history and contributions made to the platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Profile Page",
+                "description": "Sammy clicks on their profile link in the navigation bar to check their contributions.",
+                "action": "Click on the user profile link.",
+                "expected_outcome": "Profile page loads showing avatar, username, join date, bio, and lists of contributed articles/solutions."
+            },
+            {
+                "step": 2,
+                "title": "Editing Bio Information",
+                "description": "Seeing an outdated bio, Sammy clicks 'Edit Profile' to update it.",
+                "action": "Click 'Edit Profile' and update the bio field, then save changes.",
+                "expected_outcome": "Bio is updated successfully and changes are reflected immediately on the profile page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A discussion or comment system for users to communicate on articles and solutions",
+        "user_persona": "A senior developer mentoring newcomers.",
+        "user_goal": "To help others by replying to questions in the comments section.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Replying to a Comment",
+                "description": "While reading an article, Dana notices a question in the comments and clicks 'Reply' to provide an answer.",
+                "action": "Click the 'Reply' button under a comment.",
+                "expected_outcome": "A reply text box appears directly beneath the original comment."
+            },
+            {
+                "step": 2,
+                "title": "Posting the Reply",
+                "description": "Dana writes a helpful explanation in the reply box and submits it.",
+                "action": "Write the reply and click the submit button.",
+                "expected_outcome": "Reply is posted successfully and nested under the original comment with correct attribution."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time messaging or chat functionality between users",
+        "user_persona": "A project manager coordinating with developers.",
+        "user_goal": "To discuss urgent tasks with team members via real-time chat.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Chat Interface",
+                "description": "Pat opens the chat window and selects a developer from the contact list to ask about progress.",
+                "action": "Open the chat interface and select a contact from the sidebar.",
+                "expected_outcome": "Conversation history with the selected user loads in the main chat area."
+            },
+            {
+                "step": 2,
+                "title": "Sending Instant Message",
+                "description": "Pat types a quick update request and hits send, expecting an immediate response.",
+                "action": "Type a message in the input box and click the send button.",
+                "expected_outcome": "Message is delivered instantly to the recipient and appears in both users' chat windows in real time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API endpoints for fetching articles, solutions, and user data",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "To retrieve article data using backend APIs for frontend rendering.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Articles List",
+                "description": "Alex makes a GET request to the articles endpoint to fetch a list of published articles.",
+                "action": "Make a GET request to '/api/articles'.",
+                "expected_outcome": "Receive a JSON response containing a list of articles with essential metadata."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Single Article Detail",
+                "description": "Next, Alex requests detailed data for a specific article by ID.",
+                "action": "Make a GET request to '/api/articles/{id}'.",
+                "expected_outcome": "Receive a JSON response with full article content and related author information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design supporting articles, solutions, users, and communications",
+        "user_persona": "A backend developer setting up the database.",
+        "user_goal": "To verify that database tables are structured according to specifications.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Articles Table Structure",
+                "description": "Jordan connects to the PostgreSQL database and inspects the schema of the articles table.",
+                "action": "Run SQL command to describe the structure of the 'articles' table.",
+                "expected_outcome": "Table schema matches specification with fields like id, title, summary, category, author_id, created_at, updated_at, is_featured."
+            },
+            {
+                "step": 2,
+                "title": "Checking Foreign Key Relationships",
+                "description": "Jordan verifies that foreign key constraints are properly set up between articles and users.",
+                "action": "Query the foreign key constraints on the articles table.",
+                "expected_outcome": "Foreign key constraint exists linking author_id in articles table to id in users table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend components dynamically fetching all content from backend APIs",
+        "user_persona": "A QA engineer validating frontend behavior.",
+        "user_goal": "To ensure all frontend components load data dynamically from backend APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Articles Component",
+                "description": "Taylor navigates to the articles browsing page and observes how content is loaded.",
+                "action": "Visit the articles browsing page.",
+                "expected_outcome": "Articles list is populated dynamically by making API calls; no hard-coded or mock data is present."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Dynamic Fetching",
+                "description": "Taylor applies a filter and confirms that the component re-fetches data accordingly.",
+                "action": "Apply a category filter on the articles page.",
+                "expected_outcome": "Component re-renders with filtered data fetched from the backend API without page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'install:all' and 'dev' scripts as specified",
+        "user_persona": "A new team member setting up the project locally.",
+        "user_goal": "To install dependencies and run both frontend and backend concurrently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Casey clones the repository and runs the script to install all necessary packages.",
+                "action": "Run 'npm run install:all' in the root directory.",
+                "expected_outcome": "Dependencies for both client and server are installed successfully in parallel."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Once installation completes, Casey starts both development environments.",
+                "action": "Run 'npm run dev' in the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently and are accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Environment variable configuration for PostgreSQL database connection",
+        "user_persona": "A DevOps engineer deploying the application.",
+        "user_goal": "To configure and validate database connectivity using environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Environment Variables",
+                "description": "Morgan creates a .env file in the backend directory with the required database credentials.",
+                "action": "Create a .env file with DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": ".env file is created with correct values matching the specification."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Connection",
+                "description": "Morgan starts the backend server and checks logs to confirm successful database connection.",
+                "action": "Start the backend server and monitor startup logs.",
+                "expected_outcome": "Logs indicate successful connection to the PostgreSQL database using the configured environment variables."
+            }
+        ]
+    }
+]

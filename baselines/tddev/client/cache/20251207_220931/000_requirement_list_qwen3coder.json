@@ -1,0 +1,249 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDatabaseSchema": "Set up a database with fields: stock_id (unique ID), symbol (string), company_name (string), sector (string), industry (string), market_cap (number), last_updated (timestamp).",
+            "stockDataAPI": "Requires integration with an external stock market data API such as Alpha Vantage or Yahoo Finance API to fetch real-time stock data."
+        },
+        "function": "Enable users to search for stocks by entering either the stock code or company name.",
+        "static_description": "A search bar component centered at the top of the page with a placeholder 'Enter stock code or company name', accompanied by a search icon. Background is white, and the input field border and icon are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon or pressing Enter after typing initiates the search process and displays matching results."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on the input field triggers the search."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summaryCardIcons": "/assets/icons/info-icons/*.svg",
+            "stockSummarySchema": "Database view combining stock metadata, latest price, percentage change, and key metrics fetched via external API."
+        },
+        "function": "Display summarized key information about a selected stock.",
+        "static_description": "A card-based layout below the search bar showing stock symbol, company name, current price, daily change, market cap, P/E ratio, and dividend yield. Icons accompany each metric. Background is white, cards have navy borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any metric expands a tooltip explaining what the metric means."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportTemplateSchema": "Set up a database table with fields: template_id (unique ID), name (string), description (text), sections_included (array), created_at (timestamp).",
+            "reportGenerationEngine": "Integration with a document generation engine (e.g., Docxtemplater or Google Docs API) to produce formatted reports.",
+            "reportStorage": "A storage system (cloud or local) to temporarily store generated reports before download."
+        },
+        "function": "Generate customized stock reports based on user-selected parameters.",
+        "static_description": "A dedicated section titled 'Generate Report' featuring buttons for different report templates, a preview area, and a 'Download' button. Background is white, buttons are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a report template button generates the report and displays it in the preview pane. Clicking 'Download' saves the report in the chosen format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptionsList": [
+                "PDF",
+                "Word (.docx)",
+                "Excel (.xlsx)",
+                "HTML"
+            ],
+            "formatSelectorComponent": "Dropdown menu or toggle buttons for selecting report format."
+        },
+        "function": "Allow users to choose their preferred format for downloading the generated report.",
+        "static_description": "A dropdown menu labeled 'Format' under the report preview area, pre-populated with options: PDF, Word, Excel, HTML. Background is white, selector is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the dropdown reveals available formats. Selecting one updates the format used when generating the report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentSectionsList": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "Analyst Opinions"
+            ],
+            "customizationSchema": "Set up a database table with fields: customization_id (unique ID), user_id (optional), selected_sections (array), created_at (timestamp)."
+        },
+        "function": "Provide options for users to customize which sections appear in the generated report.",
+        "static_description": "Checkboxes beneath the format selector allowing users to select desired content sections: Basic Info, Market Trends, Financial Data, Analyst Opinions. Default is all checked. Background is white, checkboxes are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a checkbox toggles inclusion of that section in the generated report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basicInfoFields": [
+                "Symbol",
+                "Company Name",
+                "Sector",
+                "Industry",
+                "Market Cap",
+                "Website"
+            ],
+            "companyLogoPlaceholder": "/assets/images/no-logo-placeholder.png"
+        },
+        "function": "Show essential information about the selected stock including symbol, name, sector, etc.",
+        "static_description": "A vertical list or grid displaying fields: Symbol, Company Name, Sector, Industry, Market Cap, Website URL. Includes a placeholder image if no logo exists. Background is white, text is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the website link opens the company’s official site in a new tab."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Integration with a charting library like Chart.js or D3.js to visualize market trends.",
+            "trendDataSchema": "Database schema storing historical prices and volumes, e.g., date (date), open_price (float), close_price (float), volume (integer)"
+        },
+        "function": "Visualize historical and current market trends for the selected stock.",
+        "static_description": "An interactive line chart showing price movements over time (durations: 1D, 5D, 1M, 6M, YTD, 1Y, 5Y). X-axis shows dates, Y-axis shows price. Background is white, chart lines are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking duration buttons switches the chart to show data for that period."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the chart displays tooltips with exact price and date information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialStatementAPI": "An API providing access to quarterly and annual financial statements (income statement, balance sheet, cash flow).",
+            "financialDataSchema": "Database schema with tables: income_statements, balance_sheets, cash_flows, each linked to stock_id."
+        },
+        "function": "Integrate and display key financial data points from quarterly and annual reports.",
+        "static_description": "Tabular data showing revenue, net income, EPS, total assets, liabilities, and operating cash flow across multiple quarters. Background is white, headers and text are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table by that metric."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Apply a consistent white background color throughout the entire website interface.",
+        "static_description": "All pages and components feature a solid white background (#FFFFFF) to ensure readability and maintain clean aesthetics.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Use navy blue as the primary color for interactive and static UI components.",
+        "static_description": "Buttons, links, input borders, icons, and active states use navy blue (#000080) consistently across the interface.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over buttons or links slightly lightens the navy shade for feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "validationRules": "Define rules for acceptable inputs: alphanumeric for symbols, alphabetic for names, max length 100 characters.",
+            "errorMessages": [
+                "Invalid stock identifier",
+                "No matching stock found"
+            ]
+        },
+        "function": "Validate user input to ensure only valid stock identifiers are accepted during searches.",
+        "static_description": "Input validation messages displayed beneath the search bar in red font when invalid input is detected. Messages include 'Invalid stock identifier' or 'No matching stock found'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "If input fails validation, error message appears without initiating search."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormats": [
+                ".pdf",
+                ".docx",
+                ".xlsx",
+                ".html"
+            ],
+            "fileDownloadHandler": "Client-side script managing file download initiation."
+        },
+        "function": "Provide users with the ability to export or download generated stock reports in various formats.",
+        "static_description": "A prominent 'Download Report' button next to the report preview. Label changes dynamically based on selected format (e.g., 'Download PDF'). Background is white, button is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the button triggers browser-native download of the generated report in the selected format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeStockAPI": "Integration with a live stock data feed API such as Alpha Vantage Real-Time Stock API or IEX Cloud.",
+            "dataPollingInterval": "Set interval (e.g., every 60 seconds) to refresh displayed data."
+        },
+        "function": "Fetch and update stock data in real-time to keep displayed information current.",
+        "static_description": "Live updating indicators such as timestamps ('Last Updated: Just now') and dynamic value changes shown in charts and summaries. Background remains white, updated values flash briefly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Auto-refresh",
+                "description": "Every 60 seconds, the system fetches latest data and updates relevant components silently unless significant changes occur."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "previewRenderer": "Built-in HTML/CSS renderer or embedded iframe for displaying generated reports within the browser.",
+            "editablePreviewFields": "Identify editable fields within the preview for inline editing (if supported)"
+        },
+        "function": "Offer an interactive preview of the report before final generation and download.",
+        "static_description": "A scrollable frame below the customization options showing a rendered version of the report. Scrollbar visible if needed. Background is white, report content styled accordingly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Users can scroll vertically through the full report preview."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking editable elements allows minor edits directly in the preview (if enabled)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "uiLayoutBlueprint": "Define standard spacing units, responsive breakpoints, and alignment guidelines.",
+            "navigationMenuItems": [
+                "Home",
+                "Search",
+                "Reports",
+                "Settings"
+            ]
+        },
+        "function": "Ensure the interface is intuitive, accessible, and easy to navigate for all users.",
+        "static_description": "Clean, grid-based layout with clear navigation menu at the top, ample whitespace between sections, and responsive design ensuring usability on desktop and mobile. Background is white, menus are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Interface adjusts responsively, reflowing content and collapsing menu items into hamburger menu on smaller screens."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking menu items navigates to corresponding sections or pages."
+            }
+        ]
+    }
+]

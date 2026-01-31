@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Frontend application with dynamic data fetching from backend APIs",
+        "user_persona": "A project manager named Sarah who needs real-time updates on her construction projects.",
+        "user_goal": "To view the latest project data without seeing any outdated or mock information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Dashboard",
+                "description": "Sarah logs into the system and lands on the dashboard, expecting to see live project data fetched from the backend.",
+                "action": "Navigate to the dashboard after logging in.",
+                "expected_outcome": "The dashboard displays project cards populated with real-time data fetched from backend APIs, not hardcoded values."
+            },
+            {
+                "step": 2,
+                "title": "Checking Project Details",
+                "description": "Sarah clicks on a project card to see more detailed information, relying on dynamic data loading.",
+                "action": "Click on a project card to view its details.",
+                "expected_outcome": "Project details load dynamically via an API call, showing up-to-date information about the selected project."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend application connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Alex responsible for deploying the application.",
+        "user_goal": "To ensure the backend service connects to the correct PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Alex sets the required environment variables for database connectivity before starting the backend server.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp in the environment.",
+                "expected_outcome": "Environment variables are correctly set and recognized by the application runtime."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Service",
+                "description": "Alex starts the backend service, which should now connect to the PostgreSQL database using the configured environment variables.",
+                "action": "Run `npm run dev` from the root directory to start the backend service.",
+                "expected_outcome": "The backend successfully establishes a connection to the PostgreSQL database using the specified environment variables without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system",
+        "user_persona": "A new team member, Jordan, joining a construction firm and accessing the management portal for the first time.",
+        "user_goal": "To register, log in securely, and gain access to authorized features based on their role.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering Account",
+                "description": "Jordan visits the site and registers for a new account by filling out the registration form.",
+                "action": "Fill out the registration form with username, email, password, and submit.",
+                "expected_outcome": "Account is created successfully, and Jordan receives confirmation of successful registration."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "After receiving confirmation, Jordan proceeds to log in using the newly created credentials.",
+                "action": "Enter registered email and password, then click the login button.",
+                "expected_outcome": "Upon successful authentication, Jordan is redirected to the dashboard and a JWT token is stored locally."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Project creation and management interface",
+        "user_persona": "Taylor, a senior project manager overseeing multiple construction sites.",
+        "user_goal": "To create a new project and manage its lifecycle from initiation to completion.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating a New Project",
+                "description": "Taylor navigates to the project management section and initiates the creation of a new project.",
+                "action": "Click the 'Add New Project' button and fill in the project details in the modal form.",
+                "expected_outcome": "A new project is created and appears in the project list with the provided details and initial status."
+            },
+            {
+                "step": 2,
+                "title": "Updating Project Status",
+                "description": "As the project progresses, Taylor updates its status to reflect current progress.",
+                "action": "Click the edit icon next to the project and change its status to 'In Progress'.",
+                "expected_outcome": "The project's status is updated in the database and immediately reflected in the project list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Document management system with upload, storage, and retrieval capabilities",
+        "user_persona": "Casey, a site supervisor who regularly uploads inspection reports and blueprints.",
+        "user_goal": "To upload important project documents and retrieve them when needed for review or sharing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Documents",
+                "description": "While reviewing project files, Casey notices missing inspection reports and decides to upload them.",
+                "action": "Click the 'Upload' button in the document management panel and select files to upload.",
+                "expected_outcome": "Selected files are uploaded successfully and appear in the document list with metadata such as filename and upload date."
+            },
+            {
+                "step": 2,
+                "title": "Downloading Documents",
+                "description": "Later, Casey needs to share a blueprint with a colleague and downloads it from the system.",
+                "action": "Locate the blueprint in the document list and click the 'Download' button.",
+                "expected_outcome": "The file is downloaded to Casey’s device, ready for sharing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Project scheduling and timeline management tool",
+        "user_persona": "Morgan, a scheduler coordinating complex construction timelines.",
+        "user_goal": "To visualize and adjust project timelines using an interactive Gantt chart.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Project Timeline",
+                "description": "Morgan opens the scheduling tool to review the current project timeline represented in a Gantt chart.",
+                "action": "Navigate to the project's timeline tab.",
+                "expected_outcome": "A Gantt chart loads displaying all tasks aligned along the date axis with accurate durations and dependencies."
+            },
+            {
+                "step": 2,
+                "title": "Adjusting Task Dates",
+                "description": "Noticing a delay, Morgan adjusts a task's start and end dates by dragging the task bar.",
+                "action": "Drag a task bar horizontally to reschedule its timeframe.",
+                "expected_outcome": "The task's dates update visually and are synchronized with the backend upon releasing the drag."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Team communication platform with messaging features",
+        "user_persona": "Riley, a foreman coordinating with various teams on-site.",
+        "user_goal": "To send quick updates and receive responses from team members through integrated messaging.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sending a Message",
+                "description": "During a critical phase, Riley quickly sends a safety reminder to the crew via the messaging interface.",
+                "action": "Type the message in the compose area and press Enter to send.",
+                "expected_outcome": "The message is posted to the backend and instantly appears in the chat history for all relevant team members."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Confirmation",
+                "description": "Riley waits for acknowledgment from the team to confirm receipt of the message.",
+                "action": "Observe incoming replies in the message history pane.",
+                "expected_outcome": "Team members' acknowledgments appear in real-time, confirming the message was received and understood."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job costing estimation module with calculation capabilities",
+        "user_persona": "Quinn, a financial analyst preparing budget forecasts for upcoming projects.",
+        "user_goal": "To calculate and save accurate job cost estimates for proposal submissions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Cost Data",
+                "description": "Quinn accesses the estimator module to input projected costs for materials, labor, and equipment.",
+                "action": "Fill in numeric values under the Materials, Labor, and Equipment tabs.",
+                "expected_outcome": "As values are entered, the total estimate updates in real-time to reflect the sum of all categories."
+            },
+            {
+                "step": 2,
+                "title": "Saving the Estimate",
+                "description": "Satisfied with the calculated figures, Quinn saves the estimate for future reference and reporting.",
+                "action": "Click the 'Save Estimate' button.",
+                "expected_outcome": "The estimate is persisted to the backend database and can be retrieved later for comparison or invoicing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Time tracking system for monitoring project progress",
+        "user_persona": "Peyton, a worker required to log hours spent on different project tasks.",
+        "user_goal": "To accurately record time worked on specific tasks for payroll and project analysis purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Time Tracking",
+                "description": "At the beginning of the day, Peyton starts a timer for a designated task to automatically log hours.",
+                "action": "Select a task and click the 'Start Timer' button.",
+                "expected_outcome": "A timer begins counting elapsed time for the selected task, visible to Peyton during work."
+            },
+            {
+                "step": 2,
+                "title": "Stopping and Logging Time",
+                "description": "Once finished with the task, Peyton stops the timer to finalize the logged hours.",
+                "action": "Click the 'Stop Timer' button after completing the task.",
+                "expected_outcome": "Accumulated time is logged against the task and saved to the backend for inclusion in weekly summaries."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Resource management dashboard for allocation and monitoring",
+        "user_persona": "Ava, a logistics coordinator allocating personnel and equipment across several active projects.",
+        "user_goal": "To efficiently allocate available resources and monitor their usage to avoid conflicts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Allocating Resources",
+                "description": "Ava reviews the resource dashboard to assign a piece of machinery to a project requiring immediate attention.",
+                "action": "Select the equipment and click the 'Allocate' button, choosing the target project.",
+                "expected_outcome": "The equipment is marked as allocated to the chosen project, updating availability indicators accordingly."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Usage",
+                "description": "Throughout the week, Ava checks how resources are being utilized across projects.",
+                "action": "Use filter dropdowns to narrow down the view to specific resource types.",
+                "expected_outcome": "Dashboard widgets update to show only the selected resource category, helping Ava make informed decisions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Light gray background color scheme across all pages",
+        "user_persona": "An office administrator named Lee who uses the system daily for administrative tasks.",
+        "user_goal": "To navigate a visually consistent interface that reduces eye strain during prolonged use.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading the Homepage",
+                "description": "Lee opens the browser and goes to the homepage, expecting a familiar and comfortable layout.",
+                "action": "Visit the homepage URL in the browser.",
+                "expected_outcome": "The entire page background renders uniformly in light gray (#f0f0f0) across all sections."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Different Sections",
+                "description": "Lee moves between various sections of the application, maintaining visual continuity.",
+                "action": "Click on navigation links to switch between dashboard, projects, and settings pages.",
+                "expected_outcome": "Each visited page maintains the consistent light gray background, providing a seamless experience."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dark red UI elements including buttons, headers, and navigation",
+        "user_persona": "Zoe, a frequent user accustomed to the platform's distinctive branding.",
+        "user_goal": "To interact with clearly identifiable UI controls that align with company branding.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Primary Actions",
+                "description": "Zoe looks for the main action buttons on the dashboard to begin her workflow.",
+                "action": "Scan the dashboard for prominent call-to-action buttons.",
+                "expected_outcome": "All primary buttons, such as 'Add New Project', are styled with a dark red background (#8B0000) and white text."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Navigation",
+                "description": "Zoe uses the top navigation bar to move between major sections of the application.",
+                "action": "Hover over and click on navigation menu items in the header.",
+                "expected_outcome": "Navigation headers maintain a dark red theme, with hover effects subtly darkening the shade for feedback."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and mobile devices",
+        "user_persona": "Noah, a field inspector who accesses the system remotely using a smartphone.",
+        "user_goal": "To perform essential functions like checking schedules and uploading photos while on-site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Mobile View",
+                "description": "On arrival at the site, Noah opens the app on his phone to check today's schedule.",
+                "action": "Open the website on a mobile device or resize the browser window to simulate mobile resolution.",
+                "expected_outcome": "Layout adapts to a single-column stack suitable for touch interaction, with appropriately scaled fonts and expanded touch targets."
+            },
+            {
+                "step": 2,
+                "title": "Using Touch Gestures",
+                "description": "Noah scrolls through long lists and interacts with elements designed for finger tapping.",
+                "action": "Scroll through project lists and tap on actionable items like document download buttons.",
+                "expected_outcome": "Lists respond smoothly to scrolling, and taps register accurately without misfires due to poor spacing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'install:all' script for frontend and backend installation",
+        "user_persona": "A DevOps engineer named Riley setting up a new development environment.",
+        "user_goal": "To streamline dependency installation for both frontend and backend with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "Riley clones the project repository to begin setting up the local development environment.",
+                "action": "Clone the repository to a local machine.",
+                "expected_outcome": "Repository is cloned successfully, containing separate directories for client and server code."
+            },
+            {
+                "step": 2,
+                "title": "Installing Dependencies",
+                "description": "Rather than installing packages separately, Riley uses the unified install script.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without manual intervention."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'dev' script to run frontend and backend concurrently",
+        "user_persona": "Ellis, a full-stack developer working on feature implementation.",
+        "user_goal": "To launch both frontend and backend development servers simultaneously for efficient coding.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing Development Session",
+                "description": "Before beginning work, Ellis prepares the development environment by launching both services.",
+                "action": "Execute `npm run dev` from the root directory.",
+                "expected_outcome": "Frontend development server and backend nodemon watcher start concurrently in the same terminal session."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Services Are Running",
+                "description": "Ellis verifies that both applications are running and communicating properly.",
+                "action": "Check terminal output and attempt to access the frontend in the browser.",
+                "expected_outcome": "Terminal shows both servers are active, and the frontend loads successfully, making API calls to the backend."
+            }
+        ]
+    }
+]

@@ -1,0 +1,387 @@
+[
+    {
+        "requirement_tested": "Create a user registration and login system for women to access the health survey",
+        "user_persona": "A new female user named Sarah who wants to participate in the health survey.",
+        "user_goal": "To successfully register and log into the health survey portal.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Registration Page",
+                "description": "Sarah visits the health survey portal for the first time and decides to create an account. She sees the option to register and clicks on it.",
+                "action": "Click on the 'Register' link.",
+                "expected_outcome": "The view switches to show the extended registration form with fields for first name, last name, email, date of birth, password, and confirm password."
+            },
+            {
+                "step": 2,
+                "title": "Filling Registration Form",
+                "description": "Sarah fills out all required registration fields accurately, ensuring her information meets the gender validation rule.",
+                "action": "Enter valid personal details including female gender confirmation.",
+                "expected_outcome": "All fields are filled without error messages, and the 'Register' button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Registration",
+                "description": "Confident that everything is correct, Sarah submits her registration form.",
+                "action": "Click the 'Register' button.",
+                "expected_outcome": "The system validates inputs, registers Sarah successfully, and redirects her to the dashboard with a welcome message."
+            },
+            {
+                "step": 4,
+                "title": "Logging In After Logout",
+                "description": "Later, Sarah returns to the site and needs to log back in using her newly created credentials.",
+                "action": "Enter valid email and password, then click 'Login'.",
+                "expected_outcome": "Sarah is authenticated and redirected to her dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design a dashboard for users to view available health surveys and their submission status",
+        "user_persona": "A returning user named Maria interested in checking available surveys.",
+        "user_goal": "Maria wants to see which surveys she can take and the status of previous submissions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Maria logs into the health survey portal and lands on her dashboard.",
+                "action": "Navigate to the dashboard after login.",
+                "expected_outcome": "Maria sees a two-panel layout showing available surveys on the left and her submission history with status badges on the right."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Available Survey",
+                "description": "Maria notices a new survey titled 'Annual Health Checkup' and decides to start it.",
+                "action": "Click on the 'Annual Health Checkup' survey card.",
+                "expected_outcome": "She is navigated to the multi-page form for that specific survey."
+            },
+            {
+                "step": 3,
+                "title": "Checking Submission Status",
+                "description": "After completing a survey earlier, Maria wants to verify its approval status.",
+                "action": "Click on a previous submission entry in the right panel.",
+                "expected_outcome": "A detailed view of her submitted responses opens, showing the current status (e.g., Approved)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a multi-page health survey form with various question types (text, multiple choice, checkboxes, dropdowns)",
+        "user_persona": "A user named Lisa taking a comprehensive health survey.",
+        "user_goal": "Lisa aims to complete a multi-page health survey by answering different types of questions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting First Page",
+                "description": "Lisa begins filling out the first page of the survey which includes text input and multiple-choice questions.",
+                "action": "Answer text and multiple choice questions, then click 'Next'.",
+                "expected_outcome": "Navigation proceeds to the next page since no validation errors exist."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Through Pages",
+                "description": "On the second page, Lisa encounters checkbox groups and dropdown selects.",
+                "action": "Complete checkbox and dropdown selections, then click 'Next'.",
+                "expected_outcome": "The form progresses to the subsequent page smoothly."
+            },
+            {
+                "step": 3,
+                "title": "Returning to Previous Page",
+                "description": "Realizing she missed something on the prior page, Lisa goes back to make corrections.",
+                "action": "Click the 'Previous' button.",
+                "expected_outcome": "Lisa is taken back to the previous page without triggering validation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add real-time form validation to ensure required fields are completed before submission",
+        "user_persona": "A meticulous user named Emma filling out a health survey.",
+        "user_goal": "Emma wants to ensure all required fields are properly filled before moving forward or submitting.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Leaving Required Field Blank",
+                "description": "While filling the survey, Emma accidentally skips a required field and tries to proceed.",
+                "action": "Leave a required field blank and click 'Next'.",
+                "expected_outcome": "Inline red error message appears beneath the unfilled field, preventing progression."
+            },
+            {
+                "step": 2,
+                "title": "Correcting Validation Error",
+                "description": "Emma notices the error and fills in the missing information.",
+                "action": "Fill the previously empty required field.",
+                "expected_outcome": "Error message disappears, and the 'Next' button becomes active again."
+            },
+            {
+                "step": 3,
+                "title": "Proceeding Without Errors",
+                "description": "With all required fields now complete, Emma continues with confidence.",
+                "action": "Click the 'Next' button.",
+                "expected_outcome": "Navigation proceeds to the next page without issues."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a save draft functionality allowing users to pause and resume survey completion",
+        "user_persona": "A busy professional named Olivia needing to pause mid-survey.",
+        "user_goal": "Olivia wants to temporarily save her progress so she can finish the survey later.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Saving Progress Mid-Way",
+                "description": "Halfway through the survey, Olivia receives an urgent call and must leave immediately.",
+                "action": "Click the 'Save Draft' button located in the form footer.",
+                "expected_outcome": "Current answers are serialized and saved via API, followed by a brief success notification overlay."
+            },
+            {
+                "step": 2,
+                "title": "Resuming Later",
+                "description": "Later that day, Olivia returns to continue where she left off.",
+                "action": "Navigate back to the survey from the dashboard.",
+                "expected_outcome": "Previously entered responses are automatically loaded from the draft, allowing seamless continuation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build a survey submission confirmation system with unique reference numbers",
+        "user_persona": "A cautious user named Ava who just finished her health survey.",
+        "user_goal": "Ava wants assurance that her submission was received along with proof of completion.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Completed Survey",
+                "description": "Having completed all pages, Ava clicks the final 'Submit' button.",
+                "action": "Click the 'Submit' button at the end of the survey.",
+                "expected_outcome": "A full-screen confirmation modal appears displaying a unique HS-###### reference number."
+            },
+            {
+                "step": 2,
+                "title": "Noting Reference Number",
+                "description": "Ava carefully reads the confirmation message and notes down her reference number.",
+                "action": "Read and acknowledge the displayed reference number.",
+                "expected_outcome": "The reference number follows the pattern HS-[YYYYMMDD]-[XXXX] and is clearly presented."
+            },
+            {
+                "step": 3,
+                "title": "Returning to Dashboard",
+                "description": "Feeling assured, Ava chooses to go back to the main dashboard.",
+                "action": "Click the 'Return to Dashboard' button.",
+                "expected_outcome": "The confirmation screen closes and Ava is redirected to the dashboard, with the submission logged."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop an admin portal for data management including viewing, editing, and deleting submitted surveys",
+        "user_persona": "An administrator named Dr. Chen responsible for managing health data.",
+        "user_goal": "Dr. Chen needs to review, edit, and manage submitted survey data efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Portal",
+                "description": "Dr. Chen logs in with administrative privileges and accesses the data management section.",
+                "action": "Navigate to the admin portal via sidebar menu.",
+                "expected_outcome": "A sortable/filterable grid appears with columns for User Name, Survey Title, Submission Date, Status, and Actions."
+            },
+            {
+                "step": 2,
+                "title": "Editing Survey Data",
+                "description": "Dr. Chen identifies a submission requiring correction and initiates an edit.",
+                "action": "Click the 'Edit' action for a specific row.",
+                "expected_outcome": "The survey response data loads into an editable form for modification."
+            },
+            {
+                "step": 3,
+                "title": "Deleting Erroneous Entry",
+                "description": "Upon reviewing another entry, Dr. Chen determines it's invalid and opts to delete it.",
+                "action": "Click the 'Delete' action for the erroneous entry.",
+                "expected_outcome": "A secondary confirmation dialog prompts Dr. Chen before deletion occurs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement role-based permission management system with different access levels for users and administrators",
+        "user_persona": "A regular user named Jessica attempting to access restricted areas.",
+        "user_goal": "Jessica mistakenly tries to reach administrative features but should be blocked appropriately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "Jessica, unaware of her limitations, manually enters an admin URL path in the browser.",
+                "action": "Try accessing an admin-only route directly via address bar.",
+                "expected_outcome": "Authorization middleware blocks access and redirects Jessica to a general access-denied landing page."
+            },
+            {
+                "step": 2,
+                "title": "Observing Limited Interface",
+                "description": "Jessica browses normally but observes certain advanced options are absent from menus.",
+                "action": "Browse the standard user interface looking for administrative controls.",
+                "expected_outcome": "No hidden sections or administrative tools are visible to Jessica due to her role permissions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create data review functionality for authorized personnel to verify and approve submitted health information",
+        "user_persona": "A reviewer named Mr. Patel tasked with approving health submissions.",
+        "user_goal": "Mr. Patel wants to evaluate and either approve or reject pending health submissions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Pending Submission",
+                "description": "Mr. Patel logs in and finds a submission marked as 'Pending Review'.",
+                "action": "Open the pending submission for review.",
+                "expected_outcome": "An expanded response viewer appears with decision-making tools like Approve/Reject buttons and comment fields."
+            },
+            {
+                "step": 2,
+                "title": "Approving Valid Submission",
+                "description": "After careful examination, Mr. Patel confirms the submission is accurate and approves it.",
+                "action": "Click the 'Approve' button.",
+                "expected_outcome": "A structured payload is sent to the webhook, updating the workflow state and refreshing the UI instantly."
+            },
+            {
+                "step": 3,
+                "title": "Rejecting Incomplete Submission",
+                "description": "Another submission has missing information, prompting Mr. Patel to reject it with feedback.",
+                "action": "Click the 'Reject' button after entering explanatory comments.",
+                "expected_outcome": "Response metadata is updated with rejection notes and the status reflects 'Rejected'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design reporting dashboard with visual charts and exportable summary statistics",
+        "user_persona": "A researcher named Dr. Williams analyzing health trends.",
+        "user_goal": "Dr. Williams seeks to visualize aggregated data and export findings for further analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Report Filters",
+                "description": "Dr. Williams wants to analyze data filtered by age group and geographic region.",
+                "action": "Adjust the Age Group and Geographic Region filter options.",
+                "expected_outcome": "AJAX query updates the D3.js rendered charts to reflect the refined dataset scope."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Updated Charts",
+                "description": "With filters applied, Dr. Williams examines the updated visualizations.",
+                "action": "Observe the refreshed bar graphs and pie charts.",
+                "expected_outcome": "Charts dynamically adjust to represent filtered data clearly and interactively."
+            },
+            {
+                "step": 3,
+                "title": "Exporting Reports",
+                "description": "Satisfied with the visualization, Dr. Williams exports the data for presentation purposes.",
+                "action": "Click the '.pdf' export button.",
+                "expected_outcome": "Server-side generates a downloadable PDF file attachment ready for use."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up secure data storage system for collected health information with encryption",
+        "user_persona": "A compliance officer named Robert auditing data security practices.",
+        "user_goal": "Robert wants to ensure that all sensitive health data is securely encrypted during storage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inserting New Record",
+                "description": "A new health survey submission triggers a write operation to the database.",
+                "action": "Submit a fresh health survey entry.",
+                "expected_outcome": "Inserted data undergoes automatic AES-256-CBC encryption managed by AWS KMS prior to PostgreSQL storage."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Infrastructure Security",
+                "description": "Robert reviews the setup ensuring TLS connections and IAM policies protect data access.",
+                "action": "Audit database connection settings and firewall configurations.",
+                "expected_outcome": "TLS-enabled PostgreSQL instance behind VPC firewall enforces strict IAM policies confirming secure handling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive web design compatible with desktop and mobile devices",
+        "user_persona": "A mobile user named Zoe accessing the portal on her smartphone.",
+        "user_goal": "Zoe wants to seamlessly navigate and complete surveys regardless of device size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Mobile Device",
+                "description": "Zoe opens the portal on her phone and starts browsing available surveys.",
+                "action": "Load the website on a smartphone screen.",
+                "expected_outcome": "Layout adapts to mobile breakpoint with flexible grids, scaled fonts, and finger-friendly tap targets."
+            },
+            {
+                "step": 2,
+                "title": "Switching Between Devices",
+                "description": "Later, Zoe continues on her laptop to finalize a draft started on mobile.",
+                "action": "Resize browser window to simulate desktop usage.",
+                "expected_outcome": "Media queries trigger reflow adjusting structure optimally for larger screens while preserving consistency."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply whitesmoke background color and dark cyan component styling throughout the application",
+        "user_persona": "A UX designer named Mia evaluating brand consistency across platforms.",
+        "user_goal": "Mia wants to confirm uniform application of the prescribed color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Evaluating Visual Consistency",
+                "description": "Mia inspects various parts of the application to check adherence to the defined color scheme.",
+                "action": "Visit multiple pages and hover over interactive elements.",
+                "expected_outcome": "Site renders against whitesmoke backdrop (#F5F5F5) with dark cyan accents (#008B8B) consistently applied to headers, buttons, and links."
+            },
+            {
+                "step": 2,
+                "title": "Testing Hover Effects",
+                "description": "Mia tests interactive states to ensure they maintain visual harmony.",
+                "action": "Hover over clickable regions such as buttons and links.",
+                "expected_outcome": "Subtle shade variations derived from global color palette enhance discoverability while preserving contrast ratios."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include user profile management section for personal information and survey history",
+        "user_persona": "A user named Grace updating her contact details and reviewing past participation.",
+        "user_goal": "Grace wants to update her personal information and see her survey history.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Personal Information",
+                "description": "Grace notices outdated contact info and updates her phone number.",
+                "action": "Modify the phone number field in the profile editor.",
+                "expected_outcome": "The 'Save Changes' CTA activates, allowing Grace to commit the update."
+            },
+            {
+                "step": 2,
+                "title": "Saving Profile Updates",
+                "description": "Grace saves her revised contact information.",
+                "action": "Click the 'Save Changes' button.",
+                "expected_outcome": "PATCH request modifies user attributes and the UI refreshes to show updated data."
+            },
+            {
+                "step": 3,
+                "title": "Reviewing Survey History",
+                "description": "Grace scrolls through her survey timeline to recall past completions.",
+                "action": "Scroll through the right-side list of past surveys.",
+                "expected_outcome": "Chronological list displays each survey with clear status tags indicating completion stages."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add audit trail functionality to track data access and modifications by authorized users",
+        "user_persona": "An auditor named Mr. Thompson investigating data access logs.",
+        "user_goal": "Mr. Thompson wants to trace who accessed what data and when for compliance purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Audit Logs",
+                "description": "Mr. Thompson accesses the audit trail module to begin his investigation.",
+                "action": "Navigate to the audit trail viewer.",
+                "expected_outcome": "Sortable tabular audit trail indexed by descending timestamps appears with relevant filters above."
+            },
+            {
+                "step": 2,
+                "title": "Narrowing Search Criteria",
+                "description": "To find specific actions, Mr. Thompson applies filters to reduce noise.",
+                "action": "Update Time Period and Actor Role filter criteria.",
+                "expected_outcome": "Filtered search narrows displayed entries to match specified conditions improving investigative clarity."
+            }
+        ]
+    }
+]

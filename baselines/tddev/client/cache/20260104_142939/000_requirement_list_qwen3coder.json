@@ -1,0 +1,206 @@
+[
+    {
+        "resource_dependency": {
+            "speciesListEndpoint": "/api/species",
+            "speciesDetailEndpoint": "/api/species/{id}",
+            "searchEndpoint": "/api/search",
+            "filterEndpoint": "/api/filter",
+            "addSpeciesEndpoint": "/api/species/add",
+            "updateSpeciesEndpoint": "/api/species/update/{id}",
+            "databaseSchema": "CREATE TABLE species (id SERIAL PRIMARY KEY, common_name VARCHAR(255), scientific_name VARCHAR(255) UNIQUE, habitat TEXT, diet TEXT, conservation_status VARCHAR(100));"
+        },
+        "function": "A frontend application that fetches all species biological data from backend APIs",
+        "static_description": "The main page displays a list of species cards showing basic information such as name, image thumbnail (if available), and conservation status. Cards are arranged in a grid layout on desktop and stacked vertically on mobile devices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a species card navigates to the detailed view page for that species."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads more items if pagination or infinite scrolling is enabled."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "static_description": "The server initializes connection to the PostgreSQL instance using provided credentials and exposes RESTful endpoints for CRUD operations related to species data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "speciesTableDefinition": "CREATE TABLE species (id SERIAL PRIMARY KEY, common_name VARCHAR(255), scientific_name VARCHAR(255) UNIQUE, habitat TEXT, diet TEXT, conservation_status VARCHAR(100));"
+        },
+        "function": "Database schema design to store species biological information data",
+        "static_description": "Defines the structure for storing species data with fields including id, common name, scientific name, habitat, diet, and conservation status.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "browsePageURL": "/browse"
+        },
+        "function": "Browse functionality to display lists of species with their biological information",
+        "static_description": "Displays a paginated or infinitely scrollable list of species cards showing common name, scientific name, and brief habitat/diet info.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a card redirects to the species detail page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll triggers loading additional pages when reaching near bottom."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchInputField": "<input type='text' placeholder='Search species...' />",
+            "searchResultsEndpoint": "/api/search?q={query}"
+        },
+        "function": "Search functionality allowing users to find specific species or biological data",
+        "static_description": "A prominent search bar at the top allows entering keywords. Search results appear dynamically below or redirect to a dedicated results page.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter submits the query via API call and updates displayed results."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the magnifying glass icon also submits the current input value."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterControlComponent": "Dropdowns and checkboxes for selecting filters like habitat type, diet category, conservation status.",
+            "filteredDataEndpoint": "/api/species?filters={...}"
+        },
+        "function": "Filtering capabilities to narrow down species data based on various criteria",
+        "static_description": "Side panel contains filter options grouped under collapsible sections. Options include habitat, diet, and conservation status.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a checkbox applies the filter immediately, updating the displayed list of species."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over filter labels shows tooltips explaining what they represent."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "baseColorStyle": "linen",
+            "accentColorStyle": "maroon"
+        },
+        "function": "Responsive web design with linen as the base color and maroon for all UI components",
+        "static_description": "All background elements use linen (#FAF0E6). All buttons, links, borders, and active states use maroon (#800000). Layout adapts to screen size using responsive CSS techniques.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "speciesDetailEndpoint": "/api/species/{id}",
+            "detailPageRoute": "/species/{id}"
+        },
+        "function": "Species detail pages displaying comprehensive biological information",
+        "static_description": "Each detail page includes the full name, photo gallery, habitat, diet, behavior notes, and conservation status in clearly separated sections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking images in the gallery opens them in lightbox mode."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "paginationControls": "<nav><button>Prev</button><span>Page X of Y</span><button>Next</button></nav>",
+            "infiniteScrollTrigger": "Intersection Observer API"
+        },
+        "function": "Pagination or infinite scroll for browsing large datasets",
+        "static_description": "Either numbered pagination controls appear at the bottom of lists, or an automatic loader appears during scroll-based navigation depending on implementation choice.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Next' or a page number fetches the corresponding dataset slice."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Approaching the end of the list automatically loads next set of items without user intervention."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "speciesDataAPI": "/api/species?search={term}&filter={criteria}",
+            "supportedParameters": "{ term: string, criteria: { habitat?, diet?, status? } }"
+        },
+        "function": "API endpoints for retrieving species data with support for search and filter parameters",
+        "static_description": "Endpoints accept GET requests with optional query parameters for searching and filtering, returning structured JSON responses containing matched records.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchInputComponent": "<input type='text' placeholder='Enter keyword...' />",
+            "filterPanelComponent": "Collapsible side menu with multi-select dropdowns and checkboxes"
+        },
+        "function": "User interface components for search input and filter controls",
+        "static_description": "Top-aligned search bar spans across header. Left-side collapsible drawer houses filter controls accessible via toggle button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping the filter icon toggles visibility of the filter control panel."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Submitting a search term updates the main content area with filtered results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createSpeciesFormEndpoint": "/api/species",
+            "editSpeciesFormEndpoint": "/api/species/{id}",
+            "formFields": "[common_name, scientific_name, habitat, diet, conservation_status]"
+        },
+        "function": "Data management capabilities for adding and updating species information",
+        "static_description": "Admin-accessible forms allow creating new entries or editing existing ones. Fields match those defined in the database schema.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Submit sends validated form data to appropriate endpoint for creation or update."
+            },
+            {
+                "interaction": "Change",
+                "description": "Modifying any field enables the Save button which remains disabled until changes occur."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\""
+        },
+        "function": "Package.json configuration with 'install:all' script for installing frontend and backend dependencies",
+        "static_description": "Root package.json defines concurrent installation scripts targeting separate frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Package.json configuration with 'dev' script for running frontend and backend concurrently",
+        "static_description": "Root package.json defines development startup command launching both client and server processes simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingMiddleware": "Express.js middleware catching errors and sending standardized JSON error responses.",
+            "connectionRetryLogic": "Built-in retry mechanism for failed database connections."
+        },
+        "function": "Error handling for database connections and API requests",
+        "static_description": "Global error handlers capture exceptions and return meaningful messages to clients while logging issues internally.",
+        "interaction_and_states": []
+    }
+]

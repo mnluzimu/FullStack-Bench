@@ -1,0 +1,219 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "mint cream",
+            "component_theme_color": "teal",
+            "dashboard_layout_template": "A responsive grid-based layout system with header, sidebar navigation, main content area, and footer"
+        },
+        "function": "Display a dashboard interface with mint cream background and teal-stonented components",
+        "static_description": "The dashboard features a mint cream background with teal-themed UI components including headers, cards, buttons, and navigation elements arranged in a responsive grid layout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigation menu items change active state highlight to teal when selected."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Teal-themed buttons and interactive elements show subtle hover effects such as darkened background or shadow enhancement."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "company_data_schema": "Database table 'companies' with fields: company_id (UUID), name (string), industry (string), created_at (timestamp), updated_at (timestamp)",
+            "financial_data_schema": "Database table 'financial_data' with fields: data_id (UUID), company_id (foreign key), period_start (date), period_end (date), revenue (decimal), expenses (decimal), profit (decimal), assets (decimal), liabilities (decimal), equity (decimal), cash_flow (decimal), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Support multi-company financial data collection and storage",
+        "static_description": "Backend database schema supporting storage of multiple companies and their associated financial records with proper relationships defined between entities.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "company_financial_view_template": "Tabular display showing columns for financial periods, revenue, expenses, profit, assets, liabilities, equity, and cash flow",
+            "pagination_component": "Pagination controls for browsing through large datasets"
+        },
+        "function": "Show individual company financial data in browseable format",
+        "static_description": "A tabular view displaying financial data for a selected company with pagination controls at the bottom for navigating through multiple pages of data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Pagination buttons load next/previous page of financial data without refreshing the entire page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "consolidated_report_schema": "Database view or materialized view aggregating total revenue, expenses, profit, assets, liabilities, equity across all companies grouped by time periods",
+            "reporting_api": "Internal service endpoint /api/reports/consolidated returning aggregated financial metrics"
+        },
+        "function": "Provide consolidated financial reports across all companies",
+        "static_description": "Dedicated report section presenting aggregated financial summaries across all registered companies, displayed in both tabular and chart formats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Refresh button triggers regeneration of consolidated report data from latest available inputs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparison_chart_library": "Chart.js or similar library for rendering bar/line charts comparing financial metrics",
+            "comparison_data_endpoint": "/api/comparison?companies=[id1,id2...]&metric=profit"
+        },
+        "function": "Enable cross-company financial data comparison functionality",
+        "static_description": "Interactive visualization panel allowing users to select two or more companies and compare chosen financial metrics over selected time intervals using bar or line graphs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Company checkboxes toggle inclusion in the comparison dataset; metric dropdown changes which financial value is being compared."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Mouse hovering over chart segments highlights corresponding data points and displays tooltip with exact values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "management_tool_icons": "Set of SVG icons representing actions like 'edit', 'delete', 'approve', 'recolate'",
+            "form_templates": "Pre-built forms for editing financial entries and submitting adjustments"
+        },
+        "function": "Include financial management tools for user interaction",
+        "static_description": "Toolbar containing actionable icons for managing financial data entries including editing, deleting, approving, and recalculating values.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Each tool icon opens respective modal form or performs inline operation depending on context."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "report_generation_engine": "Service capable of generating PDF/XLSX reports based on query parameters",
+            "template_files": "Pre-designed templates for standard financial report layouts"
+        },
+        "function": "Offer reporting capabilities for financial data analysis",
+        "static_description": "Report generation interface providing options to choose report type, date range, and output format before exporting analytical summaries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Generate Report button initiates creation process and downloads file once ready."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "company_selector_dropdown": "Dropdown component populated with company names fetched from /api/companies",
+            "selected_company_state": "State variable storing currently viewed company ID"
+        },
+        "function": "Implement company selection mechanism for viewing specific financial data",
+        "static_description": "Dropdown selector positioned prominently at top of dashboard listing all registered companies for quick switching between views.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a company updates displayed financial data and related components to reflect that entity's information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocket_endpoint": "Real-time update channel /ws/financial-updates",
+            "polling_interval_config": "Configurable interval setting for periodic data refresh (default: 5 minutes)"
+        },
+        "function": "Display real-time or periodic financial data updates",
+        "static_description": "Dashboard automatically refreshes financial data either via WebSocket connection for instant updates or scheduled polling mechanism.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Manual refresh button forces immediate reload of current financial data regardless of auto-update settings."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "date_range_picker_component": "UI widget enabling selection of start and end dates",
+            "filter_apply_endpoint": "/api/data/filter with body {start_date, end_date}"
+        },
+        "function": "Provide filtering options for financial data by date ranges",
+        "static_description": "Date range picker control located above data tables allowing users to specify custom time windows for displayed financial information.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Apply Filter button sends selected dates to backend and filters displayed results accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "export_formats": [
+                "PDF",
+                "Excel (.xlsx)",
+                "CSV"
+            ],
+            "export_service_endpoint": "/api/export with format parameter"
+        },
+        "function": "Include export functionality for financial reports",
+        "static_description": "Export toolbar offering download links for saving current report or filtered data set in various document formats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing an export option triggers download of generated file matching current view configuration."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_database_schema": "Users table with fields: user_id (UUID), username (string), password_hash (string), role (enum: admin/user), last_login (timestamp)",
+            "login_page_template": "Secure login screen prompting for credentials"
+        },
+        "function": "Support user authentication and authorization for dashboard access",
+        "static_description": "Login portal requiring valid username/password combination prior to granting access to dashboard functionalities, with role-based permission checks applied throughout application.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button validates entered credentials against stored hashes and redirects authenticated users to dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "audit_log_schema": "Table 'audit_logs' tracking event_type (string), user_id (foreign key), target_record_id (UUID), old_values (JSON), new_values (JSON), timestamp (timestamp)",
+            "log_viewer_interface": "Read-only audit trail viewer accessible only to administrators"
+        },
+        "function": "Maintain audit trails for financial data modifications",
+        "static_description": "System maintains detailed logs of every modification made to financial records including who performed the change, what was altered, and when it occurred.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "view_preferences_storage": "User preference object saved per user in database including layout choices, default filters, favorite reports",
+            "customization_modal_template": "Modal dialog for adjusting personal dashboard settings"
+        },
+        "function": "Enable customizable dashboard views for different user preferences",
+        "static_description": "Gear icon in upper right corner opens customization panel where users can adjust layout configurations, save preferred filters, and manage frequently accessed reports.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save Preferences button persists current layout and filter selections for future sessions under logged-in user profile."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "data_visualization_library": "D3.js or Chart.js integrated for dynamic metric representation",
+            "metrics_data_endpoint": "/api/metrics/chart-data returning structured time-series data"
+        },
+        "function": "Integrate data visualization components for financial metrics display",
+        "static_description": "Interactive charts and graphs embedded within dashboard panels visualizing key financial indicators such as revenue trends, expense distributions, and profitability ratios.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Mouseover events on chart elements reveal detailed tooltips showing precise numerical values and contextual labels."
+            },
+            {
+                "interaction": "Click",
+                "description": "Drill-down clicks on certain chart areas redirect to full-detail pages or expand additional layers of underlying data."
+            }
+        ]
+    }
+]

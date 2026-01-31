@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "Interactive map display for visualizing neighborhood boundaries and selecting areas",
+    "Area comparison functionality allowing users to select multiple neighborhoods for side-by-side data analysis",
+    "Demographic data visualization including population, age distribution, and household information",
+    "Economic data visualization covering income levels, employment rates, and housing costs",
+    "Crime statistics display with filtering options by crime type and time period",
+    "Dashboard with interactive charts for all major data categories",
+    "Customizable dashboard layout allowing users to arrange and resize chart widgets",
+    "Data filtering and sorting capabilities for all displayed information",
+    "Responsive design compatible with desktop and tablet viewing",
+    "Ivory background color (#FFFFF0) applied throughout the application",
+    "Forest green color (#228B22) used for interactive components and highlights",
+    "User interface controls for area selection and comparison management",
+    "Configuration in package.json for concurrent frontend and backend development startup"
+]

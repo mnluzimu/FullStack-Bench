@@ -1,0 +1,208 @@
+[
+    {
+        "resource_dependency": {
+            "shirtModelsDataSchema": "Database table named 'shirt_models' with columns: id (UUID), name (string), description (text), base_price (decimal), image_url (string).",
+            "fabricOptionsDataSchema": "Database table named 'fabrics' with columns: id (UUID), name (string), description (text), price_modifier (decimal), image_url (string).",
+            "measurementsFormFields": [
+                "Chest circumference",
+                "Waist circumference",
+                "Hip circumference",
+                "Shoulder width",
+                "Sleeve length",
+                "Neck size"
+            ]
+        },
+        "function": "Allow customers to input shirt customization details including model selection, fabric choice, and body measurements.",
+        "static_description": "A multi-section form displayed against a floral white background. Sections include: a dropdown for selecting shirt model populated from shirtModelsDataSchema, a grid of fabric swatches sourced from fabricOptionsDataSchema, and a series of labeled input fields for measurements based on measurementsFormFields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a shirt model from the dropdown updates the preview area with the base model visualization. Clicking on a fabric swatch highlights the selected option and updates the preview accordingly."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "Typing in any measurement field triggers real-time validation feedback below the respective field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "designGenerationAPI": "POST /api/v1/design/generate endpoint accepting JSON payload with shirt_model_id, fabric_id, and measurements object. Returns SVG string representing the generated design.",
+            "defaultShirtSVG": "<svg>...</svg>"
+        },
+        "function": "Generate a real-time visual representation of the customized shirt based on customer inputs.",
+        "static_description": "A central panel displaying a scalable vector graphic (SVG) of the shirt design. Initially shows defaultShirtSVG. Background is floral white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Real-time Update",
+                "description": "As users modify any input parameter (model, fabric, or measurements), the component sends debounced requests to designGenerationAPI and dynamically replaces the current SVG with the returned design."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "confirmDesignButtonIcon": "/assets/icons/checkmark-circle.svg"
+        },
+        "function": "Provide an interactive preview panel where customers can review their customized shirt before confirming.",
+        "static_description": "A bordered container showing the generated shirt SVG centered within it. Below the SVG, there's a primary button labeled 'Confirm Design' styled with dark goldenrod, featuring confirmDesignButtonIcon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Confirm Design' button transitions the user to the order summary page, carrying forward the confirmed design data."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the 'Confirm Design' button slightly increases its shadow intensity for visual feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "validationRulesDefinition": "Each measurement must be a positive number between 20cm and 200cm. Model and fabric selections are mandatory."
+        },
+        "function": "Validate all customer-provided inputs for shirt customization to ensure they meet required criteria.",
+        "static_description": "No visible static element; validation operates behind-the-scenes on form fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Form Submission Attempt",
+                "description": "If any field fails validation per validationRulesDefinition, display red error messages beneath invalid fields and prevent progression to next step."
+            },
+            {
+                "interaction": "Field Blur",
+                "description": "Upon leaving an input field, immediate inline validation occurs, providing instant feedback without blocking further interaction."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ordersDataSchema": "Database table 'orders' with columns: id (UUID), customer_id (foreign key to users.id), shirt_customization_id (foreign key to shirt_customizations.id), status (enum: pending, confirmed, shipped, delivered), total_amount (decimal), created_at (timestamp), updated_at (timestamp).",
+            "orderStatusIcons": {
+                "pending": "/assets/icons/clock.svg",
+                "confirmed": "/assets/icons/check.svg",
+                "shipped": "/assets/icons/truck.svg",
+                "delivered": "/assets/icons/package.svg"
+            }
+        },
+        "function": "Process and track customer orders throughout their lifecycle from creation to delivery.",
+        "static_description": "An order history page listing past and current orders in tabular format. Each row includes order ID, date placed, total amount, and a status indicator using icons from orderStatusIcons. Background remains floral white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any order row navigates to a detailed order tracking page showing full customization specs, timeline of status changes, and estimated delivery information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "paymentGatewayAPI": "Integration with Stripe Payments API requiring publishable and secret keys configured via environment variables.",
+            "securePaymentFormComponent": "Pre-built PCI-compliant card input fields provided by Stripe Elements library."
+        },
+        "function": "Handle secure financial transactions when customers purchase their custom shirts.",
+        "static_description": "Embedded securePaymentFormComponent inside a checkout modal overlay. Modal header reads 'Complete Your Purchase'. Submit button styled with dark goldenrod.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the payment form initiates tokenization through the paymentGatewayAPI. On success, redirects to order confirmation screen; on failure, displays localized error message above the form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Establish connection using env vars: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Serve as the intermediary layer connecting frontend applications to the PostgreSQL database using standardized RESTful endpoints.",
+        "static_description": "Not applicable – this is purely backend infrastructure.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchAPIClient": "Axios-based HTTP client configured to communicate with internal backend services."
+        },
+        "function": "Ensure all frontend components retrieve dynamic data exclusively through backend API calls rather than hardcoded values.",
+        "static_description": "No direct visual manifestation; acts as underlying mechanism enforcing data flow discipline.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "usersTableSchema": "CREATE TABLE users (id UUID PRIMARY KEY, email VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT NOT NULL, created_at TIMESTAMP DEFAULT NOW());",
+            "shirtCustomizationsTableSchema": "CREATE TABLE shirt_customizations (id UUID PRIMARY KEY, user_id UUID REFERENCES users(id), model_id UUID REFERENCES shirt_models(id), fabric_id UUID REFERENCES fabrics(id), measurements JSONB, design_svg TEXT, created_at TIMESTAMP DEFAULT NOW());",
+            "ordersTableSchema": "Defined under order management system.",
+            "paymentsTableSchema": "CREATE TABLE payments (id UUID PRIMARY KEY, order_id UUID REFERENCES orders(id), transaction_id TEXT UNIQUE, amount DECIMAL NOT NULL, status TEXT CHECK(status IN ('succeeded', 'failed', 'pending')), processed_at TIMESTAMP);"
+        },
+        "function": "Define relational database structure to persistently store essential business entities related to users, customizations, orders, and payments.",
+        "static_description": "Not applicable – this defines backend storage architecture only.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalCSSVariable": ":root { --background-color: #fffaf0; }"
+        },
+        "function": "Enforce floral white (#fffaf0) as the uniform background tone across all pages and views.",
+        "static_description": "Entire application viewport rendered with a solid floral white background as defined in globalCSSVariable.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiComponentStylesheet": ":root { --primary-accent-color: #b8860b; } button, input:focus, .interactive-element { border-color: var(--primary-accent-color); }"
+        },
+        "function": "Apply consistent dark goldenrod theming to all interactive UI controls such as buttons, inputs, and focus states.",
+        "static_description": "All actionable elements utilize dark goldenrod borders and accents as specified in uiComponentStylesheet.",
+        "interaction_and_states": [
+            {
+                "interaction": "Focus",
+                "description": "Interactive elements receive a subtle glow effect matching dark goldenrod upon gaining keyboard or mouse focus."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionManagementAPI": "Endpoints: POST /auth/login, POST /auth/logout, GET /auth/session-status. Uses JWT tokens stored in HttpOnly cookies.",
+            "loginModalContent": "Email and password fields with 'Login'/'Sign Up' toggle switch."
+        },
+        "function": "Enable authenticated sessions so returning users retain cart contents and access personalized features seamlessly.",
+        "static_description": "Top navigation bar contains either 'Login' link or user profile avatar depending on session state. Login opens loginModalContent in a floating dialog.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials to sessionManagementAPI. Successful authentication refreshes the page with logged-in UI; failed attempts show inline errors."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "receiptTemplateHTML": "<html><body><h1>Order Confirmation</h1><p>Thank you for your purchase!</p></body></html>",
+            "emailServiceAPI": "SMTP-compatible service for sending order confirmation emails post-payment completion."
+        },
+        "function": "Automatically produce and dispatch digital receipts after successful order placements and payments.",
+        "static_description": "Post-checkout screen displays receiptTemplateHTML inline while simultaneously triggering asynchronous email delivery via emailServiceAPI.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "inventoryTrackingSchema": "ALTER TABLE shirt_models ADD COLUMN stock_quantity INTEGER DEFAULT 0; ALTER TABLE fabrics ADD COLUMN stock_quantity INTEGER DEFAULT 0;",
+            "lowStockThreshold": 5
+        },
+        "function": "Monitor availability levels of various shirt models and fabric types to prevent overselling during customization.",
+        "static_description": "Within customization forms, unavailable options appear grayed out and marked 'Out of Stock'. Low-stock items (< lowStockThreshold) show warning indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Selection Attempt",
+                "description": "Attempting to choose an out-of-stock item prevents selection and prompts a notification suggesting alternative choices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobileBreakpointMediaQuery": "@media (max-width: 768px)",
+            "touchFriendlySpacingMultiplier": "Minimum 44px touch targets"
+        },
+        "function": "Maintain usability consistency regardless of device screen size or orientation.",
+        "static_description": "Layout adjusts responsively using mobileBreakpointMediaQuery. Touch targets conform to touchFriendlySpacingMultiplier standard.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing browser window reflows layout components according to media queries, optimizing readability and interaction efficiency."
+            }
+        ]
+    }
+]

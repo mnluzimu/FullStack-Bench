@@ -1,0 +1,219 @@
+[
+    {
+        "resource_dependency": {
+            "realTimeDataAPI": "An API endpoint providing real-time updates for solar power generation, consumption, and battery level.",
+            "refreshIcon": "/icons/refresh.svg"
+        },
+        "function": "Display real-time solar power generation data",
+        "static_description": "A card component titled 'Solar Power Generation' showing current value in kW. Background is honeydew with dark olive green text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the refresh icon triggers a manual update of the displayed value from the realTimeDataAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeDataAPI": "An API endpoint providing real-time updates for solar power generation, consumption, and battery level.",
+            "refreshIcon": "/icons/refresh.svg"
+        },
+        "function": "Display real-time power consumption data",
+        "static_description": "A card component titled 'Power Consumption' showing current usage in kW. Background is honeydew with dark olive green text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the refresh icon triggers a manual update of the displayed value from the realTimeDataAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeDataAPI": "An API endpoint providing real-time updates for solar power generation, consumption, and battery level.",
+            "refreshIcon": "/icons/refresh.svg"
+        },
+        "function": "Display real-time battery percentage data",
+        "static_description": "A progress bar-style card labeled 'Battery Level' displaying current percentage filled accordingly. Background is honeydew with dark olive green accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the refresh icon triggers a manual update of the displayed value from the realTimeDataAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalDataAPI": "An API endpoint allowing queries based on date ranges and filters for retrieving historical solar data.",
+            "datePickerLibrary": "A library or widget for selecting start and end dates visually.",
+            "filterOptions": [
+                "Generation",
+                "Consumption",
+                "Battery"
+            ]
+        },
+        "function": "Provide historical data query functionality",
+        "static_description": "A form section with date pickers for Start Date and End Date, checkboxes for filter options, and a Submit button. All styled with honeydew background and dark olive green elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Submit sends selected date range and filters to the historicalDataAPI to fetch relevant records."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalDataAPI": "An API endpoint allowing queries based on date ranges and filters for retrieving historical solar data.",
+            "chartingLibrary": "A JavaScript charting library capable of rendering line graphs and bar charts.",
+            "trendAnalysisInstructions": "Instructions for calculating daily average values and identifying increasing/decreasing trends over time."
+        },
+        "function": "Show trend analysis for historical solar data",
+        "static_description": "A section containing rendered charts showing trends in solar generation, consumption, and battery levels over selected periods. Charts use dark olive green lines against honeydew background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "User scrolls through different trend visualizations within this section."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "A JavaScript charting library capable of rendering line graphs and bar charts.",
+            "historicalDataAPI": "An API endpoint allowing queries based on date ranges and filters for retrieving historical solar data."
+        },
+        "function": "Include chart visualization for data analysis",
+        "static_description": "Interactive chart area displaying line graphs for solar generation and consumption, and bar charts for battery percentages. Styled with honeydew background and dark olive green axes/lines.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over data points shows tooltip details like exact timestamp and numeric value."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of corresponding datasets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorStyle": "#F0FFF0"
+        },
+        "function": "Set background color to honeydew",
+        "static_description": "Entire dashboard page uses #F0FFF0 (honeydew) as the base background color across all sections.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorStyle": "#556B2F"
+        },
+        "function": "Use dark olive green for component styling",
+        "static_description": "All interactive components such as cards, buttons, and chart axes utilize #556B2F (dark olive green) for borders, text, and highlights.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "layoutStructure": "Three-column layout with dedicated areas for real-time metrics cards."
+        },
+        "function": "Organize dashboard into real-time data display section",
+        "static_description": "Top portion of the dashboard contains three horizontally aligned metric cards: Solar Power Generation, Power Consumption, Battery Percentage. Honeydew background with dark olive green styling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "historicalQueryFormFields": [
+                "Start Date",
+                "End Date",
+                "Filters"
+            ],
+            "submitButtonText": "Fetch Historical Data"
+        },
+        "function": "Create historical data query interface",
+        "static_description": "Middle section includes a form panel with labeled input fields for date selection and filtering options, ending with a 'Fetch Historical Data' button. Uses honeydew background and dark olive green accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Pressing 'Fetch Historical Data' submits the form and triggers data retrieval via the historicalDataAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "A JavaScript charting library capable of rendering line graphs and bar charts.",
+            "analysisToolsList": [
+                "Zoom",
+                "Pan",
+                "Export PNG"
+            ]
+        },
+        "function": "Implement chart analysis tools",
+        "static_description": "Toolbar beneath charts offering zoom-in/out, panning controls, and export options. Icons styled in dark olive green against honeydew backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Each tool activates respective chart manipulation features (zoom, pan, export)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalDataAPI": "An API endpoint allowing queries based on date ranges and filters for retrieving historical solar data.",
+            "chartingLibrary": "A JavaScript charting library capable of rendering line graphs and bar charts."
+        },
+        "function": "Enable users to view solar generation trends over time",
+        "static_description": "Line chart specifically plotting solar generation data over selected time period. X-axis shows timestamps, Y-axis shows kW values. Styled with honeydew/dark olive green theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Mouse hover reveals detailed info about specific data point including exact datetime and kW output."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "datePickerLibrary": "A library or widget for selecting start and end dates visually.",
+            "filterCheckboxes": [
+                "Solar Generation",
+                "Power Consumption",
+                "Battery Level"
+            ]
+        },
+        "function": "Allow filtering and date range selection for historical data",
+        "static_description": "Form inputs include two date pickers and checkbox group listing available filters. Styled consistently with honeydew background and dark olive green controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting dates or toggling checkboxes updates internal state before submitting query to historicalDataAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeDataAPI": "An API endpoint providing real-time updates for solar power generation, consumption, and battery level.",
+            "autoRefreshIntervalSetting": "Configurable interval (default every 30 seconds)"
+        },
+        "function": "Provide real-time data refresh capability",
+        "static_description": "Auto-refresh toggle switch positioned near top-right corner of real-time section. Default ON with 30-second intervals. Honeydew background, dark olive green accent when active.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling the switch enables/disables automatic polling of realTimeDataAPI at set intervals."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationTabs": [
+                "Real-Time View",
+                "Historical View"
+            ],
+            "tabSwitchingLogic": "State management logic to show/hide respective dashboard sections upon tab selection."
+        },
+        "function": "Include navigation between real-time and historical views",
+        "static_description": "Tabbed interface at top of dashboard labeled 'Real-Time View' and 'Historical View'. Active tab highlighted in dark olive green; inactive tabs in muted tone. Honeydew background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting either tab switches visible content area to corresponding section (real-time metrics or historical query/charting tools)."
+            }
+        ]
+    }
+]

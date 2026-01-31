@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "Display a biography website with sections for basic information, life experiences, achievements, and honors.",
+        "user_persona": "A visitor interested in learning about a notable person's life.",
+        "user_goal": "To view a complete biography with all major life sections displayed clearly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Biography Page",
+                "description": "Sarah navigates to a biography page after clicking on a featured person. She expects to see an organized layout of the individual's life story.",
+                "action": "Navigate to a detailed biography page.",
+                "expected_outcome": "Page loads with header showing name, dates, and profile image; followed by Basic Information, Life Experiences, Achievements, and Honors sections vertically arranged."
+            },
+            {
+                "step": 2,
+                "title": "Reading Through Sections",
+                "description": "Sarah scrolls down to read the short bio, then scans through categorized life experiences, achievements, and honors listed chronologically.",
+                "action": "Scroll through the page content.",
+                "expected_outcome": "Each section is clearly labeled and visually distinct, with consistent dim gray text on snow background throughout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide browsing functionality for users to explore different biographies.",
+        "user_persona": "A curious reader looking to discover new inspiring figures.",
+        "user_goal": "To browse multiple biographies and select one to learn more about.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Browse Page",
+                "description": "Mark clicks on the 'Browse Biographies' link from the navigation menu to explore available profiles.",
+                "action": "Click on 'Browse Biographies' navigation link.",
+                "expected_outcome": "Redirected to a grid page displaying biography cards with images, names, and short bios."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Biography",
+                "description": "Mark finds an interesting profile and clicks on the card to view full details.",
+                "action": "Click on a biography card.",
+                "expected_outcome": "Navigated to the detailed view page for the selected biography."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable detailed view pages for individual biographies.",
+        "user_persona": "A researcher needing comprehensive information about a specific figure.",
+        "user_goal": "To access a detailed biography page with extensive content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Detailed View",
+                "description": "Emily selects a biography from the browse page and waits for the detailed view to load.",
+                "action": "Navigate to a specific biography's detail page.",
+                "expected_outcome": "Full biography data including extended bio, grouped life experiences, achievements, and honors are displayed in structured sections."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Content",
+                "description": "Emily reads through each section carefully, noting the depth of information presented.",
+                "action": "Scroll through detailed biography content.",
+                "expected_outcome": "Content is well-organized within a fixed-width container, maintaining consistent styling and readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a search feature to allow users to find relevant biographical content.",
+        "user_persona": "A student researching historical figures for a school project.",
+        "user_goal": "To quickly locate biographies related to a keyword search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "John remembers reading about someone who won a Nobel Prize and uses the search bar to find them.",
+                "action": "Focus on the search input field and type 'Nobel Prize winner'.",
+                "expected_outcome": "Search suggestions appear below the input as he types."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Query",
+                "description": "After typing his query, John presses Enter to submit the search.",
+                "action": "Press Enter key in the search input field.",
+                "expected_outcome": "Redirected to a search results page showing matching biographies and relevant content snippets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply snow as the background color across all pages.",
+        "user_persona": "A designer reviewing visual consistency of the website.",
+        "user_goal": "To verify that all pages maintain a uniform snow background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Homepage Background",
+                "description": "Alex opens the homepage and inspects the background color.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "Background is consistently set to #fffafa (snow) across the entire viewport."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Other Pages",
+                "description": "Alex navigates to several internal pages to ensure the same background persists.",
+                "action": "Visit browse, detail, and search result pages.",
+                "expected_outcome": "Every visited page maintains the snow background without variation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style all elements with dim gray color scheme.",
+        "user_persona": "A UI reviewer ensuring brand compliance.",
+        "user_goal": "To confirm that all textual and graphical elements use the correct dim gray color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Text Elements",
+                "description": "Taylor examines headers, paragraphs, and captions across various pages.",
+                "action": "View multiple pages including home, browse, and detail views.",
+                "expected_outcome": "All text elements are styled with #696969 (dim gray) color."
+            },
+            {
+                "step": 2,
+                "title": "Checking UI Components",
+                "description": "Taylor checks borders, icons, and interactive elements for color consistency.",
+                "action": "Inspect search bar, buttons, and navigation links.",
+                "expected_outcome": "Borders, icons, and non-text UI components also utilize the dim gray color scheme."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fetch all biography data dynamically from backend APIs.",
+        "user_persona": "An end-user expecting real-time updated content.",
+        "user_goal": "To view current biography information fetched live from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Page Load",
+                "description": "Jordan visits the site and observes how content is loaded.",
+                "action": "Open the website homepage.",
+                "expected_outcome": "Loading indicators are shown initially before content populates from API calls."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Dynamic Content",
+                "description": "Jordan browses through multiple biographies noticing fresh data loads each time.",
+                "action": "Navigate between browse and detail pages.",
+                "expected_outcome": "Content updates dynamically based on API responses with no hard-coded values visible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect backend to external PostgreSQL database using provided environment variables.",
+        "user_persona": "A DevOps engineer validating deployment configurations.",
+        "user_goal": "To confirm backend properly connects to PostgreSQL with specified settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "DevOps team deploys the backend service with configured environment variables.",
+                "action": "Start backend server process with DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "Server starts successfully and establishes connection to PostgreSQL instance using provided credentials."
+            },
+            {
+                "step": 2,
+                "title": "Validating Database Queries",
+                "description": "Engineer monitors logs to ensure database queries execute correctly.",
+                "action": "Trigger API endpoints that require database access.",
+                "expected_outcome": "Database operations complete successfully with accurate data retrieval and storage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include frontend and backend code in repository structure.",
+        "user_persona": "A developer setting up the local development environment.",
+        "user_goal": "To clone and build both frontend and backend components seamlessly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "Developer clones the repository and explores its structure.",
+                "action": "Run git clone command and inspect directory contents.",
+                "expected_outcome": "Repository contains separate frontend/ and backend/ directories with respective source files and package.json."
+            },
+            {
+                "step": 2,
+                "title": "Locating Key Files",
+                "description": "Developer looks for main configuration and entry point files.",
+                "action": "Check for index.html, main.js, app.js, and package.json files.",
+                "expected_outcome": "Clear organization allows quick identification of core files in both frontend and backend folders."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with install:all script to set up both frontend and backend dependencies.",
+        "user_persona": "A new contributor joining the project team.",
+        "user_goal": "To easily install all project dependencies with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "New developer runs the setup command after cloning the repo.",
+                "action": "Execute npm run install:all from the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed automatically without errors."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Installation Success",
+                "description": "Developer verifies that node_modules exist in both subdirectories.",
+                "action": "Check presence of node_modules folder in frontend/ and backend/.",
+                "expected_outcome": "Both directories now contain fully installed dependencies ready for development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with dev script to run frontend and backend concurrently.",
+        "user_persona": "A developer beginning daily work session.",
+        "user_goal": "To start both development servers efficiently for integrated testing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Environment",
+                "description": "Developer initiates both frontend and backend services together.",
+                "action": "Run npm run dev from the root directory.",
+                "expected_outcome": "Concurrent processes start both frontend dev server and backend API server simultaneously."
+            },
+            {
+                "step": 2,
+                "title": "Testing Integration",
+                "description": "Developer makes sure both systems communicate during runtime.",
+                "action": "Access frontend which fetches data from running backend API.",
+                "expected_outcome": "Frontend successfully retrieves and displays live data from backend without connectivity issues."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure no hard-coded or mock data is used in the application.",
+        "user_persona": "A quality assurance tester verifying data integrity.",
+        "user_goal": "To confirm the application relies entirely on real API data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Initial Load",
+                "description": "Tester opens the application and watches for placeholder content.",
+                "action": "Load the homepage and browse pages.",
+                "expected_outcome": "Only loading spinners or skeleton screens appear until actual API data arrives."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Runtime Behavior",
+                "description": "Tester ensures no dummy entries remain once data is loaded.",
+                "action": "Wait for API responses and inspect rendered content.",
+                "expected_outcome": "Final rendered UI contains exclusively real data sourced from backend APIs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support responsive design for optimal viewing on desktop and mobile devices.",
+        "user_persona": "A frequent mobile user accessing biographies on-the-go.",
+        "user_goal": "To navigate and consume content comfortably on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Lisa opens the biography site on her phone and assesses usability.",
+                "action": "Visit the site using a mobile browser.",
+                "expected_outcome": "Site layout adapts to narrow screen with stacked cards and readable font sizes."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Desktop View",
+                "description": "Lisa switches to landscape mode and notices layout changes.",
+                "action": "Rotate device or resize browser window.",
+                "expected_outcome": "Layout fluidly transitions to multi-column arrangement suitable for wider screens."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement navigation menu for easy access to main sections of the website.",
+        "user_persona": "A casual visitor wanting intuitive site exploration.",
+        "user_goal": "To effortlessly move between major areas of the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Bar",
+                "description": "Robert sees the top navigation bar and decides to visit the browse section.",
+                "action": "Click on 'Browse Biographies' link in the fixed navigation menu.",
+                "expected_outcome": "Instantly redirected to the browsing page with biography listings."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Further",
+                "description": "From the browse page, Robert wants to try the search function next.",
+                "action": "Click on the 'Search' link in the navigation menu.",
+                "expected_outcome": "Navigation smoothly takes him to the search interface where he can enter keywords."
+            }
+        ]
+    }
+]

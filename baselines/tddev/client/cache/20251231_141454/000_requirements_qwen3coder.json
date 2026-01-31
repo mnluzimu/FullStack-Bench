@@ -1,0 +1,17 @@
+[
+    "Implement a website with an anonymous reporting feature allowing users to submit insights and evidence",
+    "Include a discussion forum for users to share thoughts and opinions",
+    "Add a search functionality enabling users to search by topics and keywords",
+    "Create a news and blog section for publishing latest articles and updates",
+    "Design the website with an azure background and midnight blue UI components",
+    "Develop a frontend that fetches all dynamic data from backend APIs",
+    "Build a backend that connects to a PostgreSQL database using specified environment variables",
+    "Configure package.json with npm run install:all to install both frontend and backend dependencies",
+    "Set up package.json with npm run dev to start both frontend and backend concurrently",
+    "Ensure all submitted reports are stored securely in the database",
+    "Enable user authentication system to support anonymous submissions while maintaining security",
+    "Implement moderation tools for managing forum discussions and reported content",
+    "Provide filtering and sorting options within the search functionality",
+    "Support rich text editing or markdown for blog and news article creation",
+    "Include admin panel for managing news, blog posts, and monitoring reports"
+]

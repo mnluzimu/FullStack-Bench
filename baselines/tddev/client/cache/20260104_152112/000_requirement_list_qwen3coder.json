@@ -1,0 +1,143 @@
+[
+    {
+        "resource_dependency": {
+            "db_connection_env_vars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "api_endpoints": "/api/auth/register, /api/auth/login, /api/articles, /api/articles/search, /api/users/collections, /api/users/history"
+        },
+        "function": "Establish a connection to an external PostgreSQL database using predefined environment variables.",
+        "static_description": "The backend establishes a secure connection to the PostgreSQL instance using credentials provided via environment variables. It exposes RESTful API endpoints for frontend consumption related to authentication, articles, collections, and user history.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_endpoints": "/api/auth/register, /api/auth/login",
+            "session_management": "JWT-based session handling with tokens stored in HTTP-only cookies"
+        },
+        "function": "Allow new users to register accounts and existing users to log in securely.",
+        "static_description": "A dedicated authentication module handles user registration and login requests through API endpoints. User credentials are validated against the database, and authenticated sessions use JWT tokens.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "article_browse_endpoint": "/api/articles?category={categoryId}",
+            "categories_endpoint": "/api/categories",
+            "category_icons": "Placeholder paths for category icons such as '/icons/startup.png', '/icons/funding.png'"
+        },
+        "function": "Enable users to browse articles organized under distinct categories.",
+        "static_description": "Articles are displayed in a grid or list view grouped by categories. Each category has an associated icon referenced from its path. Categories are fetched dynamically from the backend.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a category filter updates the displayed article list to show only those belonging to that category."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_endpoint": "/api/articles/search?q={query}",
+            "search_icon": "/icons/search-icon.svg"
+        },
+        "function": "Provide keyword-based search functionality across published articles.",
+        "static_description": "A search bar is located prominently at the top of the page with a magnifying glass icon. It allows users to enter queries which trigger backend searches returning relevant results.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates a search request to the backend and displays matching articles."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon initiates a search request to the backend and displays matching articles."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "collection_toggle_endpoint": "/api/users/collections/{articleId}",
+            "heart_icon_filled": "/icons/heart-filled.svg",
+            "heart_icon_empty": "/icons/heart-empty.svg"
+        },
+        "function": "Allow logged-in users to save favorite articles into a personal collection.",
+        "static_description": "Each article card includes a toggleable heart icon indicating whether it's collected. Icons visually represent the current state – filled when collected, empty otherwise.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling the heart icon adds/removes the article from the user’s collection via an API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "share_endpoints": "Social media sharing URLs (e.g., Twitter, LinkedIn)",
+            "share_icon": "/icons/share-button.svg"
+        },
+        "function": "Enable users to share articles externally on social platforms or via direct links.",
+        "static_description": "Each article features a visible share button represented by a share icon. Clicking this reveals options to distribute the article link on various platforms.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens a modal or dropdown menu listing supported sharing platforms. Choosing one opens a pre-filled share dialog for that platform."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "history_tracking_endpoint": "/api/users/history",
+            "history_data_schema": "Table storing user_id, article_id, timestamp_read"
+        },
+        "function": "Automatically track and store the reading history of logged-in users.",
+        "static_description": "User activity involving article views is recorded silently in the background without disrupting the UI flow. Data is stored persistently in the database linked to individual user IDs.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "profile_page_url": "/profile",
+            "collections_endpoint": "/api/users/collections",
+            "history_endpoint": "/api/users/history",
+            "avatar_placeholder": "/images/default-avatar.jpg"
+        },
+        "function": "Offer a centralized dashboard for users to access saved articles and reading history.",
+        "static_description": "Profile page accessible from navigation shows two sections: 'My Collections' and 'Reading History'. Both sections pull data asynchronously from respective API endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigating to the profile route loads user-specific collection and history lists retrieved from backend services."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "#FDF5E6",
+            "interface_color": "#BC8F8F",
+            "font_styles": "Standard sans-serif fonts used throughout"
+        },
+        "function": "Apply consistent styling with specified colors to enhance visual appeal.",
+        "static_description": "All pages feature an Old Lace (#FDF5E6) background color and Rosy Brown (#BC8F8F) interface elements like buttons, headers, and borders. Typography uses clean, readable sans-serif fonts.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\" } }"
+        },
+        "function": "Configure package.json scripts for unified setup and development workflow.",
+        "static_description": "Root-level package.json contains commands to install dependencies for both frontend and backend simultaneously (`install:all`) and start both environments concurrently (`dev`). These scripts utilize the concurrently utility.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "db_schema_definition": "Users table: id (PK), username, email, password_hash; Articles table: id (PK), title, content, category_id (FK); Categories table: id (PK), name; Collections table: user_id (FK), article_id (FK); ReadingHistory table: user_id (FK), article_id (FK), read_at"
+        },
+        "function": "Define relational database structure to support application features.",
+        "static_description": "PostgreSQL database initialized with tables for managing users, articles, categories, user collections, and reading history. Relationships enforce referential integrity among entities.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_apis": "/api/auth/register POST, /api/auth/login POST",
+            "article_apis": "/api/articles GET, /api/articles/search GET",
+            "user_data_apis": "/api/users/collections GET/POST/DELETE, /api/users/history GET"
+        },
+        "function": "Expose RESTful endpoints enabling full-stack communication between frontend and backend systems.",
+        "static_description": "Defined set of API routes mapped to controllers handling business logic for user authentication, article browsing/searching, and user-specific actions like saving articles or viewing history.",
+        "interaction_and_states": []
+    }
+]

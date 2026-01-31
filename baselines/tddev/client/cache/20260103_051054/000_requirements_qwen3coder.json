@@ -1,0 +1,17 @@
+[
+    "A frontend that fetches all data from backend APIs",
+    "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+    "A product search function allowing users to input food names or keywords to search for related nutrition information",
+    "A nutrition analysis function allowing users to input food ingredients and serving sizes to calculate nutritional value",
+    "A packaging design function allowing users to create custom food packaging according to Canadian regulations",
+    "Display of Canadian nutrition facts labels based on retrieved or calculated data",
+    "A text input box for entering food names or keywords in the search function",
+    "A text input area for entering multiple food ingredients in the nutrition analysis function",
+    "Input fields for specifying serving sizes corresponding to each ingredient in the nutrition analysis function",
+    "Interactive UI components for designing food packaging compliant with Canadian labeling regulations",
+    "Real-time display of updated nutrition facts label during packaging design process",
+    "Visual styling with a linen background and maroon-colored components throughout the interface",
+    "Responsive layout ensuring usability across desktop and mobile devices",
+    "Error handling for invalid inputs such as non-existent foods or incorrect serving size formats",
+    "Loading indicators during API requests for search results, nutrition calculations, and packaging updates"
+]

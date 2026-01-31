@@ -1,0 +1,185 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDataAPI": "Requires integration with a stock market data API such as Alpha Vantage, Yahoo Finance, or similar to fetch real-time stock information.",
+            "autoSuggestionEndpoint": "Endpoint returning suggested stock names/codes based on partial user input (e.g., '/api/suggest-stonks?q={query}')"
+        },
+        "function": "Implement a search functionality allowing users to input stock codes or names",
+        "static_description": "A centered search bar with a placeholder 'Enter stock code or name', accompanied by a search icon on the right side. Background is white, and the input field has navy borders and text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon or pressing Enter after typing initiates the search process."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused in the search box triggers the search action."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "suggestionListStyle": "Dropdown list styled with white background and navy text, showing matching stock suggestions dynamically as the user types."
+        },
+        "function": "Provide auto-suggestions or dropdown options during stock search",
+        "static_description": "As the user types into the search bar, a dropdown menu appears below it containing potential matches from the stock database.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a suggestion populates the search bar with that selection and triggers the display of the associated stock data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyLogoPlaceholder": "/assets/images/default-company-logo.png",
+            "basicStockInfoSchema": "Database table named 'stocks' with fields: id (primary key), ticker_symbol (string), company_name (string), current_price (float), last_updated (datetime)."
+        },
+        "function": "Display basic stock information including company name, ticker symbol, and current price",
+        "static_description": "Displays a card with the company logo, company name, ticker symbol, and current price arranged vertically. All text is navy against a white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with charting library like Chart.js or D3.js for rendering market trend visuals.",
+            "marketTrendDataSchema": "Table 'market_trends' with fields: stock_id (foreign key), date (date), open_price (float), close_price (float), high_price (float), low_price (float), volume (integer)"
+        },
+        "function": "Show market trend data with charts or graphs for selected stocks",
+        "static_description": "A line chart showing historical closing prices over time, rendered within a container with white background and navy axis labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over points on the chart displays tooltips with exact values and dates."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataSchema": "Database table 'financial_data' with fields: stock_id (foreign key), earnings (float), revenue (float), pe_ratio (float), debt_equity_ratio (float), roe (float)",
+            "dollarSignIcon": "/assets/icons/dollar-sign.svg"
+        },
+        "function": "Present financial data such as earnings, revenue, and key financial ratios",
+        "static_description": "A section displaying key metrics in labeled boxes (Earnings, Revenue, P/E Ratio, Debt-to-Equity, ROE) with navy headers and values on a white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "formatOptions": [
+                "PDF",
+                "HTML"
+            ]
+        },
+        "function": "Enable users to select different report formats (PDF, HTML, etc.)",
+        "static_description": "Radio buttons or dropdown labeled 'Report Format' with options 'PDF' and 'HTML'. Default selection is PDF. Styled with navy text and white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an option updates the preview and prepares the report for export in the selected format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sectionCheckboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "Insights & Recommendations"
+            ]
+        },
+        "function": "Allow users to customize report content by choosing specific sections or data points",
+        "static_description": "Checkboxes grouped under 'Customize Report Content', allowing users to toggle inclusion of various report sections. Each checkbox label is navy on a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Checking/unchecking a box adds/removes the respective section from the generated report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGenerationService": "Backend service responsible for compiling selected data and formatting into chosen output type (PDF/HTML).",
+            "reportTemplateFiles": "Templates for PDF and HTML report structures stored server-side."
+        },
+        "function": "Generate automated stock reports based on user selections and inputs",
+        "static_description": "A 'Generate Report' button positioned beneath customization controls. When clicked, it compiles the report using selected settings and displays a loading indicator.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers report compilation using selected parameters and shows a progress spinner until completion."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summaryContentSchema": "Field in 'reports' table storing summarized insights/recommendations per report instance."
+        },
+        "function": "Include a report summary section highlighting key insights and recommendations",
+        "static_description": "A dedicated section titled 'Summary' appearing at the top of each generated report, summarizing key findings and actionable insights.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "downloadIcon": "/assets/icons/download-icon.svg",
+            "exportHandler": "Server endpoint to deliver compiled report file upon request (e.g., /api/export-report/{reportId})"
+        },
+        "function": "Provide export functionality to download generated reports in chosen formats",
+        "static_description": "A download icon next to the 'Generate Report' button which becomes active once the report is ready. Clicking it downloads the report in the previously selected format.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Downloads the completed report file directly to the user’s device."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "{background: #FFFFFF, primary: #000080}"
+        },
+        "function": "Implement a clean user interface with white background and navy component colors",
+        "static_description": "Entire UI uses a consistent color scheme of white backgrounds and navy blue text/components throughout all pages and elements.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loadingSpinnerAsset": "/assets/animations/loading-spinner.gif"
+        },
+        "function": "Add loading indicators or progress bars during report generation process",
+        "static_description": "Displays a centered circular loading animation when the report is being generated, overlayed on the main content area.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorMessages": [
+                "Invalid stock code entered.",
+                "Data temporarily unavailable. Please try again later."
+            ]
+        },
+        "function": "Include error handling for invalid stock codes or unavailable data",
+        "static_description": "An alert-style message box appears above the search bar whenever an invalid query results in no matches or data unavailability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authSystem": "User authentication system supporting login/signup flows with session persistence.",
+            "preferencesStorageSchema": "Database table 'user_preferences' storing user-selected defaults for report format, included sections, etc."
+        },
+        "function": "Provide user authentication or session management for saving preferences",
+        "static_description": "Top-right corner contains either 'Login'/'Signup' links or a logged-in user profile badge depending on auth status. Preferences panel accessible only when authenticated.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' opens modal form; successful login enables access to saved preferences panel."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mediaQueries": "CSS media queries ensuring layout adapts to mobile, tablet, and desktop viewports."
+        },
+        "function": "Enable responsive design for accessibility across different devices and screen sizes",
+        "static_description": "All UI components adjust their size and arrangement based on viewport width, maintaining usability and readability on phones, tablets, and desktop browsers.",
+        "interaction_and_states": []
+    }
+]

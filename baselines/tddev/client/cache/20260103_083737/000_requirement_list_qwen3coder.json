@@ -1,0 +1,285 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "postgresql_connection": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Fetch dynamic data from backend APIs for rendering frontend components.",
+        "static_description": "The frontend application displays all content dynamically fetched via RESTful API calls. It uses a responsive layout with cornsilk background and peru-colored UI blocks.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresql_connection": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Connect to a PostgreSQL database using specified environment variables to store and retrieve data.",
+        "static_description": "Backend service configured to connect to PostgreSQL using provided credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "obituary_form_fields": [
+                "full_name",
+                "date_of_birth",
+                "date_of_death",
+                "biography",
+                "profile_image_url"
+            ],
+            "api_endpoints": {
+                "create_obituary": "POST /api/obituaries",
+                "update_obituary": "PUT /api/obituaries/:id",
+                "delete_obituary": "DELETE /api/obituaries/:id",
+                "get_user_obituaries": "GET /api/users/me/obituaries"
+            }
+        },
+        "function": "Allow authenticated users to create, update, and delete their own obituaries.",
+        "static_description": "Form interface with fields for full name, dates, biography, and profile image URL inside a peru-styled block against a cornsilk background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button sends form data to POST /api/obituaries endpoint to create an obituary record."
+            },
+            {
+                "interaction": "Click",
+                "description": "Edit button loads existing obituary into the form for updates."
+            },
+            {
+                "interaction": "Click",
+                "description": "Delete button triggers DELETE request to remove the selected obituary."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "arrangement_form_fields": [
+                "event_type",
+                "location",
+                "date_time",
+                "contact_info",
+                "additional_details"
+            ],
+            "api_endpoints": {
+                "create_arrangement": "POST /api/arrangements",
+                "update_arrangement": "PUT /api/arrangements/:id",
+                "delete_arrangement": "DELETE /api/arrangements/:id",
+                "get_user_arrangements": "GET /api/users/me/arrangements"
+            }
+        },
+        "function": "Allow authenticated users to create, update, and delete funeral arrangements.",
+        "static_description": "Form interface with fields for event type, location, date/time, contact info, and additional details inside a peru-styled block against a cornsilk background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button sends form data to POST /api/arrangements endpoint to create an arrangement record."
+            },
+            {
+                "interaction": "Click",
+                "description": "Edit button loads existing arrangement into the form for updates."
+            },
+            {
+                "interaction": "Click",
+                "description": "Delete button triggers DELETE request to remove the selected arrangement."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mortuary_list_endpoint": "GET /api/mortuaries",
+            "mortuary_data_schema": "Table with columns: id (UUID), name (string), address (text), phone_number (string), email (string)"
+        },
+        "function": "Display a list of mortuaries with relevant information such as name, address, phone number, and email.",
+        "static_description": "List view showing multiple mortuary entries with name, address, phone number, and email in peru-styled cards arranged vertically within a cornsilk container.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "User scrolls through the list of mortuary entries without pagination."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "condolence_form_fields": [
+                "message_text",
+                "author_name"
+            ],
+            "api_endpoints": {
+                "post_condolence": "POST /api/obituaries/:id/condolences",
+                "fetch_condolences": "GET /api/obituaries/:id/condolences"
+            },
+            "condolence_data_schema": "Table with columns: id (UUID), obituary_id (foreign key), message_text (text), author_name (string), created_at (timestamp)"
+        },
+        "function": "Enable users to view and leave condolence messages on others' obituaries.",
+        "static_description": "Section under each obituary listing previous condolence messages along with a form to submit new ones. Messages appear in a scrollable list with timestamp metadata.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button posts the condolence message to the associated obituary's condolence endpoint."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "User scrolls through previously posted condolence messages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "statistics_endpoint": "GET /api/statistics",
+            "charts_library": "Chart.js or similar",
+            "statistic_types": [
+                "total_obituaries",
+                "recent_obituaries",
+                "most_active_users"
+            ]
+        },
+        "function": "Provide statistical insights about obituaries, user activity, and trends.",
+        "static_description": "Dashboard displaying charts and numerical summaries for total obituaries, recent activity, and most active contributors inside a peru-styled panel over a cornsilk backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements highlights corresponding data points and shows tooltips."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting different time ranges reloads statistics via GET /api/statistics?range=:value."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_endpoints": {
+                "login": "POST /api/auth/login",
+                "register": "POST /api/auth/register",
+                "logout": "POST /api/auth/logout",
+                "session_check": "GET /api/auth/session"
+            },
+            "jwt_token_storage": "localStorage or secure cookie"
+        },
+        "function": "Handle user registration, login, session management, and access control for personal content.",
+        "static_description": "Authentication forms for login and registration displayed modally or inline. Session status indicator visible across pages once logged in.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Login/Register buttons send credentials to respective endpoints and set JWT tokens upon successful authentication."
+            },
+            {
+                "interaction": "Click",
+                "description": "Logout clears local token and redirects to home page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "media_upload_endpoint": "POST /api/media/upload",
+            "media_display_endpoint": "GET /api/media/:id",
+            "file_types_allowed": [
+                "image/jpeg",
+                "image/png",
+                "video/mp4"
+            ],
+            "storage_path": "/uploads/"
+        },
+        "function": "Support uploading, storing, and retrieving multimedia files like images and videos for use in obituaries and memories.",
+        "static_description": "Media gallery component embedded in obituary detail views, displaying thumbnails or video players with upload controls for authenticated users.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Upload button opens file picker dialog and submits selected media to the upload endpoint."
+            },
+            {
+                "interaction": "Click",
+                "description": "Thumbnail click expands image/video in modal viewer."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_design_framework": "Tailwind CSS or Bootstrap",
+            "color_palette": {
+                "outer_background": "#FFF8DC",
+                "ui_blocks": "#CD853F"
+            }
+        },
+        "function": "Ensure consistent styling and responsiveness across devices using cornsilk outer layout and peru UI blocks.",
+        "static_description": "Entire site styled with cornsilk (#FFF8DC) background and peru (#CD853F) colored containers and buttons. Layout adapts to screen size using responsive framework.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "search_input_field": "Text input field",
+            "search_endpoint": "GET /api/search?q=:query",
+            "search_filters": [
+                "by_name",
+                "by_date_range",
+                "by_location"
+            ]
+        },
+        "function": "Enable searching for obituaries and funeral arrangements based on various filters.",
+        "static_description": "Search bar positioned prominently at top of main pages, accompanied by filter options for refining results.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers search query submission to GET /api/search endpoint when focused on input."
+            },
+            {
+                "interaction": "Click",
+                "description": "Apply filters button modifies search parameters before sending request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_tables": {
+                "users": "id UUID, username STRING, password_hash STRING, email STRING, created_at TIMESTAMP",
+                "obituaries": "id UUID, user_id UUID, full_name STRING, date_of_birth DATE, date_of_death DATE, biography TEXT, profile_image_url STRING, created_at TIMESTAMP",
+                "arrangements": "id UUID, user_id UUID, event_type STRING, location TEXT, date_time DATETIME, contact_info STRING, additional_details TEXT, created_at TIMESTAMP",
+                "mortuaries": "id UUID, name STRING, address TEXT, phone_number STRING, email STRING, created_at TIMESTAMP",
+                "condolences": "id UUID, obituary_id UUID, message_text TEXT, author_name STRING, created_at TIMESTAMP",
+                "media": "id UUID, filename STRING, mime_type STRING, path STRING, uploaded_by UUID, related_to_type ENUM(obituary,arrangement), related_to_id UUID, created_at TIMESTAMP"
+            }
+        },
+        "function": "Define database schema structure for persisting all dynamic content including users, obituaries, arrangements, condolences, and media.",
+        "static_description": "Database tables defined with appropriate relationships and constraints for supporting all core features.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\" } }"
+        },
+        "function": "Configure package.json scripts to simplify installation and development workflow for both frontend and backend.",
+        "static_description": "Scripts section in root package.json containing install:all and dev commands to manage both projects simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\" } }"
+        },
+        "function": "Run frontend and backend concurrently during development using a unified command.",
+        "static_description": "Development script in root package.json launching both frontend and backend services together.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "rest_api_endpoints": {
+                "obituaries": {
+                    "GET": "/api/obituaries",
+                    "POST": "/api/obituaries",
+                    "PUT": "/api/obituaries/:id",
+                    "DELETE": "/api/obituaries/:id"
+                },
+                "arrangements": {
+                    "GET": "/api/arrangements",
+                    "POST": "/api/arrangements",
+                    "PUT": "/api/arrangements/:id",
+                    "DELETE": "/api/arrangements/:id"
+                },
+                "messages": {
+                    "GET": "/api/obituaries/:id/condolences",
+                    "POST": "/api/obituaries/:id/condolences"
+                }
+            }
+        },
+        "function": "Expose standardized RESTful endpoints for performing CRUD operations on obituaries, arrangements, and condolence messages.",
+        "static_description": "API routes structured according to standard REST conventions, handling creation, reading, updating, and deletion of core entities.",
+        "interaction_and_states": []
+    }
+]

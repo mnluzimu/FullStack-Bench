@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "Implement a whistleblower secrets/awareness website with anonymous reporting functionality",
+        "user_persona": "A concerned citizen who has uncovered sensitive corporate misconduct.",
+        "user_goal": "To navigate to the anonymous reporting form to submit critical evidence.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Maya arrives at the whistleblower website, seeking a way to report her findings. She notices the clean azure background and midnight blue UI elements.",
+                "action": "Observe the homepage layout.",
+                "expected_outcome": "Homepage renders with azure background and midnight blue navigation bar and components."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Anonymous Report",
+                "description": "Maya sees the prominent 'Submit Report Anonymously' button in the header and decides to click it.",
+                "action": "Click on the 'Submit Report Anonymously' button.",
+                "expected_outcome": "User is redirected to the anonymous reporting form page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a submission form for users to anonymously report insights and upload evidence",
+        "user_persona": "An insider with knowledge of illegal activities at their company.",
+        "user_goal": "To securely submit a detailed report along with supporting evidence anonymously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Out Report Details",
+                "description": "On the report form page, Alex begins entering a title and description into the respective fields.",
+                "action": "Enter text into Title and Description fields.",
+                "expected_outcome": "Fields accept input normally without error."
+            },
+            {
+                "step": 2,
+                "title": "Uploading Evidence File",
+                "description": "Alex chooses a PDF file under 10MB to attach as evidence by clicking the file input.",
+                "action": "Select a valid PDF file (<10MB) via the file upload input.",
+                "expected_outcome": "File selection completes successfully and passes client-side validation."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Report",
+                "description": "After filling out the form and attaching the file, Alex clicks the 'Submit Report' button.",
+                "action": "Click the 'Submit Report' button.",
+                "expected_outcome": "Form data is sent to /api/reports/submit and confirmation message appears."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a discussion forum allowing users to post, reply, and engage in threaded conversations",
+        "user_persona": "A community member interested in discussing societal issues.",
+        "user_goal": "To participate in ongoing discussions by replying to an existing thread.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Forum Section",
+                "description": "Jordan clicks on the 'Forum' link in the navigation menu to explore current topics.",
+                "action": "Click on the 'Forum' navigation link.",
+                "expected_outcome": "Redirected to the forum page showing list of threads."
+            },
+            {
+                "step": 2,
+                "title": "Opening Thread and Replying",
+                "description": "Jordan finds an interesting thread and clicks on it to read more. Then, they decide to contribute by clicking the Reply button.",
+                "action": "Click on a thread card, then click the 'Reply' button.",
+                "expected_outcome": "Thread expands and a reply form appears below the selected post."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate a search functionality enabling keyword and topic-based content discovery",
+        "user_persona": "A researcher looking for specific content across the platform.",
+        "user_goal": "To find articles, reports, and forum posts related to environmental violations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Taylor types 'environmental violations' into the search bar located in the header.",
+                "action": "Type 'environmental violations' into the search input field.",
+                "expected_outcome": "Live suggestions appear after typing three characters."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Query",
+                "description": "Taylor presses Enter to initiate the search across all content sections.",
+                "action": "Press Enter key in the search input.",
+                "expected_outcome": "Redirected to search results page displaying categorized matches from reports, forums, and articles."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop a news and blog section displaying latest articles and updates",
+        "user_persona": "A regular visitor wanting to stay updated with recent developments.",
+        "user_goal": "To read the latest article published on the platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing News & Blog Section",
+                "description": "Riley navigates to the News & Blog section from the main navigation.",
+                "action": "Click on the 'News & Blog' link in the navigation menu.",
+                "expected_outcome": "Redirected to the News & Blog page displaying article cards."
+            },
+            {
+                "step": 2,
+                "title": "Reading Full Article",
+                "description": "Riley clicks on the first article card to read the complete story.",
+                "action": "Click on the first article card or its 'Read More' link.",
+                "expected_outcome": "Redirected to the full article page with complete content displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design the website with an azure background and midnight blue UI components",
+        "user_persona": "A new user visiting the site for the first time.",
+        "user_goal": "To experience a consistent visual theme throughout the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Site Colors",
+                "description": "Casey lands on the homepage and looks around to get familiar with the interface design.",
+                "action": "View different parts of the homepage including header, buttons, and cards.",
+                "expected_outcome": "All backgrounds are azure and all UI components (buttons, headers, etc.) are styled in midnight blue."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a frontend that dynamically fetches all content through backend APIs",
+        "user_persona": "A developer checking that frontend properly integrates with backend services.",
+        "user_goal": "To verify that dynamic content loads correctly when accessing the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Homepage",
+                "description": "Dev opens the homepage expecting to see dynamic content loaded from backend APIs.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Frontend makes concurrent API calls and renders dynamic sections like latest reports, forum threads, and articles."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build a backend system connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer deploying the backend service.",
+        "user_goal": "To confirm that the backend connects to the PostgreSQL database using correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Engineer sets the required environment variables and starts the backend server.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp and start backend.",
+                "expected_outcome": "Server initializes and establishes successful connection to PostgreSQL database using provided credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'npm run install:all' script to install frontend and backend dependencies",
+        "user_persona": "A developer setting up the project locally for the first time.",
+        "user_goal": "To install all necessary dependencies for both frontend and backend simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer runs the setup command to install all required packages for the entire project.",
+                "action": "Run `npm run install:all` in terminal from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'npm run dev' script to start both frontend and backend concurrently",
+        "user_persona": "A developer ready to begin local development work.",
+        "user_goal": "To launch both frontend and backend development servers at once.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Developer executes the dev command to bring up both frontend and backend environments.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend development servers start concurrently and are accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all data including reports, forum posts, and articles are stored persistently in the database",
+        "user_persona": "A QA tester validating data persistence after submission.",
+        "user_goal": "To ensure submitted data remains saved even after refreshing the page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting New Data",
+                "description": "Tester submits a new report, forum post, and article through the UI.",
+                "action": "Submit one report, one forum post, and one article via respective forms.",
+                "expected_outcome": "Each submission returns success response indicating data was accepted."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Persistence After Refresh",
+                "description": "Tester refreshes the relevant pages to confirm data still exists.",
+                "action": "Refresh the report detail, forum thread, and article pages.",
+                "expected_outcome": "Previously submitted data persists and displays correctly on refreshed pages."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement user authentication system to support anonymous submissions while maintaining security",
+        "user_persona": "An anonymous reporter submitting sensitive information.",
+        "user_goal": "To submit a report without revealing identity while ensuring session-level tracking.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Beginning Anonymous Submission Flow",
+                "description": "Reporter starts the anonymous reporting process which should trigger generation of a temporary token.",
+                "action": "Navigate to anonymous report form.",
+                "expected_outcome": "Frontend automatically calls /api/auth/generate-anonymous-token and receives a temporary session token."
+            },
+            {
+                "step": 2,
+                "title": "Completing Secure Submission",
+                "description": "Reporter fills and submits the form, relying on the generated token for secure handling.",
+                "action": "Fill and submit the anonymous report form.",
+                "expected_outcome": "Report is submitted securely using the token, with no identifiable user info recorded."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable file upload capability for evidence submission with appropriate validation and storage",
+        "user_persona": "A whistleblower preparing to upload proof of wrongdoing.",
+        "user_goal": "To upload a compliant document as part of an anonymous report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Valid File",
+                "description": "Whistleblower selects a small-sized PDF file meeting format and size requirements.",
+                "action": "Choose a valid PDF file <10MB from local machine.",
+                "expected_outcome": "Client-side validation confirms the file meets criteria before proceeding."
+            },
+            {
+                "step": 2,
+                "title": "Uploading Evidence",
+                "description": "Whistleblower triggers the upload which sends the file to the backend for processing.",
+                "action": "Trigger file upload during report submission.",
+                "expected_outcome": "File uploads successfully to /uploads/evidence/ with unique ID assigned and linked to report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide moderation tools for administrators to manage reports, forum content, and published articles",
+        "user_persona": "An administrator responsible for overseeing platform content.",
+        "user_goal": "To review and moderate newly submitted content using administrative controls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Dashboard",
+                "description": "Admin logs in and accesses the moderation dashboard to oversee pending items.",
+                "action": "Log in as admin and navigate to /admin/reports.",
+                "expected_outcome": "Dashboard loads showing grid/list of pending reports requiring moderation."
+            },
+            {
+                "step": 2,
+                "title": "Moderating Content",
+                "description": "Admin reviews a report and decides to approve it for public viewing.",
+                "action": "Click the 'Approve' button next to a pending report.",
+                "expected_outcome": "Report status changes to 'reviewed/published' in database and disappears from pending queue."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Optimize search functionality to index and retrieve content across reports, forums, and blog posts",
+        "user_persona": "A frequent user searching for previously discussed topics.",
+        "user_goal": "To quickly locate relevant historical content using optimized search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Performing Keyword Search",
+                "description": "User enters a common keyword known to exist in various content types.",
+                "action": "Enter keyword in search bar and press Enter.",
+                "expected_outcome": "System performs full-text search using PostgreSQL tsvector/tsquery and returns ranked results."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Results Across Sections",
+                "description": "User examines results spanning reports, forums, and articles to find what they need.",
+                "action": "Browse returned results categorized by content type.",
+                "expected_outcome": "Results display efficiently across multiple domains with accurate relevance ranking."
+            }
+        ]
+    }
+]

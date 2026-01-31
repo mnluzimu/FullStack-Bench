@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "A frontend HTML editor with live preview functionality",
+        "user_persona": "A web designer who frequently switches between coding and visual feedback.",
+        "user_goal": "To edit HTML code and instantly see how it renders in the preview pane.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the Editor",
+                "description": "Sarah opens the HTML editor to start a new project. She sees two panels: one for editing and one for preview.",
+                "action": "Load the editor interface.",
+                "expected_outcome": "The editor displays side-by-side panels with a code editor on the left and a live preview on the right, both styled with honeydew background and dark olive green components."
+            },
+            {
+                "step": 2,
+                "title": "Editing HTML Code",
+                "description": "Sarah types some HTML into the code editor. As she works, the preview updates automatically after a short pause.",
+                "action": "Type HTML content into the code editor.",
+                "expected_outcome": "After a 500ms debounce, the live preview frame updates to reflect the newly typed HTML."
+            },
+            {
+                "step": 3,
+                "title": "Switching to Text Mode",
+                "description": "Curious about the text mode, Sarah clicks the 'Text Editor' tab to try writing in markdown.",
+                "action": "Click the 'Text Editor' tab.",
+                "expected_outcome": "The left panel switches to a clean text editing surface, and typing markdown syntax immediately reflects as HTML in the preview."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Code editing mode with syntax highlighting for HTML",
+        "user_persona": "A front-end developer who relies on visual cues to write clean HTML efficiently.",
+        "user_goal": "To use an HTML editor that highlights tags, attributes, and values for better readability.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Code Mode",
+                "description": "Alex selects the 'Code Editor' tab to work directly with raw HTML. He expects familiar syntax highlighting.",
+                "action": "Click the 'Code Editor' tab.",
+                "expected_outcome": "The editor loads with CodeMirror and Prism syntax highlighting applied, showing distinct colors for tags, attributes, and strings."
+            },
+            {
+                "step": 2,
+                "title": "Writing HTML",
+                "description": "As Alex writes HTML, he notices the syntax colors update in real time, making his code easier to read.",
+                "action": "Type various HTML elements including tags, attributes, and inline comments.",
+                "expected_outcome": "Each element is highlighted according to Prism’s HTML theme, with correct coloring for elements, attributes, and comments."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Text editing mode that automatically converts to HTML",
+        "user_persona": "A content writer who prefers markdown but needs HTML output.",
+        "user_goal": "To compose content in a distraction-free markdown editor that outputs clean HTML.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Composing Markdown",
+                "description": "Jamie chooses the 'Text Editor' mode and begins typing using markdown shortcuts for bold and italicized text.",
+                "action": "Type markdown syntax like *italic* and **bold**.",
+                "expected_outcome": "The live preview updates in real time, showing the text rendered as <em> and <strong> tags respectively."
+            },
+            {
+                "step": 2,
+                "title": "Using Formatting Toolbar",
+                "description": "Jamie selects a sentence and clicks the bold button in the toolbar to apply markdown formatting.",
+                "action": "Select text and click the bold formatting button.",
+                "expected_outcome": "Selected text gets wrapped in ** symbols, and the preview updates to show the bolded HTML equivalent."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Project management system for organizing multiple HTML documents, images, and files",
+        "user_persona": "A team lead managing multiple web design projects for clients.",
+        "user_goal": "To organize several projects and their associated documents in a structured way.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating a New Project",
+                "description": "Taylor clicks the '+' button to create a new project for her upcoming client website.",
+                "action": "Click the '+' button next to the project tree.",
+                "expected_outcome": "A modal appears prompting Taylor to enter a project name. After submission, the new project appears in the sidebar tree."
+            },
+            {
+                "step": 2,
+                "title": "Adding Documents",
+                "description": "Inside the new project, Taylor adds a new HTML document by clicking the add document button.",
+                "action": "Right-click the project folder and select 'Add Document'.",
+                "expected_outcome": "A new untitled document is created under the project, and the editor loads it for immediate editing."
+            },
+            {
+                "step": 3,
+                "title": "Reorganizing Files",
+                "description": "Taylor drags an existing document from one project to another to reassign its location.",
+                "action": "Drag and drop a document from one project folder to another.",
+                "expected_outcome": "The document moves to the new project folder and its association is updated in the backend database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to save and reuse template pages",
+        "user_persona": "A web developer building repetitive page structures for a company site.",
+        "user_goal": "To save commonly used layouts as templates for quick reuse.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Saving a Template",
+                "description": "Jordan finishes designing a standard header and footer layout and decides to save it as a template.",
+                "action": "Click the 'Save as Template' button in the toolbar.",
+                "expected_outcome": "A dialog prompts Jordan to name the template. After saving, the template appears in the template library."
+            },
+            {
+                "step": 2,
+                "title": "Applying a Template",
+                "description": "Later, Jordan starts a new document and wants to reuse the header/footer layout.",
+                "action": "Open the template library and select the previously saved template.",
+                "expected_outcome": "The saved HTML content is inserted into the current document editor, ready for further customization."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Basic user guide accessible within the application",
+        "user_persona": "A first-time user unfamiliar with advanced features of the editor.",
+        "user_goal": "To quickly learn how to navigate and use the key features of the editor.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Help",
+                "description": "Casey feels lost and looks for guidance. She spots the help icon in the top-right corner.",
+                "action": "Click the help icon.",
+                "expected_outcome": "A modal pops up with a user guide containing sections like 'Getting Started' and keyboard shortcuts."
+            },
+            {
+                "step": 2,
+                "title": "Reading the Guide",
+                "description": "Casey reads through the guide to understand how to create projects and save templates.",
+                "action": "Scroll through the help modal content.",
+                "expected_outcome": "Sections are clearly formatted with headings and lists, providing actionable instructions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Cross-platform compatibility for the editor interface",
+        "user_persona": "A freelance developer working on different devices throughout the day.",
+        "user_goal": "To seamlessly switch between desktop, tablet, and mobile without losing usability.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing the Window",
+                "description": "Riley resizes the browser window to simulate a smaller screen and checks how the layout adapts.",
+                "action": "Resize the browser window to a tablet width.",
+                "expected_outcome": "The panels stack vertically, and buttons resize appropriately for touch interaction."
+            },
+            {
+                "step": 2,
+                "title": "Interacting on Mobile",
+                "description": "On a phone, Riley taps the 'Text Editor' tab to continue editing.",
+                "action": "Tap the 'Text Editor' tab on a touchscreen.",
+                "expected_outcome": "The tab switches smoothly, and the text input area is optimized for mobile typing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API integration for dynamic data handling",
+        "user_persona": "A developer verifying that all data operations go through the backend.",
+        "user_goal": "To ensure that every project and document change is properly persisted.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating a New Project",
+                "description": "Morgan fills out the new project form and submits it, expecting it to be saved remotely.",
+                "action": "Fill out project name and submit the creation form.",
+                "expected_outcome": "A POST request is sent to `/api/projects`, and the new project appears in the sidebar after successful response."
+            },
+            {
+                "step": 2,
+                "title": "Updating a Document",
+                "description": "Morgan edits a document and saves it, trusting that the backend handles persistence.",
+                "action": "Edit content and click the Save button.",
+                "expected_outcome": "A PUT request is sent to `/api/documents/{id}` with the updated content, and a success message confirms the save."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "PostgreSQL database connection using specified environment variables",
+        "user_persona": "A DevOps engineer deploying the application for the first time.",
+        "user_goal": "To confirm that the backend successfully connects to PostgreSQL with the given config.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Backend Server",
+                "description": "Pat starts the backend server and watches the logs to verify database connectivity.",
+                "action": "Run `npm run dev` from the terminal.",
+                "expected_outcome": "The backend initializes and logs a successful connection to PostgreSQL using the specified environment variables."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Schema Integrity",
+                "description": "Pat checks that the necessary tables were created and match the expected schema.",
+                "action": "Inspect the database schema using a DB tool.",
+                "expected_outcome": "Tables like `projects`, `documents`, and `templates` exist with correct columns and constraints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetches all data dynamically from backend APIs",
+        "user_persona": "A QA tester validating that no static or mock data is present.",
+        "user_goal": "To ensure all displayed content comes from live API calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Projects on Startup",
+                "description": "Quinn opens the app and observes the project list loading dynamically.",
+                "action": "Load the application in a fresh browser session.",
+                "expected_outcome": "A GET request is made to `/api/projects`, and the returned data populates the project tree without delay."
+            },
+            {
+                "step": 2,
+                "title": "Opening a Document",
+                "description": "Quinn clicks a document in the tree and expects its content to come from the backend.",
+                "action": "Click a document item in the sidebar.",
+                "expected_outcome": "A GET request is sent to `/api/documents/{id}`, and the fetched content loads into the editor."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run install:all for frontend and backend installation",
+        "user_persona": "A new contributor setting up the project for the first time.",
+        "user_goal": "To easily install dependencies for both frontend and backend with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Robin clones the repo and wants to get started quickly by installing everything at once.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both `client/` and `server/` directories have their dependencies installed successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run dev to start frontend and backend concurrently",
+        "user_persona": "A developer working on both frontend and backend features simultaneously.",
+        "user_goal": "To launch both development servers with one command for efficient workflow.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Sam is ready to develop and wants to start both the frontend and backend servers.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Both the frontend (Vite or Webpack dev server) and backend Node.js server start concurrently in the same terminal window."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI styled with honeydew background color and dark olive green component color",
+        "user_persona": "A UI designer ensuring brand consistency across the application.",
+        "user_goal": "To verify that all components use the correct color scheme as specified.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Background Color",
+                "description": "Taylor inspects the editor's background to confirm it matches the specified honeydew tone.",
+                "action": "View the editor interface and inspect CSS variables.",
+                "expected_outcome": "The background color is set to `#F0FFF0` (honeydew) across the main panels and body."
+            },
+            {
+                "step": 2,
+                "title": "Validating Component Colors",
+                "description": "Taylor checks buttons and borders to ensure they use dark olive green.",
+                "action": "Inspect component styles like buttons and input borders.",
+                "expected_outcome": "Component colors are consistently `#556B2F` (dark olive green) as defined in the global stylesheet."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "File upload and management capabilities for images and other assets",
+        "user_persona": "A content creator adding media assets to enrich web pages.",
+        "user_goal": "To upload images and insert them into documents seamlessly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading an Image",
+                "description": "Jordan drags an image file into the designated dropzone to upload it for use in a document.",
+                "action": "Drag and drop an image file into the asset upload zone.",
+                "expected_outcome": "The file uploads with progress indication, and a thumbnail preview appears in the asset manager."
+            },
+            {
+                "step": 2,
+                "title": "Inserting Asset into Document",
+                "description": "Jordan selects the uploaded image and copies the embed code to insert into the current document.",
+                "action": "Click the uploaded image asset and choose 'Copy Embed Code'.",
+                "expected_outcome": "The HTML img tag with the correct src URL is copied to the clipboard and can be pasted into the editor."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User session or local storage for saving project states and templates",
+        "user_persona": "A frequent user who wants to pick up where they left off without re-navigating.",
+        "user_goal": "To retain the last open project and recently edited documents across sessions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Working on a Document",
+                "description": "Alex edits a document and closes the browser tab without explicitly saving.",
+                "action": "Edit content and close the browser tab.",
+                "expected_outcome": "Current project ID and document state are saved to localStorage before the tab closes."
+            },
+            {
+                "step": 2,
+                "title": "Returning to Work",
+                "description": "When Alex returns, he expects to see the same project and document loaded automatically.",
+                "action": "Reopen the application in the browser.",
+                "expected_outcome": "The previously opened project and document are restored from localStorage, and the editor resumes where it left off."
+            }
+        ]
+    }
+]

@@ -1,0 +1,383 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "#f8f9fa",
+            "component_color": "#708090",
+            "navbar_links": [
+                "Home",
+                "Matches",
+                "Teams",
+                "Players",
+                "Analysis",
+                "Betting"
+            ],
+            "search_icon": "/icons/search.svg",
+            "filter_icon": "/icons/filter.svg"
+        },
+        "function": "To display a responsive webpage with a consistent theme of ghost white background and slate gray components.",
+        "static_description": "The entire page background is set to ghost white (#f8f9fa). All major components such as headers, cards, and containers use slate gray (#708090) for their borders and accents. Navigation bar spans the top with six links: Home, Matches, Teams, Players, Analysis, and Betting.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigates user to the selected section (Home, Matches, Teams, Players, Analysis, Betting)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "nav_bar": {
+                "links": [
+                    "Home",
+                    "Matches",
+                    "Teams",
+                    "Players",
+                    "Analysis",
+                    "Betting"
+                ]
+            },
+            "dashboard_section": {
+                "title": "Live & Upcoming Matches",
+                "match_cards": [
+                    {
+                        "team1": "Team A",
+                        "team2": "Team B",
+                        "time": "2024-04-05 19:00",
+                        "status": "Upcoming",
+                        "score": "0 - 0"
+                    }
+                ]
+            }
+        },
+        "function": "To present a dashboard showcasing live and upcoming basketball matches with essential details.",
+        "static_description": "A central dashboard section displays cards representing matches. Each card includes two teams, match time, status ('Live' or 'Upcoming'), and current score. Cards are styled using slate gray borders and background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On a match card opens a detailed view of the game including stats, predictions, and betting options."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "match_history_table": {
+                "columns": [
+                    "Date",
+                    "Teams",
+                    "Score",
+                    "Match Result"
+                ],
+                "data": [
+                    {
+                        "date": "2024-03-20",
+                        "teams": "Lakers vs Warriors",
+                        "score": "102 - 98",
+                        "result": "Lakers Win"
+                    }
+                ]
+            },
+            "sort_filter_options": {
+                "by_date": "Ascending / Descending",
+                "by_team": "All Teams",
+                "by_category": "All Categories"
+            }
+        },
+        "function": "To allow users to browse through detailed match history with scores, dates, and teams.",
+        "static_description": "A table displaying match history with columns for Date, Teams, Score, and Match Result. Filters and sorting controls appear above the table allowing selection by date, team, or category.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "On filter/sort buttons changes the displayed data accordingly."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Highlights rows in the table for better readability."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "team_rankings_table": {
+                "columns": [
+                    "Rank",
+                    "Team Name",
+                    "Wins",
+                    "Losses",
+                    "Points"
+                ],
+                "data": [
+                    {
+                        "rank": 1,
+                        "team": "Lakers",
+                        "wins": 42,
+                        "losses": 10,
+                        "points": 1200
+                    }
+                ]
+            }
+        },
+        "function": "To display team rankings with win-loss records, points, and statistics.",
+        "static_description": "A ranked list showing teams ordered by performance. Columns include Rank, Team Name, Wins, Losses, and Points. Styled with slate gray headers and alternating row colors.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects a team to view more detailed stats or historical performance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "player_performance_chart": {
+                "type": "bar chart",
+                "metrics": [
+                    "Points Per Game",
+                    "Assists",
+                    "Rebounds"
+                ]
+            },
+            "player_stats_table": {
+                "columns": [
+                    "Player Name",
+                    "Team",
+                    "PPG",
+                    "Assists",
+                    "Rebounds"
+                ],
+                "data": [
+                    {
+                        "name": "LeBron James",
+                        "team": "Lakers",
+                        "ppg": 27.5,
+                        "assists": 7.2,
+                        "rebounds": 8.1
+                    }
+                ]
+            }
+        },
+        "function": "To show individual player performance metrics including scoring, assists, and rebounds.",
+        "static_description": "A combination of a bar chart and a table showing player statistics. The chart visually represents PPG, Assists, and Rebounds while the table lists each player’s stats in tabular form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays tooltips with exact numbers when hovering over chart bars."
+            },
+            {
+                "interaction": "Click",
+                "description": "Opens detailed stats modal for selected player."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "data_visualization_charts": {
+                "types": [
+                    "Line Chart for Trends",
+                    "Bar Chart for Performance"
+                ],
+                "example_metrics": [
+                    "Team Win Rate Over Time",
+                    "Player Scoring Trend"
+                ]
+            },
+            "chart_controls": {
+                "time_range": [
+                    "Last Week",
+                    "Last Month",
+                    "Last Season"
+                ],
+                "metric_selection": [
+                    "Win Rate",
+                    "Scoring Avg"
+                ]
+            }
+        },
+        "function": "To provide visual representations of trends in team and player performance.",
+        "static_description": "Interactive charts (line and bar) illustrating trends over time. Controls at the top allow filtering by time range and metric type.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Changes the time range or metric shown on the chart."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Shows detailed data point information on the chart."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "prediction_model_api": "API endpoint to retrieve match predictions with confidence levels based on historical data.",
+            "prediction_result_card": {
+                "content": {
+                    "team1": "Lakers",
+                    "team2": "Warriors",
+                    "predicted_winner": "Lakers",
+                    "confidence_level": "85%"
+                }
+            }
+        },
+        "function": "To offer match prediction models with confidence levels based on historical data.",
+        "static_description": "Prediction cards display the predicted winner and a confidence percentage. These results come dynamically from the backend API.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "View additional details about how the prediction was made."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "betting_recommendation_api": "API to fetch betting recommendations with odds and risk assessments.",
+            "recommendation_card": {
+                "content": {
+                    "match": "Lakers vs Warriors",
+                    "recommended_bet": "Lakers Moneyline",
+                    "odds": "+110",
+                    "risk_assessment": "Low Risk"
+                }
+            }
+        },
+        "function": "To provide betting recommendations with odds and risk assessments.",
+        "static_description": "Cards display recommended bets along with associated odds and risk levels. Data is fetched in real-time from an external recommendation engine API.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens a modal with full betting details and user-specific advice."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filter_sort_controls": {
+                "date_filter": "Range Picker",
+                "team_filter": "Dropdown Menu",
+                "player_filter": "Search Field",
+                "category_filter": "Checkbox List"
+            }
+        },
+        "function": "To enable filtering and sorting of data by date, team, player, or category.",
+        "static_description": "Control panel containing date picker, dropdown menus for teams and categories, and a search field for players. Users can apply filters to refine displayed data across all sections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Applies selected filters to update data views."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Shows tooltip explaining filter purpose."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "live_updates_api": "Real-time WebSocket or polling API to update match scores and betting odds.",
+            "real_time_indicator": "Live indicator icon next to active matches."
+        },
+        "function": "To support real-time updates for live match scores and betting odds.",
+        "static_description": "Live matches are highlighted with a red dot or label indicating they're actively updating. Scores and odds refresh automatically every few seconds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Updates live match cards with new scores and odds."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_functionality": {
+                "placeholder_text": "Search for teams, players, or matches...",
+                "icon": "/icons/search.svg"
+            },
+            "search_results_display": {
+                "results_list": [
+                    "Team Name",
+                    "Player Name",
+                    "Match Details"
+                ]
+            }
+        },
+        "function": "To include a search functionality to find specific teams, players, or matches.",
+        "static_description": "A prominent search bar at the top of the page allows users to enter keywords related to teams, players, or matches. Results appear below the search bar as suggestions or direct links.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types, auto-complete suggestions appear."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selects a suggestion to navigate to the relevant section."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_api": "External authentication service for user registration and login.",
+            "login_modal": {
+                "fields": [
+                    "Email",
+                    "Password"
+                ],
+                "buttons": [
+                    "Login",
+                    "Register"
+                ]
+            }
+        },
+        "function": "To allow user account creation and login for a personalized experience.",
+        "static_description": "A login modal accessible via a user icon in the navbar. Fields include email and password. Buttons for Login and Register.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens the login/register modal."
+            },
+            {
+                "interaction": "Submit Form",
+                "description": "Validates credentials and logs user in or creates a new account."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "user_profile_api": "API endpoint to retrieve and store user betting history and predictions.",
+            "profile_section": {
+                "sections": [
+                    "Betting History",
+                    "Predictions Made",
+                    "Favorites"
+                ]
+            }
+        },
+        "function": "To store and display user betting history and predictions in a profile section.",
+        "static_description": "Upon login, a dedicated profile section shows betting history, past predictions, and favorite teams/players. Data is pulled from the backend API.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigates to different tabs within the profile (History, Predictions, Favorites)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "frontend_api_calls": {
+                "description": "All frontend data must be fetched via API calls to the backend. No mock or hardcoded data allowed."
+            },
+            "backend_database": {
+                "schema": "PostgreSQL with tables: users, matches, teams, players, predictions, bets, etc.",
+                "environment_variables": {
+                    "DB_HOST": "localhost",
+                    "DB_PORT": "5432",
+                    "DB_USERNAME": "myappuser",
+                    "DB_PASSWORD": "myapppassword",
+                    "DB_NAME": "myapp"
+                }
+            }
+        },
+        "function": "To ensure all frontend data is fetched from backend APIs without hardcoded values.",
+        "static_description": "Frontend components interact with backend services through RESTful or GraphQL APIs. The backend connects to a PostgreSQL database configured with standard environment variables.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "Initial data load occurs through API calls to populate dashboard, tables, charts, etc."
+            }
+        ]
+    }
+]

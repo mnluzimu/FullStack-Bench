@@ -1,0 +1,394 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all stock-related data dynamically from backend APIs",
+        "user_persona": "A financial analyst named Sarah who wants to quickly review real-time stock data.",
+        "user_goal": "Sarah wants to enter a stock symbol and see updated stock information loaded dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens the website and sees a clean white background with navy-themed UI components. She notices the search bar prominently displayed.",
+                "action": "Load the homepage URL in the browser.",
+                "expected_outcome": "Homepage loads successfully with a white background and navy UI components including a search input field and button."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Symbol",
+                "description": "Sarah types 'AAPL' into the search input field to look up Apple Inc.'s stock information.",
+                "action": "Type 'AAPL' into the stock search input field (#stock-search).",
+                "expected_outcome": "The text 'AAPL' appears in the search field, and the search button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Triggering Search",
+                "description": "Sarah clicks the search button to fetch the stock data for AAPL.",
+                "action": "Click the search button (#search-btn).",
+                "expected_outcome": "A loading spinner appears while the frontend makes an API call to fetch stock data dynamically from the backend."
+            },
+            {
+                "step": 4,
+                "title": "Viewing Loaded Data",
+                "description": "After a moment, the loading spinner disappears and the stock information for AAPL is displayed.",
+                "action": "Wait for API response and UI update.",
+                "expected_outcome": "Stock information including company details, market trends chart, and financial data are displayed without any hardcoded values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Mike responsible for deploying the backend service.",
+        "user_goal": "Mike wants to ensure the backend connects properly to the PostgreSQL database using the specified environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Environment Variables",
+                "description": "Mike sets up the required environment variables for the database connection before starting the backend server.",
+                "action": "Set environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+                "expected_outcome": "Environment variables are configured correctly in the system or .env file."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Server",
+                "description": "Mike starts the backend server to initialize the database connection.",
+                "action": "Run the backend server startup command.",
+                "expected_outcome": "Backend server initializes successfully and establishes a connection to the PostgreSQL database using the provided credentials."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Database Connection",
+                "description": "Mike checks logs or runs a test query to confirm the database tables exist and are accessible.",
+                "action": "Check server logs or execute a test query against the database.",
+                "expected_outcome": "Database connection is verified, and tables like 'users' and 'report_history' are present and accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search functionality allowing users to input stock codes or names",
+        "user_persona": "A new investor named Lisa exploring different stocks.",
+        "user_goal": "Lisa wants to search for stock information by typing a stock code or name into the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Search Interface",
+                "description": "Lisa visits the homepage and immediately sees the centered search bar with a navy input field and button.",
+                "action": "Navigate to the homepage.",
+                "expected_outcome": "A search bar with a navy-styled input field and button labeled 'Search' is visible on a white background."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Code",
+                "description": "Lisa enters 'GOOGL' into the search field to find Alphabet Inc.'s stock information.",
+                "action": "Type 'GOOGL' into the search input field.",
+                "expected_outcome": "The input field shows 'GOOGL' and the search button is now enabled."
+            },
+            {
+                "step": 3,
+                "title": "Initiating Search via Button Click",
+                "description": "Lisa clicks the 'Search' button to initiate her request.",
+                "action": "Click the 'Search' button.",
+                "expected_outcome": "The system processes the input and begins fetching data for GOOGL."
+            },
+            {
+                "step": 4,
+                "title": "Using Keyboard Shortcut",
+                "description": "Lisa tries searching again but this time presses Enter after typing the stock name.",
+                "action": "Type 'Microsoft' into the input field and press Enter.",
+                "expected_outcome": "Same result as clicking the search button; the system processes 'Microsoft' and fetches relevant data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A form interface for users to select report formats and content preferences",
+        "user_persona": "An investment manager named Robert preparing a presentation.",
+        "user_goal": "Robert wants to generate a custom stock report by selecting preferred format and content sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Report Options",
+                "description": "After searching for a stock, Robert notices a collapsible form panel below the search results offering customization options.",
+                "action": "Scroll down to view the report customization form.",
+                "expected_outcome": "A form panel with sections for format selection and content choices is visible, styled with navy elements on a white background."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Report Format",
+                "description": "Robert selects 'PDF' from the dropdown menu under report format options.",
+                "action": "Select 'PDF' from the format options dropdown.",
+                "expected_outcome": "'PDF' is selected as the desired report format."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Content Sections",
+                "description": "Robert checks boxes for 'Basic Info', 'Market Trends', and 'Financial Data' to include those sections in his report.",
+                "action": "Check checkboxes for Basic Info, Market Trends, and Financial Data.",
+                "expected_outcome": "All three content sections are marked for inclusion in the report."
+            },
+            {
+                "step": 4,
+                "title": "Submitting Preferences",
+                "description": "Satisfied with his selections, Robert clicks the 'Generate Report' button.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "Selected preferences are submitted along with the current stock identifier to trigger report creation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A report generation feature that creates customized stock reports based on user inputs",
+        "user_persona": "A portfolio manager named Emily needing detailed stock analysis.",
+        "user_goal": "Emily wants to generate a comprehensive report with her selected parameters and download it.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Report Generation",
+                "description": "Emily has already searched for a stock and made her format and content selections. Now she clicks the 'Generate Report' button.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "System starts generating the customized stock report based on Emily's selections."
+            },
+            {
+                "step": 2,
+                "title": "Waiting During Processing",
+                "description": "While the report generates, Emily observes a loading indicator confirming the process is underway.",
+                "action": "Observe the UI during report generation.",
+                "expected_outcome": "A loading spinner overlay appears indicating that the report generation is in progress."
+            },
+            {
+                "step": 3,
+                "title": "Receiving Generated Report",
+                "description": "Once processing completes, the report preview appears or a download link becomes available.",
+                "action": "Wait for report generation to complete.",
+                "expected_outcome": "Either an inline iframe preview of the report shows up or a navy-styled download link becomes visible."
+            },
+            {
+                "step": 4,
+                "title": "Downloading the Final Report",
+                "description": "Emily clicks the download link to save the report in her chosen format.",
+                "action": "Click the download link.",
+                "expected_outcome": "The browser prompts to download the generated report in the selected format (e.g., PDF)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display of basic stock information including company details and ticker symbols",
+        "user_persona": "A student named Jake learning about stock markets.",
+        "user_goal": "Jake wants to understand fundamental information about a company by viewing its stock profile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Stock Information",
+                "description": "Jake searches for 'TSLA' to learn about Tesla Inc.",
+                "action": "Enter 'TSLA' in the search box and click Search.",
+                "expected_outcome": "Search results load with basic stock information displayed."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Company Profile",
+                "description": "Jake looks at the top section which displays key company details.",
+                "action": "Examine the basic info card/layout area.",
+                "expected_outcome": "A card-style layout presents company name, ticker symbol, sector, industry, and CEO with navy headings on a white background."
+            },
+            {
+                "step": 3,
+                "title": "Identifying Key Details",
+                "description": "Jake reads through the displayed fields to get a quick snapshot of the company.",
+                "action": "Read through company details such as Ticker Symbol, Sector, etc.",
+                "expected_outcome": "Essential stock information including company name ('Tesla Inc.'), ticker symbol ('TSLA'), sector, industry, and CEO are clearly shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Presentation of market trend analysis with charts or graphs",
+        "user_persona": "A day trader named Alex analyzing short-term market movements.",
+        "user_goal": "Alex wants to visualize historical stock performance to identify buying/selling opportunities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Market Trend Visualization",
+                "description": "After entering a stock symbol, Alex waits for the market trend chart to load.",
+                "action": "Search for a stock symbol and wait for the results page.",
+                "expected_outcome": "A responsive chart canvas embedded in a navy-bordered container appears showing historical price movements."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Chart Tooltips",
+                "description": "Alex moves his cursor over various points on the chart to inspect specific dates and closing prices.",
+                "action": "Hover over data points on the trend chart.",
+                "expected_outcome": "Tooltips appear revealing date and closing price values at hovered positions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Inclusion of financial data such as earnings, revenue, and key ratios in reports",
+        "user_persona": "An equity researcher named Priya evaluating financial health.",
+        "user_goal": "Priya wants to analyze quarterly financial figures to assess company performance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Financial Metrics Table",
+                "description": "After searching for a stock, Priya scrolls to the financial data section.",
+                "action": "Scroll to the financial data table section.",
+                "expected_outcome": "A tabular view displaying quarterly or annual financial figures such as earnings per share, total revenue, and key financial ratios is visible."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Financial Figures",
+                "description": "Priya examines numbers like P/E ratio and revenue growth to evaluate the company's financial standing.",
+                "action": "Scan financial data entries in the table.",
+                "expected_outcome": "Headers and data cells are styled consistently with navy font on a white background, making financial metrics easy to read."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A white background color scheme with navy-colored UI components",
+        "user_persona": "A UX designer named Tom reviewing the site's visual consistency.",
+        "user_goal": "Tom wants to verify that the entire website maintains a consistent white background with navy UI components.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Overall Design Theme",
+                "description": "Tom navigates through various pages of the website to observe the color scheme.",
+                "action": "Visit multiple pages of the website.",
+                "expected_outcome": "Every page utilizes a minimalist design featuring a pristine white background complemented by rich navy accents throughout buttons, headers, and interactive elements."
+            },
+            {
+                "step": 2,
+                "title": "Checking Specific UI Elements",
+                "description": "Tom inspects individual UI components like buttons, headers, and input fields.",
+                "action": "Examine UI components across the site.",
+                "expected_outcome": "All interactive elements and structural components maintain navy coloring over a white background as per brand guidelines."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and mobile viewing",
+        "user_persona": "A busy professional named David checking stocks on his phone during commute.",
+        "user_goal": "David wants to access the stock reporting tool seamlessly on both his desktop and mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Desktop Experience",
+                "description": "David first accesses the website from his office computer to perform detailed research.",
+                "action": "Open the website on a desktop browser.",
+                "expected_outcome": "Website layout adapts to full desktop resolution with optimal spacing and readability of all elements."
+            },
+            {
+                "step": 2,
+                "title": "Mobile Responsiveness Check",
+                "description": "Later, David switches to his smartphone to check a few stocks while traveling.",
+                "action": "Access the same website on a mobile device.",
+                "expected_outcome": "Layout fluidly adjusts to fit smaller screen sizes using CSS media queries and flexible grids without compromising usability or visual appeal."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system to manage access and report history",
+        "user_persona": "A frequent user named Olivia who wants to track her previous reports.",
+        "user_goal": "Olivia wants to log in to access her saved report history.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Login Page",
+                "description": "Olivia goes to the login page to sign in to her account.",
+                "action": "Navigate to /login route.",
+                "expected_outcome": "Dedicated login form with username/email and password fields appears."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Valid Credentials",
+                "description": "Olivia fills in her correct login details and submits the form.",
+                "action": "Enter valid credentials and click Submit/Login.",
+                "expected_outcome": "Authentication succeeds and Olivia is redirected to the dashboard."
+            },
+            {
+                "step": 3,
+                "title": "Accessing Report History",
+                "description": "On the dashboard, Olivia finds a section listing her previously generated reports.",
+                "action": "View the dashboard or report history section.",
+                "expected_outcome": "List of past reports with timestamps and download links is displayed, secured behind JWT-based session management."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "PDF and downloadable format options for generated stock reports",
+        "user_persona": "A consultant named Marcus preparing materials for a client meeting.",
+        "user_goal": "Marcus wants to generate and download a stock report in PDF format for sharing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Customized Report",
+                "description": "Marcus selects 'PDF' as the report format and chooses all content sections before clicking Generate Report.",
+                "action": "Select PDF format, choose content sections, then click Generate Report.",
+                "expected_outcome": "System generates the customized report in PDF format."
+            },
+            {
+                "step": 2,
+                "title": "Downloading the PDF",
+                "description": "Once the report is ready, Marcus clicks the download link specifically for the PDF version.",
+                "action": "Click the Download Report link for PDF format.",
+                "expected_outcome": "Browser prompts to download the report as a .pdf file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data fetching capability for up-to-date stock information",
+        "user_persona": "A swing trader named Nathan monitoring volatile stocks.",
+        "user_goal": "Nathan wants to monitor live price updates for a particular stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Stock Detail View",
+                "description": "Nathan searches for a highly traded stock and views its detail page.",
+                "action": "Search for a stock and navigate to its detail view.",
+                "expected_outcome": "Stock information loads, and a small 'Live' badge appears next to pricing information."
+            },
+            {
+                "step": 2,
+                "title": "Observing Live Updates",
+                "description": "Nathan watches as the stock price changes dynamically without manually refreshing the page.",
+                "action": "Monitor stock price display over time.",
+                "expected_outcome": "Price values update automatically in real-time via WebSocket connection, reflecting latest market activity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for invalid stock codes or unavailable data",
+        "user_persona": "A novice investor named Chloe experimenting with stock searches.",
+        "user_goal": "Chloe accidentally enters an incorrect stock code and expects helpful feedback.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Invalid Stock Code",
+                "description": "Chloe mistakenly types 'XYZ123' into the search bar and hits Enter.",
+                "action": "Type 'XYZ123' into the search input and press Enter.",
+                "expected_outcome": "System attempts to process the invalid input."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Error Feedback",
+                "description": "Instead of results, Chloe sees a clear error message explaining what went wrong.",
+                "action": "Observe the response after submitting invalid input.",
+                "expected_outcome": "A prominent error message stating 'Invalid stock code or data unavailable.' appears below the search bar, styled appropriately within the navy-white theme."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading indicators during data fetching and report generation processes",
+        "user_persona": "A patient user named Grace waiting for her reports to generate.",
+        "user_goal": "Grace wants reassurance that her requests are being processed even if there’s a delay.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Long-Running Process",
+                "description": "Grace clicks the 'Generate Report' button knowing it may take some time.",
+                "action": "Click the Generate Report button.",
+                "expected_outcome": "A rotating spinner graphic overlays the affected area during active request processing."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Progress Indicator",
+                "description": "While waiting, Grace sees the spinner animation keeping her informed of ongoing activity.",
+                "action": "Watch the loading spinner during report generation.",
+                "expected_outcome": "Spinner remains visible centered above a semi-transparent mask, maintaining focus until the operation completes."
+            }
+        ]
+    }
+]

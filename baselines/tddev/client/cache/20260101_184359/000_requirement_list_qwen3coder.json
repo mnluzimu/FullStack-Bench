@@ -1,0 +1,228 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/leads",
+            "databaseSchema": "CREATE TABLE leads (id SERIAL PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), phone VARCHAR(50), status VARCHAR(100), category VARCHAR(100), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Fetch and display sales leads from the backend API.",
+        "static_description": "A table displaying sales leads with columns for Name, Email, Phone, Status, Category, Created At, and Updated At. Each row corresponds to a lead entry fetched dynamically from the backend.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a lead row opens a modal or navigates to a detailed view of that lead."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads more leads via infinite scroll pagination if supported by the API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": {
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "databaseSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT NOT NULL, role VARCHAR(50));"
+        },
+        "function": "Establish connection to PostgreSQL database using environment variables and manage user authentication.",
+        "static_description": "No visible UI element; this is a backend-only component ensuring secure access through authenticated sessions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseSchema": "CREATE TABLE leads (id SERIAL PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), phone VARCHAR(50), status VARCHAR(100), category VARCHAR(100), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Define database schema to store sales leads with essential contact and categorization fields.",
+        "static_description": "No visible UI element; defines the structure of the leads table in the PostgreSQL database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchIcon": "/icons/search.svg",
+            "filterIcon": "/icons/filter.svg",
+            "apiEndpoint": "/api/leads"
+        },
+        "function": "Allow users to browse and manage sales leads using search and filtering capabilities.",
+        "static_description": "Search bar at the top with a magnifying glass icon. Below it, filter controls including dropdowns for status and category. Leads displayed in a responsive grid or table format.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the filter icon toggles advanced filtering options. Clicking 'Apply Filters' updates the lead list based on selected criteria."
+            },
+            {
+                "interaction": "Type",
+                "description": "Typing in the search bar filters results in real-time as the user types."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "editIcon": "/icons/edit.svg",
+            "saveIcon": "/icons/save.svg",
+            "apiEndpoint": "/api/leads/{id}"
+        },
+        "function": "Enable editing of lead information such as contact details and pipeline status.",
+        "static_description": "Each lead card or table row contains an 'Edit' button represented by a pencil icon. Clicking reveals editable form fields for all relevant lead attributes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the edit icon switches the lead display into an editable mode where changes can be made. After editing, clicking the save icon submits the updated data back to the backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "emailServiceAPI": "Integration with an external email service provider (e.g., SendGrid or Mailgun)",
+            "messageTemplateSchema": "Table: message_templates(id SERIAL, subject TEXT, body TEXT, trigger_event VARCHAR(100))"
+        },
+        "function": "Implement an automated message sending system for nurturing leads and communication.",
+        "static_description": "Configuration panel showing available message templates and triggers. List of sent messages with timestamps and delivery statuses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Send Test Message' sends a test version of the configured template to the current user’s email address."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing a dropdown selection for a message trigger automatically saves the setting without requiring a separate click."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "tagIcon": "/icons/tag.svg",
+            "segmentIcon": "/icons/segment.svg",
+            "apiEndpoint": "/api/tags"
+        },
+        "function": "Provide tools for organizing and categorizing leads using custom tags and segments.",
+        "static_description": "Sidebar with sections labeled 'Tags' and 'Segments'. Each shows existing categories with color-coded labels. New tags can be added via an input field below each section.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a tag or segment applies that filter to the main lead listing area."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a lead onto a tag or segment assigns that label to the lead."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "settingsGearIcon": "/icons/settings-gear.svg",
+            "apiEndpoint": "/api/settings"
+        },
+        "function": "Offer an interface for managing application preferences and business rules.",
+        "static_description": "Settings page divided into collapsible sections like 'General', 'Notifications', and 'Business Rules'. Each section includes various input fields (textboxes, checkboxes, etc.) representing configurable parameters.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the gear icon navigates to the Settings page. Within the page, clicking section headers expands or collapses those settings panels."
+            },
+            {
+                "interaction": "Change",
+                "description": "Modifying any setting immediately updates the local state but requires explicit saving before persisting to the backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dropdownArrowIcon": "/icons/dropdown-arrow.svg",
+            "apiEndpoint": "/api/dropdowns"
+        },
+        "function": "Support dynamic dropdown menus whose contents are managed through the application.",
+        "static_description": "Dropdown menus throughout the app (status selector, category picker) pull their options from a centralized backend source. An admin-only editor allows modifying these lists.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the dropdown arrow expands the list of available options. Clicking outside collapses it again."
+            },
+            {
+                "interaction": "Select",
+                "description": "Selecting an option populates the associated field with that value and may trigger dependent actions (like cascading dropdowns)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Chart.js or similar charting library",
+            "reportDataEndpoint": "/api/reports",
+            "dashboardLayout": "Grid-based layout with widgets for different KPIs"
+        },
+        "function": "Display sales metrics, lead conversion rates, and performance analytics in a dashboard.",
+        "static_description": "Dashboard with multiple chart widgets arranged in a grid. Charts include line graphs for trend analysis, pie charts for distribution, and bar charts for comparisons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements displays tooltips with detailed numerical data."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on certain chart points drills down into more granular views of the underlying data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "tipsContentSource": "Textual content stored in markdown or CMS-like backend storage",
+            "lightbulbIcon": "/icons/lightbulb.svg"
+        },
+        "function": "Present helpful advice and guidance related to CRM usage and integrations.",
+        "static_description": "Dedicated 'Best Practices' tab containing articles or tips rendered in readable formats. Icons accompany major headings for quick recognition.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on article titles expands full content within the same view or redirects to dedicated pages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "username",
+                "password"
+            ],
+            "authApiEndpoint": "/api/auth/login",
+            "lockIcon": "/icons/lock.svg"
+        },
+        "function": "Secure access to the CRM platform using user authentication and authorization.",
+        "static_description": "Login screen featuring a centered form with inputs for username and password, along with a branded logo above and a 'Log In' submit button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting valid credentials logs the user in and redirects them to the dashboard. Invalid attempts show error messages beneath the login form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColor": "#FFEFD5",
+            "componentColor": "#FF8C00",
+            "responsiveFramework": "CSS media queries or Tailwind CSS breakpoints"
+        },
+        "function": "Ensure consistent styling across devices with a warm background and vibrant accent colors.",
+        "static_description": "Entire site uses papaya whip (#FFEFD5) as the base background color. All interactive components use dark orange (#FF8C00) for borders, buttons, and highlights.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Configure package.json scripts for unified frontend/backend installation and development startup.",
+        "static_description": "The root directory's package.json file includes two key scripts under the 'scripts' object named 'install:all' and 'dev'. These orchestrate parallel execution of commands across both frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "developmentServerPort": "3000 (frontend), 3001 (backend)",
+            "concurrentlyTool": "Node.js module 'concurrently'"
+        },
+        "function": "Set up concurrent development environments for seamless frontend and backend operation during development.",
+        "static_description": "Running 'npm run dev' launches both servers simultaneously—one serving the React/Vue/etc frontend on port 3000 and another running Express/Fastify/etc backend on port 3001.",
+        "interaction_and_states": []
+    }
+]

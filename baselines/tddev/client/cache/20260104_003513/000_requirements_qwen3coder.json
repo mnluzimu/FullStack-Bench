@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all to-do data from backend APIs",
+    "A backend API that connects to a PostgreSQL database using specified environment variables",
+    "Functionality to create new to-do items with title, description, and due date",
+    "Functionality to edit existing to-do items including title, description, and due date",
+    "Functionality to delete to-do items permanently",
+    "Ability to mark tasks as completed or uncompleted",
+    "Filtering capability to show all, active, or completed tasks",
+    "Search functionality to find tasks by keywords in title or description",
+    "Display all to-do items in a list view with key details visible",
+    "Responsive UI design with lavender background and indigo components across all pages",
+    "Real-time synchronization between frontend and backend for all CRUD operations",
+    "Error handling for failed API requests or database connections",
+    "Validation for required fields when creating or editing tasks",
+    "Pagination or infinite scroll for browsing long lists of tasks",
+    "Package.json configured with npm run install:all and npm run dev scripts"
+]

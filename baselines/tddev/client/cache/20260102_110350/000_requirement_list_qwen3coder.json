@@ -1,0 +1,217 @@
+[
+    {
+        "resource_dependency": {
+            "emailComposeFormSchema": "Database table 'emails' with fields: id (UUID), subject (string), body (text), sender_email (string), recipients (array of strings), cc (array of strings), bcc (array of strings), template_id (foreign key to templates.id), status (enum: draft, sent, failed), created_at (timestamp), updated_at (timestamp)",
+            "emailServiceProviderAPI": "Integration with an external email service provider (e.g., SendGrid, AWS SES) for sending emails via API calls"
+        },
+        "function": "Provides a user interface for composing email messages including subject, body, and metadata fields",
+        "static_description": "Displays a form titled 'Compose Email' with a cornsilk background and peru-colored borders. Includes labeled input fields for Subject, To, CC, BCC, and Body. Has buttons for Attachments, Templates, Send, Save Draft, and Cancel. Uses placeholder text in each field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Send' triggers validation checks and submits the composed email data to the backend API endpoint '/api/send-email'. Shows loading spinner during submission."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Draft' saves current composition to the database with status='draft' and displays confirmation message."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Cancel' prompts user to confirm discard action before clearing the form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "recipientListEndpoint": "/api/recipients",
+            "contactDataSchema": "Table 'contacts' with fields: id (UUID), name (string), email (string, unique), phone (string), company (string), created_at (timestamp)"
+        },
+        "function": "Enables users to select email recipients either from a searchable list of existing contacts or by manually entering email addresses",
+        "static_description": "Within the email composer, shows a multi-select dropdown labeled 'To' with a search bar. Below it, displays a list of saved contacts in a scrollable pane with checkboxes next to each name/email pair. Manual entry textbox appears when typing unrecognized addresses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the dropdown toggles visibility of the contact list panel."
+            },
+            {
+                "interaction": "Type",
+                "description": "Typing in the 'To' field filters displayed contacts dynamically and allows freeform email address input separated by commas."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a checkbox adds the corresponding email to the recipient list; unchecking removes it."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fileUploadHandler": "/api/upload-attachment",
+            "maxFileSizeLimit": "Each attachment must not exceed 25MB",
+            "supportedFileTypes": "Supports common document formats: .pdf, .docx, .xlsx, .jpg, .png"
+        },
+        "function": "Allows users to attach files to outgoing emails before sending",
+        "static_description": "Shows an 'Attachments' section within the compose form featuring a drag-and-drop zone styled with cornsilk background and dashed peru border. Displays attached files as removable tags below the drop area with filename and size information.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging files over the drop zone highlights the area. Dropping uploads files asynchronously to the server and updates the UI with progress indicators per file."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Browse Files' button opens native file picker dialog. Selected files begin uploading immediately upon selection."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'X' icon on any uploaded attachment tag removes that file from the email."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sentEmailsEndpoint": "/api/sent-emails",
+            "emailStatusTrackingSchema": "Table 'email_logs' with fields: id (UUID), email_id (foreign key to emails.id), recipient_email (string), delivery_status (enum: queued, delivered, bounced, opened), sent_at (timestamp), delivery_time (timestamp)"
+        },
+        "function": "Provides an interface for users to view previously sent emails and monitor their delivery status",
+        "static_description": "Presents a tabbed navigation with 'Sent Emails' selected by default. Displays a sortable table listing emails with columns: Date Sent, Recipient Count, Subject, Status Summary, Actions. Each row uses a beige tone (#FFF8DC) background with peru accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a table row expands it to show detailed recipient-specific delivery statuses fetched from backend logs."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table ascending/descending based on that column’s value."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the refresh icon reloads the sent emails list from the backend without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "templateManagementEndpoint": "/api/templates",
+            "templateStorageSchema": "Table 'templates' with fields: id (UUID), name (string), subject_template (text), body_template (text), variables (JSON array), created_by (string), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Enables creation, storage, and reuse of predefined email templates",
+        "static_description": "Features a modal dialog titled 'Email Templates' accessible from the compose screen. Contains tabs for 'My Templates' and 'Create New Template'. Lists existing templates in a grid layout showing name and preview snippet. Form includes Name, Subject Template, and Body Template fields with variable insertion helper.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a template card populates the active email composer with its subject and body content."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Template' stores the current form contents to the database after validating required fields."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete icon beside a template entry prompts confirmation then deletes it from the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactCRUDEndpoints": "/api/contacts [GET, POST, PUT, DELETE]",
+            "contactDataSchema": "Table 'contacts' with fields: id (UUID), name (string), email (string, unique), phone (string), company (string), created_at (timestamp)"
+        },
+        "function": "Manages personal contact book allowing addition, modification, and removal of recipient entries",
+        "static_description": "Accessible via dedicated 'Contacts' navigation link. Renders a responsive table of contacts with Name, Email, Phone, Company columns. Features inline editing controls and bulk selection checkboxes. Includes floating action button '+' for adding new contacts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the '+' FAB opens a slide-in form panel pre-filled with empty fields for new contact entry."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the pencil icon in a row switches that row into editable mode with save/cancel options."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the trash bin icon deletes the associated contact record after prompting for confirmation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "emailSubmissionEndpoint": "/api/send-email [POST]",
+            "emailCompositionSchema": "Accepts JSON payload containing subject, body, sender_email, recipients, cc, bcc, template_id, attachment_ids"
+        },
+        "function": "Handles incoming email composition data from frontend and initiates processing workflow",
+        "static_description": "RESTful POST endpoint accepting structured email data. Validates inputs against schema definitions and prepares data for downstream services like templating engine and email dispatcher.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Uses env vars DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseInitializationScript": "Creates tables: emails, contacts, templates, attachments, email_logs with appropriate constraints and indexes"
+        },
+        "function": "Establishes secure connection between backend services and PostgreSQL database instance using provided credentials",
+        "static_description": "Backend module responsible for initializing database connection pool at startup using environment-based configuration. Ensures all subsequent queries use this pooled connection.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "externalEmailServiceAPI": "Third-party email delivery API such as SendGrid or AWS SES requiring authentication token and supporting batch send operations",
+            "deliveryStatusWebhookURL": "Publicly accessible URL endpoint configured to receive asynchronous delivery notifications from email provider"
+        },
+        "function": "Dispatches formatted email messages through integrated third-party email service provider",
+        "static_description": "Asynchronous service worker that receives processed email payloads and forwards them to external SMTP gateway or REST API endpoint. Handles error responses and retries according to provider guidelines.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "templateStorageSchema": "Table 'templates' with fields: id (UUID), name (string), subject_template (text), body_template (text), variables (JSON array), created_by (string), created_at (timestamp), updated_at (timestamp)",
+            "templateEndpoints": "/api/templates [GET, POST, PUT, DELETE]"
+        },
+        "function": "Stores user-defined reusable email structures and retrieves them on demand",
+        "static_description": "Persistent storage layer managing email template lifecycle including creation, retrieval, update, and deletion. Serves templates in normalized format ready for merging with runtime data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "attachmentUploadEndpoint": "/api/upload-attachment [POST]",
+            "attachmentMetadataSchema": "Table 'attachments' with fields: id (UUID), original_filename (string), stored_path (string), mime_type (string), size_bytes (integer), upload_timestamp (timestamp)",
+            "fileStorageLocation": "Local filesystem path or cloud storage bucket designated for temporary holding of uploaded files pending email dispatch"
+        },
+        "function": "Receives binary file uploads from clients, persists them securely, and associates metadata with relevant email records",
+        "static_description": "Secure HTTP handler accepting multipart/form-data requests carrying file streams. Stores files temporarily and returns identifiers used to reference attachments during email assembly phase.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "contactCRUDEndpoints": "/api/contacts [GET, POST, PUT, DELETE]",
+            "contactDataSchema": "Table 'contacts' with fields: id (UUID), name (string), email (string, unique), phone (string), company (string), created_at (timestamp)"
+        },
+        "function": "Maintains centralized registry of known correspondents with full Create, Read, Update, Delete capabilities",
+        "static_description": "Stateless API controllers exposing standard CRUD methods backed by persistent contact store. Enforces uniqueness constraint on email addresses and supports partial match searches across multiple fields.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "emailLogSchema": "Table 'email_logs' with fields: id (UUID), email_id (foreign key to emails.id), recipient_email (string), delivery_status (enum: queued, delivered, bounced, opened), sent_at (timestamp), delivery_time (timestamp)",
+            "statusUpdateMechanism": "Polling mechanism or webhook listener capturing real-time feedback from email delivery infrastructure"
+        },
+        "function": "Records historical events related to dispatched messages and tracks granular delivery outcomes per recipient",
+        "static_description": "Background logging subsystem continuously monitors transmission pipelines and writes outcome metrics to durable datastore. Provides audit trail and enables analytics dashboards.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\"",
+            "projectRootDirectoryStructure": "Root folder containing separate frontend/ and backend/ subdirectories alongside shared package.json"
+        },
+        "function": "Defines unified installation procedure for setting up entire development environment spanning client-side and server-side components",
+        "static_description": "Custom NPM script defined in root package.json designed to execute dependency resolution tasks simultaneously across frontend and backend codebases using concurrent execution utility.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartScriptCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\"",
+            "developmentServerPorts": "Frontend typically runs on port 3000; backend usually listens on port 5000 unless otherwise configured"
+        },
+        "function": "Launches coordinated local development servers for both frontend web application and backend API simultaneously",
+        "static_description": "NPM command leveraging concurrency tooling to initiate hot-reloading development environments side-by-side ensuring seamless interaction testing between layers.",
+        "interaction_and_states": []
+    }
+]

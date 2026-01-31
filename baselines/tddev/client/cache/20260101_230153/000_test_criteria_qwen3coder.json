@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A visitor interested in browsing upcoming fishing contests.",
+        "user_goal": "To view a list of upcoming contests by navigating to the Contests page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contests Page",
+                "description": "Sarah opens the website and sees the main navigation menu. She wants to see upcoming fishing contests, so she clicks the 'Contests' link.",
+                "action": "Click on the 'Contests' navigation link.",
+                "expected_outcome": "The page loads and displays a list of contest cards fetched dynamically from the /api/contests endpoint."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Contest Details",
+                "description": "Sarah finds an interesting contest and decides to learn more by clicking on its card.",
+                "action": "Click on a contest card.",
+                "expected_outcome": "She is taken to the detailed contest page populated with data fetched from the /api/contests/{id} endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the backend service.",
+        "user_goal": "To confirm the backend can successfully connect to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer sets the required environment variables and starts the backend server.",
+                "action": "Run the backend server with correct environment variables set.",
+                "expected_outcome": "Server logs show successful connection to PostgreSQL database at localhost:5432 with username 'myappuser' and database 'myapp'."
+            },
+            {
+                "step": 2,
+                "title": "Accessing API Endpoint",
+                "description": "Developer makes a GET request to retrieve contests to verify database connectivity.",
+                "action": "Send a GET request to /api/contests endpoint.",
+                "expected_outcome": "Returns a successful JSON response containing contest data retrieved from the connected PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest announcement posting functionality with title, description, date, and registration details",
+        "user_persona": "An administrator managing the fishing contest website.",
+        "user_goal": "To post a new fishing contest announcement with all relevant details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Panel",
+                "description": "Admin logs into the admin panel and navigates to the 'Post New Contest' section.",
+                "action": "Navigate to the contest creation form.",
+                "expected_outcome": "A form with fields for title, description, date, registration deadline, location, and prizes is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filling and Submitting Form",
+                "description": "Admin fills out all the required fields for the new contest and hovers over the submit button before clicking it.",
+                "action": "Fill in form fields and click the Submit button.",
+                "expected_outcome": "On hover, the button shade changes slightly. Upon clicking, the form data is sent via POST to /api/admin/contests and the contest is added to the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest results display functionality showing participant rankings and scores",
+        "user_persona": "A participant eager to check his performance in a recent fishing contest.",
+        "user_goal": "To view the results of a specific contest and see where he ranks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Results Section",
+                "description": "Mark visits the website and clicks on the 'Results' tab to find the latest contest results.",
+                "action": "Click on the 'Results' navigation link.",
+                "expected_outcome": "He is directed to a page displaying a table of results fetched from the /api/results endpoint."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Results Table",
+                "description": "Mark wants to sort the results by score to quickly see the top performers.",
+                "action": "Click on the 'Score' column header.",
+                "expected_outcome": "The table reorders to display participants sorted by score in descending order."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest photo gallery showcasing images from various contests",
+        "user_persona": "A photography enthusiast looking for contest highlights.",
+        "user_goal": "To browse through photos submitted from past fishing contests.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Photo Gallery",
+                "description": "Jenny clicks on the 'Photos' link in the navigation bar to explore contest images.",
+                "action": "Click on the 'Photos' navigation link.",
+                "expected_outcome": "A grid-based gallery of thumbnails loads, pulling images from the /api/photos endpoint."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Image in Lightbox",
+                "description": "Jenny finds a stunning photo and clicks on it to get a better look.",
+                "action": "Click on a thumbnail image.",
+                "expected_outcome": "The image opens in a lightbox overlay with navigation arrows, allowing her to view it in full size."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User browsing capability for contest announcements, results, and photos",
+        "user_persona": "A regular visitor interested in exploring different aspects of the site.",
+        "user_goal": "To filter content by type using the available tabs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Different Content Types",
+                "description": "Tom lands on the home page and wants to switch between viewing contest announcements, results, and photos.",
+                "action": "Click on the 'Announcements', 'Results', and 'Photos' tabs sequentially.",
+                "expected_outcome": "Each tab click updates the content area dynamically, showing the appropriate data fetched from respective APIs without reloading the page."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Specific Contests",
+                "description": "Tom uses the search bar to find contests related to 'Lake Fishing'.",
+                "action": "Type 'Lake Fishing' into the search bar and press Enter.",
+                "expected_outcome": "The contest list updates to show only those matching the search query, fetched via /api/contests with the query parameter applied."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User registration functionality for signing up to participate in contests",
+        "user_persona": "A new angler wanting to join an upcoming fishing contest.",
+        "user_goal": "To register for a specific contest using the multi-step registration form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Registration Process",
+                "description": "Alex clicks on the 'Register' button on a contest page and begins filling out the registration form.",
+                "action": "Click on the 'Register' button and start entering personal information.",
+                "expected_outcome": "The first step of the registration form appears with fields for name and email, styled with teal buttons for navigation."
+            },
+            {
+                "step": 2,
+                "title": "Completing Registration",
+                "description": "After filling in his details, Alex clicks 'Next' to proceed to the preferences section, then completes the registration.",
+                "action": "Click 'Next' to go to preferences, select options, and click 'Submit'.",
+                "expected_outcome": "The form progresses through steps logically. On final submission, data is posted to /api/registrations and Alex receives a confirmation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contest information pages displaying details like rules, prizes, and schedules",
+        "user_persona": "A potential contestant wanting to understand contest guidelines.",
+        "user_goal": "To read about the contest rules and schedule before deciding to register.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Contest Detail Page",
+                "description": "Jamie clicks on a contest card and lands on the contest detail page.",
+                "action": "Click on a contest card from the main list.",
+                "expected_outcome": "The page loads with collapsible sections for Rules, Schedule, Prizes, and Registration Info, styled with mint cream and teal."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Sections for More Info",
+                "description": "Jamie clicks on the 'Rules' section title to expand it and read the contest regulations.",
+                "action": "Click on the 'Rules' section header.",
+                "expected_outcome": "The section expands to reveal the detailed textual rules fetched from the contest data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with mint cream background and teal colored elements",
+        "user_persona": "A mobile user accessing the website on a smartphone.",
+        "user_goal": "To navigate the website comfortably on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile Device",
+                "description": "Pat opens the fishing contest website on her phone to check upcoming events.",
+                "action": "Open the website on a mobile browser.",
+                "expected_outcome": "The site renders responsively with a mint cream background and teal-colored interactive elements adapting to the smaller screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting contests, participants, results, and photo galleries",
+        "user_persona": "A database administrator setting up the backend database.",
+        "user_goal": "To initialize the database schema with proper tables and relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Database Tables",
+                "description": "The DBA runs the SQL script to create tables for contests, participants, results, and photos.",
+                "action": "Execute the provided CREATE TABLE statements in PostgreSQL.",
+                "expected_outcome": "Tables named contests, participants, results, and photos are created with appropriate columns and foreign key constraints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for fetching contest data, submitting registrations, and retrieving results",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "To consume backend APIs for displaying contest-related data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Contest Data",
+                "description": "Developer writes code to fetch contest data for display on the frontend.",
+                "action": "Make a GET request to /api/contests.",
+                "expected_outcome": "Receives a JSON response with a list of contests that can be rendered in the UI."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration",
+                "description": "Developer implements form submission logic to send user registration data.",
+                "action": "Send a POST request to /api/registrations with registration data.",
+                "expected_outcome": "Backend processes the request and returns a success response indicating the registration was saved."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for administrators to post new contest announcements",
+        "user_persona": "An authenticated admin managing contest content.",
+        "user_goal": "To create a new contest announcement using the admin interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging into Admin Interface",
+                "description": "Admin accesses the protected route to create new contest announcements.",
+                "action": "Navigate to admin contest creation page after authentication.",
+                "expected_outcome": "A rich form with fields for contest details and WYSIWYG editor is presented for creating a new contest entry."
+            },
+            {
+                "step": 2,
+                "title": "Saving New Contest",
+                "description": "Admin fills in the contest details and saves the new announcement.",
+                "action": "Click the Save button after completing the form.",
+                "expected_outcome": "The form data is submitted via POST to /api/admin/contests and the new contest appears in the public contest list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Photo upload and management system for contest images",
+        "user_persona": "An organizer uploading contest photos.",
+        "user_goal": "To upload and manage photos for a recently concluded contest.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Contest Photos",
+                "description": "Organizer drags and drops multiple contest photos into the upload zone.",
+                "action": "Drag and drop image files into the designated upload area.",
+                "expected_outcome": "Files begin uploading immediately via POST to /api/photos/upload and appear as previews with delete options."
+            },
+            {
+                "step": 2,
+                "title": "Deleting Unwanted Images",
+                "description": "Upon reviewing the uploads, organizer removes one image that was accidentally included.",
+                "action": "Click the delete icon on an unwanted image preview.",
+                "expected_outcome": "The image is removed both from the preview and deleted from backend storage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Registration form capturing user details like name, email, and contest preferences",
+        "user_persona": "A user registering for a fishing contest.",
+        "user_goal": "To sign up for a contest by providing personal information and preferences.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Registration Information",
+                "description": "User fills out the registration form with name, email, and selects preferred contest gear.",
+                "action": "Fill in registration form fields and select preference options.",
+                "expected_outcome": "All fields are clearly labeled and styled with the mint cream and teal theme, making it easy to complete."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration",
+                "description": "After filling in the last field, user presses Enter to submit the form.",
+                "action": "Press Enter key in the last input field.",
+                "expected_outcome": "The form validates inputs and submits the data to /api/registrations, confirming successful registration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with npm run install:all and npm run dev scripts",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "To easily install dependencies and start both frontend and backend servers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer clones the repository and runs the unified install command.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Developer starts both frontend and backend development servers with one command.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Frontend and backend servers start concurrently, ready for development and testing."
+            }
+        ]
+    }
+]

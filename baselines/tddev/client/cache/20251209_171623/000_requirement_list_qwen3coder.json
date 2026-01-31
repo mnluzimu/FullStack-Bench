@@ -1,0 +1,271 @@
+[
+    {
+        "resource_dependency": {
+            "mapAPI": "An interactive map API such as Mapbox or Google Maps, supporting overlay layers and clickable regions.",
+            "boundaryOverlayLayer": "GeoJSON formatted polygon data representing neighborhood boundaries.",
+            "areaSelectionIcon": "/icons/select-area.svg"
+        },
+        "function": "Display an interactive map interface allowing users to explore neighborhoods visually.",
+        "static_description": "The main view shows a full-screen interactive map with ivory background. Forest green control buttons are displayed at the top left corner including zoom in/out controls and a layer toggle button. A legend panel appears on the bottom right showing color-coded categories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the map selects an area and highlights its boundary in forest green."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling over the map zooms in or out centered on the cursor position."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging the map pans the visible region."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonViewTemplate": "<div class='comparison-container'><div class='area-card'></div><div class='area-card'></div></div>",
+            "compareButtonIcon": "/icons/compare-icon.svg",
+            "selectedAreasDataSchema": "A local storage schema storing selected area IDs and their associated metadata temporarily during session."
+        },
+        "function": "Allow users to select and compare multiple geographic areas side-by-side.",
+        "static_description": "Two cards appear next to each other under a header titled 'Area Comparison'. Each card displays basic info about the selected area: name, population estimate, and key metrics. A forest green 'Add Area' button allows adding more than two areas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Area' opens a modal to search or click another area on the map."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Double-clicking within an area card removes that area from the comparison."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographicChartLibrary": "Integration with Chart.js or D3.js for rendering bar/column charts.",
+            "demographicDataSchema": "Database table containing fields: area_id (foreign key), age_distribution (JSON), gender_ratio (float), education_level (enum), year (integer)."
+        },
+        "function": "Visualize demographic statistics of selected areas using interactive charts.",
+        "static_description": "Within the dashboard tab labeled 'Demographics', stacked column charts display age distribution per area. Pie charts show gender ratios and educational attainment levels. Tooltips provide exact values when hovering over chart segments.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays tooltip with precise percentage or count data upon hovering over chart elements."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a segment filters related charts to focus only on that category."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "economicDataSchema": "Database table with fields: area_id (foreign key), median_income (float), employment_rate (float), housing_cost_median (float), poverty_line_percentage (float), year (integer).",
+            "economicChartLibrary": "Integration with Chart.js or D3.js for line graphs and heatmaps."
+        },
+        "function": "Visualize economic indicators of selected areas using interactive charts.",
+        "static_description": "Economic dashboard includes a multi-line graph displaying trends in median income over time and a heatmap showing cost-of-living comparisons across areas. All charts use forest green accents against ivory backgrounds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Shows detailed financial figures and trend direction when hovering over data points."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a line or heatmap cell updates adjacent charts to highlight relevant economic correlations."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crimeDataSchema": "Database table with fields: area_id (foreign key), total_crimes (integer), violent_crimes (integer), property_crimes (integer), year (integer).",
+            "crimeHeatMapLayer": "A dynamic overlay layer provided by the map API to visualize crime density spatially."
+        },
+        "function": "Display crime data visualizations both numerically and geographically.",
+        "static_description": "Crime tab features a radial chart comparing total crimes, violent crimes, and property crimes among selected areas. Additionally, the map displays a semi-transparent heatmap indicating higher/lonelier crime zones via red/orange/yellow gradients.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart slices reveals numerical breakdowns of crime types."
+            },
+            {
+                "interaction": "Click",
+                "description": "Tapping a slice toggles visibility of corresponding crime type on the map overlay."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardLayoutEngine": "A grid-based layout engine like React Grid Layout for managing draggable/resizable chart widgets.",
+            "widgetCatalog": "Pre-defined set of available widgets (charts, tables, maps) that can be added to the dashboard."
+        },
+        "function": "Provide a customizable dashboard where users arrange and configure data visualizations.",
+        "static_description": "Dashboard consists of a blank canvas grid populated with resizable chart widgets. Users see a '+' icon in the top toolbar to open a catalog drawer listing available widgets. Forest green borders outline active/resizable components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a widget moves it around the grid; dropping snaps it into place."
+            },
+            {
+                "interaction": "Click",
+                "description": "Resizing handles appear after clicking a widget to adjust dimensions manually."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "layoutPersistenceSchema": "User preferences stored in database under user_profile.layouts with fields: layout_id (unique ID), widget_positions (JSON), last_modified (timestamp)."
+        },
+        "function": "Enable saving and restoring personalized dashboard configurations.",
+        "static_description": "A 'Save Layout' button sits beside the '+' icon. When clicked, it prompts for a layout name before saving current positions to the user’s profile. Saved layouts appear in a dropdown menu accessible anytime.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Layout' triggers a modal asking for a unique name. After confirmation, the layout persists server-side."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Double-clicking a saved layout entry loads that configuration immediately onto the dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBoxIcon": "/icons/search-icon.svg",
+            "areaSearchEndpoint": "RESTful API endpoint returning matching area names based on partial string input."
+        },
+        "function": "Support selecting areas either by clicking directly on the map or searching by name.",
+        "static_description": "At the top center of the map is a rounded search bar with a magnifying glass icon. Typing initiates live suggestions drawn from known area names. Clicking a suggestion centers the map on that area and highlights its boundary.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Typing characters filters suggested locations dynamically below the input field."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a suggestion centers and highlights the respective area on the map."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sideBySideComparisonTemplate": "<div class='side-by-side-view'><div class='area-column'></div><div class='area-column'></div></div>"
+        },
+        "function": "Present comparative data views side-by-side for easy analysis.",
+        "static_description": "Upon choosing to compare two or more areas, a split-screen view emerges showing individual columns for each area. Columns contain synchronized charts and metric summaries aligned horizontally for direct contrast.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Vertically scrolling one column scrolls others simultaneously to maintain alignment."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking inside a column focuses that area's data in all shared charts."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterPanelIcon": "/icons/filter-icon.svg",
+            "sortOptionsList": [
+                "Name",
+                "Population",
+                "Income",
+                "Crime Rate"
+            ]
+        },
+        "function": "Provide tools for filtering and sorting datasets within dashboards.",
+        "static_description": "A vertical filter panel slides in from the left edge showing checkboxes and dropdown menus for applying filters like date ranges, categories, or thresholds. Sort options are listed beneath filters, initially sorted alphabetically.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a checkbox or changing a dropdown applies the filter instantly to all dashboard visuals."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Double-clicking a sort option cycles through ascending/descending order."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormats": [
+                "CSV",
+                "PDF",
+                "PNG"
+            ],
+            "exportServiceAPI": "Backend microservice endpoint accepting structured data and returning downloadable file streams."
+        },
+        "function": "Allow exporting customized comparison data in various formats.",
+        "static_description": "An ellipsis (...) icon appears in the top-right corner of every dashboard view. Clicking opens a submenu offering export options including CSV, PDF, and PNG. Selected format downloads automatically once processed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing an export option sends current filtered/sorted dataset to backend which returns a prepared file download."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "boundaryStyleRules": "CSS rules defining stroke width (2px), fill opacity (0.1), and hover effects for polygon overlays."
+        },
+        "function": "Visually distinguish selected neighborhood boundaries on the map.",
+        "static_description": "When an area is selected, its outline becomes a bold forest green stroke with slight inner shading. Hovering over the boundary intensifies the border thickness slightly and adds a soft glow effect.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Boundary strokes become thicker and emit a subtle glow while mouse hovers over them."
+            },
+            {
+                "interaction": "Click",
+                "description": "Deselecting an area reverts its styling back to standard low-opacity fill without emphasis."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "legendTemplate": "<div class='legend-box'><ul><li>High Crime</li><li>Avg Income</li></ul></div>",
+            "keyMetricsDataSchema": "Fields in database: avg_population_density (float), median_age (int), dominant_industry_sector (string)"
+        },
+        "function": "Display contextual information explaining visual representations and summarizing essential metrics.",
+        "static_description": "A collapsible legend panel rests along the lower right corner showing color mappings for crime intensity and income brackets. Above this, key metrics boxes present condensed stats like average age and most common job sector.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the collapse arrow minimizes/maximizes the legend section to save screen space."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authFormTemplate": "<form id='login-form'><input type='email'/><input type='password'/><button>Login</button></form>",
+            "userProfileSchema": "Database table with fields: user_id (PK), email (string), password_hash (string), created_at (datetime), last_login (datetime), saved_layouts (array)."
+        },
+        "function": "Manage secure access and preserve personal settings across sessions.",
+        "static_description": "A login/signup form overlays the homepage until authenticated. Once logged in, a profile avatar replaces the sign-in link in the top navigation bar. Clicking the avatar opens a dropdown menu with links to saved layouts and logout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting valid credentials logs the user in and redirects to their last-used dashboard layout."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the profile avatar expands a quick-access menu with account-related actions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mediaQueryBreakpoints": "CSS breakpoints defined at 768px and 1024px for tablet and desktop responsiveness."
+        },
+        "function": "Ensure optimal usability regardless of device screen size.",
+        "static_description": "On mobile devices, the interface stacks vertically with smaller charts and simplified controls. Tablet mode introduces collapsible panels, while desktop retains full interactivity and wide-screen dashboard arrangements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "As window size changes, UI elements rearrange themselves according to predefined media query thresholds."
+            }
+        ]
+    }
+]

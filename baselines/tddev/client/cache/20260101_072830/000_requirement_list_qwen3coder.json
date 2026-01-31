@@ -1,0 +1,162 @@
+[
+    {
+        "resource_dependency": {
+            "wheel_spin_api": "POST /api/spin - Processes a wheel spin and returns the prize won.",
+            "prize_list_api": "GET /api/prizes - Returns a list of available prizes.",
+            "winning_history_api": "GET /api/history - Returns the current user's winning history.",
+            "user_identification_mechanism": "Session-based authentication using cookies or localStorage token for identifying users.",
+            "wheel_component_library": "A third-party or custom-built spinning wheel library with animation support.",
+            "background_color": "#D3D3D3",
+            "component_color": "#8B0000"
+        },
+        "function": "Allow users to spin a virtual wheel of fortune to win prizes and see results immediately.",
+        "static_description": "The main landing area features a large circular wheel centered on screen, visually divided into colored segments representing different prizes. Below the wheel is a prominent 'Spin' button styled in dark red (#8B0000) against a light gray (#D3D3D3) background. Above the wheel, there’s a title reading 'Spin to Win!' aligned center.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Spin' button triggers the spinning animation. The button becomes disabled until the spin completes."
+            },
+            {
+                "interaction": "Spin Animation Complete",
+                "description": "Upon completion, the wheel stops at a random segment, highlighting the winning prize. A modal appears displaying the prize name and message such as 'Congratulations! You've won [Prize Name]'."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "prize_list_api": "GET /api/prizes - Returns a list of available prizes.",
+            "background_color": "#D3D3D3",
+            "component_color": "#8B0000"
+        },
+        "function": "Display all available prizes that can be won through the wheel of fortune game.",
+        "static_description": "Below or beside the wheel section, a dedicated 'Prize List' section shows all available prizes in a responsive grid or table layout. Each item includes an image thumbnail, prize name, and probability percentage. Background color is light gray (#D3D3D3), and headers and borders use dark red (#8B0000).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "winning_history_api": "GET /api/history - Returns the current user's winning history.",
+            "background_color": "#D3D3D3",
+            "component_color": "#8B0000"
+        },
+        "function": "Show a logged-in user’s past winning records from previous spins.",
+        "static_description": "Located beneath the main sections, this displays a scrollable table titled 'My Winnings'. Columns include Date & Time, Prize Won, and Status (claimed/unclaimed). Rows alternate between white and light gray backgrounds, while headers are styled with dark red (#8B0000) text and background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "api_endpoints": [
+                "GET /api/prizes",
+                "GET /api/history",
+                "POST /api/spin"
+            ],
+            "authentication_header": "Authorization Bearer Token or session cookie used for tracking user identity across requests."
+        },
+        "function": "Ensure all dynamic content like prizes, user history, and spin outcomes are fetched from backend services via RESTful APIs.",
+        "static_description": "All dynamic data sections (Wheel Interface, Prize List, Winning Records) initially show loading indicators before populating content fetched asynchronously from the defined endpoints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "database_connection_config": "Connects to PostgreSQL instance using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+            "pg_client_library": "Uses node-postgres (pg) package or similar to connect and query the database."
+        },
+        "function": "Establish secure connection to PostgreSQL database using provided credentials and enable querying capabilities.",
+        "static_description": "Not visible in UI but enables backend server to execute queries against the configured PostgreSQL instance.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "prizes_table_schema": "Table: prizes(id SERIAL PRIMARY KEY, name VARCHAR(255), description TEXT, image_url TEXT, probability DECIMAL)",
+            "user_winnings_table_schema": "Table: winnings(id SERIAL PRIMARY KEY, user_identifier TEXT, prize_id INTEGER REFERENCES prizes(id), timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)"
+        },
+        "function": "Define database structure to store prize information and track each user's winning record.",
+        "static_description": "Schema-only definition ensuring future compatibility with application logic for storing and retrieving prize and user data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spin_result_endpoint": "POST /api/spin - Accepts request and inserts result into the 'winnings' table with user identifier and selected prize ID.",
+            "user_identification_field": "User identified either by session ID or client-generated UUID stored in browser storage."
+        },
+        "function": "Record every successful spin outcome along with associated user into the database.",
+        "static_description": "Not directly visible in UI but supports backend operation when POST /api/spin is called.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spinning_wheel_animation": "CSS transitions or JavaScript-based animation simulating realistic rotation deceleration.",
+            "sound_effect_file": "/assets/sounds/wheel-spin.mp3 (optional audio cue during spin)"
+        },
+        "function": "Provide engaging visual and auditory feedback during the wheel spinning process.",
+        "static_description": "While spinning, the wheel rotates smoothly with gradually decreasing speed accompanied by optional sound effect. Visual cues indicate ongoing activity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "css_variables": ":root { --bg-color: #D3D3D3; --accent-color: #8B0000 }",
+            "responsive_breakpoints": "@media(max-width:768px){...}"
+        },
+        "function": "Ensure consistent styling and adaptability across various device sizes using light gray background and dark red accents.",
+        "static_description": "Entire website uses light gray (#D3D3D3) background throughout pages. All interactive elements, headers, and highlights utilize dark red (#8B0000). Layout adjusts gracefully from desktop to mobile views using media queries.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "landing_page_content": "Welcome paragraph explaining how to play, followed by navigation links to start playing or view prizes/winnings.",
+            "hero_image_url": "/assets/images/wheel-hero.png"
+        },
+        "function": "Introduce visitors to the concept and mechanics of the wheel of fortune game.",
+        "static_description": "Top section contains welcoming headline ('Try Your Luck Today!'), short instructional paragraph, hero image of the wheel, and call-to-action buttons such as 'Start Playing' and 'View Prizes', styled with dark red buttons over light gray background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Start Playing' scrolls down to the wheel interface. Clicking 'View Prizes' navigates to or reveals the prize listing section."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "session_storage_key": "localStorage.setItem('userId', uuid)",
+            "login_endpoint_stub": "Optional stubbed login/signup form if needed later."
+        },
+        "function": "Identify returning users without requiring full registration/login flow.",
+        "static_description": "No explicit UI element unless extended beyond MVP scope; relies on local/session storage or simple cookie mechanism to persist user ID across visits.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "history_fetch_endpoint": "GET /api/history",
+            "auth_header_required": "Endpoint requires authenticated user context to filter relevant records."
+        },
+        "function": "Expose an endpoint allowing frontend to retrieve historical wins tied to the current user.",
+        "static_description": "Returns JSON array of past spins including timestamps and prize references.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "prize_fetch_endpoint": "GET /api/prizes",
+            "response_format": "[{id, name, description, image_url, probability}]"
+        },
+        "function": "Serve list of all available prizes to populate frontend components.",
+        "static_description": "Returns complete dataset of active prizes formatted as JSON array.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spin_processing_endpoint": "POST /api/spin",
+            "request_body_example": "{ userIdentifier: 'uuid-string' }",
+            "response_format": "{ success: true, prizeId: number, prizeName: string }"
+        },
+        "function": "Process incoming spin requests, determine outcome, save result, and respond with prize details.",
+        "static_description": "Handles business logic of selecting a prize based on probabilities and saving the event.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "scripts_in_package_json": "\"install:all\": \"concurrently \\\"npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev:frontend\\\" \\\"npm run dev:backend\\\"\""
+        },
+        "function": "Configure development workflow to manage both frontend and backend installation/startup simultaneously.",
+        "static_description": "Defined within root package.json file enabling unified setup and launch commands.",
+        "interaction_and_states": []
+    }
+]

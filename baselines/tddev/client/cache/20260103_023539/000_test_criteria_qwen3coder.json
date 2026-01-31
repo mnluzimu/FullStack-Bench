@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "Frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A new user named Sarah exploring the vocabulary website.",
+        "user_goal": "Sarah wants to view her personalized dashboard after logging in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Page Load",
+                "description": "Sarah opens the website and waits for it to load. She expects to see some initial content fetched from the backend.",
+                "action": "Load the homepage.",
+                "expected_outcome": "The frontend makes a request to /api/data, shows a loading spinner, and populates the page with dynamic content once received."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend server connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "System administrator setting up the backend service.",
+        "user_goal": "Ensure the backend connects securely to the PostgreSQL database on startup.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Server Initialization",
+                "description": "The admin starts the backend server and monitors logs to confirm successful database connection.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "The server reads DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME from environment variables and establishes a secure connection pool to the PostgreSQL instance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management system",
+        "user_persona": "Returning user John who wants to access his account.",
+        "user_goal": "John aims to log in and reach the dashboard without issues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "John enters his credentials into the login form and submits them.",
+                "action": "Submit valid email and password via the login form.",
+                "expected_outcome": "Credentials are validated, a JWT token is generated, and John is redirected to the dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Session Expiry Handling",
+                "description": "After being idle for more than 30 minutes, John tries to navigate to another section.",
+                "action": "Attempt to access a protected route after session expiration.",
+                "expected_outcome": "John is automatically redirected to the login screen with a notification about session expiry."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard page displaying user progress summary and statistics",
+        "user_persona": "Regular learner Mia checking her weekly performance.",
+        "user_goal": "Mia wants to review her progress metrics and visualize trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard Data",
+                "description": "Mia logs in and lands on the dashboard where she expects to see her progress overview.",
+                "action": "Navigate to the dashboard page.",
+                "expected_outcome": "Data is fetched from /api/dashboard/progress, and key metrics like total words learned and accuracy percentage are displayed with skeleton loaders during fetch."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Charts",
+                "description": "Mia hovers over points on the progress chart to get detailed insights.",
+                "action": "Hover over elements in the progress visualization chart.",
+                "expected_outcome": "A tooltip appears showing exact values and dates related to the hovered data point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Weekly word delivery system providing 10 new words each week",
+        "user_persona": "Weekly learner Tom eager to learn new vocabulary.",
+        "user_goal": "Tom wants to access the freshly delivered set of words every Monday.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Automatic Weekly Delivery",
+                "description": "On Monday morning, Tom checks the 'New Words' tab expecting fresh content.",
+                "action": "Visit the 'New Words' tab on the dashboard.",
+                "expected_outcome": "Ten new words assigned automatically are displayed with definitions, example sentences, and pronunciation guides."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Avatar selection feature allowing users to choose and customize their profile avatar",
+        "user_persona": "New user Lily personalizing her profile.",
+        "user_goal": "Lily wants to select an avatar that represents her personality.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Avatar Gallery",
+                "description": "Lily navigates to the settings menu and chooses to update her avatar.",
+                "action": "Open the avatar selection modal from the settings menu.",
+                "expected_outcome": "A scrollable gallery of unlocked avatars is loaded from /api/user/avatar/select and displayed in a responsive grid."
+            },
+            {
+                "step": 2,
+                "title": "Selecting an Avatar",
+                "description": "Lily picks an avatar she likes and confirms her choice.",
+                "action": "Click on a preferred avatar thumbnail.",
+                "expected_outcome": "Her selected_avatar_id is updated in the database, and the chosen avatar is reflected across the UI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Waiting room with simple game for user engagement during loading periods",
+        "user_persona": "Impatient user Noah waiting for a quiz to load.",
+        "user_goal": "Noah wants to pass time by playing a quick game while waiting.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Waiting Room Game",
+                "description": "While waiting for the crossword puzzle to load, Noah sees a matching card game and decides to play.",
+                "action": "Wait for main content to load, triggering display of waiting room game.",
+                "expected_outcome": "A 4x4 card-matching game appears with face-down cards arranged neatly, ready for interaction."
+            },
+            {
+                "step": 2,
+                "title": "Playing the Matching Game",
+                "description": "Noah flips two cards hoping they match.",
+                "action": "Click two different cards consecutively.",
+                "expected_outcome": "If matched, the cards remain face-up; otherwise, they flip back. Time and score are tracked."
+            },
+            {
+                "step": 3,
+                "title": "Finishing the Game",
+                "description": "Noah completes all matches and sees his final score.",
+                "action": "Complete all pairs in the matching game.",
+                "expected_outcome": "Final time/score is displayed, offering options to replay or return to the previous screen. Result saved to games_history."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Homepage with navigation to all main sections",
+        "user_persona": "First-time visitor Emma exploring the site.",
+        "user_goal": "Emma wants to quickly find various sections of the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Through Sections",
+                "description": "Emma clicks on different links in the navigation bar to explore the site.",
+                "action": "Click on 'Activities' link in the top navigation bar.",
+                "expected_outcome": "The Activities page loads smoothly without a full page refresh, thanks to client-side routing."
+            },
+            {
+                "step": 2,
+                "title": "Using Homepage CTAs",
+                "description": "Emma clicks a CTA button on the hero banner to dive into the learning experience.",
+                "action": "Click the 'Explore Activities' CTA on the homepage hero banner.",
+                "expected_outcome": "Since Emma is logged in, she is directed straight to the activities overview page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Five distinct activity pages for different quiz and word game types",
+        "user_persona": "Curious student Alex wanting to try different word games.",
+        "user_goal": "Alex wants to explore and start playing various quiz formats.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing an Activity",
+                "description": "Alex visits the activities page and sees several game options.",
+                "action": "Hover over the 'Crossword Puzzle' card.",
+                "expected_outcome": "The card elevates slightly with a subtle shadow effect, indicating it's clickable."
+            },
+            {
+                "step": 2,
+                "title": "Launching Crossword Puzzle",
+                "description": "Alex clicks on the crossword puzzle card to begin playing.",
+                "action": "Click the 'Crossword Puzzle' activity card.",
+                "expected_outcome": "The crossword puzzle gameplay view loads, showing the grid and clues."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Crossword puzzle game functionality",
+        "user_persona": "Puzzle enthusiast Ben solving a crossword challenge.",
+        "user_goal": "Ben aims to solve the crossword puzzle accurately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling in Answers",
+                "description": "Ben types answers directly into the crossword grid cells.",
+                "action": "Type letters into crossword cells following directional rules.",
+                "expected_outcome": "Keystrokes populate adjacent empty squares appropriately, auto-switching to the next clue when current word is filled."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Clues",
+                "description": "Ben clicks on a clue to highlight its corresponding row/column.",
+                "action": "Click on a specific clue from the Across or Down list.",
+                "expected_outcome": "The associated row/column in the grid is highlighted, focusing the first unfilled letter of that answer."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Puzzle",
+                "description": "Ben finishes filling the grid and submits his answers.",
+                "action": "Click the 'Submit' button beneath the crossword puzzle.",
+                "expected_outcome": "Entered answers are compared with stored solutions, incorrect entries are highlighted in red, and completion percentage is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Letter unjumbling game functionality",
+        "user_persona": "Language learner Chloe practicing word formation.",
+        "user_goal": "Chloe wants to unscramble letters to form the correct word.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Rearranging Letters",
+                "description": "Chloe drags letter tiles to arrange them into the correct word.",
+                "action": "Drag letter tiles into the submission area.",
+                "expected_outcome": "Tiles snap magnetically into place near submission slots when released nearby."
+            },
+            {
+                "step": 2,
+                "title": "Using Hints",
+                "description": "Stuck on a word, Chloe uses the hint button for assistance.",
+                "action": "Click the 'Hint' button located at the top-right corner.",
+                "expected_outcome": "One character of the correct answer is revealed, though at the cost of a reduced score multiplier."
+            },
+            {
+                "step": 3,
+                "title": "Timer Runs Out",
+                "description": "Before submitting, the timer runs out unexpectedly.",
+                "action": "Let the countdown timer reach zero without making a submission.",
+                "expected_outcome": "The correct answer is displayed along with a feedback message, then proceeds to the next challenge."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Synonym and antonym identification activities",
+        "user_persona": "Student David preparing for a vocabulary test.",
+        "user_goal": "David wants to practice identifying synonyms and antonyms.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Answering Questions",
+                "description": "David selects what he believes is the correct synonym or antonym from multiple choices.",
+                "action": "Select a radio option corresponding to the best answer.",
+                "expected_outcome": "Immediate validation occurs, showing a green checkmark for correct answers and advancing to the next question automatically."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Past Answers",
+                "description": "Wanting to study further, David enables review mode to revisit earlier questions.",
+                "action": "Toggle the 'Review Mode' switch.",
+                "expected_outcome": "Previously attempted questions are accessible again, with past answers preserved for reevaluation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive flashcard system for vocabulary review",
+        "user_persona": "Flashcard user Ella reviewing learned terms.",
+        "user_goal": "Ella wants to flip through flashcards and mark mastery levels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Flipping Cards",
+                "description": "Ella clicks on a flashcard to reveal its definition.",
+                "action": "Click the flashcard currently displayed.",
+                "expected_outcome": "The card performs a smooth 180° rotation using CSS transitions to show the reverse side with definition and examples."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Decks",
+                "description": "Ella moves to the next flashcard using keyboard shortcuts.",
+                "action": "Press the right arrow key.",
+                "expected_outcome": "Seamlessly moves to the subsequent card in the deck, wrapping around at the end."
+            },
+            {
+                "step": 3,
+                "title": "Marking Mastery",
+                "description": "Feeling confident about a term, Ella marks it as mastered.",
+                "action": "Tap the 'Got It' button at the bottom of the flashcard.",
+                "expected_outcome": "The card is flagged as mastered, influencing future repetitions in spaced learning cycles."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fill-in-the-blank exercises with automatic grading",
+        "user_persona": "Test-taker Frank working on grammar exercises.",
+        "user_goal": "Frank wants to complete fill-in-the-blank sentences and receive immediate feedback.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Answers",
+                "description": "Frank fills in the blanks with what he thinks fits grammatically.",
+                "action": "Type words into the blank input fields within the sentence.",
+                "expected_outcome": "Basic regex validation prevents invalid characters. Instant feedback is shown below each field upon leaving it."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Exercise",
+                "description": "After completing all blanks, Frank submits the exercise for evaluation.",
+                "action": "Click the 'Submit Exercise' button.",
+                "expected_outcome": "All blanks are evaluated collectively, returning a detailed breakdown of correct/incorrect responses and adjusting difficulty accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Blog section for vocabulary-related articles and updates",
+        "user_persona": "Knowledge seeker Grace interested in language tips.",
+        "user_goal": "Grace wants to read informative blog posts and search for specific topics.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Articles",
+                "description": "Grace clicks on a blog post preview to read the full article.",
+                "action": "Click on a blog post title in the index view.",
+                "expected_outcome": "The complete article content loads asynchronously, parsing markdown into semantic HTML with proper formatting."
+            },
+            {
+                "step": 2,
+                "title": "Searching Blog Posts",
+                "description": "Looking for something specific, Grace uses the search bar to filter posts.",
+                "action": "Enter keywords into the blog search bar.",
+                "expected_outcome": "Article previews are filtered in real-time based on matches in titles, excerpts, or tags metadata."
+            }
+        ]
+    }
+]

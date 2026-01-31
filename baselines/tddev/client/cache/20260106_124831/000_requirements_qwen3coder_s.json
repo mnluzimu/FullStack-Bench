@@ -1,0 +1,17 @@
+[
+    "Display a dashboard layout with teal-styled components and mint cream background",
+    "Allow users to browse financial data from each company in a structured manner",
+    "Provide consolidated financial reports across multiple companies",
+    "Enable cross-company financial comparisons and reporting capabilities",
+    "Implement a frontend that fetches all financial data from backend APIs",
+    "Include a backend service that connects to an external PostgreSQL database",
+    "Configure the backend to use specific environment variables for database connection",
+    "Support dynamic retrieval of financial data without hard-coded or mock data",
+    "Ensure all components are styled consistently with teal color scheme",
+    "Create a responsive dashboard layout suitable for financial data visualization",
+    "Provide functionality to view detailed financial information per company",
+    "Enable users to generate and view consolidated financial summaries",
+    "Support filtering and sorting of financial data by company or time period",
+    "Implement user authentication and authorization for accessing financial data",
+    "Configure package.json with npm run install:all and npm run dev scripts for concurrent frontend and backend startup"
+]

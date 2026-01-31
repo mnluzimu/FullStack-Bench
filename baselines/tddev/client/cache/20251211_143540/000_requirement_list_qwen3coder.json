@@ -1,0 +1,276 @@
+[
+    {
+        "resource_dependency": {
+            "courseCatalogDataSchema": "Database schema with fields: course_id (unique ID), title (string), description (text), category (string), level (string), duration (string), prerequisites (text), instructor_id (foreign key), certification_track (string), image_url (string)",
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "filterIcon": "/assets/icons/filter-icon.svg"
+        },
+        "function": "Display a searchable and filterable course catalog allowing users to browse available courses.",
+        "static_description": "A grid-based layout showing course cards with thumbnails, titles, categories, levels, and brief descriptions. A search bar at the top with a search icon and filter options panel accessible via a filter icon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the search icon focuses the search input field. Clicking on the filter icon toggles visibility of the filter options panel."
+            },
+            {
+                "interaction": "Type in Search Bar",
+                "description": "As the user types, the course list dynamically filters to show matching results based on title, description, or category."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "courseDetailsDataSchema": "Fields: course_id (unique ID), title (string), full_description (text), prerequisites (text), duration (string), syllabus (array of strings), instructor_details (object with name, bio, photo), certification_track (string), related_courses (array of course_ids)",
+            "instructorImagePlaceholder": "/assets/images/instructor-placeholder.png"
+        },
+        "function": "Show detailed course information pages with full descriptions, prerequisites, duration, syllabus, and instructor profiles.",
+        "static_description": "A dedicated page per course featuring a header with course title and image, followed by sections for description, prerequisites, duration, syllabus, and instructor profile with name, photo, and bio.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on 'View Related Courses' scrolls the page to the related courses section."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "enrollmentFormSchema": "Fields: enrollment_id (unique ID), user_id (foreign key), course_id (foreign key), enrollment_date (timestamp), status (enum: pending, confirmed, cancelled)",
+            "registrationFormSchema": "Fields: user_id (unique ID), email (string), password_hash (string), first_name (string), last_name (string), phone_number (string)",
+            "loginFormSchema": "Fields: email (string), password (string)"
+        },
+        "function": "Enable online course enrollment through user registration and login processes.",
+        "static_description": "A multi-step form flow starting with login/registration if not authenticated, then displaying the enrollment confirmation modal after selecting a course.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enroll Now' redirects unauthenticated users to the login/register page; authenticated users proceed directly to enrollment confirmation."
+            },
+            {
+                "interaction": "Submit Form",
+                "description": "Submitting the registration form creates a new user entry. Submitting the enrollment form records the enrollment and updates the UI to reflect enrolled status."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chatbotAPI": "Integration with an external chatbot API supporting natural language processing for answering FAQs about courses, enrollment, and certifications.",
+            "chatIcon": "/assets/icons/chat-icon.svg"
+        },
+        "function": "Integrate a chatbot for user assistance and inquiries regarding courses and institute services.",
+        "static_description": "A floating chat icon positioned at the bottom right corner of every page. When clicked, a chat window slides up from the bottom edge containing conversation history and message input area.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the chat icon opens/closes the chat interface window."
+            },
+            {
+                "interaction": "Send Message",
+                "description": "User messages are sent to the chatbot API which returns responses displayed in real-time within the chat window."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactFormDataSchema": "Fields: contact_id (unique ID), name (string), email (string), subject (string), message (text), submission_date (timestamp)",
+            "contactEmailTemplate": "Predefined template used to send submitted contact form data to institute administrators."
+        },
+        "function": "Include a contact form enabling users to communicate directly with the institute staff.",
+        "static_description": "A standalone contact form page with labeled input fields for name, email, subject, and message along with a submit button. Institute’s physical address and phone number are listed alongside the form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Form",
+                "description": "Upon submission, form data is stored in the database and triggers an automated email notification to the admin team using the predefined template."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "certificationPathwaySchema": "Fields: pathway_id (unique ID), title (string), description (text), required_courses (array of course_ids), estimated_completion_time (string)",
+            "progressTrackerSchema": "Fields: user_id (foreign key), pathway_id (foreign key), completed_courses (array of course_ids), completion_percentage (integer)"
+        },
+        "function": "Present certification pathway information and allow users to track their progress towards completing these paths.",
+        "static_description": "Dedicated certification pathway pages displaying titles, descriptions, and lists of required courses. Progress indicators showing percentage complete and completed courses appear beneath each pathway when the user is logged in.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a certification title navigates to its detailed pathway page."
+            },
+            {
+                "interaction": "Hover over Progress Indicator",
+                "description": "Hovering displays tooltip with exact count of completed vs total required courses."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "categoryFilterOptions": [
+                "Cybersecurity",
+                "Data Privacy",
+                "Risk Management",
+                "Compliance"
+            ],
+            "levelFilterOptions": [
+                "Beginner",
+                "Intermediate",
+                "Advanced"
+            ],
+            "trackFilterOptions": [
+                "Certified Professional",
+                "Executive Leadership"
+            ]
+        },
+        "function": "Allow users to browse courses by filtering according to category, difficulty level, or associated certification track.",
+        "static_description": "Filter sidebar or dropdown menus above the course grid listing categories, levels, and tracks as selectable options. Selected filters highlight visually and update the displayed course set accordingly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Select Filter Option",
+                "description": "Choosing any filter option immediately updates the course listing to show only relevant matches. Multiple selections can be made across different filter groups."
+            },
+            {
+                "interaction": "Clear Filters",
+                "description": "Clicking 'Clear All' resets all active filters and restores the original course listing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userAccountDataSchema": "Fields: user_id (unique ID), email (string), first_name (string), last_name (string), enrolled_courses (array of course_ids), certifications_earned (array of cert_ids), profile_picture_url (string)"
+        },
+        "function": "Provide account management features for enrolled students including viewing enrolled courses and earned certifications.",
+        "static_description": "User dashboard page presenting personal info, enrolled course list with status tags, earned certifications with badges, and links to manage preferences or change password.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a course card navigates to the respective course detail page. Clicking on a certification badge shows verification details."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                {
+                    "label": "Home",
+                    "url": "/"
+                },
+                {
+                    "label": "Courses",
+                    "url": "/courses"
+                },
+                {
+                    "label": "Certifications",
+                    "url": "/certifications"
+                },
+                {
+                    "label": "Contact",
+                    "url": "/contact"
+                },
+                {
+                    "label": "My Account",
+                    "url": "/account"
+                }
+            ],
+            "mobileMenuIcon": "/assets/icons/menu-icon.svg"
+        },
+        "function": "Implement a responsive navigation menu providing consistent access to all major site sections.",
+        "static_description": "Horizontal navigation bar fixed at the top of desktop views with main links aligned left. Mobile version collapses into a hamburger-style menu icon aligned right.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the menu icon toggles visibility of the mobile-friendly vertical navigation menu overlay."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Navigation remains fixed at the top during scrolling ensuring persistent accessibility."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeCSSVariables": ":root { --background-color: lavender; --component-color: indigo; }",
+            "colorPaletteGuide": "Primary colors: lavender (#E6E6FA) for backgrounds, indigo (#4B0082) for buttons and highlights"
+        },
+        "function": "Apply consistent styling theme throughout the website using lavender background and indigo components.",
+        "static_description": "All webpages utilize lavender as the base background color and indigo for interactive elements like buttons, headers, and links. Consistent typography and spacing follow this theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Indigo-colored buttons darken slightly on hover to indicate interactivity without altering core palette."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "featuredContentDataSchema": "Fields: item_id (unique ID), type (enum: course, certification), target_id (foreign key), headline (string), description (text), image_url (string)"
+        },
+        "function": "Create a homepage showcasing featured courses and certifications to attract visitor interest.",
+        "static_description": "Homepage layout featuring hero banner, spotlight section highlighting selected courses/certifications with images and summaries, and quick links to explore more.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a featured item navigates to the corresponding course or certification detail page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalSearchEndpoint": "API endpoint returning paginated results for courses and certifications matching query terms."
+        },
+        "function": "Enable global search functionality allowing users to locate specific courses or certifications quickly.",
+        "static_description": "Search bar prominently placed in header visible across all pages. Displays auto-suggested matches while typing and presents results page upon submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type in Search Bar",
+                "description": "Real-time suggestions appear below the input as the user types, offering likely matches."
+            },
+            {
+                "interaction": "Press Enter / Click Submit",
+                "description": "Redirects to a dedicated search results page listing matched items grouped by type."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "enrollmentStatusSchema": "Fields: user_id (foreign key), course_id (foreign key), status (enum: enrolled, in-progress, completed)",
+            "courseProgressTrackingSchema": "Fields: user_id (foreign key), course_id (foreign key), modules_completed (integer), total_modules (integer), last_accessed (timestamp)"
+        },
+        "function": "Display current enrollment status and course progress for logged-in users.",
+        "static_description": "Within the user dashboard, each enrolled course appears with a status label ('Enrolled', 'In Progress', 'Completed') and a visual progress bar indicating module completion ratio.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a course with 'In Progress' status resumes learning from the last accessed module."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "instituteInfoSchema": "Fields: address_line_1 (string), city_state_zip (string), country (string), primary_phone (string), secondary_phone (string), general_email (string), admissions_email (string)"
+        },
+        "function": "Display official contact information and location details of the institute.",
+        "static_description": "Contact page includes structured office address, multiple phone numbers, emails, and embedded map showing precise location.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the map marker zooms into the location. Clicking on email addresses opens default mail client pre-filled with recipient."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignBreakpoints": "{ mobile: max-width 768px, tablet: min-width 769px and max-width 1024px, desktop: min-width 1025px }",
+            "touchOptimizedComponents": "UI components adjusted for touch interaction including larger tap targets and swipe gestures where applicable"
+        },
+        "function": "Ensure the entire website is fully functional and aesthetically pleasing on mobile devices.",
+        "static_description": "Website adapts fluidly to various screen sizes using CSS media queries. Layouts reflow appropriately, fonts scale proportionally, and navigation becomes optimized for touchscreen use.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts seamlessly between mobile, tablet, and desktop breakpoints maintaining usability and readability."
+            },
+            {
+                "interaction": "Swipe",
+                "description": "On mobile, horizontal swiping between carousel items or tabs enables intuitive navigation."
+            }
+        ]
+    }
+]

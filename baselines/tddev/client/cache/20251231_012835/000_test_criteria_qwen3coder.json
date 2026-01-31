@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "A homepage displaying an overview of house cleaning services with azure mist background and dark slate blue components",
+        "user_persona": "A new visitor interested in exploring cleaning services offered by the company.",
+        "user_goal": "To quickly understand what services are available and navigate to more details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah visits the website for the first time and lands on the homepage. She immediately notices the professional look with a calming azure mist background and well-organized dark slate blue components.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "Homepage loads successfully with hero section headline 'Professional House Cleaning Services', three service preview cards, and consistent color scheme applied."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Service Previews",
+                "description": "Sarah sees the three-column service preview cards and hovers her mouse over one to see if there's any interactive feedback.",
+                "action": "Hover over a service card.",
+                "expected_outcome": "The hovered service card elevates slightly with a shadow effect, providing visual feedback."
+            },
+            {
+                "step": 3,
+                "title": "Navigating to Service Details",
+                "description": "Intrigued by one of the services, Sarah clicks on its card to learn more about it.",
+                "action": "Click on a service card.",
+                "expected_outcome": "User is navigated to the detailed service page for the selected cleaning service."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A service browsing page listing all available cleaning services with detailed descriptions",
+        "user_persona": "A homeowner looking for specific types of cleaning services for their home.",
+        "user_goal": "To find and explore all available cleaning services and filter them by category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Service Listings",
+                "description": "Mark navigates to the services page to see all available cleaning options.",
+                "action": "Navigate to the service browsing page.",
+                "expected_outcome": "Page displays a grid layout of service cards with images, titles, descriptions, duration, and starting prices, along with a filter sidebar."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Services",
+                "description": "Mark wants to narrow down his options and decides to filter services by 'Deep Cleaning'.",
+                "action": "Click on the 'Deep Cleaning' category filter.",
+                "expected_outcome": "The displayed services dynamically update to show only those categorized as Deep Cleaning."
+            },
+            {
+                "step": 3,
+                "title": "Learning More About a Service",
+                "description": "Seeing a service he's interested in, Mark clicks the 'Learn More' button to get detailed information.",
+                "action": "Click the 'Learn More' button on a service card.",
+                "expected_outcome": "Either the card expands to show full service details or the user is taken to a dedicated service page with comprehensive information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A service inquiry form allowing users to ask questions about specific cleaning services",
+        "user_persona": "A potential customer with specific questions about a cleaning service package.",
+        "user_goal": "To submit an inquiry about a particular cleaning service and receive confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Inquiry",
+                "description": "Lisa has questions about the regular cleaning service and goes to the inquiry page.",
+                "action": "Navigate to the service inquiry page.",
+                "expected_outcome": "Page loads with headline 'Have Questions About Our Services?' and a form containing fields for Name, Email, Service Selection, Subject, and Message."
+            },
+            {
+                "step": 2,
+                "title": "Filling Inquiry Form",
+                "description": "Lisa fills out the form but makes a mistake in her email format. She notices immediate validation feedback.",
+                "action": "Enter invalid email format in the email field.",
+                "expected_outcome": "The email field is highlighted in red with an error message indicating invalid format."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Valid Inquiry",
+                "description": "After correcting her email, Lisa completes all required fields and submits the form.",
+                "action": "Fill all required fields correctly and click the Submit button.",
+                "expected_outcome": "Form data is validated, sent to backend, and a success message 'Your inquiry has been submitted! We will contact you shortly.' is displayed. The form is reset."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A booking system enabling users to schedule cleaning services by selecting date, time, and service type",
+        "user_persona": "A busy professional wanting to book a cleaning service online.",
+        "user_goal": "To easily schedule a cleaning service at a convenient date and time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Booking Process",
+                "description": "John decides to book a deep cleaning service and starts the booking process.",
+                "action": "Navigate to the booking page.",
+                "expected_outcome": "Multi-step booking form appears with progress indicator, starting with service selection."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Date and Time",
+                "description": "John selects a date for the service and waits for available time slots to load.",
+                "action": "Select a date from the calendar widget.",
+                "expected_outcome": "Available time slots for the selected date and service are fetched and displayed in a grid."
+            },
+            {
+                "step": 3,
+                "title": "Completing Booking",
+                "description": "John picks a time slot, fills in his contact information, reviews the summary, and submits the booking.",
+                "action": "Select a time slot, fill contact details, and click the final Submit button.",
+                "expected_outcome": "Booking is created successfully, and John receives a confirmation with booking details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user dashboard for checking the status of booked cleaning services",
+        "user_persona": "A returning customer who wants to track their upcoming cleaning appointments.",
+        "user_goal": "To view the status of previously booked cleaning services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Emily logs into her account to check the status of her upcoming cleaning appointment.",
+                "action": "Log in and navigate to the user dashboard.",
+                "expected_outcome": "Dashboard loads showing a list of Emily's bookings with service names, dates/times, status badges, and 'View Details' buttons."
+            },
+            {
+                "step": 2,
+                "title": "Checking Booking Details",
+                "description": "Emily wants more information about one of her bookings and clicks to view details.",
+                "action": "Click the 'View Details' button for a booking.",
+                "expected_outcome": "A modal opens displaying specific booking details including service information, assigned cleaner (if available), and status timeline."
+            },
+            {
+                "step": 3,
+                "title": "Monitoring Status Updates",
+                "description": "Emily keeps the dashboard open to see if there are any real-time updates to her booking status.",
+                "action": "Wait for automatic dashboard refresh.",
+                "expected_outcome": "Dashboard automatically polls for updates every 30 seconds, and any status changes are reflected immediately in the UI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A contact us page with phone number and email address for reaching customer service staff",
+        "user_persona": "A customer needing immediate assistance with a booking issue.",
+        "user_goal": "To quickly get in touch with customer service via phone or email.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Contact Page",
+                "description": "Robert encounters a problem with his booking and goes to the contact page to reach customer service.",
+                "action": "Navigate to the Contact Us page.",
+                "expected_outcome": "Page loads with contact information displayed in left column and an interactive map in the right column, all styled with the site's color scheme."
+            },
+            {
+                "step": 2,
+                "title": "Calling Customer Service",
+                "description": "Robert prefers to speak directly with someone and decides to call the provided phone number.",
+                "action": "Click on the displayed phone number.",
+                "expected_outcome": "On mobile devices, the click initiates a phone call. On desktop, the number is clearly displayed for manual dialing."
+            },
+            {
+                "step": 3,
+                "title": "Sending Email Inquiry",
+                "description": "Instead of calling, Robert decides to send an email inquiry by clicking the email link.",
+                "action": "Click on the displayed email address.",
+                "expected_outcome": "Default mail client opens with the recipient field pre-filled with the customer service email address."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A user browsing the website on a slower network connection.",
+        "user_goal": "To access service information without experiencing broken content or missing data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "Patricia visits the homepage and waits for the service information to load.",
+                "action": "Load the homepage and observe dynamic content loading.",
+                "expected_outcome": "Loading spinners appear during data fetch, and service information is displayed once the API response is received."
+            },
+            {
+                "step": 2,
+                "title": "Handling Network Errors",
+                "description": "While browsing services, Patricia experiences a temporary network issue.",
+                "action": "Simulate network failure when loading service data.",
+                "expected_outcome": "User-friendly error message is displayed with a retry button. Failed image loads show fallback placeholders."
+            },
+            {
+                "step": 3,
+                "title": "Successfully Retrieving Data",
+                "description": "After resolving the network issue, Patricia tries again to load the service information.",
+                "action": "Click retry button or wait for automatic reload.",
+                "expected_outcome": "Components successfully fetch data from backend APIs and display the correct service information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server connecting to PostgreSQL database using provided environment variables",
+        "user_persona": "A developer deploying the application for the first time.",
+        "user_goal": "To ensure the backend server starts correctly and connects to the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer sets up the environment variables and starts the backend server for the first time.",
+                "action": "Set environment variables and run backend server startup command.",
+                "expected_outcome": "Server initializes database connection pool using provided environment variables and starts listening on port 3001. Successful startup is logged."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Connection",
+                "description": "The developer wants to verify that the database connection is working properly.",
+                "action": "Make a simple API request that requires database access.",
+                "expected_outcome": "Request is processed successfully with data retrieved from PostgreSQL database. Database connection is acquired from pool for the query."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Configuration",
+                "description": "The developer checks that all database credentials are correctly used from environment variables.",
+                "action": "Check server logs and database connection parameters.",
+                "expected_outcome": "Logs confirm that database connection is established using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting service listings, bookings, user inquiries, and service statuses",
+        "user_persona": "A database administrator setting up the application database.",
+        "user_goal": "To ensure the database schema is properly initialized with all required tables and relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initializing Database Schema",
+                "description": "The DBA runs the application for the first time to set up the database schema.",
+                "action": "Start the application and trigger database initialization.",
+                "expected_outcome": "SQL migration scripts execute successfully, creating services, bookings, inquiries, and users tables with proper constraints, indexes, and foreign key relationships."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Table Structure",
+                "description": "The DBA inspects the created tables to ensure they match the specification.",
+                "action": "Query database to inspect table schemas.",
+                "expected_outcome": "Tables exist with correct columns: services (id, name, description, etc.), bookings (id, user_id, service_id, status, etc.), inquiries (id, name, email, etc.), users (id, name, email, etc.)."
+            },
+            {
+                "step": 3,
+                "title": "Testing Data Operations",
+                "description": "The DBA performs basic data operations to verify functionality.",
+                "action": "Perform INSERT, UPDATE, and SELECT operations on the tables.",
+                "expected_outcome": "New records are inserted successfully, booking statuses can be updated, and related data can be retrieved using JOINs between tables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful API endpoints for retrieving service information, submitting bookings, and checking service status",
+        "user_persona": "A frontend developer integrating with the backend API.",
+        "user_goal": "To successfully retrieve service data and submit new bookings through API endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Retrieving Service Information",
+                "description": "The developer tests the GET endpoint to retrieve available services.",
+                "action": "Send GET request to /api/services endpoint.",
+                "expected_outcome": "Endpoint returns a JSON array of active service objects with name, description, and pricing details."
+            },
+            {
+                "step": 2,
+                "title": "Submitting a New Booking",
+                "description": "The developer tests the POST endpoint to submit a new booking.",
+                "action": "Send POST request to /api/bookings with valid booking data.",
+                "expected_outcome": "Endpoint validates request parameters, creates a new booking in the database, and returns a JSON confirmation with booking ID."
+            },
+            {
+                "step": 3,
+                "title": "Handling Authentication",
+                "description": "The developer tests accessing protected endpoints that require authentication.",
+                "action": "Send GET request to /api/bookings without authentication, then with valid JWT token.",
+                "expected_outcome": "First request returns 401 Unauthorized. Second request with valid token returns the authenticated user's bookings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with desktop and mobile browsing",
+        "user_persona": "A mobile user accessing the website on their smartphone.",
+        "user_goal": "To navigate and use the website effectively on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Website on Mobile",
+                "description": "David opens the website on his smartphone to book a cleaning service.",
+                "action": "Load website on a mobile device or simulate mobile viewport.",
+                "expected_outcome": "Website layout adjusts fluidly to mobile view with appropriate font sizing, spacing, and a hamburger menu for navigation."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Touch Elements",
+                "description": "David needs to click on various buttons and links throughout the booking process.",
+                "action": "Tap on interactive elements like buttons and links.",
+                "expected_outcome": "All interactive elements are appropriately sized (minimum 44px x 44px) for easy finger tapping, with tap highlights replacing hover effects."
+            },
+            {
+                "step": 3,
+                "title": "Resizing Viewport",
+                "description": "David rotates his device to landscape mode to see how the layout responds.",
+                "action": "Rotate device or resize browser window.",
+                "expected_outcome": "Layout adjusts smoothly between mobile portrait, mobile landscape, tablet, and desktop views with appropriate content reflow and navigation transformations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact form submission functionality with validation and confirmation",
+        "user_persona": "A visitor trying to send a message through the contact form.",
+        "user_goal": "To successfully submit a contact form and receive confirmation of receipt.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Contact Form",
+                "description": "Susan wants to inquire about services and fills out the contact form.",
+                "action": "Navigate to contact page and fill out name, email, subject, and message fields.",
+                "expected_outcome": "Real-time client-side validation provides visual feedback as Susan types, with green checkmarks for valid fields and red highlights for invalid ones."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Valid Form",
+                "description": "After ensuring all fields are correctly filled, Susan submits the form.",
+                "action": "Click the Submit button with all valid data.",
+                "expected_outcome": "Form data is sent to backend API where it's validated again, stored in the database, and a confirmation email is sent to Susan. Thank-you message is displayed."
+            },
+            {
+                "step": 3,
+                "title": "Handling Form Errors",
+                "description": "If Susan had initially submitted with errors, she would need to correct them.",
+                "action": "Submit form with invalid data and then correct errors.",
+                "expected_outcome": "Specific error messages are shown for invalid fields. Valid data remains in the form during correction, and resubmission is allowed after corrections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Service status tracking system showing real-time updates to customers",
+        "user_persona": "A customer waiting for updates on their cleaning service status.",
+        "user_goal": "To receive immediate notifications when their service status changes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Real-Time Updates",
+                "description": "Michael logs into his dashboard to monitor his booking status and expects real-time updates.",
+                "action": "Log in and load the user dashboard.",
+                "expected_outcome": "WebSocket connection is established, and dashboard shows live status indicators with visual timeline and notification badges."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Status Update",
+                "description": "While Michael is viewing his dashboard, his cleaning service status changes from 'confirmed' to 'in progress'.",
+                "action": "Simulate a status change event on the backend.",
+                "expected_outcome": "Real-time update is received via WebSocket, triggering UI refresh showing new status. Notification badge increments and timeline updates automatically."
+            },
+            {
+                "step": 3,
+                "title": "Handling Connection Issues",
+                "description": "Michael's internet connection drops temporarily while monitoring his service.",
+                "action": "Simulate WebSocket disconnection.",
+                "expected_outcome": "Warning icon appears indicating lost connection. System falls back to manual refresh or periodic polling, with automatic reconnection attempts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'install:all' script to install both frontend and backend dependencies",
+        "user_persona": "A new developer joining the project team.",
+        "user_goal": "To set up the complete development environment with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "The new developer clones the project repository to their local machine.",
+                "action": "Clone the git repository.",
+                "expected_outcome": "Repository is cloned successfully with frontend and backend directories present."
+            },
+            {
+                "step": 2,
+                "title": "Installing All Dependencies",
+                "description": "The developer runs the installation script to set up all project dependencies.",
+                "action": "Run 'npm run install:all' from the root directory.",
+                "expected_outcome": "Command executes npm install in both frontend and backend directories sequentially, installing all required dependencies for full stack development."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Installation",
+                "description": "The developer checks that all dependencies were installed correctly.",
+                "action": "Check node_modules folders in both frontend and backend directories.",
+                "expected_outcome": "Both frontend and backend node_modules directories contain all necessary packages as defined in their respective package.json files."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'dev' script to start both frontend and backend concurrently",
+        "user_persona": "A developer ready to begin coding and testing changes.",
+        "user_goal": "To start both development servers simultaneously for efficient development workflow.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "The developer wants to start both frontend and backend servers for development.",
+                "action": "Run 'npm run dev' from the root directory.",
+                "expected_outcome": "Concurrently package starts both frontend development server (typically on port 3000) and backend server (on port 3001) simultaneously with combined terminal output."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Server Operation",
+                "description": "The developer checks that both servers are running correctly.",
+                "action": "Access frontend and backend endpoints in browser.",
+                "expected_outcome": "Frontend application loads at localhost:3000 and can communicate with backend API at localhost:3001. Both processes show active file watching for hot reloading."
+            },
+            {
+                "step": 3,
+                "title": "Stopping Development Servers",
+                "description": "After finishing work, the developer stops both servers cleanly.",
+                "action": "Press Ctrl+C in the terminal.",
+                "expected_outcome": "Both frontend and backend processes shut down gracefully with cleanup operations executed for open connections and temporary files. Proper exit codes are reported."
+            }
+        ]
+    }
+]

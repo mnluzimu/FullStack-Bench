@@ -1,0 +1,146 @@
+[
+    {
+        "resource_dependency": {
+            "layout_stylesheet": "CSS file defining light goldenrod background for main layout sections",
+            "button_card_styles": "CSS classes applying olive drab color to buttons and card components"
+        },
+        "function": "Define global styling for consistent UI theme across the application",
+        "static_description": "The page uses a light goldenrod background for the main layout container. All interactive buttons and content cards utilize an olive drab color scheme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "poetry_browse_api": "/api/poems",
+            "category_filter_schema": "Database table 'categories' with fields: id (UUID), name (string)",
+            "poem_data_schema": "Table 'poems' with fields: id (UUID), title (string), content (text), category_id (foreign key to categories.id), author_id (foreign key to users.id), created_at (timestamp)"
+        },
+        "function": "Allow users to browse poetry posts organized by categories",
+        "static_description": "A grid-based layout displays poetry cards grouped under category tabs or filters. Each card shows poem title, excerpt, author name, and category tag using olive drab styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a category tab reloads the poetry grid to show only poems from that category via fetching from /api/poems?category=:id"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_api_endpoint": "/api/search/poems?q={query}&category={categoryId}",
+            "search_icon_resource": "/assets/icons/search-icon.svg"
+        },
+        "function": "Enable users to search for specific poetry content by keywords and optional category filter",
+        "static_description": "A search bar positioned at the top of the page includes a magnifying glass icon referenced as 'search_icon_resource'. It contains placeholder text prompting keyword input.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Submitting the search triggers a GET request to 'search_api_endpoint', updating the displayed results dynamically without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "login_form_api": "/api/auth/login",
+            "signup_form_api": "/api/auth/register",
+            "session_check_api": "/api/auth/me",
+            "user_model_schema": "Users table with id (UUID), username (unique string), email (unique string), password_hash (string), created_at (timestamp)"
+        },
+        "function": "Implement secure user authentication system enabling registered users to log in and access protected features",
+        "static_description": "Login/signup modal forms display standard fields: username/email and password inputs. Olive drab colored submit buttons are present along with links to switch between login and registration modes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the login button submits credentials to '/api/auth/login'; successful responses store JWT token client-side for future authenticated requests."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "submit_poem_api": "/api/poems",
+            "category_dropdown_options": "Fetch list of categories from /api/categories",
+            "poem_post_form_fields": [
+                "title",
+                "content",
+                "category"
+            ]
+        },
+        "function": "Provide authenticated users with a form to publish new poetry submissions",
+        "static_description": "Form includes labeled input fields for title, multi-line content area, and dropdown selector populated with available categories. Submit button styled in olive drab.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Upon clicking the submit button, form data is validated and sent via POST to '/api/poems'. Success redirects user back to browse view or displays confirmation message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comment_submit_api": "/api/comments",
+            "comments_fetch_api": "/api/comments?poemId={poemId}",
+            "comment_data_schema": "Comments table with id (UUID), poem_id (foreign key to poems.id), user_id (foreign key to users.id), content (text), created_at (timestamp)"
+        },
+        "function": "Allow logged-in users to read and add comments on individual poetry posts",
+        "static_description": "Below each poem display, there’s a comment section showing existing comments with usernames and timestamps. An input field allows adding new comments with an olive drab post button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the comment submit button sends a POST request to '/api/comments' with associated poem ID and comment content after validating user session."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_connection_config": "PostgreSQL connection using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "schema_creation_instructions": "Create tables: users(id UUID PK, ...), poems(id UUID PK, ...), comments(id UUID PK, ...), categories(id UUID PK, name TEXT UNIQUE)"
+        },
+        "function": "Establish structured storage for all core entities including users, poems, comments, and categories",
+        "static_description": "Relational database schema designed to support associations among users, their authored poems, categorized groupings, and threaded discussions through comments.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "crud_endpoints_list": [
+                "/api/poems (GET, POST)",
+                "/api/poems/:id (GET, PUT, DELETE)"
+            ],
+            "auth_required_routes": [
+                "POST /api/poems",
+                "POST /api/comments",
+                "PUT /api/poems/:id",
+                "DELETE /api/poems/:id"
+            ]
+        },
+        "function": "Expose RESTful interfaces for managing poetry lifecycle operations such as creation, reading, updating, and deletion",
+        "static_description": "Defined set of HTTP endpoints supporting standard CRUD semantics for poems, secured where appropriate by authentication middleware checks.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_endpoints": [
+                "/api/auth/login (POST)",
+                "/api/auth/register (POST)",
+                "/api/auth/logout (POST)",
+                "/api/auth/me (GET)"
+            ]
+        },
+        "function": "Serve endpoints handling user identity verification and session persistence",
+        "static_description": "Collection of authentication-related routes returning tokens upon successful login/registration and validating sessions during protected resource access.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "search_query_params": "?q={text}&category={id}",
+            "filter_logic_spec": "Full-text search on poem titles and contents; optional filtering by category ID"
+        },
+        "function": "Support flexible querying mechanism to retrieve relevant poetry based on textual match and categorical constraints",
+        "static_description": "Search endpoint accepts query strings and optional category identifiers to refine returned poetry matches accordingly.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"cd frontend && npm install && cd ../backend && npm install\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Configure unified development workflow scripts within package.json for simultaneous frontend/backend setup and execution",
+        "static_description": "Root-level package.json defines two custom commands: 'install:all' which sequentially installs frontend and backend dependencies, and 'dev' which runs both environments concurrently.",
+        "interaction_and_states": []
+    }
+]

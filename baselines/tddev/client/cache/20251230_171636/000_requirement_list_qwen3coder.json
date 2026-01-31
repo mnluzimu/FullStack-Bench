@@ -1,0 +1,267 @@
+[
+    {
+        "resource_dependency": {
+            "chessPieceIcons": "/assets/chess-pieces/",
+            "boardThemes": [
+                "classic",
+                "dark",
+                "wood",
+                "blue"
+            ],
+            "difficultyLevels": [
+                "beginner",
+                "intermediate",
+                "advanced",
+                "master"
+            ],
+            "gameStateAPI": "WebSocket endpoint for real-time game state synchronization",
+            "moveValidationAPI": "POST /api/move/validate to validate chess moves"
+        },
+        "function": "Provide a visual chessboard interface where users can interact with pieces through drag-and-drop or clicking.",
+        "static_description": "A responsive chessboard displayed on an alice blue background with steel blue borders and controls. Chess pieces are rendered in their starting positions. Board theme defaults to 'classic'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "User drags a piece from one square to another. Piece moves visually upon drop. If invalid move, piece returns to original position."
+            },
+            {
+                "interaction": "Click",
+                "description": "User clicks a piece to select it (highlighted border). Clicking another square attempts to move the selected piece there. Invalid moves revert selection."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newGameFormFields": [
+                "playerName",
+                "opponentType",
+                "difficultyLevel",
+                "boardTheme"
+            ],
+            "createGameAPI": "POST /api/game/create returning gameId and initial gameState",
+            "sessionToken": "JWT token stored in localStorage identifying the user"
+        },
+        "function": "Allow users to initiate new chess games with customizable parameters such as opponent type, difficulty level, and board theme.",
+        "static_description": "Modal form overlay with input fields for playerName, dropdowns for opponentType (human/AI), difficultyLevel, and boardTheme. Submit button styled with steel blue.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button sends form data to createGameAPI. On success, redirects to game page with new gameId. On failure, displays error message."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing difficultyLevel or boardTheme updates preview image of the selected option."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "joinGameFormFields": [
+                "gameIdOrLobbyCode"
+            ],
+            "joinGameAPI": "POST /api/game/join accepting gameId and returning updated gameState",
+            "lobbyListAPI": "GET /api/lobbies listing available public games"
+        },
+        "function": "Enable users to join ongoing chess matches either by entering a specific game ID or selecting from a lobby list.",
+        "static_description": "Panel with tabbed navigation between 'Enter Game ID' and 'Browse Lobbies'. Input field for gameIdOrLobbyCode and a list of lobby entries fetched dynamically.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Join button next to lobby entry or after entering ID calls joinGameAPI. Success navigates to game screen. Failure shows alert."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling in the lobby list triggers infinite scroll pagination to load more lobbies."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "undoMoveAPI": "POST /api/move/undo reverting last move and updating gameState",
+            "moveHistorySchema": "Array of move objects containing fromSquare, toSquare, pieceMoved, capturedPiece, timestamp"
+        },
+        "function": "Permit players to reverse their most recent move during an active game.",
+        "static_description": "Undo button positioned above the chessboard, styled with steel blue. Disabled when no moves have been made.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers undoMoveAPI call. On success, board reverts to previous state and move is removed from history log."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resignGameAPI": "POST /api/game/resign marking current player as resigned and ending the match",
+            "confirmationDialog": "Native browser confirm dialog or custom modal asking 'Are you sure you want to resign?'"
+        },
+        "function": "Offer players the ability to surrender the current game, immediately ending it.",
+        "static_description": "Resign button located alongside other game controls, styled consistently with steel blue accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens confirmationDialog. Confirming triggers resignGameAPI and ends the game with result recorded. Cancelling closes dialog without action."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeSelectorOptions": [
+                "classic",
+                "dark",
+                "wood",
+                "blue"
+            ],
+            "updateThemeAPI": "PATCH /api/user/settings/theme saving selected theme preference",
+            "currentThemeResource": "Stored in user preferences retrieved at login"
+        },
+        "function": "Allow customization of the visual appearance of the chessboard through selectable themes.",
+        "static_description": "Dropdown menu labeled 'Board Theme' near top-right corner. Default value reflects currentThemeResource. Options populated from themeSelectorOptions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Change",
+                "description": "Selecting a new theme updates board visuals instantly and persists choice via updateThemeAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "difficultySelectorOptions": [
+                "beginner",
+                "intermediate",
+                "advanced",
+                "master"
+            ],
+            "setDifficultyAPI": "PATCH /api/game/{gameId}/difficulty adjusting AI strength if applicable",
+            "aiEngineReference": "External chess engine API handling move generation per difficulty"
+        },
+        "function": "Let users configure the challenge level when playing against computer opponents.",
+        "static_description": "Dropdown control labeled 'Difficulty Level', visible only when opponent is AI. Current setting shown; options sourced from difficultySelectorOptions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Change",
+                "description": "Changing selection sends request to setDifficultyAPI which configures aiEngineReference accordingly for subsequent moves."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameHistoryDataSchema": "List of move objects with properties: moveNumber, whiteMove, blackMove, timeTaken, notation",
+            "fetchHistoryAPI": "GET /api/game/{gameId}/history returning chronological list of all moves"
+        },
+        "function": "Display a complete record of all moves played within the current game session.",
+        "static_description": "Sidebar panel titled 'Move History' showing numbered rows of algebraic notation for each turn pair. Scrollable container for long histories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any historical move highlights corresponding squares on the board and scrolls timeline to that point."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "statsDataSchema": "{ wins: int, losses: int, draws: int, totalGames: int, avgGameTime: string }",
+            "fetchStatsAPI": "GET /api/user/stats retrieving aggregated performance metrics",
+            "winRateCalculation": "Derived client-side from wins/(wins+losses+draws)"
+        },
+        "function": "Present personalized analytics about past performance including win rate, average game duration, etc.",
+        "static_description": "Dedicated statistics dashboard accessible via main menu. Shows numeric totals for wins, losses, draws, plus graphical representation like progress bars or pie charts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over stat elements reveals tooltip explaining metric meaning or source."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketConnection": "Establish persistent connection to wss://api.example.com/ws for bidirectional communication",
+            "gameStatePersistenceSchema": "Serialized JSON object storing full game context including board state, timers, player info, move history",
+            "realtimeSyncAPI": "Handles events like MOVE_MADE, GAME_JOINED, PLAYER_LEFT mapped to appropriate handlers"
+        },
+        "function": "Maintain synchronized game states across multiple clients and persist changes reliably.",
+        "static_description": "Backend service managing concurrent WebSocket connections and relaying messages between connected clients. No direct UI element associated.",
+        "interaction_and_states": [
+            {
+                "interaction": "Event: MOVE_MADE",
+                "description": "Received via websocketConnection, triggers local board update and audio cue. Also logs move to internal history buffer before optional persistence."
+            },
+            {
+                "interaction": "Disconnect",
+                "description": "Detected automatically; displays reconnecting spinner while attempting automatic reconnection every few seconds until restored."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionManagementAPI": "JWT-based authentication flow involving POST /auth/login and GET /auth/me",
+            "userIdentityStorage": "Secure HTTP-only cookie or localStorage JWT token",
+            "userProfileSchema": "{ userId: UUID, username: string, email: string, createdAt: ISODate }"
+        },
+        "function": "Track individual identities throughout different sessions enabling continuity of experience and personalization.",
+        "static_description": "Login/signup modal triggered upon first visit or expired session. Contains standard credential inputs and OAuth buttons. Not directly visible once authenticated.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting credentials calls sessionManagementAPI. Valid response stores userIdentityStorage and populates userProfileSchema globally."
+            },
+            {
+                "interaction": "Refresh Page",
+                "description": "On reload, checks userIdentityStorage validity and refreshes userProfileSchema silently without interrupting gameplay."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresDatabaseSetup": "CREATE TABLE games(game_id UUID PRIMARY KEY, white_player UUID REFERENCES users(user_id), black_player UUID REFERENCES users(user_id), status TEXT, created_at TIMESTAMP); CREATE TABLE moves(move_id SERIAL PRIMARY KEY, game_id UUID REFERENCES games(game_id), player_color TEXT, from_square TEXT, to_square TEXT, piece_moved TEXT, captured_piece TEXT, move_timestamp TIMESTAMP); CREATE TABLE users(user_id UUID PRIMARY KEY, username VARCHAR(50) UNIQUE, password_hash TEXT, stats JSONB);",
+            "dbEnvironmentVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Define relational structure for storing essential entities like users, games, and individual moves securely.",
+        "static_description": "PostgreSQL database initialized using postgresDatabaseSetup script. Environment variables dbEnvironmentVars define access configuration.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "restEndpoints": [
+                "POST /api/game/create",
+                "POST /api/game/join",
+                "POST /api/move/submit",
+                "GET /api/game/{id}",
+                "GET /api/lobbies"
+            ],
+            "websocketEndpoints": [
+                "wss://api.example.com/ws/game/{id}"
+            ],
+            "requestValidationMiddleware": "Ensures payloads conform to predefined schemas before processing"
+        },
+        "function": "Expose interfaces for frontend applications to perform core operations related to game lifecycle and interaction.",
+        "static_description": "Express.js router exposing restEndpoints and managing websocketEndpoints. Middleware ensures secure and validated transactions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "aliceBlueCSSVariable": "--bg-primary: #f0f8ff;",
+            "globalStyleFile": "/styles/global.css applying aliceBlueCSSVariable to body and major containers"
+        },
+        "function": "Apply consistent alice blue background color across entire application surface for unified aesthetic.",
+        "static_description": "Entire viewport painted with aliceBlueCSSVariable derived from globalStyleFile. All major sections inherit this unless overridden locally.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "steelBlueCSSVariable": "--accent-color: #4682b4;",
+            "uiComponentLibrary": "Shared React components utilizing steelBlueCSSVariable for buttons, headers, and interactive widgets"
+        },
+        "function": "Use steel blue as primary accent color for actionable UI components and highlights.",
+        "static_description": "Buttons, dropdown arrows, active tabs, and hover states use steelBlueCSSVariable from uiComponentLibrary. Applied declaratively in component stylesheets.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements adopting steelBlueCSSVariable become slightly brighter or show underline effect."
+            },
+            {
+                "interaction": "Focus",
+                "description": "Keyboard-focused items receive subtle glow outline matching steelBlueCSSVariable."
+            }
+        ]
+    }
+]

@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "A responsive frontend interface showcasing a personal portfolio of design works",
+        "user_persona": "A potential client browsing online portfolios to find a suitable designer.",
+        "user_goal": "To easily navigate the designer's portfolio website and view key sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Maya visits the designer's portfolio website for the first time. She sees a clean header with navigation links and a hero section with the designer's name.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "The page loads successfully, displaying a header with 'Home', 'About', 'Portfolio', and 'Contact' links, a hero section, and peach puff background with indian red components."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Sections",
+                "description": "Maya wants to jump to the Portfolio section. She clicks the 'Portfolio' link in the header.",
+                "action": "Click on the 'Portfolio' navigation link.",
+                "expected_outcome": "The page smoothly scrolls to the Portfolio section without reloading."
+            },
+            {
+                "step": 3,
+                "title": "Exploring Visual Design",
+                "description": "As Maya scrolls, she notices consistent styling with peach puff background and indian red accents on buttons and links.",
+                "action": "Observe the page styling while scrolling.",
+                "expected_outcome": "All components maintain the correct color scheme with peach puff background and indian red interactive elements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A dedicated section displaying detailed information about the designer including background and experience",
+        "user_persona": "A recruiter looking to evaluate a candidate's design background.",
+        "user_goal": "To understand the designer's professional journey and qualifications.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing About Section",
+                "description": "Jordan navigates to the About section to learn more about the designer's background.",
+                "action": "Click on the 'About' link in the navigation bar.",
+                "expected_outcome": "Page scrolls smoothly to the About section showing a profile image on the left and textual content on the right."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Professional Experience",
+                "description": "Jordan examines the experience timeline to assess the designer's career progression.",
+                "action": "Read through the experience timeline content.",
+                "expected_outcome": "A vertical timeline clearly displays roles and dates including 'Senior Designer at Creative Studio (2020-Present)' and 'UI/UX Designer at Digital Agency (2018-2020)'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A portfolio browsing feature allowing users to view and navigate through design projects",
+        "user_persona": "A design enthusiast interested in exploring creative work.",
+        "user_goal": "To browse through the designer's projects and see detailed information about each one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Project Gallery",
+                "description": "Alex scrolls to the Portfolio section and sees a grid of project thumbnails.",
+                "action": "Navigate to the Portfolio section.",
+                "expected_outcome": "A responsive grid layout displays multiple project thumbnails with titles and brief descriptions."
+            },
+            {
+                "step": 2,
+                "title": "Opening Project Details",
+                "description": "Intrigued by one project, Alex clicks on its thumbnail to see more details.",
+                "action": "Click on a project thumbnail.",
+                "expected_outcome": "A modal popup appears showing detailed project information including title, full description, technologies used, and links for live demo and source code."
+            },
+            {
+                "step": 3,
+                "title": "Closing Project View",
+                "description": "After reviewing the details, Alex closes the modal to continue browsing.",
+                "action": "Click the close button or outside the modal area.",
+                "expected_outcome": "The modal closes and Alex returns to the main portfolio grid view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A contact section providing clear contact information and methods for reaching the designer",
+        "user_persona": "A business owner wanting to hire a designer for a new project.",
+        "user_goal": "To find clear ways to get in touch with the designer.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Contact Information",
+                "description": "Sam scrolls to the Contact section to find ways to reach out to the designer.",
+                "action": "Navigate to the Contact section.",
+                "expected_outcome": "The section displays a clickable email address, social media icons, and a contact form with Name, Email, and Message fields."
+            },
+            {
+                "step": 2,
+                "title": "Using Social Media Links",
+                "description": "Sam prefers to connect via LinkedIn and clicks the LinkedIn icon.",
+                "action": "Click on the LinkedIn social media icon.",
+                "expected_outcome": "A new tab opens redirecting to the designer's LinkedIn profile page."
+            },
+            {
+                "step": 3,
+                "title": "Initiating Email Contact",
+                "description": "Sam decides to send a direct email and clicks the email link.",
+                "action": "Click on the email address link.",
+                "expected_outcome": "The default email client opens with a new message addressed to the designer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend styled with peach puff as the background color and indian red as the primary component color",
+        "user_persona": "A design student analyzing color choices in web portfolios.",
+        "user_goal": "To verify that the website consistently uses the specified color scheme throughout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Background Color",
+                "description": "Taylor inspects the overall page background to confirm the specified color is used.",
+                "action": "Load the homepage and inspect body background.",
+                "expected_outcome": "The entire page background is consistently colored peach puff as per the theme specification."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Component Colors",
+                "description": "Taylor examines interactive elements like buttons and links to ensure they use the correct accent color.",
+                "action": "Inspect navigation links and buttons.",
+                "expected_outcome": "All interactive components such as navigation links and buttons use indian red as their primary color."
+            },
+            {
+                "step": 3,
+                "title": "Testing Hover States",
+                "description": "Taylor hovers over navigation links to see if hover effects maintain color consistency.",
+                "action": "Hover over navigation links in the header.",
+                "expected_outcome": "Navigation links show a subtle color change effect while maintaining the overall indian red color scheme."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Static website structure without dynamic data requirements",
+        "user_persona": "A developer setting up a new static portfolio website.",
+        "user_goal": "To ensure the website runs without any backend dependencies or dynamic data fetching.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Website Content",
+                "description": "Casey opens the website to verify all content loads directly from static files.",
+                "action": "Visit the main index.html page.",
+                "expected_outcome": "All content including images, text, and layout load immediately without any API calls or database connections."
+            },
+            {
+                "step": 2,
+                "title": "Checking Network Activity",
+                "description": "Casey opens developer tools to monitor network requests for any dynamic data calls.",
+                "action": "Open browser developer tools and monitor Network tab while navigating the site.",
+                "expected_outcome": "No XHR or fetch requests are made to external APIs or backend services."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "No backend implementation required due to static nature of content",
+        "user_persona": "A technical reviewer validating the architecture decision.",
+        "user_goal": "To confirm that no backend services or server-side processing are present.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting File Structure",
+                "description": "Morgan reviews the project directory to verify absence of backend code.",
+                "action": "Examine project folders and files.",
+                "expected_outcome": "Only frontend-related files (HTML, CSS, JS, assets) are present with no backend frameworks or server code."
+            },
+            {
+                "step": 2,
+                "title": "Checking Runtime Processes",
+                "description": "Morgan runs the development server and checks for backend processes.",
+                "action": "Run npm run dev and check running processes.",
+                "expected_outcome": "Only a static file server process is started without any backend server instances."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json with 'install:all' script to install dependencies for both frontend and backend",
+        "user_persona": "A new team member setting up the development environment.",
+        "user_goal": "To install all project dependencies with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Installation Script",
+                "description": "Jamie clones the repository and needs to install all dependencies quickly.",
+                "action": "Execute npm run install:all in the project root.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json with 'dev' script to start both frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work on the portfolio project.",
+        "user_goal": "To start the development environment for both frontend and backend simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Riley is ready to begin development and wants to launch both frontend and backend servers.",
+                "action": "Execute npm run dev in the project root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently, showing output from each in the terminal."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use of environment variables for database connection if dynamic data were needed",
+        "user_persona": "A DevOps engineer preparing deployment configurations.",
+        "user_goal": "To verify that database environment variables are properly configured for future use.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Environment Configuration",
+                "description": "Casey reviews the project setup to ensure database environment variables are defined.",
+                "action": "Examine project configuration files for database environment variables.",
+                "expected_outcome": "Environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME are defined with correct values but not actively used."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connection to an external PostgreSQL database using specified credentials if dynamic data were needed",
+        "user_persona": "A backend developer planning for future dynamic features.",
+        "user_goal": "To verify database connection configuration is properly documented.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Database Configuration",
+                "description": "Alex examines how the database connection would be established if backend features were added.",
+                "action": "Check documentation and configuration templates for database connection settings.",
+                "expected_outcome": "Database connection parameters match the specified credentials (localhost:5432, myappuser/myapppassword, myapp database)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API integration for fetching dynamic data if the site required it",
+        "user_persona": "A frontend developer preparing for potential future enhancements.",
+        "user_goal": "To verify placeholder API integration points exist for future development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking API References",
+                "description": "Jordan looks for evidence of planned API integration in the codebase.",
+                "action": "Search codebase for API endpoint references.",
+                "expected_outcome": "Comments or placeholder code referencing '/api/data' endpoint exists but is not active."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support for real-time preview of content if markdown editing were involved",
+        "user_persona": "A content creator evaluating portfolio customization options.",
+        "user_goal": "To verify that markdown content rendering capabilities are available.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Markdown Support",
+                "description": "Taylor investigates whether the site supports markdown-formatted content display.",
+                "action": "Look for markdown-related CSS or JavaScript files.",
+                "expected_outcome": "Markdown preview stylesheet (/styles/markdown-preview.css) is present in the project assets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive elements allowing user engagement with portfolio items",
+        "user_persona": "A visitor exploring the designer's portfolio website.",
+        "user_goal": "To interact with various elements on the page to engage with content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Smooth Scroll Navigation",
+                "description": "Morgan wants to navigate to different sections of the single-page portfolio.",
+                "action": "Click on navigation links in the header.",
+                "expected_outcome": "Page smoothly scrolls to the respective sections (About, Portfolio, Contact) without page reload."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Portfolio Items",
+                "description": "Morgan clicks on a portfolio project to see detailed information.",
+                "action": "Click on a project thumbnail in the Portfolio section.",
+                "expected_outcome": "A modal window opens displaying detailed project information including description and technology tags."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "SEO-friendly page structures for improved visibility of portfolio content",
+        "user_persona": "A digital marketer checking website optimization.",
+        "user_goal": "To verify that the website implements proper SEO practices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Page Metadata",
+                "description": "Jordan examines the page head section to check for SEO metadata.",
+                "action": "View page source and inspect <head> section.",
+                "expected_outcome": "Meta tags including description and structured headings (<h1>, <h2>) are present with relevant content."
+            },
+            {
+                "step": 2,
+                "title": "Checking Semantic Structure",
+                "description": "Jordan verifies that the page uses proper semantic HTML for better search engine indexing.",
+                "action": "Inspect HTML structure of main sections.",
+                "expected_outcome": "Content is organized with appropriate semantic tags (header, main, section, article, etc.) and logical heading hierarchy."
+            }
+        ]
+    }
+]

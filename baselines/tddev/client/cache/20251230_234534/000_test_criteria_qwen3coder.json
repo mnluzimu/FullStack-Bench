@@ -1,0 +1,268 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A visitor interested in learning about the solar company's offerings.",
+        "user_goal": "To view dynamically loaded content without seeing hardcoded information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens the website and expects real-time data instead of static placeholders.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Content such as company info, products, and news loads via API calls and displays correctly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using the specified environment variables",
+        "user_persona": "A developer deploying the application for production.",
+        "user_goal": "To confirm successful connection to the PostgreSQL database using predefined credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "John runs the backend service and ensures it connects to the configured PostgreSQL instance.",
+                "action": "Start the backend server using `npm run dev`.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Company introduction section displaying history, mission, and values",
+        "user_persona": "A potential client wanting to understand the company better.",
+        "user_goal": "To read detailed information about the company’s background and principles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to About Section",
+                "description": "Emily clicks on the 'About' link in the navigation menu to explore the company story.",
+                "action": "Click the 'About' link in the header navigation.",
+                "expected_outcome": "Page scrolls smoothly to the 'About Us' section showing 'Our History', 'Our Mission', and 'Our Values'."
+            },
+            {
+                "step": 2,
+                "title": "Reading Company Info",
+                "description": "Emily scrolls through the About section reading the dynamically fetched content.",
+                "action": "Scroll within the About section.",
+                "expected_outcome": "History, mission, and values remain visible and unchanged during scrolling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product showcase section with detailed product information",
+        "user_persona": "A homeowner looking to purchase solar panels.",
+        "user_goal": "To browse available products and see detailed specifications.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Product Showcase",
+                "description": "Michael navigates to the product section to compare different solar panel options.",
+                "action": "Click the 'Products' link in the navigation bar.",
+                "expected_outcome": "A grid layout of product cards appears with images, names, descriptions, and 'View Details' buttons."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Product Details",
+                "description": "Michael clicks on a product card to get more specific details before making a decision.",
+                "action": "Click the 'View Details' button on one of the product cards.",
+                "expected_outcome": "The selected product expands or navigates to a new page showing extended details like pricing and specs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "News updates section showing latest news and events",
+        "user_persona": "A journalist researching industry trends.",
+        "user_goal": "To stay updated on recent company activities and press releases.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing News Updates",
+                "description": "Lisa goes to the News section to find out what the company has been up to recently.",
+                "action": "Click the 'News' link in the navigation menu.",
+                "expected_outcome": "A timeline/list of news articles loads with titles, summaries, and publication dates."
+            },
+            {
+                "step": 2,
+                "title": "Opening Full Article",
+                "description": "Lisa selects an interesting headline to read the complete article.",
+                "action": "Click on a news item title.",
+                "expected_outcome": "The full article opens either in a modal window or a new dedicated page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact us page with form fields for name, email, and message",
+        "user_persona": "A prospective customer needing assistance.",
+        "user_goal": "To submit an inquiry by filling out and sending the contact form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Contact Form",
+                "description": "Robert fills out his personal details and writes a question in the message box.",
+                "action": "Navigate to the Contact page and fill in Name, Email, and Message fields.",
+                "expected_outcome": "Fields accept typed input and update visually upon focus with chocolate borders."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Inquiry",
+                "description": "After reviewing his entry, Robert submits the form hoping for a quick reply.",
+                "action": "Click the Submit button after entering valid data.",
+                "expected_outcome": "Form validates inputs and sends them to the backend endpoint successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Lemon chiffon background color applied throughout the site",
+        "user_persona": "A designer verifying brand consistency.",
+        "user_goal": "To verify that the entire website uses lemon chiffon as its base background color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Emma inspects the overall look of the website to ensure consistent branding.",
+                "action": "Open any page and inspect the body background style.",
+                "expected_outcome": "Body background color matches #FFFACD (lemon chiffon) across all pages visited."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chocolate-colored component layer for UI elements",
+        "user_persona": "A front-end developer ensuring UI theme consistency.",
+        "user_goal": "To validate that all interactive components use chocolate as their primary color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Component Styling",
+                "description": "Alex reviews how UI elements appear against the background to maintain visual harmony.",
+                "action": "Observe headers, buttons, and cards on multiple pages.",
+                "expected_outcome": "Component layers consistently use #D2691E (chocolate) for styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navigation menu linking to all main sections: Home, About, Products, News, Contact",
+        "user_persona": "A first-time user exploring the site.",
+        "user_goal": "To easily navigate between major sections using the top navigation bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "David lands on the homepage and wants to quickly jump to other parts of the site.",
+                "action": "Click each link in the horizontal navigation bar: Home, About, Products, News, Contact.",
+                "expected_outcome": "Each click smoothly scrolls or loads the corresponding section/page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and mobile devices",
+        "user_persona": "A mobile user accessing the site on-the-go.",
+        "user_goal": "To seamlessly browse the website regardless of screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "Anna resizes her browser to simulate viewing the site on smaller screens.",
+                "action": "Gradually resize the browser window to mimic mobile/tablet widths.",
+                "expected_outcome": "Layout adjusts fluidly; navigation collapses into a hamburger menu on small screens."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "SEO-friendly page titles and meta descriptions for each section",
+        "user_persona": "An SEO specialist auditing the site for search engine optimization.",
+        "user_goal": "To ensure each page contains unique and descriptive meta tags.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Meta Tags",
+                "description": "Sophie inspects individual pages to confirm they have appropriate SEO metadata.",
+                "action": "Visit each main section and check the <head> tag contents.",
+                "expected_outcome": "Each page includes a distinct <title> and <meta name=\"description\"> relevant to its content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Accessibility support including keyboard navigation and screen reader compatibility",
+        "user_persona": "A visually impaired user relying on assistive technologies.",
+        "user_goal": "To navigate the website effectively using only keyboard and screen reader tools.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Keyboard Navigation",
+                "description": "Mark uses the Tab key to move through interactive elements on the homepage.",
+                "action": "Press Tab repeatedly to cycle through links and buttons.",
+                "expected_outcome": "Focus moves logically between interactive elements, highlighting them clearly."
+            },
+            {
+                "step": 2,
+                "title": "Activating Elements via Keyboard",
+                "description": "Mark presses Enter to activate a highlighted link.",
+                "action": "Focus on a link then press Enter.",
+                "expected_outcome": "Link triggers navigation or action just as if clicked with a mouse."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Form validation on the contact page to ensure correct user input",
+        "user_persona": "A cautious user avoiding submission errors.",
+        "user_goal": "To submit the contact form only after providing valid input in all required fields.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Empty Fields",
+                "description": "James tries submitting the contact form without filling any fields.",
+                "action": "Leave all fields empty and click Submit.",
+                "expected_outcome": "Inline error messages appear prompting James to enter Name, valid Email, and Message (min 10 chars)."
+            },
+            {
+                "step": 2,
+                "title": "Correcting Input Errors",
+                "description": "James fills the form properly according to the displayed instructions.",
+                "action": "Fill all fields with valid data and click Submit again.",
+                "expected_outcome": "Validation passes, and the form submits successfully to the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading indicators during API data fetching",
+        "user_persona": "An impatient user waiting for content to load.",
+        "user_goal": "To know when content is still loading rather than assuming nothing happened.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Data Fetch",
+                "description": "Taylor refreshes the homepage expecting fresh content to populate.",
+                "action": "Reload the page or revisit a section requiring API data.",
+                "expected_outcome": "A spinner labeled 'Loading...' appears immediately in place of missing content."
+            },
+            {
+                "step": 2,
+                "title": "Observing Content Load",
+                "description": "Taylor waits patiently while the system retrieves necessary data.",
+                "action": "Wait for API responses to finish processing.",
+                "expected_outcome": "Spinner disappears once the content renders fully on screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for failed API requests or database connections",
+        "user_persona": "A frustrated user encountering network issues.",
+        "user_goal": "To receive helpful feedback when something goes wrong during data retrieval.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Simulating API Failure",
+                "description": "Maria experiences intermittent connectivity causing failed requests.",
+                "action": "Block or simulate failure for one of the API endpoints (e.g., /api/products).",
+                "expected_outcome": "An error banner slides down stating 'Failed to load content. Please try again later.' near the affected area."
+            },
+            {
+                "step": 2,
+                "title": "Dismissing Error Notification",
+                "description": "Maria acknowledges the error and continues browsing unaffected areas.",
+                "action": "Click the close icon on the error banner.",
+                "expected_outcome": "Banner fades away temporarily allowing continued interaction elsewhere."
+            }
+        ]
+    }
+]

@@ -1,0 +1,161 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "white",
+            "component_color": "navy",
+            "search_icon": "/assets/icons/search-icon.svg"
+        },
+        "function": "Render the primary UI layout with consistent styling using a white background and navy components.",
+        "static_description": "The page displays a clean, minimalistic layout with a white background. All interactive elements such as buttons, inputs, and dropdowns use navy color. The header includes branding/logo area. Main content area contains the search bar, report options panel, and results section.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "input_placeholder_text": "Enter stock symbol or company name...",
+            "search_api_endpoint": "/api/stocks/search"
+        },
+        "function": "Allow users to input stock codes or names for querying available stocks.",
+        "static_description": "A centered search input field appears prominently on the homepage. It features a placeholder text: 'Enter stock symbol or company name...' and is styled with navy borders and text. A magnifying glass icon is displayed inside the right edge of the input field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the input field when clicked."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers submission of entered value to initiate a stock lookup via the /api/stocks/search endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dropdown_options": [
+                "PDF Report",
+                "Excel Summary",
+                "HTML View"
+            ],
+            "content_selection_items": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ]
+        },
+        "function": "Provide controls for selecting desired report format and content sections.",
+        "static_description": "Below the search bar, two panels appear: one labeled 'Report Format' showing a dropdown menu with options ['PDF Report', 'Excel Summary', 'HTML View'], and another labeled 'Content Sections' listing checkboxes for ['Basic Info', 'Market Trends', 'Financial Data']. Both controls are styled with navy accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the dropdown toggles visibility of format options. Clicking checkboxes selects/deselects respective content items."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generate_button_label": "Generate Report",
+            "submit_action_endpoint": "/api/reports/generate"
+        },
+        "function": "Trigger generation of customized reports based on selected parameters.",
+        "static_description": "A large, navy-colored 'Generate Report' button spans below the selection panels. When inactive, it has reduced opacity; becomes fully opaque upon valid selections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submits current form data (selected stock, format, and content) to the /api/reports/generate endpoint. Displays loading indicator while processing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stock_info_fields": [
+                "Symbol",
+                "Company Name",
+                "Sector",
+                "Latest Price"
+            ],
+            "market_trend_chart_placeholder": "<Chart Placeholder>",
+            "financial_table_structure": "{Year: string, Revenue: number, Profit: number}"
+        },
+        "function": "Display dynamically generated stock reports containing requested information.",
+        "static_description": "After successful report generation, this section expands beneath the controls. It shows structured report segments including basic info cards, market trend visualization, and financial tables, all presented against a white background with navy headings.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "external_stock_api_integration": "Real-time stock price and metadata API",
+            "analysis_engine_api": "API providing predictive analytics and historical comparisons"
+        },
+        "function": "Fetch live stock data and analytical insights through integrated external services.",
+        "static_description": "This component handles backend-to-API communication without visible frontend representation. All fetched data populates into the report display areas after request completion.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgres_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "database_schema_instructions": "Create tables: stocks(stock_id, symbol, name, sector), reports(report_id, user_selections, created_at, file_path)"
+        },
+        "function": "Establish secure connection between application server and PostgreSQL instance using predefined credentials.",
+        "static_description": "Backend configuration module initializes database connectivity at startup using provided environment variables. Schema definitions ensure proper storage of stock records and generated reports metadata.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "search_endpoint_path": "/api/stocks/search",
+            "response_format": "{results: [{symbol: string, name: string}]}"
+        },
+        "function": "Enable programmatic querying of stock symbols or company names against stored or external datasets.",
+        "static_description": "RESTful GET endpoint accepts query parameter '?q=' and returns matching stock entries. Used by frontend autocomplete feature and direct searches.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "trends_endpoint": "/api/market/trends",
+            "financials_endpoint": "/api/stocks/{symbol}/financials"
+        },
+        "function": "Expose endpoints for retrieving time-series market movements and corporate financial statements.",
+        "static_description": "Two distinct endpoints serve specific data types: /api/market/trends provides aggregated index movement over periods, and /api/stocks/{symbol}/financials delivers quarterly/yearly revenue/profit figures per stock.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "report_generation_logic": "Combine selected stock data + user preferences → template engine → output formatter",
+            "supported_formats": [
+                "pdf",
+                "xlsx",
+                "html"
+            ]
+        },
+        "function": "Process user-selected configurations into downloadable or viewable reports in chosen formats.",
+        "static_description": "Server-side logic orchestrates multi-source data compilation and applies appropriate formatting templates before returning final document. Supports PDF, Excel, and HTML outputs.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loading_spinner_asset": "/assets/loaders/spinner.gif",
+            "error_message_templates": {
+                "invalid_stock": "Invalid stock symbol provided.",
+                "missing_data": "Requested data unavailable.",
+                "api_failure": "Temporary service disruption."
+            }
+        },
+        "function": "Present feedback during asynchronous operations and inform users about issues gracefully.",
+        "static_description": "During data fetch or report creation, a centrally positioned spinner animation replaces or overlays relevant sections. Upon failure, contextual error messages replace loading states with clear resolution guidance.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsive_breakpoints": "{mobile: max-width 768px, tablet: min-width 769px and max-width 1024px, desktop: min-width 1025px}",
+            "adaptive_layout_rules": "Stack vertical elements on small screens; maintain horizontal alignment above tablet size"
+        },
+        "function": "Ensure optimal usability and readability across various screen sizes and device types.",
+        "static_description": "Layout adjusts fluidly depending on viewport dimensions. Inputs, selections, and reports stack vertically on mobile devices but align side-by-side on tablets and desktops.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "npm_script_install_all": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+            "npm_script_dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
+        },
+        "function": "Automate setup and local development workflows via unified command-line interfaces.",
+        "static_description": "Root-level package.json defines custom scripts install:all and dev which manage dependency installation and concurrent execution of frontend/backend development servers respectively.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,352 @@
+[
+    {
+        "requirement_tested": "A homepage with a form for customers to submit travel package requests",
+        "user_persona": "A golf enthusiast planning a vacation.",
+        "user_goal": "To submit a travel package request with personal and preference details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Alex visits the homepage to find a travel package for an upcoming golf trip. He sees a centered form inviting him to fill in his travel preferences.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Homepage loads with a visible form titled 'Golf Travel Package Request' featuring fields like Full Name, Email, Preferred Travel Dates, etc."
+            },
+            {
+                "step": 2,
+                "title": "Filling Form Fields",
+                "description": "Alex begins filling out the form, entering his name, email, selecting dates, choosing accommodation type, and specifying golf course preferences.",
+                "action": "Fill in each form field accurately. Select options from dropdowns and checkboxes as needed.",
+                "expected_outcome": "Each field accepts input normally. Dropdowns open on focus, and selections are retained."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Travel Request",
+                "description": "After reviewing the filled form, Alex clicks the dark cyan submit button with an icon to send his request.",
+                "action": "Click the 'Submit' button at the end of the form.",
+                "expected_outcome": "Form data is validated and submitted successfully to the backend API, showing a confirmation message or redirecting to a thank-you page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API to handle form submissions and store request data in a PostgreSQL database",
+        "user_persona": "A developer verifying backend integration.",
+        "user_goal": "Ensure submitted travel requests are stored correctly in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Form Submission",
+                "description": "The backend receives a POST request containing travel request data from the frontend form submission.",
+                "action": "Send a sample POST request to /api/travel-requests with valid payload.",
+                "expected_outcome": "Server responds with HTTP 201 Created status indicating successful receipt and processing."
+            },
+            {
+                "step": 2,
+                "title": "Storing Data in Database",
+                "description": "The system processes the incoming data and inserts it into the PostgreSQL database using correct schema mapping.",
+                "action": "Check database records for newly inserted travel request.",
+                "expected_outcome": "New record exists in the 'travel_requests' table with matching values from the submitted form."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dynamic calculation of travel packages based on customer preferences including hotels, flights, transport, and golf conditions",
+        "user_persona": "A customer awaiting customized travel options.",
+        "user_goal": "Receive personalized travel package options based on previously submitted preferences.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Calculation Service",
+                "description": "Once a travel request is received, the system initiates dynamic package calculation by calling external APIs for real-time availability.",
+                "action": "Simulate creation of a new travel request entry in the database.",
+                "expected_outcome": "Package calculation service runs asynchronously and retrieves updated availability from hotel, flight, transport, and golf course providers."
+            },
+            {
+                "step": 2,
+                "title": "Generating Personalized Packages",
+                "description": "Using aggregated data and business logic, the system generates several package combinations tailored to the customer's preferences.",
+                "action": "Query backend for generated package options associated with the travel request ID.",
+                "expected_outcome": "Multiple package options appear with accurate pricing, inclusions, and relevance to requested preferences."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A booking confirmation interface where customers can confirm their selected package",
+        "user_persona": "A customer ready to finalize travel plans.",
+        "user_goal": "Review and select a suitable travel package then proceed with confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Package Options",
+                "description": "Jordan accesses the package selection page and reviews different travel packages presented in card layouts.",
+                "action": "Navigate to the booking confirmation page URL.",
+                "expected_outcome": "Page displays multiple package cards showing destinations, durations, prices, and highlights of included services."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Package",
+                "description": "Jordan clicks on one of the package cards to expand its details and compare it with others before making a choice.",
+                "action": "Click on a package card to expand it.",
+                "expected_outcome": "Selected card expands revealing detailed breakdowns of flights, hotels, golf courses, and other components."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Booking Selection",
+                "description": "Satisfied with the chosen package, Jordan clicks the prominent 'Confirm Booking' button to move forward.",
+                "action": "Click the 'Confirm Booking' button located beneath the expanded package details.",
+                "expected_outcome": "POST request is made to /api/bookings endpoint saving the selection and redirecting Jordan to a payment gateway."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generation and delivery of digital vouchers and invoices upon booking confirmation",
+        "user_persona": "A traveler expecting official documents post-payment.",
+        "user_goal": "Receive digital voucher and invoice after completing the booking process.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Completing Payment Process",
+                "description": "Taylor finishes paying for her selected travel package online and waits for the necessary documents.",
+                "action": "Complete payment transaction via the payment gateway.",
+                "expected_outcome": "Booking status updates to 'confirmed' in the system triggering automatic document generation."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Digital Documents",
+                "description": "Shortly after payment, Taylor receives an email with attached PDF versions of her travel voucher and invoice.",
+                "action": "Wait for email delivery to registered email address.",
+                "expected_outcome": "Email arrives with subject line confirming booking and contains two downloadable PDF attachments – one for the voucher and another for the invoice."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A customer relationship management module accessible via the backend for managing customer data and interactions",
+        "user_persona": "An admin needing to manage client relationships.",
+        "user_goal": "Access and update customer information and interaction history.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Admin Panel",
+                "description": "Admin Riley logs into the secured CRM section to view customer profiles and communications.",
+                "action": "Enter valid admin credentials on the login page and click 'Login'.",
+                "expected_outcome": "Redirected to the CRM dashboard with a list of customers displayed in a searchable table format."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Specific Customer",
+                "description": "Riley searches for a particular customer using the name filter to quickly locate their profile.",
+                "action": "Type customer's name into the search bar above the customer table.",
+                "expected_outcome": "Customer list filters dynamically, displaying only those matching the search term instantly."
+            },
+            {
+                "step": 3,
+                "title": "Updating Interaction Notes",
+                "description": "After finding the customer, Riley opens the profile to add notes about a recent call discussing travel arrangements.",
+                "action": "Click on the customer row to open the profile modal and enter notes in the interaction log form.",
+                "expected_outcome": "Notes save successfully and appear in the interaction timeline under the customer’s profile."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A supplier management module for handling supplier information and contracts",
+        "user_persona": "An operations manager maintaining supplier partnerships.",
+        "user_goal": "Manage supplier details and upload contractual agreements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Supplier Module",
+                "description": "Manager Sam navigates to the supplier management section from the admin dashboard sidebar.",
+                "action": "Click on 'Suppliers' link in the main navigation menu.",
+                "expected_outcome": "Loads the supplier management page displaying a sortable table of current suppliers."
+            },
+            {
+                "step": 2,
+                "title": "Uploading New Contract Document",
+                "description": "Sam uploads a newly signed contract for a golf resort partner by attaching the file to the supplier record.",
+                "action": "Click 'Upload Contract' next to the relevant supplier row and choose a PDF file to upload.",
+                "expected_outcome": "Contract file uploads successfully and links to the supplier's record in the database."
+            },
+            {
+                "step": 3,
+                "title": "Editing Supplier Details",
+                "description": "Sam notices outdated contact info and edits the supplier’s representative details.",
+                "action": "Click 'Edit' on the supplier row, modify contact fields, and save changes.",
+                "expected_outcome": "Supplier information updates in the database and reflects immediately in the supplier table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An online quote generation feature that provides pricing based on selected options",
+        "user_persona": "A potential customer seeking preliminary cost estimation.",
+        "user_goal": "Obtain an instant quote reflecting current market prices adjusted by configured business rules.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting a Quote",
+                "description": "Casey has filled out the travel form but wants to see estimated costs before proceeding further.",
+                "action": "Click the 'Get Quote' button after submitting the travel package request.",
+                "expected_outcome": "System calculates and returns a detailed quote including subtotal, taxes, discounts, and total amount."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Quote Details",
+                "description": "Casey examines the returned quote to understand how the price was determined.",
+                "action": "Read through the itemized breakdown shown in the frontend quote preview component.",
+                "expected_outcome": "Clear visualization of pricing elements such as base rate, seasonal surcharge, and applicable discounts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend pages styled with whitesmoke background color and dark cyan as the primary color for main components",
+        "user_persona": "A designer checking brand consistency.",
+        "user_goal": "Verify consistent application of specified color scheme throughout the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Styling",
+                "description": "Designer Morgan inspects the homepage to verify adherence to the defined color palette.",
+                "action": "Open browser DevTools and inspect body and main component styles.",
+                "expected_outcome": "Body background color is set to whitesmoke (#F5F5F5) and main interactive components use dark cyan (#008B8B)."
+            },
+            {
+                "step": 2,
+                "title": "Checking Secondary Pages",
+                "description": "Morgan moves to secondary pages to ensure uniformity of the styling across the entire site.",
+                "action": "Visit additional pages like booking confirmation and CRM dashboard.",
+                "expected_outcome": "Same background and accent colors consistently applied regardless of page context."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization for secure access to CRM and supplier modules",
+        "user_persona": "A security-conscious administrator.",
+        "user_goal": "Log in securely and access restricted areas with appropriate permissions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "Admin Dana tries to access the CRM module directly without logging in first.",
+                "action": "Attempt to navigate to /admin/customers without prior authentication.",
+                "expected_outcome": "Redirected to the login page due to lack of valid authentication token."
+            },
+            {
+                "step": 2,
+                "title": "Authenticating Credentials",
+                "description": "Dana enters her username and password to gain access to the admin panel.",
+                "action": "Enter valid credentials in the login form and click Submit.",
+                "expected_outcome": "Successfully logged in with a secure JWT token issued and redirected to the admin dashboard."
+            },
+            {
+                "step": 3,
+                "title": "Accessing Restricted Modules",
+                "description": "Now authenticated, Dana attempts to access both CRM and supplier management sections.",
+                "action": "Click links for 'Customers' and 'Suppliers' in the sidebar.",
+                "expected_outcome": "Both modules load successfully since Dana holds admin privileges granting full access rights."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving and updating booking statuses",
+        "user_persona": "A backend developer testing API behavior.",
+        "user_goal": "Use RESTful endpoints to check and modify booking statuses programmatically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Booking Details",
+                "description": "Developer Lee makes a GET request to retrieve the current status of a specific booking.",
+                "action": "Make GET request to /api/bookings/{booking_id}.",
+                "expected_outcome": "Returns JSON response with booking details including current status field."
+            },
+            {
+                "step": 2,
+                "title": "Updating Booking Status",
+                "description": "Lee updates the booking status from 'pending' to 'confirmed' using a PATCH request.",
+                "action": "Issue a PATCH request to /api/bookings/{id}/status with {new_status: 'confirmed'} payload.",
+                "expected_outcome": "Booking status updates in the database and returns success response code 200 OK."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Email notification system for sending confirmations, vouchers, and invoices to customers",
+        "user_persona": "A customer expecting timely communication.",
+        "user_goal": "Receive automated emails at key stages of the booking lifecycle.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Booking Confirmation Trigger",
+                "description": "After confirming a booking, Morgan expects to receive an immediate confirmation email.",
+                "action": "Change booking status to 'confirmed' in the system.",
+                "expected_outcome": "Automated email is queued and sent to Morgan’s registered email address with booking details."
+            },
+            {
+                "step": 2,
+                "title": "Document Delivery Follow-Up",
+                "description": "Soon after, Morgan anticipates receiving the official voucher and invoice via email.",
+                "action": "Monitor inbox for subsequent email with attachments.",
+                "expected_outcome": "Second email arrives shortly afterward containing downloadable PDF copies of the travel voucher and invoice."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin dashboard for viewing and managing all bookings, quotes, and customer requests",
+        "user_persona": "An operations lead overseeing daily activities.",
+        "user_goal": "Monitor overall activity and respond to pending tasks efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Dashboard",
+                "description": "Lead Tracy logs in and goes straight to the admin dashboard to get a snapshot of ongoing activities.",
+                "action": "Log in as admin and land on the default dashboard route.",
+                "expected_outcome": "Dashboard renders with overview charts, tables showing recent bookings, quotes, and unresolved customer requests."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Operational Data",
+                "description": "Tracy uses filters to narrow down bookings to those requiring attention today.",
+                "action": "Adjust date range filter above the bookings table to show today's entries.",
+                "expected_outcome": "Table updates dynamically to reflect filtered dataset helping Tracy prioritize urgent matters."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integration with external services for real-time availability checking of hotels, flights, and golf courses",
+        "user_persona": "A system integrator ensuring seamless connectivity.",
+        "user_goal": "Validate that external API connections provide up-to-date availability data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Availability Checks",
+                "description": "Integrator Kim simulates a travel request to trigger calls to external APIs for live availability.",
+                "action": "Submit a test travel request with realistic parameters.",
+                "expected_outcome": "Backend services call respective external APIs and return current availability data for hotels, flights, and golf courses."
+            },
+            {
+                "step": 2,
+                "title": "Validating Response Accuracy",
+                "description": "Kim verifies that the retrieved data aligns with actual offerings from the integrated partners.",
+                "action": "Compare API responses with known live data sources.",
+                "expected_outcome": "Returned data matches source provider inventories proving accurate real-time synchronization."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across desktop and mobile devices",
+        "user_persona": "A frequent traveler accessing services on mobile.",
+        "user_goal": "Seamlessly use the website on a smartphone without layout issues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile Device",
+                "description": "Traveler Noah opens the website on his smartphone to start planning a trip.",
+                "action": "Open website URL on a mobile browser.",
+                "expected_outcome": "Site loads responsively adapting layout for small screen with stacked form fields and touch-friendly controls."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Responsive Elements",
+                "description": "Noah fills out the travel form and selects options using touch gestures rather than mouse clicks.",
+                "action": "Tap on input fields, dropdown menus, and submit button.",
+                "expected_outcome": "All interactive elements respond smoothly to touch events, maintaining usability despite smaller viewport size."
+            }
+        ]
+    }
+]

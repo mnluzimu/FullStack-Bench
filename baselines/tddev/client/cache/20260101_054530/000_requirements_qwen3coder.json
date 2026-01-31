@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API server that connects to a PostgreSQL database using specified environment variables",
+    "User authentication and session management system",
+    "Contest browsing and search functionality",
+    "Contest enrollment and registration feature",
+    "Interactive question display interface for live contests",
+    "Answer submission form with validation",
+    "Real-time scoring calculation and display",
+    "Leaderboard showing user rankings and scores",
+    "User profile page displaying personal stats and contest history",
+    "Admin panel for creating and managing trivia contests",
+    "Database schema supporting users, contests, questions, answers, and scores",
+    "Responsive UI design with beige as base color and saddle brown for components",
+    "Package.json configured with npm run install:all for frontend and backend installation",
+    "Package.json configured with npm run dev for concurrent frontend and backend development servers"
+]

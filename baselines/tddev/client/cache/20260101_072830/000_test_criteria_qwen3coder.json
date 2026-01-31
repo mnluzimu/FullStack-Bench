@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "A wheel of fortune interface that users can spin to win prizes",
+        "user_persona": "A casual visitor named Alex who is curious about the game.",
+        "user_goal": "To successfully spin the wheel and see what prize they win.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Site",
+                "description": "Alex lands on the homepage and sees a large wheel with colorful segments and a 'Spin' button below it.",
+                "action": "Observe the landing page layout.",
+                "expected_outcome": "The wheel is centered with a title 'Spin to Win!', and a dark red 'Spin' button is visible beneath it against a light gray background."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Spin",
+                "description": "Excited to try, Alex clicks the 'Spin' button to start the game.",
+                "action": "Click the 'Spin' button.",
+                "expected_outcome": "The wheel begins rotating with smooth animation, and the 'Spin' button becomes disabled until the spin completes."
+            },
+            {
+                "step": 3,
+                "title": "Receiving Result",
+                "description": "After a few seconds, the wheel slows down and stops at a random segment. A modal pops up showing the result.",
+                "action": "Wait for the spin to complete.",
+                "expected_outcome": "A modal appears displaying the prize name and a congratulatory message such as 'Congratulations! You've won [Prize Name]'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A display section showing all available prizes",
+        "user_persona": "Returning user Sam who wants to know what prizes are available before spinning.",
+        "user_goal": "To view the list of all available prizes and their details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Prize List",
+                "description": "Sam scrolls down or looks around the page to find the prize information.",
+                "action": "Locate the 'Prize List' section.",
+                "expected_outcome": "A dedicated section titled 'Prize List' is displayed below or beside the wheel, featuring a responsive grid or table layout."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Prizes",
+                "description": "Sam examines the list of prizes shown in the grid or table format.",
+                "action": "Scan the prize items.",
+                "expected_outcome": "Each item includes an image thumbnail, prize name, and probability percentage, styled with alternating row colors and dark red headers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user-specific section displaying their winning records",
+        "user_persona": "Frequent player Jordan who wants to track their past winnings.",
+        "user_goal": "To review their personal history of won prizes from previous spins.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Winnings Section",
+                "description": "Jordan scrolls to the bottom of the page looking for their personal records.",
+                "action": "Navigate to the 'My Winnings' section.",
+                "expected_outcome": "A scrollable table titled 'My Winnings' is displayed with columns for Date & Time, Prize Won, and Status."
+            },
+            {
+                "step": 2,
+                "title": "Checking History",
+                "description": "Jordan reviews the entries in the table to recall previously won prizes.",
+                "action": "Examine the rows in the table.",
+                "expected_outcome": "Rows alternate between white and light gray backgrounds, with headers styled in dark red, showing accurate historical data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all dynamic data from backend APIs",
+        "user_persona": "Tech-savvy tester Morgan verifying correct integration.",
+        "user_goal": "To ensure that dynamic content loads properly via API calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Page Content",
+                "description": "Morgan opens the site and watches how the dynamic sections load.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Loading indicators appear briefly in sections like Wheel Interface, Prize List, and Winning Records before populating content fetched from backend APIs."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Data Sources",
+                "description": "Morgan inspects network activity to confirm API usage.",
+                "action": "Open browser DevTools Network tab.",
+                "expected_outcome": "Requests are made to GET /api/prizes, GET /api/history, and POST /api/spin, confirming frontend fetches all dynamic data from backend services."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "Developer Riley checking deployment configuration.",
+        "user_goal": "To verify that the backend connects securely to the PostgreSQL database using predefined credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Backend Configuration",
+                "description": "Riley checks the backend codebase for database connection settings.",
+                "action": "Review backend configuration files.",
+                "expected_outcome": "Database connection is established using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Database Connection",
+                "description": "Riley ensures the backend can perform queries against the database.",
+                "action": "Run a sample query through the backend.",
+                "expected_outcome": "Backend successfully executes queries against the configured PostgreSQL instance using the pg client library."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting prize definitions and user winning records",
+        "user_persona": "Database administrator Taylor ensuring proper schema design.",
+        "user_goal": "To validate that the database schema supports storing prizes and user winning records.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Prizes Table",
+                "description": "Taylor reviews the database schema for the prizes table.",
+                "action": "Query the database schema.",
+                "expected_outcome": "The 'prizes' table exists with columns: id (SERIAL PRIMARY KEY), name (VARCHAR), description (TEXT), image_url (TEXT), and probability (DECIMAL)."
+            },
+            {
+                "step": 2,
+                "title": "Examining Winnings Table",
+                "description": "Taylor verifies the structure of the winnings table.",
+                "action": "Check the schema of the winnings table.",
+                "expected_outcome": "The 'winnings' table has columns: id (SERIAL PRIMARY KEY), user_identifier (TEXT), prize_id (INTEGER REFERENCES prizes(id)), and timestamp (TIMESTAMP DEFAULT CURRENT_TIMESTAMP)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to record each user's spin result in the database",
+        "user_persona": "QA engineer Casey validating data persistence.",
+        "user_goal": "To confirm that each spin result is saved accurately in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering a Spin",
+                "description": "Casey performs a spin action on the website.",
+                "action": "Click the 'Spin' button and wait for completion.",
+                "expected_outcome": "A prize is determined and returned from the POST /api/spin endpoint."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Record Insertion",
+                "description": "Casey checks the database to ensure the spin result was recorded.",
+                "action": "Query the 'winnings' table for the latest entry.",
+                "expected_outcome": "A new record is inserted into the 'winnings' table containing the user identifier, prize ID, and timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Visual feedback during the wheel spinning animation",
+        "user_persona": "UX-focused designer Pat evaluating engagement factors.",
+        "user_goal": "To ensure the spinning animation provides satisfying visual feedback.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Spin",
+                "description": "Pat clicks the spin button to observe the animation behavior.",
+                "action": "Click the 'Spin' button.",
+                "expected_outcome": "The wheel starts rotating smoothly with CSS transitions or JavaScript-based animation simulating realistic rotation deceleration."
+            },
+            {
+                "step": 2,
+                "title": "Observing Completion",
+                "description": "Pat watches the wheel slow down and stop naturally.",
+                "action": "Watch the animation finish.",
+                "expected_outcome": "The wheel gradually slows down and stops at a random segment, providing clear visual indication of the outcome."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design with light gray background and dark red styled components",
+        "user_persona": "Mobile user Quinn accessing the site on a phone.",
+        "user_goal": "To experience a well-designed and responsive interface matching brand colors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing on Mobile Device",
+                "description": "Quinn visits the site using a smartphone browser.",
+                "action": "Open the site on a mobile device.",
+                "expected_outcome": "The entire website uses a light gray (#D3D3D3) background, and all interactive elements, headers, and highlights are styled in dark red (#8B0000)."
+            },
+            {
+                "step": 2,
+                "title": "Testing Responsiveness",
+                "description": "Quinn interacts with various parts of the site to check responsiveness.",
+                "action": "Resize viewport or navigate through sections.",
+                "expected_outcome": "Layout adjusts gracefully from desktop to mobile views using media queries, maintaining readability and usability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Landing page explaining how to use the wheel of fortune",
+        "user_persona": "First-time visitor Robin unfamiliar with the game.",
+        "user_goal": "To understand how to play the wheel of fortune from the landing page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Landing Page Content",
+                "description": "Robin lands on the homepage and reads the introductory content.",
+                "action": "Read the top section of the page.",
+                "expected_outcome": "There is a welcoming headline ('Try Your Luck Today!'), a short instructional paragraph, and a hero image of the wheel."
+            },
+            {
+                "step": 2,
+                "title": "Using Navigation Links",
+                "description": "Robin clicks one of the call-to-action buttons to explore further.",
+                "action": "Click either 'Start Playing' or 'View Prizes'.",
+                "expected_outcome": "'Start Playing' scrolls down to the wheel interface, and 'View Prizes' navigates to or reveals the prize listing section."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication or identification mechanism to track individual user records",
+        "user_persona": "Regular user Devon wanting to maintain their progress.",
+        "user_goal": "To have their spins tracked under a consistent identity across sessions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Visit Identification",
+                "description": "Devon visits the site for the first time and gets assigned an identifier.",
+                "action": "Load the homepage.",
+                "expected_outcome": "A unique user ID is generated and stored in localStorage using localStorage.setItem('userId', uuid)."
+            },
+            {
+                "step": 2,
+                "title": "Subsequent Visit Recognition",
+                "description": "Devon returns later and expects their previous actions to be recognized.",
+                "action": "Reload the page after closing the browser.",
+                "expected_outcome": "The same userId is retrieved from localStorage, allowing continuity of records without needing login."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoint to retrieve current user's winning history",
+        "user_persona": "Application developer Austin integrating frontend with backend.",
+        "user_goal": "To consume the winning history endpoint and display user-specific data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Calling History Endpoint",
+                "description": "Austin triggers a request to get the user's winning history.",
+                "action": "Make a GET request to /api/history with authentication header.",
+                "expected_outcome": "Endpoint responds with a JSON array of past spins including timestamps and prize references, filtered by user context."
+            },
+            {
+                "step": 2,
+                "title": "Rendering History",
+                "description": "Austin maps the received data to UI components.",
+                "action": "Populate the 'My Winnings' table with API response.",
+                "expected_outcome": "Accurate historical data is rendered in the table, showing dates, prizes, and statuses correctly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoint to fetch the list of available prizes",
+        "user_persona": "Frontend developer Blair building the prize display component.",
+        "user_goal": "To fetch and render the complete list of available prizes dynamically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Prize Data",
+                "description": "Blair initiates a call to retrieve all available prizes.",
+                "action": "Send a GET request to /api/prizes.",
+                "expected_outcome": "Endpoint returns a JSON array containing objects with id, name, description, image_url, and probability for each prize."
+            },
+            {
+                "step": 2,
+                "title": "Displaying Prizes",
+                "description": "Blair binds the fetched data to the frontend grid or table.",
+                "action": "Render prize items in the 'Prize List' section.",
+                "expected_outcome": "All prizes are displayed visually with thumbnails, names, and probabilities as per the API response."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoint to process a wheel spin and return the result",
+        "user_persona": "Game logic developer Cameron implementing core functionality.",
+        "user_goal": "To handle spin processing and return appropriate prize results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Spin Request",
+                "description": "Cameron sends a request to simulate a user spinning the wheel.",
+                "action": "POST to /api/spin with body { userIdentifier: 'uuid-string' }.",
+                "expected_outcome": "Server processes the request, determines a prize based on probabilities, saves the result, and returns a structured JSON response."
+            },
+            {
+                "step": 2,
+                "title": "Handling Response",
+                "description": "Cameron validates the response structure and prize selection logic.",
+                "action": "Parse the response from the endpoint.",
+                "expected_outcome": "Response matches format { success: true, prizeId: number, prizeName: string }, indicating successful processing and accurate prize determination."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `install:all` and `dev` scripts running both frontend and backend",
+        "user_persona": "New team member Drew setting up the project locally.",
+        "user_goal": "To easily install dependencies and run both frontend and backend together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Drew clones the repo and runs the setup command.",
+                "action": "Execute `npm run install:all` in terminal.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently using concurrently package."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "Drew starts the development environment.",
+                "action": "Execute `npm run dev` in terminal.",
+                "expected_outcome": "Concurrently launches both frontend and backend development servers, enabling simultaneous development and testing."
+            }
+        ]
+    }
+]

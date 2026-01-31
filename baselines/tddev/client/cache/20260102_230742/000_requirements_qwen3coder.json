@@ -1,0 +1,17 @@
+[
+    "Frontend application with dynamic data fetching from backend APIs",
+    "Backend application connecting to PostgreSQL database using specified environment variables",
+    "User authentication and authorization system",
+    "Course browsing interface displaying available Python data science courses",
+    "Course selection and enrollment functionality",
+    "Learning content delivery system for enrolled courses",
+    "Assignment submission interface for course assignments",
+    "Grade querying dashboard for users to view their learning grades",
+    "Database schema supporting users, courses, enrollments, assignments, and grades",
+    "Responsive UI design with honeydew background and dark olive green components",
+    "Package.json configuration with npm run install:all for frontend and backend installation",
+    "Package.json configuration with npm run dev for concurrent frontend and backend development servers",
+    "API endpoints for course management and retrieval",
+    "API endpoints for assignment submission and grade reporting",
+    "User dashboard for managing enrolled courses and tracking progress"
+]

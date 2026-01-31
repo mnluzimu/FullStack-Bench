@@ -1,0 +1,180 @@
+[
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table named 'tasks' with fields: id (UUID, primary key), title (string, required), description (text, optional), is_completed (boolean, default false), created_at (timestamp), updated_at (timestamp)",
+            "addTaskIcon": "/icons/add-task-icon.svg",
+            "deleteTaskIcon": "/icons/delete-task-icon.svg",
+            "editTaskIcon": "/icons/edit-task-icon.svg"
+        },
+        "function": "Allow users to create new to-do items with a title and optional description.",
+        "static_description": "A form at the top of the page includes a text input labeled 'Title', a text area labeled 'Description', and a submit button with an add icon [addTaskIcon]. The background is lavender (#E6E6FA) and all components use indigo (#4B0082) styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button saves the new task to the database and clears the input fields. The newly added task appears at the top of the task list."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on the title input field submits the form if both title and description are valid."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table named 'tasks' with fields: id (UUID, primary key), title (string, required), description (text, optional), is_completed (boolean, default false), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Enable editing of existing to-do items including their title and description.",
+        "static_description": "Each task in the list displays an edit icon [editTaskIcon] next to its checkbox and delete button. When clicked, the task switches to an inline-edit mode showing pre-filled inputs for title and description.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the edit icon replaces the task display with editable input fields populated with current values. A save button confirms changes and updates the task in the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table named 'tasks' with fields: id (UUID, primary key), title (string, required), description (text, optional), is_completed (boolean, default false), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Permit deletion of to-do items permanently from the system.",
+        "static_description": "Each task shows a delete icon [deleteTaskIcon] aligned to the right side of the task row. Icons are styled with indigo color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete icon removes the corresponding task from the database and updates the UI immediately without requiring confirmation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table named 'tasks' with fields: id (UUID, primary key), title (string, required), description (text, optional), is_completed (boolean, default false), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Support toggling completion status of to-do items.",
+        "static_description": "Each task entry features a checkbox component positioned to the left of the task title. Completed tasks appear visually distinct through strikethrough text and reduced opacity.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the checkbox toggles the task’s is_completed status in the database and visually updates the task style accordingly — applying strikethrough when marked complete and removing it when reverted."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table named 'tasks' with fields: id (UUID, primary key), title (string, required), description (text, optional), is_completed (boolean, default false), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Allow filtering of tasks based on their completion status.",
+        "static_description": "Above the task list, there are three filter buttons labeled 'All', 'Completed', and 'Pending'. These buttons are styled with indigo backgrounds and lavender borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'All' displays every task. Clicking 'Completed' filters only completed tasks (is_completed = true). Clicking 'Pending' filters only incomplete tasks (is_completed = false). Selected filter remains highlighted."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table named 'tasks' with fields: id (UUID, primary key), title (string, required), description (text, optional), is_completed (boolean, default false), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Enable keyword-based search within task titles and descriptions.",
+        "static_description": "At the top of the interface, just above the task creation form, there is a search bar labeled 'Search Tasks'. It has a magnifying glass icon and uses indigo-styled input styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types, the displayed task list dynamically filters to show only those tasks whose title or description contains the entered keywords (case-insensitive partial match)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table named 'tasks' with fields: id (UUID, primary key), title (string, required), description (text, optional), is_completed (boolean, default false), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Present all available to-do items in a scrollable list view.",
+        "static_description": "Below the filters and search bar, a vertically scrollable container lists all tasks. Each task row spans full width with consistent padding, lavender background, and indigo borders separating rows.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Vertical scrolling allows browsing through long lists of tasks without pagination. No additional loading mechanism is triggered upon scroll."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Visually differentiate between completed and pending tasks.",
+        "static_description": "Tasks marked as completed have grayed-out text with a line-through effect applied to the title and description. Pending tasks retain normal font weight and standard text color.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Provide a dedicated input field for entering short task titles.",
+        "static_description": "Above the main task list, a single-line text input field labeled 'New Task Title' is present. Styled with indigo border and lavender fill.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Users enter task titles into this field which serves as the primary identifier during task creation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Offer space for detailed notes or instructions related to a task.",
+        "static_description": "Adjacent to the title input, a multi-line text area labeled 'Task Description' allows extended input. Also styled with indigo theme elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Users can provide more context about the task in this area, supporting line breaks and longer content than the title field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Render checkboxes for easy status updates of individual tasks.",
+        "static_description": "To the far left of each task row, a square checkbox element indicates whether the task is completed. Checked boxes feature a filled checkmark.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling the checkbox instantly updates the task's completion state in the backend and modifies the visual presentation of the task accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "deleteTaskIcon": "/icons/delete-task-icon.svg"
+        },
+        "function": "Supply a control for immediate removal of tasks.",
+        "static_description": "Each task row ends with a small trash bin icon [deleteTaskIcon], colored in indigo, serving as the delete trigger for that specific task.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Activating this icon deletes the associated task from the database and refreshes the visible list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Provide controls to switch views among different task statuses.",
+        "static_description": "Three horizontally-aligned buttons labeled 'All', 'Completed', and 'Pending' sit above the task list. Active filter is indicated via underlined label and bold font.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting any button adjusts the task listing to reflect only the chosen subset: All (no filter), Completed (only checked tasks), or Pending (unchecked tasks)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Facilitate quick location of specific tasks using typed queries.",
+        "static_description": "A prominent search input field labeled 'Find Tasks...' sits near the top of the page, featuring rounded corners and indigo-themed styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Real-time filtering narrows down the task list to match the query against both title and description fields of all stored tasks."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Maintain uniformity across UI elements using lavender backgrounds and indigo accents.",
+        "static_description": "Entire application viewport uses a soft lavender background (#E6E6FA). All interactive components such as buttons, forms, and cards utilize indigo (#4B0082) for borders, icons, and highlights.",
+        "interaction_and_states": []
+    }
+]

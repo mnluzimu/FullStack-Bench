@@ -1,0 +1,17 @@
+[
+    "A frontend that fetches all data from backend APIs",
+    "A backend that connects to an external PostgreSQL database using these exact environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+    "Configure the repository's package.json so that npm run install:all installs both FE & BE",
+    "Configure the repository's package.json so that npm run dev starts both concurrently",
+    "A homepage showcasing featured tourist attractions and campsites across Europe",
+    "A search functionality allowing users to filter attractions and campsites by country, city, or keyword",
+    "A detailed view page for each attraction and campsite displaying description, location, images, availability, and reviews",
+    "A booking system enabling users to reserve attractions and campsites with date selection and confirmation",
+    "A user review system allowing visitors to submit ratings and written feedback for attractions and campsites they have visited",
+    "A user authentication system supporting registration, login, and session management",
+    "A user dashboard displaying their bookings, submitted reviews, and saved favorites",
+    "A map interface visualizing the locations of attractions and campsites across European countries and cities",
+    "Admin capabilities for managing content such as adding, editing, or removing attractions and campsites",
+    "Responsive design optimized for desktop, tablet, and mobile browsing experiences",
+    "UI styled with light pink as the main background color and medium violet red for interactive controls"
+]

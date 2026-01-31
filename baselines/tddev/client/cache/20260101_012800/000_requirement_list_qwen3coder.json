@@ -1,0 +1,223 @@
+[
+    {
+        "resource_dependency": {
+            "financialDataAPI": "An API endpoint to fetch financial data per company from the PostgreSQL database.",
+            "companyLogoPlaceholder": "/assets/images/company-placeholder.png",
+            "tealThemeCSS": "/styles/teal-theme.css",
+            "mintCreamBackgroundClass": "bg-mint-cream"
+        },
+        "function": "Display financial data from multiple companies in a structured dashboard layout.",
+        "static_description": "The dashboard page shows a header with the app name and user profile section, followed by a grid of summary cards representing each company's latest financial status. Cards include a company logo (using companyLogoPlaceholder), name, and key metrics like revenue, profit, and expenses. All components use teal-themed styling (via tealThemeCSS) and are rendered against a mint cream background (mintCreamBackgroundClass).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a company card navigates to the detailed financial data view for that company."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a summary card highlights it with a subtle shadow effect."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "financialDataTableSchema": "Table 'financial_data' with columns: id (UUID), company_id (UUID), date (DATE), revenue (DECIMAL), profit (DECIMAL), expenses (DECIMAL), created_at (TIMESTAMP)",
+            "companiesTableSchema": "Table 'companies' with columns: id (UUID), name (STRING), industry (STRING), logo_url (STRING)"
+        },
+        "function": "Provide backend API endpoints to fetch financial data from an external PostgreSQL database.",
+        "static_description": "A RESTful API service exposes endpoints such as /api/companies, /api/financial-data/:companyId, and /api/reports/consolidated. These endpoints query the PostgreSQL database configured via postgresConnectionConfig and return structured JSON responses containing financial records based on the defined financialDataTableSchema and companiesTableSchema.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authAPI": "Authentication endpoints including login, logout, and session validation.",
+            "userRolesSchema": "Database table 'users' with fields: id (UUID), username (STRING), password_hash (STRING), role (ENUM: admin, viewer)",
+            "jwtSecretEnvVar": "JWT_SECRET=mysecretkey"
+        },
+        "function": "Manage user authentication and authorization to access the multi-company dashboard.",
+        "static_description": "A login form appears when accessing the dashboard without a valid session. It includes fields for username and password. Upon submission, credentials are validated using authAPI which interacts with the users table described in userRolesSchema. Successful authentication sets a JWT token stored in local storage, secured by jwtSecretEnvVar.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the login form sends credentials to the server; successful login redirects to the main dashboard."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after filling the password field submits the login form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companySelectorDropdownContent": "List of available companies fetched from the backend via GET /api/companies",
+            "selectedCompanyStateVariable": "Stores currently selected company ID in frontend state"
+        },
+        "function": "Allow users to switch between different company views using a company selector.",
+        "static_description": "At the top of the dashboard, there is a dropdown menu labeled 'Select Company'. The options are populated dynamically using companySelectorDropdownContent. The currently selected company is highlighted visually and stored in selectedCompanyStateVariable.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the dropdown toggles visibility of the list of companies."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a company from the dropdown updates the view to show data related to that company only."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportDataEndpoint": "GET /api/reports/consolidated?startDate&endDate",
+            "reportVisualizationComponent": "Chart.js-based bar chart component for rendering aggregated data"
+        },
+        "function": "Aggregate financial data across all selected companies and present it in a consolidated report view.",
+        "static_description": "This view presents a full-screen report panel showing aggregated financial summaries such as total revenue, average profit margin, and expense distribution. Data is visualized using reportVisualizationComponent and sourced from reportDataEndpoint filtered by optional date range inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Generate Report' fetches new data from the API and re-renders the visualization."
+            },
+            {
+                "interaction": "Change Date Range Inputs",
+                "description": "Adjusting the start or end date automatically triggers a refresh of the consolidated report data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonMetricsEndpoint": "GET /api/comparison/metrics?metric=revenue&companies=[id1,id2]",
+            "chartLibrary": "D3.js or Chart.js for creating interactive comparison charts"
+        },
+        "function": "Enable side-by-side comparison of financial metrics across multiple companies using charts and tables.",
+        "static_description": "This screen displays two panels side-by-side: one showing tabular data comparing metrics (e.g., revenue, profit) among selected companies, and another with an interactive line chart generated using chartLibrary. Both panels pull data from comparisonMetricsEndpoint.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a row in the table highlights corresponding data points in the chart."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a data point in the chart shows a tooltip with exact values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "browseDataEndpoint": "GET /api/financial-data/:companyId?sort=metric&order=asc&filter=dateRange",
+            "tableComponentWithSortingFiltering": "Reusable React table component supporting client/server-side sorting and filtering"
+        },
+        "function": "Allow users to browse financial data by company with advanced filtering and sorting capabilities.",
+        "static_description": "Displays a paginated table listing historical financial entries for a selected company. Columns include date, revenue, profit, and expenses. Sorting controls appear above each column header, and filter options allow narrowing results by date ranges.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Column Header",
+                "description": "Clicking a column header sorts the table by that metric in ascending/descending order alternately."
+            },
+            {
+                "interaction": "Apply Filter Button Click",
+                "description": "Clicking 'Apply Filters' sends updated parameters to browseDataEndpoint and reloads the table contents."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketOrPollingMechanism": "Either WebSocket connection or polling mechanism to receive live updates from the backend",
+            "liveUpdateAPI": "WebSocket endpoint ws://localhost:8080/ws/updates or periodic polling to /api/live-updates"
+        },
+        "function": "Ensure real-time updates of financial data displayed on the dashboard through dynamic API calls.",
+        "static_description": "Live data indicators (like small badges near relevant UI elements) reflect whether data is current. When enabled, either websocketOrPollingMechanism maintains a persistent connection to liveUpdateAPI to push new financial updates instantly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Toggle Real-Time Updates Switch",
+                "description": "Enabling/disabling the toggle activates/deactivates the real-time update stream via liveUpdateAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "tealColorPalette": "#008080 primary, #006666 secondary",
+            "globalStylesheetPath": "/styles/global-teal-theme.css"
+        },
+        "function": "Apply consistent teal-themed UI components throughout the application.",
+        "static_description": "All buttons, input fields, navigation bars, and cards utilize styles defined in globalStylesheetPath, applying the tealColorPalette consistently. Text remains readable with sufficient contrast against the mint cream background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mintCreamHexCode": "#F5FFFA",
+            "backgroundStyleClass": ".mint-background { background-color: #F5FFFA; }"
+        },
+        "function": "Maintain a uniform mint cream background color across all dashboard pages.",
+        "static_description": "Every route within the dashboard applies backgroundStyleClass to ensure the entire viewport renders with mintCreamHexCode as the base background color.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "customReportBuilderUI": "Drag-and-drop interface for selecting metrics and configuring filters",
+            "generateCustomReportAPI": "POST /api/reports/custom with configuration payload"
+        },
+        "function": "Enable users to generate custom financial reports tailored to their needs.",
+        "static_description": "A dedicated 'Custom Reports' tab opens a builder interface featuring draggable metric blocks and adjustable time filters. Users can arrange these components and click 'Generate' to send configurations to generateCustomReportAPI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a metric block onto the canvas adds it to the report preview."
+            },
+            {
+                "interaction": "Click Generate Button",
+                "description": "Triggers generation of a downloadable PDF or CSV file based on the configured settings."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "graphComponentLibrary": "Chart.js or Recharts for implementing various graph types",
+            "summaryCardTemplate": "<div class='card'><h3>Metric Title</h3><p>Value</p></div>"
+        },
+        "function": "Visualize complex financial datasets using graphs, charts, and summary cards.",
+        "static_description": "Summary cards render numerical KPIs (revenue, growth rate, etc.) while larger graph sections depict trends over time. Components follow templates like summaryCardTemplate and leverage graphComponentLibrary for consistency.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a chart segment reveals additional contextual information in tooltips."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpointsCSS": "@media queries handling mobile/tablet/desktop layouts",
+            "mobileNavigationMenu": "Collapsible hamburger menu replacing horizontal nav bar on smaller screens"
+        },
+        "function": "Ensure responsive layout optimized for desktop and mobile device usability.",
+        "static_description": "Layout adjusts fluidly using responsiveBreakpointsCSS. Navigation transforms into mobileNavigationMenu on smaller screens. Interactive components resize appropriately without losing functionality.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Resizing the browser window causes automatic layout adjustments according to media breakpoints."
+            },
+            {
+                "interaction": "Click Hamburger Menu Icon",
+                "description": "Opens/closes the collapsible mobile navigation menu."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+            "packageJsonScripts": "{ \"install:all\": \"<installScriptCommand>\", ... }"
+        },
+        "function": "Configure the repository’s package.json to install both frontend and backend dependencies using `npm run install:all`.",
+        "static_description": "Inside the root package.json file, under scripts, define an entry named install:all that runs installScriptCommand to simultaneously execute npm install commands in both frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devServerStartCommands": "Frontend: Vite dev server (port 3000); Backend: Node.js Express server (port 8080)",
+            "concurrentDevRunner": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
+        },
+        "function": "Set up concurrent execution of frontend and backend development servers via `npm run dev`.",
+        "static_description": "Root-level script dev in package.json executes concurrentDevRunner, launching both devServerStartCommands in parallel during local development.",
+        "interaction_and_states": []
+    }
+]

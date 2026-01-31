@@ -1,0 +1,188 @@
+[
+    {
+        "resource_dependency": {
+            "authAPI": "RESTful API for user registration, login, session management, and role-based access control.",
+            "userSchema": "PostgreSQL table with fields: user_id (UUID), name (string), email (string, unique), password_hash (string), role (enum: donor, recipient, volunteer, admin), created_at (timestamp), updated_at (timestamp)."
+        },
+        "function": "Provide user authentication and account management system with role-based access control.",
+        "static_description": "A responsive navigation bar with links to Home, Dashboard, Donations, Distributions, Volunteers, and Login/Logout. The background color is Azure (#F0FFFF) and component colors are Midnight Blue (#191970).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' opens a modal form for email/password entry. Submitting the form sends credentials to authAPI for validation and sets session token."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Register' opens a registration form. Upon submission, data is sent to authAPI which creates a new user in the database with assigned role."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Dashboard' when authenticated redirects to personalized dashboard page based on user role."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "donationAPI": "RESTful API for fetching, creating, updating, and deleting food donations.",
+            "donationSchema": "PostgreSQL table with fields: donation_id (UUID), donor_id (foreign key to users.user_id), title (string), description (text), quantity (integer), pickup_location (string), expiry_date (date), status (enum: available, claimed, distributed), created_at (timestamp), updated_at (timestamp).",
+            "searchFilterComponent": "Frontend reusable component for searching and filtering food donations by keyword, location, expiry date range, and status."
+        },
+        "function": "Allow users to browse and search food donation listings with filtering capabilities.",
+        "static_description": "A grid layout displaying cards of food donations. Each card includes title, description, quantity, pickup location, expiry date, and status. Above the grid is a search bar and filter options panel styled with Azure background and Midnight Blue components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a donation card navigates to the detailed view of that donation."
+            },
+            {
+                "interaction": "Type",
+                "description": "Typing in the search bar filters displayed donations in real-time by matching keywords in title or description."
+            },
+            {
+                "interaction": "Select",
+                "description": "Using dropdowns/filters updates the displayed list via query parameters sent to donationAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "distributionAPI": "RESTful API for submitting applications for food distribution, viewing pending/approved requests, and managing distribution records.",
+            "distributionSchema": "PostgreSQL table with fields: distribution_id (UUID), recipient_id (foreign key to users.user_id), donation_id (foreign key to donations.donation_id), application_date (timestamp), status (enum: applied, approved, rejected, completed), notes (text), created_at (timestamp), updated_at (timestamp)."
+        },
+        "function": "Enable recipients to apply for food distribution and allow administrators/volunteers to manage these applications.",
+        "static_description": "A multi-step form for applying to receive food. Fields include personal info (auto-filled from user profile), requested items, reason for request, and preferred pickup time. Styled with Azure background and Midnight Blue components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting the form sends data to distributionAPI which stores the application and sets status to 'applied'."
+            },
+            {
+                "interaction": "Click",
+                "description": "Admins/volunteers can click 'Approve', 'Reject', or 'Mark as Completed' buttons next to each application, triggering corresponding status updates through distributionAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "volunteerAPI": "RESTful API for retrieving volunteer profiles, signing up for opportunities, and managing volunteer assignments.",
+            "volunteerSchema": "PostgreSQL table with fields: volunteer_id (UUID), user_id (foreign key to users.user_id), skills (array of strings), availability (text), assigned_donations (array of UUID references to donations), created_at (timestamp), updated_at (timestamp).",
+            "volunteerOpportunitySchema": "Separate table for volunteer opportunities linked to donations needing assistance: opportunity_id (UUID), donation_id (foreign key), required_skills (array), start_time (timestamp), end_time (timestamp), max_volunteers (integer), current_volunteers (integer)."
+        },
+        "function": "Display volunteer information and enable volunteers to sign up for opportunities.",
+        "static_description": "Two sections: one showing active volunteer opportunities in card format (title, required skills, timing, current/max volunteers); another showing logged-in volunteer’s assigned tasks. Both use Azure background and Midnight Blue components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Sign Up' on an opportunity sends request to volunteerAPI to assign the current user to that opportunity and increment current_volunteers count."
+            },
+            {
+                "interaction": "Click",
+                "description": "Volunteers can click 'View Details' on their assigned tasks to see full information about the donation they're helping with."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardAPI": "Aggregated RESTful API providing personalized dashboard data based on user roles (donor stats, recipient history, volunteer assignments, admin overview).",
+            "profileUpdateAPI": "Endpoint for updating user profile information such as name, contact details, and preferences."
+        },
+        "function": "Provide a centralized dashboard for users to manage personal account information and view relevant activity summaries.",
+        "static_description": "Dashboard page showing user profile section (editable fields), recent activities (donations made/received, applications submitted, upcoming volunteer shifts), and quick links to related actions. Background is Azure with Midnight Blue UI components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Edit",
+                "description": "Users can edit profile fields directly in place or via a dedicated 'Edit Profile' modal. Changes are saved by calling profileUpdateAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on 'Recent Activities' entries navigates to respective detail pages (donation/distribution/volunteer opportunity)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "PostgreSQL connection using environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+            "schemaDefinition": "SQL scripts defining tables for users, donations, distributions, volunteers, and volunteer_opportunities with appropriate foreign key relationships and constraints."
+        },
+        "function": "Establish and maintain a structured database schema to support all core application entities and relationships.",
+        "static_description": "Database schema definition files stored under /backend/db/migrations containing CREATE TABLE statements for users, donations, distributions, volunteers, and volunteer_opportunities.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointsList": "Defined set of RESTful endpoints covering CRUD operations for users, donations, distributions, and volunteers, plus authentication routes.",
+            "expressRoutesFiles": "Backend route handlers implementing defined API logic using Express.js framework."
+        },
+        "function": "Expose all core functionalities through standardized RESTful API endpoints consumable by frontend services.",
+        "static_description": "API documentation file outlining base URL, endpoint paths, HTTP methods, expected request/response bodies, success/error codes, and example usage scenarios.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignCSS": "CSS stylesheet using media queries and Flexbox/Grid layouts to ensure compatibility across devices.",
+            "colorPaletteVariables": ":root CSS variables defining --azure-background: #F0FFFF and --midnight-blue-components: #191970 used throughout the site."
+        },
+        "function": "Ensure consistent styling with Azure background and Midnight Blue components while maintaining responsiveness across screen sizes.",
+        "static_description": "Entire frontend interface utilizing a cohesive design system where main backgrounds are Azure (#F0FFFF) and interactive/form components are styled with Midnight Blue (#191970) accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout adjusts dynamically between mobile, tablet, and desktop views using CSS media queries without requiring JavaScript intervention."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonFile": "Root-level package.json file containing scripts for installing dependencies and running development servers concurrently."
+        },
+        "function": "Configure repository-wide npm scripts for streamlined installation and local development startup.",
+        "static_description": "package.json file located at project root with 'scripts' field including 'install:all': 'npm run install:frontend && npm run install:backend' and 'dev': 'concurrently \"npm run dev:frontend\" \"npm run dev:backend\"'.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "formValidationLibrary": "Client-side library (e.g., Yup/Zod) integrated with form components to validate user inputs before submission.",
+            "inputSanitizationMiddleware": "Express middleware ensuring all incoming POST/PUT body data is sanitized before processing."
+        },
+        "function": "Enforce strict validation rules on all user-submitted data to prevent invalid or malicious entries.",
+        "static_description": "All input forms across the application feature inline validation messages powered by schema definitions that match backend expectations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Blur",
+                "description": "Leaving an input field triggers client-side validation; error messages appear immediately if criteria aren't met."
+            },
+            {
+                "interaction": "Form Submit",
+                "description": "Before sending data to backend APIs, frontend validates entire form. Invalid submissions block network calls until corrected."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "rbacMiddleware": "Express middleware checking JWT tokens for user roles and restricting access to protected routes accordingly.",
+            "roleBasedUIFlags": "Frontend flags determining visibility of certain UI elements (like admin panels or donor-only features) based on decoded user role."
+        },
+        "function": "Implement fine-grained access controls allowing only authorized users to perform specific actions or view sensitive areas.",
+        "static_description": "Different navigation menus and dashboard widgets shown conditionally depending on whether the logged-in user has role 'admin', 'donor', 'recipient', or 'volunteer'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate",
+                "description": "Attempting to access restricted pages results in automatic redirection to unauthorized page unless proper role permissions exist."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchFilterLogic": "Reusable frontend logic encapsulated in components/hooks that build dynamic query strings passed to backend APIs.",
+            "indexingStrategy": "Optional backend indexing strategy on searchable columns (title, description, location) to optimize performance."
+        },
+        "function": "Empower users to efficiently locate relevant content using flexible search and advanced filtering mechanisms.",
+        "static_description": "Prominent placement of search bars and filter panels above listings of donations and volunteer opportunities, enabling users to narrow results quickly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Apply Filters",
+                "description": "Changing filter selections instantly rebuilds API query string and re-fetches filtered dataset without full page reload."
+            }
+        ]
+    }
+]

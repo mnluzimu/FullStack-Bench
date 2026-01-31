@@ -1,0 +1,228 @@
+[
+    {
+        "resource_dependency": {
+            "backendAPIBaseURL": "http://localhost:3001/api",
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "The main application shell with a navigation bar, content area, and footer. All components styled with a light pink background (#FFB6C1) and medium violet red (#C71585) colored elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on navigation links triggers fetching data from corresponding backend endpoints via API calls and updates the content area dynamically without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresqlDatabaseSchema": "Create tables: users (id, username, password_hash, role), clients (client_id, name, email, phone, address), call_logs (log_id, client_id, user_id, call_type, description, created_at, status), actions_taken (action_id, log_id, description, timestamp), follow_ups (followup_id, log_id, description, due_date, completed), additional_notes (note_id, log_id, note_text)",
+            "envVariables": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend API server connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "RESTful API server running at port 3001 exposing endpoints for managing clients, call logs, actions, follow-ups, and authentication. Uses PostgreSQL as persistent storage configured through provided environment variables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchIconSVG": "<svg>...</svg>",
+            "clientSearchEndpoint": "/api/clients/search?query={term}",
+            "clientDataSchema": "Fields: client_id (UUID), name (string), email (string), phone (string), address (text)"
+        },
+        "function": "Client identification functionality with search and selection capabilities",
+        "static_description": "Search bar labeled 'Find Client', accompanied by a magnifying glass icon (referenced as searchIconSVG). Below it, a scrollable list container displays matching clients when searched.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a client entry selects the client and populates relevant fields in the calling form (e.g., New Call Log Form)."
+            },
+            {
+                "interaction": "Key Press",
+                "description": "Typing in the search bar triggers debounced API requests to clientSearchEndpoint which returns filtered results displayed below."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "callTypesList": [
+                "Technical Support",
+                "Billing Inquiry",
+                "Product Feedback",
+                "General Question"
+            ],
+            "dropdownArrowIcon": "/icons/dropdown-arrow.svg"
+        },
+        "function": "Call type selection dropdown or radio button component",
+        "static_description": "Dropdown menu labeled 'Call Type' with options populated from callTypesList. Styled with medium violet red border and arrow icon referenced as dropdownArrowIcon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking opens/closes the dropdown revealing/hiding available call types. Selecting an option updates the selected value visually and internally stores it for submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "textInputFieldStyles": "border: 1px solid #C71585; padding: 8px;",
+            "formSubmitButtonStyle": "background-color: #C71585; color: white;"
+        },
+        "function": "Information recording form for capturing call details",
+        "static_description": "Form containing multiple text inputs and textareas labeled 'Description', 'Caller Name', 'Phone Number'. Includes a submit button styled according to formSubmitButtonStyle.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends collected form data to the backend API endpoint for saving new call logs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "addActionStepAPI": "/api/calllogs/{logId}/actions",
+            "stepInputPlaceholder": "Enter action taken..."
+        },
+        "function": "Action step recording section for documenting actions taken during calls",
+        "static_description": "Section titled 'Actions Taken' featuring a textarea with placeholder text set to stepInputPlaceholder followed by an 'Add Action' button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Action' submits the entered text to addActionStepAPI and appends the newly added action to the visible list within this section."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "followUpDateInputType": "date",
+            "addFollowUpAPI": "/api/calllogs/{logId}/followups"
+        },
+        "function": "Follow-up step recording functionality for scheduling future actions",
+        "static_description": "Section titled 'Schedule Follow-Up' with date picker input field of type followUpDateInputType and a multiline text area for notes, ending with an 'Add Follow-Up' button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Follow-Up' submits the date and note to addFollowUpAPI and adds the item to the follow-up list shown under this section."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "additionalNotesTextAreaLabel": "Additional Notes",
+            "saveNotesAPI": "/api/calllogs/{logId}/notes"
+        },
+        "function": "Additional information recording field for miscellaneous call notes",
+        "static_description": "Textarea labeled 'Additional Notes' allowing free-form text entry for extra call context. Positioned beneath primary sections but above the save controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a nearby 'Save Notes' button posts the current content of the textarea to saveNotesAPI to persist changes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newCallLogCreationAPI": "/api/calllogs/create",
+            "requiredFieldsList": [
+                "client_id",
+                "call_type",
+                "description"
+            ]
+        },
+        "function": "New call log creation form with all required data fields",
+        "static_description": "Complete multi-section form integrating client selector, call type dropdown, information recorder, action steps, follow-ups, and additional notes areas. Ends with a prominent 'Create Log' button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Create Log' validates requiredFieldsList presence and sends compiled data to newCallLogCreationAPI to register the new call log in the system."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "openCallsFetchAPI": "/api/calllogs/status/open",
+            "openCallItemDisplayTemplate": "{callerName} - {callType} ({createdAt})"
+        },
+        "function": "Open calls view displaying unresolved customer service calls",
+        "static_description": "Page/view titled 'Open Calls' showing a vertical list of items formatted per openCallItemDisplayTemplate. Each item includes basic identifying info like caller name and call type.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any individual call item navigates to the detailed view/edit page for that specific call log."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "todoCallsFetchAPI": "/api/calllogs/todo",
+            "todoItemTemplate": "{dueDate}: {taskDescription}"
+        },
+        "function": "To-do calls view showing pending follow-up actions",
+        "static_description": "Separate view/page named 'Pending Tasks' listing upcoming tasks derived from scheduled follow-ups, formatted using todoItemTemplate showing due dates and brief descriptions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a task item redirects to the associated call log detail screen where the task originated."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generateReportAPI": "/api/reports/generate",
+            "exportFormatsSupported": [
+                "PDF",
+                "CSV"
+            ]
+        },
+        "function": "Call log reporting feature with export capabilities",
+        "static_description": "Reports dashboard presenting filter options (by date range, user, etc.) along with buttons labeled 'Export as PDF' and 'Export as CSV' reflecting exportFormatsSupported.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking either export button triggers generation and download of the report file via generateReportAPI with appropriate format parameter."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "wizardStepsDefinition": [
+                "Basic Info",
+                "Contact Details",
+                "Preferences"
+            ],
+            "createClientAPI": "/api/clients/create"
+        },
+        "function": "Client creator wizard for adding new customer information",
+        "static_description": "Multi-step modal/dialog presenting sequential forms based on wizardStepsDefinition guiding users through collecting comprehensive client profile data before finalizing creation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Next' progresses through wizard steps while validating input. Clicking 'Finish' submits accumulated data to createClientAPI to store the new client record."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "editClientDetailsAPI": "/api/clients/{clientId}/update",
+            "editableClientFields": [
+                "name",
+                "email",
+                "phone",
+                "address"
+            ]
+        },
+        "function": "Client information modification interface for updating existing client data",
+        "static_description": "Edit form mirroring editableClientFields pre-filled with current client data. Features standard save/cancel buttons aligned with form styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Changes' sends updated field values to editClientDetailsAPI to update the respective client’s record in the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "roleBasedAccessControlRules": "Admin can do everything; Agent can view/edit logs; Viewer can only read logs",
+            "userRoleCheckMiddleware": "Implemented in backend routes to enforce access restrictions"
+        },
+        "function": "Permission control system for managing user access levels",
+        "static_description": "Backend middleware integrated into all protected routes checking user roles against roleBasedAccessControlRules before granting or denying access to requested operations.",
+        "interaction_and_states": []
+    }
+]

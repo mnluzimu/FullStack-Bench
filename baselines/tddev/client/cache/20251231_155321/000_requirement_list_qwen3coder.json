@@ -1,0 +1,267 @@
+[
+    {
+        "resource_dependency": {
+            "propertyDataSchema": "Database table named 'properties' with columns: id (UUID), title (string), description (text), price (decimal), location (string), property_type (enum: house, apartment, condo), bedrooms (integer), bathrooms (float), square_feet (integer), image_urls (array of strings), created_at (timestamp), updated_at (timestamp)",
+            "propertyListingsAPI": "/api/properties"
+        },
+        "function": "Display a list of property listings on the homepage",
+        "static_description": "A grid layout showing multiple property cards with thumbnails, titles, prices, locations, and basic details. Background color set to alice blue (#F0F8FF) and all card elements styled with steel blue (#4682B4).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a property card navigates to the individual property detail page without full page reload (SPA navigation)."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loads more property listings when reaching the bottom of the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "propertyDetailAPISchema": "Endpoint /api/properties/{id} returning complete property data including id, title, description, price, location, property_type, bedrooms, bathrooms, square_feet, image_urls, amenities (array), nearby_places (array of objects with name and distance)",
+            "propertyImages": "Array of image URLs from property.image_urls"
+        },
+        "function": "Show detailed property information on individual property pages",
+        "static_description": "A detailed view displaying large property images in a carousel, followed by comprehensive information sections including price, location, specifications, description, and nearby places. Background is alice blue with steel blue text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking navigation arrows or dots in the image carousel changes the displayed property image."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over map markers for nearby places shows tooltip with place name and distance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "/api/properties/search?q={query}",
+            "searchIcon": "magnifying glass SVG icon"
+        },
+        "function": "Implement a search bar for users to search properties by keywords",
+        "static_description": "A prominent search bar at the top of the page with a magnifying glass icon, placeholder text 'Search properties...', and steel blue border. Background is alice blue.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates search and updates property listings based on keyword match in title, description, or location."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon initiates search with current input value."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterOptionsSchema": "Filter parameters including min_price, max_price, location, property_type, bedrooms, bathrooms",
+            "filterAPIEndpoint": "/api/properties?filters={filter_params}"
+        },
+        "function": "Provide filter options for users to refine property searches",
+        "static_description": "A collapsible sidebar filter panel with multiple filter categories: Price Range (slider), Location (dropdown), Property Type (checkboxes), Bedrooms (radio buttons), Bathrooms (radio buttons). All elements styled with steel blue and alice blue background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Apply Filters' button sends selected filters to backend and updates property listings. Clicking 'Clear Filters' resets all selections."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging price range slider updates min/max price values in real-time."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "propertyDataAPI": "RESTful endpoints at /api/properties (GET), /api/properties/{id} (GET), /api/properties/search (GET), /api/properties (GET with query params)",
+            "frontendHTTPClient": "Axios or Fetch API configured for all property data requests"
+        },
+        "function": "Fetch all property data dynamically from backend APIs",
+        "static_description": "No visible UI element. Backend API configuration ensuring all property data is fetched dynamically rather than hardcoded.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Mount",
+                "description": "Upon mounting, frontend components make API calls to fetch property data and update UI accordingly."
+            },
+            {
+                "interaction": "State Change",
+                "description": "Whenever search or filter parameters change, new API requests are made to fetch updated property data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "PostgreSQL connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "propertyTableSchema": "CREATE TABLE properties (id UUID PRIMARY KEY, title VARCHAR(255), description TEXT, price DECIMAL, location VARCHAR(255), property_type VARCHAR(50), bedrooms INTEGER, bathrooms FLOAT, square_feet INTEGER, image_urls TEXT[], created_at TIMESTAMP, updated_at TIMESTAMP)"
+        },
+        "function": "Connect backend to external PostgreSQL database using provided environment variables",
+        "static_description": "No visible UI component. Backend database configuration file using specified environment variables to establish connection to PostgreSQL database.",
+        "interaction_and_states": [
+            {
+                "interaction": "Application Start",
+                "description": "Backend establishes connection to PostgreSQL database using provided environment variables upon application startup."
+            },
+            {
+                "interaction": "API Request",
+                "description": "Each API request queries the connected PostgreSQL database to retrieve or update property information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoints": "RESTful endpoints: GET /api/properties, GET /api/properties/{id}, GET /api/properties/search?q=, GET /api/properties?filters=",
+            "frontendAPIClient": "Configured Axios/Fetch client with base URL pointing to backend server"
+        },
+        "function": "Set up frontend to consume data via RESTful API endpoints",
+        "static_description": "No visible UI component. Frontend configuration file setting up HTTP client to communicate with backend RESTful API endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Initialization",
+                "description": "Frontend components initialize HTTP clients configured to consume data from defined RESTful API endpoints."
+            },
+            {
+                "interaction": "Data Request",
+                "description": "UI interactions trigger HTTP requests to appropriate RESTful endpoints to fetch property data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "spaRoutingLibrary": "React Router or Vue Router for client-side routing",
+            "propertyListingComponent": "Reusable property listing component for both homepage and search results"
+        },
+        "function": "Support browsing property listings without page reloads where applicable",
+        "static_description": "Single-page application structure with router-configured navigation between property listings and detail views.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking property cards or navigation links triggers client-side routing without full page reload."
+            },
+            {
+                "interaction": "Browser Back Button",
+                "description": "Using browser back/forward buttons navigates between previously viewed property listings and details without reloading."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "propertyDetailRoute": "/property/:id route in frontend router",
+            "propertyDetailPageComponent": "Dedicated component for rendering property details with dynamic route parameter"
+        },
+        "function": "Allow users to click on a property listing to view its full details",
+        "static_description": "Property cards with clickable areas that lead to dedicated property detail pages. Visual indication (cursor change) shows these are interactive elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking anywhere on a property card navigates to the corresponding property detail page using the property ID in the URL."
+            },
+            {
+                "interaction": "Right-click",
+                "description": "Right-clicking provides option to open property detail in new tab/window."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterParameters": "Query parameters: min_price, max_price, location, property_type, bedrooms, bathrooms",
+            "filterAPIEndpoint": "/api/properties with query parameters for filtering"
+        },
+        "function": "Enable filtering properties by attributes such as price, location, or type",
+        "static_description": "Filter controls organized by attribute categories in a sidebar panel. Controls include sliders for price range, dropdown for location, checkboxes for property type, and radio buttons for bedrooms/bathrooms.",
+        "interaction_and_states": [
+            {
+                "interaction": "Change",
+                "description": "Adjusting any filter control updates the displayed property listings in real-time by sending new filter parameters to the API."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Apply Filters' applies all selected filters simultaneously. Clicking 'Reset Filters' clears all selections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cssStylesheet": "Global CSS file defining alice blue background (#F0F8FF) and steel blue elements (#4682B4)",
+            "colorPalette": "Primary: alice blue (#F0F8FF), Secondary: steel blue (#4682B4)"
+        },
+        "function": "Ensure consistent styling with alice blue background and steel blue elements",
+        "static_description": "Entire website featuring alice blue background color with all interactive elements, borders, and text headings styled in steel blue.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements change shade slightly on hover while maintaining steel blue base color."
+            },
+            {
+                "interaction": "Focus",
+                "description": "Focused form elements and buttons maintain steel blue styling with appropriate focus indicators."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "\"install:all\": \"npm run install:frontend && npm run install:backend\"",
+            "frontendInstallScript": "\"install:frontend\": \"cd frontend && npm install\"",
+            "backendInstallScript": "\"install:backend\": \"cd backend && npm install\""
+        },
+        "function": "Configure package.json to support `npm run install:all` for both frontend and backend",
+        "static_description": "Root package.json file with custom scripts section containing install:all command that orchestrates installation for both frontend and backend directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Execution",
+                "description": "Running 'npm run install:all' executes sequential installation of dependencies for both frontend and backend projects."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentRunner": "concurrently npm package for running multiple processes",
+            "devScriptConfiguration": "\"dev\": \"concurrently \\\"npm run dev:frontend\\\" \\\"npm run dev:backend\\\"\"",
+            "frontendDevScript": "\"dev:frontend\": \"cd frontend && npm run dev\"",
+            "backendDevScript": "\"dev:backend\": \"cd backend && npm run dev\""
+        },
+        "function": "Configure package.json to support `npm run dev` to start both frontend and backend concurrently",
+        "static_description": "Root package.json file with dev script configured to launch both frontend and backend development servers simultaneously using concurrent execution.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Execution",
+                "description": "Running 'npm run dev' starts both frontend and backend development servers concurrently, displaying output from both in the same terminal."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveCSSFramework": "CSS media queries or responsive framework (Bootstrap/Tailwind) for device-specific layouts",
+            "mobileFirstDesign": "Base styles optimized for mobile with progressive enhancement for larger screens"
+        },
+        "function": "Implement responsive design for usability across devices",
+        "static_description": "Website layout that adapts to different screen sizes with property grids becoming single column on mobile, filter sidebar becoming collapsible drawer, and text scaling appropriately.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout adjusts automatically when viewport size changes, reorganizing elements for optimal viewing on desktop, tablet, and mobile devices."
+            },
+            {
+                "interaction": "Touch",
+                "description": "Touch-friendly controls with adequate spacing and sizing for mobile interaction."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingService": "Centralized error handling mechanism for API failures",
+            "errorMessageComponent": "Standardized error message display component"
+        },
+        "function": "Include error handling for failed API requests or missing data",
+        "static_description": "No visible UI by default. Error handling infrastructure that displays user-friendly messages when API requests fail or return no data.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Failure",
+                "description": "When API requests fail, displays clear error message with retry option instead of broken UI elements."
+            },
+            {
+                "interaction": "Missing Data",
+                "description": "When property data is missing required fields, displays appropriate placeholders or notifications instead of empty sections."
+            }
+        ]
+    }
+]

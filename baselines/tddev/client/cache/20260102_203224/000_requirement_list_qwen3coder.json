@@ -1,0 +1,285 @@
+[
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "email",
+                "password"
+            ],
+            "signupFormFields": [
+                "full name",
+                "email",
+                "password",
+                "confirm password"
+            ],
+            "studentDashboardDataSchema": "Database tables required: users(id, email, password_hash, role='student'), student_profiles(student_id, full_name, university, major, year, resume_url)",
+            "companyDashboardDataSchema": "Database tables required: users(id, email, password_hash, role='company'), company_profiles(company_id, company_name, industry, description, logo_url, contact_email)"
+        },
+        "function": "Provide authentication and role-based access control for student and company users.",
+        "static_description": "Login and signup forms with fields defined in loginFormFields and signupFormFields respectively. Displays appropriate dashboard after successful login based on user role.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials and redirects to respective dashboards. Clicking 'Sign Up' toggles between login and registration views."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting the form validates inputs and authenticates against backend API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "internshipListingCardFields": [
+                "title",
+                "company_name",
+                "location",
+                "duration",
+                "stipend",
+                "apply_button"
+            ],
+            "searchFilters": [
+                "location dropdown",
+                "duration slider",
+                "stipend range",
+                "industry checkboxes"
+            ],
+            "browseInternshipsAPISchema": "API endpoint returning internship listings filtered by query parameters such as location, duration, stipend_min, industry"
+        },
+        "function": "Allow students to browse and filter available internships.",
+        "static_description": "Grid layout displaying internship cards with details from internshipListingCardFields. Above the grid, display filter controls from searchFilters.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on an internship card navigates to its detailed view. Clicking 'Apply' opens the application modal."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing filters updates the displayed internship list via API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "applicationFormFields": [
+                "cover_letter",
+                "resume_upload"
+            ],
+            "submitApplicationAPI": "POST /api/applications with multipart/form-data containing cover letter and resume file"
+        },
+        "function": "Enable students to submit applications for internships.",
+        "static_description": "Modal or dedicated page showing applicationFormFields including a text area for cover letter and upload field for resume.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Application' sends form data to submitApplicationAPI."
+            },
+            {
+                "interaction": "Upload",
+                "description": "Uploading a file populates the resume field before submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postInternshipFormFields": [
+                "title",
+                "description",
+                "location",
+                "duration",
+                "stipend",
+                "start_date",
+                "apply_deadline"
+            ],
+            "manageInternshipAPISchema": "CRUD endpoints under /api/internships requiring company authentication"
+        },
+        "function": "Allow companies to create, update, and delete internship postings.",
+        "static_description": "Form with fields listed in postInternshipFormFields allowing companies to enter internship details.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Post Internship' creates a new listing via API. Edit/Delete buttons modify existing entries."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting the form saves changes through manageInternshipAPISchema."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileViewFieldsStudent": [
+                "full_name",
+                "university",
+                "major",
+                "year",
+                "resume_preview_link"
+            ],
+            "profileEditFieldsStudent": [
+                "full_name",
+                "university",
+                "major",
+                "year",
+                "upload_resume"
+            ],
+            "profileViewFieldsCompany": [
+                "company_name",
+                "industry",
+                "description",
+                "logo_preview",
+                "contact_email"
+            ],
+            "profileEditFieldsCompany": [
+                "company_name",
+                "industry",
+                "description",
+                "upload_logo",
+                "contact_email"
+            ]
+        },
+        "function": "Display and allow editing of user profile information for both roles.",
+        "static_description": "Profile pages showing read-only fields from profileViewFieldsStudent or profileViewFieldsCompany depending on user role. An 'Edit Profile' button switches to editable mode using corresponding edit fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Profile' enables modification of profile data. Saving updates the database record."
+            },
+            {
+                "interaction": "Upload",
+                "description": "Uploading files replaces current resume/logo previews."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignMediaQueries": "@media queries targeting mobile, tablet, desktop breakpoints",
+            "performanceOptimizationAssets": "Minified CSS bundle, lazy-loaded images, preloaded critical assets"
+        },
+        "function": "Ensure consistent experience across devices while maintaining fast load times.",
+        "static_description": "Site uses responsiveDesignMediaQueries to adapt layouts and components. All stylesheets and scripts optimized per performanceOptimizationAssets.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing browser window adjusts layout according to media queries without reloading."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Lazy loading triggers image/content rendering only when scrolled into viewport."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "Browse Internships",
+                "My Applications",
+                "Post Internship",
+                "My Listings",
+                "Profile",
+                "Logout"
+            ],
+            "menuVisibilityLogic": "Menu items visibility determined by authenticated user role"
+        },
+        "function": "Provide easy navigation between key areas of the platform.",
+        "static_description": "Fixed-position top navigation bar listing menu items from navigationMenuItems. Visibility adjusted based on logged-in status and role.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any menu item navigates to the associated section. Logout clears session and returns to homepage."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over menu reveals sub-options if applicable (e.g., profile dropdown)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dynamicDataEndpoints": [
+                "/api/auth",
+                "/api/internships",
+                "/api/applications",
+                "/api/profiles"
+            ],
+            "databaseConnectionConfig": "Uses environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME to connect to PostgreSQL instance"
+        },
+        "function": "Serve all frontend data dynamically through RESTful APIs connected to PostgreSQL.",
+        "static_description": "Backend exposes dynamicDataEndpoints which handle requests/responses formatted as JSON objects. Database connection established using databaseConnectionConfig values.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchInternshipsFunction": "JavaScript function calling GET /api/internships with optional query params",
+            "fetchUserProfileFunction": "Authenticated GET request to /api/profiles/:userId"
+        },
+        "function": "Fetch all dynamic content exclusively through backend API calls.",
+        "static_description": "Each frontend component utilizes functions like fetchInternshipsFunction and fetchUserProfileFunction to populate content upon mount or trigger events.",
+        "interaction_and_states": [
+            {
+                "interaction": "Mount",
+                "description": "Component initialization triggers relevant fetch function to retrieve data."
+            },
+            {
+                "interaction": "Refresh",
+                "description": "Manual refresh re-fetches latest data ensuring up-to-date UI state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "pgClientLibrary": "Node.js pg library used for connecting to PostgreSQL database"
+        },
+        "function": "Establish secure connection to PostgreSQL database using provided environment variables.",
+        "static_description": "Server configuration loads postgresEnvVars at startup and initializes pgClientLibrary with those settings to enable database operations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{ \"install:all\": \"concurrently \\\"npm install\\\" \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev --prefix client\\\" \\\"npm run dev --prefix server\\\"\" }"
+        },
+        "function": "Configure monorepo-style development workflow with unified commands.",
+        "static_description": "Root level package.json includes scripts defined in packageJsonScripts enabling simultaneous installation and execution of frontend/backend services.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing `npm run install:all` installs dependencies for entire project. Running `npm run dev` starts both client and server in watch mode."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorStyle": "background-color: mintcream;"
+        },
+        "function": "Apply consistent background color theme site-wide.",
+        "static_description": "Entire website body styled with backgroundColorStyle ensuring uniformity across all pages and components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "tealColorPalette": "#008080 primary, #006666 secondary, #00cccc accent",
+            "uiComponentStylesheet": ".button { background-color: #008080 }, .card-header { border-top: 2px solid #008080 } etc."
+        },
+        "function": "Implement cohesive teal-themed styling for all interactive elements.",
+        "static_description": "All UI components utilize tealColorPalette in their designs as specified in uiComponentStylesheet.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and interactive elements darken slightly within tealColorPalette range during hover state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "rbacMiddlewareLogic": "Express middleware checking JWT token payload for 'role' claim matching route permissions"
+        },
+        "function": "Enforce access restrictions preventing unauthorized navigation between panels.",
+        "static_description": "Protected routes validate incoming requests using rbacMiddlewareLogic to ensure proper authorization before serving protected resources.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate",
+                "description": "Unauthorized attempts to access restricted routes redirect to login or show forbidden error message."
+            }
+        ]
+    }
+]

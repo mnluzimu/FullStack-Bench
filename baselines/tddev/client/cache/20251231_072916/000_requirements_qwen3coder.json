@@ -1,0 +1,17 @@
+[
+    "Implement a frontend application that fetches all data from backend APIs",
+    "Create a backend application that connects to a PostgreSQL database using specified environment variables",
+    "Design a customer management module allowing users to browse and manage customer information",
+    "Develop a policy management module enabling users to view and operate on policy data",
+    "Build a claims management module providing functionality to handle claims information",
+    "Include data analysis and reporting capabilities with various report generation features",
+    "Integrate charting functionality to visualize data analysis results",
+    "Apply a consistent color theme with whitesmoke background and dark cyan elements",
+    "Configure package.json with npm run install:all command to install both frontend and backend dependencies",
+    "Configure package.json with npm run dev command to start both frontend and backend concurrently",
+    "Ensure all modules support CRUD operations for their respective data entities",
+    "Implement user authentication and authorization mechanisms",
+    "Provide search and filtering capabilities across customer, policy, and claims data",
+    "Create an administrative dashboard displaying key metrics and summaries",
+    "Design responsive UI components that work across different device sizes"
+]

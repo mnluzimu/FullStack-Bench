@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A visitor browsing the forum for interesting discussions.",
+        "user_goal": "View a list of forum posts loaded dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Alex opens the forum homepage expecting to see a list of posts fetched from the server.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "The page displays a list of forum posts retrieved from the backend API endpoint `/api/posts`."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the application locally.",
+        "user_goal": "Verify that the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Jamie runs the backend service locally ensuring it connects to PostgreSQL using correct environment variables.",
+                "action": "Start backend server with environment variables set: DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "Backend logs confirm successful connection to PostgreSQL database named 'myapp'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A homepage displaying a list of forum posts",
+        "user_persona": "A casual reader interested in recent forum activity.",
+        "user_goal": "Browse the latest posts shown on the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Homepage Content",
+                "description": "Taylor visits the homepage and expects to see a vertical list of forum posts.",
+                "action": "Navigate to the homepage.",
+                "expected_outcome": "Homepage renders a vertically scrollable list of forum posts, each showing title, author, category tag, creation date, and content preview."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search bar to enable users to search for posts by keywords",
+        "user_persona": "Someone looking for specific topics discussed in the forum.",
+        "user_goal": "Search for posts containing a particular keyword.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Search Query",
+                "description": "Jordan wants to find posts about 'JavaScript frameworks', so he types the phrase into the search bar.",
+                "action": "Type 'JavaScript frameworks' into the search input field.",
+                "expected_outcome": "Input field accepts the typed text without errors."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Request",
+                "description": "After typing the query, Jordan presses Enter to submit the search.",
+                "action": "Press Enter key after filling the search input.",
+                "expected_outcome": "System performs a GET request to `/api/search?query=JavaScript%20frameworks` and updates the post list accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Category filtering functionality to browse posts by category",
+        "user_persona": "A tech enthusiast focusing only on software-related discussions.",
+        "user_goal": "Filter posts by the 'Software' category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Category Tags",
+                "description": "Morgan sees a row of category tags below the search bar and looks for 'Software'.",
+                "action": "Scan horizontally scrollable category tags beneath the search bar.",
+                "expected_outcome": "Tags like 'Software', 'Hardware', 'Networking' are visible and styled with slate gray against ghost white background."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Category Tag",
+                "description": "Morgan clicks on the 'Software' tag to filter the displayed posts.",
+                "action": "Click the 'Software' category tag.",
+                "expected_outcome": "Only posts tagged under 'Software' appear in the feed below."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A post creation form allowing users to create new forum posts",
+        "user_persona": "An active community member wanting to share knowledge.",
+        "user_goal": "Create a new post titled 'Understanding React Hooks'.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Post Creation Form",
+                "description": "Riley, logged in, clicks the 'New Post' button to open the form modal.",
+                "action": "Click the 'New Post' button.",
+                "expected_outcome": "A modal or dedicated page opens with fields for title, category selection, and content editing area."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out the Form",
+                "description": "Riley fills in the title, selects 'Frontend Development' from the dropdown, and writes a detailed explanation in the editor.",
+                "action": "Fill in the title, select a category, and type content in the rich-text editor.",
+                "expected_outcome": "All form fields accept input correctly and reflect Riley's entries."
+            },
+            {
+                "step": 3,
+                "title": "Submitting New Post",
+                "description": "Satisfied with the draft, Riley clicks the 'Submit' button.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "Form data is sent via POST to `/api/posts/create`, and the new post appears at the top of the homepage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A reply functionality enabling users to respond to existing posts",
+        "user_persona": "A participant joining a discussion thread.",
+        "user_goal": "Add a helpful comment to someone else's post.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Post Detail Page",
+                "description": "Casey clicks on a post titled 'Best Practices for Node.js Security' to read more and possibly contribute.",
+                "action": "Click on the post item from the homepage listing.",
+                "expected_outcome": "Redirected to the post detail page showing full content and existing replies."
+            },
+            {
+                "step": 2,
+                "title": "Writing a Reply",
+                "description": "Impressed by the article, Casey scrolls down and types a thoughtful reply in the textbox at the bottom.",
+                "action": "Type response in the reply textarea located at the end of the post details.",
+                "expected_outcome": "Textarea captures the reply text accurately."
+            },
+            {
+                "step": 3,
+                "title": "Posting the Reply",
+                "description": "After proofreading, Casey submits the reply by clicking the 'Submit' button.",
+                "action": "Click the 'Submit' button next to the reply textbox.",
+                "expected_outcome": "Reply is posted under the current post via POST to `/api/replies/create` and immediately visible below the previous replies."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user center page displaying personal information, own posts, and reply history",
+        "user_persona": "A registered user reviewing their contributions.",
+        "user_goal": "Access their profile and review past activities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing User Center",
+                "description": "Patricia clicks her username in the header to visit her user center.",
+                "action": "Click the user profile link/icon in the navigation header.",
+                "expected_outcome": "Redirected to the user center page (`/api/user/profile`) displaying personal info, own posts, and reply history sections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system to manage login and session states",
+        "user_persona": "A returning user accessing private features.",
+        "user_goal": "Log in securely to access personalized options.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Login Process",
+                "description": "Drew, not currently signed in, clicks the 'Login' option in the header.",
+                "action": "Click the 'Login' link in the navigation bar.",
+                "expected_outcome": "A login modal appears with fields for username/email and password."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "Drew enters his registered email and secure password then clicks 'Login'.",
+                "action": "Enter valid credentials and click the 'Login' button in the modal.",
+                "expected_outcome": "Authentication occurs via POST to `/api/auth/login`. Drew gets redirected to the homepage and now sees 'Logout' instead of 'Login'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Post detail pages showing full content and associated replies",
+        "user_persona": "A curious reader diving deep into a topic.",
+        "user_goal": "Read an entire post and its conversation thread.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Full Post Details",
+                "description": "Eli clicks on a post summary to explore further.",
+                "action": "Click on a post entry from the homepage list.",
+                "expected_outcome": "Redirected to a detailed view page showing the complete post body and chronological list of associated replies."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI styled with ghost white background and slate gray components",
+        "user_persona": "A visually-oriented designer checking brand consistency.",
+        "user_goal": "Confirm visual style matches the defined palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Global Styling",
+                "description": "Nina inspects the background and component colors across different pages.",
+                "action": "Open DevTools and inspect CSS properties of various elements.",
+                "expected_outcome": "Body background color is confirmed as ghost white (#F8F8FF) and component text/background colors match slate gray (#708090)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configured with package.json supporting `npm run install:all` and `npm run dev`",
+        "user_persona": "A developer setting up the project for local development.",
+        "user_goal": "Install dependencies and launch both frontend and backend simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Owen clones the repo and runs the unified install command.",
+                "action": "Run `npm run install:all` in terminal from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies install successfully as per concurrently defined script."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "Once installed, Owen starts both services together.",
+                "action": "Run `npm run dev` in terminal.",
+                "expected_outcome": "Frontend and backend servers start concurrently and remain accessible during development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for fetching, creating, and managing posts and replies",
+        "user_persona": "A QA engineer validating backend integrations.",
+        "user_goal": "Test core CRUD operations for posts and replies via defined API routes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Posts",
+                "description": "Quinn makes a direct call to retrieve all published posts.",
+                "action": "Send a GET request to `/api/posts`.",
+                "expected_outcome": "Returns a JSON array of post objects with relevant metadata."
+            },
+            {
+                "step": 2,
+                "title": "Creating a New Post",
+                "description": "Next, Quinn tests submitting a new post through the proper route.",
+                "action": "Send a POST request to `/api/posts/create` with valid payload.",
+                "expected_outcome": "Server responds with success code and newly created post ID."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, posts, replies, and categories",
+        "user_persona": "A database administrator verifying structural integrity.",
+        "user_goal": "Ensure tables exist with correct foreign key relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Table Definitions",
+                "description": "Peyton connects to the database to validate table structures.",
+                "action": "Query PostgreSQL instance for schema definitions of users, posts, replies, and categories tables.",
+                "expected_outcome": "Tables match documented schemas including primary keys, foreign key constraints, and appropriate column types."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible across desktop and mobile views",
+        "user_persona": "A frequent mobile user accessing the forum on-the-go.",
+        "user_goal": "Use the forum seamlessly on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Layout Adaptation",
+                "description": "Uma opens the forum on her phone and checks if the layout adjusts properly.",
+                "action": "Resize browser window to simulate mobile resolution or use actual mobile device.",
+                "expected_outcome": "Elements reflow appropriately according to responsive breakpoints, stacking vertically when necessary."
+            }
+        ]
+    }
+]

@@ -1,0 +1,16 @@
+[
+    "Create a one-page website for promoting Fundraiser Day",
+    "Include an introduction section for the Fundraiser Day event",
+    "Implement an automatically moving carousel to display offers",
+    "Add a testimonials section to showcase fundraiser stories",
+    "Include a company information section",
+    "Set cornsilk as the main background color",
+    "Use peru for control elements",
+    "Ensure all sections are accessible via scrolling on a single page",
+    "Make the website responsive across desktop and mobile devices",
+    "Provide navigation aids for smooth browsing between sections",
+    "Fetch dynamic content from backend APIs if applicable",
+    "Configure package.json with 'install:all' script for frontend and backend dependencies",
+    "Configure package.json with 'dev' script to start both frontend and backend concurrently",
+    "Connect backend to PostgreSQL using provided environment variables if dynamic data is needed"
+]

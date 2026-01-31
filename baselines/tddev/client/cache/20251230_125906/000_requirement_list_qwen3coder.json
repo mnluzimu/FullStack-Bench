@@ -1,0 +1,218 @@
+[
+    {
+        "resource_dependency": {
+            "chartingLibrary": "https://cdn.jsdelivr.net/npm/chart.js",
+            "dataVisualizationIcons": "/assets/icons/charts/",
+            "backgroundColor": "ghostwhite",
+            "componentColor": "slategray"
+        },
+        "function": "Render interactive data visualization components for basketball analytics including line charts, bar graphs, and heatmaps.",
+        "static_description": "A dashboard page with multiple chart containers arranged in a grid layout. Background color set to ghost white, component areas use slate gray styling. Charts are initially empty placeholders labeled 'Loading...' until populated via API.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on individual chart toggles between expanded view and normal size within the grid."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over data points displays tooltips showing detailed statistical values such as player efficiency rating or team win probability."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgresqlSchemaDefinition": "CREATE TABLE matches (match_id SERIAL PRIMARY KEY, date TIMESTAMP, home_team_id INT, away_team_id INT, score_home INT, score_away INT); CREATE TABLE teams (team_id SERIAL PRIMARY KEY, name VARCHAR(255), wins INT, losses INT); CREATE TABLE players (player_id SERIAL PRIMARY KEY, name VARCHAR(255), team_id INT, ppg FLOAT, rpg FLOAT, apg FLOAT);"
+        },
+        "function": "Establish connection to PostgreSQL database and define tables for storing basketball-related data including matches, teams, and players.",
+        "static_description": "No visible UI element. Backend service initializes at startup using provided environment variables to connect to PostgreSQL instance and executes schema creation SQL commands if tables do not exist.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointBaseURL": "/api/v1/data",
+            "fetchPolicy": "no-cache"
+        },
+        "function": "Ensure all frontend components retrieve dynamic content exclusively through backend RESTful API calls without any hardcoded fallbacks.",
+        "static_description": "All data-displaying sections show loading indicators before rendering fetched data. Error messages appear when API responses fail or timeout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Upon load, frontend makes concurrent GET requests to various /api/v1/* endpoints to populate visualizations and listings dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "matchHistoryEndpoint": "/api/v1/matches/history",
+            "matchHistoryTableSchema": "Fields: match_id, date, home_team, away_team, result"
+        },
+        "function": "Allow users to browse historical basketball match records sorted chronologically.",
+        "static_description": "Dedicated Match History page displaying a paginated table listing past games. Columns include Date, Teams, Final Score, and Result. Default sort is descending by date. Table uses slate gray headers against ghost white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loads additional pages of match history automatically upon reaching bottom of current list."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table ascending/descending based on selected field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "teamRankingsEndpoint": "/api/v1/rankings/teams",
+            "rankingUpdateFrequency": "daily",
+            "teamLogoAssets": "/assets/logos/"
+        },
+        "function": "Display current team standings along with relevant performance metrics updated regularly.",
+        "static_description": "Standings page shows ranked teams in vertical list or grouped cards. Each entry includes team logo, name, win-loss record, and ranking position. Visual accents highlight top-tier performers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a team card navigates to that team’s dedicated stats profile page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "playerStatsEndpoint": "/api/v1/stats/players",
+            "performanceMetricsList": [
+                "Points Per Game",
+                "Rebounds Per Game",
+                "Assists Per Game"
+            ],
+            "playerProfilePageTemplate": "/players/{id}"
+        },
+        "function": "Enable tracking and viewing of individual player performance statistics over time.",
+        "static_description": "Player Performance section presents sortable roster lists per team. Individual entries show headshots, names, jersey numbers, and key stat averages displayed in tabular form using slate gray rows.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a player row redirects to their full-profile page featuring career timeline and advanced metric breakdowns."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Mouse-over highlights player’s season progression trendline embedded beneath basic stats."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "predictionModelAPI": "/api/v1/predictions/match-outcomes",
+            "algorithmDetails": "Machine learning model trained on historical game outcomes and team/player form factors.",
+            "confidenceIndicatorAssets": "/assets/confidence-icons/"
+        },
+        "function": "Provide predictive insights about upcoming or ongoing match results derived from algorithmic analysis.",
+        "static_description": "Prediction Results panel integrated into match detail views. Displays predicted winner, estimated margin of victory, and confidence level indicator icons aligned left beside outcome summary text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping 'View Details' reveals underlying data inputs used by prediction engine including recent form ratings and injury reports."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bettingRecommendationEngine": "/api/v1/recommendations/bets",
+            "oddsDataProviderIntegration": "Requires third-party sportsbook API access for live betting lines.",
+            "recommendationFactors": [
+                "Value Bets",
+                "High Confidence Picks",
+                "Risk vs Reward Ratios"
+            ]
+        },
+        "function": "Generate actionable betting suggestions backed by analytical models and market odds comparison.",
+        "static_description": "Betting Recommendations module appears as filtered feed under Predictions tab. Entries contain recommended bet type, suggested stake percentage, expected value ratio, and linked match context preview.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Place Bet' opens modal prompting user to select preferred bookmaker partner (if multiple configured) and redirects externally to place wager securely."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeCSSVariables": ":root { --bg-color: ghostwhite; --comp-color: slategray; }",
+            "designTokens": "{ background: var(--bg-color); component: var(--comp-color); }"
+        },
+        "function": "Apply consistent thematic coloring across entire site interface adhering to specified palette.",
+        "static_description": "Entire application UI utilizes CSS variables setting base background to ghost white and primary interactive elements/components rendered in slate gray tone throughout navigation bars, buttons, panels, etc.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "interactiveChartsLibrary": "https://cdn.plot.ly/plotly-latest.min.js",
+            "graphTypesSupported": [
+                "Line Chart",
+                "Bar Graph",
+                "Scatter Plot",
+                "Heatmap"
+            ],
+            "tooltipFormatterScript": "/scripts/chart-tooltip-formatter.js"
+        },
+        "function": "Integrate interactive graphing tools enabling deep exploration of basketball datasets via zoom, pan, selection filtering.",
+        "static_description": "Data Visualization dashboard renders diverse statistical representations using Plotly.js. All charts feature axis labeling, legends, and hover-enabled tooltips presenting granular insight into plotted metrics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can drag-and-drop axes labels to reassign which variables are represented visually (e.g., switch X-axis from dates to opponent strength)."
+            },
+            {
+                "interaction": "Click",
+                "description": "Single click selects individual data series for highlighting while double-click resets selections and zoom levels."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Mouse wheel adjusts zoom depth on supported chart regions allowing closer inspection of clustered or extended datasets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresDatabaseSchemaSQL": "See above CREATE TABLE statements for matches, teams, players",
+            "indexDefinitions": "CREATE INDEX idx_matches_date ON matches(date); CREATE INDEX idx_teams_name ON teams(name); CREATE INDEX idx_players_team ON players(team_id);"
+        },
+        "function": "Define relational database structure capable of persisting comprehensive basketball analytics dataset efficiently.",
+        "static_description": "PostgreSQL database instantiated with core tables for Matches, Teams, Players, plus supporting indexes ensuring performant query execution during reporting and lookup operations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "RESTfulEndpointsSpec": "{ '/matches/history': 'GET', '/rankings/teams': 'GET', '/stats/players': 'GET' }",
+            "responseFormatStandard": "JSON { status: number, data: [...], message?: string }"
+        },
+        "function": "Expose structured HTTP interfaces facilitating retrieval of essential basketball information categorized logically.",
+        "static_description": "Backend exposes standardized REST routes returning well-formed JSON payloads containing requested entities like match logs, leaderboard standings, or athlete summaries ready for client consumption.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dataRefreshScheduler": "cron job or setInterval() triggering daily sync process",
+            "externalDataSourceAPI": "Third-party sports statistics provider requiring authentication token management",
+            "syncLogTable": "CREATE TABLE sync_logs(timestamp DATETIME, entity_type TEXT, success BOOLEAN, error_msg TEXT);"
+        },
+        "function": "Implement automated synchronization mechanism keeping internal analytics store synchronized with latest external source feeds.",
+        "static_description": "Background task periodically polls trusted external APIs to ingest fresh scores, rosters, injuries, and other evolving data points then updates local PostgreSQL accordingly. Sync activity logged internally for monitoring purposes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\"",
+            "projectRootPackageJsonPath": "./package.json"
+        },
+        "function": "Configure unified dependency installation command streamlining setup workflow for multi-package repository structure.",
+        "static_description": "Root-level package.json contains install:all script definition leveraging concurrently utility to execute nested npm install processes simultaneously inside frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devModeScriptCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\"",
+            "processManagerTool": "Uses concurrently to orchestrate parallel development server instances"
+        },
+        "function": "Facilitate simultaneous runtime execution of both frontend development server and backend API services locally during active coding sessions.",
+        "static_description": "Root package.json defines dev script launching both client-side hot-reloading web server and Node.js-based backend API listener concurrently via shared terminal session managed by concurrently tool.",
+        "interaction_and_states": []
+    }
+]

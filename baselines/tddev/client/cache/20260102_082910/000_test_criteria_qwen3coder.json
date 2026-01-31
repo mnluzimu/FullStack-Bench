@@ -1,0 +1,331 @@
+[
+    {
+        "requirement_tested": "Implement user authentication and authorization system",
+        "user_persona": "A new user named Sarah who wants to register and access her domain leasing account.",
+        "user_goal": "To successfully register for an account and log in to access the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Site",
+                "description": "Sarah visits the domain leasing website for the first time and sees the login form on the homepage.",
+                "action": "Click on the 'Register' link below the login form.",
+                "expected_outcome": "The registration form with name, email, password, and confirm password fields appears."
+            },
+            {
+                "step": 2,
+                "title": "Completing Registration",
+                "description": "Sarah fills out her personal details and submits the registration form.",
+                "action": "Fill in first name, last name, email, password, and confirm password fields. Click the 'Register' button.",
+                "expected_outcome": "The system creates a new user account via authAPI and redirects Sarah to a confirmation page."
+            },
+            {
+                "step": 3,
+                "title": "Logging In",
+                "description": "After confirming her registration, Sarah returns to the homepage and attempts to log in with her new credentials.",
+                "action": "Enter email and password into the login fields. Click the 'Login' button.",
+                "expected_outcome": "The system authenticates Sarah and redirects her to her user dashboard with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create domain search functionality with filtering and sorting options",
+        "user_persona": "Alex, an entrepreneur looking for a suitable domain name for his new business.",
+        "user_goal": "To find an available .com domain under $20, sorted by price.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Domains",
+                "description": "Alex enters keywords into the search bar and applies filters to narrow down his options.",
+                "action": "Type 'businesssolution' into the search bar. Select '.com' from TLD dropdown, set max price to $20, choose 'Available' status, and sort by 'Price Low to High'. Click 'Search'.",
+                "expected_outcome": "The page updates dynamically to show matching domains within Alex's criteria, ordered from lowest to highest price."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Results",
+                "description": "Alex scrolls through the filtered results to evaluate potential domains.",
+                "action": "Scroll through the grid of domain results.",
+                "expected_outcome": "Each result displays the domain name, price, and availability status clearly in a responsive grid layout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop domain leasing workflow with lease term selection",
+        "user_persona": "Jamie, a small business owner interested in leasing a premium domain.",
+        "user_goal": "To select a 2-year lease term with discount and proceed to checkout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Domain Details",
+                "description": "Jamie clicks on a premium domain to view its leasing options.",
+                "action": "Click on a domain card from the search results.",
+                "expected_outcome": "The domain detail page loads, showing available lease terms as radio buttons with pricing information."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Lease Term",
+                "description": "Jamie selects the 2-year option to benefit from the discount.",
+                "action": "Click the '2 Years' radio button.",
+                "expected_outcome": "The total cost updates instantly to reflect the discounted price for the 2-year term."
+            },
+            {
+                "step": 3,
+                "title": "Proceeding to Checkout",
+                "description": "Satisfied with the selection, Jamie proceeds to finalize the lease.",
+                "action": "Click the 'Proceed to Checkout' button.",
+                "expected_outcome": "The system initiates the lease transaction via leaseAPI and redirects Jamie to the payment page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build domain renewal process with expiration date tracking",
+        "user_persona": "Taylor, a long-term client who needs to renew an expiring domain.",
+        "user_goal": "To renew a domain lease that expires soon.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Dashboard",
+                "description": "Taylor logs in and checks the dashboard for upcoming expirations.",
+                "action": "Log into the account and navigate to the dashboard.",
+                "expected_outcome": "The dashboard displays a list of leased domains including those nearing expiration with prominent renewal buttons."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Renewal",
+                "description": "Taylor clicks the renewal button next to the expiring domain.",
+                "action": "Click the 'Renew' button for the domain expiring soon.",
+                "expected_outcome": "A modal pops up showing current lease details, extension options, and total cost for renewal."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Renewal",
+                "description": "Taylor confirms the renewal to extend the lease period.",
+                "action": "Click the 'Confirm Renewal' button in the modal.",
+                "expected_outcome": "The system processes the payment via renewalAPI, extends the lease period, and shows a success confirmation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable domain transfer request submission and processing",
+        "user_persona": "Jordan, who wants to transfer a domain to another user.",
+        "user_goal": "To initiate a domain transfer to a colleague.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Transfer Form",
+                "description": "Jordan navigates to the transfer section and begins initiating a transfer.",
+                "action": "Go to the domain detail page and click the 'Transfer Domain' button.",
+                "expected_outcome": "A transfer initiation form appears requiring recipient email and security code generation."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Transfer Request",
+                "description": "Jordan fills in the recipient's email and submits the request.",
+                "action": "Enter the recipient's email address and click 'Submit Transfer Request'.",
+                "expected_outcome": "The system generates a unique transfer code, sends a notification via transferAPI, and shows a confirmation message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design user dashboard to display leased domains and leasing history",
+        "user_persona": "Morgan, a frequent user wanting to review past transactions.",
+        "user_goal": "To view all currently leased domains and past leasing activities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Dashboard",
+                "description": "Morgan logs in and goes straight to the dashboard to check domain status.",
+                "action": "Log in and land on the dashboard automatically.",
+                "expected_outcome": "The dashboard shows a grid of currently leased domains, upcoming expirations, and recent transactions timeline."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Transaction History",
+                "description": "Morgan clicks on a transaction entry to see more details.",
+                "action": "Click on a transaction item in the recent activity timeline.",
+                "expected_outcome": "The transaction expands to reveal full details including dates, amounts, and related actions like renewal or cancellation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement order management system for domain transactions",
+        "user_persona": "Casey, a meticulous user who wants to track all orders.",
+        "user_goal": "To view and filter all past orders by status.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Order Management",
+                "description": "Casey navigates to the order management section to review transactions.",
+                "action": "Click on the 'Orders' link in the main navigation menu.",
+                "expected_outcome": "The order management page loads with a sortable table showing order ID, type, date, amount, and status."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Orders",
+                "description": "Casey uses filters to focus only on completed orders.",
+                "action": "Use the status filter dropdown to select 'Completed' and apply the filter.",
+                "expected_outcome": "The displayed orders update in real-time via orderAPI to show only completed transactions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate payment processing for leases, renewals and transfers",
+        "user_persona": "Riley, ready to make a payment for a domain lease.",
+        "user_goal": "To complete payment using PayPal for a selected domain lease.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Payment Method",
+                "description": "At checkout, Riley selects PayPal as the preferred payment method.",
+                "action": "On the checkout page, click the 'PayPal' payment method card.",
+                "expected_outcome": "The PayPal input fields appear, and the order summary remains visible on the side."
+            },
+            {
+                "step": 2,
+                "title": "Completing Payment",
+                "description": "Riley fills in PayPal details and completes the transaction.",
+                "action": "Enter PayPal credentials and click 'Complete Purchase'.",
+                "expected_outcome": "The system processes the payment via paymentAPI, updates the order status to 'Completed', and redirects to a confirmation page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create admin panel for managing users and domain inventory",
+        "user_persona": "An administrator named Devon overseeing the platform.",
+        "user_goal": "To update domain inventory information in the admin panel.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Panel",
+                "description": "Devon logs in with admin credentials and accesses the admin panel.",
+                "action": "Log in as admin and click on the 'Admin Panel' link in the navigation.",
+                "expected_outcome": "The admin panel loads with a sidebar containing sections for Users, Domains, and Orders."
+            },
+            {
+                "step": 2,
+                "title": "Editing Domain Information",
+                "description": "Devon finds a domain and edits its resale value.",
+                "action": "Navigate to the Domains section. Click on a domain row to enable editing mode. Update the resale value field and save changes.",
+                "expected_outcome": "The domain record is updated via adminAPI, and a success message confirms the change was saved."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build responsive UI with old lace background and rosy brown component accents",
+        "user_persona": "Pat, accessing the site from both desktop and mobile devices.",
+        "user_goal": "To experience consistent styling and usability across different screen sizes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Desktop Experience",
+                "description": "Pat browses the site on a desktop computer and notices the color scheme.",
+                "action": "Visit the homepage on a desktop browser.",
+                "expected_outcome": "The website features an old lace background with rosy brown borders, buttons, and accent elements throughout the interface."
+            },
+            {
+                "step": 2,
+                "title": "Mobile Responsiveness",
+                "description": "Pat switches to a mobile device to ensure usability.",
+                "action": "Resize browser window to simulate mobile view or access the site on a smartphone.",
+                "expected_outcome": "The layout adjusts fluidly to maintain usability with touch-friendly controls and readable text."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Establish backend API endpoints for all frontend data requirements",
+        "user_persona": "A developer named Quinn working on frontend integration.",
+        "user_goal": "To verify that all required data is accessible via properly functioning API endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Domain Data",
+                "description": "Quinn makes a call to retrieve domain information for display.",
+                "action": "Send a GET request to the '/api/v1/domains' endpoint.",
+                "expected_outcome": "The API responds with a structured JSON payload containing domain data including pagination information."
+            },
+            {
+                "step": 2,
+                "title": "Handling Errors Gracefully",
+                "description": "Quinn tests how the API handles invalid requests.",
+                "action": "Send a malformed request to an endpoint.",
+                "expected_outcome": "The API returns a standardized JSON error response with appropriate HTTP status code and descriptive message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect backend to PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer named Lee responsible for deployment.",
+        "user_goal": "To ensure the application connects correctly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Application",
+                "description": "Lee starts the backend server to verify database connectivity.",
+                "action": "Run the backend server startup command.",
+                "expected_outcome": "The application initializes the PostgreSQL connection pool using the specified environment variables and validates connectivity before serving requests."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run install:all and npm run dev scripts",
+        "user_persona": "A new team member named Sam setting up the development environment.",
+        "user_goal": "To easily install dependencies and start both frontend and backend servers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Sam clones the repository and runs the installation script.",
+                "action": "Open terminal in project root and run 'npm run install:all'.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed sequentially without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Sam starts both development servers with a single command.",
+                "action": "Run 'npm run dev' in the terminal.",
+                "expected_outcome": "Both frontend and backend development servers launch concurrently, allowing simultaneous development and testing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement domain information display with detailed specifications",
+        "user_persona": "A researcher named Robin evaluating domain quality.",
+        "user_goal": "To view comprehensive technical and ownership information for a domain.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Domain Info",
+                "description": "Robin clicks on a domain to see detailed specifications.",
+                "action": "Click on a domain name from the search results.",
+                "expected_outcome": "The domain information page loads with tabbed sections for Technical Details, SEO Information, DNS Records, and Ownership History."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Technical Details",
+                "description": "Robin explores the technical aspects of the domain.",
+                "action": "Click on the 'Technical Details' tab.",
+                "expected_outcome": "Relevant technical specifications load dynamically via domainInfoAPI without refreshing the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop notification system for lease expirations and transaction updates",
+        "user_persona": "A busy professional named Kai who relies on notifications.",
+        "user_goal": "To stay informed about upcoming lease expirations and transaction updates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Notifications",
+                "description": "Kai clicks the notification bell to review recent alerts.",
+                "action": "Click the notification bell icon in the header.",
+                "expected_outcome": "A dropdown panel appears showing recent notifications with timestamps and unread indicators."
+            },
+            {
+                "step": 2,
+                "title": "Reading Notification Details",
+                "description": "Kai clicks on a notification to get more information.",
+                "action": "Click on a notification about an upcoming lease expiration.",
+                "expected_outcome": "The notification is marked as read, and Kai is redirected to the relevant domain or transaction page."
+            }
+        ]
+    }
+]

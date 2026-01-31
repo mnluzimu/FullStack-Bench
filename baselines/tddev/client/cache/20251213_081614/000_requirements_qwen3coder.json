@@ -1,0 +1,17 @@
+[
+    "Create new to-do items with title and description fields",
+    "Edit existing to-do items including title and description",
+    "Delete to-do items permanently",
+    "Mark to-do items as completed with visual indication",
+    "Filter to-do items by status (all, active, completed)",
+    "Search to-do items by keyword across titles and descriptions",
+    "Browse all to-do items in a list view",
+    "Display to-do items with clear visual distinction between completed and active tasks",
+    "Provide a text input field for entering new task titles",
+    "Include a text area for detailed task descriptions",
+    "Show a counter displaying total and completed task numbers",
+    "Enable task sorting by creation date or priority",
+    "Implement responsive design for mobile and desktop viewing",
+    "Apply lavender background color consistently across all pages",
+    "Style all UI components with indigo color scheme"
+]

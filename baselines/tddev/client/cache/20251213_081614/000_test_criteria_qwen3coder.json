@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Create new to-do items with title and description fields",
+        "user_persona": "A busy professional named Alex who manages daily tasks.",
+        "user_goal": "Alex wants to quickly add a new task with a title and description to the to-do list.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the App",
+                "description": "Alex opens the app and sees the lavender background with an indigo-styled form at the top ready for input.",
+                "action": "Observe the page load.",
+                "expected_outcome": "The page loads with a lavender background and an indigo-themed task creation form visible at the top."
+            },
+            {
+                "step": 2,
+                "title": "Entering Task Details",
+                "description": "Alex fills in the title and description fields with 'Finish report' and 'Complete quarterly sales report by Friday'.",
+                "action": "Type 'Finish report' into the title input and 'Complete quarterly sales report by Friday' into the description textarea.",
+                "expected_outcome": "Both fields accept text input and display the typed content accurately."
+            },
+            {
+                "step": 3,
+                "title": "Submitting New Task",
+                "description": "After filling in the details, Alex clicks the 'Add Task' button to save the new task.",
+                "action": "Click the 'Add Task' button.",
+                "expected_outcome": "The task is added to the database, appears in the task list, and the form fields are cleared."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Edit existing to-do items including title and description",
+        "user_persona": "A project manager named Taylor reviewing team assignments.",
+        "user_goal": "Taylor needs to update the title and description of an existing task.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Task",
+                "description": "Taylor finds the task titled 'Prepare presentation slides' in the list and hovers over it.",
+                "action": "Hover over the task item.",
+                "expected_outcome": "An edit icon appears on the task card."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Edit Mode",
+                "description": "Taylor clicks the edit icon to modify the task details.",
+                "action": "Click the edit icon.",
+                "expected_outcome": "The task transforms into an editable form with pre-filled title and description fields."
+            },
+            {
+                "step": 3,
+                "title": "Updating Task Information",
+                "description": "Taylor updates the title to 'Prepare Q3 presentation slides' and adds 'Include budget analysis' to the description.",
+                "action": "Modify the title and description fields.",
+                "expected_outcome": "The fields reflect the updated text as entered."
+            },
+            {
+                "step": 4,
+                "title": "Saving Changes",
+                "description": "Satisfied with the changes, Taylor clicks the save button.",
+                "action": "Click the save button.",
+                "expected_outcome": "The task is updated in the database and returns to read-only mode with the new information displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Delete to-do items permanently",
+        "user_persona": "A student named Jordan cleaning up old assignments.",
+        "user_goal": "Jordan wants to remove a completed assignment task that is no longer needed.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Unnecessary Task",
+                "description": "Jordan scrolls through the list and identifies the outdated task 'Read Chapter 5'.",
+                "action": "Locate the task in the list view.",
+                "expected_outcome": "The task is visible within the list with its associated action icons."
+            },
+            {
+                "step": 2,
+                "title": "Deleting Task",
+                "description": "Jordan clicks the trash can icon next to the task to delete it.",
+                "action": "Click the trash can icon.",
+                "expected_outcome": "The task is removed from the database and disappears from the list view instantly without a page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Mark to-do items as completed with visual indication",
+        "user_persona": "A freelancer named Riley tracking daily goals.",
+        "user_goal": "Riley wants to mark a task as completed after finishing work on it.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Active Task",
+                "description": "Riley locates the task 'Design client logo' in the active task list.",
+                "action": "Scroll to find the target task.",
+                "expected_outcome": "The task appears normally with dark text and no strikethrough."
+            },
+            {
+                "step": 2,
+                "title": "Completing Task",
+                "description": "Riley clicks the checkbox next to the task title to mark it as done.",
+                "action": "Click the checkbox.",
+                "expected_outcome": "The task's title becomes strikethrough with faded text, and a checkmark icon appears, indicating completion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filter to-do items by status (all, active, completed)",
+        "user_persona": "A remote worker named Casey organizing weekly priorities.",
+        "user_goal": "Casey wants to view only the tasks that still need attention.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing All Tasks",
+                "description": "Casey starts by viewing all tasks mixed together.",
+                "action": "Load the default task list view.",
+                "expected_outcome": "All tasks are displayed regardless of their completion status."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Active Tasks",
+                "description": "Casey clicks the 'Active' filter button to focus only on pending work.",
+                "action": "Click the 'Active' filter button.",
+                "expected_outcome": "Only tasks marked as not completed are shown in the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search to-do items by keyword across titles and descriptions",
+        "user_persona": "A researcher named Morgan looking for specific project notes.",
+        "user_goal": "Morgan wants to find tasks related to 'market research' quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Search Bar",
+                "description": "Morgan notices the search bar positioned above the task list and focuses on it.",
+                "action": "Focus on the search input field.",
+                "expected_outcome": "The search bar is clearly visible with a magnifying glass icon."
+            },
+            {
+                "step": 2,
+                "title": "Performing Search",
+                "description": "Morgan types 'market research' and presses Enter to initiate the search.",
+                "action": "Type 'market research' and press Enter.",
+                "expected_outcome": "The task list updates dynamically to show only tasks whose titles or descriptions contain 'market research'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Browse all to-do items in a list view",
+        "user_persona": "A team lead named Quinn reviewing overall progress.",
+        "user_goal": "Quinn wants to get an overview of all current tasks assigned to the team.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Task List",
+                "description": "Quinn navigates to the main dashboard to see all tasks.",
+                "action": "Navigate to the main task list page.",
+                "expected_outcome": "All tasks are displayed in a vertically stacked list format on a lavender background."
+            },
+            {
+                "step": 2,
+                "title": "Scanning Through Tasks",
+                "description": "Quinn scans the list to assess workload distribution among team members.",
+                "action": "Visually scan the list of tasks.",
+                "expected_outcome": "Each task is presented in an indigo-bordered card showing relevant information like title, description snippet, and creation date."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display to-do items with clear visual distinction between completed and active tasks",
+        "user_persona": "A designer named Avery checking project milestones.",
+        "user_goal": "Avery wants to distinguish between finished and pending design tasks at a glance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Task Styles",
+                "description": "Avery looks at the task list and notices different styling for various tasks.",
+                "action": "Examine the visual presentation of tasks.",
+                "expected_outcome": "Active tasks appear with normal dark text while completed tasks show strikethrough and lighter gray text."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a text input field for entering new task titles",
+        "user_persona": "A writer named Sam planning article topics.",
+        "user_goal": "Sam wants to enter several new article idea titles efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Title Field",
+                "description": "Sam focuses on the topmost input field labeled for task titles.",
+                "action": "Click on the title input field.",
+                "expected_outcome": "The cursor appears in a single-line text input styled with indigo border and lavender background."
+            },
+            {
+                "step": 2,
+                "title": "Typing Task Title",
+                "description": "Sam enters 'Top 10 productivity tips' into the title field.",
+                "action": "Type 'Top 10 productivity tips' into the input.",
+                "expected_outcome": "The text is clearly visible and properly formatted within the styled input field."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a text area for detailed task descriptions",
+        "user_persona": "A developer named Lee documenting code features.",
+        "user_goal": "Lee wants to write detailed implementation notes for a coding task.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Description Area",
+                "description": "After entering the title, Lee moves to the larger text area below for detailed notes.",
+                "action": "Focus on the description text area.",
+                "expected_outcome": "A multi-line text area with matching indigo border and lavender background styling is available."
+            },
+            {
+                "step": 2,
+                "title": "Adding Detailed Notes",
+                "description": "Lee writes implementation steps and edge cases into the description area.",
+                "action": "Type detailed notes into the text area.",
+                "expected_outcome": "Multiple lines of text are accepted and scrollable if needed within the styled container."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show a counter displaying total and completed task numbers",
+        "user_persona": "A product owner named Dana tracking sprint progress.",
+        "user_goal": "Dana wants to monitor how many tasks remain uncompleted in the current sprint.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Initial Count",
+                "description": "Dana glances at the status bar to see the starting number of tasks.",
+                "action": "Look at the task counter display.",
+                "expected_outcome": "The counter shows the total number of tasks and how many are completed."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Progress",
+                "description": "As tasks are completed, Dana checks that the counter updates accordingly.",
+                "action": "Complete a few tasks and observe the counter.",
+                "expected_outcome": "The counter dynamically updates to reflect the reduced number of remaining tasks."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable task sorting by creation date or priority",
+        "user_persona": "A manager named Pat prioritizing urgent deliverables.",
+        "user_goal": "Pat wants to sort tasks by priority to address critical items first.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Sort Options",
+                "description": "Pat finds the 'Sort By:' dropdown menu near the top of the task list.",
+                "action": "Click the sort dropdown menu.",
+                "expected_outcome": "A dropdown menu with 'Creation Date' and 'Priority' options appears."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Priority Sorting",
+                "description": "Pat selects 'Priority' to reorder the tasks accordingly.",
+                "action": "Choose 'Priority' from the dropdown.",
+                "expected_outcome": "The task list reorders itself to show high-priority tasks first, maintaining any active filters."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive design for mobile and desktop viewing",
+        "user_persona": "A consultant named Robin managing tasks on multiple devices.",
+        "user_goal": "Robin wants to seamlessly switch between desktop and mobile views without losing functionality.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Desktop View Experience",
+                "description": "On a large monitor, Robin enjoys a wide layout with multiple columns of tasks.",
+                "action": "View the app on a desktop screen.",
+                "expected_outcome": "Tasks are arranged in a multi-column layout optimized for wide screens."
+            },
+            {
+                "step": 2,
+                "title": "Mobile Adaptation",
+                "description": "Switching to a phone, Robin sees the same features but in a single-column stack.",
+                "action": "Resize browser window to simulate mobile view.",
+                "expected_outcome": "Layout adjusts to a single column with preserved lavender background and indigo-styled components."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply lavender background color consistently across all pages",
+        "user_persona": "A UX reviewer named Kai evaluating visual consistency.",
+        "user_goal": "Kai wants to confirm that every page maintains the specified lavender background theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Kai navigates through different sections of the application to verify background uniformity.",
+                "action": "Visit various pages and inspect backgrounds.",
+                "expected_outcome": "Every page displays a consistent solid lavender (#E6E6FA) background throughout the application."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style all UI components with indigo color scheme",
+        "user_persona": "A brand specialist named Zoe ensuring design alignment.",
+        "user_goal": "Zoe wants to ensure all interactive elements use the correct indigo color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Component Colors",
+                "description": "Zoe examines buttons, checkboxes, and input fields for proper indigo styling.",
+                "action": "Inspect various UI components visually.",
+                "expected_outcome": "All interactive elements including buttons, checkboxes, and form controls utilize indigo (#6366F1) as their primary accent color."
+            }
+        ]
+    }
+]

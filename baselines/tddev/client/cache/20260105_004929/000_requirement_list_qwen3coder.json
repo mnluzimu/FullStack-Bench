@@ -1,0 +1,272 @@
+[
+    {
+        "resource_dependency": {
+            "golfTravelFormFields": [
+                "Full Name",
+                "Email Address",
+                "Phone Number",
+                "Preferred Travel Dates",
+                "Number of Travelers",
+                "Golf Course Preferences",
+                "Accommodation Type",
+                "Transportation Needs",
+                "Special Requests"
+            ],
+            "formSubmitButtonIcon": "/icons/submit-icon.svg",
+            "travelRequestSchema": "Database table 'travel_requests': id (UUID), full_name (TEXT), email (TEXT), phone (TEXT), travel_dates (DATE[]), num_travelers (INTEGER), golf_preferences (TEXT[]), accommodation_type (TEXT), transportation_needs (TEXT), special_requests (TEXT), created_at (TIMESTAMP)"
+        },
+        "function": "Allow users to submit travel package requests through a form on the homepage.",
+        "static_description": "The homepage features a centered form with labeled input fields including Full Name, Email Address, Phone Number, Preferred Travel Dates, Number of Travelers, Golf Course Preferences (multi-select), Accommodation Type (dropdown), Transportation Needs (checkboxes), and Special Requests (textarea). The form ends with a dark cyan submit button featuring the formSubmitButtonIcon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends form data to the backend API endpoint /api/travel-requests. Form fields validate locally before submission. Invalid inputs highlight respective fields in red and display error messages."
+            },
+            {
+                "interaction": "Input Focus",
+                "description": "Each input field expands slightly when focused, providing better visibility during entry. Dropdowns open automatically on focus."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "travelRequestsTableSchema": "CREATE TABLE travel_requests (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), full_name TEXT NOT NULL, email TEXT NOT NULL, phone TEXT, travel_dates DATE[], num_travelers INTEGER, golf_preferences TEXT[], accommodation_type TEXT, transportation_needs TEXT, special_requests TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Handle form submissions and persist travel request data in a PostgreSQL database.",
+        "static_description": "This backend API receives POST requests at /api/travel-requests containing customer-submitted travel request data. It connects to the PostgreSQL database using environment variables and inserts the received data into the travel_requests table.",
+        "interaction_and_states": [
+            {
+                "interaction": "POST Request",
+                "description": "Receives validated form data from the frontend, maps it to the travel_requests schema, and executes an INSERT statement to store the record in the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "hotelAvailabilityAPI": "An external RESTful API returning real-time hotel room availability and pricing based on location, dates, and room type.",
+            "flightBookingAPI": "An external SOAP-based API providing live flight schedules, seat availability, and fare information between airports.",
+            "transportServiceAPI": "An internal or third-party API offering vehicle rental options, shuttle services, and ground transportation pricing.",
+            "golfCourseAPI": "An API delivering real-time tee time availability, green fees, cart rentals, and course condition updates.",
+            "packageCalculationLogic": "Business logic applying dynamic pricing rules based on seasonality, group size discounts, bundled offers, and supplier agreements."
+        },
+        "function": "Dynamically calculate travel packages by integrating with multiple external services and applying business logic.",
+        "static_description": "Backend service that aggregates real-time data from hotel, flight, transport, and golf course providers. Applies package calculation logic to construct personalized travel packages based on customer preferences stored in the travel_requests table.",
+        "interaction_and_states": [
+            {
+                "interaction": "Internal Trigger",
+                "description": "Upon receiving a new travel request, this service asynchronously calls the four external APIs with relevant parameters (dates, locations, guest count) to fetch current availability and pricing. Combines results with internal business logic to generate potential package combinations ranked by price and preference match."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageSelectionInterface": "Interactive UI displaying available travel packages with expandable sections showing detailed breakdowns of included items (flights, hotels, etc.)",
+            "confirmButtonIcon": "/icons/checkmark-circle.svg",
+            "selectedPackageDataSchema": "Database table 'bookings': id (UUID), travel_request_id (UUID references travel_requests.id), selected_package_details (JSONB), total_price (DECIMAL), status (ENUM pending, confirmed, cancelled), created_at (TIMESTAMP)",
+            "bookingConfirmationEndpoint": "POST /api/bookings"
+        },
+        "function": "Enable customers to review and confirm their chosen travel package after dynamic calculation.",
+        "static_description": "A responsive web page presenting calculated travel packages in card layouts. Each card shows summary info like destination, duration, total price, and highlights key inclusions. Cards can be expanded to view granular details such as flight numbers, hotel names, and golf course specifics. A prominent dark cyan 'Confirm Booking' button with confirmButtonIcon allows finalizing selection.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Package Card",
+                "description": "Expands the clicked card to reveal full package details while collapsing others. Highlights differences among similar packages (e.g., upgrade options)."
+            },
+            {
+                "interaction": "Click Confirm Button",
+                "description": "Triggers a POST request to /api/bookings with the selected package data. Updates the booking status to 'pending' in the database and redirects the user to a payment gateway."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "voucherTemplateHTML": "<html><body><h1>Travel Voucher</h1><p>Booking ID: {{booking_id}}</p><p>Details: {{package_details}}</p></body></html>",
+            "invoiceTemplateHTML": "<html><body><h1>Invoice</h1><p>Booking ID: {{booking_id}}</p><p>Total Amount: ${{total_amount}}</p></body></html>",
+            "PDFGeneratorLibrary": "Uses pdfmake or Puppeteer library to convert HTML templates into downloadable PDF documents",
+            "emailDeliveryService": "SMTP server configuration or third-party email API (e.g., SendGrid) for sending attachments"
+        },
+        "function": "Generate and deliver digital vouchers and invoices as downloadable PDFs upon successful booking confirmation.",
+        "static_description": "After payment confirmation, this backend service generates two PDF documents: a voucher summarizing the booked trip and an invoice detailing charges. Both use predefined HTML templates populated with booking-specific data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Booking Status Update",
+                "description": "When a booking’s status transitions to 'confirmed', this service retrieves the associated package details and customer contact info. It populates the voucherTemplateHTML and invoiceTemplateHTML, converts them to PDFs, and attaches them to an automated email sent to the customer."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "customerDataSchema": "Database table 'customers': id (UUID), name (TEXT), email (TEXT UNIQUE), phone (TEXT), address (TEXT), registration_date (TIMESTAMP), last_interaction (TIMESTAMP), tags (TEXT[])",
+            "interactionHistorySchema": "Database table 'customer_interactions': id (UUID), customer_id (UUID references customers.id), interaction_type (TEXT), notes (TEXT), timestamp (TIMESTAMP)",
+            "crmUIComponents": "Dashboard widgets for customer overview, search bar, filters by tag/date, editable forms for updating customer profiles, timeline view for interaction history"
+        },
+        "function": "Manage customer relationships through centralized storage of personal data and interaction logs, accessible only via authenticated admin routes.",
+        "static_description": "Admin-only section featuring a searchable customer database displayed in tabular format with columns for name, email, phone, recent activity, and tags. Includes side panels for viewing/editing individual customer profiles and logging interactions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Search Input",
+                "description": "Filters the customer table in real-time based on typed keywords matching name, email, or tags. Results update dynamically without page reload."
+            },
+            {
+                "interaction": "Row Click",
+                "description": "Opens a modal overlay showing the complete customer profile, past interactions, and options to add notes or update contact information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "supplierDataSchema": "Database table 'suppliers': id (UUID), company_name (TEXT), contact_person (TEXT), email (TEXT), phone (TEXT), contract_start (DATE), contract_end (DATE), services_offered (TEXT[]), rating (NUMERIC)",
+            "contractDocumentsStorage": "Cloud storage path or local directory for uploading signed contracts and related documents",
+            "supplierManagementUI": "CRUD interface allowing admins to list, create, edit, and delete supplier entries with file upload capability for contracts"
+        },
+        "function": "Maintain a registry of suppliers along with their contractual obligations and performance metrics.",
+        "static_description": "Authenticated admin panel presenting a sortable table of suppliers with fields like company name, contact person, active contracts, offered services, and average ratings. Each row includes action buttons for editing, viewing contract documents, and adjusting supplier status.",
+        "interaction_and_states": [
+            {
+                "interaction": "Upload Contract File",
+                "description": "Allows administrators to attach PDF or DOCX files representing signed contracts directly to a supplier record. Files are saved securely and linked to the corresponding supplier ID in the database."
+            },
+            {
+                "interaction": "Edit Supplier Info",
+                "description": "Opens a form pre-filled with existing supplier data. Changes are saved via PUT request to /api/suppliers/:id, validating uniqueness constraints and updating timestamps accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "quoteCalculationEngine": "Algorithm incorporating real-time rates from integrated APIs plus markup rules, seasonal adjustments, and discount policies",
+            "quoteResponseFormat": "JSON structure including subtotal, taxes, discounts applied, total amount, validity period, and itemized breakdown",
+            "quotePreviewTemplate": "Lightweight frontend component rendering quote preview before formal generation"
+        },
+        "function": "Provide instant online quotes reflecting current market prices adjusted by configured business rules.",
+        "static_description": "Real-time quote engine exposed via GET /api/quotes?requestId={uuid} which returns a structured JSON payload containing cost estimates derived from live supplier data combined with internal pricing strategies.",
+        "interaction_and_states": [
+            {
+                "interaction": "GET Quote Request",
+                "description": "Triggered either manually by user clicking 'Get Quote' or automatically once package options are loaded. Queries external services for updated costs, applies business logic, and responds with formatted quote data ready for frontend display."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mainColorVariable": "darkcyan (#008B8B)",
+            "backgroundColorVariable": "whitesmoke (#F5F5F5)",
+            "globalCSSFile": ":root { --main-color: #008B8B; --bg-color: #F5F5F5; } body { background-color: var(--bg-color); } .main-component { background-color: var(--main-color); color: white; }"
+        },
+        "function": "Apply consistent styling across all frontend pages using CSS custom properties for theme colors.",
+        "static_description": "All frontend components inherit base styles from globalCSSFile, ensuring every page uses whitesmoke for body backgrounds and dark cyan for primary interactive or highlighted elements like headers, buttons, and cards.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authTokenSchema": "Database table 'sessions': id (UUID), user_id (UUID references users.id), token_hash (TEXT), expires_at (TIMESTAMP), ip_address (INET), user_agent (TEXT)",
+            "userRolesSchema": "Database table 'users': id (UUID), username (TEXT UNIQUE), password_hash (TEXT), role (ENUM admin, staff), created_at (TIMESTAMP)",
+            "loginPageUI": "Simple login screen with username/password fields and submit button; protected routes redirect unauthenticated users here",
+            "JWTSecretKey": "Environment variable storing secret used for signing authentication tokens"
+        },
+        "function": "Secure access to sensitive modules (CRM, Supplier Management) through robust session-based authentication and role-based permissions.",
+        "static_description": "Login page featuring minimalistic design with branded dark cyan header and input fields for credentials. All restricted backend endpoints require valid JWT tokens issued upon successful authentication against the users table.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Credentials",
+                "description": "Verifies provided username/password against hashed values in the database. On success, creates a new session entry and issues a signed JWT token set as HTTP-only cookie. Redirects to dashboard if authorized."
+            },
+            {
+                "interaction": "Access Protected Route",
+                "description": "Middleware checks presence and validity of JWT token in Authorization header or cookies. Compares roles against route permissions. Denies access or proceeds based on outcome."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bookingStatusEnumValues": "pending, confirmed, cancelled, completed",
+            "statusUpdatePayloadSchema": "{ booking_id: UUID, new_status: ENUM, reason?: TEXT }",
+            "bookingStatusUpdateEndpoint": "PATCH /api/bookings/{id}/status"
+        },
+        "function": "Expose dedicated API endpoints enabling programmatic retrieval and modification of booking statuses.",
+        "static_description": "RESTful endpoints under /api/bookings supporting standard operations: GET for retrieving booking details/status, PATCH for modifying status with optional reason field, and query parameters for filtering by status value.",
+        "interaction_and_states": [
+            {
+                "interaction": "PATCH Status Request",
+                "description": "Accepts partial updates specifying new_status and optional reason. Validates transition legality (e.g., cannot cancel after completion), updates the bookings table, and triggers notifications where applicable."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "smtpConfig": "Environment variables for SMTP host, port, username, password, sender address",
+            "notificationTemplates": "Predefined subject/body templates for various events: booking confirmation, voucher/invoice delivery, cancellation notice",
+            "mailQueueSystem": "Background job processor like BullMQ or RabbitMQ managing asynchronous email dispatch"
+        },
+        "function": "Automate outbound communication to customers regarding critical booking lifecycle events using templated emails.",
+        "static_description": "Event-driven email dispatcher listening for status changes or document generations. Constructs messages from templates merged with booking/customer data and queues them for reliable delivery over SMTP.",
+        "interaction_and_states": [
+            {
+                "interaction": "Booking Confirmed Event",
+                "description": "Upon status change to 'confirmed', retrieves customer email and booking details. Merges these into the confirmation template and enqueues the message for immediate delivery."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardWidgets": [
+                "Bookings Overview Chart",
+                "Recent Quotes Table",
+                "Pending Customer Requests List",
+                "Revenue Summary"
+            ],
+            "adminSidebarNavigation": [
+                "Dashboard",
+                "Customers",
+                "Suppliers",
+                "Bookings",
+                "Quotes",
+                "Reports"
+            ],
+            "dataVisualizationLibraries": "Chart.js or D3.js libraries for rendering analytics charts within dashboard components"
+        },
+        "function": "Present a consolidated administrative interface for monitoring and managing core operational entities including bookings, quotes, and customer inquiries.",
+        "static_description": "Single-page application layout with fixed dark cyan sidebar navigation listing major modules. Main content area displays modular dashboard widgets summarizing KPIs alongside tables listing recent activities across bookings, quotes, and support tickets.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate Sidebar Links",
+                "description": "Clicking any link loads the corresponding module view dynamically without full page refresh. Active module is highlighted in sidebar."
+            },
+            {
+                "interaction": "Filter Dashboard Data",
+                "description": "Dropdown selectors above each widget allow filtering by date range, status, or category. Widgets re-render with updated datasets fetched from backend APIs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "hotelAvailabilityAPI": "External REST API returning real-time inventory and rate information for partner hotels",
+            "flightBookingAPI": "SOAP-based airline reservation system providing schedule, seat availability, and fare details",
+            "golfCourseAPI": "API serving live tee-time openings, green fee structures, and course condition reports from affiliated golf facilities"
+        },
+        "function": "Integrate with external systems to ensure accurate representation of product availability and prevent overselling.",
+        "static_description": "Backend microservices responsible for querying real-time availability from partnered vendors whenever a customer submits a request or views package options. Responses inform package composition and influence quoted prices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Check Availability",
+                "description": "Scheduled or event-triggered calls to vendor APIs passing criteria like check-in/check-out dates, number of guests, preferred airports, desired golf courses. Parses responses and caches results temporarily for improved responsiveness."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobileBreakpoints": "@media (max-width: 768px)",
+            "responsiveComponentExamples": "Stacked form fields instead of side-by-side, collapsible menus, touch-friendly button sizes",
+            "deviceTestingTools": "Browser DevTools device emulator or physical testing on common smartphone/tablet models"
+        },
+        "function": "Ensure optimal usability and visual presentation of the entire website across diverse screen sizes and devices.",
+        "static_description": "Frontend built using flexible grid layouts, scalable typography, and conditional styling blocks defined within media queries targeting mobile, tablet, and desktop breakpoints. Interactive elements sized appropriately for touch interfaces.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Viewport",
+                "description": "Layout adjusts fluidly between breakpoints, rearranging content blocks, resizing images proportionally, and transforming navigation bars into hamburger menus on smaller screens."
+            }
+        ]
+    }
+]

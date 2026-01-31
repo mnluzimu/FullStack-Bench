@@ -1,0 +1,408 @@
+[
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "email",
+                "password"
+            ],
+            "registrationFormFields": [
+                "name",
+                "email",
+                "password",
+                "confirmPassword",
+                "roleSelection"
+            ],
+            "authAPI": "POST /api/auth/register, POST /api/auth/login, GET /api/auth/me",
+            "userSchema": "Table 'users': id (UUID), email (string, unique), password_hash (string), role ('athlete' or 'organization'), created_at (timestamp)"
+        },
+        "function": "User authentication system supporting login and registration for both athletes and sports organizations",
+        "static_description": "A centered card with ghost white background containing two tabs: 'Login' and 'Register'. Each tab displays respective form fields referencing loginFormFields and registrationFormFields. Slate gray text inputs and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching between Login and Register tabs toggles visibility of corresponding forms."
+            },
+            {
+                "interaction": "Click",
+                "description": "Submitting the register form sends data to authAPI endpoint. On success redirects to dashboard; on error shows validation messages."
+            },
+            {
+                "interaction": "Click",
+                "description": "Submitting the login form sends credentials to authAPI endpoint. On success redirects to dashboard; on error shows invalid credentials message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileFormFields": [
+                "firstName",
+                "lastName",
+                "dateOfBirth",
+                "location",
+                "sportsSpecialties",
+                "experienceYears",
+                "bio"
+            ],
+            "avatarUploadIcon": "/icons/upload.svg",
+            "profileAPI": "GET /api/profile/{userId}, PUT /api/profile/{userId}",
+            "profileSchema": "Table 'profiles': user_id (foreign key to users.id), first_name (string), last_name (string), date_of_birth (date), location (string), sports_specialties (array of strings), experience_years (integer), bio (text), avatar_url (string)"
+        },
+        "function": "Athlete profile management including personal information, sports specialties, and experience",
+        "static_description": "Profile view displaying editable form fields from profileFormFields. Includes circular avatar image area with upload icon avatarUploadIcon. Form uses slate gray borders and ghost white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking avatar area opens file browser to select new profile picture."
+            },
+            {
+                "interaction": "Click",
+                "description": "Save button submits updated profile data via profileAPI. Displays success confirmation or error message."
+            },
+            {
+                "interaction": "Input",
+                "description": "Typing in sportsSpecialties field allows adding multiple sport tags dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "jobPostFormFields": [
+                "title",
+                "description",
+                "sportType",
+                "location",
+                "deadline",
+                "requirements"
+            ],
+            "jobPostAPI": "POST /api/jobs, PUT /api/jobs/{jobId}, DELETE /api/jobs/{jobId}",
+            "jobSchema": "Table 'jobs': id (UUID), organization_id (foreign key to users.id), title (string), description (text), sport_type (string), location (string), deadline (date), requirements (text), status ('active' or 'closed'), created_at (timestamp)"
+        },
+        "function": "Job posting functionality for sports organizations to create and manage job listings",
+        "static_description": "Form layout with input fields matching jobPostFormFields. Submit button styled with slate gray background. Date picker for deadline selection. Text areas for description and requirements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button creates new job listing via jobPostAPI. Redirects to job listing page on success."
+            },
+            {
+                "interaction": "Click",
+                "description": "Edit button loads existing job data into form for modification. Save changes updates via jobPostAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Delete button removes job listing after confirmation dialog via jobPostAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBarIcon": "/icons/search.svg",
+            "filterOptions": [
+                "Sport Type",
+                "Location",
+                "Deadline"
+            ],
+            "jobListingCard": [
+                "jobTitle",
+                "organizationName",
+                "location",
+                "postedDate",
+                "deadline"
+            ],
+            "jobsBrowseAPI": "GET /api/jobs?filters={...}&page={pageNumber}",
+            "jobListSchema": "Join query between jobs and users tables to get organization name"
+        },
+        "function": "Job browsing interface allowing users to search and filter available positions",
+        "static_description": "Top section contains search bar with searchBarIcon and filter dropdowns from filterOptions. Below shows grid of job cards using jobListingCard template. Pagination controls at bottom.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input",
+                "description": "Typing in search bar filters results in real-time calling jobsBrowseAPI with search term."
+            },
+            {
+                "interaction": "Change",
+                "description": "Selecting filter options updates displayed jobs by calling jobsBrowseAPI with applied filters."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking job card navigates to detailed job view page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Pagination buttons load next/previous pages of job listings via jobsBrowseAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "applyButtonLabel": "Apply Now",
+            "applicationFormFields": [
+                "coverLetter",
+                "availabilityStartDate"
+            ],
+            "applicationAPI": "POST /api/applications",
+            "applicationSchema": "Table 'applications': id (UUID), job_id (foreign key to jobs.id), athlete_id (foreign key to users.id), cover_letter (text), availability_start_date (date), status ('submitted', 'reviewed', 'accepted', 'rejected'), submitted_at (timestamp)"
+        },
+        "function": "Job application system enabling athletes to apply for positions of interest",
+        "static_description": "Job detail page showing full job description with prominent applyButtonLabel button. Clicking reveals modal with applicationFormFields including textarea for cover letter and date picker.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking applyButtonLabel opens application modal with pre-filled athlete info."
+            },
+            {
+                "interaction": "Click",
+                "description": "Submit button in modal sends application data via applicationAPI. Shows success message and closes modal on completion."
+            },
+            {
+                "interaction": "Click",
+                "description": "Cancel button closes modal without submitting application."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messageBubbleTemplate": [
+                "senderName",
+                "messageText",
+                "timestamp"
+            ],
+            "sendMessageForm": [
+                "messageInput",
+                "sendButton"
+            ],
+            "messagingAPI": "GET /api/messages/conversation/{conversationId}, POST /api/messages",
+            "conversationSchema": "Tables: conversations(id), participants(conversation_id, user_id), messages(id, conversation_id, sender_id, content, timestamp)"
+        },
+        "function": "Real-time messaging system facilitating communication between athletes and organizations",
+        "static_description": "Chat interface with scrollable message history area using messageBubbleTemplate. Fixed input area at bottom with sendMessageForm elements. Sidebar showing conversation list with contact names.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting conversation from sidebar loads message history via messagingAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Send button transmits message content via messagingAPI and appends to current chat view immediately."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in message input sends message when focused."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notificationBellIcon": "/icons/bell.svg",
+            "notificationItemTemplate": [
+                "notificationText",
+                "timeAgo",
+                "isRead"
+            ],
+            "notificationsAPI": "GET /api/notifications, PUT /api/notifications/{id}/read",
+            "notificationSchema": "Table 'notifications': id (UUID), user_id (foreign key to users.id), type (string), content (text), is_read (boolean), created_at (timestamp)"
+        },
+        "function": "Notification system delivering alerts for job applications, messages, and platform updates",
+        "static_description": "Top navigation bar includes notificationBellIcon badge showing unread count. Dropdown panel lists notifications using notificationItemTemplate with distinct styling for read/unread items.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking bell icon toggles visibility of notification dropdown panel populated via notificationsAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking individual notification marks as read via notificationsAPI and navigates to related content."
+            },
+            {
+                "interaction": "Click",
+                "description": "Mark all as read button updates all user notifications to read state via notificationsAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardTabs": [
+                "Posted Jobs",
+                "Applications",
+                "Messages"
+            ],
+            "jobManagementTable": [
+                "jobTitle",
+                "applicantsCount",
+                "status",
+                "actions"
+            ],
+            "applicantListPanel": [
+                "applicantName",
+                "applicationDate",
+                "statusBadge"
+            ],
+            "adminDashboardAPI": "GET /api/dashboard/jobs, GET /api/dashboard/applications/{jobId}, PATCH /api/jobs/{jobId}/status",
+            "dashboardDataSchema": "Aggregated queries joining jobs, applications, and users tables"
+        },
+        "function": "Admin dashboard for sports organizations to manage posted jobs and applicant communications",
+        "static_description": "Tabbed interface showing dashboardTabs. Default 'Posted Jobs' tab displays table using jobManagementTable format. Applicant column shows count linking to applicantListPanel view.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching tabs loads corresponding data views via adminDashboardAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking applicant count opens modal with applicantListPanel showing detailed application info."
+            },
+            {
+                "interaction": "Click",
+                "description": "Status toggle switches job between active/closed states via adminDashboardAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": {
+                "background": "#F8F8FF",
+                "uiElements": "#708090"
+            },
+            "responsiveBreakpoints": [
+                "mobile(320px)",
+                "tablet(768px)",
+                "desktop(1024px)"
+            ],
+            "layoutComponents": [
+                "header",
+                "mainContent",
+                "footer"
+            ]
+        },
+        "function": "Responsive web design with ghost white background and slate gray UI elements",
+        "static_description": "Entire site uses ghost white (#F8F8FF) body background color. All interactive elements and borders use slate gray (#708090). Layout adapts across responsiveBreakpoints maintaining consistent spacing and typography hierarchy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout adjusts according to responsiveBreakpoints with stacked mobile view, two-column tablet, and multi-panel desktop arrangement."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Header remains fixed at top during vertical scrolling on all viewport sizes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingLibrary": "axios or fetch API",
+            "apiBaseURL": "http://localhost:3001/api",
+            "loadingIndicator": "/icons/spinner.svg",
+            "errorDisplayComponent": "Toast-style error banner"
+        },
+        "function": "Frontend application that fetches all dynamic data through backend APIs",
+        "static_description": "All dynamic content sections show loadingIndicator during data requests. ErrorDisplayComponent appears when API calls fail. Data rendering waits for successful responses from apiBaseURL endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Mount",
+                "description": "Component initialization triggers data fetching from configured apiBaseURL using dataFetchingLibrary."
+            },
+            {
+                "interaction": "Refresh",
+                "description": "Manual refresh button re-fetches data from same endpoints showing loading state again."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "apiFramework": "Express.js or similar Node.js framework",
+            "corsSettings": "Allow localhost:3000 for frontend development"
+        },
+        "function": "Backend API service connecting to PostgreSQL database using specified environment variables",
+        "static_description": "RESTful API server configured with corsSettings accepting requests from frontend origin. Database connection established using databaseConnectionConfig values at startup.",
+        "interaction_and_states": [
+            {
+                "interaction": "Start Server",
+                "description": "Server initializes database connection pool using provided environment variables and starts listening on port 3001."
+            },
+            {
+                "interaction": "Receive Request",
+                "description": "Incoming HTTP requests routed to appropriate controller functions which execute database queries using established connection."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseERD": "Users <-1:N-> Profiles, Users <-1:N-> Jobs, Jobs <-1:N-> Applications, Users <-> N:M <-> Conversations, Conversations <-1:N-> Messages, Users <-1:N-> Notifications",
+            "tableDefinitions": "See individual schema definitions in previous entries",
+            "postgresSetupScript": "CREATE DATABASE myapp; CREATE USER myappuser WITH ENCRYPTED PASSWORD 'myapppassword'; GRANT ALL PRIVILEGES ON DATABASE myapp TO myappuser;"
+        },
+        "function": "Database schema supporting users, profiles, job postings, applications, and messages",
+        "static_description": "PostgreSQL database initialized with postgresSetupScript creating empty tables per defined schemas. Relationships mapped according to databaseERD showing one-to-many and many-to-many connections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Insert",
+                "description": "New records added to respective tables upon user actions (registration, job posting, applying, messaging) maintaining referential integrity."
+            },
+            {
+                "interaction": "Query",
+                "description": "Complex SELECT operations join related tables to serve aggregated dashboard and listing data efficiently."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "roleGuardMiddleware": "Express middleware checking JWT claims for user.role",
+            "protectedRoutes": [
+                "/api/jobs (POST/PUT/DELETE)",
+                "/api/applications (GET for own apps)",
+                "/api/messages (participants only)"
+            ],
+            "rbacRules": "athlete: read jobs, apply, message; organization: post jobs, manage apps, message; admin: all access"
+        },
+        "function": "Role-based access control distinguishing between athletes and sports organizations",
+        "static_description": "Each protected route in protectedRoutes requires authentication token with role claim validated by roleGuardMiddleware before processing request.",
+        "interaction_and_states": [
+            {
+                "interaction": "Access Route",
+                "description": "Requests to protected routes trigger roleGuardMiddleware which validates user role against rbacRules and either permits access or returns 403 Forbidden."
+            },
+            {
+                "interaction": "Unauthorized Access",
+                "description": "Blocked requests return standardized error response indicating insufficient permissions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cachingStrategy": "Redis or in-memory cache for frequently accessed data like job listings",
+            "databaseIndexingPlan": "Indexes on users.email, jobs.sport_type, jobs.location, applications.job_id",
+            "codeSplittingBoundaries": "Separate bundles for authentication, dashboard, job browsing, messaging modules"
+        },
+        "function": "Performance optimization features ensuring fast loading and smooth user experience",
+        "static_description": "Application architecture implements cachingStrategy for repeated queries. Database indexing follows indexPlan. Code splitting separates large modules into codeSplittingBoundaries chunks.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "Initial page load benefits from cached responses where applicable. Critical resources loaded first per code splitting strategy."
+            },
+            {
+                "interaction": "Repeated Requests",
+                "description": "Subsequent identical requests served from cache reducing database load and improving response times."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{\"install:all\": \"concurrently \\\"npm install\\\" \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm start\\\" \\\"cd server && npm run dev\\\"\"}",
+            "projectStructure": "Root directory with client/ and server/ subdirectories plus shared configs"
+        },
+        "function": "Repository configuration with package.json supporting npm run install:all and npm run dev commands",
+        "static_description": "Root package.json contains scripts section with install:all and dev commands executing concurrent processes in client/ and server/ directories respectively.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run install:all' installs dependencies in root, client/, and server/ locations simultaneously."
+            },
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run dev' starts frontend development server on port 3000 and backend API server on port 3001 concurrently."
+            }
+        ]
+    }
+]

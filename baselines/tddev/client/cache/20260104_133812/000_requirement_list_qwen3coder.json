@@ -1,0 +1,248 @@
+[
+    {
+        "resource_dependency": {
+            "bandListingPageURL": "/bands",
+            "bandProfilePageURL": "/bands/{id}",
+            "advertiserAdsPageURL": "/ads",
+            "registrationPageURL": "/register",
+            "loginPageURL": "/login",
+            "browsePageURL": "/browse",
+            "dashboardPageURL": "/dashboard",
+            "logoImage": "/assets/logo.png",
+            "defaultBandImage": "/assets/default-band.jpg",
+            "defaultAdImage": "/assets/default-ad.jpg",
+            "floralWhiteColor": "#FFFAF0",
+            "darkGoldenrodColor": "#B8860B"
+        },
+        "function": "Provide navigation and routing across the website for accessing different sections such as band listings, profiles, advertisements, registration, and login.",
+        "static_description": "The header includes a logo image (`logoImage`), navigation bar with links to Browse Bands (`bandListingPageURL`), Advertisements (`advertiserAdsPageURL`), Register (`registrationPageURL`), and Login (`loginPageURL`). The main content area displays the current page’s content. Footer contains copyright information. Page background uses floral white color (`floralWhiteColor`) and interactive elements use dark goldenrod (`darkGoldenrodColor`).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on navigation links navigates the user to respective pages: Band Listings, Advertisements, Registration, and Login."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointBaseURL": "http://localhost:3001/api",
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "bandSchema": "Table 'bands' with columns: id (UUID primary key), name (string), bio (text), picture_link (string), audio_sample_links (array of strings), youtube_links (array of strings), created_at (timestamp), updated_at (timestamp)",
+            "advertiserSchema": "Table 'advertisers' with columns: id (UUID primary key), username (string unique), email (string unique), password_hash (string), created_at (timestamp), updated_at (timestamp)",
+            "advertisementSchema": "Table 'advertisements' with columns: id (UUID primary key), advertiser_id (foreign key referencing advertisers.id), title (string), content_type (enum: image/audio/video), media_url (string), target_url (string), created_at (timestamp), updated_at (timestamp)",
+            "userAuthSchema": "Table 'users' with columns: id (UUID primary key), role (enum: band/advertiser), associated_id (UUID foreign key to either bands or advertisers table), username (string unique), password_hash (string), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Expose RESTful API endpoints for managing bands, advertisers, advertisements, and user authentication data stored in PostgreSQL database using provided environment variables.",
+        "static_description": "API server listens at base URL (`apiEndpointBaseURL`) and exposes endpoints for CRUD operations on bands, advertisers, advertisements, and authentication services. Database schema definitions define how data is structured and related within the PostgreSQL instance configured via environment variables (`databaseConnectionConfig`).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "bandRegistrationFormFields": [
+                "Band Name",
+                "Bio",
+                "Picture Link",
+                "Audio Sample Links (comma-separated)",
+                "YouTube Video Links (comma-separated)"
+            ],
+            "bandRegistrationSubmitButton": "Register Band",
+            "bandRegistrationAPIEndpoint": "POST /api/bands/register"
+        },
+        "function": "Allow bands to register by submitting their information through a form which sends data to the backend API.",
+        "static_description": "A form titled 'Band Registration' presents input fields for Band Name, Bio, Picture Link, Audio Sample Links, and YouTube Video Links (`bandRegistrationFormFields`). A submit button labeled 'Register Band' (`bandRegistrationSubmitButton`) is positioned below the form. Background is floral white (`#FFFAF0`) and form elements are styled with dark goldenrod (`#B8860B`).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Register Band' button submits the form data to the backend endpoint `/api/bands/register` (`bandRegistrationAPIEndpoint`) via POST request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "advertiserRegistrationFormFields": [
+                "Username",
+                "Email",
+                "Password",
+                "Confirm Password",
+                "Ad Content Upload Field"
+            ],
+            "advertiserRegistrationSubmitButton": "Register Advertiser",
+            "advertiserRegistrationAPIEndpoint": "POST /api/advertisers/register"
+        },
+        "function": "Enable advertisers to register by providing account details and uploading ad content through a form which sends data to the backend API.",
+        "static_description": "A form titled 'Advertiser Registration' includes input fields for Username, Email, Password, Confirm Password, and an upload field for Ad Content (`advertiserRegistrationFormFields`). A submit button labeled 'Register Advertiser' (`advertiserRegistrationSubmitButton`) appears below the form. Styled with floral white background and dark goldenrod elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Register Advertiser' button submits the form data including uploaded file to the backend endpoint `/api/advertisers/register` (`advertiserRegistrationAPIEndpoint`) via POST request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "Username",
+                "Password"
+            ],
+            "loginSubmitButton": "Login",
+            "logoutButton": "Logout",
+            "loginAPIEndpoint": "POST /api/auth/login",
+            "logoutAPIEndpoint": "POST /api/auth/logout"
+        },
+        "function": "Facilitate secure login and logout for both bands and advertisers using a shared authentication system.",
+        "static_description": "A form titled 'Login' presents input fields for Username and Password (`loginFormFields`). Below the form, there is a 'Login' button (`loginSubmitButton`). Once logged in, a 'Logout' button (`logoutButton`) replaces the login form. All elements follow the site's color scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Login' button sends credentials to `/api/auth/login` (`loginAPIEndpoint`) via POST. Clicking 'Logout' calls `/api/auth/logout` (`logoutAPIEndpoint`) via POST to terminate session."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bandProfileDisplayFields": [
+                "Band Name",
+                "Bio",
+                "Image",
+                "Audio Players",
+                "Embedded YouTube Videos"
+            ],
+            "defaultBandImage": "/assets/default-band.jpg",
+            "bandProfileAPIEndpoint": "GET /api/bands/{id}"
+        },
+        "function": "Present detailed band profile information including text, images, playable audio samples, and embedded YouTube videos fetched dynamically from the backend.",
+        "static_description": "A band profile page shows the band's name, biography, image (using `defaultBandImage` if none provided), multiple audio players for sample links, and embedded YouTube videos. Data is retrieved from the API endpoint `/api/bands/{id}` (`bandProfileAPIEndpoint`). Visual styling follows the site theme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "advertisementDisplayArea": "Rotating banner or sidebar slots",
+            "defaultAdImage": "/assets/default-ad.jpg",
+            "advertisementFetchAPIEndpoint": "GET /api/advertisements/random"
+        },
+        "function": "Integrate advertisements throughout the site by fetching and displaying random ads from the backend.",
+        "static_description": "Advertisements appear in designated areas like banners or sidebars. Each ad displays an image (or fallback to `defaultAdImage`) and links to the advertiser's target URL when clicked. Ads are fetched from `/api/advertisements/random` (`advertisementFetchAPIEndpoint`). Elements maintain consistent styling with the rest of the site.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an advertisement redirects the user to the advertiser-defined target URL."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "browsePageLayout": "Grid or list view of band cards",
+            "bandCardFields": [
+                "Band Image",
+                "Name",
+                "Short Bio Snippet",
+                "Play Audio Button"
+            ],
+            "defaultBandImage": "/assets/default-band.jpg",
+            "browseBandsAPIEndpoint": "GET /api/bands"
+        },
+        "function": "Allow users to browse available bands, view brief info, and play audio samples directly from the browsing interface.",
+        "static_description": "The browse page displays a grid or list of band cards showing band image (`defaultBandImage` if missing), name, short bio snippet, and a 'Play Audio' button. Cards are populated from the API endpoint `/api/bands` (`browseBandsAPIEndpoint`). Site colors are applied consistently.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a band card navigates to the full band profile page. Clicking 'Play Audio' initiates playback of the selected audio sample."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardTabs": [
+                "My Profile",
+                "Manage Content"
+            ],
+            "bandDashboardAPIEndpoints": [
+                "GET /api/bands/me",
+                "PUT /api/bands/me"
+            ],
+            "advertiserDashboardAPIEndpoints": [
+                "GET /api/advertisers/me",
+                "PUT /api/advertisers/me"
+            ]
+        },
+        "function": "Offer personalized dashboards for bands and advertisers to manage their own content and settings.",
+        "static_description": "Authenticated users see a dashboard with tabs for 'My Profile' and 'Manage Content'. Depending on the user type (band or advertiser), relevant forms and controls are displayed to update personal info or content. Data is loaded from and saved to corresponding API endpoints (`bandDashboardAPIEndpoints`, `advertiserDashboardAPIEndpoints`). Interface matches site-wide design.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching between dashboard tabs updates the visible content accordingly. Saving changes triggers PUT requests to the appropriate endpoints."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignBreakpoints": "Mobile (<768px), Tablet (768px–1024px), Desktop (>1024px)",
+            "colorPalette": {
+                "background": "#FFFAF0",
+                "accent": "#B8860B"
+            }
+        },
+        "function": "Ensure the entire website adapts responsively to various screen sizes while maintaining consistent branding through color usage.",
+        "static_description": "All pages utilize responsive CSS layouts that adjust based on device breakpoints (`responsiveDesignBreakpoints`). Primary background color is set to floral white (`#FFFAF0`) and accent/ui elements use dark goldenrod (`#B8860B`) as defined in the color palette (`colorPalette`).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": [
+                "/api/auth/register",
+                "/api/auth/login",
+                "/api/auth/logout"
+            ],
+            "bandEndpoints": [
+                "/api/bands",
+                "/api/bands/{id}",
+                "/api/bands/me"
+            ],
+            "adEndpoints": [
+                "/api/advertisements",
+                "/api/advertisements/random"
+            ]
+        },
+        "function": "Define and expose essential API routes for handling user registration, login, band data retrieval/updating, and advertisement management.",
+        "static_description": "RESTful API endpoints are grouped under logical paths for authentication (`authEndpoints`), bands (`bandEndpoints`), and advertisements (`adEndpoints`). These endpoints support standard HTTP methods for creating, reading, updating, and deleting resources.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mediaStoragePath": "/uploads/",
+            "supportedMediaTypes": [
+                "images",
+                "audio files",
+                "video files"
+            ],
+            "fileUploadLimits": "Max size 10MB per file"
+        },
+        "function": "Handle storage and serving of uploaded media files such as band images, audio samples, and advertisement content securely and efficiently.",
+        "static_description": "Uploaded media files are stored in a directory path (`mediaStoragePath`) accessible only through authenticated or authorized means. Supported formats include images, audio, and video (`supportedMediaTypes`) with individual file limits (`fileUploadLimits`). Backend serves these files appropriately upon request.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "rolesEnum": [
+                "band",
+                "advertiser",
+                "general_user"
+            ],
+            "rbacMiddleware": "JWT-based middleware checking user roles before granting access"
+        },
+        "function": "Implement role-based access control to restrict certain actions and views to specific user types.",
+        "static_description": "User roles are defined as enums (`rolesEnum`) and enforced using JWT-based middleware (`rbacMiddleware`). Different routes and functionalities are protected based on whether the requesting user is a band, advertiser, or general visitor.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "npm run install:all",
+            "devStartScriptCommand": "npm run dev",
+            "frontendDirectory": "./frontend",
+            "backendDirectory": "./backend"
+        },
+        "function": "Configure package.json scripts to simplify installation and concurrent development startup of both frontend and backend applications.",
+        "static_description": "Root-level `package.json` defines two custom scripts: `install:all` to execute `npm install` in both frontend (`frontendDirectory`) and backend (`backendDirectory`) directories, and `dev` to start both applications concurrently using tools like concurrently or nodemon.",
+        "interaction_and_states": []
+    }
+]

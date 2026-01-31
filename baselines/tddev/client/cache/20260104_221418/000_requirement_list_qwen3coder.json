@@ -1,0 +1,302 @@
+[
+    {
+        "resource_dependency": {
+            "db_connection_env_vars": {
+                "DB_HOST": "localhost",
+                "DB_PORT": 5432,
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "attraction_campsite_data_schema": "Database tables: attractions(id, name, description, country, city, latitude, longitude, image_urls[], category), campsites(id, name, description, country, city, latitude, longitude, image_urls[], price_per_night, amenities[]), availability(attraction_id/campsite_id, date, status)"
+        },
+        "function": "Establish a backend connection to a PostgreSQL database using predefined environment variables and define the schema for storing attractions and campsites data.",
+        "static_description": "The backend service connects to the PostgreSQL instance using the provided environment variable configuration. It initializes the attractions and campsites tables along with related metadata.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontend_build_script": "npm run build",
+            "backend_start_script": "node server.js",
+            "concurrently_package": "^7.6.0"
+        },
+        "function": "Configure package.json scripts to enable concurrent development startup of both frontend and backend services.",
+        "static_description": "The repository's package.json includes a script named 'dev' which uses the concurrently package to start both frontend and backend processes simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "install_frontend_deps": "cd frontend && npm install",
+            "install_backend_deps": "cd backend && npm install"
+        },
+        "function": "Define package.json command that installs dependencies for both frontend and backend directories.",
+        "static_description": "The repository's package.json defines an 'install:all' script that executes npm install commands in both frontend and backend subdirectories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "featured_attractions_endpoint": "/api/featured/attractions",
+            "featured_campsites_endpoint": "/api/featured/campsites",
+            "hero_image_placeholder": "[Hero Banner Image]",
+            "logo_asset_path": "/assets/logo.svg",
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Render a homepage showcasing featured tourist attractions and campsites across Europe with consistent styling.",
+        "static_description": "Homepage displays a hero banner [hero_image_placeholder], site logo [logo_asset_path], navigation bar, and two horizontal scrolling carousels - one for featured attractions and one for featured campsites. Background color set to light pink (#FFB6C1) with interactive controls in medium violet red (#C71585).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any carousel item navigates to the detailed view page for that attraction or campsite."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking navigation links redirects to corresponding sections or pages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_api_endpoint": "/api/search",
+            "country_dropdown_options": "[List of European countries]",
+            "city_dropdown_options": "[Dynamic list of cities per selected country]",
+            "keyword_input_placeholder": "Search by keyword...",
+            "filter_button_label": "Apply Filters",
+            "reset_filters_label": "Reset Filters",
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Enable users to filter attractions and campsites through multiple criteria including country, city, and keywords.",
+        "static_description": "Search interface contains dropdown menus for selecting country and dynamically populated city options, a text input field labeled [keyword_input_placeholder], Apply Filters button [filter_button_label], Reset Filters link [reset_filters_label], and results display area. Styled with light pink background and medium violet red controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a country populates the city dropdown with relevant cities fetched from API."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Apply Filters sends request to [search_api_endpoint] with selected parameters and updates results display."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Reset Filters clears all selections and reloads default results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "details_fetch_endpoint": "/api/details/{id}",
+            "images_gallery_component": "[Image Gallery Component]",
+            "map_embed_url": "https://maps.example.com/embed?lat=LAT&lng=LNG",
+            "reviews_section": "[Reviews Display Section]",
+            "availability_calendar": "[Interactive Calendar Component]",
+            "book_now_button": "Book Now",
+            "write_review_button": "Write Review",
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Display comprehensive information about individual attractions or campsites including media, location, availability, and user-generated content.",
+        "static_description": "Detailed view page shows title, description, [images_gallery_component], embedded map [map_embed_url], [availability_calendar], [reviews_section], and action buttons [book_now_button] and [write_review_button]. Uses light pink background and medium violet red for interactive elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Book Now opens the booking modal/form."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Write Review opens the review submission form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "booking_submit_endpoint": "/api/bookings/create",
+            "date_picker_component": "[Date Picker Component]",
+            "confirmation_modal_template": "[Booking Confirmation Modal]",
+            "user_auth_required": true,
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Allow authenticated users to make reservations for attractions and campsites with date selection and confirmation workflow.",
+        "static_description": "Booking interface presents [date_picker_component] for selecting dates, displays pricing information, shows guest count selector, and features a Submit Booking button. Requires active user session.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking available dates in calendar selects/unselects them."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Submit Booking sends reservation data to [booking_submit_endpoint] and displays [confirmation_modal_template] upon success."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "review_submit_endpoint": "/api/reviews/create",
+            "rating_stars_component": "[Star Rating Selector]",
+            "review_textarea_label": "Your Review",
+            "submit_review_button": "Submit Review",
+            "user_auth_required": true,
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Provide a mechanism for authenticated users to rate and provide written feedback on visited attractions and campsites.",
+        "static_description": "Review submission form consists of [rating_stars_component], textarea labeled [review_textarea_label], and [submit_review_button]. Accessible only to logged-in users. Styled with light pink background and medium violet red controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking stars sets rating value visually and internally."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Submit Review sends data to [review_submit_endpoint] and refreshes reviews section after successful submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_register_endpoint": "/api/auth/register",
+            "auth_login_endpoint": "/api/auth/login",
+            "session_management_middleware": "[Session Middleware]",
+            "register_form_fields": [
+                "username",
+                "email",
+                "password"
+            ],
+            "login_form_fields": [
+                "email/username",
+                "password"
+            ],
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Implement user registration, login, and persistent session handling for access control to protected features.",
+        "static_description": "Authentication screens include separate Register and Login forms with respective input fields [register_form_fields]/[login_form_fields], action buttons, and links to switch between views. Maintains user sessions via middleware.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting Register form calls [auth_register_endpoint]; successful creation logs user in automatically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Submitting Login form calls [auth_login_endpoint]; successful validation establishes session and redirects to previous page or dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboard_fetch_endpoint": "/api/user/dashboard",
+            "bookings_list_component": "[User Bookings List]",
+            "reviews_list_component": "[User Reviews List]",
+            "favorites_list_component": "[Saved Favorites List]",
+            "logout_action_endpoint": "/api/auth/logout",
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Present personalized overview of user activities including bookings, reviews, and saved items.",
+        "static_description": "Dashboard layout organizes three main sections: [bookings_list_component], [reviews_list_component], and [favorites_list_component]. Includes profile summary header and logout option. Styled with light pink background and medium violet red controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Logout triggers call to [logout_action_endpoint] and redirects to homepage."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking items within lists navigates to associated detail pages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "map_integration_api": "Interactive map API supporting markers clustering and custom overlays",
+            "location_markers_data_endpoint": "/api/map/markers",
+            "geolocation_service": "[Browser Geolocation API]",
+            "zoom_controls": "[Map Zoom Controls]",
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Visualize geographic distribution of attractions and campsites using an interactive mapping solution.",
+        "static_description": "Full-screen map interface showing clustered markers representing attractions and campsites across Europe. Features [zoom_controls], optional geolocation toggle, search-by-location input, and legend/key panel. Integrated with backend marker data endpoint.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking cluster expands it into individual markers."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a marker opens a tooltip with brief info and link to detailed view."
+            },
+            {
+                "interaction": "Click",
+                "description": "Using zoom controls adjusts map scale level."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_auth_middleware": "[Role-Based Admin Middleware]",
+            "content_management_endpoints": {
+                "create": "/api/admin/content/create",
+                "update": "/api/admin/content/update/{id}",
+                "delete": "/api/admin/content/delete/{id}"
+            },
+            "admin_ui_components": "[CRUD Form Components]",
+            "background_color": "#FFB6C1",
+            "control_color": "#C71585"
+        },
+        "function": "Enable administrative personnel to perform full lifecycle content management operations for attractions and campsites.",
+        "static_description": "Protected admin panel presenting [admin_ui_components] for creating, updating, and deleting attraction/campsite entries. Requires administrator privileges enforced by middleware.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Filling out creation form and submitting posts data to [content_management_endpoints.create]."
+            },
+            {
+                "interaction": "Click",
+                "description": "Editing existing entry populates form with current data and submits changes to [content_management_endpoints.update]."
+            },
+            {
+                "interaction": "Click",
+                "description": "Deleting entry prompts confirmation dialog then calls [content_management_endpoints.delete]."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_breakpoints": "{ mobile: <768px, tablet: 768px-1024px, desktop: >1024px }",
+            "adaptive_layout_engine": "[CSS Grid/Flexbox Layout Engine]",
+            "touch_optimized_controls": "[Touch-Friendly Interactive Elements]"
+        },
+        "function": "Ensure optimal viewing experience and usability across various device sizes and interaction methods.",
+        "static_description": "All UI components utilize adaptive layouts based on defined breakpoints [responsive_breakpoints]. Employ [adaptive_layout_engine] for flexible element arrangement and [touch_optimized_controls] for enhanced mobile accessibility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout reflows according to screen size, adjusting grid columns, font sizes, spacing, and hiding/showing elements appropriately."
+            },
+            {
+                "interaction": "Touch",
+                "description": "Interactive elements respond to touch events with appropriate sizing and feedback suitable for fingers rather than mouse pointers."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "main_background_style": "background-color: #FFB6C1;",
+            "interactive_control_style": "color: #C71585; border-color: #C71585;",
+            "design_system_tokens": "[Design System CSS Variables]"
+        },
+        "function": "Apply consistent thematic styling throughout the application using specified color palette.",
+        "static_description": "Entire application utilizes [main_background_style] as primary background tone and applies [interactive_control_style] to all actionable UI elements like buttons, links, form controls, etc. Managed through centralized [design_system_tokens].",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive controls slightly darken or highlight when hovered over, maintaining theme consistency."
+            },
+            {
+                "interaction": "Focus",
+                "description": "Focused interactive elements receive visible outline or shadow matching the theme colors for accessibility."
+            }
+        ]
+    }
+]

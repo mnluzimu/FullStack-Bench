@@ -1,0 +1,17 @@
+[
+    "A responsive frontend interface with a seashell background color and crimson-themed components",
+    "A search functionality allowing users to find medical articles by keywords",
+    "Ability to view individual medical articles with full content display",
+    "Option to download medical articles as PDF files",
+    "User authentication system supporting login and registration",
+    "Author-specific account management dashboard",
+    "Profile editing capability for authors to update personal information",
+    "Backend API to serve medical article data dynamically",
+    "Frontend fetching all medical content exclusively via backend APIs",
+    "Backend connecting to a PostgreSQL database using specified environment variables",
+    "Database schema supporting storage and retrieval of medical articles",
+    "Database user management for author accounts and profiles",
+    "Package.json configured with `install:all` script to set up both frontend and backend dependencies",
+    "Package.json configured with `dev` script to run frontend and backend concurrently",
+    "SEO-friendly URL structure for medical articles"
+]

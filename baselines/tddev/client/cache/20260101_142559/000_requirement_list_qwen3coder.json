@@ -1,0 +1,174 @@
+[
+    {
+        "resource_dependency": {
+            "serviceDataSchema": "Database table 'services' with fields: id (UUID), name (string), description (text), price (decimal), duration_minutes (integer), created_at (timestamp)",
+            "bookingDataSchema": "Database table 'bookings' with fields: id (UUID), service_id (foreign key to services.id), user_email (string), booking_date (date), status (enum: pending, confirmed, completed, cancelled), created_at (timestamp)",
+            "inquiryDataSchema": "Database table 'inquiries' with fields: id (UUID), name (string), email (string), subject (string), message (text), created_at (timestamp)"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "The frontend application displays cleaning services, booking forms, and inquiry forms by fetching data from backend REST APIs. All content except static assets is dynamically loaded.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnection": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend server establishes connection to PostgreSQL database using provided environment variables for storing service listings, bookings, and inquiries.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "serviceListEndpoint": "/api/services",
+            "serviceDataSchema": "Database table 'services' with fields: id (UUID), name (string), description (text), price (decimal), duration_minutes (integer), created_at (timestamp)"
+        },
+        "function": "Service browsing functionality displaying available cleaning services",
+        "static_description": "Grid-based layout showing all available cleaning services with name, brief description, and starting price. Background set to azure mist (#F0FFFF) and service cards use dark slate blue (#483D8B) headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a service card navigates to the detailed service page for that specific service."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "serviceDetailEndpoint": "/api/services/{id}",
+            "serviceDataSchema": "Database table 'services' with fields: id (UUID), name (string), description (text), price (decimal), duration_minutes (integer), created_at (timestamp)"
+        },
+        "function": "Detailed service pages showing descriptions, pricing, and duration",
+        "static_description": "Individual service page displaying full description, exact pricing, duration in minutes, and booking options. Page uses azure mist background with dark slate blue headers and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Book Now' button opens the booking form modal pre-filled with selected service information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bookingSubmitEndpoint": "/api/bookings",
+            "bookingDataSchema": "Database table 'bookings' with fields: id (UUID), service_id (foreign key to services.id), user_email (string), booking_date (date), status (enum: pending, confirmed, completed, cancelled), created_at (timestamp)",
+            "calendarIcon": "Calendar icon for date selection"
+        },
+        "function": "Booking system allowing users to schedule cleaning services",
+        "static_description": "Booking form with fields for user email, service selection dropdown, date picker with calendar icon, and submit button. Form styled with azure mist background and dark slate blue interactive elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button validates inputs and sends booking data to backend API, then displays confirmation message."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the date picker opens a calendar widget for date selection."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bookingStatusEndpoint": "/api/bookings/{id}",
+            "bookingDataSchema": "Database table 'bookings' with fields: id (UUID), service_id (foreign key to services.id), user_email (string), booking_date (date), status (enum: pending, confirmed, completed, cancelled), created_at (timestamp)"
+        },
+        "function": "User interface for checking the status of booked services",
+        "static_description": "Status lookup section with input field for booking ID and 'Check Status' button. Results display booking details and current status in a clean card layout with azure mist background and dark slate blue accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Check Status' button fetches and displays the booking status and details from the backend API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "phoneIcon": "Phone icon asset",
+            "emailIcon": "Email icon asset",
+            "contactInfo": "Phone: (555) 123-4567, Email: contact@cleaningservice.com"
+        },
+        "function": "Contact page providing phone number and email address for customer service",
+        "static_description": "Contact page with prominently displayed phone number and email address, each accompanied by respective icons. Background set to azure mist with dark slate blue text for contact information.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the phone number initiates a phone call (on mobile devices) or copies the number to clipboard."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the email address opens the default email client with a pre-filled recipient field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "inquirySubmitEndpoint": "/api/inquiries",
+            "inquiryDataSchema": "Database table 'inquiries' with fields: id (UUID), name (string), email (string), subject (string), message (text), created_at (timestamp)"
+        },
+        "function": "Inquiry form for users to submit service-related questions",
+        "static_description": "Contact form with fields for name, email, subject, and message textarea. Submit button styled with dark slate blue. Background set to azure mist.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button validates form inputs and sends inquiry data to backend API, then displays success message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColor": "Azure mist (#F0FFFF)"
+        },
+        "function": "Responsive website design with azure mist background color",
+        "static_description": "Entire website features azure mist (#F0FFFF) background color across all pages and components. Layout adapts to different screen sizes maintaining consistent styling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "primaryColor": "Dark slate blue (#483D8B)"
+        },
+        "function": "Dark slate blue color applied to interactive components and headers",
+        "static_description": "All interactive elements including buttons, form inputs, navigation links, and page headers are styled with dark slate blue (#483D8B) color scheme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{ \"scripts\": { \"install:all\": \"cd frontend && npm install && cd ../backend && npm install\" } }"
+        },
+        "function": "Package.json configured with `install:all` script for FE & BE dependencies",
+        "static_description": "Root package.json file includes an install:all script that sequentially installs dependencies for both frontend and backend applications.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{ \"scripts\": { \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Package.json configured with `dev` script to start FE & BE concurrently",
+        "static_description": "Root package.json file includes a dev script that uses concurrently to start both frontend and backend development servers simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresSchema": "CREATE TABLE services (id UUID PRIMARY KEY, name VARCHAR(255), description TEXT, price DECIMAL(10,2), duration_minutes INTEGER, created_at TIMESTAMP); CREATE TABLE bookings (id UUID PRIMARY KEY, service_id UUID REFERENCES services(id), user_email VARCHAR(255), booking_date DATE, status VARCHAR(20) CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled')), created_at TIMESTAMP); CREATE TABLE inquiries (id UUID PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), subject VARCHAR(255), message TEXT, created_at TIMESTAMP);"
+        },
+        "function": "Database schema supporting service listings, bookings, and inquiries",
+        "static_description": "PostgreSQL database schema with three tables: services for cleaning service listings, bookings for user reservations, and inquiries for customer questions. Tables are properly linked with foreign keys and constraints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "serviceApiEndpoint": "/api/services",
+            "bookingApiEndpoint": "/api/bookings",
+            "serviceDataSchema": "Database table 'services' with fields: id (UUID), name (string), description (text), price (decimal), duration_minutes (integer), created_at (timestamp)",
+            "bookingDataSchema": "Database table 'bookings' with fields: id (UUID), service_id (foreign key to services.id), user_email (string), booking_date (date), status (enum: pending, confirmed, completed, cancelled), created_at (timestamp)"
+        },
+        "function": "API endpoints for retrieving service data and submitting bookings",
+        "static_description": "REST API endpoints including GET /api/services for retrieving all cleaning services and POST /api/bookings for submitting new booking requests with validation.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "statusApiEndpoint": "/api/bookings/{id}",
+            "bookingDataSchema": "Database table 'bookings' with fields: id (UUID), service_id (foreign key to services.id), user_email (string), booking_date (date), status (enum: pending, confirmed, completed, cancelled), created_at (timestamp)"
+        },
+        "function": "API endpoint for handling service status requests",
+        "static_description": "REST API endpoint GET /api/bookings/{id} that returns the current status and details of a specific booking identified by its unique ID.",
+        "interaction_and_states": []
+    }
+]

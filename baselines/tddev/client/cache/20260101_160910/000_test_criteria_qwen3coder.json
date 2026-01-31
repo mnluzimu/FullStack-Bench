@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Display a list of service plans with detailed information",
+        "user_persona": "A potential customer browsing for a new phone plan.",
+        "user_goal": "View all available service plans with their detailed features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Service Plans Page",
+                "description": "Sarah visits the phone operator's website and clicks on 'Service Plans' from the navigation menu to explore options.",
+                "action": "Click on the 'Service Plans' link in the navigation bar.",
+                "expected_outcome": "The service plans page loads, displaying a list of plan cards with names, prices, and basic features."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Plan Details",
+                "description": "Interested in a specific plan, Sarah clicks on one of the plan cards to see more information.",
+                "action": "Click on a service plan card.",
+                "expected_outcome": "The selected card expands to show detailed information including data limit, call minutes, SMS count, and additional features."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide an online customer support tool with live chat or ticketing system",
+        "user_persona": "An existing customer needing assistance with billing.",
+        "user_goal": "Get help with a billing issue through either live chat or submitting a support ticket.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Support Section",
+                "description": "John logs into his account and navigates to the Support section where he sees options for Live Chat and Submit Ticket.",
+                "action": "Click on the 'Support' link in the navigation menu.",
+                "expected_outcome": "The support interface loads with two tabs: 'Live Chat' and 'Submit Ticket'."
+            },
+            {
+                "step": 2,
+                "title": "Submitting a Support Ticket",
+                "description": "Since no agents are available for chat, John decides to submit a ticket instead.",
+                "action": "Click on the 'Submit Ticket' tab, fill in the subject and message, then click 'Submit'.",
+                "expected_outcome": "The ticket form is submitted successfully, and John receives confirmation that his request has been received."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to browse and filter available service plans",
+        "user_persona": "A budget-conscious customer looking for affordable plans.",
+        "user_goal": "Find the most economical service plan based on price.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Filter Options",
+                "description": "Emma visits the service plans page and wants to sort by price. She clicks the filter dropdown button.",
+                "action": "Click on the filter dropdown button above the service plans list.",
+                "expected_outcome": "A menu with sorting and filtering options appears below the dropdown button."
+            },
+            {
+                "step": 2,
+                "title": "Applying Price Filter",
+                "description": "Emma selects 'Price Low to High' to see the cheapest plans first.",
+                "action": "Select 'Price Low to High' from the filter menu.",
+                "expected_outcome": "The service plans list refreshes and displays plans sorted from lowest to highest price."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement account management functionality for users to update their information",
+        "user_persona": "A registered user who recently moved and needs to update contact details.",
+        "user_goal": "Update personal information in the account settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Account Management",
+                "description": "Michael logs in and goes to his account page to update his address after moving.",
+                "action": "Click on the 'Account' link in the navigation menu.",
+                "expected_outcome": "The account management form loads with Michael's current information pre-filled in the fields."
+            },
+            {
+                "step": 2,
+                "title": "Updating Personal Information",
+                "description": "Michael modifies his address field and saves the changes.",
+                "action": "Change the address field value and click the 'Save' button.",
+                "expected_outcome": "The form data is validated and sent to the backend. Michael sees a success message confirming the update."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to access and view their personal details securely",
+        "user_persona": "A security-conscious user checking stored personal information.",
+        "user_goal": "Verify that personal account details are displayed correctly and securely.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile Page",
+                "description": "Sophia logs in and wants to review her profile information to ensure accuracy.",
+                "action": "Navigate to the account section and view the profile page.",
+                "expected_outcome": "The profile page displays Sophia's full name, email, phone number, and address in a read-only format."
+            },
+            {
+                "step": 2,
+                "title": "Editing Profile Information",
+                "description": "Noticing an outdated phone number, Sophia clicks to edit her profile.",
+                "action": "Click the 'Edit Profile' button.",
+                "expected_outcome": "Sophia is redirected to the account management form where she can update her information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use light goldenrod as the background color for the website body",
+        "user_persona": "A visually-oriented user evaluating the website's design consistency.",
+        "user_goal": "Confirm that the website uses light goldenrod as the background color throughout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Homepage Background",
+                "description": "Alex visits the homepage and observes the overall color scheme.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "The entire body of the page has a light goldenrod (#FAFAD2) background color."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Consistency Across Pages",
+                "description": "Alex navigates to other sections to ensure consistent background color usage.",
+                "action": "Visit multiple pages including Service Plans, Support, and Account.",
+                "expected_outcome": "Every visited page maintains the same light goldenrod background color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply olive drab as the primary color for main UI components",
+        "user_persona": "A UI/UX designer reviewing the website's visual design.",
+        "user_goal": "Validate that olive drab is consistently used for primary UI components.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Navigation Elements",
+                "description": "Taylor examines the navigation bar to verify primary color usage.",
+                "action": "Load any page and inspect the navigation bar styling.",
+                "expected_outcome": "Navigation elements including active links and hover states use olive drab (#6B8E23) as the primary color."
+            },
+            {
+                "step": 2,
+                "title": "Checking Interactive Components",
+                "description": "Taylor looks at buttons and form elements across different sections.",
+                "action": "Visit various pages and inspect buttons, form inputs, and headers.",
+                "expected_outcome": "All primary interactive components consistently use olive drab as their main color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a responsive layout compatible with desktop and mobile devices",
+        "user_persona": "A mobile user accessing the website on a smartphone.",
+        "user_goal": "Successfully navigate and interact with the website on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Website on Mobile",
+                "description": "Jordan opens the website on his smartphone and checks the layout adaptation.",
+                "action": "Load the website URL on a mobile device or resize browser to mobile width.",
+                "expected_outcome": "The layout adjusts to a mobile-friendly format with stacked elements and a transformed navigation menu."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Mobile Layout",
+                "description": "Jordan interacts with components to ensure they function properly on mobile.",
+                "action": "Click through navigation items and interact with forms/buttons.",
+                "expected_outcome": "All interactive elements are accessible and usable on the mobile screen with appropriate touch targets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include navigation menu with links to service plans, support, and account sections",
+        "user_persona": "A new visitor exploring the website for the first time.",
+        "user_goal": "Easily find and navigate to different sections of the website using the main menu.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Navigation Menu",
+                "description": "Morgan lands on the homepage and looks for ways to explore the site.",
+                "action": "Look at the top of the page for navigation elements.",
+                "expected_outcome": "A horizontal navigation bar is visible with links for 'Service Plans', 'Support', and 'Account'."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Between Sections",
+                "description": "Morgan clicks through the menu items to visit each main section.",
+                "action": "Click on each navigation link: 'Service Plans', 'Support', and 'Account'.",
+                "expected_outcome": "Each click successfully loads the corresponding section page, with the active link highlighted."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate user authentication for secure access to account features",
+        "user_persona": "A registered user wanting to access personalized account features.",
+        "user_goal": "Log into the account and access protected features securely.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Login Process",
+                "description": "Casey wants to access her account dashboard and clicks the login button.",
+                "action": "Click on the 'Login' button in the navigation menu.",
+                "expected_outcome": "A login form appears with fields for email and password."
+            },
+            {
+                "step": 2,
+                "title": "Authenticating and Accessing Account",
+                "description": "Casey enters her credentials and submits the form to log in.",
+                "action": "Enter valid email and password, then click the 'Submit' button.",
+                "expected_outcome": "Casey is successfully authenticated and redirected to her account dashboard with personalized content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design a contact form or help request submission interface",
+        "user_persona": "A visitor seeking general information before signing up.",
+        "user_goal": "Submit a help request through the contact form without having an account.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Contact Form",
+                "description": "Riley has questions about service plans and finds the contact form in the support section.",
+                "action": "Navigate to the Support page and locate the contact form.",
+                "expected_outcome": "A contact form with fields for name, email, subject, and message is visible."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Help Request",
+                "description": "Riley fills out the form with his inquiry and submits it.",
+                "action": "Fill in all required fields and click the 'Submit' button.",
+                "expected_outcome": "The form is successfully submitted, and Riley receives a confirmation message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all dynamic data is fetched from backend APIs without mock data",
+        "user_persona": "A quality assurance tester validating data sources.",
+        "user_goal": "Verify that service plan information comes from live API calls, not static data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Service Plans",
+                "description": "Dana visits the service plans page to check if data is loaded dynamically.",
+                "action": "Navigate to the service plans page.",
+                "expected_outcome": "A loading indicator appears briefly before the service plans are displayed, indicating API data fetching."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Dynamic Data Source",
+                "description": "Dana inspects network activity to confirm API usage.",
+                "action": "Open browser developer tools and monitor network requests when page loads.",
+                "expected_outcome": "Network tab shows API calls to '/api/service-plans' endpoint fetching actual data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up backend API endpoints connected to PostgreSQL using provided environment variables",
+        "user_persona": "A backend developer verifying database connectivity.",
+        "user_goal": "Confirm that the backend successfully connects to PostgreSQL with correct configuration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Devon starts the backend server to check database connection initialization.",
+                "action": "Run the backend server with configured environment variables.",
+                "expected_outcome": "Server starts successfully and establishes connection to PostgreSQL database without errors."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Operations",
+                "description": "Devon makes API requests that involve database operations.",
+                "action": "Make a GET request to '/api/service-plans' endpoint.",
+                "expected_outcome": "API returns data retrieved from the PostgreSQL database, confirming successful integration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json scripts for concurrent frontend and backend development startup",
+        "user_persona": "A developer setting up the project for local development.",
+        "user_goal": "Start both frontend and backend servers simultaneously using npm scripts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Alex sets up the project for the first time and needs to install all dependencies.",
+                "action": "Run 'npm run install:all' command in the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend projects are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "After installation, Alex wants to start both development servers together.",
+                "action": "Run 'npm run dev' command in the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently and are accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support real-time updates for customer support interactions if applicable",
+        "user_persona": "A customer engaged in a live chat support session.",
+        "user_goal": "Receive immediate responses from support agents during a chat session.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Live Chat Session",
+                "description": "Taylor logs in and opens a live chat session with customer support.",
+                "action": "Navigate to Support section and switch to the 'Live Chat' tab.",
+                "expected_outcome": "WebSocket connection is established and chat interface is ready for messaging."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Real-Time Messages",
+                "description": "While waiting, Taylor receives an instant greeting from a support agent.",
+                "action": "Wait for incoming message from support agent.",
+                "expected_outcome": "Agent's message appears immediately in the chat history without page refresh."
+            }
+        ]
+    }
+]

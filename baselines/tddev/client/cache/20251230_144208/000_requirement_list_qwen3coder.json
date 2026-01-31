@@ -1,0 +1,217 @@
+[
+    {
+        "resource_dependency": {
+            "realTimeSolarDataAPI": "/api/solar/realtime",
+            "solarIcon": "/assets/icons/solar-icon.svg"
+        },
+        "function": "Display real-time solar power generation data on the dashboard.",
+        "static_description": "A card component with a honeydew background and dark olive green text showing the current solar power generation value in kW. Includes an icon referenced as 'solarIcon'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component fetches latest solar power generation data from '/api/solar/realtime' upon initialization."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeConsumptionDataAPI": "/api/consumption/realtime",
+            "consumptionIcon": "/assets/icons/consumption-icon.svg"
+        },
+        "function": "Display real-time power consumption data on the dashboard.",
+        "static_description": "A card component with a honeydew background and dark olive green text showing the current power consumption value in kW. Includes an icon referenced as 'consumptionIcon'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component fetches latest power consumption data from '/api/consumption/realtime' upon initialization."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeBatteryDataAPI": "/api/battery/realtime",
+            "batteryIcon": "/assets/icons/battery-icon.svg"
+        },
+        "function": "Display real-time battery percentage data on the dashboard.",
+        "static_description": "A card component with a honeydew background and dark olive green text showing the current battery charge level as a percentage (%). Includes an icon referenced as 'batteryIcon'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component fetches latest battery percentage data from '/api/battery/realtime' upon initialization."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeUpdateInterval": "Every 5 seconds"
+        },
+        "function": "Automatically update all real-time data at regular intervals.",
+        "static_description": "No visible element; this defines periodic API calls every 5 seconds to refresh displayed real-time metrics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Timer Tick",
+                "description": "At each interval, re-fetches real-time data from respective endpoints and updates corresponding UI components."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalQueryAPI": "/api/historical/data",
+            "datePickerLibrary": "React Date Range Picker"
+        },
+        "function": "Allow users to query historical solar data using date range selection.",
+        "static_description": "Date range picker component allowing selection of start and end dates. Submit button triggers data retrieval for selected period.",
+        "interaction_and_states": [
+            {
+                "interaction": "Select Dates",
+                "description": "User selects start and end date using calendar widgets."
+            },
+            {
+                "interaction": "Click Submit",
+                "description": "Submits selected date range to '/api/historical/data' to retrieve filtered historical records."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Chart.js",
+            "historicalSolarTrendAPI": "/api/historical/solar-trends"
+        },
+        "function": "Visualize historical solar power generation trends using charts.",
+        "static_description": "Line chart displaying solar power generation over time. X-axis shows timestamps, Y-axis shows power values in kW.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Chart Data",
+                "description": "Fetches historical solar trend data from '/api/historical/solar-trends' after date range is submitted."
+            },
+            {
+                "interaction": "Hover Over Point",
+                "description": "Displays tooltip with exact timestamp and value when hovering over data points."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Chart.js",
+            "historicalConsumptionTrendAPI": "/api/historical/consumption-trends"
+        },
+        "function": "Visualize historical power consumption trends using charts.",
+        "static_description": "Line chart displaying power consumption over time. X-axis shows timestamps, Y-axis shows consumption values in kW.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Chart Data",
+                "description": "Fetches historical consumption trend data from '/api/historical/consumption-trends' after date range is submitted."
+            },
+            {
+                "interaction": "Hover Over Point",
+                "description": "Displays tooltip with exact timestamp and value when hovering over data points."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Chart.js",
+            "historicalBatteryTrendAPI": "/api/historical/battery-trends"
+        },
+        "function": "Visualize historical battery percentage trends using charts.",
+        "static_description": "Line chart displaying battery percentage over time. X-axis shows timestamps, Y-axis shows percentage values.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Chart Data",
+                "description": "Fetches historical battery trend data from '/api/historical/battery-trends' after date range is submitted."
+            },
+            {
+                "interaction": "Hover Over Point",
+                "description": "Displays tooltip with exact timestamp and value when hovering over data points."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "realTimeDataSchema": "Table 'real_time_metrics' with columns: id (SERIAL PRIMARY KEY), metric_type (VARCHAR), value (FLOAT), recorded_at (TIMESTAMP WITH TIME ZONE DEFAULT NOW())"
+        },
+        "function": "Serve real-time solar data via backend API endpoints.",
+        "static_description": "RESTful GET endpoint returning latest real-time metrics stored in PostgreSQL database under schema 'real_time_metrics'.",
+        "interaction_and_states": [
+            {
+                "interaction": "GET Request to /api/solar/realtime",
+                "description": "Returns most recent solar power generation entry from database."
+            },
+            {
+                "interaction": "GET Request to /api/consumption/realtime",
+                "description": "Returns most recent power consumption entry from database."
+            },
+            {
+                "interaction": "GET Request to /api/battery/realtime",
+                "description": "Returns most recent battery percentage entry from database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "historicalDataSchema": "Table 'historical_metrics' with columns: id (SERIAL PRIMARY KEY), metric_type (VARCHAR), value (FLOAT), recorded_at (TIMESTAMP WITH TIME ZONE)"
+        },
+        "function": "Serve historical solar data via backend API endpoints.",
+        "static_description": "RESTful GET endpoint returning historical metrics within requested date range from PostgreSQL database under schema 'historical_metrics'.",
+        "interaction_and_states": [
+            {
+                "interaction": "GET Request to /api/historical/data?start=<timestamp>&end=<timestamp>",
+                "description": "Returns filtered historical entries between provided timestamps."
+            },
+            {
+                "interaction": "GET Request to /api/historical/solar-trends?start=<timestamp>&end=<timestamp>",
+                "description": "Returns only solar power generation records for trend analysis."
+            },
+            {
+                "interaction": "GET Request to /api/historical/consumption-trends?start=<timestamp>&end=<timestamp>",
+                "description": "Returns only power consumption records for trend analysis."
+            },
+            {
+                "interaction": "GET Request to /api/historical/battery-trends?start=<timestamp>&end=<timestamp>",
+                "description": "Returns only battery percentage records for trend analysis."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pgDatabaseConfig": "PostgreSQL connection using node-postgres (pg) library with environment variables: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME"
+        },
+        "function": "Establish secure connection to external PostgreSQL database using specified environment variables.",
+        "static_description": "No visible element; configures database client pool using provided credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorCSS": "body { background-color: honeydew; }"
+        },
+        "function": "Apply honeydew background color across entire application interface.",
+        "static_description": "Entire page background rendered in honeydew (#F0FFF0).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorCSS": ".dashboard-card, .chart-container { color: darkolivegreen; border-color: darkolivegreen; }"
+        },
+        "function": "Style all UI components with consistent dark olive green theme.",
+        "static_description": "All dashboard cards and chart containers use dark olive green (#556B2F) for text and borders.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"cd frontend && npm install && cd ../backend && npm install\""
+        },
+        "function": "Configure package.json script to install dependencies for both frontend and backend simultaneously.",
+        "static_description": "'scripts' section in root package.json includes command that sequentially runs npm install in frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentStartScript": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Configure package.json script to start both frontend and backend development servers concurrently.",
+        "static_description": "'scripts' section in root package.json uses 'concurrently' package to launch frontend and backend dev servers together.",
+        "interaction_and_states": []
+    }
+]

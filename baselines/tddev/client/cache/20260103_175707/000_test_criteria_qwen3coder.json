@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A team introduction section displaying team members and their roles",
+        "user_persona": "A visitor interested in learning about the team behind the projects.",
+        "user_goal": "To view the team members, their roles, and read more about them by interacting with their cards.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on the Team Section",
+                "description": "Sarah scrolls down to the 'Meet Our Team' section and sees a row of team member cards.",
+                "action": "Navigate to the team section.",
+                "expected_outcome": "Multiple cards are displayed horizontally, each showing a circular avatar, name, role, and short bio excerpt in dark cyan text on a whitesmoke background."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over a Card",
+                "description": "Curious about a particular member, Sarah hovers her mouse over a card to see if anything changes.",
+                "action": "Hover over a team member card.",
+                "expected_outcome": "The card's shadow intensifies and the card slightly scales up."
+            },
+            {
+                "step": 3,
+                "title": "Clicking a Team Member Card",
+                "description": "Intrigued, Sarah clicks on a team member's card to learn more about them.",
+                "action": "Click on a team member card.",
+                "expected_outcome": "The card expands to reveal the full biography and social media links of the selected team member."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A project showcase section listing team projects with descriptions and visuals",
+        "user_persona": "A potential client browsing the portfolio to assess the team's capabilities.",
+        "user_goal": "To explore various projects showcased by the team and view detailed information about one of interest.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Project Showcase",
+                "description": "John navigates to the 'Our Projects' section where he finds a grid of project cards.",
+                "action": "Scroll to the project showcase section.",
+                "expected_outcome": "A responsive grid layout displays project cards with cover images, titles, short descriptions, and technology tags, styled with dark cyan text on a whitesmoke background."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over a Project Card",
+                "description": "John hovers his cursor over a project card to see how it responds.",
+                "action": "Hover over a project card.",
+                "expected_outcome": "The cover image zooms in slightly and the project title becomes highlighted."
+            },
+            {
+                "step": 3,
+                "title": "Selecting a Project for Details",
+                "description": "Interested in a specific project, John clicks on the card to view more in-depth details.",
+                "action": "Click on a project card.",
+                "expected_outcome": "John is redirected to a dedicated project detail page featuring an expanded view with gallery images, full description, and tech stack breakdown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A skill showcase section highlighting the team's technical and soft skills",
+        "user_persona": "A hiring manager evaluating the competencies of the team.",
+        "user_goal": "To review the team's skills and understand their proficiency levels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Skill Showcase",
+                "description": "Emma scrolls to the 'Skills' section and observes two subsections: Technical and Soft Skills.",
+                "action": "Navigate to the skills section.",
+                "expected_outcome": "Two clearly labeled subsections appear, each listing horizontal bar charts representing different skills, styled with dark cyan bars on a whitesmoke background."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Skill Proficiency",
+                "description": "Emma moves her cursor over one of the skill bars to get more context.",
+                "action": "Hover over a skill bar.",
+                "expected_outcome": "A tooltip appears showing additional context about how that skill has been applied by the team."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A contact information section providing ways to reach the team",
+        "user_persona": "A visitor wanting to get in touch with the team for collaboration.",
+        "user_goal": "To find and use available contact methods to connect with the team.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Contact Information",
+                "description": "Mike reaches the 'Get In Touch' section and sees a list of contact options.",
+                "action": "Navigate to the contact section.",
+                "expected_outcome": "Icons and labels for email, phone, address, and social media are displayed vertically with dark cyan text on a whitesmoke background."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Contact",
+                "description": "Mike decides to connect via email and clicks the corresponding link.",
+                "action": "Click on the email link.",
+                "expected_outcome": "The default email client opens with a new message addressed to the team."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend pages to display team data fetched dynamically from backend APIs",
+        "user_persona": "A developer checking if the frontend properly loads and displays dynamic data.",
+        "user_goal": "To verify that the frontend retrieves and renders team data correctly after loading.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Load",
+                "description": "Alex visits the homepage and waits for content to load.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Loading spinners appear initially in each section before being replaced with actual data once fetched from backend APIs."
+            },
+            {
+                "step": 2,
+                "title": "Handling API Failure",
+                "description": "Alex simulates an API failure to observe error handling behavior.",
+                "action": "Simulate API failure during data fetch.",
+                "expected_outcome": "A user-friendly error message is displayed within the affected section without breaking the overall UI flow."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API endpoints to serve team, project, and skill data from a PostgreSQL database",
+        "user_persona": "A tester validating that the backend serves correct data.",
+        "user_goal": "To ensure backend endpoints return accurate data from the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting Team Data",
+                "description": "Tester sends a GET request to the team members endpoint.",
+                "action": "Send GET request to '/api/team-members'.",
+                "expected_outcome": "Server returns a JSON response with a list of team members retrieved from the PostgreSQL database."
+            },
+            {
+                "step": 2,
+                "title": "Requesting Project Data",
+                "description": "Tester sends another GET request to fetch project data.",
+                "action": "Send GET request to '/api/projects'.",
+                "expected_outcome": "Server responds with project data in JSON format sourced from the 'projects' table in PostgreSQL."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting storage of team members, projects, skills, and contact details",
+        "user_persona": "A database administrator verifying schema integrity.",
+        "user_goal": "To confirm that all required tables exist with proper structures.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Database Tables",
+                "description": "DBA connects to the PostgreSQL database and inspects existing tables.",
+                "action": "Connect to PostgreSQL and query for tables.",
+                "expected_outcome": "Four tables—team_members, projects, skills, and contact_info—are found with defined columns and constraints matching the schema specification."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Environment configuration for PostgreSQL connection using specified DB credentials",
+        "user_persona": "A DevOps engineer deploying the application.",
+        "user_goal": "To ensure the backend connects securely to the PostgreSQL database using environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Environment Configuration",
+                "description": "DevOps engineer checks the .env file at the root of the project.",
+                "action": "Open and inspect the .env file.",
+                "expected_outcome": "The file contains the exact environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Backend Connection",
+                "description": "Engineer starts the backend service to verify successful database connection.",
+                "action": "Start the backend server.",
+                "expected_outcome": "Backend logs indicate successful connection to the PostgreSQL database using the credentials from the .env file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend styled with a default background color of whitesmoke and component color of dark cyan",
+        "user_persona": "A designer reviewing the visual consistency of the site.",
+        "user_goal": "To confirm that the site adheres to the specified color scheme throughout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Global Styles",
+                "description": "Designer opens the homepage and inspects the base styling.",
+                "action": "Check the global CSS or style settings.",
+                "expected_outcome": "The background color is set to whitesmoke (#F5F5F5) and component text/icons use dark cyan (#008B8B)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navigation menu allowing users to access each main section of the site",
+        "user_persona": "A first-time visitor exploring the website structure.",
+        "user_goal": "To easily navigate between different sections of the site using the menu.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "Anna sees the fixed navigation bar at the top and wants to go to the Projects section.",
+                "action": "Click on the 'Projects' link in the navigation menu.",
+                "expected_outcome": "Page smoothly scrolls to the anchor element associated with the 'Projects' section."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across desktop and mobile devices",
+        "user_persona": "A mobile user accessing the website on a smartphone.",
+        "user_goal": "To have a seamless experience while navigating the site on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "User resizes the browser window to simulate a mobile screen size.",
+                "action": "Resize browser window to below 768px width.",
+                "expected_outcome": "Layout adjusts responsively: navigation collapses into a hamburger menu, grids stack vertically, and fonts resize appropriately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Project case view allowing detailed exploration of individual projects",
+        "user_persona": "A stakeholder interested in the specifics of a past project.",
+        "user_goal": "To view detailed information and media related to a specific project.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Project Detail Page",
+                "description": "User navigates to a project detail page and views the gallery.",
+                "action": "Go to a project detail page and click on a thumbnail.",
+                "expected_outcome": "Featured image updates dynamically to show the selected gallery image without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact form enabling visitors to send messages directly to the team",
+        "user_persona": "A prospective collaborator reaching out to the team.",
+        "user_goal": "To submit a message through the contact form and receive confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Out Contact Form",
+                "description": "Visitor fills out the contact form with their details and message.",
+                "action": "Enter name, email, and message into the contact form fields and click Submit.",
+                "expected_outcome": "If valid, a success alert is shown; otherwise, invalid fields are highlighted for correction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json scripts for `install:all` to set up both frontend and backend dependencies",
+        "user_persona": "A new developer setting up the project locally.",
+        "user_goal": "To quickly install all necessary dependencies for both frontend and backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Developer clones the repository and runs the install script.",
+                "action": "Execute `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json script for `dev` to run frontend and backend servers concurrently",
+        "user_persona": "A developer beginning work on the project.",
+        "user_goal": "To start both development servers with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Developer wants to launch both frontend and backend services for local development.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Both frontend and backend servers start concurrently, with outputs logged separately in the terminal."
+            }
+        ]
+    }
+]

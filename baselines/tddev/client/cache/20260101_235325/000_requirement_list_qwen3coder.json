@@ -1,0 +1,196 @@
+[
+    {
+        "resource_dependency": {
+            "postListDataSchema": "Database table 'posts' with fields: id (UUID), title (string), content (text), author_id (foreign key to users.id), category_id (foreign key to categories.id), created_at (timestamp), updated_at (timestamp).",
+            "userDataSchema": "Database table 'users' with fields: id (UUID), username (string, unique), email (string, unique), password_hash (string), created_at (timestamp).",
+            "categoryDataSchema": "Database table 'categories' with fields: id (UUID), name (string, unique), description (text)."
+        },
+        "function": "Display a list of forum posts on the homepage with essential metadata.",
+        "static_description": "The homepage displays a vertically stacked list of post previews. Each preview includes the post title in bold, the author's username, the associated category name, and a timestamp indicating when the post was created. All text is displayed on a ghost white background with slate gray text and component borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a post title navigates the user to the individual post detail page for that post."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "homePageURL": "/",
+            "categoriesPageURL": "/categories",
+            "searchPageURL": "/search",
+            "userCenterURL": "/user-center"
+        },
+        "function": "Provide primary site navigation to core sections.",
+        "static_description": "A horizontal navigation bar fixed at the top of the viewport. It contains four text links: 'Home', 'Categories', 'Search', and 'User Center'. The links are evenly spaced and styled with slate gray text on a ghost white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any link navigates the user to the corresponding URL: Home (/), Categories (/categories), Search (/search), User Center (/user-center)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "GET /api/posts/search?query={keyword}",
+            "searchIcon": "[magnifying glass icon]"
+        },
+        "function": "Allow users to find posts by entering keywords.",
+        "static_description": "A search input field is located in the main content area below the navigation bar. It is accompanied by a magnifying glass icon. Placeholder text reads 'Search posts...'. The input field and icon are styled with slate gray borders on a ghost white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing a keyword triggers a call to the search API endpoint with the entered query. The page then displays the filtered list of matching posts."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "categoryListDataSchema": "Database table 'categories' with fields: id (UUID), name (string, unique), description (text).",
+            "categoryPostsAPIEndpoint": "GET /api/posts?category_id={id}"
+        },
+        "function": "Enable users to explore posts organized by topic categories.",
+        "static_description": "A dedicated page listing all available categories in a grid or list format. Each category is represented by a card or list item showing its name and description. The layout uses a ghost white background with slate gray text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a category navigates to the homepage or a new page that filters and displays only the posts belonging to the selected category, fetched via the categoryPostsAPIEndpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createPostAPIEndpoint": "POST /api/posts",
+            "richTextEditorLibrary": "Integration with a library like Quill.js or Markdown editor",
+            "categorySelectionSource": "Fetched from GET /api/categories"
+        },
+        "function": "Allow authenticated users to compose and submit new forum posts.",
+        "static_description": "A form page with fields for 'Title' (text input), 'Content' (rich text or markdown editor area), and 'Category' (dropdown selection). A 'Submit Post' button is present below the form. All elements are styled with slate gray borders on a ghost white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Post' sends the form data (title, content, selected category) to the createPostAPIEndpoint. Upon success, the user is redirected to the homepage or the newly created post's detail page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postDataSchema": "Database table 'posts' with fields: id (UUID), title (string), content (text), author_id (foreign key to users.id), category_id (foreign key to categories.id), created_at (timestamp), updated_at (timestamp).",
+            "replyDataSchema": "Database table 'replies' with fields: id (UUID), content (text), post_id (foreign key to posts.id), author_id (foreign key to users.id), created_at (timestamp).",
+            "authorDataSchema": "Related data from 'users' table for the post author.",
+            "getRepliesAPIEndpoint": "GET /api/posts/{postId}/replies"
+        },
+        "function": "Show the complete content of a single forum post along with its discussion thread.",
+        "static_description": "A page displaying the full post title, author information (username), creation timestamp, and the full post content. Below the post content, a section lists all replies associated with the post, showing each reply's content, author, and timestamp. The entire layout adheres to the ghost white background and slate gray component styling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "addReplyAPIEndpoint": "POST /api/posts/{postId}/replies",
+            "replyInputField": "A text area for entering reply content"
+        },
+        "function": "Permit users to contribute to discussions by replying to posts.",
+        "static_description": "At the bottom of the post detail page, there is a text area labeled 'Add a Reply' and a 'Submit Reply' button. These elements follow the global ghost white and slate gray theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Reply' sends the content from the text area to the addReplyAPIEndpoint. After a successful submission, the new reply appears at the top of the replies list on the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userDataSchema": "Database table 'users' with fields: id (UUID), username (string, unique), email (string, unique), password_hash (string), created_at (timestamp)."
+        },
+        "function": "Present the profile details of the currently logged-in user.",
+        "static_description": "A section within the User Center page displays the user's profile information, specifically 'Username' and 'Email Address', in a simple list or card format. The display uses the standard ghost white background and slate gray text.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "userPostsAPIEndpoint": "GET /api/users/me/posts",
+            "postListDataSchema": "Fields from 'posts' table: id, title, content, author_id, category_id, created_at, updated_at."
+        },
+        "function": "List all forum posts authored by the current user.",
+        "static_description": "A dedicated section on the User Center page titled 'My Posts'. It displays a list of post previews similar to the homepage, showing title, category, and timestamp for each post created by the logged-in user. Styled with ghost white and slate gray.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a post title navigates the user to the individual post detail page for that post."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userRepliesAPIEndpoint": "GET /api/users/me/replies",
+            "replyDataSchema": "Fields from 'replies' table: id, content, post_id, author_id, created_at."
+        },
+        "function": "List all replies made by the current user across the forum.",
+        "static_description": "A section on the User Center page titled 'My Replies'. It shows a list of the user's replies, displaying a snippet of the reply content, the post it belongs to (by title or excerpt), and the timestamp. Styled with ghost white and slate gray.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a reply navigates the user to the post detail page containing that reply, scrolled to the reply's position if possible."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginAPIEndpoint": "POST /api/auth/login",
+            "registerAPIEndpoint": "POST /api/auth/register",
+            "authTokenStorage": "Client-side storage (e.g., localStorage or cookies) for JWT or session token"
+        },
+        "function": "Manage user access through secure login and account creation processes.",
+        "static_description": "A modal or separate page with two forms: one for Login (fields: username/email, password) and one for Register (fields: username, email, password, confirm password). Both forms have respective submit buttons ('Login', 'Register') and are styled with the global color scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials to loginAPIEndpoint. On success, the token is stored and the user is redirected to the homepage. Clicking 'Register' submits new user details to registerAPIEndpoint. On success, the user may be auto-logged in or redirected to the login page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "getPostListAPI": "GET /api/posts",
+            "getPostDetailAPI": "GET /api/posts/{id}",
+            "createPostAPI": "POST /api/posts",
+            "getRepliesForPostAPI": "GET /api/posts/{postId}/replies",
+            "createReplyAPI": "POST /api/posts/{postId}/replies",
+            "searchPostsAPI": "GET /api/posts/search?query={keyword}",
+            "getPostsByCategoryAPI": "GET /api/posts?category_id={id}",
+            "getPostCategoriesAPI": "GET /api/categories"
+        },
+        "function": "Serve all data related to forum posts and replies to the frontend.",
+        "static_description": "This component defines backend API routes and their database interactions. It does not have a visual representation but is crucial for data flow. It connects to the PostgreSQL database using the provided environment variables (DB_HOST, DB_PORT, etc.) to perform CRUD operations on 'posts', 'replies', and 'categories' tables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authenticateUserAPI": "POST /api/auth/login (used for validation)",
+            "getUserProfileAPI": "GET /api/users/me",
+            "getUserPostsAPI": "GET /api/users/me/posts",
+            "getUserRepliesAPI": "GET /api/users/me/replies",
+            "authTokenValidation": "Middleware to verify JWT or session tokens on protected routes"
+        },
+        "function": "Handle user authentication flows and provide access to user-specific data.",
+        "static_description": "This backend component manages authentication endpoints and protected routes. It verifies user credentials, issues tokens, and retrieves user data (profile, posts, replies) from the PostgreSQL database using the specified environment variables. It has no direct visual component.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "Use environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "tablesToCreate": "Tables for 'users', 'posts', 'replies', and 'categories' as defined in previous schema dependencies."
+        },
+        "function": "Establish persistent data storage for the forum application.",
+        "static_description": "This specifies the database setup. A PostgreSQL database named 'myapp' will be created. Within this database, tables for 'users', 'posts', 'replies', and 'categories' will be defined according to the previously outlined schemas. Connection details are sourced from the fixed environment variables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalCSSFile": "Define CSS variables or base styles for ghost white (#F8F8FF) background and slate gray (#708090) components."
+        },
+        "function": "Apply a consistent color scheme throughout the entire application.",
+        "static_description": "Global CSS rules are applied to set the background color of the body to ghost white and the default color, border, and background colors of common UI components (like buttons, inputs, cards) to slate gray or appropriate variations thereof.",
+        "interaction_and_states": []
+    }
+]

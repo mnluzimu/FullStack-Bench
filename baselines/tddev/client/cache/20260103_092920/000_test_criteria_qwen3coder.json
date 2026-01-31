@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "Display real-time weather and air quality data",
+        "user_persona": "A local resident checking current conditions before going outdoors.",
+        "user_goal": "To quickly view the current temperature, humidity, and AQI on the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Maria opens the website to check today's environmental conditions. She expects to see key metrics immediately.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Dashboard loads showing real-time temperature, humidity, pressure, AQI value, and gas sensor readings with icons."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Data Manually",
+                "description": "Noticing the data might be stale, Maria decides to manually refresh all values to ensure accuracy.",
+                "action": "Click the 'Refresh' button located at the top right corner of the dashboard.",
+                "expected_outcome": "All displayed metrics update instantly without a full page reload, and the 'Last Updated' timestamp reflects the new time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show air quality index (AQI) for the past two weeks",
+        "user_persona": "An environmentally conscious citizen tracking long-term air quality trends.",
+        "user_goal": "To review how AQI has changed over the past two weeks using a visual chart.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Historical AQI Chart",
+                "description": "James scrolls down to find historical data and sees a line graph titled 'Air Quality Over Past Two Weeks'.",
+                "action": "Navigate to the AQI history section.",
+                "expected_outcome": "A horizontal line chart appears with dates on X-axis and AQI values on Y-axis, styled in dark slate blue."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Specific Data Points",
+                "description": "James wants to know the exact AQI value from five days ago and hovers over that point on the chart.",
+                "action": "Hover over a data point on the chart.",
+                "expected_outcome": "Tooltip displays the precise AQI value and timestamp for that day."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to compare pollution and air quality changes over time",
+        "user_persona": "A researcher analyzing pollutant variations during different seasons.",
+        "user_goal": "To compare PM2.5 vs PM10 levels and gaseous pollutants over a custom date range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Comparison Section",
+                "description": "Dr. Lee navigates to the pollution comparison area where he finds two side-by-side charts and a date selector.",
+                "action": "Visit the pollution comparison tab.",
+                "expected_outcome": "Two charts load—one for particulate matter and one for gaseous pollutants—with default last-week date range selected."
+            },
+            {
+                "step": 2,
+                "title": "Customizing Date Range",
+                "description": "Wanting to analyze March data, Dr. Lee clicks the date range picker and selects custom start/end dates.",
+                "action": "Click the date range selector and choose custom dates.",
+                "expected_outcome": "Both charts update dynamically to reflect the newly selected timeframe."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide browsing of current weather data including temperature and humidity",
+        "user_persona": "A jogger planning her morning workout based on outdoor conditions.",
+        "user_goal": "To check current temperature and humidity to decide whether it’s safe to exercise outside.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Current Weather Metrics",
+                "description": "Lisa looks for quick access to essential weather info and finds a prominent card-based layout.",
+                "action": "Look at the main weather panel on the homepage.",
+                "expected_outcome": "Large numeric displays show temperature and humidity with accompanying weather icons."
+            },
+            {
+                "step": 2,
+                "title": "Switching Temperature Units",
+                "description": "Preferring Fahrenheit, Lisa toggles the unit switch next to the temperature reading.",
+                "action": "Click the unit toggle switch near the temperature display.",
+                "expected_outcome": "Temperature updates to show value in Fahrenheit while humidity remains unchanged."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display gas sensor data in real-time",
+        "user_persona": "A city health official monitoring toxic gas exposure risks.",
+        "user_goal": "To monitor real-time CO, NO2, O3, and SO2 concentrations from dedicated sensors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Gas Sensor Readings",
+                "description": "Officer Patel visits the gas sensor dashboard expecting up-to-the-minute readings from multiple sensors.",
+                "action": "Navigate to the gas sensor section.",
+                "expected_outcome": "Grid of cards appears, each labeled with a specific gas type and displaying its current PPM level and timestamp."
+            },
+            {
+                "step": 2,
+                "title": "Checking Sensor Metadata",
+                "description": "Patel wants to verify the calibration status of the CO sensor by hovering over its card.",
+                "action": "Hover over the Carbon Monoxide sensor card.",
+                "expected_outcome": "Additional tooltip shows sensor metadata such as calibration status and measurement accuracy."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement real-time update functionality for all data",
+        "user_persona": "A news reporter covering a smog event requiring constant updates.",
+        "user_goal": "To observe automatic data refreshes every minute without needing manual intervention.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Auto Refresh",
+                "description": "Reporter Kim leaves the site open to track ongoing air quality changes. She notes the 'Last Updated' label beneath each section.",
+                "action": "Wait for 60 seconds after loading the page.",
+                "expected_outcome": "All data sections auto-refresh, and the 'Last Updated' timestamps increment accordingly."
+            },
+            {
+                "step": 2,
+                "title": "Manually Triggering Immediate Update",
+                "description": "When breaking news hits about a sudden spike, Kim manually forces an instant data pull.",
+                "action": "Click the 'Refresh Now' button next to the timestamp.",
+                "expected_outcome": "All data streams reload immediately, bypassing scheduled intervals."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use azure mist as the primary background color",
+        "user_persona": "A UX designer evaluating visual consistency across platforms.",
+        "user_goal": "To confirm the site uses azure mist (#F0FFFF) as the global background tone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Site Background",
+                "description": "Designer Alex inspects the homepage visually and checks CSS variables to validate background styling.",
+                "action": "Open developer tools and inspect the body element’s computed styles.",
+                "expected_outcome": "Background color is confirmed as #F0FFFF (azure mist) across all viewports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style UI elements with dark slate blue",
+        "user_persona": "A frontend developer validating UI component styling compliance.",
+        "user_goal": "To verify that all interactive elements use dark slate blue (#483D8B) consistently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Validating Button Styling",
+                "description": "Developer Sam inspects various buttons and form controls to ensure they match brand guidelines.",
+                "action": "Inspect several UI elements like buttons, headers, and input fields using DevTools.",
+                "expected_outcome": "All inspected elements utilize #483D8B for borders, text, or backgrounds with appropriate contrast."
+            },
+            {
+                "step": 2,
+                "title": "Testing Hover States",
+                "description": "Sam tests hover behavior on interactive components to ensure correct styling feedback.",
+                "action": "Hover over a styled button.",
+                "expected_outcome": "Button fill lightens slightly but retains dark slate blue border and shadow effects."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fetch all dynamic data from backend APIs",
+        "user_persona": "A QA engineer verifying data integrity and source authenticity.",
+        "user_goal": "To ensure no mock or hard-coded data exists in production UI views.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Network Requests",
+                "description": "QA tester Jake opens network dev tools to capture API calls made upon initial page load.",
+                "action": "Open browser DevTools > Network tab and reload the page.",
+                "expected_outcome": "Multiple XHR requests are logged fetching real-time weather, AQI, and sensor data from backend endpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect backend to external PostgreSQL database using provided environment variables",
+        "user_persona": "A DevOps specialist setting up deployment environments securely.",
+        "user_goal": "To confirm backend connects properly to PostgreSQL using specified environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection Setup",
+                "description": "DevOps lead Morgan reviews configuration files and runtime logs to ensure secure database access.",
+                "action": "Check backend `.env` file and server startup logs.",
+                "expected_outcome": "Logs indicate successful connection to PostgreSQL instance using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run install:all to install frontend and backend dependencies",
+        "user_persona": "A new team member cloning and building the project locally.",
+        "user_goal": "To easily install all dependencies for both frontend and backend using one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Project Dependencies",
+                "description": "New hire Taylor clones the repo and runs the standard setup script to get started quickly.",
+                "action": "Run `npm run install:all` from the project root directory.",
+                "expected_outcome": "Concurrently installs packages in both frontend/ and backend/ directories successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run dev to start frontend and backend concurrently",
+        "user_persona": "A developer working on integrated features needing simultaneous service operation.",
+        "user_goal": "To launch both frontend and backend development servers with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Developer Jordan begins workday by launching both services together for seamless integration testing.",
+                "action": "Execute `npm run dev` from the project root.",
+                "expected_outcome": "Both frontend (React/Vue) and backend (Node/Express) servers boot up concurrently in same terminal session."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement API endpoints for serving weather and air quality data",
+        "user_persona": "A mobile app developer integrating with this platform’s public APIs.",
+        "user_goal": "To consume well-defined RESTful endpoints delivering structured environmental data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Consuming Weather Endpoint",
+                "description": "App developer Riley sends a GET request to fetch current weather parameters.",
+                "action": "Send HTTP GET request to `/api/weather/current`.",
+                "expected_outcome": "Receives structured JSON response containing temperature, humidity, pressure, and wind speed."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Historical AQI Data",
+                "description": "Riley then retrieves historical AQI records for the past 7 days.",
+                "action": "Send GET request to `/api/aqi/history?days=7`.",
+                "expected_outcome": "Returns ordered list of AQI entries with timestamps and values for plotting."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design responsive UI components for data visualization",
+        "user_persona": "A student accessing the site on a smartphone during class.",
+        "user_goal": "To interact with all features comfortably despite limited screen space.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Mobile Layout",
+                "description": "Student Mia accesses the site on her phone and observes layout adjustments for smaller screens.",
+                "action": "Resize browser window or open site on mobile device.",
+                "expected_outcome": "Content rearranges vertically, fonts grow larger, and tap targets expand for better touch interaction."
+            },
+            {
+                "step": 2,
+                "title": "Zooming Into Charts",
+                "description": "While reviewing pollution trends, Mia pinches the chart canvas to focus on a narrow time interval.",
+                "action": "Perform pinch-zoom gesture on a chart visualization.",
+                "expected_outcome": "Chart zooms smoothly into selected region, maintaining clarity and interactivity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include date/time stamps for all displayed data points",
+        "user_persona": "A policy analyst documenting environmental reports with strict timestamping needs.",
+        "user_goal": "To reference accurate timestamps associated with every data entry presented.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Timestamp Accuracy",
+                "description": "Analyst Noah checks that each metric includes a clearly marked and correctly localized timestamp.",
+                "action": "Examine footer labels beneath each data block on the dashboard.",
+                "expected_outcome": "Each section ends with a timestamp in ISO format converted to user's local timezone (e.g., HH:mm:ss)."
+            }
+        ]
+    }
+]

@@ -1,0 +1,257 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDataAPI": "A real-time stock data API providing company profiles, current prices, and metadata.",
+            "autoSuggestEndpoint": "An endpoint from the stockDataAPI that returns matching stock suggestions based on partial input strings."
+        },
+        "function": "Allow users to search for stocks by entering either stock codes or company names.",
+        "static_description": "A centered search bar with a magnifying glass icon (searchIcon) on a white background. The input field has placeholder text 'Enter stock code or name'. Component color is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the search input field when clicked."
+            },
+            {
+                "interaction": "Key Press: Any alphanumeric key",
+                "description": "Triggers an API call to autoSuggestEndpoint after 300ms debounce. Displays dropdown list of suggested matches below the input."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autoSuggestListStyle": "Dropdown list styled with navy borders and white background, showing up to 5 items.",
+            "autoSuggestEndpoint": "An endpoint from the stockDataAPI that returns matching stock suggestions based on partial input strings."
+        },
+        "function": "Provide auto-suggested stock matches dynamically as the user types in the search bar.",
+        "static_description": "No visible element until typing begins. Dropdown list appears beneath the search bar containing suggested stock entries formatted as [Ticker Symbol] – [Company Name].",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a suggestion populates the search bar with the full stock identifier and triggers navigation or display of stock details page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Highlights individual suggestion item with light navy background."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stockDetailsSchema": "Database table 'stocks' with fields: id (primary key), ticker_symbol (string), company_name (string), current_price (float), last_updated (datetime).",
+            "stockDataAPI": "A real-time stock data API providing company profiles, current prices, and metadata."
+        },
+        "function": "Display essential stock information such as company name, ticker symbol, and current price upon selection.",
+        "static_description": "A card-style container with navy header displaying 'Stock Overview'. Below it shows three rows: Company Name, Ticker Symbol, Current Price — each labeled clearly with values aligned right.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Fetches latest stock data via stockDataAPI and displays within respective labels. Updates last_updated timestamp visually if needed."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Integration with a charting library like Chart.js or TradingView Lightweight Charts.",
+            "historicalPricesEndpoint": "API endpoint returning time-series pricing data for selected stocks.",
+            "marketTrendColors": "#001F54 for rising trends, #C00000 for falling trends"
+        },
+        "function": "Visualize market trend data through interactive charts showing historical price movements.",
+        "static_description": "Interactive line chart rendered using chartingLibrary inside a bordered navy panel. X-axis shows dates, Y-axis shows price values. Default view spans last 30 days.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on different intervals (e.g., 7D, 1M, 6M, 1Y) reloads chart with updated timeframe data fetched from historicalPricesEndpoint."
+            },
+            {
+                "interaction": "Hover over data points",
+                "description": "Displays tooltip showing exact date and closing price at hovered point."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataSchema": "Database table 'financials' with fields: stock_id (foreign key), revenue (float), net_income (float), pe_ratio (float), eps (float), roe (float), debt_to_equity (float), quarter_end_date (date).",
+            "financialDataAPI": "API endpoint delivering quarterly and annual financial statements and calculated metrics."
+        },
+        "function": "Present comprehensive financial data including revenue, earnings, and key performance ratios.",
+        "static_description": "Tabular layout under 'Financial Summary' heading. Columns include Metric (Revenue, Net Income, P/E Ratio, etc.) and Value. All text in navy font on white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Toggle View: Annual / Quarterly",
+                "description": "Switch between yearly aggregated vs quarterly breakdown views of financial data retrieved from financialDataAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportFormatOptions": [
+                "PDF",
+                "Word (.docx)",
+                "HTML"
+            ],
+            "formatSelectorIcons": [
+                "/assets/icons/pdf-icon.svg",
+                "/assets/icons/word-icon.svg",
+                "/assets/icons/html-icon.svg"
+            ]
+        },
+        "function": "Allow users to choose preferred report format before generation.",
+        "static_description": "Three horizontally aligned buttons labeled PDF, Word, HTML with corresponding icons (formatSelectorIcons). One option pre-selected by default.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects the desired format visually and stores choice internally for use during report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentSectionOptions": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "News & Sentiment",
+                "Comparison Analysis"
+            ],
+            "sectionCheckboxes": "/assets/components/checkbox-checked.svg and checkbox-unchecked.svg"
+        },
+        "function": "Enable customization of report contents by selecting relevant sections.",
+        "static_description": "Vertical checklist with checkboxes next to each section title (contentSectionOptions). All boxes checked by default. Background remains white with navy text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggles checkmark state of checkbox and adds/removes section from selected content set used for report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGeneratorService": "Backend microservice responsible for compiling selected data into specified format using templates.",
+            "templateEngine": "Templating engine (e.g., Jinja2 or Handlebars) to merge dynamic data with predefined layouts.",
+            "reportStoragePath": "/generated_reports/{userId}/{reportId}.{extension}"
+        },
+        "function": "Automatically compile and generate stock reports based on user selections.",
+        "static_description": "Hidden button labeled 'Generate Report' which becomes active once format and content are chosen. Upon click, progress indicator briefly appears while processing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Invokes reportGeneratorService passing selected format and content sections. Generates file stored at reportStoragePath and initiates download."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormats": [
+                "PDF",
+                "DOCX",
+                "CSV",
+                "HTML"
+            ],
+            "downloadIcon": "/assets/icons/download-icon.svg"
+        },
+        "function": "Provide export functionality for saving generated reports in various file formats.",
+        "static_description": "Dropdown menu accessible via downloadIcon next to generated report preview. Lists available exportFormats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens dropdown menu listing supported formats. Clicking one starts download process for that version."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "{ background: '#FFFFFF', primary: '#001F54' }",
+            "uiComponentLibrary": "Pre-built UI components styled according to palette."
+        },
+        "function": "Maintain consistent styling throughout the application with a white background and navy-colored components.",
+        "static_description": "All pages utilize solid white background (#FFFFFF). Interactive elements, headers, and controls rendered in navy blue (#001F54). Buttons, cards, and form inputs follow this theme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "websocketConnection": "WebSocket connection established with real-time stock data feed provider.",
+            "stockUpdateInterval": "Every 30 seconds or triggered by significant price changes"
+        },
+        "function": "Keep displayed stock data synchronized with live market updates.",
+        "static_description": "No visible indicators unless value changes occur. Numerical values update automatically without manual refresh.",
+        "interaction_and_states": [
+            {
+                "interaction": "Real-Time Update Triggered",
+                "description": "Relative percentage change shown alongside current price with directional arrow (up/down) colored green/red respectively."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newsAndSentimentAPI": "API aggregating recent articles and sentiment scores about given stocks.",
+            "sentimentColorMapping": "{ positive: '#4CAF50', neutral: '#9E9E9E', negative: '#F44336' }"
+        },
+        "function": "Display curated news snippets and sentiment analysis related to searched stocks.",
+        "static_description": "Collapsible panel titled 'Latest News & Market Sentiment'. Contains scrollable list of article titles, publication sources, and sentiment score badges colored per sentimentColorMapping.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click on Article Title",
+                "description": "Opens linked article in new browser tab."
+            },
+            {
+                "interaction": "Expand/Collapse Panel",
+                "description": "Shows/hides full list of news items and sentiment summary."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonToolSchema": "Database schema storing peer group mappings and comparative KPIs per stock.",
+            "peerGroupDataAPI": "API endpoint returning industry averages and top competitors’ metrics."
+        },
+        "function": "Facilitate side-by-side comparisons of stocks against industry benchmarks.",
+        "static_description": "Side-scrollable horizontal bar chart comparing selected stock’s KPIs (P/E ratio, EPS growth, etc.) with average and top performers in sector.",
+        "interaction_and_states": [
+            {
+                "interaction": "Add Stock to Compare",
+                "description": "Adds another stock entry to the comparison visualization by triggering peerGroupDataAPI fetch and re-rendering chart."
+            },
+            {
+                "interaction": "Remove Comparison Entry",
+                "description": "Deletes selected comparison row and recalculates visualization accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userReportHistorySchema": "Table 'user_report_history' with fields: user_id (FK), report_id (PK), created_at (timestamp), format_used (enum), content_sections (JSON), status (enum: pending/completed/expired)",
+            "savedTemplatesSchema": "Table 'report_templates' with fields: template_id (PK), user_id (FK), name (string), settings (JSON)"
+        },
+        "function": "Store previously generated reports and allow reuse of favorite configurations.",
+        "static_description": "Dedicated 'My Reports' section accessible from main navigation. Displays paginated list of past reports with creation timestamps and formats used.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click on Past Report",
+                "description": "Loads previous configuration into editor allowing regeneration or modification prior to re-export."
+            },
+            {
+                "interaction": "Save Template",
+                "description": "Persists current format/content choices to savedTemplatesSchema enabling quick future access."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries and mobile-first grid system ensuring cross-device compatibility.",
+            "mobileBreakpoints": "{ tablet: 768px, phone: 480px }"
+        },
+        "function": "Ensure optimal viewing experience across desktop, tablet, and smartphone interfaces.",
+        "static_description": "Layout adjusts fluidly across screen sizes. Navigation transforms into hamburger menu on smaller screens. Font sizes scale appropriately.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Adapts layout using responsiveDesignFramework breakpoints. Rearranges columns to stacked blocks where necessary."
+            },
+            {
+                "interaction": "Touch Swipe",
+                "description": "Allows horizontal swipping through multi-page report previews or comparison charts on touch-enabled devices."
+            }
+        ]
+    }
+]

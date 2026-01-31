@@ -1,0 +1,145 @@
+[
+    {
+        "resource_dependency": {
+            "background_image": "linen-texture-background.jpg",
+            "primary_color": "#800000",
+            "secondary_color": "#f5f5dc"
+        },
+        "function": "Provide responsive homepage layout with navigation bar and featured apartments section.",
+        "static_description": "The page displays a linen textured background across the entire viewport. Navigation bar includes logo on left, links ('Home', 'Apartments', 'Bookings', 'Login') in center, and user avatar/login button on right. Maroon color used for active navigation items and hover states. Below navigation, hero banner with tagline and call-to-action buttons styled in maroon. Featured apartments grid shows cards with thumbnails, titles, locations, prices, and ratings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking navigation links navigates to respective pages. Clicking apartment card redirects to apartment detail page. Hover over navigation items changes text color to maroon."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apartments_api": "/api/apartments",
+            "search_icon": "search-icon.svg",
+            "filter_icon": "filter-icon.svg"
+        },
+        "function": "Display searchable and filterable list of apartments with key details.",
+        "static_description": "Apartment listing page contains a search bar at top with placeholder 'Search by location'. Adjacent filter icon toggles visibility of filter panel. Grid of apartment cards below, each showing image thumbnail, title, location, nightly rate, rating stars, and availability status. Cards use maroon borders when hovered. Linen background consistent throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking filter icon expands/collapses filter options panel. Clicking apartment card navigates to apartment detail page. Clicking 'Search' triggers API request with query parameters."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over apartment cards adds maroon border highlight."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "booking_form_api": "/api/bookings",
+            "date_picker_library": "react-datepicker",
+            "payment_gateway_integration": "Stripe payment gateway"
+        },
+        "function": "Enable authenticated users to book apartments by selecting dates and submitting requests.",
+        "static_description": "Booking form appears within modal or dedicated page after selecting apartment. Includes date range picker, guest count selector, total cost calculation display, and submit button styled in maroon. Form also shows apartment summary including title, location, and current price per night. Background remains linen textured.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking date inputs opens calendar widget. Submitting form sends POST request to /api/bookings endpoint. Successful submission redirects to confirmation page or displays success message."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing dates updates displayed total cost dynamically based on selected duration and nightly rate."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_api": "/api/auth",
+            "login_page_url": "/login",
+            "session_storage": "localStorage or cookies"
+        },
+        "function": "Manage user authentication and maintain session state for secure access to booking features.",
+        "static_description": "Login/Register modal or page includes email/password fields, remember me checkbox, and action buttons styled in maroon. Page uses same linen background theme. Displays error messages if login fails. Redirects to previous page upon successful authentication.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials via POST to /api/auth/login. Success stores JWT token in localStorage and redirects user. Logout clears stored tokens and returns to public view."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting registration form creates new account through /api/auth/register endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bookings_history_api": "/api/user/bookings",
+            "calendar_view_library": "FullCalendar.js"
+        },
+        "function": "Allow logged-in users to view their past and upcoming reservations.",
+        "static_description": "Booking history page presents two views: tabular list and calendar view. List view shows reservation ID, apartment name, dates, status, and cancellation option. Calendar view highlights booked dates visually. All interactive elements use maroon styling against linen backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching between list and calendar tabs updates displayed content. Clicking cancel deletes reservation via DELETE /api/bookings/{id}."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_panel_api": "/api/admin",
+            "edit_apartment_form": "Form with inputs for title, description, location, price, amenities, availability dates, and image upload field"
+        },
+        "function": "Provide administrative interface for managing apartment listings and bookings.",
+        "static_description": "Admin dashboard accessible only to authorized roles. Contains sections for adding/editing apartments, viewing all bookings, and managing user accounts. Apartment editor form allows uploading images, setting pricing, specifying amenities, and marking availability. Interface follows linen/maroon design scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add New Apartment' reveals blank form. Editing existing entry populates form with current data. Saving sends PUT/POST to /api/admin/apartments."
+            },
+            {
+                "interaction": "Upload",
+                "description": "Uploading images triggers preview generation before saving."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apartment_detail_api": "/api/apartments/{id}",
+            "image_gallery_component": "React Image Gallery library",
+            "map_integration": "Google Maps API for displaying location"
+        },
+        "function": "Show detailed information about individual apartments including photos, description, pricing, and location map.",
+        "static_description": "Apartment detail page displays large photo gallery at top, followed by title, address, star rating, and price per night. Detailed description section lists amenities, house rules, and cancellation policy. Embedded Google Map pinpoints exact location. Book Now button prominently placed in maroon style near price info. Entire layout retains linen background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any gallery thumbnail enlarges it. Clicking 'Book Now' scrolls to or opens booking form modal."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_schema_instructions": "CREATE TABLE apartments (id SERIAL PRIMARY KEY, title VARCHAR(255), description TEXT, location VARCHAR(255), price_per_night DECIMAL, amenities JSONB, availability_dates DATERANGE[], created_at TIMESTAMP DEFAULT NOW()); CREATE TABLE bookings (id SERIAL PRIMARY KEY, apartment_id INTEGER REFERENCES apartments(id), user_id INTEGER, start_date DATE, end_date DATE, guests INTEGER, total_cost DECIMAL, status VARCHAR(50)); CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR(255) UNIQUE, password_hash TEXT, role VARCHAR(50));"
+        },
+        "function": "Define PostgreSQL database schema for storing apartment listings, user bookings, and registered users.",
+        "static_description": "Database initialized with three main tables: apartments, bookings, and users. Apartments table holds descriptive data along with JSONB for flexible amenity storage and daterange arrays for availability tracking. Bookings references apartments and users with relevant booking metadata. Users table supports authentication with hashed passwords and role-based permissions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "env_vars_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish connection to PostgreSQL database using predefined environment variables.",
+        "static_description": "Backend service reads database configuration from environment variables during startup. Uses these values to connect securely to local PostgreSQL instance hosting myapp database under myappuser credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev:client\\\" \\\"npm run dev:server\\\"\" } }"
+        },
+        "function": "Configure package.json scripts to support unified installation and concurrent development startup of frontend and backend services.",
+        "static_description": "Root-level package.json defines custom npm commands: install:all runs client and server installations simultaneously using concurrently utility. dev command starts both frontend (typically Vite/Webpack dev server) and backend (Node.js/Express server) concurrently for streamlined development workflow.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A detective who needs up-to-date case information at a glance.",
+        "user_goal": "To view the most current list of assigned cases without reloading the entire page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the App",
+                "description": "Detective Sarah opens the app and expects her dashboard to populate with live case data immediately after logging in.",
+                "action": "Navigate to the dashboard route.",
+                "expected_outcome": "Frontend makes an authenticated API call to '/cases' and displays the fetched case list dynamically."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Data Manually",
+                "description": "Sarah notices some delays in updates and decides to manually refresh the case list to ensure she has the latest data.",
+                "action": "Click on the refresh icon next to the search bar.",
+                "expected_outcome": "The frontend re-fetches data from the backend API and updates the displayed case list without a full page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A system administrator deploying the detective agency app.",
+        "user_goal": "To confirm the backend successfully connects to the PostgreSQL database upon startup.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Backend Server",
+                "description": "Admin boots up the backend server for the first time after deployment, expecting successful initialization.",
+                "action": "Run the backend server startup command.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            },
+            {
+                "step": 2,
+                "title": "Handling Client Requests",
+                "description": "Once running, Admin simulates a client request to verify database interaction works properly.",
+                "action": "Send a GET request to '/api/cases'.",
+                "expected_outcome": "Request is parsed, validated, and routed correctly, returning a list of cases retrieved from the connected PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for secure access",
+        "user_persona": "A new detective joining the agency.",
+        "user_goal": "To securely log into the case management system for the first time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Screen",
+                "description": "Detective John visits the app and is redirected to the login screen since he hasn't authenticated yet.",
+                "action": "Visit the base URL of the application.",
+                "expected_outcome": "Redirected to the login page with username and password fields centered on a beige background."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "John enters his assigned username and password and submits them to gain access.",
+                "action": "Fill in valid credentials and click the 'Submit' button.",
+                "expected_outcome": "System validates credentials, generates a JWT token, stores session info, and redirects John to the dashboard."
+            },
+            {
+                "step": 3,
+                "title": "Logging Out Securely",
+                "description": "After finishing his work, John wants to securely end his session.",
+                "action": "Click the logout option in the user menu.",
+                "expected_outcome": "Session storage is cleared and John is redirected back to the login page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Case information browsing interface with search and filter capabilities",
+        "user_persona": "An experienced detective reviewing multiple past cases.",
+        "user_goal": "To quickly find a specific closed case involving a particular client.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching by Client Name",
+                "description": "Detective Martinez recalls working with 'Stevens' but can't remember the exact case title, so he uses the search bar.",
+                "action": "Type 'Stevens' into the search bar.",
+                "expected_outcome": "Displayed case list filters in real-time to show only cases associated with clients whose names match 'Stevens'."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Status",
+                "description": "Martinez now wants to narrow down results to only closed cases involving Stevens.",
+                "action": "Select 'Closed' from the status filter dropdown.",
+                "expected_outcome": "Only cases marked as 'Closed' and involving 'Stevens' remain visible in the list."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Detailed Case Info",
+                "description": "He finds the correct case and clicks on its card to review detailed information.",
+                "action": "Click on the relevant case card.",
+                "expected_outcome": "Navigated to the detailed case view showing comprehensive information about the selected case."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time report submission functionality with live updates",
+        "user_persona": "A field detective submitting an urgent report while surveilling a subject.",
+        "user_goal": "To compose and instantly submit a critical incident report that updates live for headquarters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Writing the Report",
+                "description": "While observing the target, Detective Kim begins typing a real-time report, watching it update live in the preview pane.",
+                "action": "Begin typing in the rich text report editor field.",
+                "expected_outcome": "Every keystroke reflects immediately in the adjacent live preview panel, providing instant formatting feedback."
+            },
+            {
+                "step": 2,
+                "title": "Saving the Report",
+                "description": "Once satisfied with the content, Kim hits save to officially document the observation.",
+                "action": "Click the 'Save Report' button.",
+                "expected_outcome": "Current report content is submitted to the backend via POST /reports/live and a confirmation message appears."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Work hours logging feature with time tracking capabilities",
+        "user_persona": "A meticulous detective tracking billable hours spent on different tasks.",
+        "user_goal": "To accurately track time spent conducting surveillance today.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Time Tracking",
+                "description": "Detective Lee begins surveillance duty and starts timing the task to track work hours.",
+                "action": "Click the 'Start Timer' button.",
+                "expected_outcome": "Timer initiates counting upwards and the button changes to display a pause icon."
+            },
+            {
+                "step": 2,
+                "title": "Assigning Task Category",
+                "description": "Lee selects the appropriate category before saving the tracked time.",
+                "action": "Choose 'Surveillance' from the task type dropdown.",
+                "expected_outcome": "Selected value is captured for inclusion with the logged hours entry."
+            },
+            {
+                "step": 3,
+                "title": "Saving Logged Hours",
+                "description": "After completing surveillance, Lee stops the timer and saves the logged hours.",
+                "action": "Click the 'Save Hours' button.",
+                "expected_outcome": "Completed time log entry, including selected task type, is posted to backend endpoint /hours."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Estimated expense sheet generation and viewing functionality",
+        "user_persona": "A finance officer preparing cost estimates for an upcoming investigation.",
+        "user_goal": "To adjust projected travel costs and generate a shareable expense estimate.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Expense Items",
+                "description": "Officer Riley reviews the preliminary expense sheet and modifies the estimated travel budget.",
+                "action": "Edit the 'Travel' expense amount in the corresponding table cell.",
+                "expected_outcome": "Total expense amount recalculates automatically once focus leaves the edited field."
+            },
+            {
+                "step": 2,
+                "title": "Generating PDF Document",
+                "description": "Satisfied with adjustments, Riley exports the finalized sheet as a professional document.",
+                "action": "Click the 'Export PDF' button above the expense table.",
+                "expected_outcome": "Browser triggers download of the current expense sheet formatted as a printable PDF file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Service assignment sheet creation and management interface",
+        "user_persona": "A team lead assigning detectives to a high-profile case.",
+        "user_goal": "To delegate responsibilities among team members efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding New Assignment",
+                "description": "Team Lead Morgan identifies a need to assign another detective to assist with ongoing surveillance duties.",
+                "action": "Click the '+ Add Assignment' button atop the assignment grid.",
+                "expected_outcome": "Modal form opens allowing selection of detective, role, and assignment dates."
+            },
+            {
+                "step": 2,
+                "title": "Updating Assignment Status",
+                "description": "Later, Morgan checks progress and updates one detective's assignment status accordingly.",
+                "action": "Change the status dropdown of an assignment row to 'Completed'.",
+                "expected_outcome": "Status change persists when saved, updating the record in the backend database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data collection and storage system for all application entities",
+        "user_persona": "A database analyst ensuring data consistency across systems.",
+        "user_goal": "To validate that deleting a parent case correctly removes all related records.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Sample Records",
+                "description": "Analyst creates a test case along with associated reports, hours, expenses, and assignments.",
+                "action": "Use admin tools to insert sample records into all five core tables.",
+                "expected_outcome": "New records are inserted respecting foreign key constraints and maintaining referential integrity."
+            },
+            {
+                "step": 2,
+                "title": "Deleting Parent Record",
+                "description": "To test cascading behavior, Analyst deletes the original case record.",
+                "action": "Issue DELETE request to remove the parent case record.",
+                "expected_outcome": "Parent case and all linked child records in other tables are removed due to cascading delete rules."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time reporting dashboard with live data visualization",
+        "user_persona": "Agency director monitoring overall operational performance.",
+        "user_goal": "To observe how daily activities affect key metrics in real-time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading the Dashboard",
+                "description": "Director logs in and navigates to the dashboard to get a snapshot of current agency performance.",
+                "action": "Navigate to the dashboard page.",
+                "expected_outcome": "Latest statistics are fetched from backend and visualized using Chart.js components; WebSocket established for live updates."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Live Updates",
+                "description": "As new reports come in during the day, Director watches graphs update automatically.",
+                "action": "Wait for incoming WebSocket messages indicating new data points.",
+                "expected_outcome": "Charts and counters smoothly transition to reflect newly received datasets pushed through WebSocket."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with beige background and saddle brown styled components",
+        "user_persona": "A detective accessing the system remotely using various devices.",
+        "user_goal": "To seamlessly use the application whether on desktop, tablet, or smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Desktop Browser",
+                "description": "At headquarters, Detective Ray opens the app on his large monitor and appreciates the spacious layout.",
+                "action": "Open the app in a desktop browser window.",
+                "expected_outcome": "UI adapts to wide viewport, displaying multi-column layouts with beige background and saddle brown accents throughout."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Mobile Device",
+                "description": "Later, Ray accesses the same app on his phone while out in the field, needing a compact view.",
+                "action": "Resize browser window to simulate mobile dimensions or switch to actual mobile device.",
+                "expected_outcome": "Layout shifts fluidly to stack elements vertically, preserving usability and consistent color scheme across breakpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server setup for frontend and backend",
+        "user_persona": "A developer setting up their local environment for the first time.",
+        "user_goal": "To launch both frontend and backend services simultaneously for efficient development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Dev Servers Together",
+                "description": "Developer Alex wants to start coding and needs both parts of the app running locally.",
+                "action": "Execute `npm run dev` from the project root directory.",
+                "expected_outcome": "Both frontend (on port 3000) and backend (on port 3001) development servers start concurrently in a single terminal window."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Automated installation script for both frontend and backend dependencies",
+        "user_persona": "A new developer joining the project team.",
+        "user_goal": "To set up a complete working environment with minimal manual steps.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing All Dependencies",
+                "description": "Dev Taylor clones the repo and runs the setup script to prepare everything needed for development.",
+                "action": "Run `npm run install:all` from the root folder.",
+                "expected_outcome": "Node modules are installed for root, frontend, and backend directories sequentially, resulting in a ready-to-use environment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design supporting cases, reports, work hours, expenses, and assignments",
+        "user_persona": "A database architect validating the logical structure of the application's data model.",
+        "user_goal": "To apply the designed schema to a fresh database instance and confirm correctness.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Schema Migrations",
+                "description": "Architect Sam prepares a clean database and applies migration scripts to build the required tables.",
+                "action": "Execute SQL DDL files defining the normalized schema against a PostgreSQL database.",
+                "expected_outcome": "Empty tables for Cases, Reports, WorkHours, Expenses, and Assignments are created with proper indexing and constraints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for CRUD operations on all core application entities",
+        "user_persona": "A QA engineer testing the reliability of backend services.",
+        "user_goal": "To verify that basic create and retrieve operations function correctly for case entities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Retrieving Existing Cases",
+                "description": "Engineer Jordan sends a request to list all currently stored cases.",
+                "action": "Make a GET request to '/api/cases'.",
+                "expected_outcome": "Returns a paginated JSON list of existing case records, respecting any applicable query filters."
+            },
+            {
+                "step": 2,
+                "title": "Creating a New Case",
+                "description": "Jordan then attempts to add a new case record through the API.",
+                "action": "Send a POST request to '/api/cases' with valid case data in the body.",
+                "expected_outcome": "New case is created in the database and returned as JSON with a generated ID included."
+            }
+        ]
+    }
+]

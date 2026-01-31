@@ -1,0 +1,249 @@
+[
+    {
+        "resource_dependency": {
+            "dashboardLayoutImage": "/assets/dashboard-layout.png",
+            "animalIconsDirectory": "/assets/icons/animals/",
+            "detectionDataAPI": "GET /api/detections"
+        },
+        "function": "Display a dashboard showing historical animal detection records with timestamps, animal types, and associated metadata.",
+        "static_description": "A grid-based dashboard layout with cards representing individual detections. Each card shows the animal name, timestamp, image thumbnail from 'animalIconsDirectory', and metadata such as location and confidence score. Background is misty rose (#FFE4E1) and UI elements use firebrick (#B22222).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a detection card navigates to the detailed view of that detection record."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads more detection records via infinite scroll pagination."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "detectionSchemaDefinition": "Table 'detections': id (UUID), animal_type (string), timestamp (datetime), image_url (text), location (point), confidence_score (float), metadata (JSON)"
+        },
+        "function": "Provide backend API endpoints connected to a PostgreSQL database to store and retrieve animal detection records.",
+        "static_description": "The backend exposes RESTful API endpoints under '/api' to manage detection records stored in a PostgreSQL instance configured with provided credentials.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request: GET /api/detections",
+                "description": "Returns paginated list of detection records from the 'detections' table in the PostgreSQL database."
+            },
+            {
+                "interaction": "API Request: POST /api/detections",
+                "description": "Inserts a new detection record into the 'detections' table after validating payload fields."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "imageUploadEndpoint": "POST /api/upload",
+            "cameraFeedStream": "WebSocket endpoint at /ws/feed",
+            "mlModelAPI": "External API for animal classification returning animal type and confidence score"
+        },
+        "function": "Identify wild animals from uploaded images or real-time camera feeds using an external machine learning model.",
+        "static_description": "A section with two tabs: one for uploading images and another for streaming live video feed. Both inputs connect to an ML service through defined API endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "File Upload",
+                "description": "Uploading an image triggers a call to 'imageUploadEndpoint', which forwards the file to 'mlModelAPI' for processing and returns identification results."
+            },
+            {
+                "interaction": "Camera Feed Activation",
+                "description": "Activating the camera stream opens a WebSocket connection to '/ws/feed' and streams frames to 'mlModelAPI' for continuous detection."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "{ \"Bear\": \"#8B4513\", \"Wolf\": \"#708090\", \"Fox\": \"#CD5C5C\" }",
+            "animalTypeField": "animal_type column in detection records"
+        },
+        "function": "Assign distinct colors to each identified animal type for visual differentiation across the application.",
+        "static_description": "Each detection card, alert badge, and item in the real-time feed displays a colored indicator next to the animal name according to the predefined palette mapping.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover over Color Indicator",
+                "description": "Displays tooltip showing the hex code and full animal name."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "alertSettingsForm": "/components/alert-settings-form",
+            "saveAlertPreferencesAPI": "PUT /api/users/{userId}/alerts"
+        },
+        "function": "Allow users to define custom alert conditions based on specific animal types and detection parameters.",
+        "static_description": "A modal form containing checkboxes for animal selection, threshold sliders for confidence scores, and time schedule pickers. Form includes save/cancel buttons styled with firebrick.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save' submits selected preferences to 'saveAlertPreferencesAPI'. Clicking 'Cancel' closes the modal without saving changes."
+            },
+            {
+                "interaction": "Toggle Animal Selection",
+                "description": "Selecting/unselecting an animal updates internal state before submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "smsServiceIntegration": "Twilio API or equivalent SMS gateway requiring account SID, auth token, and sender number",
+            "triggerSMSLogic": "Event hook upon successful animal detection matching active user alerts"
+        },
+        "function": "Automatically dispatch SMS notifications when a detected animal matches user-defined alert criteria.",
+        "static_description": "No visible UI element; SMS alerts are sent silently in the background whenever a qualifying detection event occurs.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "detectionRecordSchema": "Fields: id (UUID), animal_type (string), timestamp (datetime), image_url (text), location (point), confidence_score (float), metadata (JSON)",
+            "databaseConnectionDetails": "PostgreSQL connection string built from environment variables"
+        },
+        "function": "Store all animal detection events along with relevant contextual data in a structured relational database.",
+        "static_description": "Database schema named 'detections' with indexed columns for efficient querying by date range, animal type, and geographic coordinates.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": "POST /api/auth/login, POST /api/auth/register, GET /api/users/profile",
+            "profileManagementUI": "/components/user-profile-panel",
+            "userSchema": "users(id UUID, username string, email string, password_hash string, created_at datetime)"
+        },
+        "function": "Enable secure login, registration, and management of personalized alert configurations per user.",
+        "static_description": "Login/register forms with standard fields and a profile page displaying current alert settings. All actions interact with protected routes requiring JWT tokens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Login Form",
+                "description": "Sends credentials to '/api/auth/login'; successful authentication redirects to dashboard and sets session token."
+            },
+            {
+                "interaction": "Update Profile Settings",
+                "description": "Changes made in the profile panel are saved via PUT request to '/api/users/profile'."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "speciesInfoPageTemplate": "/pages/species/[id].tsx",
+            "animalInfoAPI": "GET /api/animals/{id}",
+            "exampleAnimalData": "{ name: 'Red Fox', habitat: 'Forests', diet: 'Omnivore', conservation_status: 'Least Concern' }"
+        },
+        "function": "Present detailed educational content about various animal species encountered in the system.",
+        "static_description": "Dedicated pages for each species featuring high-quality imagery, behavioral traits, ecological role, and conservation status rendered dynamically from API responses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate to Species Page",
+                "description": "Accessing a link to a specific animal loads corresponding info from '/api/animals/{id}' and populates the template."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "liveDetectionFeedEndpoint": "WebSocket at /ws/live-feed",
+            "realTimeCardComponent": "/components/live-detection-card"
+        },
+        "function": "Showcase ongoing animal identifications happening in real-time through connected cameras or uploads.",
+        "static_description": "Live updating list of recently detected animals appearing at the top of the main dashboard. Cards fade out after 30 seconds unless pinned by user.",
+        "interaction_and_states": [
+            {
+                "interaction": "Pin Detection Card",
+                "description": "Clicking pin icon prevents auto-fadeout and moves card to persistent section below."
+            },
+            {
+                "interaction": "WebSocket Connection Established",
+                "description": "Upon connection, incoming messages populate the feed in real-time."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "alertPanelComponent": "/components/alert-config-panel",
+            "thresholdSliderAssets": "/assets/sliders/",
+            "schedulePickerLibrary": "react-datepicker"
+        },
+        "function": "Offer granular controls for setting minimum confidence levels and scheduling active periods for alerts.",
+        "static_description": "Control panel within the user profile area featuring adjustable sliders for confidence thresholds and calendar/time pickers for enabling/disabling alerts during certain hours.",
+        "interaction_and_states": [
+            {
+                "interaction": "Adjust Threshold Slider",
+                "description": "Dragging slider updates displayed value and prepares change for submission."
+            },
+            {
+                "interaction": "Select Schedule Time",
+                "description": "Picking start/end times enables conditional alert triggering only within those bounds."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBarComponent": "/components/search-bar",
+            "filterSidebar": "/components/filter-sidebar",
+            "historicalRecordsAPI": "GET /api/detections?filters={}"
+        },
+        "function": "Facilitate browsing past detection logs with filtering and keyword searching capabilities.",
+        "static_description": "Search bar positioned above the history grid allows typing keywords. Sidebar contains filters grouped by animal type, date ranges, and confidence intervals.",
+        "interaction_and_states": [
+            {
+                "interaction": "Enter Search Query",
+                "description": "Typing and pressing Enter filters records shown in dashboard by matching terms against animal names and metadata."
+            },
+            {
+                "interaction": "Apply Filter",
+                "description": "Toggling filters in sidebar sends updated query string to 'historicalRecordsAPI' to refine dataset."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "Tailwind CSS",
+            "themeVariables": ":root { --bg-color: #FFE4E1; --ui-color: #B22222; }"
+        },
+        "function": "Ensure consistent styling and adaptability across devices with responsive layouts and theme consistency.",
+        "static_description": "Entire frontend adopts a responsive design approach ensuring usability on mobile, tablet, and desktop screens. Global styles enforce misty rose background and firebrick accents throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts fluidly between breakpoints maintaining readability and touch-target sizes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "detectionDataEndpoint": "GET /api/detections",
+            "animalInfoEndpoint": "GET /api/animals/{id}",
+            "userSettingsEndpoint": "GET /api/users/settings"
+        },
+        "function": "Expose programmatic access to detection data, animal knowledge base, and user-specific preferences via RESTful API.",
+        "static_description": "Defined set of HTTP methods and paths allowing frontend components and third-party integrations to retrieve or modify core domain entities.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Call: GET /api/detections",
+                "description": "Fetches paginated list of recent detection records with optional filtering support."
+            },
+            {
+                "interaction": "API Call: GET /api/animals/{id}",
+                "description": "Retrieves complete profile of a particular animal species including scientific classification and media assets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "devScriptSetup": "\"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\" }",
+            "projectStructureDiagram": "/docs/project-structure.md"
+        },
+        "function": "Configure unified development workflow enabling simultaneous execution of frontend and backend services.",
+        "static_description": "Root-level package.json includes script definitions to orchestrate installation and runtime of both client and server applications concurrently using concurrently utility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run 'npm run install:all'",
+                "description": "Installs dependencies for both frontend and backend projects in parallel."
+            },
+            {
+                "interaction": "Run 'npm run dev'",
+                "description": "Starts both development servers simultaneously allowing hot-reloading and synchronized debugging."
+            }
+        ]
+    }
+]

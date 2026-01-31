@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A form-filling function for users to input personal information and credit status",
+        "user_persona": "A potential customer named Sarah who wants to improve her credit score.",
+        "user_goal": "Sarah wants to submit her personal and credit information through the form to get help from the credit repair company.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Form",
+                "description": "Sarah visits the website and scrolls down to find the lead generation form.",
+                "action": "Navigate to the form section.",
+                "expected_outcome": "A multi-field form with labels for First Name, Last Name, Email Address, Phone Number, Credit Score Dropdown, Credit Status Radio Buttons, Message Text Area, and a Submit Button is visible."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out the Form",
+                "description": "Sarah fills in her first name, last name, email address, and phone number. She selects her credit score and credit status, then adds a message.",
+                "action": "Enter data into all required fields.",
+                "expected_outcome": "Each field accepts input correctly, and the Submit button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Form",
+                "description": "After reviewing her entries, Sarah clicks the Submit button.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "The form data is sent via POST request to the backend API, and a confirmation message appears confirming successful submission."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A credit score inquiry function",
+        "user_persona": "A visitor named Mike curious about his estimated credit score.",
+        "user_goal": "Mike wants to quickly estimate his credit score by entering his email address.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding the Inquiry Section",
+                "description": "Mike scrolls to the 'Estimate Your Credit Score' section on the homepage.",
+                "action": "Locate the email input field and 'Check Now' button.",
+                "expected_outcome": "An input field labeled 'Email Address' and a Rosy Brown 'Check Now' button are visible."
+            },
+            {
+                "step": 2,
+                "title": "Entering His Email",
+                "description": "Mike enters his email address into the input field.",
+                "action": "Type a valid email address into the field.",
+                "expected_outcome": "The email format is accepted, and the 'Check Now' button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Requesting Credit Estimate",
+                "description": "Mike clicks the 'Check Now' button to get his credit score estimate.",
+                "action": "Click the 'Check Now' button.",
+                "expected_outcome": "A loading spinner appears, and after processing, the estimated credit score range is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An introduction section for credit repair services",
+        "user_persona": "A new visitor named Lisa interested in learning about credit repair options.",
+        "user_goal": "Lisa wants to understand what credit repair services are offered by the company.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Discovering the Introduction Section",
+                "description": "Lisa lands on the homepage and notices a section titled 'Our Credit Repair Services'.",
+                "action": "Scroll to the services introduction section.",
+                "expected_outcome": "A full-width section with left-aligned descriptive text and bullet points listing key offerings is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Reading About Services",
+                "description": "Lisa reads through the detailed explanation of credit repair benefits and supporting features.",
+                "action": "Read the content thoroughly.",
+                "expected_outcome": "Clear understanding of identity protection, credit monitoring, and legal dispute filing services."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A lead submission feature to collect user information",
+        "user_persona": "Returning user John who has already filled out the form once.",
+        "user_goal": "John wants to ensure his information was properly saved in the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting the Lead Form Again",
+                "description": "John re-submits the same information through the lead form to verify storage.",
+                "action": "Complete and submit the lead form again.",
+                "expected_outcome": "System confirms successful submission and indicates that data was saved without duplication errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A browsing interface for users to explore the website",
+        "user_persona": "Casual browser Emma exploring the site for useful resources.",
+        "user_goal": "Emma wants to navigate smoothly across different sections of the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "Emma sees the fixed navigation bar at the top and decides to visit the Testimonials page.",
+                "action": "Click on the 'Testimonials' link in the navigation menu.",
+                "expected_outcome": "The page scrolls smoothly to the testimonials section without a full reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A responsive website layout with Old Lace background color",
+        "user_persona": "Mobile user David accessing the site on his smartphone.",
+        "user_goal": "David wants a seamless experience regardless of device size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Site on Mobile Device",
+                "description": "David opens the website on his mobile phone and browses around.",
+                "action": "Load the site on a mobile screen resolution.",
+                "expected_outcome": "Site adjusts layout appropriately with consistent Old Lace background and readable content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI components styled with Rosy Brown color scheme",
+        "user_persona": "Design-conscious user Olivia evaluating the site aesthetics.",
+        "user_goal": "Olivia wants to confirm that the UI uses the correct brand colors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting UI Elements",
+                "description": "Olivia inspects buttons, borders, and active states throughout the site.",
+                "action": "Observe the styling of interactive elements.",
+                "expected_outcome": "All buttons, borders, and active states consistently use Rosy Brown (#BC8F8F) as specified."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A header navigation menu for easy site access",
+        "user_persona": "First-time visitor Marcus looking for specific information.",
+        "user_goal": "Marcus wants quick access to different parts of the site using the navigation menu.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Through Menu Items",
+                "description": "Marcus clicks on each menu item to see where they lead.",
+                "action": "Click on Home, Services, Testimonials, and Contact Us links.",
+                "expected_outcome": "Each click scrolls smoothly to the corresponding section or loads the route dynamically without refreshing the whole page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A footer with contact information and legal links",
+        "user_persona": "Privacy-conscious user Nina wanting to review legal terms.",
+        "user_goal": "Nina seeks to locate and read the Privacy Policy easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Footer Links",
+                "description": "Nina scrolls to the bottom of the page to find the footer.",
+                "action": "Scroll to the footer area.",
+                "expected_outcome": "Footer is visible with contact information and hyperlinked legal pages like Privacy Policy and Terms of Service."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Legal Page",
+                "description": "Nina clicks on the Privacy Policy link to read the details.",
+                "action": "Click the 'Privacy Policy' link.",
+                "expected_outcome": "She is navigated to a dedicated static page displaying the privacy policy content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A dedicated service description page for credit repair offerings",
+        "user_persona": "Interested prospect Paul researching service packages.",
+        "user_goal": "Paul wants to compare service tiers and decide which package suits him best.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Services Page",
+                "description": "Paul clicks on the 'Services' link from the navigation menu.",
+                "action": "Click the 'Services' link.",
+                "expected_outcome": "Paul is taken to a standalone page showing Bronze, Silver, and Gold plan features in tiered cards."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Plan Details",
+                "description": "Paul examines each plan's features, timeline expectations, and associated costs.",
+                "action": "Read through each service tier carefully.",
+                "expected_outcome": "Clear presentation of differences between plans helps Paul make an informed decision."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A testimonials or success stories section",
+        "user_persona": "Skeptical visitor Rachel needing reassurance before proceeding.",
+        "user_goal": "Rachel wants to see real-life examples of improved credit scores.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Customer Stories",
+                "description": "Rachel scrolls to the testimonials carousel and observes customer photos and quotes.",
+                "action": "Look at the testimonials section.",
+                "expected_outcome": "A scrollable panel shows customer avatars, brief quotes, and numerical improvements in credit scores."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Carousel",
+                "description": "Rachel clicks the navigation arrow to view more testimonials.",
+                "action": "Click the next arrow in the carousel.",
+                "expected_outcome": "The carousel transitions smoothly to display another testimonial slide."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A contact page with additional inquiry options",
+        "user_persona": "Business user Tom wanting to discuss partnership opportunities.",
+        "user_goal": "Tom aims to reach out specifically regarding business collaboration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Contact Page",
+                "description": "Tom navigates to the 'Get In Touch' page to find specialized contact options.",
+                "action": "Go to the Contact Us page.",
+                "expected_outcome": "Extended contact form with Subject dropdown and file upload option is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Detailed Inquiry",
+                "description": "Tom selects 'Partnership Request' from the subject dropdown, attaches a document, and submits the form.",
+                "action": "Fill in form fields, select subject, attach file, and click Submit.",
+                "expected_outcome": "Form is submitted successfully with multipart/form-data encoding, and confirmation is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A privacy policy and terms of service page",
+        "user_persona": "Legal-minded user Uma verifying compliance.",
+        "user_goal": "Uma wants to confirm that the company follows proper data handling practices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Legal Pages",
+                "description": "Uma clicks on the 'Terms of Service' link in the footer.",
+                "action": "Click the 'Terms of Service' link.",
+                "expected_outcome": "Plain HTML page with clearly marked headings and subsections detailing contractual obligations is loaded."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API to handle form submissions and data storage",
+        "user_persona": "Technical QA tester Kevin validating backend integration.",
+        "user_goal": "Kevin wants to ensure the form data reaches the backend securely and gets stored.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Backend Response",
+                "description": "Kevin fills out the form and watches network activity during submission.",
+                "action": "Submit the lead form while monitoring network tab.",
+                "expected_outcome": "POST request to /api/leads is observed with correct payload and receives a success response."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A PostgreSQL database connection using specified environment variables",
+        "user_persona": "DevOps engineer Linda ensuring infrastructure setup.",
+        "user_goal": "Linda wants to verify the backend connects correctly to the configured PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Database Connection",
+                "description": "Linda reviews the backend configuration and checks if it uses the correct environment variables.",
+                "action": "Verify DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME values in backend config.",
+                "expected_outcome": "Backend successfully establishes a connection to the PostgreSQL instance using the exact environment variable settings."
+            }
+        ]
+    }
+]

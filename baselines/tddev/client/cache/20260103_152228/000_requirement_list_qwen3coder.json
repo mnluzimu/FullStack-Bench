@@ -1,0 +1,147 @@
+[
+    {
+        "resource_dependency": {
+            "personalInfoDataSchema": "Table 'personal_info' with fields: id (primary key), name (string), email (string), phone (string), address (text), professional_summary (text).",
+            "personalInfoAPIEndpoint": "/api/personal-info"
+        },
+        "function": "Display personal information section with name, contact details, and professional summary.",
+        "static_description": "A section titled 'Personal Information' with light pink background (#FFB6C1) and medium violet red (#C71585) header text. Displays name prominently, followed by email, phone number, address, and a paragraph for professional summary. All content is fetched dynamically via API endpoint /api/personal-info.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "workExperienceDataSchema": "Table 'work_experience' with fields: id (primary key), job_title (string), company (string), start_date (date), end_date (date), responsibilities (text array).",
+            "workExperienceAPIEndpoint": "/api/work-experience"
+        },
+        "function": "Show work experience section with job titles, companies, dates, and responsibilities.",
+        "static_description": "A section titled 'Work Experience' styled with light pink background and medium violet red headers. Lists each job entry with job title, company name, date range, and bullet points for responsibilities. Data fetched from /api/work-experience endpoint.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "skillsDataSchema": "Table 'skills' with fields: id (primary key), category (enum: 'technical', 'soft'), skill_name (string).",
+            "skillsAPIEndpoint": "/api/skills"
+        },
+        "function": "Present skills section with categorized technical and soft skills.",
+        "static_description": "A section titled 'Skills' featuring two subsections: 'Technical Skills' and 'Soft Skills'. Each lists items in a clean grid or list format with light pink background and medium violet red headings. Content sourced from /api/skills.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "educationDataSchema": "Table 'education' with fields: id (primary key), degree (string), institution (string), start_date (date), end_date (date).",
+            "educationAPIEndpoint": "/api/education"
+        },
+        "function": "Include education background section with degrees, institutions, and dates.",
+        "static_description": "A section titled 'Education Background' showing academic qualifications in chronological order. Each entry includes degree name, institution, and date range. Styled with light pink background and medium violet red headers. Fetched from /api/education.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "projectsDataSchema": "Table 'projects' with fields: id (primary key), title (string), description (text), technologies (text array), project_link (url string).",
+            "projectsAPIEndpoint": "/api/projects"
+        },
+        "function": "Feature projects section with project titles, descriptions, technologies, and links.",
+        "static_description": "A section titled 'Projects' displaying individual cards for each project. Cards show project title, brief description, used technologies, and a clickable link. Uses light pink background and medium violet red accents. Data retrieved from /api/projects.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a project card navigates to the external project URL specified in the data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuCSS": ".navbar { background-color: #C71585; } .nav-link:hover { color: #FFB6C1; }"
+        },
+        "function": "Implement responsive navigation menu to access different CV sections.",
+        "static_description": "Fixed-position top navigation bar with medium violet red background (#C71585) and white text. Contains links to Personal Info, Work Experience, Skills, Education, and Projects sections. Adapts layout for mobile devices using CSS media queries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any navigation link scrolls smoothly to the corresponding section on the page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Navigation highlights active section as user scrolls through the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorCSS": "body { background-color: #FFB6C1; }"
+        },
+        "function": "Apply light pink background color throughout the website.",
+        "static_description": "Entire webpage uses a consistent light pink background (#FFB6C1) applied globally via body CSS rule.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiComponentColorCSS": "button, h1, h2, a { color: #C71585; border-color: #C71585; }"
+        },
+        "function": "Use medium violet red color for UI components like buttons, headers, and links.",
+        "static_description": "All buttons, headers (h1, h2), and hyperlinks use medium violet red (#C71585) styling defined in global CSS rules.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchAPIMiddleware": "Frontend fetch calls to /api/* endpoints to retrieve dynamic content."
+        },
+        "function": "Ensure all content is fetched dynamically from backend APIs.",
+        "static_description": "Each CV section makes asynchronous HTTP GET requests to respective API endpoints during initial load. No hardcoded data present in frontend code.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Set up backend server connecting to PostgreSQL database using provided environment variables.",
+        "static_description": "Backend application configured to connect to PostgreSQL instance using exact environment variable credentials. Connection established at server startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "restEndpointsList": [
+                "/api/personal-info",
+                "/api/work-experience",
+                "/api/skills",
+                "/api/education",
+                "/api/projects"
+            ]
+        },
+        "function": "Create RESTful API endpoints for personal info, work experience, skills, education, and projects.",
+        "static_description": "Server exposes five GET endpoints matching specified paths. Each returns JSON data from corresponding database table.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseTablesSchema": "CREATE TABLE personal_info(...); CREATE TABLE work_experience(...); CREATE TABLE skills(...); CREATE TABLE education(...); CREATE TABLE projects(...);"
+        },
+        "function": "Design database schema with tables for personal info, work experience, skills, education, and projects.",
+        "static_description": "PostgreSQL database initialized with five tables matching defined schemas. Tables named personal_info, work_experience, skills, education, and projects with appropriate columns and constraints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"cd frontend && npm install && cd ../backend && npm install\""
+        },
+        "function": "Configure package.json with 'install:all' script to install frontend and backend dependencies.",
+        "static_description": "Root package.json contains an 'install:all' script that sequentially runs npm install in both frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Configure package.json with 'dev' script to start frontend and backend concurrently.",
+        "static_description": "Root package.json defines a 'dev' script utilizing concurrently package to launch frontend and backend development servers simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "typographyStylesheet": "body { font-family: 'Arial', sans-serif; line-height: 1.6; } h1, h2 { margin-bottom: 0.5rem; } p { margin-bottom: 1rem; }"
+        },
+        "function": "Implement consistent typography and spacing for readable content presentation.",
+        "static_description": "Global CSS applies consistent font family (Arial), line height (1.6), and standardized margins for headings and paragraphs across all sections.",
+        "interaction_and_states": []
+    }
+]

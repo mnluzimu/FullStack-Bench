@@ -1,0 +1,133 @@
+[
+    {
+        "resource_dependency": {
+            "lobbyPageURL": "/lobby",
+            "gameRoomDataSchema": "Database tables required: users (user_id, username, email, password_hash, created_at), game_rooms (room_id, room_name, max_players, current_players, status, created_by, created_at), game_history (history_id, room_id, participants, winner, winning_hand, pot_amount, finished_at), chat_messages (message_id, room_id, user_id, message_text, timestamp)",
+            "authAPI": "Authentication endpoints: POST /api/auth/register, POST /api/auth/login, GET /api/auth/me, PUT /api/users/profile",
+            "lobbyWebSocket": "WebSocket connection for real-time updates of room availability and player counts"
+        },
+        "function": "Display available game rooms, current game status, and player information in a lobby interface",
+        "static_description": "Lobby page with azure background and midnight blue UI elements. Header with user profile dropdown. Main content area showing a grid/list of available game rooms with room name, player count, status, and creator. Each room card displays room information including maximum players, current player count, and game status. Sidebar showing online player list with usernames and status indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a room card navigates to the game table page for that room. Clicking 'Create Room' opens the room creation modal. Clicking user profile dropdown shows account management options."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over room cards shows additional details like creation time and player names. Hovering over player names in sidebar shows extended user information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "tablePageURL": "/game/:roomId",
+            "pokerCardImages": "/assets/cards/*.png",
+            "gameStateAPI": "WebSocket connection for real-time game state updates including player actions, card dealing, and betting rounds",
+            "gameActionAPI": "POST endpoints for game actions: /api/game/:roomId/fold, /api/game/:roomId/call, /api/game/:roomId/bet, /api/game/:roomId/check, /api/game/:roomId/all-in",
+            "handEvaluationLogic": "Server-side Texas Hold'em hand evaluation algorithm"
+        },
+        "function": "Provide interactive Texas Hold'em table interface with player hands, community cards, betting controls, and game status",
+        "static_description": "Game table page with circular poker table in center having azure background with midnight blue felt area. Player positions around table showing avatars, usernames, chip stacks, and action indicators. Community cards area in center showing five card positions. Player's own hand displayed at bottom with two cards face up. Betting controls (Fold, Check, Call, Bet/Raise) as midnight blue buttons. Pot amount display, current bet amount, and player turn indicator. Chat panel on side showing game messages and player communication.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking action buttons (Fold, Check, Call, Bet/Raise) sends corresponding action to server via API. Clicking bet/raise button opens amount selection slider. Clicking chat send button submits message to room chat."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over player areas shows detailed chip counts and action history. Hovering over cards shows enlarged view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chatAPI": "WebSocket endpoint for real-time messaging: /ws/chat/:roomId, REST endpoints: GET /api/chat/:roomId/history",
+            "messageDataSchema": "Messages stored with fields: message_id (UUID), room_id (foreign key), user_id (foreign key), username (string), message_text (text), timestamp (datetime), message_type (enum: user_message, system_notification)"
+        },
+        "function": "Enable real-time text communication between players within game rooms",
+        "static_description": "Chat panel positioned on the side of the game table interface with azure background. Message display area with scrollable history showing sender usernames, message text, and timestamps in midnight blue styled containers. Input field at bottom with send button. System notifications for game events (player joined, folded, etc.) displayed differently from user messages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking send button or pressing Enter in input field sends message to WebSocket server which broadcasts to all room participants."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in message input field sends the typed message to the chat server."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "accountManagementAPI": "Endpoints: GET /api/users/profile, PUT /api/users/profile, GET /api/users/history, DELETE /api/users/account",
+            "userDataSchema": "User account fields: user_id (UUID), username (string, unique), email (string, unique), password_hash (string), full_name (string), avatar_url (string), chips_balance (integer), created_at (datetime), last_login (datetime)",
+            "gameHistoryDataSchema": "History records with: history_id (UUID), user_id (foreign key), room_id (foreign key), game_start_time (datetime), game_end_time (datetime), outcome (string), chips_won_lost (integer), hand_summary (JSON)"
+        },
+        "function": "Allow users to register, login, manage profile information, and view game history",
+        "static_description": "Account management page with azure background and midnight blue form elements. User profile section showing avatar, username, email, full name, registration date, and chips balance. Editable form fields for profile information. Game history table showing past games with date, outcome, chips won/lost, and opponents. Account deletion button at bottom.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Profile' enables form editing mode. Clicking 'Save Changes' submits updated profile via API. Clicking 'Delete Account' opens confirmation dialog. Clicking game history rows may show detailed hand information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "roomCreationAPI": "POST /api/rooms/create endpoint with parameters: room_name, max_players, blinds_settings, password (optional)",
+            "roomDataSchema": "Game room fields: room_id (UUID), room_name (string), max_players (integer), current_players (integer), blinds_small (integer), blinds_big (integer), password_hash (string, optional), status (enum: waiting, in_progress, finished), created_by (foreign key to users), created_at (datetime), started_at (datetime, nullable)"
+        },
+        "function": "Enable authenticated users to create new game rooms with customizable settings",
+        "static_description": "Room creation modal/form overlay with azure background and midnight blue form elements. Input fields for room name, maximum players (2-9), small blind amount, big blind amount, and optional password protection. Preview of room settings before creation. Create and cancel buttons in midnight blue styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Create Room' validates inputs and sends room configuration to server. Success redirects to newly created room. Clicking 'Cancel' closes modal without creating room."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "roomJoinAPI": "POST /api/rooms/:roomId/join endpoint with optional password parameter",
+            "roomListingAPI": "GET /api/rooms/available endpoint returning list of joinable rooms"
+        },
+        "function": "Allow users to browse and join existing game rooms",
+        "static_description": "Integration within lobby interface showing list of available rooms with join buttons. Each room card displays room name, player count, blinds settings, and lock icon for password-protected rooms. Join button enabled for rooms with available seats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Join' button on a room card either joins immediately or prompts for password if required. Successful join redirects to game table page. Clicking locked rooms shows password entry dialog."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameLogicAPI": "WebSocket-based real-time game engine with endpoints for dealing cards, managing betting rounds (pre-flop, flop, turn, river), evaluating hands, and determining winners",
+            "bettingRoundLogic": "Server-side implementation of Texas Hold'em betting rounds with proper turn management, raise limits, and side pots",
+            "handEvaluator": "Algorithm for comparing poker hands according to standard Texas Hold'em rules"
+        },
+        "function": "Implement complete Texas Hold'em game mechanics including dealing, betting rounds, hand evaluation, and winner determination",
+        "static_description": "Game state management handled server-side with real-time updates sent to clients. Betting round indicators showing current phase (Pre-Flop, Flop, Turn, River). Player action timers and timeout handling. Automatic dealing of community cards at appropriate times. Winner announcement with hand rankings and chip distribution.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Player actions (fold, check, call, bet, raise, all-in) are sent to server which validates legality and broadcasts updated game state. Timeouts result in automatic folding or checking."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameHistoryAPI": "GET /api/history/user/:userId and GET /api/history/room/:roomId endpoints",
+            "historyDataSchema": "Detailed game records including: history_id, room_details, player_participants, hand_dealt_to_user, community_cards, betting_sequence, final_pots, winners, hand_rankings, replay_data"
+        },
+        "function": "Store and display records of completed games for review and analysis",
+        "static_description": "Game history page with filterable list of past games showing date/time, room name, player opponents, outcome, chips won/lost. Detailed view showing hand replay with card sequences, betting actions, and final showdown. Statistics summary showing win/loss record and average performance metrics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking individual history entries shows detailed game replay. Filtering options allow sorting by date, outcome, or room. Export functionality may be available for downloading hand histories."
+            }
+        ]
+    }
+]

@@ -1,0 +1,359 @@
+[
+    {
+        "requirement_tested": "Customer management module with CRUD operations for customer data",
+        "user_persona": "An insurance agent named Sarah who manages client information.",
+        "user_goal": "Sarah wants to add a new customer to the system quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Customers Section",
+                "description": "Sarah logs into the system and clicks on the 'Customers' tab to manage customer data.",
+                "action": "Click on the 'Customers' navigation tab.",
+                "expected_outcome": "The customer management page loads with a table of existing customers and an 'Add Customer' button visible."
+            },
+            {
+                "step": 2,
+                "title": "Opening Add Customer Form",
+                "description": "Seeing no record for her new client, Sarah clicks the 'Add Customer' button to open the form.",
+                "action": "Click the 'Add Customer' button.",
+                "expected_outcome": "A modal form appears with fields for entering the customer's personal details."
+            },
+            {
+                "step": 3,
+                "title": "Submitting New Customer Details",
+                "description": "Sarah fills out all required fields accurately and submits the form.",
+                "action": "Fill in customer details and click 'Submit'.",
+                "expected_outcome": "The form closes, and the new customer appears at the top of the customer list without needing a page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Policy management module with CRUD operations for insurance policies",
+        "user_persona": "An underwriter named James reviewing policy applications.",
+        "user_goal": "James needs to create a new insurance policy for an existing customer.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Policies Module",
+                "description": "James navigates to the 'Policies' section from the main dashboard.",
+                "action": "Click on the 'Policies' tab in the main navigation.",
+                "expected_outcome": "The policies view loads showing a list of current policies and options to filter or add new ones."
+            },
+            {
+                "step": 2,
+                "title": "Initiating New Policy Creation",
+                "description": "James finds the correct customer and clicks 'New Policy' to begin setting up coverage.",
+                "action": "Click the 'New Policy' button.",
+                "expected_outcome": "A multi-step form opens prompting James to enter policy details linked to the selected customer."
+            },
+            {
+                "step": 3,
+                "title": "Completing Policy Setup",
+                "description": "After filling in the necessary information, James saves the new policy.",
+                "action": "Complete form steps and click 'Save Policy'.",
+                "expected_outcome": "The newly created policy is added to the list and reflects the correct status and associated customer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Claims management module with CRUD operations for insurance claims",
+        "user_persona": "A claims adjuster named Lisa handling filed incidents.",
+        "user_goal": "Lisa wants to review and update the status of a submitted claim.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Claims Dashboard",
+                "description": "Lisa accesses the claims management area to check pending cases.",
+                "action": "Navigate to the 'Claims' section.",
+                "expected_outcome": "A dashboard displaying claims in grid or timeline format with sorting and filtering tools appears."
+            },
+            {
+                "step": 2,
+                "title": "Locating Specific Claim",
+                "description": "Lisa identifies the relevant claim by its ID and clicks on it to see more details.",
+                "action": "Click on a specific claim entry.",
+                "expected_outcome": "The claim expands to show detailed information including incident description and claimed amount."
+            },
+            {
+                "step": 3,
+                "title": "Updating Claim Status",
+                "description": "After verifying documents, Lisa updates the claim status to 'Approved'.",
+                "action": "Select 'Approved' from the status dropdown and save changes.",
+                "expected_outcome": "The claim’s status updates immediately in the system and reflects the change visually."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data browsing interface for viewing customer, policy, and claims information",
+        "user_persona": "A manager named Tom conducting periodic audits.",
+        "user_goal": "Tom wants to browse through customer, policy, and claims data efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Switching Between Data Views",
+                "description": "Tom starts by examining customer data and then switches to view policies.",
+                "action": "Click the 'Policies' tab after viewing customers.",
+                "expected_outcome": "The policies view loads instantly, replacing the previous customer data display."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Data Columns",
+                "description": "To find recent entries, Tom sorts the claims table by filing date.",
+                "action": "Click on the 'Filing Date' column header.",
+                "expected_outcome": "Claims are reordered chronologically with visual feedback confirming the sort direction."
+            },
+            {
+                "step": 3,
+                "title": "Performing Batch Actions",
+                "description": "Tom selects multiple claims to export for further analysis.",
+                "action": "Use drag-select to choose several rows and click 'Export Selected'.",
+                "expected_outcome": "Selected claims are bundled and downloaded as a CSV file without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for secure access",
+        "user_persona": "A new employee named Alex joining the team.",
+        "user_goal": "Alex needs to securely log into the insurance management platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Screen",
+                "description": "Alex opens the application and sees the branded login interface.",
+                "action": "Visit the application URL.",
+                "expected_outcome": "A centered login form with company branding and fields for username/password is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "Alex enters his assigned credentials and presses Enter to submit.",
+                "action": "Enter username/password and press Enter key.",
+                "expected_outcome": "Authentication request is processed and Alex is redirected to the dashboard upon successful verification."
+            },
+            {
+                "step": 3,
+                "title": "Logging Out Securely",
+                "description": "At the end of the day, Alex logs out to ensure security.",
+                "action": "Click the profile menu and select 'Logout'.",
+                "expected_outcome": "Session ends cleanly, and Alex is returned to the login screen with no residual access."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data analysis dashboard with visualization capabilities",
+        "user_persona": "A business analyst named Priya tracking performance metrics.",
+        "user_goal": "Priya wants to monitor key performance indicators through the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Analytics Dashboard",
+                "description": "Priya navigates to the analytics section to get an overview of business health.",
+                "action": "Click on the 'Analytics' link in the sidebar.",
+                "expected_outcome": "Dashboard panels load showing KPIs like active policies, pending claims, and monthly revenue trends."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Metrics",
+                "description": "Curious about a particular metric, Priya hovers over it to understand how it was calculated.",
+                "action": "Hover over a metric value widget.",
+                "expected_outcome": "Tooltip appears explaining calculation method and time frame used for the displayed figure."
+            },
+            {
+                "step": 3,
+                "title": "Refreshing Data Dynamically",
+                "description": "To get the latest figures, Priya manually refreshes the dashboard.",
+                "action": "Click the 'Refresh' button on the dashboard toolbar.",
+                "expected_outcome": "All dashboard data reloads dynamically without requiring a full page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reporting engine for generating various insurance business reports",
+        "user_persona": "A compliance officer named Marcus preparing regulatory submissions.",
+        "user_goal": "Marcus needs to generate a compliance report for audit purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Report Type",
+                "description": "Marcus goes to the reporting section and selects the compliance report option.",
+                "action": "Navigate to Reports section and select 'Compliance' from category dropdown.",
+                "expected_outcome": "Relevant parameter fields for compliance reports populate automatically below the selection."
+            },
+            {
+                "step": 2,
+                "title": "Setting Parameters and Previewing",
+                "description": "He sets the required date range and previews the report output.",
+                "action": "Set date range and click 'Preview'.",
+                "expected_outcome": "Sample report output renders in the preview pane showing formatted data based on selected parameters."
+            },
+            {
+                "step": 3,
+                "title": "Generating Final Report",
+                "description": "Satisfied with the preview, Marcus generates the final document for download.",
+                "action": "Click 'Generate Report'.",
+                "expected_outcome": "System processes the request asynchronously and provides a download link once ready."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive charts and graphs for data representation",
+        "user_persona": "A sales director named Elena analyzing market trends.",
+        "user_goal": "Elena wants to visualize policy sales trends using interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Chart Visualization",
+                "description": "Elena visits the analytics dashboard to examine sales performance charts.",
+                "action": "Open the Analytics Dashboard.",
+                "expected_outcome": "Charts depicting policy trends appear within modular panels, styled consistently with dark cyan theme."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Data Series Visibility",
+                "description": "She hides certain data series to focus on specific product lines.",
+                "action": "Click on legend item corresponding to a data series.",
+                "expected_outcome": "Selected data series disappears from the chart temporarily while others remain visible."
+            },
+            {
+                "step": 3,
+                "title": "Exploring Detailed Segment Information",
+                "description": "Elena hovers over a segment of the pie chart to get detailed breakdown.",
+                "action": "Hover over a slice of the pie chart.",
+                "expected_outcome": "Contextual label showing percentage and value for that segment overlays directly onto the chart."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all data from backend APIs",
+        "user_persona": "A developer named Rajesh testing frontend-backend integration.",
+        "user_goal": "Rajesh wants to verify that frontend correctly fetches live data from backend APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Initial Data Load",
+                "description": "Upon navigating to the customer list, Rajesh observes data loading behavior.",
+                "action": "Load the Customers module in browser.",
+                "expected_outcome": "Placeholder states appear briefly before actual customer data is fetched and rendered dynamically."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Module Data",
+                "description": "To test real-time sync, Rajesh manually triggers a data refresh.",
+                "action": "Click the refresh icon next to the module title.",
+                "expected_outcome": "Current view re-fetches data from backend endpoint and updates the display without full page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer named Omar responsible for deployment stability.",
+        "user_goal": "Omar ensures the backend service connects properly to PostgreSQL using environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Omar deploys the backend and starts the server process.",
+                "action": "Run `npm run dev` in backend directory.",
+                "expected_outcome": "Server initializes successfully and begins listening on the configured port with no connection errors."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Connectivity",
+                "description": "Omar makes an API call to confirm database connectivity.",
+                "action": "Send GET request to `/api/customers` endpoint.",
+                "expected_outcome": "Returns structured JSON response containing customer records retrieved from PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design for customers, policies, and claims entities",
+        "user_persona": "A database administrator named Chen overseeing data integrity.",
+        "user_goal": "Chen wants to validate that the database schema matches application requirements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Structures",
+                "description": "Chen examines the PostgreSQL database to verify table schemas align with specs.",
+                "action": "Query database metadata for tables: customers, policies, claims.",
+                "expected_outcome": "Each table exists with correct columns, data types, primary keys, and foreign key relationships defined."
+            },
+            {
+                "step": 2,
+                "title": "Running Migration Scripts",
+                "description": "Chen executes migration scripts to apply latest schema definitions.",
+                "action": "Execute database migration scripts.",
+                "expected_outcome": "Schema updates are applied atomically ensuring consistency between app expectations and database structure."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search and filtering functionality across all data modules",
+        "user_persona": "A support representative named Julia assisting clients remotely.",
+        "user_goal": "Julia wants to quickly locate a customer's policy using search and filters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Global Search Bar",
+                "description": "Julia uses the universal search bar to look up a customer by name.",
+                "action": "Type customer name into global search box.",
+                "expected_outcome": "Debounced API calls return filtered results matching the keyword as she types."
+            },
+            {
+                "step": 2,
+                "title": "Applying Advanced Filters",
+                "description": "When too many results appear, Julia refines the search using status filters.",
+                "action": "Select 'Active' from policy status dropdown filter.",
+                "expected_outcome": "Displayed dataset narrows down instantly to only show active policies belonging to the searched customer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web interface with whitesmoke background and dark cyan themed elements",
+        "user_persona": "A field agent named Miguel accessing the system on a tablet.",
+        "user_goal": "Miguel wants to use the system smoothly on his mobile device with consistent styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "Miguel resizes his browser window to simulate mobile screen size.",
+                "action": "Manually resize browser window to small dimensions.",
+                "expected_outcome": "Layout adapts responsively with collapsible sidebars and stacked content maintaining readability."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Theme Consistency",
+                "description": "Miguel checks that color scheme remains consistent across different views.",
+                "action": "Navigate between modules observing UI elements.",
+                "expected_outcome": "Background stays whitesmoke throughout, with interactive elements consistently rendered in dark cyan."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development setup with npm run dev starting both frontend and backend",
+        "user_persona": "A junior developer named Noah setting up his local environment.",
+        "user_goal": "Noah wants to start both frontend and backend services simultaneously for development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Noah runs the concurrent development script to launch both parts of the application.",
+                "action": "Execute `npm run dev` from root project directory.",
+                "expected_outcome": "Two separate processes start—one for frontend asset serving and one for backend API hosting—monitored together."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with install:all script for simultaneous FE and BE installation",
+        "user_persona": "A tech lead named Aisha onboarding a new team member.",
+        "user_goal": "Aisha instructs the new hire to set up dependencies using a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Project Dependencies",
+                "description": "Following instructions, the new developer runs the unified install script.",
+                "action": "Run `npm run install:all` from the project root.",
+                "expected_outcome": "Packages for root, frontend, and backend are installed sequentially without manual intervention."
+            }
+        ]
+    }
+]

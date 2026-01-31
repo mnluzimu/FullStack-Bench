@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "Create a one-page website for promoting Fundraiser Day",
+        "user_persona": "A potential donor browsing online to learn about community events.",
+        "user_goal": "To quickly understand what Fundraiser Day is about and how they can participate.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah discovers the Fundraiser Day website through a shared link and lands on the homepage. She immediately sees the title and description of the event.",
+                "action": "Load the webpage.",
+                "expected_outcome": "The page loads successfully with a centered heading 'Fundraiser Day', subheading 'Supporting Our Community Together', and descriptive paragraph explaining the event. Background color is cornsilk."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Sections",
+                "description": "Curious about the event, Sarah clicks on the 'Learn More' anchor link to smoothly scroll down to the introduction section.",
+                "action": "Click on the 'Learn More' anchor link.",
+                "expected_outcome": "Page scrolls smoothly to the #event-intro section without reloading or jumping."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement an automatically moving carousel to display offers",
+        "user_persona": "A visitor interested in special deals available for Fundraiser Day.",
+        "user_goal": "To view different promotional offers without manual effort initially.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Auto-Rotation",
+                "description": "While reading about the event, Mike notices a visually appealing carousel showcasing various offers. It automatically rotates every 5 seconds.",
+                "action": "View the carousel without interacting.",
+                "expected_outcome": "Carousel slides change automatically every 5 seconds, displaying images with overlay titles and descriptions."
+            },
+            {
+                "step": 2,
+                "title": "Pausing the Carousel",
+                "description": "Mike wants to read more about the current offer and hovers his mouse over the carousel to pause it.",
+                "action": "Hover over the carousel area.",
+                "expected_outcome": "Automatic rotation pauses while the mouse remains hovered over the carousel."
+            },
+            {
+                "step": 3,
+                "title": "Manual Navigation",
+                "description": "After reviewing, Mike uses the navigation arrows to move to the next slide manually.",
+                "action": "Click the right arrow button.",
+                "expected_outcome": "Carousel transitions to the next slide instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add a testimonials section for displaying fundraiser stories",
+        "user_persona": "A first-time visitor looking for reassurance from others’ experiences.",
+        "user_goal": "To read real stories from people who participated in previous fundraisers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Testimonials Section",
+                "description": "Emily scrolls down to the testimonials section after seeing the event details.",
+                "action": "Scroll to the testimonials section.",
+                "expected_outcome": "A three-column grid of testimonial cards appears, each showing a user photo, name, role, and quote fetched dynamically from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Reading Stories",
+                "description": "Emily reads several testimonials to gauge the impact of past events.",
+                "action": "Read content within testimonial cards.",
+                "expected_outcome": "All card contents render clearly with no broken images or missing text."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a company information section",
+        "user_persona": "A local business owner considering sponsorship or collaboration.",
+        "user_goal": "To find out more about the organizing body behind Fundraiser Day.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Company Info",
+                "description": "John reaches the bottom of the page and finds the company information section.",
+                "action": "Scroll to the company information section.",
+                "expected_outcome": "Section displays a two-column layout—left side shows organization history and right side contains clickable social media icons."
+            },
+            {
+                "step": 2,
+                "title": "Connecting Socially",
+                "description": "Interested in connecting further, John clicks on the Facebook icon.",
+                "action": "Click the Facebook social media icon.",
+                "expected_outcome": "Opens the official Fundraiser Day Facebook profile in a new browser tab."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set cornsilk as the main background color",
+        "user_persona": "A designer auditing visual consistency.",
+        "user_goal": "To verify that the specified background color is applied throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Overall Layout",
+                "description": "Lisa inspects the overall look and feel of the website upon loading.",
+                "action": "Open developer tools and inspect body styles.",
+                "expected_outcome": "Body element has a background-color style set to 'cornsilk'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use peru for control elements such as buttons and navigation",
+        "user_persona": "A UI/UX reviewer ensuring brand color usage.",
+        "user_goal": "To confirm that control components use the correct accent color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Control Elements",
+                "description": "Lisa examines interactive elements like buttons and navigation controls.",
+                "action": "Inspect styles of carousel arrows and CTA button.",
+                "expected_outcome": "Control elements including carousel arrows and CTA button have their primary color set to 'peru'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all sections are accessible via smooth scrolling or direct links",
+        "user_persona": "A user preferring quick navigation through anchor links.",
+        "user_goal": "To jump directly to relevant sections using in-page anchors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Anchor Link",
+                "description": "Alex wants to skip ahead to the testimonials and clicks the corresponding navigation link.",
+                "action": "Click on the 'Testimonials' anchor link in the header menu.",
+                "expected_outcome": "Page smoothly scrolls to the testimonials section without abrupt jumps."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Make the website fully responsive across desktop, tablet, and mobile devices",
+        "user_persona": "A mobile user accessing the website on-the-go.",
+        "user_goal": "To navigate the website seamlessly on a smartphone screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Mobile View",
+                "description": "Dana opens the website on her phone and checks the layout adaptation.",
+                "action": "Resize browser window to simulate mobile screen size.",
+                "expected_outcome": "Layout adjusts appropriately; carousel stacks vertically, testimonials become single column, and all content fits within viewport."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a clear call-to-action for users to learn more about the event",
+        "user_persona": "A casual visitor needing guidance on where to start.",
+        "user_goal": "To easily locate and engage with the most important action prompt.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Noticing Sticky CTA Bar",
+                "description": "While scrolling, Tom sees a sticky CTA bar at the bottom of the screen inviting him to learn more.",
+                "action": "Scroll down the page until reaching mid-content.",
+                "expected_outcome": "Sticky CTA bar becomes visible near the bottom with a prominent 'Learn More About Fundraiser Day' button."
+            },
+            {
+                "step": 2,
+                "title": "Engaging With CTA Button",
+                "description": "Tom clicks the CTA button to return to the top introductory section.",
+                "action": "Click the CTA button.",
+                "expected_outcome": "Page smoothly scrolls back to the #event-intro section."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to pause the carousel on hover or interaction",
+        "user_persona": "A detail-oriented visitor wanting full control over animations.",
+        "user_goal": "To stop the auto-sliding carousel temporarily for better readability.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Hovering Over Carousel",
+                "description": "Maria wants to carefully read the details of the second offer displayed in the carousel.",
+                "action": "Move cursor over the carousel container.",
+                "expected_outcome": "Auto-slide stops immediately while cursor remains inside the carousel bounds."
+            },
+            {
+                "step": 2,
+                "title": "Resuming Auto-Slide",
+                "description": "Once done reading, Maria moves her cursor away from the carousel.",
+                "action": "Move cursor outside the carousel area.",
+                "expected_outcome": "Carousel resumes automatic sliding after cursor leaves the area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support keyboard navigation for accessibility compliance",
+        "user_persona": "A keyboard-dependent user navigating the site without a mouse.",
+        "user_goal": "To interact with key features solely using keyboard inputs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing Carousel",
+                "description": "Jamie uses Tab key to reach the carousel component.",
+                "action": "Press Tab key multiple times until focus reaches carousel.",
+                "expected_outcome": "Focus outline becomes visible around the active carousel item."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Slides via Keyboard",
+                "description": "With focus on the carousel, Jamie presses the right arrow key to advance.",
+                "action": "Press Right Arrow key.",
+                "expected_outcome": "Carousel transitions to the next slide programmatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Optimize page load performance with compressed assets",
+        "user_persona": "A performance-conscious user with limited bandwidth.",
+        "user_goal": "To experience fast loading times despite rich media content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Website",
+                "description": "Raj visits the website for the first time using a slow internet connection.",
+                "action": "Navigate to the website URL.",
+                "expected_outcome": "Website loads completely within acceptable time frame (<3 seconds), with optimized image sizes and minimal HTTP requests."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include semantic HTML structure for improved SEO and screen reader support",
+        "user_persona": "A visually impaired user relying on screen readers.",
+        "user_goal": "To consume the website's content naturally using assistive technology.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Screen Reader Navigation",
+                "description": "Using a screen reader, Alex listens to the structured headings and landmarks of the page.",
+                "action": "Activate screen reader and traverse through the page sections.",
+                "expected_outcome": "Headings (H1-H3) are properly nested and announced logically. Landmarks identify major regions like header, main, and footer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add social media sharing capabilities for event promotion",
+        "user_persona": "An enthusiastic supporter wanting to spread awareness.",
+        "user_goal": "To share the event page effortlessly on social networks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Share Buttons",
+                "description": "Excited about the event, Priya looks for ways to share it with friends.",
+                "action": "Look for social sharing options on the left edge of the screen.",
+                "expected_outcome": "Floating sidebar with branded share buttons (Facebook, Twitter, LinkedIn) aligned vertically is visible."
+            },
+            {
+                "step": 2,
+                "title": "Sharing on Social Media",
+                "description": "Priya decides to share on Facebook and clicks the corresponding button.",
+                "action": "Click the Facebook share button.",
+                "expected_outcome": "Native Facebook sharing dialog opens pre-filled with the event page URL."
+            }
+        ]
+    }
+]

@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "Frontend application that fetches all data from backend APIs with no hard-coded or mock data",
+        "user_persona": "A basketball fan visiting the analytics site for the first time.",
+        "user_goal": "To view up-to-date basketball data without seeing placeholder content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Homepage",
+                "description": "Alex opens the sports analytics website and waits for the page to load completely.",
+                "action": "Load Page",
+                "expected_outcome": "The frontend makes API calls to /api/data and populates the page with real-time basketball statistics fetched from the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server that connects to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the backend service.",
+        "user_goal": "Ensure the backend connects to the correct PostgreSQL instance using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Server",
+                "description": "Jordan runs npm run dev to start the development servers including the backend API.",
+                "action": "Server Start",
+                "expected_outcome": "The backend successfully connects to the PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization components for displaying basketball statistics and trends",
+        "user_persona": "A fantasy basketball manager analyzing team performance.",
+        "user_goal": "To visualize key basketball metrics to inform lineup decisions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Team Performance Chart",
+                "description": "Taylor navigates to the team stats section and sees a line graph showing scoring trends over time.",
+                "action": "Hover over Chart Element",
+                "expected_outcome": "A tooltip appears displaying the exact points scored on a specific date when hovering over a data point."
+            },
+            {
+                "step": 2,
+                "title": "Customizing Chart Visibility",
+                "description": "Taylor wants to focus only on offensive stats and decides to hide defensive metrics temporarily.",
+                "action": "Click on Chart Legend Item",
+                "expected_outcome": "The selected dataset disappears from the chart, allowing Taylor to analyze offensive trends clearly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Match prediction functionality based on historical data and analytics",
+        "user_persona": "A casual viewer interested in upcoming game outcomes.",
+        "user_goal": "To get an idea of likely winners before placing friendly wagers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Upcoming Matches Predictions",
+                "description": "Casey visits the predictions tab where upcoming matchups are listed with AI-generated forecasts.",
+                "action": "View Match Prediction Details",
+                "expected_outcome": "Clicking on a match expands to reveal detailed reasoning behind the prediction, such as recent form and injury reports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Betting recommendation system derived from statistical analysis",
+        "user_persona": "An experienced bettor looking for high-confidence picks.",
+        "user_goal": "To find reliable betting opportunities backed by data analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filtering High-Confidence Bets",
+                "description": "Riley adjusts the confidence slider to only see bets rated above 80% likelihood.",
+                "action": "Filter Recommendations by Confidence Level",
+                "expected_outcome": "Only bets marked green with high-confidence indicators remain visible in the list."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Bet Details",
+                "description": "Riley clicks on one of the top recommendations to understand potential returns and risks involved.",
+                "action": "Select Recommended Bet",
+                "expected_outcome": "A modal pops up detailing the risk level, estimated return, and supporting data sources for the selected bet."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Basketball data browsing interface with filtering and search capabilities",
+        "user_persona": "A researcher gathering historical data for academic purposes.",
+        "user_goal": "Quickly locate specific basketball records using filters and search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Specific Player Stats",
+                "description": "Morgan types 'LeBron James' into the search bar hoping to quickly find his career stats.",
+                "action": "Type in Search Bar",
+                "expected_outcome": "As Morgan types, the results update in real-time to show entries related to LeBron James."
+            },
+            {
+                "step": 2,
+                "title": "Applying Date Range Filter",
+                "description": "Morgan now wants to narrow down the search to games played during the 2023 season.",
+                "action": "Apply Filters",
+                "expected_outcome": "After selecting the appropriate date range and clicking Apply, the displayed results reflect only those matching the filter criteria."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Match history viewing feature with detailed game statistics",
+        "user_persona": "A coach preparing scouting reports for an upcoming opponent.",
+        "user_goal": "Access comprehensive match histories to study opposing teams' tendencies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Match History",
+                "description": "Coach Rivera browses to the match history section and selects a game between Lakers and Celtics.",
+                "action": "Click Match Entry",
+                "expected_outcome": "The entry expands to show quarter-by-quarter scores, rebounds, assists, turnovers, and other detailed stats for that game."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Team rankings display with current standings and performance metrics",
+        "user_persona": "A fantasy league participant checking weekly leaderboards.",
+        "user_goal": "Determine how their favorite teams rank compared to others.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Current Standings",
+                "description": "Jamie goes to the team rankings page to see which teams lead the conference.",
+                "action": "Sort Columns",
+                "expected_outcome": "By default, teams are sorted by win-loss record; Jamie can click other columns like 'Points Per Game' to re-sort accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Player performance tracking with individual statistics and comparisons",
+        "user_persona": "A sports journalist writing an article comparing MVP candidates.",
+        "user_goal": "Compare key stats between top players efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Players for Comparison",
+                "description": "Sam checks profiles of Giannis Antetokounmpo and Luka Doncic and selects both for comparison.",
+                "action": "Compare Players",
+                "expected_outcome": "A side-by-side comparison view opens, highlighting differences in PPG, RPG, APG, FG%, and PER between the two players."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Analysis results presentation to support informed betting decisions",
+        "user_persona": "A novice gambler wanting to learn from expert insights.",
+        "user_goal": "Understand why certain betting advice is given.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Betting Insights",
+                "description": "Ashley notices a highlighted betting insight and clicks it to learn more about the logic.",
+                "action": "Expand Insight Details",
+                "expected_outcome": "Detailed explanation unfolds showing methodology, sample size, and underlying data sources used to derive the betting suggestion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ghost white background color applied throughout the website",
+        "user_persona": "A visually impaired user sensitive to bright backgrounds.",
+        "user_goal": "Navigate the site comfortably without eye strain.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Site Pages",
+                "description": "Patricio opens several pages across the site to verify consistency in visual comfort.",
+                "action": "",
+                "expected_outcome": "Every page visited maintains a consistent ghost white background (#F8F8FF) enhancing readability and reducing glare."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Slate gray color scheme for all UI components and elements",
+        "user_persona": "A designer evaluating branding adherence.",
+        "user_goal": "Confirm uniformity of brand colors across the entire interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Interface Elements",
+                "description": "Devon inspects buttons, headers, cards, and footers to ensure they use slate gray.",
+                "action": "",
+                "expected_outcome": "All interactive and structural UI components consistently utilize slate gray (#708090) as their primary color theme."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with desktop and mobile devices",
+        "user_persona": "A commuter checking scores during travel breaks.",
+        "user_goal": "Easily access and navigate the site on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Website on Mobile Device",
+                "description": "While waiting at the station, Robin opens the sports analytics site on her phone.",
+                "action": "",
+                "expected_outcome": "Layout automatically adapts to fit small screens, maintaining usability and legibility through responsive breakpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management for personalized experiences",
+        "user_persona": "A registered user returning to track personal preferences.",
+        "user_goal": "Log in securely and maintain session across multiple visits.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Account",
+                "description": "Omar enters his username and password into the login form and submits them.",
+                "action": "Submit Login Form",
+                "expected_outcome": "System validates Omar's credentials and issues a secure JWT token stored in an HTTP-only cookie for future requests."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out Securely",
+                "description": "After reviewing his saved settings, Omar logs out to protect his privacy.",
+                "action": "Logout Button Click",
+                "expected_outcome": "Session cookie is cleared, Omar is redirected to the home page, and the UI reflects logged-out status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data updates for live matches and latest statistics",
+        "user_persona": "A live betting enthusiast needing instant score changes.",
+        "user_goal": "Stay updated with ongoing game developments without refreshing manually.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Watching Live Games",
+                "description": "Tristan visits the live matches section just as a game begins and expects immediate updates.",
+                "action": "Connect to Live Updates",
+                "expected_outcome": "WebSocket connection is established automatically, delivering live scores and stat updates instantly to Tristan’s browser."
+            }
+        ]
+    }
+]

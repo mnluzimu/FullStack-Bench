@@ -1,0 +1,175 @@
+[
+    {
+        "resource_dependency": {
+            "barberDataSchema": "CREATE TABLE barbers (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, contact_info TEXT, specialization TEXT, photo_url TEXT);",
+            "serviceDataSchema": "CREATE TABLE services (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, duration INTEGER, price DECIMAL(10, 2));",
+            "notificationLogSchema": "CREATE TABLE notifications (id SERIAL PRIMARY KEY, client_contact TEXT, message TEXT, sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);",
+            "adminAuthSchema": "CREATE TABLE admins (id SERIAL PRIMARY KEY, username VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT);"
+        },
+        "function": "Provide backend API endpoints to manage barbers, services, and track notification logs.",
+        "static_description": "Backend server exposing RESTful endpoints for CRUD operations on barbers, services, and notification logs. Connects to PostgreSQL database using provided environment variables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "whatsappAPI": "An external API capable of sending WhatsApp messages, such as Twilio's WhatsApp Business API."
+        },
+        "function": "Enable sending WhatsApp notifications to clients from the system.",
+        "static_description": "Backend integration with WhatsApp messaging service allowing automated client communication through an external provider.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "barberListEndpoint": "/api/barbers",
+            "barberDetailsEndpoint": "/api/barbers/{id}",
+            "addBarberEndpoint": "/api/barbers",
+            "barberImagePlaceholder": "/assets/images/barber-placeholder.jpg"
+        },
+        "function": "Display a browsable list of barbers with their name, photo, and specialization.",
+        "static_description": "Grid or list layout showing individual barber cards containing a profile image (`barberImagePlaceholder`), name, and specialization details fetched from `barberListEndpoint`.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a barber card navigates to the barber’s detailed view page using `barberDetailsEndpoint`."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "serviceListEndpoint": "/api/services",
+            "serviceDetailsEndpoint": "/api/services/{id}",
+            "addServiceEndpoint": "/api/services"
+        },
+        "function": "Allow users to browse all available services along with name, description, and pricing.",
+        "static_description": "A structured layout presenting each service in a card format displaying title, short description, duration, and cost retrieved from `serviceListEndpoint`.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a service card opens a modal or redirects to a detailed service view via `serviceDetailsEndpoint`."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createBarberFormFields": [
+                "name",
+                "contact_info",
+                "specialization",
+                "photo_upload"
+            ],
+            "barberCreationEndpoint": "/api/barbers",
+            "validationRules": "{ name: required | string, contact_info: optional | string, specialization: required | string }"
+        },
+        "function": "Enable authenticated administrators to add new barbers to the system.",
+        "static_description": "Form interface with labeled input fields (`createBarberFormFields`) and a submit button positioned under the 'Manage Barbers' section. Includes validation indicators based on `validationRules`.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting the form sends data to `barberCreationEndpoint`. Displays success/error feedback after submission."
+            },
+            {
+                "interaction": "Input Blur",
+                "description": "Each field validates upon losing focus according to defined `validationRules`, showing inline error messages when invalid."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createServiceFormFields": [
+                "name",
+                "description",
+                "duration",
+                "price"
+            ],
+            "serviceCreationEndpoint": "/api/services",
+            "validationRules": "{ name: required | string, description: optional | string, duration: required | integer > 0, price: required | decimal >= 0 }"
+        },
+        "function": "Allow authenticated administrators to register new services offered by the barber shop.",
+        "static_description": "Input form with clearly labeled fields (`createServiceFormFields`) and a save button within the 'Manage Services' area. Inline validation warnings appear per `validationRules`.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Upon clicking Save, form data is posted to `serviceCreationEndpoint`. User receives confirmation or failure alert accordingly."
+            },
+            {
+                "interaction": "Input Blur",
+                "description": "Validation checks execute per `validationRules` once user exits a field. Invalid entries trigger visible error cues."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "whatsappNotificationFormFields": [
+                "client_contact",
+                "message_body"
+            ],
+            "sendNotificationEndpoint": "/api/notifications/send",
+            "notificationHistoryEndpoint": "/api/notifications/history"
+        },
+        "function": "Facilitate sending WhatsApp notifications to clients and maintain a record of sent messages.",
+        "static_description": "Interface includes a message composition panel with `whatsappNotificationFormFields` and a Send button. Below it shows a table listing previous notifications retrieved from `notificationHistoryEndpoint`.",
+        "interaction_and_states": [
+            {
+                "interaction": "Send Button Click",
+                "description": "Triggers POST request to `sendNotificationEndpoint` with composed message. Refreshes notification history display afterward."
+            },
+            {
+                "interaction": "Refresh History",
+                "description": "Re-fetches notification logs from `notificationHistoryEndpoint` and updates the displayed table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundSnowImage": "/assets/backgrounds/snow-texture.jpg",
+            "interfaceDimGrayColor": "#2f2f2f"
+        },
+        "function": "Apply consistent styling across the entire website with a snow-themed background and dim gray interface elements.",
+        "static_description": "Entire site uses a repeating `backgroundSnowImage` behind all pages. All interactive and structural components use `interfaceDimGrayColor` for backgrounds, borders, and text containers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "{ mobile: <768px, tablet: 768px–1024px, desktop: >1024px }"
+        },
+        "function": "Ensure optimal viewing experience on various devices including desktops, tablets, and smartphones.",
+        "static_description": "Layout adjusts dynamically based on screen size using CSS media queries aligned with `responsiveBreakpoints`. Content reflows appropriately while maintaining usability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loginPageRoute": "/admin/login",
+            "dashboardPageRoute": "/admin/dashboard",
+            "authTokenStorageKey": "admin_auth_token",
+            "loginFormFields": [
+                "username",
+                "password"
+            ]
+        },
+        "function": "Protect administrative features with secure authentication mechanism.",
+        "static_description": "Login page accessible at `/admin/login` featuring username and password inputs (`loginFormFields`). Successful login grants access to protected routes like `/admin/dashboard`.",
+        "interaction_and_states": [
+            {
+                "interaction": "Login Submit",
+                "description": "Valid credentials result in token storage under `authTokenStorageKey` and redirection to dashboard. Invalid attempts show appropriate error message."
+            },
+            {
+                "interaction": "Logout",
+                "description": "Clears stored auth token and redirects back to public-facing homepage or login screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "routerLibrary": "React Router DOM or equivalent framework-specific routing solution"
+        },
+        "function": "Implement client-side navigation between different sections of the application without full page reloads.",
+        "static_description": "Navigation bar links point to distinct views such as Home, Barbers, Services, Manage Barbers, and Manage Services. Routing handled internally by `routerLibrary`.",
+        "interaction_and_states": [
+            {
+                "interaction": "Link Click",
+                "description": "Clicking navigation items updates browser URL and renders corresponding component view seamlessly."
+            }
+        ]
+    }
+]

@@ -1,0 +1,17 @@
+[
+    "Display a search interface for entering stock codes or names",
+    "Fetch and display stock information in real-time from backend APIs",
+    "Allow users to select report formats and content preferences",
+    "Generate customized stock reports based on user inputs",
+    "Include basic stock information such as price, volume, and ticker symbol",
+    "Provide market trend analysis and visualization",
+    "Integrate financial data into generated reports",
+    "Support multiple report formats (PDF, CSV, HTML)",
+    "Enable users to save or download generated reports",
+    "Implement a responsive layout with white background and navy-colored components",
+    "Connect to an external PostgreSQL database for dynamic stock data",
+    "Use environment variables for database configuration: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+    "Set up backend API endpoints to serve stock data",
+    "Configure package.json with npm run install:all script for installing frontend and backend dependencies",
+    "Configure package.json with npm run dev script to start frontend and backend concurrently"
+]

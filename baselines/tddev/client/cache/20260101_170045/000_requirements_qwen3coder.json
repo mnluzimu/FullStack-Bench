@@ -1,0 +1,17 @@
+[
+    "Display a homepage with navigation to Menus, Private Poker Room, Events & Promotions, and Reservations/Purchases",
+    "Showcase bourbon and cocktail menus with descriptions and pricing fetched dynamically from backend",
+    "Introduce the membership-only private poker room with details and access requirements",
+    "List upcoming events and ongoing promotions with dates, times, and descriptions",
+    "Enable users to make online reservations for tables or private poker room sessions",
+    "Allow users to purchase products (bottles, merchandise) directly through the website",
+    "Implement a responsive design with peach puff container backgrounds and indian red component visuals",
+    "Include a contact section with location, hours, and inquiry form",
+    "Provide user authentication for members to access exclusive poker room content",
+    "Support dynamic data loading via backend APIs for all content sections",
+    "Connect backend to PostgreSQL database using provided environment variables",
+    "Configure package.json to support `npm run install:all` and `npm run dev` commands",
+    "Ensure all pages are fully browsable without requiring authentication except for member areas",
+    "Include image galleries for menu items, poker room, and event highlights",
+    "Add social media integration and sharing options for events and promotions"
+]

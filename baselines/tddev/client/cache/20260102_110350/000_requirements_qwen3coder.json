@@ -1,0 +1,17 @@
+[
+    "A frontend application with a user interface for composing emails",
+    "A frontend feature allowing users to select recipients from a list or input manually",
+    "A frontend form for attaching files to emails before sending",
+    "A frontend section for managing sent emails including viewing and tracking status",
+    "A frontend module for creating, saving, and selecting email templates",
+    "A frontend recipient management system allowing users to add, edit, and remove contacts",
+    "A backend API for handling email composition data submitted from the frontend",
+    "A backend service for connecting to an external PostgreSQL database using provided environment variables",
+    "A backend endpoint for sending emails through an email service provider",
+    "A backend module for storing and retrieving email templates from the database",
+    "A backend feature for uploading and associating file attachments with emails",
+    "A backend recipient management system with CRUD operations for contact data",
+    "A backend logging mechanism to track sent emails and their statuses",
+    "A package.json configuration enabling `npm run install:all` to install frontend and backend dependencies",
+    "A package.json script for `npm run dev` to start both frontend and backend servers concurrently"
+]

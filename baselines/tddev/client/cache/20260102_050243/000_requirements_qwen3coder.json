@@ -1,0 +1,17 @@
+[
+    "Frontend application with pages for buyer and seller dashboards",
+    "Buyer dashboard to browse and select sellers' cryptocurrency products",
+    "Functionality for buyers to deposit cryptocurrencies into escrow accounts",
+    "Seller dashboard to view and manage cryptocurrency product listings",
+    "Seller capability to view and manage transaction records",
+    "Transaction confirmation mechanism for completed trades",
+    "Cryptocurrency release functionality upon successful transaction completion",
+    "Dispute resolution system for handling transaction conflicts",
+    "Backend API to handle all dynamic data operations",
+    "Backend connection to external PostgreSQL database using specified environment variables",
+    "Database schema design to support users, products, transactions, and escrow accounts",
+    "User authentication and authorization for buyers and sellers",
+    "Real-time updates for transaction status and escrow account balances",
+    "Package.json configuration with 'install:all' and 'dev' scripts for concurrent FE/BE startup",
+    "UI styled with light gray background and dark red component colors"
+]

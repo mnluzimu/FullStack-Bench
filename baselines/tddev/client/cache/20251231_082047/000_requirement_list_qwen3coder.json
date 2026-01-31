@@ -1,0 +1,139 @@
+[
+    {
+        "resource_dependency": {
+            "pollDataSchema": "Database tables: polls(id, title, description, created_at, expires_at), poll_options(id, poll_id, option_text), votes(id, poll_option_id, ip_address, voted_at)",
+            "apiEndpoint_pollsList": "/api/polls",
+            "apiEndpoint_pollDetails": "/api/polls/{id}",
+            "apiEndpoint_submitVote": "/api/votes",
+            "apiEndpoint_results": "/api/polls/{id}/results"
+        },
+        "function": "Fetch all available polls from the backend API and display them in a list format.",
+        "static_description": "A white background page with navy-colored headers and cards displaying poll titles and descriptions. Each card contains a 'View Poll' button styled in navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a poll card navigates the user to the specific poll voting page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads additional polls if pagination is implemented on the backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pollDetailSchema": "Fields: poll.id, poll.title, poll.description, poll.expires_at, poll_options[].id, poll_options[].option_text",
+            "apiEndpoint_pollDetails": "/api/polls/{id}"
+        },
+        "function": "Display detailed information about a specific poll along with its voting options.",
+        "static_description": "White background with a centered container showing the poll title in navy font, followed by a description and expiration date. Below this are radio buttons for each option, all styled in navy theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an option enables the 'Submit Vote' button which submits the vote via POST request to /api/votes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "voteSubmissionApi": "POST /api/votes with body { poll_option_id }",
+            "successRedirectUrl": "/polls/{id}/results"
+        },
+        "function": "Allow users to cast votes for selected poll options.",
+        "static_description": "Navy-styled form containing radio buttons for each poll option and a disabled 'Submit Vote' button until an option is selected.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting sends the selected poll_option_id to the backend. On success, redirects to the results page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resultsDataSchema": "Response includes poll.title, poll.description, results[].option_text, results[].vote_count, results[].percentage",
+            "apiEndpoint_results": "/api/polls/{id}/results"
+        },
+        "function": "Display real-time or updated voting results for each poll including percentages and vote counts per option.",
+        "static_description": "White background page featuring a navy header with the poll title, followed by horizontal bar charts representing percentage distribution among options.",
+        "interaction_and_states": [
+            {
+                "interaction": "Refresh",
+                "description": "Manual refresh updates the displayed results by re-fetching data from the API endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stylingFramework": "CSS classes defining white backgrounds (.bg-white) and navy accents (.text-navy, .border-navy)"
+        },
+        "function": "Apply consistent styling across the entire website with a white background and navy UI components.",
+        "static_description": "All pages feature a clean white background (#FFFFFF) with primary navigation elements, buttons, text links, and borders rendered in navy (#000080).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "pollSchemaSQL": "CREATE TABLE polls(id SERIAL PRIMARY KEY, title TEXT NOT NULL, description TEXT, created_at TIMESTAMP DEFAULT NOW(), expires_at TIMESTAMP); CREATE TABLE poll_options(id SERIAL PRIMARY KEY, poll_id INTEGER REFERENCES polls(id), option_text TEXT NOT NULL); CREATE TABLE votes(id SERIAL PRIMARY KEY, poll_option_id INTEGER REFERENCES poll_options(id), ip_address INET, voted_at TIMESTAMP DEFAULT NOW());"
+        },
+        "function": "Define database schema to store polls, poll options, and vote records.",
+        "static_description": "PostgreSQL database initialized with three interconnected tables: polls, poll_options, and votes, using foreign key relationships.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiRoutesDefinition": "GET /api/polls, GET /api/polls/{id}, POST /api/votes, GET /api/polls/{id}/results"
+        },
+        "function": "Expose RESTful API endpoints for retrieving poll lists, individual poll details, submitting votes, and fetching voting results.",
+        "static_description": "Defined API routes returning JSON responses structured according to frontend expectations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "routingLibrary": "React Router DOM or equivalent client-side routing library",
+            "routePaths": "{ '/': PollsList, '/polls/:id': PollDetail, '/polls/:id/results': ResultsView }"
+        },
+        "function": "Enable frontend navigation between browsing polls, voting, and viewing results using SPA routing.",
+        "static_description": "URL-based navigation mapping root path to polls list, dynamic paths for individual polls and their results.",
+        "interaction_and_states": [
+            {
+                "interaction": "Browser Navigation",
+                "description": "Changing URL manually or through browser back/forward buttons updates the current view without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "Tailwind CSS or Bootstrap grid system with media queries"
+        },
+        "function": "Ensure responsive design that adapts to various screen sizes including desktop and mobile devices.",
+        "static_description": "Flexible layouts utilizing CSS Grid/Flexbox with breakpoints ensuring readability and usability on small screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts automatically when window size changes, optimizing spacing and element sizing for device compatibility."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{\"scripts\": {\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\"}}"
+        },
+        "function": "Configure package.json scripts to manage installation and development startup of both frontend and backend concurrently.",
+        "static_description": "Scripts section within package.json enabling simultaneous setup and execution of both application layers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingMiddleware": "Express.js error handler middleware or similar backend mechanism",
+            "frontendErrorMessageComponent": "Reusable alert/error message UI component"
+        },
+        "function": "Implement error handling for scenarios such as invalid poll IDs, expired polls, or submission failures.",
+        "static_description": "Centralized error catching logic on backend returning appropriate HTTP status codes and messages; frontend displays user-friendly alerts based on response errors.",
+        "interaction_and_states": [
+            {
+                "interaction": "Invalid Request",
+                "description": "Displays informative error messages to users upon receiving 4xx or 5xx responses from backend APIs."
+            }
+        ]
+    }
+]

@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A visitor browsing the family event portal to find recent obituaries.",
+        "user_goal": "To view the latest obituaries loaded dynamically from the backend API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Maria opens the website and expects to see a list of recently published obituaries.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "Frontend makes a GET request to /api/obituaries and displays the fetched obituaries in a scrollable list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the backend service.",
+        "user_goal": "To confirm the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer runs the backend server and checks if it initializes without connection errors.",
+                "action": "Start the backend server using npm run dev.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Obituary publishing functionality allowing users to create and manage obituaries",
+        "user_persona": "A family member wanting to publish an obituary for their loved one.",
+        "user_goal": "To successfully create and save a new obituary entry.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Obituary Form",
+                "description": "John logs in and navigates to the 'Publish Obituary' section.",
+                "action": "Click on 'Publish Obituary' button.",
+                "expected_outcome": "An empty form with fields like full name, date of birth/death, biography, and image URL appears."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Obituary",
+                "description": "John fills out all required fields and submits the form.",
+                "action": "Fill in form fields and click Submit.",
+                "expected_outcome": "Form data is sent via POST /api/obituaries and the new obituary is saved in the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Funeral arrangements publishing functionality allowing users to create and manage funeral details",
+        "user_persona": "A funeral planner setting up event details for an upcoming service.",
+        "user_goal": "To add and later edit funeral arrangement information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Funeral Arrangement",
+                "description": "Sarah logs in and creates a new funeral arrangement with location and time.",
+                "action": "Navigate to 'Manage Arrangements', fill form, and click Submit.",
+                "expected_outcome": "New arrangement is created via POST /api/arrangements and visible in her list."
+            },
+            {
+                "step": 2,
+                "title": "Editing Existing Arrangement",
+                "description": "Later, Sarah realizes she made a typo and wants to correct the event time.",
+                "action": "Click Edit next to the arrangement, modify time, then click Update.",
+                "expected_outcome": "PUT /api/arrangements/:id updates the record and reflects changes immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Mortuary list display showing available mortuaries with relevant information",
+        "user_persona": "A bereaved person looking for nearby mortuary services.",
+        "user_goal": "To browse through a list of available mortuaries and their contact details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Mortuary List",
+                "description": "Emily visits the 'Find Mortuaries' page to look for options near her area.",
+                "action": "Scroll down the mortuary list displayed on the page.",
+                "expected_outcome": "Multiple mortuary entries are shown with names, addresses, phone numbers, and emails in styled cards."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Condolences messaging system enabling users to view and leave messages on others' obituaries",
+        "user_persona": "A friend wishing to express sympathy after reading an obituary.",
+        "user_goal": "To leave a condolence message on someone else’s obituary.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Obituary Details",
+                "description": "Alex reads about his old colleague and decides to offer condolences.",
+                "action": "Open the obituary detail page.",
+                "expected_outcome": "Obituary content is displayed along with a list of previous condolence messages below it."
+            },
+            {
+                "step": 2,
+                "title": "Leaving a Condolence Message",
+                "description": "Alex types a heartfelt message into the condolence form and submits it.",
+                "action": "Type message in text box and click Submit.",
+                "expected_outcome": "Message is posted via POST /api/obituaries/:id/condolences and now appears in the message list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Statistical analysis dashboard displaying relevant metrics and data visualizations",
+        "user_persona": "A site administrator reviewing overall usage trends.",
+        "user_goal": "To view statistical insights about obituaries and user engagement.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Statistics Dashboard",
+                "description": "Admin logs in and goes to the analytics dashboard to review performance.",
+                "action": "Navigate to the Statistics tab.",
+                "expected_outcome": "Charts and stats load from GET /api/statistics showing total obituaries, recent activity, and top users."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Time Range",
+                "description": "Admin selects a custom date range to focus on recent activity.",
+                "action": "Choose 'Last Month' option and click Apply Filters.",
+                "expected_outcome": "Dashboard reloads with updated data filtered by selected time range."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for managing personal obituaries and arrangements",
+        "user_persona": "A registered user trying to access private sections of the portal.",
+        "user_goal": "To securely log in and manage only their own obituaries.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Robert returns to the site and needs to access his personal dashboard.",
+                "action": "Enter credentials in the login form and click Login.",
+                "expected_outcome": "Credentials are validated via POST /api/auth/login; JWT token is stored and Robert is redirected to his dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Managing Personal Content",
+                "description": "Robert tries to view and update his own obituaries.",
+                "action": "Visit 'My Obituaries' section.",
+                "expected_outcome": "Only obituaries linked to Robert’s user ID are displayed, and he sees Edit/Delete options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Multimedia memory storage and display capability for images and videos",
+        "user_persona": "A family member uploading photos to accompany an obituary.",
+        "user_goal": "To upload and view multimedia content related to a loved one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Media File",
+                "description": "Lisa wants to attach childhood pictures to her father’s obituary.",
+                "action": "Click the Upload button in the media gallery section and select image files.",
+                "expected_outcome": "Files are submitted to POST /api/media/upload and thumbnails appear in the gallery."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Uploaded Media",
+                "description": "After uploading, Lisa wants to verify the images were added correctly.",
+                "action": "Click on one of the uploaded thumbnails.",
+                "expected_outcome": "Image expands in a modal viewer for better viewing experience."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with cornsilk colored outer layout and peru colored UI blocks",
+        "user_persona": "A mobile user accessing the portal while away from home.",
+        "user_goal": "To navigate the portal smoothly on a small-screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing on Mobile Device",
+                "description": "Emma opens the site on her smartphone to read condolences left for her aunt.",
+                "action": "Resize window or simulate mobile view in browser.",
+                "expected_outcome": "Layout adjusts responsively, maintaining readability and usability with cornsilk background and peru UI blocks intact."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality to find obituaries and funeral arrangements",
+        "user_persona": "Someone searching for a specific obituary by name.",
+        "user_goal": "To quickly locate an obituary using the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Mike remembers seeing an obituary but can’t recall which page it was on.",
+                "action": "Type the deceased person's name into the search bar and press Enter.",
+                "expected_outcome": "Results matching the query are returned from GET /api/search?q=:query and displayed in a list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data persistence layer using PostgreSQL database for all dynamic content",
+        "user_persona": "System maintainer verifying data integrity post-deployment.",
+        "user_goal": "To ensure that all user-generated content persists correctly in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Data Persistence",
+                "description": "Maintainer adds a test obituary and checks whether it remains after refresh.",
+                "action": "Create a sample obituary via UI, then reload the page.",
+                "expected_outcome": "Created obituary still exists in the list, confirming data has been persisted in the PostgreSQL table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script for installing frontend and backend dependencies",
+        "user_persona": "Developer setting up the project locally for the first time.",
+        "user_goal": "To install all necessary packages for both frontend and backend efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Dev clones the repo and wants to get everything ready quickly.",
+                "action": "Run 'npm run install:all' in terminal at root directory.",
+                "expected_outcome": "Both client and server dependencies are installed concurrently without manual intervention."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'dev' script for running frontend and backend concurrently",
+        "user_persona": "Developer beginning daily work session.",
+        "user_goal": "To start both frontend and backend servers with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Environment",
+                "description": "Dev wants to begin coding and testing changes seamlessly.",
+                "action": "Execute 'npm run dev' in the root folder.",
+                "expected_outcome": "Both frontend and backend services start simultaneously and communicate properly via localhost ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful API endpoints for all data operations including CRUD for obituaries, arrangements, and messages",
+        "user_persona": "API consumer building an external tool integrating with the portal.",
+        "user_goal": "To perform create, read, update, and delete actions programmatically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Create Endpoint",
+                "description": "Tool attempts to create a new obituary entry via API call.",
+                "action": "Send POST request to /api/obituaries with valid payload.",
+                "expected_outcome": "New obituary is created in the database and response contains the newly generated ID."
+            },
+            {
+                "step": 2,
+                "title": "Testing Read Endpoint",
+                "description": "Tool retrieves the same obituary to verify its existence.",
+                "action": "Send GET request to /api/obituaries/{id}.",
+                "expected_outcome": "Response returns the correct obituary data matching the ID."
+            },
+            {
+                "step": 3,
+                "title": "Testing Update Endpoint",
+                "description": "Tool modifies some fields in the retrieved obituary.",
+                "action": "Send PUT request to /api/obituaries/{id} with modified data.",
+                "expected_outcome": "Record in the database is updated accordingly and confirmed by re-fetching."
+            },
+            {
+                "step": 4,
+                "title": "Testing Delete Endpoint",
+                "description": "Finally, tool deletes the obituary to clean up test data.",
+                "action": "Send DELETE request to /api/obituaries/{id}.",
+                "expected_outcome": "Obituary no longer exists in the database and subsequent GET returns 404."
+            }
+        ]
+    }
+]

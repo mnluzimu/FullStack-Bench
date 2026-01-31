@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data via backend APIs",
+    "A backend API layer connecting to a PostgreSQL database using specified environment variables",
+    "Contest announcement posting functionality with title, description, date, and location fields",
+    "Contest results display section showing participant names, scores, and rankings",
+    "Photo gallery section for showcasing contest photos with captions and upload dates",
+    "User registration form for signing up to participate in contests",
+    "Contest browsing page listing all upcoming and past contests with filtering options",
+    "Individual contest detail pages with full descriptions, schedules, and related media",
+    "Responsive web design with mint cream background and teal-colored UI elements",
+    "Authentication system for users to manage their contest registrations",
+    "Admin dashboard for managing contest content, results, and photo submissions",
+    "Search functionality to find contests by keyword, date range, or location",
+    "Real-time contest status updates indicating if contests are open, closed, or ongoing",
+    "Package.json configuration enabling `npm run install:all` for combined dependency installation",
+    "Concurrent development server startup using `npm run dev` for both frontend and backend"
+]

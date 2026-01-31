@@ -1,0 +1,228 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/data",
+            "authenticationToken": "Bearer <token>",
+            "externalAPISpec": "APIs for retrieving real-time sports data and analytics"
+        },
+        "function": "Fetch dynamic data from backend services to populate UI components.",
+        "static_description": "The frontend displays various sections such as dashboards, player stats, team info, etc., populated via API calls. All interactive elements use dark goldenrod color while the background uses floral white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any link or button triggers an API call to fetch related data dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": {
+                "DB_HOST": "localhost",
+                "DB_PORT": 5432,
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "databaseSchemaDefinition": "Tables: users(id, username, email, password_hash), sessions(session_id, user_id, created_at), players(player_id, name, position, team_id), teams(team_id, name, manager_user_id, budget), statistics(stat_id, player_id, game_id, stat_type, value), games(game_id, home_team_id, away_team_id, date_played, score_home, score_away)"
+        },
+        "function": "Connect to PostgreSQL database using provided environment variables and support CRUD operations for application entities.",
+        "static_description": "Backend server configured with connection pool settings pointing to PostgreSQL instance using specified credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "playerStatsIcons": [
+                "batting_avg_icon.svg",
+                "home_runs_icon.svg",
+                "rbis_icon.svg"
+            ],
+            "statDataSchema": "Fields: player_id (foreign key), season_year (integer), stat_category (enum), value (float)"
+        },
+        "function": "Track and display detailed player performance metrics across multiple categories over time.",
+        "static_description": "A dedicated page showing tabular and graphical representations of individual player statistics categorized by season/year.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting different seasons or categories updates the displayed statistics accordingly."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart points reveals additional context about specific statistic values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "teamManagementAssets": [
+                "edit_roster_button.png",
+                "finance_chart_placeholder.jpg"
+            ],
+            "teamDataSchema": "Fields: team_id (primary key), name (string), logo_url (string), roster (array of player_ids), budget (decimal)",
+            "financialDataSchema": "Fields: transaction_id (primary key), team_id (foreign key), amount (decimal), description (text), timestamp (datetime)"
+        },
+        "function": "Allow users to manage team composition and monitor financial status through intuitive interfaces.",
+        "static_description": "Displays current team roster alongside editable fields for adding/removing players and adjusting budgets visually represented in charts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Roster' enables drag-and-drop reordering of players within the lineup."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging players between bench and active roster slots modifies the team formation immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "liveSimulationEngineAPI": "WebSocket endpoint for streaming live game events",
+            "gameSimulationLogic": "Algorithm calculating outcomes based on player stats and strategic inputs"
+        },
+        "function": "Simulate baseball games in real-time with visual feedback reflecting ongoing gameplay actions.",
+        "static_description": "Visual representation of a baseball field with animated player movements synchronized with simulated play-by-play commentary.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiating simulation starts event stream updating scoreboard and field visuals every few seconds."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling through historical plays pauses/resumes live feed temporarily."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "strategyAdjustmentUIComponents": [
+                "lineup_editor.html",
+                "tactics_selector.js"
+            ],
+            "userInputHandlers": "Form validation logic ensuring only valid adjustments are accepted before applying changes"
+        },
+        "function": "Enable users to modify tactical aspects like batting order and defensive placements affecting future simulations.",
+        "static_description": "Interface displaying dropdown menus and sliders allowing customization of lineup positions and pitching rotations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting new lineup selections stores updated configurations which influence subsequent game simulations."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Repositioning players directly on the lineup grid applies those changes instantly without requiring form submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPaletteCSS": ".background { background-color: floralwhite; } .interactive-element { color: darkgoldenrod; }",
+            "responsiveDesignFramework": "Bootstrap CSS framework integrated for cross-device compatibility"
+        },
+        "function": "Implement consistent styling theme throughout the site adhering to requested color scheme and responsive layout standards.",
+        "static_description": "All pages utilize floral white backgrounds complemented by dark goldenrod accents on buttons, links, and highlights ensuring readability and aesthetic appeal.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseERD": "Entity Relationship Diagram outlining relationships among Players, Teams, Games, Statistics tables",
+            "schemaMigrationScripts": "SQL scripts creating initial table structures and constraints"
+        },
+        "function": "Establish foundational relational database structure capable of storing all relevant baseball-related information securely.",
+        "static_description": "PostgreSQL schema includes normalized tables representing players, teams, games, and statistical records linked appropriately via foreign keys.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": [
+                "/login",
+                "/logout",
+                "/register"
+            ],
+            "sessionStorageMechanism": "JWT tokens stored client-side in HTTP-only cookies"
+        },
+        "function": "Secure access to personalized features through robust authentication and persistent session handling mechanisms.",
+        "static_description": "Login/register forms appear when accessing protected routes unless valid session exists; otherwise redirect to dashboard.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Upon successful login, JWT token issued enabling continued access until expiration or explicit logout."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardWidgets": [
+                "team_performance_widget.vue",
+                "upcoming_games_widget.vue"
+            ],
+            "aggregateQueryDefinitions": "SQL queries aggregating recent wins/losses, upcoming matchups, top performers"
+        },
+        "function": "Provide consolidated view summarizing key team indicators and scheduled activities for quick reference.",
+        "static_description": "Dashboard presents cards summarizing win-loss ratio, next opponent preview, standout players, and pending matches.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on widgets navigates to full-detail views corresponding to selected summary item."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "archiveSearchFunctionality": "Indexed search bar returning past games filtered by date/team/player criteria",
+            "historicalDataViews": "Tabbed navigation switching between game logs, seasonal summaries, career milestones"
+        },
+        "function": "Archive historical match results and associated player performances facilitating retrospective analysis.",
+        "static_description": "Archive section displays chronological list of completed games enriched with condensed box scores and notable achievements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Search",
+                "description": "Typing keywords filters matching entries instantly refining displayed dataset."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeUpdateProtocol": "Server-Sent Events (SSE) pushing incremental updates during active simulations",
+            "notificationSystem": "Toast-style alerts notifying significant moments like home runs or lead changes"
+        },
+        "function": "Deliver immediate notifications and continuous progress updates throughout live game scenarios enhancing engagement.",
+        "static_description": "During simulations, floating banners announce major developments atop standard play progression timeline.",
+        "interaction_and_states": [
+            {
+                "interaction": "Receive Event",
+                "description": "Each SSE message triggers DOM update refreshing relevant sections like scoreboard or commentary panel."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptPath": "./scripts/install.sh",
+            "packageJsonStructure": "{ \"scripts\": { \"install:all\": \"./scripts/install.sh\" } }"
+        },
+        "function": "Automate setup process installing necessary frontend and backend dependencies simultaneously.",
+        "static_description": "Running `npm run install:all` executes shell script invoking npm/yarn installations for both client/server modules.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartCommand": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+            "processManagerTool": "Nodemon used for automatic restarts upon file changes in development mode"
+        },
+        "function": "Streamline local development workflow launching frontend and backend servers concurrently under unified command.",
+        "static_description": "Executing `npm run dev` initiates parallel processes serving React/Vue app and Express/Node.js API endpoints locally.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveGridLibrary": "CSS Grid + Flexbox hybrid approach for adaptive layouts",
+            "mobileViewportTestingSuite": "Cypress tests covering common breakpoints and touch interactions"
+        },
+        "function": "Ensure seamless usability experience regardless of device screen size or orientation.",
+        "static_description": "Layout adapts fluidly transitioning from multi-column desktop arrangement to stacked mobile-friendly presentation maintaining core functionality.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Adjusting browser dimensions causes automatic rearrangement of UI blocks preserving optimal viewing proportions."
+            }
+        ]
+    }
+]

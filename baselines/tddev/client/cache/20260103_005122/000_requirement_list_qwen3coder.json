@@ -1,0 +1,251 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "database_connection": "postgresql://myappuser:myapppassword@localhost:5432/myapp"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "The frontend application displays various sections dynamically populated from backend APIs. It includes navigation links, user/coach dashboards, forms for assessments and profiles, and interactive elements styled with beige background and saddle brown components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any dynamic link or button triggers an API call to fetch relevant data from the backend and updates the UI accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_schema": "Database schema must include tables: users, coaches, sessions, goals, assessments, matches, and progress_logs. Each table will have appropriate primary keys and foreign key relationships as needed.",
+            "env_vars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend API server running at http://localhost:3001 serving RESTful endpoints for user/coach data, authentication, assessments, scheduling, and goal tracking. All endpoints connect to the configured PostgreSQL database via provided environment variables.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request",
+                "description": "Each incoming request is authenticated, validated, and processed by querying or updating the connected PostgreSQL database based on the route and parameters."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "login_endpoint": "/auth/login",
+            "register_endpoint": "/auth/register",
+            "jwt_secret_key": "JWT_SECRET_KEY_PLACEHOLDER"
+        },
+        "function": "User authentication and authorization system for coaches and users",
+        "static_description": "Login and registration pages with email/password fields and role selection (user or coach). Forms submit to respective backend endpoints and display success/error messages after submission.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' or 'Register' submits form data to the backend. Upon successful login, JWT token is stored in localStorage and redirects to respective dashboard."
+            },
+            {
+                "interaction": "Form Submission",
+                "description": "Validation errors are displayed inline if credentials do not meet requirements or if account already exists."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "assessment_questions": "[{id: number, question_text: string, options: [{value: string, label: string}]}]",
+            "submit_assessment_endpoint": "/assessments/submit"
+        },
+        "function": "Personality assessment functionality with interactive questionnaire interface",
+        "static_description": "Interactive questionnaire page displaying multiple-choice questions sequentially. Navigation buttons ('Previous', 'Next') allow moving between questions. Final step shows summary before submitting to backend.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Next' saves current answer and moves to next question. Clicking 'Submit' sends completed assessment to backend endpoint and navigates to results/matching page."
+            },
+            {
+                "interaction": "Select Option",
+                "description": "Choosing an option highlights it visually and stores the selection temporarily until submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profile_data_schema": "users table with fields: id, name, email, bio, avatar_url, created_at, updated_at",
+            "update_profile_endpoint": "/profiles/update"
+        },
+        "function": "User profile creation and management with editable personal information",
+        "static_description": "Profile view showing user’s name, email, bio, and avatar. Editable form allows modification of these fields. Save and cancel buttons control saving changes or reverting edits.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Profile' enables editing mode. Clicking 'Save Changes' sends updated data to backend. Clicking 'Cancel' reverts unsaved changes."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "Modifying input fields updates local state which gets submitted when saved."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "coach_profile_schema": "coaches table with fields: id, user_id, specializations, experience_years, hourly_rate, availability_schedule, created_at, updated_at",
+            "update_coach_profile_endpoint": "/coaches/profiles/update"
+        },
+        "function": "Coach profile creation and management with specialization and experience details",
+        "static_description": "Coach profile view displaying specializations, years of experience, hourly rate, and weekly availability schedule. Editable form allows modifying these fields along with save/cancel controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Coach Profile' activates editing mode. Saving sends updated data to backend. Canceling discards temporary changes."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "Changing inputs like hourly rate or adding specializations updates internal state ready for saving."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_coaches_endpoint": "/coaches/search?query=&specialization=&min_rating=",
+            "filter_options": "Specialization categories, rating filters, price range sliders"
+        },
+        "function": "Search and filtering functionality for users to find suitable coaches",
+        "static_description": "Search bar with filter dropdowns for specialization, ratings, and price ranges. Results grid shows coach cards with names, photos, specialties, ratings, and prices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type in Search Bar",
+                "description": "Typing triggers debounced API calls to update search results dynamically without manual refresh."
+            },
+            {
+                "interaction": "Apply Filters",
+                "description": "Applying filters modifies query parameters sent to the backend and reloads filtered results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "matching_algorithm_endpoint": "/matches/suggest",
+            "assessment_results_schema": "assessments table storing user responses linked to user_id"
+        },
+        "function": "Matching algorithm or mechanism to suggest coaches based on personality assessment results",
+        "static_description": "Results page showing recommended coaches aligned with user's personality traits derived from their assessment. Displays coach cards with compatibility scores and reasons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "Upon loading, page makes API call to retrieve matched coaches based on user's assessment history."
+            },
+            {
+                "interaction": "Click Card",
+                "description": "Clicking a coach card navigates to full profile view for more detailed information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "schedule_session_endpoint": "/sessions/book",
+            "available_timeslots_endpoint": "/availability/:coachId"
+        },
+        "function": "Scheduling system for booking one-to-one coaching sessions",
+        "static_description": "Calendar interface showing available timeslots for selected coach. Selected date/time confirms session booking through modal confirmation dialog.",
+        "interaction_and_states": [
+            {
+                "interaction": "Select Date/Time",
+                "description": "Selecting a slot opens confirmation modal. Confirming creates session entry in backend and updates calendar availability."
+            },
+            {
+                "interaction": "Click Confirm",
+                "description": "Submitting the booking form posts session details to backend and redirects to session confirmation page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "session_list_endpoint": "/sessions/list",
+            "session_status_enum": "['scheduled', 'completed', 'cancelled']"
+        },
+        "function": "Session management dashboard to view upcoming and past coaching sessions",
+        "static_description": "Dashboard with two tabs: 'Upcoming Sessions' and 'Past Sessions'. Lists show session dates, coach info, status indicators, and action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tab Switch",
+                "description": "Switching tabs loads corresponding list of sessions from backend."
+            },
+            {
+                "interaction": "Click Action Button",
+                "description": "Actions like reschedule or cancel open modals to modify session details via backend updates."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "create_goal_endpoint": "/goals/create",
+            "goal_types": "['career', 'personal', 'health', 'academic']"
+        },
+        "function": "Goal setting interface allowing users to define personalized coaching objectives",
+        "static_description": "Goal creation form with title, description, target date, category selector, and priority level. Submit button sends new goal to backend.",
+        "interaction_and_states": [
+            {
+                "interaction": "Fill Form Fields",
+                "description": "Filling out form prepares payload for submission upon clicking 'Save Goal'."
+            },
+            {
+                "interaction": "Click Save Goal",
+                "description": "Submitting form sends POST request to backend and adds new goal to user's list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "progress_tracking_endpoint": "/progress/chart-data",
+            "chart_library": "Chart.js or similar"
+        },
+        "function": "Progress tracking visualization to monitor goal achievement over time",
+        "static_description": "Visual charts (line/bar) displaying user progress towards goals over weeks/months. Data points reflect milestones achieved and remaining targets.",
+        "interaction_and_states": [
+            {
+                "interaction": "Toggle Time Range",
+                "description": "Changing time frame (weekly/monthly/yearly) fetches updated chart data from backend."
+            },
+            {
+                "interaction": "Hover Over Point",
+                "description": "Hovering over chart points reveals tooltip with specific milestone details."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "theme_config": "{ backgroundColor: '#f5f5dc', componentColor: '#8b4513' }",
+            "css_variables": ":root { --bg-color: #f5f5dc; --component-color: #8b4513; }"
+        },
+        "function": "Responsive web design with beige background and saddle brown colored components",
+        "static_description": "Entire website uses beige (#f5f5dc) as main background color and saddle brown (#8b4513) for interactive and structural components across all screen sizes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts responsively maintaining consistent styling and usability on mobile, tablet, and desktop views."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "scripts_block": "{ \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\" }"
+        },
+        "function": "Package.json configuration with 'install:all' script for frontend and backend installation",
+        "static_description": "Root package.json file contains custom 'install:all' script that runs npm install simultaneously in both client and server directories using concurrently package.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing `npm run install:all` initiates parallel installations in frontend and backend folders."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dev_script_block": "{ \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\" }"
+        },
+        "function": "Package.json configuration with 'dev' script to start frontend and backend concurrently",
+        "static_description": "Root package.json defines 'dev' command that launches both frontend development server and backend API server together using concurrently utility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Running `npm run dev` starts both applications side-by-side enabling simultaneous development workflow."
+            }
+        ]
+    }
+]

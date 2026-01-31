@@ -1,0 +1,231 @@
+[
+    {
+        "resource_dependency": {
+            "map_api": "An interactive map API (e.g., Mapbox or Leaflet) with support for custom overlays and region highlighting.",
+            "chart_library": "A JavaScript charting library such as Chart.js or D3.js for rendering interactive charts.",
+            "dashboard_layout_engine": "A grid-based layout engine like React Grid Layout for enabling draggable/resizable dashboard widgets.",
+            "ivory_background_color": "#FFFFF0",
+            "forest_green_component_color": "#228B22"
+        },
+        "function": "Frontend application that fetches all data from backend APIs",
+        "static_description": "The main page displays an interactive map centered on the default location, with a sidebar containing filters and controls. Below the map is a customizable dashboard area showing various charts related to demographics, economics, and crime statistics. All components use forest green borders and accents against an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a neighborhood boundary highlights it and loads its data into the dashboard via API calls."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over neighborhoods shows a tooltip with basic information without loading full data."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging chart widgets within the dashboard repositions them according to the responsive layout system."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresql_connection_string": "postgresql://myappuser:myapppassword@localhost:5432/myapp",
+            "db_schema_definition": "Tables: neighborhoods(area_id, name, geometry), demographics(area_id, population, age_distribution, income_bracket), economics(area_id, median_income, employment_rate, housing_cost), crimes(area_id, total_crimes, violent_crimes, property_crimes)"
+        },
+        "function": "Backend application connecting to PostgreSQL using specified environment variables",
+        "static_description": "A Node.js server configured to connect to a PostgreSQL instance using environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME. It exposes RESTful endpoints for retrieving neighborhood data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "neighborhood_boundaries_geojson": "GeoJSON formatted file representing neighborhood boundaries.",
+            "map_styles": "Custom styling rules for highlighting selected areas and applying data overlays.",
+            "map_api": "Same as above: Interactive map API (e.g., Mapbox or Leaflet)"
+        },
+        "function": "Interactive map display for visualizing neighborhood boundaries and selecting areas",
+        "static_description": "An embedded interactive map showing neighborhood boundaries outlined in gray. Selected neighborhoods are highlighted with a forest green fill. Tooltips appear when hovering over regions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects/deselects a neighborhood and updates the dashboard with its data."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Displays a small tooltip with the neighborhood’s name and brief summary metrics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparison_chart_template": "Predefined templates for bar/column charts used to compare multiple neighborhoods side-by-side.",
+            "data_merge_logic": "Logic to combine demographic, economic, and crime datasets from different areas for comparative visualization."
+        },
+        "function": "Area comparison functionality for demographic, economic, and crime data",
+        "static_description": "A dedicated section within the dashboard where users can view side-by-side comparisons of selected neighborhoods using grouped bar charts and tables. Each dataset category has its own tab.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking tabs switches between demographic, economic, and crime comparisons."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Comparison' opens a modal to select additional neighborhoods to include in the current view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chart_library": "As previously defined: Chart.js or D3.js",
+            "crime_data_endpoint": "/api/crime/:areaId",
+            "demographic_data_endpoint": "/api/demographics/:areaId",
+            "economic_data_endpoint": "/api/economics/:areaId"
+        },
+        "function": "Data dashboard with interactive charts for each data category",
+        "static_description": "Three distinct chart panels arranged vertically or horizontally depending on screen size. One panel per data type (demographics, economics, crime). Charts render upon area selection and update dynamically when selections change.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking points/bars on charts triggers drill-down views or detailed popups."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements reveals tooltips with precise numerical values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "layout_engine": "React Grid Layout or similar",
+            "save_layout_api": "POST /api/user/layout saves user-defined widget positions and sizes.",
+            "load_layout_api": "GET /api/user/layout retrieves saved layout preferences for authenticated users."
+        },
+        "function": "Customizable dashboard layout options for users",
+        "static_description": "Dashboard widgets arranged in a grid pattern. Users see handles indicating draggability and resizing capabilities. Controls for saving/resetting layouts are visible near the top right corner.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging widgets allows rearrangement of their placement on the dashboard."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking save stores the current layout configuration to the backend."
+            },
+            {
+                "interaction": "Click",
+                "description": "Resetting layout reverts to the default arrangement."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "color_palette": "{ ivory: '#FFFFF0', forestGreen: '#228B22' }"
+        },
+        "function": "User interface styled with ivory background and forest green components",
+        "static_description": "All pages feature an ivory (#FFFFF0) background color. Buttons, headers, borders, and active states utilize forest green (#228B22). Consistent typography and spacing maintain readability across devices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and interactive elements slightly darken in shade when hovered."
+            },
+            {
+                "interaction": "Click",
+                "description": "Active buttons or toggles adopt a brighter green tone temporarily."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographics_table_schema": "Table schema: area_id (foreign key), population (int), age_distribution (json), income_bracket (text)",
+            "api_response_format": "JSON object { area_id: string, population: number, age_distribution: object, income_bracket: string }"
+        },
+        "function": "API endpoint for retrieving demographic data by area",
+        "static_description": "RESTful GET endpoint '/api/demographics/:areaId' returns structured demographic data for a specified neighborhood identifier.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "economics_table_schema": "Table schema: area_id (foreign key), median_income (float), employment_rate (float), housing_cost (float)",
+            "api_response_format": "JSON object { area_id: string, median_income: float, employment_rate: float, housing_cost: float }"
+        },
+        "function": "API endpoint for retrieving economic data by area",
+        "static_description": "RESTful GET endpoint '/api/economics/:areaId' returns structured economic data for a specified neighborhood identifier.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "crimes_table_schema": "Table schema: area_id (foreign key), total_crimes (int), violent_crimes (int), property_crimes (int)",
+            "api_response_format": "JSON object { area_id: string, total_crimes: int, violent_crimes: int, property_crimes: int }"
+        },
+        "function": "API endpoint for retrieving crime data by area",
+        "static_description": "RESTful GET endpoint '/api/crime/:areaId' returns structured crime data for a specified neighborhood identifier.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "choropleth_layer_logic": "Logic to apply color gradients based on statistical intensity levels overlaid on map polygons.",
+            "toggle_layer_control": "UI element allowing users to switch between demographic, economic, and crime data overlays."
+        },
+        "function": "Map functionality for overlaying data layers on geographic regions",
+        "static_description": "Overlay controls located beneath the map enable toggling between different data categories. Selected data appears as colored gradients over corresponding neighborhoods.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling layer checkboxes enables/disables the respective data overlay on the map."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items filters displayed data ranges interactively."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filter_dropdown_options": "[Age Group, Income Bracket, Crime Type]",
+            "drilldown_view_template": "Modal template displaying expanded chart details with granular filtering options."
+        },
+        "function": "Chart components supporting interactive filtering and drill-down capabilities",
+        "static_description": "Each chart includes dropdown menus and sliders for filtering data dimensions. Drill-down icons next to titles open modals with more granular insights.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting filter options redraws the chart with filtered results instantly."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the drill-down icon expands the chart into a modal view with deeper analysis tools."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "grid_system_css": "CSS classes implementing flexbox/grid responsiveness for varying screen sizes.",
+            "widget_resize_handles": "Visual indicators for resizing dashboard components on touch/mouse interfaces."
+        },
+        "function": "Responsive layout system for dashboard customization",
+        "static_description": "Widgets automatically adjust size and position based on viewport width. Handles appear only during editing mode for manual adjustments.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Charts and dashboard containers scale proportionally while maintaining aspect ratios."
+            },
+            {
+                "interaction": "Touch Drag",
+                "description": "On mobile devices, long press activates drag mode for repositioning widgets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "scripts_config": "{ \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" }"
+        },
+        "function": "Package.json configuration with install:all and dev scripts",
+        "static_description": "Root-level package.json includes two custom scripts: install:all runs installation commands for both frontend and backend directories; dev starts development servers simultaneously using concurrent execution.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgres_env_vars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "connection_pool_manager": "Library like pg-pool to manage PostgreSQL connections efficiently under load."
+        },
+        "function": "Database connection management with PostgreSQL using provided credentials",
+        "static_description": "Backend initializes a PostgreSQL client pool using environment variables to establish secure and scalable database access. Connection logs indicate successful initialization.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "Implement a search functionality allowing users to input stock codes or names",
+        "user_persona": "A financial analyst who needs quick access to stock data.",
+        "user_goal": "To find information about a specific stock by entering its name or code.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Stock Name",
+                "description": "Sarah opens the website and sees the search bar centered on the page. She types 'AAPL' into the search field.",
+                "action": "Type 'AAPL' into the search input field.",
+                "expected_outcome": "The text 'AAPL' appears in the search box with navy-colored text."
+            },
+            {
+                "step": 2,
+                "title": "Triggering Search",
+                "description": "After typing the stock code, Sarah presses Enter to initiate the search.",
+                "action": "Press the Enter key.",
+                "expected_outcome": "The system begins processing the search request for 'AAPL'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide auto-suggestions or dropdown options during stock search",
+        "user_persona": "An investor exploring different stocks but unsure of exact codes.",
+        "user_goal": "To quickly locate a stock using partial input and available suggestions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Typing Partial Query",
+                "description": "Mike starts typing 'Tesla' into the search bar to look up Tesla Inc.",
+                "action": "Type 'Tesla' into the search input.",
+                "expected_outcome": "A dropdown list appears below the search bar showing matching stock suggestions."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Suggestion",
+                "description": "Seeing 'TSLA - Tesla Inc.' in the suggestion list, Mike clicks it.",
+                "action": "Click on the suggestion 'TSLA - Tesla Inc.'",
+                "expected_outcome": "The search bar is populated with 'TSLA', and the stock information loads immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display basic stock information including company name, ticker symbol, and current price",
+        "user_persona": "A new investor checking fundamental details of a company.",
+        "user_goal": "To verify the identity and current value of a selected stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Stock Details",
+                "description": "Emma searches for 'GOOGL' and waits for results to load.",
+                "action": "Search for 'GOOGL'.",
+                "expected_outcome": "A card displays 'Alphabet Inc.', ticker 'GOOGL', and its current market price."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show market trend data with charts or graphs for selected stocks",
+        "user_persona": "A trader analyzing historical performance before making investment decisions.",
+        "user_goal": "To understand how a stock has performed over time through visual representation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Trend Chart",
+                "description": "John selects Microsoft (MSFT) and looks at the displayed chart.",
+                "action": "Select MSFT stock.",
+                "expected_outcome": "A line chart showing closing prices over time renders within a container with labeled axes."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Chart",
+                "description": "Curious about specific values, John hovers over points on the chart.",
+                "action": "Hover over data points on the chart.",
+                "expected_outcome": "Tooltips appear displaying exact dates and price values at those points."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present financial data such as earnings, revenue, and key financial ratios",
+        "user_persona": "A finance student researching corporate health indicators.",
+        "user_goal": "To assess a company's profitability and stability using core metrics.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Financial Metrics",
+                "description": "Lisa views Amazon's profile and scrolls down to the financial section.",
+                "action": "Navigate to Amazon (AMZN) financial data section.",
+                "expected_outcome": "Boxes labeled Earnings, Revenue, P/E Ratio, Debt-to-Equity, and ROE show corresponding numeric values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to select different report formats (PDF, HTML, etc.)",
+        "user_persona": "An office manager preparing documents for internal review.",
+        "user_goal": "To choose a suitable format for sharing the generated report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Report Format",
+                "description": "Derek wants to generate a report on Netflix and prefers a PDF version.",
+                "action": "Select 'PDF' from the 'Report Format' radio buttons.",
+                "expected_outcome": "The 'PDF' option is marked as selected, indicating future exports will use this format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to customize report content by choosing specific sections or data points",
+        "user_persona": "A portfolio manager focusing only on essential data for client meetings.",
+        "user_goal": "To tailor the report to include only relevant sections for presentation purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Customizing Sections",
+                "description": "Maria checks only 'Basic Info' and 'Insights & Recommendations' for her concise report.",
+                "action": "Check 'Basic Info' and 'Insights & Recommendations' checkboxes.",
+                "expected_outcome": "Only these two sections are selected for inclusion in the upcoming report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate automated stock reports based on user selections and inputs",
+        "user_persona": "An equity researcher needing regular summaries for multiple companies.",
+        "user_goal": "To compile a customized report quickly without manual effort.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Customized Report",
+                "description": "Raj has selected sections and format, now he clicks 'Generate Report'.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A loading spinner appears while the system compiles the report based on his choices."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a report summary section highlighting key insights and recommendations",
+        "user_persona": "A junior analyst presenting findings to senior management.",
+        "user_goal": "To present an executive summary upfront in every generated report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Summary Section",
+                "description": "Priya generates a full report on Apple and notices a highlighted summary at the top.",
+                "action": "Open the generated Apple stock report.",
+                "expected_outcome": "A clearly titled 'Summary' section shows key findings and recommended actions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide export functionality to download generated reports in chosen formats",
+        "user_persona": "A compliance officer archiving quarterly reports digitally.",
+        "user_goal": "To save the finalized report locally in preferred format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Downloading Generated Report",
+                "description": "After generating a report on IBM in PDF format, Ken clicks the download icon.",
+                "action": "Click the download icon next to the 'Generate Report' button.",
+                "expected_outcome": "The report file downloads directly to Ken’s computer in PDF format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a clean user interface with white background and navy component colors",
+        "user_persona": "A UX designer evaluating consistency across platforms.",
+        "user_goal": "To ensure all UI elements follow a uniform color scheme for clarity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Consistent Styling",
+                "description": "Jamie navigates through the site reviewing forms, buttons, and informational cards.",
+                "action": "Browse various sections of the application.",
+                "expected_outcome": "All backgrounds remain white and all text/components are styled in navy consistently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add loading indicators or progress bars during report generation process",
+        "user_persona": "A busy professional multitasking between tasks.",
+        "user_goal": "To know when the system is actively working so they don't re-click buttons.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Progress Indicator",
+                "description": "While waiting for a long report on Berkshire Hathaway, Olivia sees a spinning loader.",
+                "action": "Wait for report generation after clicking 'Generate Report'.",
+                "expected_outcome": "A centered loading spinner remains visible until the report completes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include error handling for invalid stock codes or unavailable data",
+        "user_persona": "A novice investor experimenting with random entries.",
+        "user_goal": "To be informed politely if something goes wrong instead of seeing broken pages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Invalid Input Error",
+                "description": "Trying a made-up code like 'XYZ123', Noah submits the search expecting results.",
+                "action": "Enter 'XYZ123' and press Enter.",
+                "expected_outcome": "An alert message box appears stating 'Invalid stock code entered.' above the search bar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide user authentication or session management for saving preferences",
+        "user_persona": "A frequent visitor wanting personalized default settings.",
+        "user_goal": "To maintain consistent personal settings across visits without reconfiguring each time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In To Access Preferences",
+                "description": "Wanting to keep his favorite settings, David clicks the 'Login' link in the top-right corner.",
+                "action": "Click the 'Login' link.",
+                "expected_outcome": "A modal login form pops up prompting username and password entry."
+            },
+            {
+                "step": 2,
+                "title": "Saving Preferences After Login",
+                "description": "Upon logging in successfully, David accesses his saved preferences panel.",
+                "action": "Log in successfully.",
+                "expected_outcome": "User profile badge replaces the login link, and preferences panel becomes accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable responsive design for accessibility across different devices and screen sizes",
+        "user_persona": "A remote worker accessing tools from both laptop and smartphone.",
+        "user_goal": "To have seamless experience regardless of device used.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Layout Adaptation",
+                "description": "Using her phone, Sophia browses the stock report generator during commute.",
+                "action": "Resize browser window or switch to mobile view.",
+                "expected_outcome": "UI components resize and rearrange appropriately to fit smaller screens without loss of functionality."
+            }
+        ]
+    }
+]

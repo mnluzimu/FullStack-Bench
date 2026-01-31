@@ -1,0 +1,208 @@
+[
+    {
+        "resource_dependency": {
+            "officeLogoImage": "/assets/images/logo.png",
+            "welcomeMessageContent": "Welcome to our Clinical Office, where your health is our priority.",
+            "officeInfoSchema": "Database table 'office_info' with columns: id (primary key), name (string), address (text), phone (string), email (string), description (text)"
+        },
+        "function": "Display general office information and a welcome message on the homepage.",
+        "static_description": "The homepage features a header with the office logo referenced by 'officeLogoImage', followed by a large welcome message stating 'welcomeMessageContent'. Below this, there is a section displaying office details such as name, address, phone number, and email fetched from the 'office_info' schema. The entire page has a light cyan background and uses cadet blue for text and components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "As the user scrolls down, additional office highlights or testimonials fade into view smoothly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "missionStatementText": "Our mission is to provide compassionate and comprehensive healthcare services to every patient.",
+            "teamPhotosDirectory": "/assets/images/team/",
+            "aboutUsDataSchema": "Database table 'about_us' with columns: id (primary key), title (string), content (text), image_path (string)"
+        },
+        "function": "Present detailed information about the clinical office and its mission.",
+        "static_description": "This page displays a section titled 'About Our Office' containing paragraphs of text including 'missionStatementText'. It includes images of staff members stored in 'teamPhotosDirectory'. Content is retrieved dynamically from the 'about_us' database table. Background remains light cyan with cadet blue styling applied throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on team member photos reveals a modal with their professional biography."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "servicesListAPIEndpoint": "/api/services",
+            "serviceIconsBasePath": "/assets/icons/service/",
+            "servicesDataSchema": "Database table 'services' with columns: id (primary key), name (string), description (text), icon_filename (string)"
+        },
+        "function": "List all medical services offered by the office.",
+        "static_description": "A grid-based layout showcasing individual service cards. Each card contains an icon located at 'serviceIconsBasePath/[icon_filename]', the service name, and a brief description pulled from the 'services' database table via 'servicesListAPIEndpoint'. Page maintains a light cyan background and cadet blue accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Service cards slightly elevate and show a subtle shadow effect when hovered over."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a service card expands it to reveal more detailed information without navigating away."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactFormSubmitEndpoint": "/api/contact",
+            "officeAddressMapEmbedUrl": "https://maps.example.com/embed?location=clinic",
+            "contactDetailsSchema": "Database table 'contact_details' with columns: id (primary key), office_address (text), phone_number (string), email (string), business_hours (text)"
+        },
+        "function": "Allow users to submit inquiries and display office contact details.",
+        "static_description": "Two-column layout: left side hosts a contact form with fields for Name, Email, Subject, and Message which submits to 'contactFormSubmitEndpoint'; right side shows embedded map from 'officeAddressMapEmbedUrl' and contact info loaded from 'contact_details' schema. Consistent light cyan background and cadet blue theme maintained.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form sends data to the backend endpoint and displays a success or error message inline."
+            },
+            {
+                "interaction": "Focus",
+                "description": "Form fields highlight with a cadet blue border upon focus."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                {
+                    "label": "Home",
+                    "url": "/"
+                },
+                {
+                    "label": "About Us",
+                    "url": "/about"
+                },
+                {
+                    "label": "Services",
+                    "url": "/services"
+                },
+                {
+                    "label": "Contact",
+                    "url": "/contact"
+                }
+            ],
+            "menuToggleIcon": "/assets/icons/menu-toggle.svg"
+        },
+        "function": "Provide consistent navigation across all website pages.",
+        "static_description": "Fixed-position horizontal navigation bar at the top featuring links defined in 'navigationMenuItems'. Includes a toggle icon 'menuToggleIcon' visible only on smaller screens. Styled with cadet blue elements against a light cyan backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking menu items navigates to respective pages. Clicking the toggle icon opens/closes a mobile-friendly dropdown menu overlay."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Desktop menu items change background to a lighter shade of cyan on hover."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorValue": "#E0FFFF"
+        },
+        "function": "Apply a uniform light cyan background color to all web pages.",
+        "static_description": "All HTML body elements across pages use CSS rule `background-color: #E0FFFF;` derived from 'backgroundColorValue'. This ensures visual consistency throughout the site.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorPalette": "#5F9EA0"
+        },
+        "function": "Style all UI components using a consistent cadet blue color scheme.",
+        "static_description": "UI components like buttons, headers, borders, and interactive elements utilize the cadet blue color '#5F9EA0' sourced from 'componentColorPalette' through CSS classes globally applied.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and interactive elements darken slightly in tone while maintaining the same base hue during hover states."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Ensure responsiveness and accessibility of all pages on various devices.",
+        "static_description": "Pages adapt layouts using CSS media queries ensuring readability and usability on desktops, tablets, and smartphones. Semantic HTML tags and ARIA attributes enhance accessibility compliance.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts fluidly between breakpoints, reorganizing content stacks vertically on small screens."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dynamicContentFetchPattern": "Use Axios or Fetch API to retrieve JSON responses from internal REST endpoints."
+        },
+        "function": "Fetch any dynamic content exclusively through backend APIs.",
+        "static_description": "Frontend JavaScript modules employ asynchronous calls matching 'dynamicContentFetchPattern' to load content from server-side routes rather than embedding static data directly in markup.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "Upon DOMContentLoaded event, scripts automatically initiate API requests to populate dynamic sections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": {
+                "host": "localhost",
+                "port": 5432,
+                "username": "myappuser",
+                "password": "myapppassword",
+                "database": "myapp"
+            }
+        },
+        "function": "Establish secure connection to PostgreSQL database using predefined environment variables.",
+        "static_description": "Backend initializes database connections referencing configuration parameters found within 'postgresConnectionConfig', aligning precisely with provided environment variable values.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "repoStructureGuide": "Root directory includes subdirectories named 'frontend/' and 'backend/', each housing respective project files."
+        },
+        "function": "Organize repository structure clearly separating frontend and backend codebases.",
+        "static_description": "Project root contains two main folders per 'repoStructureGuide': one labeled 'frontend/' for client-side assets and another called 'backend/' for server logic, promoting clean separation of concerns.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\""
+        },
+        "function": "Enable unified setup of both frontend and backend dependencies using a single command.",
+        "static_description": "'package.json' defines a custom script under key 'install:all' executing 'installScriptCommand', streamlining installation of node_modules across both application layers simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devRunCommand": "concurrently \"cd frontend && npm start\" \"cd backend && npm run start-server\""
+        },
+        "function": "Facilitate concurrent development execution of frontend and backend processes.",
+        "static_description": "Within 'package.json', a 'dev' script invokes 'devRunCommand', launching both frontend build watcher and backend server together in parallel terminal sessions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "assetHandlingDirectories": [
+                "/public/assets/images/",
+                "/public/assets/styles/",
+                "/public/assets/js/"
+            ]
+        },
+        "function": "Support storage and delivery of static assets including images, stylesheets, and client-side scripts.",
+        "static_description": "Dedicated directories listed in 'assetHandlingDirectories' exist in the frontend tree to house public resources served statically by the web server, enabling efficient caching and direct linking.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "seoMetadataSchema": "Each route maps to unique <title> and <meta name=\"description\"> tags populated with relevant keywords and summaries."
+        },
+        "function": "Optimize discoverability and search engine visibility through semantic metadata.",
+        "static_description": "Every page incorporates distinct SEO metadata following guidelines in 'seoMetadataSchema', enhancing crawlability and improving organic reach performance metrics.",
+        "interaction_and_states": []
+    }
+]

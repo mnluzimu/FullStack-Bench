@@ -1,0 +1,252 @@
+[
+    {
+        "resource_dependency": {
+            "customerDataSchema": "Table 'customers' with fields: id (UUID), first_name (string), last_name (string), email (string), phone_number (string), address (text), date_of_birth (date), created_at (timestamp), updated_at (timestamp)",
+            "customerAPIEndpoints": "GET /api/customers, POST /api/customers, PUT /api/customers/{id}, DELETE /api/customers/{id}"
+        },
+        "function": "Manage customer records through full CRUD operations including creation, reading, updating, and deletion of customer data.",
+        "static_description": "A table displaying customer records with columns for name, email, phone number, and address. Above the table, there are buttons for adding new customers and search/filter inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Customer' opens a modal form for entering new customer details. Clicking on a row enables editing mode for that record."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "The customer table supports vertical scrolling when the dataset exceeds the viewport height."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policyDataSchema": "Table 'policies' with fields: id (UUID), customer_id (foreign key to customers.id), policy_type (string), start_date (date), end_date (date), premium_amount (decimal), status (enum: active/inactive/expired), created_at (timestamp), updated_at (timestamp)",
+            "policyAPIEndpoints": "GET /api/policies, POST /api/policies, PUT /api/policies/{id}, DELETE /api/policies/{id}"
+        },
+        "function": "Enable full CRUD functionality for managing insurance policies associated with customers.",
+        "static_description": "A list view showing policy cards or a tabular format with policy details such as type, duration, amount, and status. Controls above allow filtering by status or customer.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'New Policy' launches a multi-step form to create a policy linked to a customer. Clicking a policy card expands it to show detailed information and edit options."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a policy status badge shows tooltip explaining what each status means."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "claimsDataSchema": "Table 'claims' with fields: id (UUID), policy_id (foreign key to policies.id), claim_date (date), incident_description (text), claimed_amount (decimal), approved_amount (decimal), status (enum: submitted/approved/rejected), created_at (timestamp), updated_at (timestamp)",
+            "claimsAPIEndpoints": "GET /api/claims, POST /api/claims, PUT /api/claims/{id}, DELETE /api/claims/{id}"
+        },
+        "function": "Provide complete CRUD capabilities for handling insurance claims related to policies.",
+        "static_description": "A claims dashboard presenting either a timeline or grid view of filed claims with key details visible. Filter controls let users sort by status or date range.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'File New Claim' opens a form requiring selection of a policy and entry of incident details. Clicking a claim entry allows viewing and updating its approval status."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Double-clicking a claim entry opens a detailed view with all claim information and history."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "browseInterfaceAssets": "Icons for customer/policy/claim entities, filter dropdown contents predefined per entity field types"
+        },
+        "function": "Allow users to navigate and inspect existing customer, policy, and claims data through intuitive browsing interfaces.",
+        "static_description": "Three main navigation tabs labeled 'Customers', 'Policies', and 'Claims'. Each tab displays a respective data grid with summary views and quick access filters.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching between tabs loads the corresponding data view. Clicking column headers sorts the displayed data accordingly."
+            },
+            {
+                "interaction": "Drag and Select",
+                "description": "Users can select multiple rows to perform batch actions like export or bulk update."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authAPISpecs": "POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me",
+            "jwtTokenStorage": "Client-side storage mechanism for JWT tokens after successful login"
+        },
+        "function": "Implement secure authentication and role-based authorization to protect system access and operations.",
+        "static_description": "A centered login form featuring username and password fields with a branded logo atop. Background uses whitesmoke color scheme with dark cyan accents on buttons and links.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the login form validates credentials via API call and redirects to the dashboard upon success. Logout clears session and returns to login screen."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused in any input field triggers the login submission action."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardLayoutBlueprint": "Grid layout definition specifying positions for KPI summaries, chart widgets, and recent activity panels",
+            "analyticsAPIData": "GET /api/analytics/kpis, GET /api/analytics/trends"
+        },
+        "function": "Present actionable insights derived from business data through an analytical dashboard interface.",
+        "static_description": "Dashboard composed of modular panels showing metrics like total customers, active policies, pending claims, revenue trends, and top-performing products. Uses whitesmoke background with dark cyan borders around sections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking refresh reloads analytics data dynamically without page reload. Clicking settings icons lets users customize which KPIs appear."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over metric values reveals tooltips indicating how they were calculated and their time period."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportEngineAPI": "GET /api/reports/types, POST /api/reports/generate, GET /api/reports/download/{id}",
+            "reportTemplates": "Predefined templates categorized by report types (financial, operational, compliance)"
+        },
+        "function": "Generate customizable reports covering different aspects of insurance operations for stakeholders.",
+        "static_description": "Report generation panel containing selectable report categories, parameter inputs (dates, departments), preview area, and generate/download buttons styled with dark cyan theme against whitesmoke backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a report category populates relevant parameters. Clicking 'Preview' renders sample output. Clicking 'Generate Report' creates downloadable file asynchronously."
+            },
+            {
+                "interaction": "Change",
+                "description": "Adjusting date ranges or filters automatically updates available report formats and estimated processing times."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Integration with Chart.js or similar library supporting line/bar/pie/donut charts",
+            "visualizationAPIEndpoints": "GET /api/charts/data?metric={type}&range={period}"
+        },
+        "function": "Visualize complex datasets using interactive graphical representations tailored to user preferences.",
+        "static_description": "Chart containers arranged within dashboard panels showing policy trend lines, claim distribution pie charts, and revenue bar graphs. All visuals use consistent dark cyan color palette.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of corresponding data series. Clicking export button downloads current chart as image."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart segments displays contextual data labels and percentages directly on the visualization."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "frontendFramework": "React/Vue/Angular framework setup with Axios/Fetch configured for API communication",
+            "apiConfigSetup": "Base URL configuration pointing to backend services running locally during development"
+        },
+        "function": "Serve dynamic content exclusively sourced from backend APIs ensuring real-time data consistency.",
+        "static_description": "Single-page application shell loading initial route-based views with placeholder states before data arrives. Global header includes branding and authenticated user context menu.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigation",
+                "description": "Route changes trigger async data fetching routines specific to target modules. Loading indicators appear until responses resolve."
+            },
+            {
+                "interaction": "Refresh",
+                "description": "Manual refresh initiates re-fetching of currently viewed data from respective endpoints."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backendServerTech": "Node.js/Express or Python/FastAPI server implementation",
+            "databaseConnectionDetails": "Uses provided environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Expose RESTful APIs enabling frontend applications to interact with persistent data stored in PostgreSQL database.",
+        "static_description": "Backend service listening on configured port exposing documented API routes grouped under '/api' namespace. Logs incoming requests and errors for monitoring purposes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Request",
+                "description": "Incoming HTTP requests are routed to appropriate controllers which query database using ORM/connection pool and return structured JSON responses."
+            },
+            {
+                "interaction": "Error",
+                "description": "Unhandled exceptions result in standardized error payloads being sent back to clients along with proper HTTP status codes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresSchemaDefinitions": "SQL scripts creating tables: customers(id,first_name,last_name,email,...); policies(id,customer_id,policy_type,...); claims(id,policy_id,incident_description,...)"
+        },
+        "function": "Define relational database structure storing core business entities essential for insurance operations.",
+        "static_description": "Entity relationship diagram outlining primary keys, foreign key relationships, and constraints among customers, policies, and claims tables hosted inside PostgreSQL instance.",
+        "interaction_and_states": [
+            {
+                "interaction": "Migration Execution",
+                "description": "Running migration scripts applies schema definitions atomically to initialize clean database state matching application expectations."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchFilterComponents": "Reusable UI components for text search boxes, date pickers, dropdown selectors mapped to searchable fields"
+        },
+        "function": "Empower users to locate specific records efficiently across all major data modules using flexible search criteria.",
+        "static_description": "Universal search bar positioned prominently near top of every data module view. Adjacent filter dropdown menus provide advanced filtering by common attributes like dates, statuses, or ownership.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Text",
+                "description": "Typing into global search triggers debounced API queries returning filtered results matching entered keywords."
+            },
+            {
+                "interaction": "Apply Filters",
+                "description": "Selecting filter values narrows displayed dataset instantly through client-side or server-side filtration depending on volume."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveCSSFramework": "Tailwind CSS or Bootstrap setup enforcing responsive breakpoints and theming guidelines",
+            "themeVariables": ":root { --background-color: whitesmoke; --primary-color: darkcyan; }"
+        },
+        "function": "Ensure optimal usability and aesthetic coherence across devices maintaining specified color scheme throughout interface.",
+        "static_description": "Visually consistent layouts adapting fluidly between desktop, tablet, and mobile screen sizes. Background uniformly whitesmoke with interactive elements rendered in dark cyan tones.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts responsively collapsing sidebars into hamburger menus on smaller screens and stacking content vertically where needed."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentDevScript": "\"dev\": \"concurrently \\\"npm run dev --prefix frontend\\\" \\\"npm run dev --prefix backend\\\"\""
+        },
+        "function": "Facilitate parallel local development workflow allowing simultaneous startup of frontend and backend services.",
+        "static_description": "Terminal command prompt ready to execute unified development script launching both application tiers seamlessly side-by-side.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run dev' spawns two separate processes—one serving frontend assets and another hosting backend APIs—both monitored within same terminal session."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptDefinition": "\"install:all\": \"npm install && npm run install:fe && npm run install:be\"",
+            "subInstallScripts": "\"install:fe\": \"cd frontend && npm install\", \"install:be\": \"cd backend && npm install\""
+        },
+        "function": "Streamline dependency installation process across entire project stack minimizing manual steps required for setup.",
+        "static_description": "Root-level package.json manifest listing composite installation commands alongside standard metadata entries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Execute Install Script",
+                "description": "Issuing 'npm run install:all' sequentially runs nested install procedures installing packages for root, frontend, and backend directories in order."
+            }
+        ]
+    }
+]

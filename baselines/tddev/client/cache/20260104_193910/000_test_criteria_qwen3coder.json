@@ -1,0 +1,310 @@
+[
+    {
+        "requirement_tested": "Frontend application with a dashboard displaying animal detection records",
+        "user_persona": "A wildlife researcher checking recent animal sightings.",
+        "user_goal": "To view a list of recent animal detections on the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Dashboard",
+                "description": "Sarah opens the website and lands on the dashboard where she expects to see recent animal detection records.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "Dashboard loads showing a grid of detection cards with animal names, timestamps, thumbnails, and metadata."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting a Record",
+                "description": "Sarah notices a bear detection and wants more details. She clicks the card to investigate further.",
+                "action": "Click on a detection card labeled 'Bear'.",
+                "expected_outcome": "User is redirected to a detailed view page for that specific detection record."
+            },
+            {
+                "step": 3,
+                "title": "Loading More Records",
+                "description": "Curious about older entries, Sarah scrolls down to load additional detection history.",
+                "action": "Scroll to the bottom of the dashboard.",
+                "expected_outcome": "New detection records are fetched and appended to the existing list seamlessly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API service connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer verifying backend connectivity.",
+        "user_goal": "To confirm the backend can retrieve detection data from the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making API Request",
+                "description": "John, a developer, uses curl to hit the detections endpoint to verify backend communication with the database.",
+                "action": "Send GET request to `/api/detections`.",
+                "expected_outcome": "Server responds with a paginated JSON list of detection records retrieved from the PostgreSQL database."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Detection",
+                "description": "John simulates submitting a new detection entry via the API to test insertion logic.",
+                "action": "POST valid detection payload to `/api/detections`.",
+                "expected_outcome": "Server inserts the new record into the 'detections' table and returns success confirmation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Animal recognition system that identifies wild animals from uploaded images or camera feeds",
+        "user_persona": "A field biologist uploading footage for analysis.",
+        "user_goal": "To upload an image and get an identified animal result.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Image",
+                "description": "Emma visits the upload tab and selects a photo of a fox from her device to analyze.",
+                "action": "Choose file and click 'Upload' under the image upload section.",
+                "expected_outcome": "Image is sent to the ML model via the backend and returns identification results indicating 'Fox'."
+            },
+            {
+                "step": 2,
+                "title": "Activating Camera Feed",
+                "description": "Later, Emma activates the live camera feed to monitor real-time activity near her research station.",
+                "action": "Click the 'Activate Live Feed' button.",
+                "expected_outcome": "WebSocket connection is established and begins streaming processed frames from the camera for continuous detection."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Color coding feature assigning unique colors to each identified animal type",
+        "user_persona": "A park ranger reviewing alerts visually.",
+        "user_goal": "To quickly distinguish animal types based on their assigned color codes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Detections",
+                "description": "Ranger Mike scans the dashboard and sees multiple animal detection cards with colored indicators.",
+                "action": "Observe the dashboard cards showing animal names with adjacent color badges.",
+                "expected_outcome": "Each animal has a consistent color indicator (e.g., brown for Bear) matching the defined palette."
+            },
+            {
+                "step": 2,
+                "title": "Checking Tooltip Info",
+                "description": "Mike hovers over one of the color indicators to understand its meaning better.",
+                "action": "Hover mouse pointer over a color badge next to an animal name.",
+                "expected_outcome": "Tooltip appears displaying the full animal name and hex code of the color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface allowing users to configure alert conditions for specific animals",
+        "user_persona": "A conservationist setting up customized alerts.",
+        "user_goal": "To enable alerts only for wolves and set a high confidence threshold.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Alert Settings",
+                "description": "Lisa logs in and navigates to her profile to adjust her alert preferences.",
+                "action": "Click on the 'Alert Configuration' option in the user menu.",
+                "expected_outcome": "Modal form opens presenting options for selecting animals, adjusting thresholds, and scheduling."
+            },
+            {
+                "step": 2,
+                "title": "Setting Preferences",
+                "description": "Lisa checks 'Wolf', unchecks others, drags the slider to 90% confidence, then saves changes.",
+                "action": "Toggle 'Wolf' checkbox ON, adjust slider to 90%, and click 'Save'.",
+                "expected_outcome": "Preferences are submitted successfully and saved to the backend for future alert evaluation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "SMS notification system triggered when specified animals are detected",
+        "user_persona": "A local authority receiving emergency alerts.",
+        "user_goal": "To receive timely SMS alerts upon detecting endangered species.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Detection Event Occurs",
+                "description": "System detects a rare lynx with sufficient confidence level during night patrol.",
+                "action": "Internal detection process identifies 'Lynx' and matches active user alert settings.",
+                "expected_outcome": "SMS is automatically dispatched through integrated Twilio API to preconfigured recipient numbers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema storing animal detection records with timestamps and metadata",
+        "user_persona": "A data analyst querying historical records.",
+        "user_goal": "To extract all wolf detections recorded last month.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Querying Database Directly",
+                "description": "Analyst Rob connects directly to the PostgreSQL instance and writes a query targeting the 'detections' table.",
+                "action": "Execute SQL SELECT statement filtering by animal_type='Wolf' and timestamp within last month.",
+                "expected_outcome": "Returns rows containing detection ID, timestamp, location, image URL, and other stored metadata."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and profile management for personalized alert settings",
+        "user_persona": "A new volunteer signing up and setting alerts.",
+        "user_goal": "To register, log in, and personalize alert settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Account",
+                "description": "Tom fills out the registration form with his details and submits it.",
+                "action": "Fill in username, email, password fields and click 'Register'.",
+                "expected_outcome": "Account is created in the database and Tom receives confirmation redirecting to the login screen."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Tom enters his newly registered credentials and attempts to log in.",
+                "action": "Enter correct email/password and click 'Login'.",
+                "expected_outcome": "Successfully authenticated; session token is issued and Tom is redirected to the dashboard."
+            },
+            {
+                "step": 3,
+                "title": "Updating Profile",
+                "description": "Once logged in, Tom goes to update his preferred contact method for alerts.",
+                "action": "Navigate to profile panel and edit phone number field, then click 'Save Changes'.",
+                "expected_outcome": "Updated profile information is saved securely in the database linked to Tom's user ID."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Animal information pages displaying species details and characteristics",
+        "user_persona": "An educator preparing lesson material.",
+        "user_goal": "To gather comprehensive facts about red foxes for teaching purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Species Info",
+                "description": "Teacher Maria finds a detection record mentioning 'Red Fox' and clicks it to learn more.",
+                "action": "Click on the animal name link within a detection card.",
+                "expected_outcome": "Redirected to a dedicated species page populated with detailed info like habitat, diet, and conservation status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time detection feed showing live animal identifications",
+        "user_persona": "A nature enthusiast watching live detections.",
+        "user_goal": "To observe ongoing animal identifications as they happen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Feed",
+                "description": "Alex opens the homepage and sees the live detection feed starting to populate.",
+                "action": "Visit the main dashboard after system startup.",
+                "expected_outcome": "WebSocket connection initiates and real-time detection cards begin appearing dynamically at the top of the feed."
+            },
+            {
+                "step": 2,
+                "title": "Pinning Important Detection",
+                "description": "Alex spots a rare animal and decides to keep the detection visible longer.",
+                "action": "Click the pin icon on a detection card.",
+                "expected_outcome": "Card remains visible beyond default fade-out duration and shifts to a separate persistent section."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Alert configuration panel with options to set detection thresholds and schedules",
+        "user_persona": "A wildlife manager optimizing alert efficiency.",
+        "user_goal": "To reduce false positives by increasing the confidence threshold and limiting alerts to working hours.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adjusting Confidence Level",
+                "description": "Manager Dan accesses the alert settings and increases the required confidence score.",
+                "action": "Drag the threshold slider to 85%.",
+                "expected_outcome": "Displayed numeric value updates accordingly and prepares for submission."
+            },
+            {
+                "step": 2,
+                "title": "Defining Active Hours",
+                "description": "Dan sets the alert window to activate only during daytime operations.",
+                "action": "Use time pickers to select 6 AM to 8 PM.",
+                "expected_outcome": "Selected time range is applied and ready to be saved alongside other alert conditions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Browsing interface for historical detection records with search and filter capabilities",
+        "user_persona": "A researcher studying seasonal patterns.",
+        "user_goal": "To find all deer detections from January using search and filters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching Keywords",
+                "description": "Dr. Lee types 'Deer' into the search bar hoping to narrow down results.",
+                "action": "Type 'Deer' in search input and press Enter.",
+                "expected_outcome": "Dashboard updates to show only detection records containing 'Deer' in metadata or animal type."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "She refines the search by applying a date range filter for January.",
+                "action": "Open filter sidebar, choose January dates, and apply filters.",
+                "expected_outcome": "Filtered dataset reloads showing Deer detections exclusively from January."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with misty rose background and firebrick UI elements",
+        "user_persona": "A visitor accessing the site on mobile.",
+        "user_goal": "To navigate the site comfortably on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Viewport",
+                "description": "Visitor Mia resizes browser window simulating mobile usage.",
+                "action": "Resize browser viewport to simulate mobile dimensions.",
+                "expected_outcome": "Layout reflows appropriately with readable fonts, touch-friendly controls, and responsive grids."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Styling",
+                "description": "Mia confirms the visual theme aligns with branding guidelines.",
+                "action": "Inspect background and primary UI element colors.",
+                "expected_outcome": "Body background is consistently Misty Rose (#FFE4E1), and interactive elements use Firebrick (#B22222)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving detection data, animal information, and user settings",
+        "user_persona": "A third-party app developer integrating detection features.",
+        "user_goal": "To programmatically access detection data and integrate into another platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Detections",
+                "description": "Developer Sam makes an API call to pull latest detection records.",
+                "action": "Send GET request to `/api/detections?page=1&limit=10`.",
+                "expected_outcome": "Receives paginated JSON response with detection records including timestamps, animal types, and metadata."
+            },
+            {
+                "step": 2,
+                "title": "Getting Animal Details",
+                "description": "Sam retrieves detailed information about a specific animal for display.",
+                "action": "Request animal details via GET `/api/animals/red_fox`.",
+                "expected_outcome": "Returns structured JSON object with species-specific attributes such as habitat, behavior, and media links."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server setup with npm scripts for frontend and backend",
+        "user_persona": "A contributor joining the project team.",
+        "user_goal": "To start both frontend and backend development environments efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "New team member Jordan clones the repo and runs the install command.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Both client and server dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Dev Servers",
+                "description": "Jordan now starts both development servers to begin work.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend development servers launch simultaneously, enabling hot reloading and synchronized debugging."
+            }
+        ]
+    }
+]

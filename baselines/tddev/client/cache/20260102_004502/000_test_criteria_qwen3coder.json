@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "A homepage displaying featured technical articles and solutions",
+        "user_persona": "A tech enthusiast visiting the site for the first time.",
+        "user_goal": "To quickly find interesting technical content from the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Alex visits the website and lands on the homepage. He sees two distinct sections: 'Featured Articles' and 'Popular Solutions'.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "Homepage renders with both 'Featured Articles' and 'Popular Solutions' sections, each showing a grid of cards."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Featured Content",
+                "description": "Alex hovers over an article card titled 'Understanding Quantum Computing' and notices it lifts slightly with a shadow effect.",
+                "action": "Hover over the article card.",
+                "expected_outcome": "The card elevates and displays a subtle shadow effect."
+            },
+            {
+                "step": 3,
+                "title": "Navigating to Article Detail",
+                "description": "Intrigued by the title, Alex clicks on the article card to read more.",
+                "action": "Click on the article card.",
+                "expected_outcome": "User is redirected to the detailed view page for that specific article."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A dedicated page for browsing technical articles with pagination or infinite scroll",
+        "user_persona": "A developer looking for in-depth tutorials.",
+        "user_goal": "To browse multiple technical articles efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Articles Page",
+                "description": "Jamie navigates to the articles browsing page to explore available content.",
+                "action": "Navigate to the articles listing page.",
+                "expected_outcome": "Page loads with a vertical list of articles including titles, excerpts, authors, dates, and tags."
+            },
+            {
+                "step": 2,
+                "title": "Scrolling Through Articles",
+                "description": "Jamie scrolls down the list of articles. As they near the bottom, more articles load automatically.",
+                "action": "Scroll towards the end of the article list.",
+                "expected_outcome": "Additional articles are fetched and appended to the list without manual intervention."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Specific Article",
+                "description": "Jamie finds an article titled 'Building REST APIs with Node.js' and clicks on it to read further.",
+                "action": "Click on the article title.",
+                "expected_outcome": "Redirected to the detailed article view page for the selected article."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search functionality allowing users to query technical information across articles and solutions",
+        "user_persona": "A systems administrator troubleshooting a server issue.",
+        "user_goal": "To quickly locate relevant technical resources using keywords.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Taylor needs help resolving a Docker container error. They click into the search bar at the top of the site.",
+                "action": "Click inside the search input field.",
+                "expected_outcome": "Input field gains focus and cursor blinks ready for typing."
+            },
+            {
+                "step": 2,
+                "title": "Entering Query",
+                "description": "Taylor types 'Docker container restart loop' into the search box.",
+                "action": "Type 'Docker container restart loop' into the search bar.",
+                "expected_outcome": "Text appears in the input field as typed."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Search",
+                "description": "After typing the query, Taylor presses Enter to initiate the search.",
+                "action": "Press Enter key.",
+                "expected_outcome": "System redirects to the search results page populated with matching articles and solutions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A detailed view page for each technical article with formatted content display",
+        "user_persona": "A software engineer researching microservices architecture.",
+        "user_goal": "To thoroughly understand complex architectural concepts presented in articles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Detailed Article View",
+                "description": "Casey clicks on an article about 'Microservices Communication Patterns' from the search results.",
+                "action": "Click on the article link.",
+                "expected_outcome": "Article detail page loads displaying the full title, author, publish date, and formatted content area."
+            },
+            {
+                "step": 2,
+                "title": "Reading Formatted Content",
+                "description": "Casey scrolls through the article noticing well-formatted headings, bullet points, and code snippets.",
+                "action": "Scroll vertically through the article content.",
+                "expected_outcome": "Content scrolls smoothly with all formatting intact, including syntax-highlighted code blocks."
+            },
+            {
+                "step": 3,
+                "title": "Following External References",
+                "description": "While reading, Casey clicks on a reference link to an external documentation source.",
+                "action": "Click on an embedded hyperlink within the article.",
+                "expected_outcome": "Link opens in a new browser tab, keeping the article open in the original tab."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A section for browsing and viewing solutions with filtering options by category or date",
+        "user_persona": "An IT support specialist seeking proven fixes.",
+        "user_goal": "To find categorized troubleshooting solutions efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Solutions Section",
+                "description": "Jordan goes to the solutions section to look up known fixes for network issues.",
+                "action": "Navigate to the solutions browsing page.",
+                "expected_outcome": "Page displays a filter sidebar and a list of solution cards on the right side."
+            },
+            {
+                "step": 2,
+                "title": "Applying Category Filter",
+                "description": "Jordan selects 'Networking' from the category dropdown to narrow down the results.",
+                "action": "Select 'Networking' from the category filter dropdown.",
+                "expected_outcome": "List updates dynamically to show only Networking-related solutions."
+            },
+            {
+                "step": 3,
+                "title": "Accessing Solution Details",
+                "description": "Jordan clicks on a solution titled 'Fixing Intermittent DNS Failures' to get detailed steps.",
+                "action": "Click on the solution card.",
+                "expected_outcome": "Redirected to the detailed view page for the selected solution."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A detailed view page for each solution with structured presentation of problem and resolution",
+        "user_persona": "A DevOps engineer applying documented fixes.",
+        "user_goal": "To accurately follow step-by-step instructions to resolve infrastructure problems.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Solution Detail",
+                "description": "Riley opens a solution page dealing with Kubernetes pod failures.",
+                "action": "Navigate to a specific solution's detail page.",
+                "expected_outcome": "Page loads with clearly separated 'Problem Description' and 'Resolution Steps' sections."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Problem Statement",
+                "description": "Riley reads through the problem description to confirm it matches their issue.",
+                "action": "Scroll through the 'Problem Description' section.",
+                "expected_outcome": "Section displays the problem context with proper formatting and clarity."
+            },
+            {
+                "step": 3,
+                "title": "Executing Resolution Steps",
+                "description": "Riley follows the numbered resolution steps carefully to fix the issue.",
+                "action": "Scroll through the 'Resolution Steps' section.",
+                "expected_outcome": "Each step is clearly outlined and easy to follow for implementation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system supporting registration, login, and session management",
+        "user_persona": "A new contributor wanting to share knowledge.",
+        "user_goal": "To create an account and start participating in discussions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Registration Process",
+                "description": "Morgan visits the site and decides to sign up to contribute articles. They click the Register button.",
+                "action": "Click the 'Register' button.",
+                "expected_outcome": "Registration form modal or page appears with fields for username, email, and password."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration Info",
+                "description": "Morgan fills out the registration form with valid details and clicks Submit.",
+                "action": "Fill registration form and click 'Submit'.",
+                "expected_outcome": "Form validates input and sends data to the backend; user receives confirmation and is redirected to the homepage."
+            },
+            {
+                "step": 3,
+                "title": "Logging Out Later",
+                "description": "After exploring the site, Morgan logs out using the profile menu.",
+                "action": "Click the 'Logout' option from the user profile menu.",
+                "expected_outcome": "Session ends, cookies are cleared, and Morgan is redirected back to the homepage as a guest."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user profile page showing authored articles, contributed solutions, and communication history",
+        "user_persona": "An experienced writer reviewing their contributions.",
+        "user_goal": "To review personal activity and contributions on the platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile Dashboard",
+                "description": "Pat logs in and navigates to their profile page to see their overall contribution stats.",
+                "action": "Navigate to the user profile page.",
+                "expected_outcome": "Profile page loads with default Overview tab showing summary statistics like number of articles and solutions."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Authored Articles",
+                "description": "Pat switches to the 'Authored Articles' tab to see a list of their published work.",
+                "action": "Click on the 'Authored Articles' tab.",
+                "expected_outcome": "Tab content updates asynchronously to show a list of articles Pat has written."
+            },
+            {
+                "step": 3,
+                "title": "Checking Communication History",
+                "description": "Curious about past interactions, Pat checks the 'Communication History' tab.",
+                "action": "Click on the 'Communication History' tab.",
+                "expected_outcome": "Displays a chronological list of Pat's messages and comments without refreshing the entire page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A messaging or discussion feature enabling users to communicate with each other",
+        "user_persona": "Two developers collaborating remotely.",
+        "user_goal": "To discuss implementation strategies privately in real-time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Messaging Interface",
+                "description": "Sam opens the messaging panel to talk to a fellow contributor named Lee.",
+                "action": "Open the messaging interface.",
+                "expected_outcome": "Interface shows a list of existing conversations on the left and message threads on the right."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Conversation Thread",
+                "description": "Sam clicks on Lee’s name in the conversation list to continue their previous discussion.",
+                "action": "Click on Lee’s conversation entry.",
+                "expected_outcome": "Message history with Lee loads in the main chat pane instantly."
+            },
+            {
+                "step": 3,
+                "title": "Sending Real-Time Message",
+                "description": "Sam types a quick question about API rate limits and hits Enter to send it.",
+                "action": "Type message and press Enter.",
+                "expected_outcome": "Message appears immediately in the thread and is delivered in real-time to Lee."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A commenting system on articles and solutions to allow user interaction",
+        "user_persona": "A reader providing feedback on a tutorial.",
+        "user_goal": "To give constructive feedback and ask clarifying questions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading and Preparing Comment",
+                "description": "Taylor finishes reading an informative article and scrolls to the comments section to leave thoughts.",
+                "action": "Scroll to the bottom of the article where comments are displayed.",
+                "expected_outcome": "Comments section loads below the article showing existing user comments with avatars and timestamps."
+            },
+            {
+                "step": 2,
+                "title": "Writing a New Comment",
+                "description": "Taylor writes a helpful suggestion in the comment form provided.",
+                "action": "Enter text into the comment composition textarea.",
+                "expected_outcome": "Typed text appears in the textarea ready for submission."
+            },
+            {
+                "step": 3,
+                "title": "Posting the Comment",
+                "description": "After composing the comment, Taylor clicks the Post button.",
+                "action": "Click the 'Post' button next to the comment form.",
+                "expected_outcome": "Comment is added instantly to the list after successful API response, visible to all readers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API endpoints for fetching articles, solutions, user data, and search results from a PostgreSQL database",
+        "user_persona": "A frontend developer integrating dynamic content.",
+        "user_goal": "To retrieve accurate data from backend services via API calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Articles Data",
+                "description": "During development, Kai makes an API request to fetch the latest articles for the homepage.",
+                "action": "Make GET request to '/api/articles'.",
+                "expected_outcome": "Server responds with JSON array containing article objects retrieved from PostgreSQL database."
+            },
+            {
+                "step": 2,
+                "title": "Searching Across Resources",
+                "description": "Kai tests the global search endpoint to verify cross-resource querying works.",
+                "action": "Make GET request to '/api/search?query=authentication&type=all'.",
+                "expected_outcome": "Returns combined results of articles and solutions matching the keyword 'authentication'."
+            },
+            {
+                "step": 3,
+                "title": "Retrieving User Information",
+                "description": "Kai verifies that user-specific data can be fetched using the appropriate endpoint.",
+                "action": "Make GET request to '/api/users/123' with authentication token.",
+                "expected_outcome": "Receives detailed user object including authored content and communication history."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend components making HTTP requests to backend APIs for all dynamic data",
+        "user_persona": "End-user browsing dynamic content online.",
+        "user_goal": "To view fresh, up-to-date content loaded dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Load with Loading State",
+                "description": "When Maya visits the articles page, she initially sees a spinner indicating content is loading.",
+                "action": "Visit the articles listing page.",
+                "expected_outcome": "Spinner animation is shown until API response completes."
+            },
+            {
+                "step": 2,
+                "title": "Displaying Fetched Content",
+                "description": "Once the data arrives, the spinner disappears and articles populate the page.",
+                "action": "Wait for API response to complete.",
+                "expected_outcome": "Spinner vanishes and articles are rendered in place dynamically."
+            },
+            {
+                "step": 3,
+                "title": "Refreshing Dynamic Data",
+                "description": "Maya applies a filter which triggers another API call for refined results.",
+                "action": "Apply a category filter.",
+                "expected_outcome": "New API request is made, and the article list refreshes with filtered content without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Environment configuration setup using specified PostgreSQL connection variables",
+        "user_persona": "DevOps engineer deploying the application.",
+        "user_goal": "To ensure secure and stable database connectivity upon deployment.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Before starting the app, Dana ensures the correct database credentials are set in the environment config.",
+                "action": "Set environment variables: DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "Variables are stored securely in the .env file and accessible to the backend process."
+            },
+            {
+                "step": 2,
+                "title": "Initializing Database Connection",
+                "description": "On startup, the backend attempts to establish a connection pool using the configured settings.",
+                "action": "Start the backend service.",
+                "expected_outcome": "Application successfully connects to PostgreSQL using the defined credentials and initializes connection pooling."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Operational Status",
+                "description": "Dana confirms that the database is actively serving requests through logging or monitoring tools.",
+                "action": "Check application logs for database connection success messages.",
+                "expected_outcome": "Log entries confirm healthy database connection and readiness to serve API requests."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package scripts in `package.json`: `install:all` for installing frontend and backend dependencies, and `dev` for running both concurrently",
+        "user_persona": "Full-stack developer setting up local environment.",
+        "user_goal": "To easily install and launch both frontend and backend projects together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies Simultaneously",
+                "description": "Ash clones the repo and runs a single command to install all project dependencies.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both client and server dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "After setup, Ash uses one command to start both frontend and backend development servers.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Frontend and backend development servers start simultaneously and run concurrently."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Service Availability",
+                "description": "Ash opens the browser to confirm that both services are responding correctly.",
+                "action": "Visit localhost ports for frontend and backend.",
+                "expected_outcome": "Frontend UI loads successfully and backend APIs respond with valid data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across desktop and mobile devices",
+        "user_persona": "Mobile user accessing technical documentation.",
+        "user_goal": "To navigate and consume content comfortably on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile Device",
+                "description": "Quinn opens the website on their phone to read an article during commute.",
+                "action": "Open site URL on a mobile device or resize browser to mobile width.",
+                "expected_outcome": "Site layout adjusts responsively, navigation collapses into a hamburger menu, and fonts scale appropriately."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Responsive Elements",
+                "description": "Quinn taps the hamburger icon to access navigation links.",
+                "action": "Tap the hamburger menu icon.",
+                "expected_outcome": "Navigation drawer slides in smoothly, presenting accessible menu items."
+            },
+            {
+                "step": 3,
+                "title": "Reading Content Comfortably",
+                "description": "Quinn scrolls through an article with appropriately sized text and touch-friendly spacing.",
+                "action": "Scroll and interact with article content on mobile screen.",
+                "expected_outcome": "Content remains readable and interactive elements are large enough for comfortable tapping."
+            }
+        ]
+    }
+]

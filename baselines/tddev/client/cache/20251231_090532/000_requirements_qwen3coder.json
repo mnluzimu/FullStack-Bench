@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all promotion data dynamically from backend APIs",
+    "A backend API service that connects to a PostgreSQL database using specified environment variables",
+    "User interface with ivory colored outer layout and forest green UI blocks",
+    "Promotion browsing functionality displaying available promotions to users",
+    "Promotion sharing functionality allowing users to share promotions",
+    "Search functionality enabling users to find promotions by keywords or categories",
+    "Admin management backend for user account management",
+    "Admin management backend for promotion content management",
+    "Admin management backend for website configuration settings",
+    "Package.json configured with 'install:all' script to install both frontend and backend dependencies",
+    "Package.json configured with 'dev' script to start both frontend and backend concurrently",
+    "Responsive web design compatible with desktop and mobile browsing",
+    "User authentication system for accessing promotion sharing features",
+    "Data validation and sanitization for promotion submissions",
+    "Error handling for API requests and database connections"
+]

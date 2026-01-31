@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A price-conscious shopper looking for the best deals across states.",
+        "user_goal": "To search for a laptop and view up-to-date pricing information from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Search Page",
+                "description": "Maria visits the homepage and waits for the page to load product categories dynamically from the backend.",
+                "action": "Navigate to the homepage.",
+                "expected_outcome": "The page loads with placeholder content initially, then populates category dropdown options fetched from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Product Search",
+                "description": "Maria selects 'Electronics' as the category and clicks the 'Search' button to fetch matching products.",
+                "action": "Select 'Electronics' from the category dropdown and click the 'Search' button.",
+                "expected_outcome": "Frontend sends request to backend API; results appear showing various electronics including laptops with prices and suppliers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "user_persona": "A developer verifying backend connectivity.",
+        "user_goal": "Ensure the backend can connect to the PostgreSQL database and retrieve product data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Backend Request",
+                "description": "While browsing the frontend, John triggers a search which prompts the backend to query the database.",
+                "action": "Perform a product search on the frontend.",
+                "expected_outcome": "Backend successfully establishes connection using specified environment variables and retrieves relevant product records from PostgreSQL."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product search functionality allowing users to select specific product categories and parameters",
+        "user_persona": "A college student searching for affordable textbooks.",
+        "user_goal": "Find textbooks in the 'Books' category filtered by subject and edition.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Category",
+                "description": "Emma opens the site and chooses 'Books' from the category dropdown to narrow her search focus.",
+                "action": "Click the category dropdown and select 'Books'.",
+                "expected_outcome": "Dropdown closes and 'Books' is displayed as the selected category."
+            },
+            {
+                "step": 2,
+                "title": "Entering Parameters",
+                "description": "Emma fills in the book title and selects the desired edition from parameter fields.",
+                "action": "Type 'Calculus' into the title field and choose '7th Edition' from the edition dropdown.",
+                "expected_outcome": "Parameter fields update with Emma's input and edition selection."
+            },
+            {
+                "step": 3,
+                "title": "Executing Search",
+                "description": "Emma clicks the crimson 'Search' button to find matching textbooks.",
+                "action": "Click the 'Search' button.",
+                "expected_outcome": "Page updates to show Calculus textbooks matching the selected edition."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Automatic comparison of product prices across different states",
+        "user_persona": "A frequent traveler buying gifts in different states.",
+        "user_goal": "Compare prices of a wireless speaker across multiple states.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Product",
+                "description": "David searches for 'wireless speaker' and finds several models in the results.",
+                "action": "Enter 'wireless speaker' in the search bar and submit.",
+                "expected_outcome": "Results list appears with wireless speakers and basic price/state info."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Price Comparison",
+                "description": "David clicks on a speaker model to see how its price varies by state.",
+                "action": "Click on a wireless speaker item in the results list.",
+                "expected_outcome": "Expanded view shows a comparison chart/table with prices listed per state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display of lowest-priced products in search results",
+        "user_persona": "Budget-focused consumer looking for savings.",
+        "user_goal": "Quickly identify the cheapest tablet available nationwide.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Lisa searches for 'tablet' hoping to find the most affordable option quickly.",
+                "action": "Type 'tablet' into the search bar and press Enter.",
+                "expected_outcome": "Search results load with tablets sorted by price, lowest first."
+            },
+            {
+                "step": 2,
+                "title": "Identifying Lowest Price",
+                "description": "Lisa notices a crimson-highlighted badge indicating the lowest price on the first result.",
+                "action": "Observe the first search result.",
+                "expected_outcome": "First item displays a 'Lowest Price' badge and shows the cheapest price among all matches."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Detailed product information pages showing price, quantity, and supplier information",
+        "user_persona": "Tech buyer needing complete specs and sourcing details.",
+        "user_goal": "Verify stock levels and supplier contact info for a graphics card.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Product Details",
+                "description": "Raj clicks on a graphics card listing to get more detailed information.",
+                "action": "Click on a graphics card entry in the search results.",
+                "expected_outcome": "Navigates to a dedicated product detail page with full specs, pricing, and supplier info."
+            },
+            {
+                "step": 2,
+                "title": "Checking Quantity and Supplier Info",
+                "description": "On the product page, Raj checks if there's enough stock and where it's coming from.",
+                "action": "Scroll down to the quantity and supplier sections.",
+                "expected_outcome": "Displays current quantity available and supplier name along with contact/business information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with seashell background color applied to the canvas",
+        "user_persona": "Web designer evaluating visual consistency.",
+        "user_goal": "Confirm that the entire website has a uniform seashell background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Canvas",
+                "description": "Alex opens the homepage to evaluate overall background styling.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "Entire page background renders with consistent seashell (#FFF5EE) color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "All visible UI components styled with crimson color",
+        "user_persona": "UI/UX reviewer checking brand adherence.",
+        "user_goal": "Verify that all interactive elements use the correct crimson color theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Interactive Elements",
+                "description": "Jamie inspects buttons, links, and form fields to ensure they match the crimson theme.",
+                "action": "Visit any page and observe primary UI components.",
+                "expected_outcome": "Buttons, links, form borders, and headings are consistently styled with crimson (#DC143C)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Category selection filters for refining product searches",
+        "user_persona": "Busy parent shopping for home essentials.",
+        "user_goal": "Filter product results to only show items in the 'Home & Garden' category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Category Filters",
+                "description": "Patricia looks to refine her search and clicks the category filter dropdown.",
+                "action": "Click the category dropdown menu.",
+                "expected_outcome": "List of categories appears with checkboxes or selectable options."
+            },
+            {
+                "step": 2,
+                "title": "Applying Category Filter",
+                "description": "She selects 'Home & Garden' and applies the filter to update results.",
+                "action": "Check 'Home & Garden' and click 'Apply Filters'.",
+                "expected_outcome": "Results reload showing only products in the 'Home & Garden' category."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "State selection functionality for geographic filtering",
+        "user_persona": "Regional manager sourcing local inventory.",
+        "user_goal": "Find office chairs sold specifically in Texas and California.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing State Selection",
+                "description": "Michael wants to limit his chair search to specific states and opens the state filter.",
+                "action": "Click the state selection dropdown.",
+                "expected_outcome": "Full list of U.S. states appears for selection."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Target States",
+                "description": "He selects Texas and California from the list and confirms his choices.",
+                "action": "Select 'Texas' and 'California', then click 'Apply Geographic Filter'.",
+                "expected_outcome": "Search results update to show only office chairs available in those two states."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time price comparison updates",
+        "user_persona": "Online deal hunter tracking price drops.",
+        "user_goal": "Monitor fluctuating prices of a gaming console during a sale event.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Prices",
+                "description": "Sarah keeps the product page open to watch for sudden price reductions.",
+                "action": "Leave the product page open after initial load.",
+                "expected_outcome": "Prices auto-refresh periodically, updating displayed values automatically."
+            },
+            {
+                "step": 2,
+                "title": "Manually Refreshing Data",
+                "description": "Noticing no change, Sarah manually refreshes to get latest data instantly.",
+                "action": "Click the 'Refresh Now' button.",
+                "expected_outcome": "Latest pricing data is fetched and displayed immediately on the screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Supplier details display including contact or business information",
+        "user_persona": "Procurement officer vetting potential vendors.",
+        "user_goal": "Access detailed supplier information for a potential bulk order.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Supplier Info",
+                "description": "Robert views a printer cartridge listing and wants to know more about the seller.",
+                "action": "Click on the supplier name linked under the product listing.",
+                "expected_outcome": "Redirected to a supplier profile page displaying business and contact details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search result sorting options including by price, state, and relevance",
+        "user_persona": "Organized shopper preferring structured browsing.",
+        "user_goal": "Sort search results by price to make informed purchasing decisions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Sort Options",
+                "description": "Nancy finishes a keyword search and now wants to organize the results.",
+                "action": "Click the sorting dropdown menu near the top of the results list.",
+                "expected_outcome": "Dropdown menu reveals sorting options such as Price, State, and Relevance."
+            },
+            {
+                "step": 2,
+                "title": "Applying Price Sorting",
+                "description": "She decides to sort items from lowest to highest price.",
+                "action": "Select 'Price: Low to High' from the dropdown.",
+                "expected_outcome": "Results reorder instantly, showing cheapest items first."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and mobile views",
+        "user_persona": "Mobile-first user shopping on-the-go.",
+        "user_goal": "Browse and purchase items seamlessly on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Derek opens the site on his mobile phone to look for a Bluetooth speaker.",
+                "action": "Open website URL on a mobile device.",
+                "expected_outcome": "Site layout adjusts responsively with collapsible menus and appropriately sized touch targets."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Touch Controls",
+                "description": "Derek taps through filters and product listings without difficulty.",
+                "action": "Tap on filter controls and product cards.",
+                "expected_outcome": "All interactive elements respond accurately to touch gestures."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json to support `npm run install:all` for FE & BE dependencies and `npm run dev` for concurrent development startup",
+        "user_persona": "Development team lead setting up project workflow.",
+        "user_goal": "Set up and run both frontend and backend services efficiently during development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Taylor clones the repo and prepares to set up the development environment.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With everything installed, Taylor starts both development servers together.",
+                "action": "Run `npm run dev` command.",
+                "expected_outcome": "Frontend and backend servers launch concurrently without conflicts."
+            }
+        ]
+    }
+]

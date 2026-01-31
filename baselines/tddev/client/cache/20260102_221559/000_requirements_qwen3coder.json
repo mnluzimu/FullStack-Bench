@@ -1,0 +1,17 @@
+[
+    "Display a course catalog page with a list of available courses",
+    "Show detailed course information pages for each course",
+    "Enable users to enroll in courses through an online enrollment form",
+    "Implement a chatbot integration for user assistance",
+    "Include a contact form for users to reach the institute",
+    "Display certification pathways and their requirements",
+    "Ensure all pages have a lavender background and indigo components styling",
+    "Fetch course data dynamically from backend APIs",
+    "Connect backend to PostgreSQL database using provided environment variables",
+    "Support user authentication for enrollment functionality",
+    "Provide search and filter options for the course catalog",
+    "Implement responsive design for all pages",
+    "Include navigation menu with links to key sections",
+    "Add footer with contact information and quick links",
+    "Configure package.json with install:all and dev scripts for frontend and backend"
+]

@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "Frontend application with pages for band listings, band profiles, advertiser ads, registration, and login",
+        "user_persona": "A music enthusiast named Alex who wants to discover new bands.",
+        "user_goal": "Alex wants to browse the band listings and view a specific band's profile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Band Listings",
+                "description": "Alex opens the website and sees the navigation bar. He wants to find bands, so he clicks on the 'Browse Bands' link.",
+                "action": "Click on the 'Browse Bands' navigation link.",
+                "expected_outcome": "The page loads the band listings, showing a grid of band cards with names, images, and short bios."
+            },
+            {
+                "step": 2,
+                "title": "Viewing a Band Profile",
+                "description": "Alex finds a band that interests him and clicks on their card to learn more.",
+                "action": "Click on a band card.",
+                "expected_outcome": "Alex is redirected to the band's profile page, which displays the band's bio, image, audio samples, and embedded YouTube videos."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server to manage bands, advertisers, and advertisements data",
+        "user_persona": "A developer testing the backend API for band data.",
+        "user_goal": "Verify that the backend API correctly returns a list of bands.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Band Data",
+                "description": "The developer sends a GET request to the bands endpoint to retrieve all registered bands.",
+                "action": "Send GET request to '/api/bands'.",
+                "expected_outcome": "The API responds with a JSON array containing band objects with their details such as name, bio, and media links."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database connection to PostgreSQL using environment variables: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+        "user_persona": "A system administrator deploying the application.",
+        "user_goal": "Ensure the application connects to the PostgreSQL database using the correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "The admin checks that the backend service initializes and connects to the PostgreSQL database using the specified environment variables.",
+                "action": "Start the backend service with the provided environment variables.",
+                "expected_outcome": "The backend logs indicate a successful connection to the PostgreSQL database at localhost:5432 with the given credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Band registration form capturing band name, bio, picture link, audio sample links, and YouTube video links",
+        "user_persona": "A band member named Jordan who wants to register the band online.",
+        "user_goal": "Jordan wants to register his band by filling out the registration form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Registration Form",
+                "description": "Jordan navigates to the registration page to sign up his band.",
+                "action": "Navigate to the '/register' page and select 'Band Registration'.",
+                "expected_outcome": "A form titled 'Band Registration' appears with fields for Band Name, Bio, Picture Link, Audio Sample Links, and YouTube Video Links."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Band Information",
+                "description": "Jordan fills in all required fields with accurate information and submits the form.",
+                "action": "Fill in the form fields and click the 'Register Band' button.",
+                "expected_outcome": "The form data is sent via POST request to '/api/bands/register', and the band is successfully added to the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Advertiser registration form capturing advertiser details and ad content uploads",
+        "user_persona": "An advertiser named Taylor looking to promote her business.",
+        "user_goal": "Taylor wants to register as an advertiser and upload her ad content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Advertiser Registration",
+                "description": "Taylor visits the registration page and chooses to register as an advertiser.",
+                "action": "Go to '/register' and choose 'Advertiser Registration'.",
+                "expected_outcome": "An 'Advertiser Registration' form is displayed with fields for Username, Email, Password, Confirm Password, and an upload field for Ad Content."
+            },
+            {
+                "step": 2,
+                "title": "Uploading Advertisement Content",
+                "description": "Taylor enters her details, selects an image file for her ad, and submits the registration.",
+                "action": "Enter details, upload ad content, and click 'Register Advertiser'.",
+                "expected_outcome": "The form data and uploaded file are submitted via POST to '/api/advertisers/register', and Taylor's advertiser account is created."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system for bands and advertisers with login/logout functionality",
+        "user_persona": "A registered band member named Riley who wants to access the dashboard.",
+        "user_goal": "Riley wants to log in to manage his band's profile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Riley goes to the login page and enters his credentials to access his account.",
+                "action": "Navigate to '/login', enter username and password, then click 'Login'.",
+                "expected_outcome": "Credentials are sent to '/api/auth/login' via POST, and Riley is redirected to his dashboard after successful authentication."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out",
+                "description": "After finishing his work, Riley decides to securely log out of the system.",
+                "action": "Click the 'Logout' button.",
+                "expected_outcome": "A POST request is made to '/api/auth/logout', and Riley is logged out and redirected to the homepage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Band profile pages displaying bio, images, audio players for samples, and embedded YouTube videos",
+        "user_persona": "A fan named Casey interested in learning about a specific band.",
+        "user_goal": "Casey wants to view a band's profile and listen to their audio samples.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Band Profile",
+                "description": "Casey clicks on a band's name from the browse page to go to their profile.",
+                "action": "Click on a band card from the browse page.",
+                "expected_outcome": "The band's profile page loads, displaying the band's name, biography, image, audio players, and embedded YouTube videos."
+            },
+            {
+                "step": 2,
+                "title": "Playing Audio Samples",
+                "description": "Curious about the band's sound, Casey clicks the play button for one of the audio samples.",
+                "action": "Click the 'Play Audio' button next to an audio sample.",
+                "expected_outcome": "The selected audio sample begins playing in the browser's audio player."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Advertisement display system integrated throughout the site",
+        "user_persona": "A casual visitor named Morgan browsing the site.",
+        "user_goal": "Morgan wants to see advertisements while exploring the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Advertisements",
+                "description": "While browsing the band listings, Morgan notices rotating advertisements in the sidebar.",
+                "action": "Load the '/bands' page.",
+                "expected_outcome": "Random advertisements fetched from '/api/advertisements/random' are displayed in designated areas like banners or sidebars."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with an Advertisement",
+                "description": "Intrigued by an ad, Morgan clicks on it to learn more.",
+                "action": "Click on an advertisement banner.",
+                "expected_outcome": "Morgan is redirected to the advertiser's target URL associated with the clicked advertisement."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Browse page for users to explore band profiles and listen to audio samples",
+        "user_persona": "A concert organizer named Jamie searching for new talent.",
+        "user_goal": "Jamie wants to browse bands and preview their music.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Bands",
+                "description": "Jamie visits the browse page to see a list of available bands.",
+                "action": "Navigate to the '/browse' page.",
+                "expected_outcome": "A grid or list of band cards is displayed, each showing the band's image, name, short bio snippet, and a 'Play Audio' button."
+            },
+            {
+                "step": 2,
+                "title": "Previewing Band Music",
+                "description": "Jamie clicks the 'Play Audio' button on a band card to hear a sample of their music.",
+                "action": "Click the 'Play Audio' button on a band card.",
+                "expected_outcome": "The selected audio sample plays directly from the browse page without navigating away."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin or dashboard views for bands and advertisers to manage their own content",
+        "user_persona": "A band manager named Devon who needs to update the band's profile.",
+        "user_goal": "Devon wants to log in and update the band's bio and media links.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Devon logs in and accesses the dashboard to manage the band's content.",
+                "action": "Log in and navigate to '/dashboard'.",
+                "expected_outcome": "The dashboard page loads with tabs for 'My Profile' and 'Manage Content', pre-filled with the band's current information."
+            },
+            {
+                "step": 2,
+                "title": "Updating Band Information",
+                "description": "Devon edits the band's bio and adds a new audio sample link, then saves the changes.",
+                "action": "Edit the bio and add a new audio link, then click 'Save Changes'.",
+                "expected_outcome": "Changes are sent via PUT request to '/api/bands/me', and the updated information is saved successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design implementing floral white background and dark goldenrod elements",
+        "user_persona": "A mobile user named Lee visiting the site on a smartphone.",
+        "user_goal": "Lee wants to comfortably browse the site on his mobile device with proper styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile",
+                "description": "Lee opens the website on his phone to check out some bands.",
+                "action": "Open the website on a mobile browser.",
+                "expected_outcome": "The site layout adjusts to fit the mobile screen, with a floral white background (#FFFAF0) and dark goldenrod (#B8860B) accents on buttons and links."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for user registration, login, band data management, and advertisement handling",
+        "user_persona": "A QA engineer validating API functionality.",
+        "user_goal": "Verify that the authentication API endpoints function correctly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Registration Endpoint",
+                "description": "The engineer sends a POST request to register a new user.",
+                "action": "Send POST request to '/api/auth/register' with valid user data.",
+                "expected_outcome": "The API returns a success response and the new user is created in the database."
+            },
+            {
+                "step": 2,
+                "title": "Testing Login Endpoint",
+                "description": "The engineer attempts to log in with the newly created user's credentials.",
+                "action": "Send POST request to '/api/auth/login' with correct credentials.",
+                "expected_outcome": "The API responds with an authentication token and success status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Media handling for storing and serving band images, audio files, and ad content",
+        "user_persona": "A backend developer testing media upload and retrieval.",
+        "user_goal": "Ensure that uploaded media files are stored and retrievable.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Media File",
+                "description": "The developer uploads an audio file during a band registration process.",
+                "action": "Submit a band registration form including an audio file upload.",
+                "expected_outcome": "The file is saved in the '/uploads/' directory with appropriate permissions and the database stores the media URL."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving Media File",
+                "description": "The developer verifies that the uploaded file can be accessed via its stored URL.",
+                "action": "Make a GET request to the stored media URL.",
+                "expected_outcome": "The server serves the requested media file correctly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Role-based access control distinguishing between bands, advertisers, and general users",
+        "user_persona": "A general user named Pat who tries to access restricted content.",
+        "user_goal": "Pat wants to access the dashboard but doesn't have permission.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "Without logging in, Pat tries to visit the dashboard page.",
+                "action": "Navigate directly to '/dashboard' without authentication.",
+                "expected_outcome": "The server redirects Pat to the login page because access to the dashboard requires authentication."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json scripts: `install:all` for installing frontend and backend dependencies, `dev` for concurrent development startup",
+        "user_persona": "A new developer setting up the project locally.",
+        "user_goal": "Set up the development environment quickly using npm scripts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The developer clones the repository and runs the script to install all dependencies.",
+                "action": "Run command 'npm run install:all' in the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully in their respective directories."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "The developer starts both frontend and backend servers simultaneously for development.",
+                "action": "Run command 'npm run dev'.",
+                "expected_outcome": "Both the frontend and backend development servers start concurrently, and the application is accessible in the browser."
+            }
+        ]
+    }
+]

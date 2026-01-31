@@ -1,0 +1,208 @@
+[
+    {
+        "resource_dependency": {
+            "demographicApiEndpoint": "/api/demographics",
+            "economicApiEndpoint": "/api/economics",
+            "crimeApiEndpoint": "/api/crimes"
+        },
+        "function": "Fetches all dynamic data from backend APIs to populate map, comparison features, and dashboard charts.",
+        "static_description": "The frontend displays an interactive map centered on neighborhoods with ivory background (#FFFFF0) and forest green (#228B22) UI components. It includes sections for area selection, data comparisons, and customizable dashboards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a neighborhood highlights it and fetches demographic, economic, and crime data via respective API endpoints."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can drag chart widgets within the dashboard to rearrange their layout positions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": {
+                "DB_HOST": "localhost",
+                "DB_PORT": 5432,
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "neighborhoodSchemaDefinition": "Table: neighborhoods(id UUID PRIMARY KEY, name TEXT, boundary GEOMETRY(POLYGON), created_at TIMESTAMP); Table: demographics(neighborhood_id UUID REFERENCES neighborhoods(id), population INTEGER, median_age FLOAT, household_income FLOAT, year INTEGER); Table: economics(neighborhood_id UUID REFERENCES neighborhoods(id), employment_rate FLOAT, businesses_count INTEGER, average_rent FLOAT, year INTEGER); Table: crimes(neighborhood_id UUID REFERENCES neighborhoods(id), total_incidents INTEGER, violent_crimes INTEGER, property_crimes INTEGER, year INTEGER);"
+        },
+        "function": "Connects to PostgreSQL database using predefined environment variables and manages structured storage of neighborhood data across multiple categories.",
+        "static_description": "Backend server establishes connection to PostgreSQL instance using provided credentials and initializes tables for storing neighborhood boundaries, demographic statistics, economic indicators, and crime records.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mapLibrary": "Leaflet.js or Mapbox GL JS",
+            "neighborhoodBoundaryLayerSource": "GeoJSON formatted neighborhood boundaries served from /api/map/boundaries endpoint"
+        },
+        "function": "Displays neighborhood boundaries visually on an interactive map allowing users to select areas for further analysis.",
+        "static_description": "An interactive map fills most of the viewport showing outlined neighborhood regions over an ivory background with forest green controls such as zoom buttons and layer toggles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside a neighborhood polygon selects that region, changes its fill color temporarily, and triggers data fetching for demographic, economic, and crime metrics."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Mouse hovering over a neighborhood shows a tooltip displaying its name without changing state or triggering API calls."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonViewTemplate": "<div class='comparison-container'><h2>Compare Areas</h2><div class='area-selector'></div><div class='metrics-display'></div></div>",
+            "dataCategoryIcons": {
+                "demographics": "/icons/people.svg",
+                "economics": "/icons/money.svg",
+                "crime": "/icons/security.svg"
+            }
+        },
+        "function": "Enables side-by-side comparison of selected neighborhoods across demographic, economic, and crime data points.",
+        "static_description": "Comparison view presents two or more selected neighborhoods horizontally aligned with tabs for switching between data types (demographics, economics, crime). Icons represent each category against a clean ivory backdrop with forest green headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a new neighborhood adds it to the comparison grid. Clicking existing selections removes them. Tab clicks switch displayed data type."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "Chart.js or D3.js",
+            "dashboardLayoutEngine": "GridStack.js or React-Grid-Layout"
+        },
+        "function": "Provides interactive visualizations in the form of charts grouped under a user-configurable dashboard interface.",
+        "static_description": "Dashboard consists of draggable/resizable chart cards arranged in a responsive grid layout. Charts show bar graphs, line plots, or pie charts representing various datasets related to selected neighborhoods. Background is ivory with forest green card headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking chart titles toggles expanded view mode."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging chart headers repositions them within the grid."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "layoutPersistenceMechanism": "localStorage or backend user preferences store",
+            "gridSystemLibrary": "CSS Grid or Flexbox"
+        },
+        "function": "Allows users to personalize how dashboard elements are positioned and saved between sessions.",
+        "static_description": "Dashboard provides layout customization tools including resize handles and position anchors on each widget. Users see save/reset layout options beneath the main grid panel.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Widgets can be moved freely around the canvas while maintaining alignment constraints."
+            },
+            {
+                "interaction": "Click",
+                "description": "Save button persists current arrangement to local storage or user profile. Reset button restores default configuration."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeVariables": ":root { --background-color: #FFFFF0; --component-color: #228B22; }",
+            "designTokensFile": "./styles/theme.css"
+        },
+        "function": "Applies consistent styling throughout the application using specified ivory and forest green colors.",
+        "static_description": "Entire app uses ivory (#FFFFF0) for backgrounds and forest green (#228B22) for active components like buttons, headers, and selected items. Typography and spacing follow modern accessibility standards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and links slightly darken when hovered to indicate interactivity while preserving base theme palette."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographicsEndpointPath": "/api/demographics/:neighborhoodId",
+            "responseFormat": "{ id: string, population: number, medianAge: number, householdIncome: number, year: number }"
+        },
+        "function": "Exposes RESTful GET endpoint to retrieve demographic information associated with specific neighborhood identifiers.",
+        "static_description": "Endpoint returns JSON-formatted demographic data upon request, including population count, age distribution, income levels, and time period.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "economicsEndpointPath": "/api/economics/:neighborhoodId",
+            "responseFormat": "{ id: string, employmentRate: float, businessCount: integer, avgRent: float, year: number }"
+        },
+        "function": "Provides access to economic indicators tied to individual neighborhoods through a dedicated API route.",
+        "static_description": "Returns structured economic data such as job rates, business density, and rental costs per location requested.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "crimesEndpointPath": "/api/crimes/:neighborhoodId",
+            "responseFormat": "{ id: string, totalIncidents: integer, violentCrimes: integer, propertyCrimes: integer, year: number }"
+        },
+        "function": "Delivers crime-related statistical data for queried neighborhood IDs via HTTP GET requests.",
+        "static_description": "Responds with aggregated incident counts categorized into violent vs. property crimes along with temporal metadata.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mapSelectionHandlerCode": "JavaScript handler listening to click events on map polygons",
+            "highlightEffectStyle": ".selected-area { stroke: #228B22; stroke-width: 3px; fill-opacity: 0.7; }"
+        },
+        "function": "Integrates map selection logic enabling users to highlight chosen areas dynamically during exploration.",
+        "static_description": "Upon clicking a neighborhood shape, the system applies a distinct visual style indicating selection status without altering underlying geometry.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Polygon receives highlighted border and semi-transparent overlay matching forest green theme when clicked."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartComponentLibrary": "Reusable React/Vue components wrapping Chart.js/D3",
+            "visualizationTypes": [
+                "bar",
+                "line",
+                "pie"
+            ]
+        },
+        "function": "Renders graphical representations of numerical data sets within dashboard panels.",
+        "static_description": "Each chart occupies a modular container presenting either bar graphs, line trends, or pie slices depending on dataset nature. Visuals match ivory background with forest green accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart segments reveals tooltips containing precise numeric values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mediaQueryRules": "@media (max-width: 1024px)",
+            "responsiveFramework": "Mobile-first CSS approach using flexbox/grid"
+        },
+        "function": "Ensures usability and proper rendering across desktop and tablet screen sizes.",
+        "static_description": "Application adapts fluidly to smaller viewports by stacking content vertically, resizing fonts proportionally, and optimizing touch targets accordingly.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{\"scripts\": {\"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\"}}",
+            "projectDirectoryLayout": "Root contains package.json; client/ folder holds frontend code; server/ folder contains backend code"
+        },
+        "function": "Defines NPM commands to streamline installation and development workflows for full-stack team collaboration.",
+        "static_description": "Root-level package.json includes custom scripts named 'install:all' which runs parallel installs in both frontend and backend directories, and 'dev' which launches both environments simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "sqlMigrationFiles": "CREATE TABLE neighborhoods(...); CREATE TABLE demographics(...); etc.",
+            "relationshipConstraints": "Foreign keys linking stats tables back to neighborhoods.id column"
+        },
+        "function": "Establishes relational database structure capable of persisting complex geographic and statistical information efficiently.",
+        "static_description": "PostgreSQL database initialized with normalized schema comprising four interconnected tables modeling spatial units alongside their evolving demographic, economic, and criminal attributes.",
+        "interaction_and_states": []
+    }
+]

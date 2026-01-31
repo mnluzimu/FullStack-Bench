@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "Agricultural news browsing functionality",
+        "user_persona": "A farmer looking to stay informed on the latest agricultural trends and advice.",
+        "user_goal": "Browse through the latest agricultural news articles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting News Page",
+                "description": "Maria navigates to the news section to catch up on recent developments in agriculture.",
+                "action": "Navigate to `/news` route.",
+                "expected_outcome": "A list of news cards with thumbnails, titles, summaries, and publication dates is displayed against a light cyan background."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over Article",
+                "description": "She sees an interesting headline and hovers over the card to get a better look.",
+                "action": "Hover over a news card.",
+                "expected_outcome": "The card slightly elevates and gains a subtle shadow effect for emphasis."
+            },
+            {
+                "step": 3,
+                "title": "Reading Full Article",
+                "description": "Convinced by the summary, Maria clicks the article to read more.",
+                "action": "Click on the selected news card.",
+                "expected_outcome": "The user is redirected to the full article view page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Farm product information display",
+        "user_persona": "A buyer interested in sourcing fresh produce locally.",
+        "user_goal": "View detailed information about specific farm products.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Product Catalog",
+                "description": "John visits the product catalog to explore available farm goods.",
+                "action": "Navigate to `/products` route.",
+                "expected_outcome": "A grid layout of products appears with images, names, categories, and brief descriptions on a light cyan background."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Product Details",
+                "description": "He notices some organic vegetables and wants to know more about them.",
+                "action": "Click on a vegetable product card.",
+                "expected_outcome": "A modal opens showing extended details like origin, availability status, and full description."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Weather forecast checking capability",
+        "user_persona": "A crop planner preparing planting schedules based on upcoming weather.",
+        "user_goal": "Check local weather forecasts relevant to farming activities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Weather Dashboard",
+                "description": "Emily goes to the weather dashboard to plan her week's farming tasks.",
+                "action": "Navigate to `/weather` route.",
+                "expected_outcome": "A dashboard displaying temperature, humidity, precipitation chance, wind speed, and UV index is shown with icons and themed styling."
+            },
+            {
+                "step": 2,
+                "title": "Entering Location Manually",
+                "description": "She wants to verify conditions for another farm located nearby.",
+                "action": "Manually input a different location into the location field.",
+                "expected_outcome": "The displayed weather data updates dynamically based on the entered location using the integrated weather API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for agricultural content",
+        "user_persona": "A researcher gathering data on sustainable farming practices.",
+        "user_goal": "Find specific agricultural news and product information quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "David uses the search bar to find resources related to organic fertilizers.",
+                "action": "Type 'organic fertilizer' into the search bar located at the top navigation.",
+                "expected_outcome": "Auto-suggestions appear below the input field sourced dynamically from the search endpoint."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Query",
+                "description": "After typing his query, he submits it to see results.",
+                "action": "Press Enter or click the search button.",
+                "expected_outcome": "Redirected to a results page listing matching items from both news and products."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filter options for news and products",
+        "user_persona": "A vendor organizing inventory for seasonal sales.",
+        "user_goal": "Narrow down product listings to only currently available items.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Filter Dropdown",
+                "description": "Sarah needs to sort products by availability before updating her store shelves.",
+                "action": "Click on the 'Availability' dropdown menu above the product list.",
+                "expected_outcome": "Dropdown options become visible with the dropdown arrow icon rotating downward."
+            },
+            {
+                "step": 2,
+                "title": "Applying Availability Filter",
+                "description": "She selects 'In Stock' to focus on available products.",
+                "action": "Select 'In Stock' from the dropdown options.",
+                "expected_outcome": "The product list instantly updates to show only available items without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Light cyan background theme implementation",
+        "user_persona": "A frequent visitor who prefers a calming interface for reading long articles.",
+        "user_goal": "Enjoy a visually consistent and soothing browsing experience.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Any Page",
+                "description": "Robert browses the site regularly and always appreciates the clean aesthetic.",
+                "action": "Visit any page such as `/news` or `/products`.",
+                "expected_outcome": "All sections and containers maintain a consistent light cyan (#E0FFFF) background color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Cadet blue color scheme for UI elements",
+        "user_persona": "A web designer evaluating UI consistency across platforms.",
+        "user_goal": "Verify that interactive elements use a unified cadet blue theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting With Buttons",
+                "description": "While reviewing the site, Alex inspects the visual design of buttons and links.",
+                "action": "Hover over any primary button such as 'Submit' or 'Search'.",
+                "expected_outcome": "Button darkens slightly while maintaining accessible contrast standards."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "News article listing page",
+        "user_persona": "A student researching agricultural advancements for coursework.",
+        "user_goal": "Read older news articles beyond the first page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Additional Articles",
+                "description": "Jamie scrolls to the bottom of the news feed and wants to see earlier posts.",
+                "action": "Click on the 'Next' arrow in the pagination controls.",
+                "expected_outcome": "New batch of articles loads via AJAX call, replacing the previous set."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product catalog with detailed views",
+        "user_persona": "A chef exploring new ingredients for restaurant dishes.",
+        "user_goal": "Compare detailed specifications of various dairy products.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Product Details Modal",
+                "description": "Chef Martinez clicks on several dairy items to compare origins and pricing.",
+                "action": "Click on a dairy product card.",
+                "expected_outcome": "A modal overlay opens showing expanded product information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Weather dashboard with local forecasts",
+        "user_persona": "A regional coordinator monitoring multiple farms’ weather risks.",
+        "user_goal": "Update forecast data manually after noticing discrepancies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Refreshing Forecast Data",
+                "description": "Tom suspects outdated data may affect irrigation planning decisions.",
+                "action": "Click the manual refresh button on the weather dashboard.",
+                "expected_outcome": "Latest forecast data replaces old entries seamlessly within the UI via API integration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with consistent color styling",
+        "user_persona": "A UX consultant auditing cross-page style uniformity.",
+        "user_goal": "Confirm visual consistency of theme across all device sizes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Across Devices",
+                "description": "Lisa checks whether the theme remains intact during responsive resizing.",
+                "action": "Resize browser window between desktop, tablet, and mobile breakpoints.",
+                "expected_outcome": "UI components retain correct light cyan backgrounds and cadet blue accents across all screen sizes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Content management for agricultural news",
+        "user_persona": "An editor responsible for publishing daily agricultural updates.",
+        "user_goal": "Publish a newly written article about soil health.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Drafting New Article",
+                "description": "Emma logs into the admin panel to submit today’s featured piece.",
+                "action": "Fill out article metadata including title, summary, content, and upload an image.",
+                "expected_outcome": "Form fields accept structured input and validate required entries properly."
+            },
+            {
+                "step": 2,
+                "title": "Saving and Publishing",
+                "description": "Once satisfied with the draft, she publishes it immediately.",
+                "action": "Click the 'Publish' button to save the article.",
+                "expected_outcome": "Article gets stored in the database and becomes publicly visible on the news page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product categorization and filtering",
+        "user_persona": "A grocery chain buyer sourcing bulk supplies.",
+        "user_goal": "Quickly locate grain products suitable for wholesale purchase.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Toggling Category Tags",
+                "description": "Mark needs to filter exclusively by grains for large-volume procurement.",
+                "action": "Toggle the 'Grains' category tag in the sidebar filter.",
+                "expected_outcome": "Only grain-type products remain visible in the product listing area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time weather data integration",
+        "user_persona": "A precision agriculture specialist tracking live environmental changes.",
+        "user_goal": "Monitor live atmospheric updates affecting crop growth cycles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Waiting for Auto-Refresh",
+                "description": "Dr. Lee relies on minute-by-minute updates for research accuracy.",
+                "action": "Wait passively for configured interval duration to elapse.",
+                "expected_outcome": "New weather readings automatically replace outdated values in the dashboard UI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design for all device sizes",
+        "user_persona": "A mobile-first user accessing farm tips on-the-go.",
+        "user_goal": "Access the same features and readability on a smartphone as on desktop.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "While traveling, Olivia tests how well the layout adapts to smaller screens.",
+                "action": "Reduce browser window size below 768px breakpoint.",
+                "expected_outcome": "Layout adjusts to stacked column format with proportional scaling of fonts and elements."
+            }
+        ]
+    }
+]

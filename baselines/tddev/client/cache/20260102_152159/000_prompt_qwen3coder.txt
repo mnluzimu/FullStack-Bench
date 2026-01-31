@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement an e-government system for office management, infrastructure management, procurement management, personnel management, financial management, and decision-making management. The system should have functionalities for office management, infrastructure management, procurement management, personnel management, financial management, and decision-making management. Users should be able to browse related information, submit applications, approve, query status, and perform related operations. The system should also include functions such as leave, middle-level cadres leaving Shenzhen, attendance, and "five powers" management, which can design and circulate corresponding forms and processes. Implement light pink for the page background and medium violet red for the elements.

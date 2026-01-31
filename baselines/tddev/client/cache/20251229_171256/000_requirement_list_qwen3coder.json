@@ -1,0 +1,158 @@
+[
+    {
+        "resource_dependency": {
+            "stockSearchAPI": "A backend API endpoint at /api/stocks/search that accepts query parameters for stock code or name and returns matching stocks.",
+            "stockReportGenerateAPI": "A backend API endpoint at /api/reports/generate that accepts selected stock ID, report format, and content preferences, then returns a generated report object.",
+            "databaseConnectionConfig": "PostgreSQL connection using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Frontend application that fetches all stock data dynamically from backend APIs",
+        "static_description": "A responsive web page with a white background and navy-colored UI components including a header bar, main content area, and footer. The layout includes a search bar at the top, followed by a results section and an optional report preview panel.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search button triggers a call to the stockSearchAPI with the entered query. Results are displayed in a list below the search bar."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on the search input field initiates the same search functionality as clicking the search button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresqlConnection": "Establish a connection to PostgreSQL using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "stockDataSchema": "Create table 'stocks' with fields: id (UUID), symbol (string), name (string), sector (string), industry (string), created_at (timestamp), updated_at (timestamp). Create table 'market_trends' with fields: trend_id (UUID), stock_id (foreign key to stocks.id), date (date), price_change (float), volume (integer). Create table 'financials' with fields: financial_id (UUID), stock_id (foreign key to stocks.id), fiscal_year (integer), revenue (float), net_income (float), eps (float).",
+            "reportGenerationLogic": "Implement logic to aggregate stock data, market trends, and financials into structured reports based on user-defined formats."
+        },
+        "function": "Backend API service that connects to external PostgreSQL database using provided environment variables",
+        "static_description": "No visible UI element; this is a server-side component responsible for handling requests from the frontend and interacting with the PostgreSQL database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchInputField": "Text input field labeled 'Search Stocks'",
+            "searchButton": "Navy-colored button labeled 'Search'"
+        },
+        "function": "Stock search functionality allowing users to input stock codes or names",
+        "static_description": "At the top of the page, there is a horizontal container with a text input field labeled 'Search Stocks' and a navy-colored 'Search' button next to it.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button sends the current value of the input field to the backend via the stockSearchAPI."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "While the input field is focused, pressing Enter simulates a click on the 'Search' button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportOptionsSelector": "Dropdown menus or checkboxes for selecting report format (PDF, HTML) and content sections (Basic Info, Market Trends, Financial Data)",
+            "generateReportButton": "Navy-colored button labeled 'Generate Report'",
+            "reportPreviewArea": "Section displaying the generated report after successful API response"
+        },
+        "function": "Report generation feature that creates customized stock reports based on user selections",
+        "static_description": "Below the search results, there is a form containing dropdown selectors for report format and checkboxes for content inclusion. A navy 'Generate Report' button is present beneath the options.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Generate Report' sends selected options along with the chosen stock ID to the stockReportGenerateAPI. Upon receiving the result, the report is rendered in the preview area."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatSelectionDropdown": "Dropdown menu with options: 'PDF', 'HTML'",
+            "contentCheckboxes": "List of checkboxes labeled: 'Basic Stock Information', 'Market Trends', 'Financial Data'"
+        },
+        "function": "User interface for selecting report formats and content options",
+        "static_description": "Two sections under the search results: one with a dropdown titled 'Select Format' showing available report types, and another listing three checkboxes titled 'Include Sections'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any checkbox toggles its selection state. Clicking the dropdown reveals a list of available formats which can be selected."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basicInfoFields": "Fields such as Symbol, Company Name, Sector, Industry pulled from the stocks table"
+        },
+        "function": "Display of basic stock information in generated reports",
+        "static_description": "Within the report preview area, a section titled 'Basic Stock Information' displays key details about the selected stock in a clean tabular format.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "trendChartData": "Time-series data retrieved from the market_trends table associated with the selected stock"
+        },
+        "function": "Inclusion of market trends data in stock reports",
+        "static_description": "Inside the report, a dedicated section shows a line chart representing recent price changes over time, sourced from the market trends database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "financialDataTable": "Tabular representation of yearly financial metrics sourced from the financials table linked to the selected stock"
+        },
+        "function": "Integration of financial data in stock reports",
+        "static_description": "The report contains a table titled 'Financial Overview' presenting annual revenue, net income, and earnings per share for multiple years.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "cssBackgroundStyle": "body { background-color: #FFFFFF; }"
+        },
+        "function": "White background color applied throughout the website",
+        "static_description": "Entire webpage has a solid white (#FFFFFF) background across all views and screen sizes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navyColorPalette": ".component-button { background-color: #000080; color: #FFFFFF; }, .component-input:focus { border-color: #000080; }"
+        },
+        "function": "Navy color scheme for all UI components",
+        "static_description": "All buttons, active input borders, and highlighted navigation items use navy blue (#000080) as their primary color against a light or white backdrop.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\""
+        },
+        "function": "Package.json configuration with 'install:all' script for simultaneous frontend and backend dependency installation",
+        "static_description": "In package.json root directory, a script named 'install:all' runs concurrent commands to execute 'npm install' in both frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Package.json configuration with 'dev' script to concurrently start frontend and backend services",
+        "static_description": "In package.json root directory, a script named 'dev' executes development servers for both frontend and backend simultaneously using concurrently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionPool": "Use node-postgres or equivalent library to manage database connections securely using provided environment variables"
+        },
+        "function": "Database operations strictly using the configured PostgreSQL connection",
+        "static_description": "No visible UI element; ensures all CRUD operations on stock, market trends, and financial data go through the predefined PostgreSQL instance.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "noMockDataPolicy": "Ensure no static assets or hardcoded JSON files are used for dynamic content; everything comes from live API calls backed by the PostgreSQL database"
+        },
+        "function": "No hardcoded or mock data - all information fetched from backend APIs",
+        "static_description": "Application does not load any local data files or embed sample datasets directly in code; all dynamic content originates from API endpoints connected to the database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignMediaQueries": "@media (max-width: 768px) { ... }, @media (min-width: 1200px) { ... }"
+        },
+        "function": "Responsive web design compatible with standard browser dimensions",
+        "static_description": "Layout adjusts fluidly between mobile, tablet, and desktop viewports using CSS media queries to maintain usability and readability across devices.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,188 @@
+[
+    {
+        "resource_dependency": {
+            "promotion_data_schema": "Database table named 'promotions' with fields: id (UUID), title (string), description (text), category (string), expiry_date (date), created_at (timestamp), updated_at (timestamp), shared_by (foreign key to users.id)",
+            "promotion_api_endpoint": "/api/promotions"
+        },
+        "function": "Fetch and display all available promotions from the backend API.",
+        "static_description": "A grid or list layout showing all promotions retrieved from the backend API endpoint /api/promotions. Each promotion displays title, description, category, and expiry date within forest green UI blocks over an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "As the user scrolls down, additional promotions are fetched dynamically via pagination or infinite scroll mechanism."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgres_driver": "pg npm package for connecting to PostgreSQL"
+        },
+        "function": "Establish connection to PostgreSQL database using provided environment variables and serve data through RESTful APIs.",
+        "static_description": "Backend server initializes connection to PostgreSQL using environment variables upon startup. It exposes endpoints such as /api/promotions, /api/users, etc., which interact directly with corresponding tables in the database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "layout_css_variables": ":root { --ivory-color: #FFFFF0; --forest-green-color: #228B22; }",
+            "global_styles_file": "/src/styles/global.css"
+        },
+        "function": "Apply consistent color scheme across entire website with ivory outer layout and forest green UI blocks.",
+        "static_description": "The main page container uses ivory (#FFFFF0) as its background color while inner UI components like cards, buttons, headers use forest green (#228B22). Colors are defined globally in CSS custom properties inside global.css file.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "browse_promotions_endpoint": "/api/promotions",
+            "promotion_card_component": "<PromotionCard /> React component rendering individual promotion details"
+        },
+        "function": "Allow users to view a collection of active promotions in an organized manner.",
+        "static_description": "Displays a responsive grid of PromotionCard components, each representing a single promotion. Cards show title, short description, category tag, and expiration status against a forest green header bar on ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a promotion card navigates to a detailed view of that specific promotion."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "share_promotion_form_fields": [
+                "title",
+                "description",
+                "category",
+                "expiry_date"
+            ],
+            "submit_promotion_endpoint": "POST /api/promotions"
+        },
+        "function": "Enable authenticated users to contribute new promotions to the platform.",
+        "static_description": "A modal form appears when 'Share Promotion' button is clicked. Form includes input fields for title, description, category dropdown, and expiry date picker, all styled with forest green borders on ivory backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form sends a POST request to /api/promotions endpoint after validating inputs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_bar_component": "<SearchBar /> with debounced input handler",
+            "search_api_endpoint": "GET /api/promotions?query=:keyword&category=:category"
+        },
+        "function": "Provide keyword-based and category-based filtering of promotions for easier discovery.",
+        "static_description": "A prominent search bar positioned above the promotions listing allows typing queries. Optional filter dropdown lets users narrow results by category. Styled with forest green border and ivory fill.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Typing in the search bar triggers debounced API calls to GET /api/promotions with query parameters."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a category updates the filtered result set accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_users_api": "GET /api/admin/users, PUT /api/admin/users/:id, DELETE /api/admin/users/:id",
+            "user_management_ui": "Table listing users with columns: name, email, role, last_active, actions"
+        },
+        "function": "Manage registered user accounts including viewing, updating roles, and deleting users.",
+        "static_description": "An administrative dashboard panel lists all registered users in tabular format. Columns include full name, email address, assigned role, last activity timestamp, and action icons for editing/deleting. Panel styled with forest green accents on ivory canvas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking edit opens a modal form pre-filled with current user info. Clicking delete prompts confirmation before sending DELETE request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_promotions_api": "GET /api/admin/promotions, PUT /api/admin/promotions/:id, DELETE /api/admin/promotions/:id",
+            "promotion_admin_table": "Table with columns: title, submitter, submission_date, status, actions"
+        },
+        "function": "Allow administrators to review, approve, modify, or remove submitted promotions.",
+        "static_description": "Dedicated admin section presents all promotions in a sortable table. Includes metadata about submitters and timestamps alongside moderation controls. Interface follows ivory-and-forest-green theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Edit button opens editable inline row or separate modal. Delete requires confirmation dialog prior to removal."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "settings_api": "GET /api/admin/settings, PUT /api/admin/settings",
+            "config_fields": [
+                "site_title",
+                "default_language",
+                "maintenance_mode"
+            ]
+        },
+        "function": "Configure general site behavior and branding options accessible only to admins.",
+        "static_description": "Settings form contains labeled input fields for configuring global parameters such as site title and language preferences. Save button commits changes via API call. Rendered with same color palette throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save button triggers PUT request to persist updated configuration values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\" } }"
+        },
+        "function": "Define unified installation command that sets up both frontend and backend environments simultaneously.",
+        "static_description": "The root-level package.json includes an install:all script entry that runs concurrent npm install commands for frontend and backend directories using concurrently utility.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dev_script_command": "{ \"scripts\": { \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Run development servers for both frontend and backend applications concurrently during local development.",
+        "static_description": "Root package.json defines dev script that launches frontend (typically Vite or Webpack dev server) and backend (Node.js server) together using concurrently tool.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsive_breakpoints": "@media (max-width: 768px) { ... }, @media (max-width: 480px) { ... }",
+            "mobile_first_approach": "CSS written starting from smallest viewport upwards"
+        },
+        "function": "Ensure seamless experience across various screen sizes from desktops to smartphones.",
+        "static_description": "All layouts adapt fluidly between breakpoints using flexbox/grid systems. Mobile navigation collapses into hamburger menu; cards stack vertically. Consistent ivory/forest-green styling maintained regardless of device.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "auth_endpoints": "POST /api/auth/login, POST /api/auth/register, GET /api/auth/me",
+            "jwt_token_storage": "localStorage.setItem('token', jwt)"
+        },
+        "function": "Secure access to promotion sharing feature behind login wall requiring user authentication.",
+        "static_description": "Protected routes redirect unauthenticated visitors to login/signup forms. Authenticated sessions store JWT tokens client-side. Navigation bar conditionally renders 'Share Promotion' option based on auth state.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Login/Register submits credentials to respective endpoints. Successful login stores token and redirects to home or previous protected route."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "validation_middleware": "Express middleware using Joi or similar library",
+            "sanitization_rules": "Strip HTML tags, trim whitespace, normalize strings"
+        },
+        "function": "Prevent invalid or malicious content from being stored in the promotions database.",
+        "static_description": "Incoming promotion submissions undergo strict validation checks ensuring presence of required fields and correct formats. All string inputs sanitized to prevent XSS risks before persistence.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "error_handling_wrapper": "try/catch blocks around async API handlers",
+            "http_status_codes": "400 Bad Request, 404 Not Found, 500 Internal Server Error mapped appropriately"
+        },
+        "function": "Gracefully manage unexpected issues arising during API operations or database transactions.",
+        "static_description": "API routes wrap business logic in error-handling constructs that return standardized HTTP responses along with human-readable messages. Database errors logged internally but not exposed to clients.",
+        "interaction_and_states": []
+    }
+]

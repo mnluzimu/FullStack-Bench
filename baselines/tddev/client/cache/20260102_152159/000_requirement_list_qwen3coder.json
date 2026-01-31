@@ -1,0 +1,278 @@
+[
+    {
+        "resource_dependency": {
+            "formBuilderLibrary": "A library for creating and editing forms dynamically, such as react-form-builder2 or Form.io.",
+            "workflowEngineAPI": "An API for managing custom workflows and process definitions (e.g., Camunda, Node-RED).",
+            "officeDataSchema": "Database schema with tables: offices (id, name, location, capacity), departments (id, name, office_id), employees (id, name, department_id)."
+        },
+        "function": "Implement office management module with form design and workflow capabilities",
+        "static_description": "Displays a dashboard showing office locations, departments, and assigned personnel. Includes a tab for designing office-related forms and another for configuring workflows using formBuilderLibrary and workflowEngineAPI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Design Form' opens the form builder interface from formBuilderLibrary."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Configure Workflow' loads the workflow engine interface from workflowEngineAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "assetTrackingAPI": "An API for scanning QR codes or RFID tags to track physical assets.",
+            "infrastructureDataSchema": "Database schema with tables: assets (id, name, category, location, status, last_maintenance), maintenance_logs (id, asset_id, date, description, performed_by)."
+        },
+        "function": "Implement infrastructure management module with asset tracking and maintenance workflows",
+        "static_description": "Displays a grid of tracked assets with categories, statuses, and maintenance history. Provides buttons to scan new assets via assetTrackingAPI and schedule maintenance tasks.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Scan Asset' triggers integration with assetTrackingAPI to register or update an asset entry."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Schedule Maintenance' creates a new log entry in the maintenance_logs table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "vendorManagementAPI": "External API for retrieving vendor ratings and contact information.",
+            "procurementDataSchema": "Database schema with tables: vendors (id, name, contact_info, rating), purchase_orders (id, vendor_id, items, total_cost, status), requisitions (id, requester_id, item_list, approval_status)."
+        },
+        "function": "Implement procurement management module with purchasing processes and vendor management",
+        "static_description": "Lists active vendors from vendorManagementAPI and displays current purchase orders and requisitions. Allows filtering by status and initiating new procurements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'New Requisition' navigates to a form for submitting procurement requests."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Approve Order' updates the status field in the purchase_orders table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "employeeDirectoryAPI": "Internal API returning employee profiles and roles.",
+            "personnelDataSchema": "Database schema with tables: employees (id, full_name, position, hire_date, role_id), roles (id, title, permissions), departments (id, name)."
+        },
+        "function": "Implement personnel management module with employee records and role-based access control",
+        "static_description": "Shows an organizational chart and searchable directory of employees. Displays each employee’s profile and associated role from employeeDirectoryAPI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an employee card expands their detailed view including role-specific permissions."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Role' allows updating the role_id field in the employees table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "budgetTrackingAPI": "API for syncing with external financial systems to retrieve real-time budget data.",
+            "financialDataSchema": "Database schema with tables: budgets (id, fiscal_year, allocated_amount, used_amount, department_id), expenses (id, amount, category, submitter_id, approval_status, date_submitted)."
+        },
+        "function": "Implement financial management module with budget tracking and expense processing",
+        "static_description": "Presents a dashboard comparing actual vs. allocated budgets per department using data from budgetTrackingAPI. Lists submitted and pending expenses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Expense' opens a form that saves to the expenses table upon submission."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Approve' changes the approval_status field in the expenses table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "analyticsDashboardLibrary": "Frontend visualization library like Chart.js or D3.js.",
+            "decisionMakingDataSchema": "Database schema with tables: reports (id, title, generated_by, created_at, file_path), metrics (id, report_id, metric_name, value)."
+        },
+        "function": "Implement decision-making management module with reporting and analytics dashboards",
+        "static_description": "Renders interactive charts and graphs built with analyticsDashboardLibrary displaying aggregated metrics from the metrics table. Shows a list of available reports.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Generate Report' inserts a new record into the reports table and generates metric entries."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a chart filters underlying data points based on selected dimensions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authSystemAPI": "Authentication API supporting OAuth 2.0 or JWT tokens.",
+            "rbacDataSchema": "Database schema with tables: users (id, username, password_hash, role_id), roles (id, title, permission_set), sessions (token, user_id, expires_at)."
+        },
+        "function": "Provide user authentication and authorization system with role-based permissions",
+        "static_description": "Displays a login form with username/password fields and a 'Login' button. Background uses light pink (#FFB6C1) and buttons use medium violet red (#C71585).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' sends credentials to authSystemAPI and stores session token in sessions table if valid."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Logout' deletes the session token from the client and sessions table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchServiceAPI": "API endpoint that accepts queries and returns cross-module results.",
+            "browseDataSchema": "Unified search index schema covering entities from all modules: id, type (office/procurement/etc.), title, summary, url."
+        },
+        "function": "Enable users to browse related information across all management modules",
+        "static_description": "Features a global search bar at the top of the navigation header. Results appear below grouped by module type.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As user types, debounced calls are made to searchServiceAPI which returns filtered results."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a result navigates to the specific entity page within its respective module."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "digitalFormRenderer": "Component capable of rendering forms designed via formBuilderLibrary.",
+            "submissionWorkflowAPI": "API responsible for routing submissions through defined workflows.",
+            "applicationSubmissionSchema": "Database schema with tables: applications (id, form_id, applicant_id, submitted_at, status), application_attachments (id, app_id, file_url)."
+        },
+        "function": "Allow users to submit applications through digital forms with workflow routing",
+        "static_description": "Renders a filled-out form using digitalFormRenderer when accessed via unique URL. Submit button routes the application through submissionWorkflowAPI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Application' validates inputs and posts data to submissionWorkflowAPI which updates the status in the applications table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Attach File' uploads document and adds reference to application_attachments table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "approvalRoutingAPI": "API handling multi-level approval logic with escalation paths.",
+            "approvalDataSchema": "Database schema with tables: approvals (id, application_id, approver_id, level, status, decision_timestamp), approvers (id, user_id, hierarchy_level)."
+        },
+        "function": "Implement approval workflows with multi-level authorization capabilities",
+        "static_description": "Displays a queue of pending approvals relevant to the logged-in user. Each item shows application details and action buttons ('Approve', 'Reject').",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Approve' or 'Reject' sends decision to approvalRoutingAPI which updates the approvals table and moves the workflow forward."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking an item reveals the full application context before making a decision."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "statusQueryAPI": "API endpoint returning status updates for any given process instance.",
+            "processStatusSchema": "Database schema with tables: process_instances (id, process_type, initiated_by, start_time, end_time, status), status_updates (id, instance_id, message, timestamp)."
+        },
+        "function": "Enable status querying for all submitted applications and processes",
+        "static_description": "Presents a timeline view showing historical status updates fetched from statusQueryAPI. Filters allow sorting by process type and date range.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a process instance expands to show detailed status_updates messages."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Refresh Status' re-fetches latest updates from statusQueryAPI and redraws the timeline."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leaveRequestForm": "Predefined digital form template for leave requests.",
+            "leaveManagementAPI": "Handles leave calculations and policy enforcement.",
+            "leaveDataSchema": "Database schema with tables: leave_requests (id, employee_id, start_date, end_date, reason, status), leave_balances (id, employee_id, annual_leave_remaining, sick_leave_remaining)."
+        },
+        "function": "Include leave management functionality with request and approval workflows",
+        "static_description": "Provides a calendar-style interface to visualize approved leaves and a panel to submit new leave requests using leaveRequestForm.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Request Leave' opens leaveRequestForm modal and submits data to leaveManagementAPI which stores in leave_requests table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Approve/Deny' updates the status column in the leave_requests table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "travelDeclarationForm": "Customizable form for recording travel declarations outside city limits.",
+            "specialApprovalWorkflowAPI": "Workflow handler enforcing special approval chains for sensitive operations.",
+            "travelDataSchema": "Database schema with tables: travel_declarations (id, cadre_id, destination, departure_time, return_time, justification, status), cadre_profiles (id, name, rank, supervisor_id)."
+        },
+        "function": "Implement middle-level cadres leaving Shenzhen tracking with special approval processes",
+        "static_description": "Displays a list of travel declarations submitted by cadres along with their current approval stage. Includes quick filter options by cadre name or approval status.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Declare Travel' opens travelDeclarationForm and routes submission through specialApprovalWorkflowAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Escalate Approval' manually advances the declaration to next approver level in cadre_profiles hierarchy."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "attendanceTrackerAPI": "Integration with biometric devices or manual check-in tools.",
+            "attendanceReportingAPI": "Generates time-based summaries and exports attendance reports.",
+            "attendanceDataSchema": "Database schema with tables: attendance_records (id, employee_id, check_in_time, check_out_time, duration), monthly_reports (id, employee_id, month, hours_worked, absences)."
+        },
+        "function": "Include attendance management with time tracking and reporting features",
+        "static_description": "Shows daily attendance logs and monthly summaries. Offers export options (PDF, Excel) via attendanceReportingAPI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Check In' records current timestamp in attendance_records via attendanceTrackerAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Export Report' calls attendanceReportingAPI to generate downloadable summary."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fivePowersFormBuilder": "Customized version of formBuilderLibrary allowing complex conditional logic.",
+            "circulationEngineAPI": "API for circulating documents among predefined stakeholders.",
+            "powersDataSchema": "Database schema with tables: power_forms (id, title, definition_json, creator_id), circulation_paths (id, form_instance_id, recipient_id, order_index, completed_at)."
+        },
+        "function": "Implement 'five powers' management with customizable form designs and process circulation",
+        "static_description": "Interface includes tabs for designing new 'five powers' forms using fivePowersFormBuilder and viewing active circulation paths.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Form Design' serializes the form structure into JSON and stores in power_forms table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Start Circulation' triggers circulationEngineAPI which populates circulation_paths according to defined rules."
+            }
+        ]
+    }
+]

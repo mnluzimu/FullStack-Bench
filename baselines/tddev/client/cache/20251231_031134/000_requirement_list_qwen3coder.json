@@ -1,0 +1,199 @@
+[
+    {
+        "resource_dependency": {
+            "servicePlansAPI": "GET /api/service-plans",
+            "servicePlanDetailsAPI": "GET /api/service-plans/{id}",
+            "supportTicketSubmitAPI": "POST /api/support/tickets",
+            "userAccountAPI": "GET /api/user/account",
+            "personalDetailsAPI": "GET /api/user/details",
+            "loginAPI": "POST /api/auth/login",
+            "logoutAPI": "POST /api/auth/logout",
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Fetch dynamic data from backend APIs for rendering service plans, user account info, and support tools.",
+        "static_description": "The frontend consists of multiple pages: Home, Service Plans, Plan Details, Support, Account Management, and Login. The body background uses light goldenrod (#FAFAD2) and main components use olive drab (#6B8E23) as their primary color. Navigation bar is visible at the top with links to all major sections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a service plan card navigates to the detailed view of that plan by fetching data via servicePlanDetailsAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Ticket' in the support section sends form data to supportTicketSubmitAPI and displays success/error feedback."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials to loginAPI and redirects to dashboard upon successful authentication."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresSchemaInstructions": "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50), email VARCHAR(100), password_hash TEXT); CREATE TABLE service_plans (id SERIAL PRIMARY KEY, name VARCHAR(100), description TEXT, price DECIMAL); CREATE TABLE support_tickets (id SERIAL PRIMARY KEY, user_id INT REFERENCES users(id), subject VARCHAR(255), message TEXT, status VARCHAR(50));",
+            "envVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish connection to PostgreSQL database and define schema for storing user accounts, service plans, and support tickets.",
+        "static_description": "Database tables are structured to store user credentials, service plan details, and customer support interactions. Connection parameters are sourced from environment variables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "servicePlansListEndpoint": "GET /api/service-plans",
+            "servicePlansDataSchema": "Table: service_plans { id: integer, name: string, description: text, price: decimal }"
+        },
+        "function": "Enable users to browse available service plans through a dedicated page listing all options.",
+        "static_description": "A grid or list layout showing cards or rows representing each service plan. Each item includes the plan name, brief description, and monthly price. Background is light goldenrod (#FAFAD2), cards have olive drab (#6B8E23) borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a plan card navigates to its detailed view."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Each plan card slightly elevates or changes shade to indicate interactivity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "servicePlanDetailEndpoint": "GET /api/service-plans/{id}",
+            "planFeaturesSchema": "Fields: id, name, full_description, features_list(array), price, setup_fee, contract_length"
+        },
+        "function": "Display comprehensive information about a selected service plan including pricing, features, and terms.",
+        "static_description": "A standalone page presenting an expanded view of a single service plan. Includes title, full description, feature highlights, cost breakdown, and call-to-action buttons like 'Select Plan'. Page background is light goldenrod (#FAFAD2), main container styled with olive drab (#6B8E23).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "'Select Plan' button initiates a process to associate this plan with the logged-in user’s account."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "supportToolAPIs": "POST /api/support/tickets, GET /api/support/tickets",
+            "ticketSubmissionSchema": "Fields: user_id, subject, message, priority_level",
+            "liveChatIntegration": "Third-party live chat widget or internal WebSocket-based solution"
+        },
+        "function": "Provide customers with tools to seek assistance including submitting support tickets and accessing live chat.",
+        "static_description": "Support page contains two main areas: a ticket submission form and a history panel showing past tickets. Optional embedded live chat window. Body background is light goldenrod (#FAFAD2), forms styled with olive drab (#6B8E23).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the ticket form triggers POST request to /api/support/tickets and shows confirmation message."
+            },
+            {
+                "interaction": "Click",
+                "description": "Opening/closing live chat toggles visibility of the chat interface."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "accountManagementAPIs": "GET /api/user/account, PUT /api/user/account",
+            "editableFieldsSchema": "Fields: contact_email, billing_address, payment_method_token"
+        },
+        "function": "Allow authenticated users to view and update personal account settings such as contact info and payment methods.",
+        "static_description": "Dedicated account settings page featuring editable fields for email address, physical address, and preferred payment method. Save button updates changes server-side. Layout follows consistent styling with light goldenrod (#FAFAD2) background and olive drab (#6B8E23) containers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save button triggers PUT request to /api/user/account with updated field values."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "Editing any field enables the save button dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "personalDetailsAPI": "GET /api/user/details",
+            "userDataSchema": "Fields: first_name, last_name, date_of_birth, phone_number, registered_email"
+        },
+        "function": "Grant users access to review their stored personal profile information securely.",
+        "static_description": "Read-only display of user's registered personal details including full name, DOB, phone number, and email. Presented within a secure section requiring authentication. Styled consistently with light goldenrod (#FAFAD2) background and olive drab (#6B8E23) panels.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScript": "npm run install:all executes 'npm install' in both frontend and backend directories sequentially."
+        },
+        "function": "Automate installation of frontend and backend dependencies with a single command.",
+        "static_description": "Defined script inside package.json under scripts.install:all which runs installation tasks across client and server folders.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartScript": "npm run dev concurrently starts frontend development server and backend Node.js application."
+        },
+        "function": "Enable developers to launch both frontend and backend services simultaneously during local development.",
+        "static_description": "Custom dev script configured in root package.json utilizing 'concurrently' package to execute frontend (e.g., React dev server) and backend (Node.js server) processes together.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorValue": "#FAFAD2"
+        },
+        "function": "Apply a uniform light goldenrod background color to all web pages’ body elements.",
+        "static_description": "Entire site background set to light goldenrod (#FAFAD2) applied globally via CSS rule on <body> tag.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mainComponentColorValue": "#6B8E23"
+        },
+        "function": "Style main UI components like cards, headers, and containers with olive drab coloring.",
+        "static_description": "Primary components such as service plan cards, navigation bars, and content boxes utilize olive drab (#6B8E23) as their base color scheme throughout the application.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignMediaQueries": "@media screen and (max-width: 768px)"
+        },
+        "function": "Ensure optimal viewing experience across various devices by implementing responsive layouts.",
+        "static_description": "CSS media queries adjust element sizing, spacing, and orientation based on viewport dimensions. Mobile-first approach used where appropriate.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adapts fluidly between desktop, tablet, and mobile views without loss of usability or visual coherence."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": "POST /api/auth/login, POST /api/auth/logout",
+            "sessionStorageMechanism": "JWT tokens stored in HTTP-only cookies or localStorage depending on security policy"
+        },
+        "function": "Manage user login sessions and protect routes requiring authentication.",
+        "static_description": "Login form collects username/password; logout clears session. Authenticated routes redirect unauthenticated users to login page.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Successful login stores token and redirects to protected area; logout removes token and returns to public homepage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "secureRouteMiddleware": "Express middleware validating JWT before allowing access to sensitive endpoints",
+            "dataEncryptionPolicy": "Use HTTPS for all communications and encrypt sensitive database fields"
+        },
+        "function": "Protect API endpoints serving confidential data using authentication checks and encryption protocols.",
+        "static_description": "All endpoints returning private user data require valid authorization header containing signed JWT. Communication secured over TLS.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingWrapper": "Try-catch blocks around async route handlers and centralized error logger",
+            "fallbackUIComponent": "Generic error page or modal indicating failure to load content"
+        },
+        "function": "Gracefully handle failures occurring during API calls or database operations without crashing the system.",
+        "static_description": "Errors caught during data retrieval show meaningful messages instead of raw exceptions. Failed requests may retry automatically or prompt manual refresh.",
+        "interaction_and_states": [
+            {
+                "interaction": "Network Failure",
+                "description": "Displays offline indicator or cached version if available; offers retry option once connectivity resumes."
+            }
+        ]
+    }
+]

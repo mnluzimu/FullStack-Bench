@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API server connecting to a PostgreSQL database using specified environment variables",
+    "User authentication and session management system",
+    "Dashboard for browsing and managing sales leads with search and filter capabilities",
+    "Lead management interface allowing creation, editing, categorization, and status updates",
+    "Automated message sending functionality for lead communication",
+    "Settings panel for updating application configurations and dropdown menu options",
+    "Reporting module displaying sales metrics and performance analytics",
+    "Advice section providing best practices and integration recommendations",
+    "Responsive UI components styled with papaya whip background and dark orange elements",
+    "Role-based access control for different user permissions",
+    "Data validation and error handling for all user inputs",
+    "Audit trail logging for lead modifications and user activities",
+    "Export functionality for reports and lead data",
+    "Concurrent development setup with npm scripts for installing and running both frontend and backend"
+]

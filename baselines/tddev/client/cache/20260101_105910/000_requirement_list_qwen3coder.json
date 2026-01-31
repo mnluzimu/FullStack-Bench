@@ -1,0 +1,161 @@
+[
+    {
+        "resource_dependency": {
+            "formSubmitAPI": "POST /api/leads - Accepts firstName, lastName, email, phone, creditScore, creditStatus, message; returns success/failure.",
+            "databaseSchema": "Table 'leads': id (UUID), firstName (string), lastName (string), email (string), phone (string), creditScore (integer), creditStatus (enum: excellent, good, fair, poor), submittedAt (timestamp)."
+        },
+        "function": "Allow users to provide their personal and credit-related information through a structured form for lead generation.",
+        "static_description": "A multi-field form displayed within a card layout featuring labels and input fields for First Name, Last Name, Email Address, Phone Number, Credit Score Dropdown, Credit Status Radio Buttons ('Excellent', 'Good', 'Fair', 'Poor'), Message Text Area, and a Rosy Brown themed Submit Button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Submit button sends all entered data via POST request to the backend API endpoint. On success, displays confirmation message; on error, shows relevant validation or server error messages."
+            },
+            {
+                "interaction": "Input",
+                "description": "Real-time validation feedback appears below invalid fields when user leaves focus from required inputs such as email or phone number."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "creditInquiryAPI": "GET /api/credit-score?email={email} - Returns estimated credit score range based on provided email.",
+            "externalCreditService": "Integration with third-party credit scoring service API requiring authentication token and returning credit insights."
+        },
+        "function": "Provide users with an estimation of their current credit standing upon entering basic identifying information.",
+        "static_description": "A section containing a heading 'Estimate Your Credit Score', an input field labeled 'Email Address', and a Rosy Brown colored 'Check Now' button centered beneath it.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Upon clicking 'Check Now', the system validates the email format, then submits a GET request to internal API which proxies to external credit service. Displays loading spinner during fetch and presents results once received."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "serviceIntroContent": "Detailed paragraph explaining benefits of credit repair services including debt negotiation, dispute assistance, and report improvement strategies."
+        },
+        "function": "Educate visitors about what the company offers in terms of credit restoration support.",
+        "static_description": "A full-width section titled 'Our Credit Repair Services' followed by descriptive text aligned left, accompanied by bullet points listing key offerings like identity protection, credit monitoring, and legal dispute filing.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "leadSubmissionEndpoint": "Referenced in previous form implementation at POST /api/leads",
+            "leadsDatabaseSchema": "As defined previously under form submission schema"
+        },
+        "function": "Capture and store potential client inquiries and personal details securely in database for follow-up purposes.",
+        "static_description": "Not directly visible but implied by presence of successful form submission response indicating that data was saved successfully.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "Services",
+                "Testimonials",
+                "Contact Us"
+            ]
+        },
+        "function": "Enable seamless navigation across different sections/pages of the website without reloading the entire page.",
+        "static_description": "Fixed top horizontal bar spanning full width of viewport, displaying white text menu items against Rosy Brown background arranged evenly spaced horizontally.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting any menu item scrolls smoothly to corresponding anchor tag or loads respective route dynamically without full refresh."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "footerLinks": [
+                "Privacy Policy",
+                "Terms of Service",
+                "Contact Info"
+            ],
+            "contactDetails": "Phone: +1(800)-123-4567 | Email: contact@credithelpco.com"
+        },
+        "function": "Display essential company contact methods and important legal documents accessible from every page.",
+        "static_description": "Bottom-aligned rectangular block extending full browser width, filled with Old Lace background matching body, showing small font-sized copyright notice along with hyperlinked legal pages and contact info centered vertically.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Privacy Policy or Terms of Service navigates to dedicated static pages while Contact Info opens mailto link or reveals modal dialog with more options."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveLayoutFramework": "CSS Media Queries handling breakpoints at 768px and 1024px ensuring consistent styling on mobile/tablet/desktop views"
+        },
+        "function": "Ensure optimal viewing experience regardless of device screen size or orientation.",
+        "static_description": "Entire document wrapped inside container element applying padding adjustments based on media query conditions, maintaining consistent Old Lace background throughout.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "colorPaletteDefinition": "Primary Background Color: #FDF5E6 (Old Lace); Primary Accent/UI Color: #BC8F8F (Rosy Brown)"
+        },
+        "function": "Apply cohesive visual branding theme using specified colors across interactive and static elements.",
+        "static_description": "All buttons, borders, active states utilize Rosy Brown shade whereas main backgrounds remain Old Lace tone consistently applied globally via CSS variables or global stylesheets.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dedicatedServicePageRoute": "/services - Static React Component rendering rich-text content about credit repair processes, pricing tiers, FAQs."
+        },
+        "function": "Offer detailed insight into how the credit repair process works and available packages tailored to various customer profiles.",
+        "static_description": "Full standalone page presenting three-tiered cards outlining Bronze/Silver/Gold plan features, timeline expectations, and associated costs alongside CTA buttons linking back to lead form.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "testimonialDataSchema": "Array of objects each having name (string), quote (text), beforeScore (integer), afterScore (integer), avatarUrl (optional image path)"
+        },
+        "function": "Build trust among prospective clients by showcasing real-life success outcomes achieved through past engagements.",
+        "static_description": "Carousel-style horizontal scrollable panel featuring customer photos, brief quotes, and numerical improvements in credit scores presented visually using progress bars or comparison charts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigation arrows toggle between individual testimonial slides automatically cycling every 5 seconds unless paused manually."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "additionalContactFormFields": "Subject dropdown (General Inquiry, Complaint, Partnership Request) plus optional file upload field accepting PDF/DOCX formats up to 5MB."
+        },
+        "function": "Facilitate further communication channels beyond primary lead capture mechanism for specialized requests or documentation sharing.",
+        "static_description": "Separate page titled 'Get In Touch' incorporating extended version of original lead form enriched with subject selection and document attachment capability below standard fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting this enhanced form triggers multipart/form-data encoded HTTP POST including uploaded files stored temporarily before being processed asynchronously."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "legalPageContent": "Static markdown/html content detailing privacy practices, cookie usage, data retention policies, and terms governing service provision."
+        },
+        "function": "Comply with regulatory standards by making transparent disclosures regarding data handling procedures and contractual obligations.",
+        "static_description": "Plain text-only styled HTML pages devoid of animations or complex layouts focusing purely on readability with clearly demarcated headings and subsections.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "backendAPISpecification": "Node.js Express server exposing RESTful endpoints for CRUD operations on leads collection authenticated via middleware checking JWT tokens issued upon admin login."
+        },
+        "function": "Serve as intermediary layer managing incoming HTTP requests from frontend applications and translating them into appropriate database commands.",
+        "static_description": "No direct UI representation although indirectly influences behavior of forms, search boxes, dashboards requiring live updates or secure access control mechanisms.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment Variables Required: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish persistent relational storage solution leveraging industry-standard SQL engine for storing collected leads and session metadata reliably.",
+        "static_description": "Transparently abstracted behind ORM interfaces used exclusively by backend logic never exposed publicly nor referenced directly in frontend codebase.",
+        "interaction_and_states": []
+    }
+]

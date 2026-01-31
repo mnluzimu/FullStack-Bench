@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "Frontend application with data visualization components for basketball statistics",
+        "user_persona": "A basketball fan named Alex who wants to analyze player performance trends.",
+        "user_goal": "To view interactive charts showing a player's scoring trends over the season.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Player Stats",
+                "description": "Alex navigates to the player profile page and scrolls down to the statistics section.",
+                "action": "Scroll to the statistics visualization section.",
+                "expected_outcome": "Interactive charts showing the player's scoring trends appear on screen."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Chart Data Points",
+                "description": "Alex clicks on a specific data point in the scoring trend line chart to see detailed performance for that game.",
+                "action": "Click on a data point in the line chart.",
+                "expected_outcome": "A tooltip appears showing detailed stats like points, rebounds, and assists for that particular game."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API service that connects to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer testing backend connectivity for the first time.",
+        "user_goal": "Verify that the backend successfully retrieves basketball data from the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making an API Request",
+                "description": "The developer sends a GET request to the matches endpoint to retrieve data.",
+                "action": "Send GET request to `/api/matches`.",
+                "expected_outcome": "The server responds with a JSON array containing match data retrieved from the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Match history browsing functionality with detailed game data",
+        "user_persona": "Jordan, a sports analyst reviewing past games for research.",
+        "user_goal": "Browse historical match data and view detailed box scores.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Match History",
+                "description": "Jordan visits the match history page and sees a timeline of past games.",
+                "action": "Navigate to the match history page.",
+                "expected_outcome": "A list of past games is displayed in card format with teams, scores, and dates."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Game Details",
+                "description": "Jordan clicks on a specific match card to explore more detailed information.",
+                "action": "Click on a match card.",
+                "expected_outcome": "The card expands to reveal detailed box score statistics and play-by-play data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Team rankings display with current standings and performance metrics",
+        "user_persona": "Taylor, a fantasy basketball participant checking league standings.",
+        "user_goal": "Check current team standings and sort by win percentage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Team Standings",
+                "description": "Taylor opens the team rankings page to see the current league standings.",
+                "action": "Navigate to the team rankings page.",
+                "expected_outcome": "A table showing team standings with wins, losses, and win percentages is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Rankings",
+                "description": "Taylor clicks on the 'Win Percentage' column header to reorder the standings.",
+                "action": "Click on the 'Win Percentage' column header.",
+                "expected_outcome": "Teams are reordered from highest to lowest win percentage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Player performance tracking with statistical analysis",
+        "user_persona": "Morgan, a coach evaluating player development over the season.",
+        "user_goal": "Review a player's season-long performance and compare it with another player.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Player Dashboard",
+                "description": "Morgan clicks on a player's profile to view detailed analytics.",
+                "action": "Click on a player card.",
+                "expected_outcome": "A dashboard showing season-by-season progression and advanced metrics appears."
+            },
+            {
+                "step": 2,
+                "title": "Comparing Players",
+                "description": "Morgan selects another player to compare performance side-by-side.",
+                "action": "Select a second player and activate comparison mode.",
+                "expected_outcome": "A side-by-side view with normalized data visualizations comparing both players appears."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Match prediction algorithm with probability calculations",
+        "user_persona": "Casey, a bettor looking for informed predictions before placing wagers.",
+        "user_goal": "Check predicted outcomes for upcoming matches with confidence levels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Match Predictions",
+                "description": "Casey goes to the predictions section to see upcoming match forecasts.",
+                "action": "Navigate to the predictions page.",
+                "expected_outcome": "Cards showing upcoming matches with win probabilities and confidence scores are displayed."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Predictions",
+                "description": "Casey manually refreshes to get updated predictions based on latest stats.",
+                "action": "Click the refresh button.",
+                "expected_outcome": "Probability calculations update in real-time reflecting the most recent team and player data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Betting recommendation engine based on analytical insights",
+        "user_persona": "Riley, a recreational gambler seeking betting advice.",
+        "user_goal": "Get personalized betting recommendations based on risk tolerance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Risk Preference",
+                "description": "Riley accesses the betting recommendations section and sets risk tolerance to moderate.",
+                "action": "Select 'Moderate' risk tolerance setting.",
+                "expected_outcome": "Betting recommendations update instantly to reflect moderate-risk options."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Recommendation Details",
+                "description": "Riley clicks on a recommended bet to understand the reasoning behind it.",
+                "action": "Click on a betting recommendation card.",
+                "expected_outcome": "Detailed analysis including alternative options and historical success rates is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Basketball-specific data models for teams, players, matches, and betting odds",
+        "user_persona": "Devon, a QA engineer validating database schema integrity.",
+        "user_goal": "Confirm that related basketball data is correctly joined and returned via API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting Match Data",
+                "description": "Devon sends a request to fetch detailed match data including team and odds info.",
+                "action": "Send GET request to `/api/matches/{id}`.",
+                "expected_outcome": "Response includes comprehensive data joining teams, players, and betting odds tables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive charts and graphs for visualizing basketball analytics",
+        "user_persona": "Jamie, a data enthusiast exploring basketball trends visually.",
+        "user_goal": "Zoom into a specific period of a team's performance chart.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Team Performance Chart",
+                "description": "Jamie visits the team analytics dashboard and sees a line chart of performance over time.",
+                "action": "Navigate to the team analytics dashboard.",
+                "expected_outcome": "A line chart showing team performance trends across the season is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Zooming into Time Period",
+                "description": "Jamie drags to select a specific time range to focus on recent performance.",
+                "action": "Drag to select a time range on the chart.",
+                "expected_outcome": "Chart zooms into the selected period, showing detailed performance data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with ghost white background and slate gray components",
+        "user_persona": "Sam, a new visitor exploring the website for the first time.",
+        "user_goal": "Experience a clean UI with the correct color scheme throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Homepage",
+                "description": "Sam lands on the homepage and observes the overall design aesthetic.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Page renders with ghost white background and slate gray components consistently applied."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Buttons",
+                "description": "Sam hovers over a navigation button to see visual feedback.",
+                "action": "Hover over a navigation button.",
+                "expected_outcome": "Button slightly changes shade, providing clear visual feedback."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for fetching real-time basketball data",
+        "user_persona": "A frontend developer integrating live scores into the UI.",
+        "user_goal": "Subscribe to live score updates via WebSocket connection.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Live Updates",
+                "description": "The developer initializes a WebSocket connection to receive live scoring events.",
+                "action": "Establish WebSocket connection to `/live-scores` endpoint.",
+                "expected_outcome": "Client successfully connects and begins receiving live score updates."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design for storing basketball statistics and betting information",
+        "user_persona": "A database administrator verifying schema correctness.",
+        "user_goal": "Run a complex query to validate proper table relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Executing Complex Query",
+                "description": "The DBA runs a JOIN query to fetch combined match, team, and odds data.",
+                "action": "Execute SQL query joining matches, teams, and odds tables.",
+                "expected_outcome": "Query returns accurate dataset with properly linked information across tables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with desktop and mobile devices",
+        "user_persona": "A user accessing the site on both desktop and mobile.",
+        "user_goal": "Verify that the layout adapts correctly on different screen sizes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "User resizes the browser window to simulate tablet view.",
+                "action": "Resize browser window to 768px width.",
+                "expected_outcome": "Layout adjusts responsively with reorganized columns and readable text."
+            },
+            {
+                "step": 2,
+                "title": "Testing Mobile Touch Interaction",
+                "description": "On mobile device, user swipes between tabs to navigate.",
+                "action": "Swipe left on mobile screen to switch tabs.",
+                "expected_outcome": "Tabs transition smoothly with swipe gesture recognized and handled."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication system for user accounts and preferences",
+        "user_persona": "New user signing up and setting preferences.",
+        "user_goal": "Register for an account and save favorite teams.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Account",
+                "description": "User fills out the registration form with email and password.",
+                "action": "Fill and submit registration form.",
+                "expected_outcome": "Account is created successfully and user is redirected to dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Updating Preferences",
+                "description": "User selects favorite teams in the preferences section.",
+                "action": "Select favorite teams and click 'Save'.",
+                "expected_outcome": "Preferences are saved and content updates to show favorite team data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for teams, players, and historical matches",
+        "user_persona": "Quinn, a researcher looking up specific basketball entities quickly.",
+        "user_goal": "Find a specific player using the search bar with autocomplete suggestions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Typing in Search Bar",
+                "description": "Quinn starts typing a player's name into the global search bar.",
+                "action": "Begin typing 'LeBron' in the search input.",
+                "expected_outcome": "Autocomplete dropdown shows suggestions matching 'LeBron'."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Query",
+                "description": "Quinn presses Enter to execute the search across all entity types.",
+                "action": "Press Enter in the search bar.",
+                "expected_outcome": "Search results page loads showing categorized results for players, teams, and matches."
+            }
+        ]
+    }
+]

@@ -1,0 +1,247 @@
+[
+    {
+        "requirement_tested": "Frontend application that fetches all data from backend APIs",
+        "user_persona": "A poetry enthusiast visiting the site for the first time.",
+        "user_goal": "To view a list of poems without seeing any hardcoded content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Homepage",
+                "description": "Sarah opens the poetry blog website and waits for the homepage to load.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The page loads dynamically, displaying a grid of poetry cards fetched from the backend API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server connecting to PostgreSQL database using provided environment variables",
+        "user_persona": "A developer deploying the application.",
+        "user_goal": "To ensure the backend connects to the correct PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer starts the backend server using the configured environment variables.",
+                "action": "Run `npm run dev` in the project root.",
+                "expected_outcome": "The backend successfully connects to the PostgreSQL database using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with light goldenrod layout color scheme",
+        "user_persona": "A visually-oriented user appreciating design aesthetics.",
+        "user_goal": "To experience a consistent light goldenrod background throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Site Layout",
+                "description": "Alex scrolls through different pages of the poetry blog, observing the overall look and feel.",
+                "action": "Visit multiple pages including home, search, and poem detail views.",
+                "expected_outcome": "All main layout sections consistently display a light goldenrod background as defined in the CSS stylesheet."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Buttons and cards styled with olive drab color",
+        "user_persona": "A detail-oriented user focused on visual consistency.",
+        "user_goal": "To confirm that interactive elements use the specified olive drab color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Buttons and Cards",
+                "description": "Jamie examines various buttons and poetry cards across the site.",
+                "action": "View buttons like 'Submit' and cards showing poem excerpts.",
+                "expected_outcome": "All buttons and card backgrounds are styled with the olive drab color as per the CSS classes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Poetry browsing functionality with categorized views",
+        "user_persona": "A casual reader interested in exploring poetry by type.",
+        "user_goal": "To browse poems filtered by category tabs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Category Tabs",
+                "description": "Taylor sees several category tabs on the homepage and wants to explore poems in one of them.",
+                "action": "Click on a category tab such as 'Romance'.",
+                "expected_outcome": "The poetry grid updates to show only poems belonging to the selected category, fetched via /api/poems?category=:id."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for finding specific poetry content",
+        "user_persona": "A user looking for a specific poem or topic.",
+        "user_goal": "To find poems matching a keyword using the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Jordan recalls reading a poem about 'autumn' and decides to search for it.",
+                "action": "Type 'autumn' into the search bar and press Enter.",
+                "expected_outcome": "The page updates dynamically to show poems containing 'autumn' in their title or content, retrieved from /api/search/poems?q=autumn."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system for posting poetry and commenting",
+        "user_persona": "A poet wanting to share original work.",
+        "user_goal": "To log in and gain access to post poetry.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Login Modal",
+                "description": "Casey clicks on the 'Login' link to access the authentication form.",
+                "action": "Click the 'Login' button.",
+                "expected_outcome": "A modal appears with fields for username/email and password, along with an olive drab submit button."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "Casey enters valid login information and submits the form.",
+                "action": "Fill in credentials and click the submit button.",
+                "expected_outcome": "The system authenticates Casey and stores a JWT token, redirecting to the dashboard with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Poetry submission form with title, content, and category fields",
+        "user_persona": "An authenticated user ready to publish a new poem.",
+        "user_goal": "To submit a new poem with all required details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Submission Form",
+                "description": "Morgan navigates to the 'Post Poetry' section after logging in.",
+                "action": "Click on the 'Post New Poem' button.",
+                "expected_outcome": "A form appears with fields for Title, Content, and a dropdown for selecting a Category."
+            },
+            {
+                "step": 2,
+                "title": "Filling and Submitting Form",
+                "description": "Morgan fills out the form completely and submits it.",
+                "action": "Enter values in all fields and click the olive drab submit button.",
+                "expected_outcome": "The form data is validated and sent via POST to /api/poems, resulting in a success message or redirection to the browse view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Commenting system allowing users to comment on poetry posts",
+        "user_persona": "A reader moved by a poem and eager to share thoughts.",
+        "user_goal": "To leave a comment on a published poem.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading a Poem",
+                "description": "Riley reads a touching poem and scrolls down to the comment section.",
+                "action": "Navigate to a poem's detail page.",
+                "expected_outcome": "Existing comments are displayed below the poem, and an input field is available for adding new comments."
+            },
+            {
+                "step": 2,
+                "title": "Adding a Comment",
+                "description": "Riley writes a thoughtful comment and submits it.",
+                "action": "Type comment content and click the olive drab 'Post Comment' button.",
+                "expected_outcome": "The comment is submitted via POST to /api/comments and immediately appears in the comment list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema for storing poetry posts, user accounts, and comments",
+        "user_persona": "A database administrator setting up the backend.",
+        "user_goal": "To verify that the database schema supports all core entities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Database Tables",
+                "description": "The admin inspects the database structure to ensure proper relationships exist.",
+                "action": "Query the database for tables: users, poems, comments, and categories.",
+                "expected_outcome": "Each table exists with appropriate columns and foreign key relationships as defined in the schema creation instructions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful API endpoints for poetry CRUD operations",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "To perform Create, Read, Update, and Delete actions on poems via API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating a Poem",
+                "description": "The developer sends a request to create a new poem entry.",
+                "action": "Send a POST request to /api/poems with valid poem data.",
+                "expected_outcome": "The poem is created in the database and the API returns a success response with the new poem's ID."
+            },
+            {
+                "step": 2,
+                "title": "Updating a Poem",
+                "description": "Later, the developer modifies the same poem.",
+                "action": "Send a PUT request to /api/poems/{id} with updated content.",
+                "expected_outcome": "The poem record is updated in the database and the API confirms the change."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for user authentication and session management",
+        "user_persona": "A mobile app developer building a client for the platform.",
+        "user_goal": "To authenticate users and manage sessions using the backend API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering a New User",
+                "description": "The developer registers a test user account.",
+                "action": "Send a POST request to /api/auth/register with username, email, and password.",
+                "expected_outcome": "The user is created in the database and the API returns a success response."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "The developer logs in the newly created user.",
+                "action": "Send a POST request to /api/auth/login with valid credentials.",
+                "expected_outcome": "The API responds with a JWT token used for subsequent authenticated requests."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search API endpoint with query parameters for filtering poetry",
+        "user_persona": "A developer testing the search functionality.",
+        "user_goal": "To validate that the search API correctly filters results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching with Query Parameters",
+                "description": "The developer tests the search endpoint with both keyword and category filters.",
+                "action": "Send a GET request to /api/search/poems?q=nature&category=uuid-here.",
+                "expected_outcome": "The API returns poems that contain 'nature' in their content and belong to the specified category."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'install:all' script for frontend and backend dependencies",
+        "user_persona": "A new contributor joining the project.",
+        "user_goal": "To easily install all necessary dependencies for development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The contributor clones the repo and needs to set up the development environment.",
+                "action": "Run `npm run install:all` in the project root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with 'dev' script to run frontend and backend concurrently",
+        "user_persona": "A developer starting daily work on the project.",
+        "user_goal": "To launch both frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Development Servers",
+                "description": "The developer wants to start working and needs both parts of the app running.",
+                "action": "Execute `npm run dev` from the project root.",
+                "expected_outcome": "Both frontend and backend servers start concurrently, allowing full-stack development and testing."
+            }
+        ]
+    }
+]

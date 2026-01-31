@@ -1,0 +1,275 @@
+[
+    {
+        "resource_dependency": {
+            "mapAPI": "An interactive map API such as Google Maps or Mapbox with support for custom overlays and markers.",
+            "areaDataSchema": "Database schema containing geographic area identifiers, names, boundaries (GeoJSON), demographic data, economic data, and crime statistics indexed by time periods.",
+            "comparisonReportTemplate": "A predefined template for exporting comparison reports in PDF or CSV format."
+        },
+        "function": "Display an interactive map interface allowing users to visualize and interact with different geographic regions.",
+        "static_description": "The page displays a full-screen interactive map centered on a default region. The background is ivory (#FFFFF0) and all map controls use forest green (#228B22) styling. A search bar is positioned at the top left above the map canvas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a region selects it and highlights its boundary in forest green. Selected regions appear in a side panel list for comparisons."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling over the map zooms in/out of the current view while maintaining center alignment."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging the mouse moves the visible portion of the map within its bounds."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "areaSelectionState": "State management system tracking selected geographic areas including their IDs, display names, and associated data sets.",
+            "comparisonPanelUI": "/components/ComparisonPanel.vue"
+        },
+        "function": "Allow users to select and compare multiple geographic areas simultaneously.",
+        "static_description": "A vertical sidebar appears on the right side when at least one area is selected. It lists selected areas with remove buttons and includes a 'Compare Areas' button at the bottom. Background remains ivory and components styled in forest green.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Compare Areas' button opens a modal or navigates to a dedicated comparison dashboard page showing visualizations of the selected areas."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the remove icon next to an area deselects it and removes it from the comparison list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographicDataSchema": "Fields: population_density, age_distribution, education_level, household_income_median indexed by year/period.",
+            "chartLibrary": "D3.js or Chart.js library for rendering interactive charts.",
+            "demographicsChartComponent": "/components/DemographicsChart.vue"
+        },
+        "function": "Visualize demographic data for individual or compared geographic areas.",
+        "static_description": "Displays a set of horizontal bar charts representing key demographics such as age distribution, median income, and educational attainment. Charts are rendered inside collapsible sections with titles. Background is ivory with forest green chart axes and labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a chart legend toggles visibility of corresponding data series."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a data point shows a tooltip displaying exact values and period information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "economicDataSchema": "Fields: employment_rate, average_house_price, business_density, unemployment_rate indexed by year/period.",
+            "economicChartComponent": "/components/EconomicChart.vue"
+        },
+        "function": "Visualize economic indicators for individual or compared geographic areas.",
+        "static_description": "Renders line graphs showing trends in employment rate, housing prices, and business density over time. Each graph has a title and axis labels in forest green against an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a line segment filters displayed data points to only show that category’s details."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a line graph node reveals a floating label indicating precise value and date."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crimeDataSchema": "Fields: total_crimes, violent_crime_count, property_crime_count, crime_per_capita indexed by month/year.",
+            "crimeHeatMapLayer": "A heatmap overlay layer provided by the map API to visualize crime intensity across regions.",
+            "crimeChartComponent": "/components/CrimeChart.vue"
+        },
+        "function": "Visualize crime statistics for individual or compared geographic areas.",
+        "static_description": "Presents stacked column charts depicting total crimes, violent crimes, and property crimes per capita. Also supports toggling between raw numbers and rates per thousand residents. Components maintain consistent forest green and ivory theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a stacked segment isolates that category for better clarity."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Mouse hovering over segments displays detailed counts and percentage breakdowns."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardContainer": "/components/DashboardContainer.vue",
+            "layoutEngine": "A grid-based layout engine like GridStack.js for arranging widgets dynamically.",
+            "widgetRegistry": "Registry of available widgets including DemographicsChart, EconomicChart, CrimeChart, etc."
+        },
+        "function": "Provide a centralized dashboard presenting interactive data visualizations.",
+        "static_description": "Dashboard layout consists of draggable/resizable panels arranged in a grid. Panels contain various chart types and summary cards. All UI elements follow the ivory background and forest green accent scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a panel header repositions it within the grid container."
+            },
+            {
+                "interaction": "Resize",
+                "description": "Resizing edges adjusts panel dimensions without overlapping others."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "savedLayoutStorage": "Local storage or backend endpoint to save/load dashboard configurations.",
+            "saveLayoutButton": "/icons/save-layout.svg"
+        },
+        "function": "Enable customization and persistence of dashboard layouts.",
+        "static_description": "Includes a toolbar with a 'Save Layout' icon (forest green SVG) located above the main dashboard grid. Users can reset to default or load previously saved views.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the save icon prompts user confirmation then stores the current arrangement under a name."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a saved layout from dropdown instantly applies it to the dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchInputField": "/components/SearchInput.vue",
+            "locationIndexDB": "Indexed database of locations searchable by name, postal code, or administrative division."
+        },
+        "function": "Support selection of geographic areas via direct map interaction or location search.",
+        "static_description": "Top-left corner contains a rounded input field labeled “Search Area” with a magnifying glass icon. Below the map, there's a toggle switch to enable/disable click-to-select mode.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Typing auto-suggests matching locations based on partial matches; selecting one pans and zooms the map accordingly."
+            },
+            {
+                "interaction": "Click",
+                "description": "With click-to-select enabled, clicking a region on the map adds it to the comparison list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonTableComponent": "/components/ComparisonTable.vue",
+            "demographicComparisonSchema": "Demographic metrics aggregated per area for side-by-side tabular comparison."
+        },
+        "function": "Facilitate side-by-side comparison of demographic characteristics across selected regions.",
+        "static_description": "Tabular view listing each selected area vertically and demographic categories horizontally. Table headers and rows alternate subtle shading but maintain forest green borders on ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Sort Column Header",
+                "description": "Clicking a column header sorts the table ascending/descending by that metric."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Row highlighting helps track data across columns visually."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "economicComparisonSchema": "Economic metrics aggregated per area for comparative tabulation."
+        },
+        "function": "Facilitate side-by-side comparison of economic indicators across selected regions.",
+        "static_description": "Identical structure to demographic comparison table but filled with economic KPIs like average house price, employment rate, and business count.",
+        "interaction_and_states": [
+            {
+                "interaction": "Sort Column Header",
+                "description": "Sorting updates order of all rows based on clicked column’s numeric values."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Row hover effect maintains continuity with demographic comparison experience."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crimeComparisonSchema": "Crime-related metrics aggregated per area for cross-region evaluation."
+        },
+        "function": "Facilitate side-by-side comparison of crime statistics across selected regions.",
+        "static_description": "Follows same tabular design as previous comparisons but presents crime-specific metrics like total incidents, violent crime ratio, and safety index scores.",
+        "interaction_and_states": [
+            {
+                "interaction": "Sort Column Header",
+                "description": "Column sorting enables quick ranking of safer vs higher-risk areas."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Maintains row highlighting consistency with other comparison tables."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "timeFilterDropdown": "/components/TimeFilterDropdown.vue",
+            "periodOptionsList": [
+                "Last Month",
+                "Last Quarter",
+                "Last Year",
+                "Custom Range"
+            ]
+        },
+        "function": "Permit filtering of displayed data by temporal ranges.",
+        "static_description": "Dropdown menu labeled “Time Period” placed near the top-right of the dashboard. Default option is 'Last Year'. Options listed match the defined period options list.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opening the dropdown reveals available time ranges. Selecting an option reloads all active visualizations with filtered data."
+            },
+            {
+                "interaction": "Select Custom Range",
+                "description": "Choosing 'Custom Range' opens a calendar picker to define start/end dates before applying changes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportServiceIntegration": "PDF generation service (e.g., jsPDF) and CSV exporter utility.",
+            "exportIcon": "/icons/export-icon.svg"
+        },
+        "function": "Enable export of generated comparison reports in standard formats.",
+        "static_description": "Floating action button featuring a forest green export icon positioned in the lower-right corner of the dashboard. Hover tooltip says 'Export Report'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens modal asking user to choose between exporting as PDF or CSV file. After choosing, downloads prepared report immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpointsCSS": "CSS media queries defining breakpoints for mobile, tablet, desktop views.",
+            "adaptiveGridConfig": "Grid configuration rules ensuring optimal layout adjustments based on screen size."
+        },
+        "function": "Ensure application usability and visual fidelity across devices and viewport sizes.",
+        "static_description": "Layout adapts fluidly with stacked content on small screens and multi-column arrangements on larger ones. Font sizes and control spacing scale appropriately.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Resizing browser window triggers layout recalculations and reflows components according to defined breakpoint thresholds."
+            },
+            {
+                "interaction": "Load Page",
+                "description": "Initial load detects device width and serves appropriate responsive variant automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeVariables": ":root { --background-color: #FFFFF0; --accent-color: #228B22; }",
+            "colorPaletteTokens": "{ ivory: '#FFFFF0', forestGreen: '#228B22' }"
+        },
+        "function": "Apply specified color palette consistently throughout the entire interface.",
+        "static_description": "All backgrounds utilize ivory (#FFFFF0), all actionable or highlighted elements employ forest green (#228B22). Text and borders adjust contrast accordingly.",
+        "interaction_and_states": [
+            {
+                "interaction": "N/A",
+                "description": "Colors remain fixed regardless of interaction state unless explicitly defined otherwise in component specifications."
+            }
+        ]
+    }
+]

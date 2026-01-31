@@ -1,0 +1,203 @@
+[
+    {
+        "resource_dependency": {
+            "mathExpressionInputIcon": "SVG icon representing a calculator or math symbol",
+            "calculationTypeOptions": [
+                "Basic Arithmetic",
+                "Scientific",
+                "Statistical"
+            ],
+            "executeButtonIcon": "SVG play arrow icon",
+            "resultDisplayAreaStyle": "Teal border with mint cream background"
+        },
+        "function": "Allow users to input mathematical expressions for processing.",
+        "static_description": "A text input field labeled 'Mathematical Expression' with a placeholder 'Enter expression...' and an associated icon (mathExpressionInputIcon) on the left side. The background is mint cream (#F5FFFA) and the border highlight is teal (#008080).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the input field allowing user to type."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers the calculation execution when pressed while the input is focused."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dropdownArrowIcon": "Downward facing SVG arrow icon",
+            "availableCalculationTypes": [
+                "Basic Arithmetic",
+                "Scientific",
+                "Statistical"
+            ]
+        },
+        "function": "Enable selection of different calculation types supported by the system.",
+        "static_description": "A styled dropdown menu labeled 'Calculation Type', showing currently selected value ('Basic Arithmetic') with a downward arrow icon (dropdownArrowIcon). Background color is mint cream (#F5FFFA) and active/hover states use teal (#008080). Options listed match availableCalculationTypes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens the dropdown list revealing options from availableCalculationTypes. Clicking an option selects it and closes the dropdown."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Highlights individual items within the open dropdown list with teal background."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "executeButtonLabel": "Calculate",
+            "executeButtonIcon": "Play arrow SVG icon"
+        },
+        "function": "Trigger the submission of the current mathematical expression and calculation type for evaluation.",
+        "static_description": "A rectangular button labeled 'Calculate' with a play arrow icon (executeButtonIcon) aligned to the left. Button has a mint cream background and teal text/border. Positioned adjacent to the input fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Sends the entered expression and selected calculation type to the backend API for processing."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Changes button background to light teal and increases shadow depth slightly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resultDisplayBackground": "mint cream (#F5FFFA)",
+            "resultHighlightColor": "teal (#008080)"
+        },
+        "function": "Present the computed result returned from the backend after successful calculation.",
+        "static_description": "A bordered container below the input controls with label 'Result'. Initially empty or showing placeholder like '--'. Uses mint cream background (resultDisplayBackground) and teal borders/highlights (resultHighlightColor). Displays numeric output centered inside.",
+        "interaction_and_states": [
+            {
+                "interaction": "Data Update",
+                "description": "Receives updated result string from backend via WebSocket or polling and renders it immediately in the display area."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointBaseURL": "/api/calculate",
+            "websocketConnectionURL": "/ws/calculations"
+        },
+        "function": "Fetch and handle real-time calculation responses from backend services.",
+        "static_description": "The frontend application initializes connection to apiEndpointBaseURL for RESTful requests and websocketConnectionURL for live updates. No visible element but acts as intermediary layer managing data flow.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Request",
+                "description": "Upon clicking 'Calculate', sends POST request containing expression and calculation type to apiEndpointBaseURL."
+            },
+            {
+                "interaction": "Receive Result",
+                "description": "Listens through websocketConnectionURL for incoming results or errors and updates relevant UI components accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "calculatePOSTEndpoint": "/api/calculate",
+            "historyGETEndpoint": "/api/history",
+            "sessionContextPATCHEndpoint": "/api/session"
+        },
+        "function": "Expose RESTful endpoints for receiving expressions, executing calculations, returning results, and managing session state.",
+        "static_description": "Defined routes accessible under calculatePOSTEndpoint for initiating computations, historyGETEndpoint for retrieving past calculations, and sessionContextPATCHEndpoint for updating user-specific settings. All require authentication headers unless public access is intended.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionEnvVars": {
+                "DB_HOST": "localhost",
+                "DB_PORT": 5432,
+                "DB_USERNAME": "myappuser",
+                "DB_PASSWORD": "myapppassword",
+                "DB_NAME": "myapp"
+            },
+            "pgClientLibrary": "node-postgres (pg)"
+        },
+        "function": "Establish secure database connectivity using predefined environment variables for storing persistent data.",
+        "static_description": "Backend service uses pgClientLibrary to connect to PostgreSQL instance configured with credentials provided via dbConnectionEnvVars. Connection pool initialized at server startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "calculationsTableSchema": "CREATE TABLE IF NOT EXISTS calculations (id SERIAL PRIMARY KEY, user_session_id VARCHAR(255), expression TEXT NOT NULL, calculation_type VARCHAR(100), result TEXT, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Define relational structure for persisting calculation records along with metadata such as session ID and timestamps.",
+        "static_description": "Database table named 'calculations' created using calculationsTableSchema definition upon initialization. Stores each processed calculation including expression, type, outcome, time, and optional session identifier.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "realtimeCommunicationMethod": "WebSocket protocol over /ws endpoint"
+        },
+        "function": "Maintain bidirectional communication channel enabling instant feedback during long-running or asynchronous calculations.",
+        "static_description": "Utilizes realtimeCommunicationMethod to establish persistent socket link between client and server facilitating push-based updates without repeated polling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorMessagesMap": {
+                "invalid_syntax": "Invalid mathematical syntax detected.",
+                "unsupported_operation": "Selected operation is not supported.",
+                "server_error": "Internal server error occurred."
+            }
+        },
+        "function": "Detect and gracefully present meaningful messages when invalid inputs or unexpected conditions occur.",
+        "static_description": "Dedicated alert/error banner positioned above input section which remains hidden until triggered. Utilizes errorMessagesMap to render localized messages corresponding to encountered issues.",
+        "interaction_and_states": [
+            {
+                "interaction": "Validation Failure",
+                "description": "Displays appropriate message from errorMessagesMap based on failure reason received either locally or from backend response."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignBreakpoints": "{ mobile: <768px, tablet: 768px-1024px, desktop: >1024px }",
+            "themeColors": "{ primaryBackground: #F5FFFA, accentColor: #008080 }"
+        },
+        "function": "Ensure consistent usability and visual appeal across various device sizes and orientations.",
+        "static_description": "Layout adapts dynamically according to responsiveDesignBreakpoints ensuring readability and interaction ease. All major components utilize themeColors palette for backgrounds (primaryBackground) and accents (accentColor).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "supportedCalculationTypes": [
+                "Basic Arithmetic",
+                "Scientific",
+                "Statistical"
+            ]
+        },
+        "function": "Extend computational capabilities beyond elementary arithmetic to include advanced mathematical operations.",
+        "static_description": "Dropdown includes additional entries matching supportedCalculationTypes indicating availability of enhanced functions like trigonometry, logarithms, statistics etc.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "sessionStorageMechanism": "JWT tokens stored in HTTP-only cookies"
+        },
+        "function": "Retain contextual information about ongoing user activity throughout their visit.",
+        "static_description": "User sessions maintained using sessionStorageMechanism associating unique identifiers with sets of previous actions or preferences influencing future behavior.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "inputSanitizationRules": "Strip non-mathematical characters except operators and numbers; limit length to 1000 chars",
+            "backendValidationMiddleware": "Express middleware validating body parameters before reaching business logic handlers"
+        },
+        "function": "Prevent malicious injection attempts and ensure correctness of submitted data prior to processing.",
+        "static_description": "Both frontend applies inputSanitizationRules during entry phase and backend employs backendValidationMiddleware to double-check integrity and safety of all incoming payloads.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+            "devStartScriptCommand": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
+        },
+        "function": "Automate setup and local development workflow through unified command-line interfaces.",
+        "static_description": "Root-level package.json defines two custom scripts: installAllScriptCommand running dependency installations in parallel for frontend and backend directories, and devStartScriptCommand launching watchers simultaneously.",
+        "interaction_and_states": []
+    }
+]

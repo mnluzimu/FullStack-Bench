@@ -1,0 +1,254 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A baseball fan visiting the site to check live game updates.",
+        "user_goal": "To view up-to-date player stats and team information without reloading the page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens the website and sees a loading spinner where the latest games should be displayed.",
+                "action": "Wait for initial load and API data fetch.",
+                "expected_outcome": "Dynamic content such as recent games and team standings appear after data loads from backend APIs."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Player Stats",
+                "description": "Curious about a specific player, Sarah clicks on the 'Players' link in the navigation bar.",
+                "action": "Click on the 'Players' navigation link.",
+                "expected_outcome": "The page dynamically updates with a list of players fetched via an API call, no full page reload occurs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer testing backend connectivity.",
+        "user_goal": "Verify that the backend successfully retrieves data from the configured PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sending Request to Backend",
+                "description": "The developer sends a GET request to retrieve a list of teams.",
+                "action": "Make a GET request to `/api/teams` endpoint.",
+                "expected_outcome": "Returns a JSON response containing team data retrieved from the PostgreSQL database using correct environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Player statistics tracking functionality with detailed views",
+        "user_persona": "A fantasy baseball manager analyzing player performance.",
+        "user_goal": "To compare batting averages across multiple seasons for drafting purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Player Profile",
+                "description": "Jake navigates to a specific player's profile page to evaluate his stats.",
+                "action": "Navigate to a player detail page.",
+                "expected_outcome": "The page displays a comprehensive breakdown of the player’s career statistics."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Season",
+                "description": "Jake selects different years from a dropdown menu to analyze year-over-year performance.",
+                "action": "Select a season from the season filter dropdown.",
+                "expected_outcome": "Statistics update automatically to reflect the selected season's data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Team management features including roster editing and financial management",
+        "user_persona": "A team owner managing their virtual baseball club.",
+        "user_goal": "To adjust the team roster and stay within budget limits.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Team Management Section",
+                "description": "Alex logs into his account and goes to the team management dashboard.",
+                "action": "Click on the 'Manage Team' button.",
+                "expected_outcome": "Redirected to a page displaying the current roster and available budget."
+            },
+            {
+                "step": 2,
+                "title": "Editing Roster",
+                "description": "Alex decides to move a player from the bench to the starting lineup by dragging them.",
+                "action": "Drag and drop a player from the bench slot to an active roster position.",
+                "expected_outcome": "The change takes effect immediately and reflects in the updated lineup display."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Live game simulation engine with real-time result visualization",
+        "user_persona": "An enthusiast watching a simulated game unfold.",
+        "user_goal": "To watch a live baseball game simulation with real-time updates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Simulation",
+                "description": "Emma finds a scheduled game and clicks to begin the live simulation.",
+                "action": "Click the 'Start Simulation' button for a selected game.",
+                "expected_outcome": "Game animation begins along with a live score ticker and commentary updates streamed in real time."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Past Plays",
+                "description": "Emma scrolls backward through the play history to revisit key moments.",
+                "action": "Scroll up through the historical plays timeline.",
+                "expected_outcome": "Previous plays are displayed, pausing the live feed temporarily but resuming once scrolling stops."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive lineup and strategy adjustment interface for users",
+        "user_persona": "A strategic gamer optimizing team tactics.",
+        "user_goal": "To customize batting order before running a simulation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Lineup Editor",
+                "description": "Mike enters the lineup editor to make tactical adjustments ahead of tomorrow’s game.",
+                "action": "Click the 'Edit Lineup' button.",
+                "expected_outcome": "A grid-based interface appears allowing repositioning of players."
+            },
+            {
+                "step": 2,
+                "title": "Rearranging Players",
+                "description": "Mike drags his best hitter to the third spot in the batting order.",
+                "action": "Drag and drop a player to a new batting position.",
+                "expected_outcome": "The lineup updates instantly, ready for use in the next simulation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with floral white background and dark goldenrod interactive elements",
+        "user_persona": "A casual visitor exploring the site aesthetics.",
+        "user_goal": "To navigate the site comfortably with a pleasant visual theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Site Theme",
+                "description": "Lisa visits the homepage and notices the soothing background color and highlighted buttons.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Page renders with a floral white background and dark goldenrod-colored buttons and links."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting players, teams, statistics, and game simulations",
+        "user_persona": "A system administrator verifying database integrity.",
+        "user_goal": "To ensure all required tables exist and are properly structured.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Table Structure",
+                "description": "Admin connects to the PostgreSQL database to inspect schema compliance.",
+                "action": "Run SQL query to describe tables like players, teams, and statistics.",
+                "expected_outcome": "Tables exist with appropriate columns and foreign key relationships as per defined schema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication and user session management system",
+        "user_persona": "A registered user logging into their account.",
+        "user_goal": "To securely access personalized features of the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Tom returns to the site and enters his credentials into the login form.",
+                "action": "Fill in email and password fields, then click 'Login'.",
+                "expected_outcome": "Successfully redirected to the dashboard with a valid JWT cookie set."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard for overview of team performance and upcoming games",
+        "user_persona": "A busy coach checking quick insights.",
+        "user_goal": "To get a snapshot of team performance and schedule.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Dashboard Summary",
+                "description": "Coach Riley logs in and lands directly on the dashboard.",
+                "action": "Log in and observe the dashboard landing page.",
+                "expected_outcome": "Dashboard shows cards summarizing recent wins/losses, upcoming opponents, and top performers."
+            },
+            {
+                "step": 2,
+                "title": "Drilling Down into Schedule",
+                "description": "Intrigued by the next game preview, Riley clicks on the card for more details.",
+                "action": "Click on the 'Upcoming Games' widget.",
+                "expected_outcome": "Redirected to a detailed calendar view listing all upcoming matches."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Historical game results and statistics archive",
+        "user_persona": "A historian researching past performances.",
+        "user_goal": "To find and review specific historical game data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching Archives",
+                "description": "Dan visits the archives section to look up last year’s championship game.",
+                "action": "Type keywords into the archive search bar.",
+                "expected_outcome": "List of matching games appears instantly, narrowing down options effectively."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updates during game simulations",
+        "user_persona": "A spectator engaged in a live match simulation.",
+        "user_goal": "To follow every important moment as it happens.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Watching Live Game",
+                "description": "While a game simulates, Chloe receives real-time notifications about big plays.",
+                "action": "Observe the game screen during active simulation.",
+                "expected_outcome": "Toast-style alerts pop up announcing significant events like home runs or scoring changes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration in package.json for `npm run install:all` to install frontend and backend dependencies",
+        "user_persona": "A new contributor setting up the project locally.",
+        "user_goal": "To quickly install all dependencies for both frontend and backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Jamie clones the repository and runs the installation script.",
+                "action": "Execute `npm run install:all` in terminal.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration in package.json for `npm run dev` to start frontend and backend concurrently",
+        "user_persona": "A developer beginning work on a feature branch.",
+        "user_goal": "To launch both development servers efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Dev Servers",
+                "description": "Patricia wants to develop and test simultaneously on both sides.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend servers start concurrently, accessible on their respective ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with desktop and mobile browsers",
+        "user_persona": "A mobile user browsing during commute.",
+        "user_goal": "To navigate and interact seamlessly on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Mobile View",
+                "description": "On her phone, Maria opens the website to check tonight’s game.",
+                "action": "Resize window or open site on a mobile device.",
+                "expected_outcome": "Layout adjusts responsively, stacking elements vertically and preserving usability."
+            }
+        ]
+    }
+]

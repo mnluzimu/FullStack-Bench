@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A baseball fan visiting the site to check his favorite player's latest stats.",
+        "user_goal": "View up-to-date statistics for a specific player by navigating through the UI.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Alex opens the website and sees navigation tabs for Players, Teams, and Games. He wants to find stats for a particular player.",
+                "action": "Click on the 'Players' tab.",
+                "expected_outcome": "The page fetches and displays a list of players from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Player",
+                "description": "Alex scrolls through the player list and clicks on his favorite player’s name to see more details.",
+                "action": "Click on a player's name card.",
+                "expected_outcome": "A modal appears showing detailed stats fetched dynamically from the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the app locally for testing.",
+        "user_goal": "Verify that the backend successfully connects to the PostgreSQL database with correct credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Jamie starts the backend server after setting the required environment variables for DB connection.",
+                "action": "Run `npm run dev` in the server directory.",
+                "expected_outcome": "Server initializes and logs successful connection to PostgreSQL using provided DB_HOST, DB_PORT, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Player statistics tracking with detailed views for individual player performance metrics",
+        "user_persona": "A fantasy baseball manager evaluating potential roster additions.",
+        "user_goal": "Examine a player’s historical stats to decide whether to draft them.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Player Details",
+                "description": "Taylor selects a player from the roster list and views their performance card.",
+                "action": "Click on a player's profile card.",
+                "expected_outcome": "A modal displays key metrics like batting average, home runs, RBIs, ERA, and strikeouts."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Extended Stats",
+                "description": "Intrigued by the overview, Taylor clicks to see the full history and trends.",
+                "action": "Click the 'Extended Stats' button within the modal.",
+                "expected_outcome": "Graphs and additional data points appear showing year-over-year improvements or declines."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Team management functionality allowing users to create, edit, and manage baseball teams",
+        "user_persona": "A new league commissioner setting up teams for the upcoming season.",
+        "user_goal": "Set up multiple baseball teams with unique identities and budgets.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating First Team",
+                "description": "Jordan navigates to the Teams section and begins creating the first team for the league.",
+                "action": "Fill out team creation form fields and click Submit.",
+                "expected_outcome": "New team record is saved in the database and appears in the team listing."
+            },
+            {
+                "step": 2,
+                "title": "Editing Existing Team Info",
+                "description": "After realizing a mistake in the team name, Jordan edits the entry.",
+                "action": "Click the 'Edit' button next to the team and update the name field.",
+                "expected_outcome": "Updated team information is persisted in the database and reflected immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Team roster management enabling users to add, remove, and organize players within teams",
+        "user_persona": "A team owner preparing for the draft.",
+        "user_goal": "Build a competitive roster by adding top prospects and releasing underperformers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding Players to Roster",
+                "description": "Morgan finds promising free agents and adds them to her team roster.",
+                "action": "Click the '+' button beside each desired player in the free agent pool.",
+                "expected_outcome": "Selected players are added to the team roster table instantly."
+            },
+            {
+                "step": 2,
+                "title": "Removing Underperforming Players",
+                "description": "Later, Morgan notices some players aren't contributing enough and decides to cut them.",
+                "action": "Click the '-' button next to those players in the roster table.",
+                "expected_outcome": "Those players are removed from the roster and returned to the free agent pool."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Financial management system for tracking and managing team finances",
+        "user_persona": "A financially conscious team owner monitoring club expenditures.",
+        "user_goal": "Ensure the team stays within budget while making strategic signings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Current Balance",
+                "description": "Casey visits the finance dashboard to review how much money remains in the budget.",
+                "action": "Navigate to the Finance section.",
+                "expected_outcome": "Dashboard shows updated balance, revenue, and expense figures retrieved from the backend."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Transaction History",
+                "description": "Curious about where funds went, Casey checks the transaction log.",
+                "action": "Click on the balance summary area.",
+                "expected_outcome": "Redirected to a page listing all past transactions with dates, amounts, and descriptions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Live game simulation engine that processes games based on team strategies and lineups",
+        "user_persona": "An impatient coach eager to see the results of his tactical choices.",
+        "user_goal": "Simulate a match using customized strategies and watch it unfold in real time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Game Strategy",
+                "description": "Pat arranges the batting order, selects the starting pitcher, and sets defensive positions.",
+                "action": "Drag players into lineup slots and select options from dropdown menus.",
+                "expected_outcome": "Strategy parameters are captured and ready to be submitted to the simulation engine."
+            },
+            {
+                "step": 2,
+                "title": "Launching Simulation",
+                "description": "Excited to see the outcome, Pat presses the big Start Simulation button.",
+                "action": "Click the 'Start Simulation' button.",
+                "expected_outcome": "Simulation begins, and real-time events start streaming back to the browser."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Game result visualization displaying outcomes of simulated baseball games",
+        "user_persona": "A sports journalist writing recaps after watching several simulated matches.",
+        "user_goal": "Quickly understand game outcomes and key plays to craft compelling articles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Final Score",
+                "description": "Dana finishes watching a game and looks at the final score displayed prominently.",
+                "action": "Look at the scoreboard canvas after simulation completes.",
+                "expected_outcome": "Canvas shows inning-by-inning scoring along with the final score and MVP award."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Box Score",
+                "description": "Wanting deeper insights, Dana examines the box score beneath the visual summary.",
+                "action": "Scroll down to view the tabular box score below the scoreboard.",
+                "expected_outcome": "Table presents hits, runs, errors, and other vital stats broken down by team and inning."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive controls for adjusting team strategies and lineups before game simulation",
+        "user_persona": "A meticulous strategist planning ahead for tomorrow’s big matchup.",
+        "user_goal": "Optimize lineup placement and pitching rotation to maximize chances of victory.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Arranging Batting Order",
+                "description": "Quinn drags his best hitters to the top of the batting order.",
+                "action": "Drag player cards into preferred batting slots.",
+                "expected_outcome": "Batting order reflects the new arrangement visually and internally."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Pitcher Rotation",
+                "description": "Quinn selects his ace pitcher from the dropdown menu for today's game.",
+                "action": "Select pitcher from the 'Starting Pitcher' dropdown.",
+                "expected_outcome": "Chosen pitcher is highlighted and set for use during simulation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with floral white background and dark goldenrod interactive elements",
+        "user_persona": "A designer checking brand consistency across the platform.",
+        "user_goal": "Confirm that the site uses the correct colors consistently throughout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Riley inspects the overall look of the homepage layout.",
+                "action": "Open DevTools and inspect the body background style.",
+                "expected_outcome": "Background color is confirmed as floral white (#fffaf0)."
+            },
+            {
+                "step": 2,
+                "title": "Testing Interactive Element Colors",
+                "description": "Next, Riley hovers over interactive buttons to verify hover effects.",
+                "action": "Hover over primary buttons like 'Login' or 'Submit'.",
+                "expected_outcome": "Buttons turn slightly darker shades of dark goldenrod (#b8860b) on hover."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication and user session management for personalized team and game data",
+        "user_persona": "A registered user returning to continue managing his virtual team.",
+        "user_goal": "Log in securely to access his personal team dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Sam enters his email and password into the login form.",
+                "action": "Enter credentials and click the Submit button.",
+                "expected_outcome": "Upon verification, Sam receives a JWT token stored in localStorage and is redirected to his dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Protected Data",
+                "description": "Now logged in, Sam tries accessing his team management page.",
+                "action": "Navigate to /teams route.",
+                "expected_outcome": "Page loads successfully since valid auth token allows access to protected resources."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data persistence for storing player stats, team information, financial records, and game results",
+        "user_persona": "A system administrator performing maintenance checks.",
+        "user_goal": "Ensure that critical application data survives restarts and updates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Restarting Application",
+                "description": "Devon shuts down and restarts the application to test data retention.",
+                "action": "Stop and restart both frontend and backend services.",
+                "expected_outcome": "All previously entered data—players, teams, finances—is still present after reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updates for game simulation progress and results",
+        "user_persona": "A live commentator covering an online baseball tournament.",
+        "user_goal": "Provide instant commentary as the game unfolds without refreshing the page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Live Game Feed",
+                "description": "Cameron launches a simulation and watches for real-time commentary.",
+                "action": "Click 'Start Simulation' and observe the live event stream.",
+                "expected_outcome": "Play-by-play text updates appear continuously in the feed as events occur."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Progress Bar",
+                "description": "While waiting, Cameron glances at the progress indicator.",
+                "action": "Observe the progress bar during simulation execution.",
+                "expected_outcome": "Progress bar fills smoothly as the game advances toward completion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible with desktop and mobile viewing",
+        "user_persona": "A casual fan browsing the site on his phone during lunch break.",
+        "user_goal": "Easily navigate and interact with the site despite limited screen space.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing on Mobile Device",
+                "description": "Tara opens the site on her smartphone and explores different sections.",
+                "action": "Resize window to mobile dimensions or open on actual device.",
+                "expected_outcome": "UI adapts responsively with collapsible menus, larger touch targets, and readable fonts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configuration with package.json supporting npm run install:all and npm run dev",
+        "user_persona": "A new contributor joining the project for the first time.",
+        "user_goal": "Set up the development environment quickly using standard npm commands.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Leo clones the repo and needs to get everything running locally.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "With dependencies installed, Leo starts both servers together.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend servers launch simultaneously and communicate properly."
+            }
+        ]
+    }
+]

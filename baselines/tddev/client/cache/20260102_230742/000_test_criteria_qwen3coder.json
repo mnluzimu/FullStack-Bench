@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "Frontend application with dynamic data fetching from backend APIs",
+        "user_persona": "A student named Alex who wants to explore available data science courses.",
+        "user_goal": "To view the list of available Python data science courses loaded dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Alex opens the learning platform homepage expecting to see a list of courses fetched live from the server.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "The frontend app initializes and sends an API request to /api/v1/courses to fetch course data."
+            },
+            {
+                "step": 2,
+                "title": "Displaying Courses Dynamically",
+                "description": "As the data arrives, Alex expects the course cards to populate automatically without needing a refresh.",
+                "action": "Receive response from backend API with course data.",
+                "expected_outcome": "Course cards render dynamically on the page showing titles, descriptions, and thumbnails retrieved via API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend application connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Taylor deploying the backend service locally.",
+        "user_goal": "Ensure the backend connects properly to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Taylor runs the backend server and verifies that it uses correct database credentials from environment variables.",
+                "action": "Start the Node.js Express server with DB_HOST=localhost, DB_PORT=5432, etc. set.",
+                "expected_outcome": "Server logs confirm successful connection to PostgreSQL instance at localhost:5432 with myapp database."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Data from Database",
+                "description": "Taylor triggers a sample API call to verify real-time data retrieval from connected database.",
+                "action": "Make GET request to /api/v1/courses endpoint.",
+                "expected_outcome": "Response returns actual course records stored in the PostgreSQL database under 'myapp' schema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system",
+        "user_persona": "A registered user Mia trying to access her enrolled courses.",
+        "user_goal": "Log in securely and gain access to protected course materials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Mia enters her credentials into the login form and submits them to authenticate.",
+                "action": "Fill out email and password fields and click Submit.",
+                "expected_outcome": "System validates credentials and returns a JWT token saved in localStorage; Mia is redirected to her dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Protected Content",
+                "description": "Mia attempts to visit a course page that requires authentication.",
+                "action": "Navigate directly to a course detail page URL requiring authentication.",
+                "expected_outcome": "Request includes Authorization header with valid JWT; Mia gains access to the course content without redirection."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Course browsing interface displaying available Python data science courses",
+        "user_persona": "A prospective learner Jordan exploring different courses.",
+        "user_goal": "Browse through various Python data science courses using filters and search options.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Initial Course List",
+                "description": "Jordan lands on the course catalog page where he sees a grid of course cards.",
+                "action": "Load the course catalog page.",
+                "expected_outcome": "A responsive grid of course cards loads showing titles, thumbnails, and difficulty levels fetched from backend."
+            },
+            {
+                "step": 2,
+                "title": "Filtering by Difficulty Level",
+                "description": "Jordan wants to find only intermediate-level courses, so he selects the filter dropdown.",
+                "action": "Select 'Intermediate' from the difficulty level dropdown.",
+                "expected_outcome": "Page updates dynamically to show only Intermediate-level Python data science courses."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Course selection and enrollment functionality",
+        "user_persona": "A student named Noah interested in enrolling in a new course.",
+        "user_goal": "Enroll in a desired Python data science course and begin learning immediately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing a Course",
+                "description": "Noah finds a suitable course and clicks the 'Enroll Now' button on its card.",
+                "action": "Click the 'Enroll Now' button on a course card.",
+                "expected_outcome": "POST request sent to /api/v1/enrollments creates an enrollment record; success notification appears."
+            },
+            {
+                "step": 2,
+                "title": "Continuing Learning",
+                "description": "Noah revisits the same course page later, now expecting to continue where he left off.",
+                "action": "Revisit the previously enrolled course page.",
+                "expected_outcome": "Instead of 'Enroll Now', a 'Continue Learning' button is displayed and redirects to lesson modules."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Learning content delivery system for enrolled courses",
+        "user_persona": "A dedicated learner Emma studying course material.",
+        "user_goal": "Watch video lessons and read markdown-based content seamlessly within the course module.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Lessons",
+                "description": "Emma clicks a lesson item from the sidebar to switch between lessons quickly.",
+                "action": "Click a lesson link in the sidebar navigation.",
+                "expected_outcome": "Lesson content loads dynamically in the main panel without reloading the entire page."
+            },
+            {
+                "step": 2,
+                "title": "Completing a Video Lesson",
+                "description": "After watching a full video lesson, Emma expects automatic progress tracking.",
+                "action": "Watch the entire duration of a video lesson.",
+                "expected_outcome": "Lesson marked as completed and progress tracker increments accordingly in the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Assignment submission interface for course assignments",
+        "user_persona": "A diligent student Liam preparing to submit his assignment.",
+        "user_goal": "Upload his Jupyter notebook file and confirm successful submission.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Assignment File",
+                "description": "Liam drags and drops his .ipynb file into the designated upload zone.",
+                "action": "Drag and drop a .ipynb file onto the assignment upload area.",
+                "expected_outcome": "File uploads successfully and the Submit button becomes enabled."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Assignment",
+                "description": "Once uploaded, Liam clicks the Submit button to finalize his work.",
+                "action": "Click the Submit button after uploading the assignment file.",
+                "expected_outcome": "Solution submitted to backend at /api/v1/assignments/{id}/submit; confirmation toast appears."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Grade querying dashboard for users to view their learning grades",
+        "user_persona": "A curious student Olivia checking her performance metrics.",
+        "user_goal": "Review her submitted assignments and export grade report as CSV.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Grade Dashboard",
+                "description": "Olivia navigates to her grade dashboard to review scores of past assignments.",
+                "action": "Navigate to the grade dashboard via user menu or direct URL.",
+                "expected_outcome": "Dashboard displays tabular view of assignments with score details and visual chart of performance trend."
+            },
+            {
+                "step": 2,
+                "title": "Exporting Grades",
+                "description": "She decides to download a copy of her grades for offline analysis.",
+                "action": "Click the 'Export Grades' button.",
+                "expected_outcome": "Browser prompts to download a CSV file containing all her grade records."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, courses, enrollments, assignments, and grades",
+        "user_persona": "A system administrator named Sam validating database integrity.",
+        "user_goal": "Verify that all necessary tables exist and relationships are correctly modeled.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Structure",
+                "description": "Sam connects to the PostgreSQL database and checks the presence of required tables.",
+                "action": "Connect to PostgreSQL database and inspect table schemas.",
+                "expected_outcome": "Tables named users, courses, enrollments, assignments, and grades exist with proper column definitions."
+            },
+            {
+                "step": 2,
+                "title": "Checking Foreign Key Relationships",
+                "description": "Sam ensures foreign keys are correctly mapped across related tables.",
+                "action": "Examine foreign key constraints among tables like enrollments.user_id -> users.id.",
+                "expected_outcome": "Foreign key references are accurate, maintaining referential integrity throughout the schema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with honeydew background and dark olive green components",
+        "user_persona": "A mobile user Zoe accessing the platform on her smartphone.",
+        "user_goal": "Experience consistent styling and layout adaptation across devices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile Device",
+                "description": "Zoe opens the platform on her phone and notices how colors adapt to screen size.",
+                "action": "Open site on mobile device with <768px width.",
+                "expected_outcome": "Site displays stacked layout with hamburger menu; background remains honeydew and buttons appear dark olive green."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Browser Window",
+                "description": "Zoe resizes her browser window to simulate different screen sizes.",
+                "action": "Resize browser window from small to large dimensions.",
+                "expected_outcome": "Layout transitions smoothly between mobile, tablet, and desktop views while retaining consistent color scheme."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with npm run install:all for frontend and backend installation",
+        "user_persona": "A new contributor named Drew setting up the project locally.",
+        "user_goal": "Install dependencies for both frontend and backend using a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Command",
+                "description": "Drew clones the repository and runs the unified install script.",
+                "action": "Run `npm run install:all` in root directory.",
+                "expected_outcome": "Both client and server folders execute `npm install` concurrently installing all required packages."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with npm run dev for concurrent frontend and backend development servers",
+        "user_persona": "Developer Riley starting daily development session.",
+        "user_goal": "Launch both frontend and backend development environments simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Riley wants to develop both parts together and runs the concurrent dev command.",
+                "action": "Execute `npm run dev` in the root folder.",
+                "expected_outcome": "Concurrently starts React dev server (port 3000) and Node.js backend server (port 5000) in parallel."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for course management and retrieval",
+        "user_persona": "An admin user named Casey managing course offerings.",
+        "user_goal": "Retrieve and manage course listings using RESTful API endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Retrieving Paginated Course List",
+                "description": "Casey wants to retrieve a paginated list of all courses using the API.",
+                "action": "Send GET request to /api/v1/courses?page=1&limit=10.",
+                "expected_outcome": "Returns first 10 courses along with metadata about total count and pagination info."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Specific Course",
+                "description": "Casey searches for a specific course by keyword using query parameters.",
+                "action": "Send GET request to /api/v1/courses?search=Python.",
+                "expected_outcome": "Only courses matching the keyword 'Python' are returned in the response."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for assignment submission and grade reporting",
+        "user_persona": "Student Riley submitting an assignment programmatically.",
+        "user_goal": "Use API to submit an assignment and then retrieve grade feedback.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Assignment via API",
+                "description": "Riley prepares a payload with code snippet and submits it to the assignment endpoint.",
+                "action": "POST to /api/v1/assignments/{id}/submit with body { \"code\": \"print('Hello World')\" }.",
+                "expected_outcome": "Submission accepted by server and recorded in database; returns success status."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving Personal Grades",
+                "description": "Later, Riley checks his personal grade report using the grades endpoint.",
+                "action": "GET request to /api/v1/users/me/grades.",
+                "expected_outcome": "Returns JSON array of assignment grades including score, max score, and submission dates."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User dashboard for managing enrolled courses and tracking progress",
+        "user_persona": "Active learner Ava monitoring her study progress.",
+        "user_goal": "Track enrolled courses and upcoming deadlines from centralized dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard Post-Login",
+                "description": "After logging in, Ava lands on her personalized dashboard to check current status.",
+                "action": "Log in and navigate to dashboard.",
+                "expected_outcome": "Dashboard loads sections like 'My Courses', 'Upcoming Deadlines', and circular progress indicators."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Enrolled Courses",
+                "description": "Ava clicks the 'My Courses' section to get an overview of her ongoing studies.",
+                "action": "Click the 'My Courses' card.",
+                "expected_outcome": "Redirected to a filtered course listing showing only enrolled courses with highlighted resume points."
+            }
+        ]
+    }
+]

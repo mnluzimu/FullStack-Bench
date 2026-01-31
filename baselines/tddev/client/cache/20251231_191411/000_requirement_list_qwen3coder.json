@@ -1,0 +1,209 @@
+[
+    {
+        "resource_dependency": {
+            "map_api": "An interactive map API such as Mapbox or Leaflet.js capable of rendering geographic boundaries and handling click events on regions.",
+            "neighborhood_data_schema": "Database table named 'neighborhoods' with fields: id (UUID), name (string), boundary_geojson (GeoJSON), created_at (timestamp), updated_at (timestamp)."
+        },
+        "function": "Display an interactive map that allows users to visualize neighborhood boundaries and select specific areas for data analysis.",
+        "static_description": "A full-width map container rendered using the map_api, centered on a default location. Neighborhood boundaries are pre-loaded and styled with forest green strokes. Background color set to ivory.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a neighborhood boundary selects it visually, highlighting it in forest green fill, and displays its basic info panel below the map."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a neighborhood boundary temporarily highlights it with a semi-transparent forest green overlay."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparison_state_schema": "Database schema tracking user-defined comparisons with tables: comparison_sessions(id UUID), session_neighborhoods(session_id UUID references comparison_sessions.id, neighborhood_id UUID references neighborhoods.id)",
+            "compare_button_icon": "/assets/icons/compare.svg"
+        },
+        "function": "Allow users to select multiple neighborhoods and initiate a comparison between them.",
+        "static_description": "A floating control bar above the map containing a 'Compare' button with compare_button_icon, disabled by default until two or more neighborhoods are selected. Selected neighborhoods appear as chips within the control bar.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Compare' button navigates the user to the comparison dashboard view populated with selected neighborhood data fetched via API."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a neighborhood chip removes it from the current selection and updates the map highlight accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographics_api_endpoint": "/api/demographics?neighborhood_ids=[...]",
+            "demographics_data_schema": "Table demographics(neighborhood_id UUID references neighborhoods.id, population integer, median_age float, households integer, year_built_median integer, created_at timestamp)"
+        },
+        "function": "Fetch and visualize demographic data including population, age distribution, and household information for selected neighborhoods.",
+        "static_description": "A tabbed section showing demographic metrics in chart form (bar/column charts). Charts use forest green bars against an ivory background. Default view shows total population per selected neighborhood.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking different tabs switches the displayed chart to show median age, number of households, or median year built."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over individual chart elements reveals tooltips with precise numeric values."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "economic_api_endpoint": "/api/economics?neighborhood_ids=[...]",
+            "economic_data_schema": "Table economics(neighborhood_id UUID references neighborhoods.id, median_income decimal, unemployment_rate float, median_rent decimal, median_home_value decimal, created_at timestamp)"
+        },
+        "function": "Visualize economic indicators like income levels, employment rates, and housing costs for selected neighborhoods.",
+        "static_description": "A dedicated section displaying economic KPI cards for each selected neighborhood, featuring metrics like median income and unemployment rate. Additional line graphs plot trends over time if available.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on metric cards expands a modal with historical trend charts related to that metric."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart points shows detailed value labels."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crime_stats_api_endpoint": "/api/crime?neighborhood_ids=[...]&type=[...]&period=[...]",
+            "crime_types_dropdown_options": [
+                "All",
+                "Violent",
+                "Property",
+                "Drug",
+                "Theft"
+            ],
+            "crime_data_schema": "Table crimes(incident_id UUID, neighborhood_id UUID references neighborhoods.id, incident_type string, reported_at timestamp, description text)"
+        },
+        "function": "Show filtered crime statistics categorized by type and time period for chosen neighborhoods.",
+        "static_description": "A filterable panel with dropdown menus for selecting crime type and date range, followed by a stacked bar chart representing incidents by month. Chart colors follow forest green shades.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Changing selections in the filters triggers a re-fetch of crime data and redraws the chart accordingly."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over segments of the stacked bar chart displays counts and percentages for each category."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboard_layout_engine": "Frontend library for managing draggable/resizable widget containers such as react-grid-layout.",
+            "chart_widget_template": "<Widget><ChartComponent /></Widget>",
+            "widget_config_schema": "User-specific layout stored in localStorage or backend under user_preferences(widget_positions JSON)"
+        },
+        "function": "Provide a customizable dashboard layout enabling users to arrange and resize various data visualization widgets.",
+        "static_description": "A grid-based canvas filled with resizable chart widgets arranged according to saved preferences. Widgets include demographic, economic, and crime charts with drag handles visible only when editing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a widget header moves it around the grid, updating positions dynamically."
+            },
+            {
+                "interaction": "Drag and Select",
+                "description": "Resizing a corner anchor adjusts the dimensions of the widget and persists after save."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Save Layout' button stores the new configuration either locally or server-side depending on login status."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sort_filter_controls": "Reusable UI component supporting multi-column sort and column-based filters.",
+            "data_table_api_endpoint": "/api/data/table?filters={}&sort=[]"
+        },
+        "function": "Enable filtering and sorting capabilities across all displayed datasets throughout the application.",
+        "static_description": "Each data table or chart view includes inline filter icons next to column headers and global search/filter controls atop the main content area. Controls utilize forest green accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a column header cycles through ascending/descending/no sort states, triggering a refresh of the dataset with sorted results."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a filter icon opens a popover menu where users can apply value ranges or categorical filters which update the dataset upon submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_breakpoints": "{ mobile: 768px, tablet: 1024px }",
+            "mobile_navigation_menu": "/assets/icons/menu-mobile.svg"
+        },
+        "function": "Ensure responsive design compatibility for both desktop and tablet screen sizes.",
+        "static_description": "Layout adapts fluidly based on viewport size. Desktop mode uses sidebar navigation; tablet mode collapses into a top navbar with hamburger-style mobile_navigation_menu.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "As window width crosses breakpoints, layout shifts automatically between desktop and tablet modes without requiring page reload."
+            },
+            {
+                "interaction": "Click",
+                "description": "Tapping the hamburger icon toggles visibility of the slide-in navigation drawer on smaller screens."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "global_css_variables": ":root { --background-color: #FFFFF0; --primary-color: #228B22; }"
+        },
+        "function": "Apply consistent ivory background color throughout the entire application interface.",
+        "static_description": "Entire app body background uniformly colored with ivory (#FFFFF0) defined via CSS variable --background-color.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "interactive_component_styles": ".button-primary { background-color: var(--primary-color); border: 1px solid var(--primary-color); } .highlight-text { color: var(--primary-color); }"
+        },
+        "function": "Use forest green color for interactive components and highlights throughout the UI.",
+        "static_description": "Buttons, links, active tabs, and important highlights are styled using forest green (#228B22) defined via CSS variable --primary-color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and interactive elements darken slightly in shade when hovered, providing visual feedback."
+            },
+            {
+                "interaction": "Focus",
+                "description": "Focused interactive elements receive a subtle glow effect matching forest green tone."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "area_selector_component": "<AreaSelector /> reusable React component",
+            "comparison_manager_ui": "<ComparisonManager /> manages active selections and comparison logic"
+        },
+        "function": "Implement intuitive UI controls for selecting neighborhoods and managing ongoing comparisons.",
+        "static_description": "Integrated controls positioned near the map include checkboxes/radio buttons for area selection and a clear 'Manage Comparisons' panel listing currently selected items.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting/unselecting an area adds/removes it from the active comparison group and updates dependent views instantly."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Clear All' in the comparison manager resets all selections and returns the map to base state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_config": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" }}"
+        },
+        "function": "Configure package.json scripts to support installation and concurrent development startup of both frontend and backend.",
+        "static_description": "Root-level package.json file contains install:all and dev script definitions ensuring simultaneous setup and launch of both applications using concurrently tool.",
+        "interaction_and_states": []
+    }
+]

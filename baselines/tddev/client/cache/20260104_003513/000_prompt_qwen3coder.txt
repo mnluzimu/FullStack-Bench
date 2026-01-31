@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement an advanced to-do list web application where users can create, edit, and delete to-do items. The application should have functionalities for adding new tasks, marking tasks as completed, deleting tasks, filtering tasks, and searching tasks. Users should be able to browse all to-do items, create new tasks, edit existing tasks, and delete unnecessary tasks. Set all pages to have a lavender background and indigo components.

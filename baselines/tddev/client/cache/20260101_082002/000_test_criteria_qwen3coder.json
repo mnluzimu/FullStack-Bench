@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "A frontend application with multiple pages: base, ranking, store, train, workers, upgrades, bank, messages, and reports",
+        "user_persona": "A new player exploring the game interface for the first time.",
+        "user_goal": "Navigate to each major section of the game to understand its features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting at Base Page",
+                "description": "Alex logs in and lands on the base page. He notices a navigation bar with several options.",
+                "action": "Click on the 'Ranking' link in the navigation bar.",
+                "expected_outcome": "The browser navigates to the /ranking page displaying the leaderboard."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Different Sections",
+                "description": "From the ranking page, Alex wants to check out the store next.",
+                "action": "Click on the 'Store' link in the navigation bar.",
+                "expected_outcome": "The browser loads the /store page showing available items for purchase."
+            },
+            {
+                "step": 3,
+                "title": "Continuing Navigation",
+                "description": "Curious about military options, Alex moves to the train page.",
+                "action": "Click on the 'Train' link in the navigation bar.",
+                "expected_outcome": "The browser displays the /train page with soldier recruitment options."
+            },
+            {
+                "step": 4,
+                "title": "Visiting All Pages",
+                "description": "Alex continues navigating through all available sections to familiarize himself with the game.",
+                "action": "Sequentially click on 'Workers', 'Upgrades', 'Bank', 'Messages', and 'Reports' links.",
+                "expected_outcome": "Each click loads the corresponding page (/workers, /upgrades, /bank, /messages, /reports) without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A page for players to select from four races: Humans, Dragonborns, Elves, and Dwarfs, each with unique attributes",
+        "user_persona": "A new player ready to start playing but hasn't chosen a race yet.",
+        "user_goal": "Select a race to begin the game with appropriate starting bonuses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Race Selection Screen",
+                "description": "Jordan sees the race selection screen with four distinct race cards on a seashell background.",
+                "action": "Click on the 'Elves' race card.",
+                "expected_outcome": "The Elves race is selected, and Jordan's player profile is initialized with Elf-specific attributes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A resource management system displaying gold, iron, wood, and wheat quantities",
+        "user_persona": "An active player managing resources during gameplay.",
+        "user_goal": "Monitor resource levels to make informed decisions about upgrades and purchases.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Resource Levels",
+                "description": "Taylor looks at the top of the screen to see how much of each resource they have.",
+                "action": "Observe the persistent header element.",
+                "expected_outcome": "The header shows accurate icons and numeric values for current Gold, Iron, Wood, and Wheat quantities."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A city upgrade system allowing players to enhance their base infrastructure",
+        "user_persona": "A player looking to strengthen their city defenses and capabilities.",
+        "user_goal": "Purchase a city upgrade to improve base infrastructure.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Available Upgrades",
+                "description": "Morgan navigates to the upgrades page and sees a grid of available city improvements.",
+                "action": "Click on the 'Reinforced Walls' upgrade option.",
+                "expected_outcome": "The system validates Morgan's resources and applies the upgrade, reducing resource counts accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A worker management page to assign and upgrade workers",
+        "user_persona": "A player wanting to optimize resource production.",
+        "user_goal": "Assign more workers to increase resource generation rates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Managing Workers",
+                "description": "Casey goes to the workers page and sees the dual-panel view for worker assignment.",
+                "action": "Click the '+' button next to 'Miners' to assign one additional worker.",
+                "expected_outcome": "The number of assigned miners increases by one, and the required resources are deducted from Casey's inventory."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A military training page to recruit and upgrade soldiers",
+        "user_persona": "A player preparing for upcoming battles.",
+        "user_goal": "Recruit new soldiers to build up their army.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Training Soldiers",
+                "description": "Riley visits the train page and views the tabbed interface for soldier types.",
+                "action": "Click the 'Recruit' button for 'Swordsmen'.",
+                "expected_outcome": "The system validates Riley's resources and adds the recruited Swordsmen to their trained soldiers count."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A store interface for purchasing resources, items or upgrades",
+        "user_persona": "A player needing quick access to resources.",
+        "user_goal": "Buy additional gold to fund upcoming purchases.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Purchasing Items",
+                "description": "Quinn browses the store and finds a bundle of gold for sale.",
+                "action": "Click the 'Buy' button for the 'Gold Bundle'.",
+                "expected_outcome": "Gold is deducted from Quinn's balance and the purchased gold amount is added to their inventory."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A banking system for managing resource storage and interest",
+        "user_persona": "A player wanting to safely store excess gold and earn interest.",
+        "user_goal": "Deposit gold into the bank to earn passive income.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Depositing Gold",
+                "description": "Pat goes to the bank page and sees the dashboard panel with banking options.",
+                "action": "Click the 'Deposit' button and enter an amount of gold.",
+                "expected_outcome": "The specified gold amount is transferred from Pat's inventory to their bank account, increasing stored gold balance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A messaging system for player communication",
+        "user_persona": "A social player wanting to communicate with friends in-game.",
+        "user_goal": "Read a received message from another player.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Messages",
+                "description": "Alex checks their inbox and sees a new message notification.",
+                "action": "Click on the unread message thread.",
+                "expected_outcome": "The detailed message exchange opens, showing the conversation history between Alex and the sender."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A battle system enabling players to engage in combat with others",
+        "user_persona": "A competitive player seeking to prove their strength.",
+        "user_goal": "Initiate a battle against another player.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting a Battle",
+                "description": "Sam goes to the battle initiation screen and selects an opponent.",
+                "action": "Click the 'Attack' button.",
+                "expected_outcome": "A match request is queued, and upon resolution, Sam is redirected to a results screen showing the battle outcome and any rewards earned."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A ranking page displaying player scores and positions",
+        "user_persona": "A competitive player tracking their progress against others.",
+        "user_goal": "Check their current position on the global leaderboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Rankings",
+                "description": "Jordan navigates to the ranking page to see how they compare to other players.",
+                "action": "Load the /ranking page.",
+                "expected_outcome": "A leaderboard table displays top-ranked players with usernames, scores, and ranks, highlighting Jordan's position."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A reports page showing historical activity and battle outcomes",
+        "user_persona": "A strategic player reviewing past actions for future planning.",
+        "user_goal": "Review previous battle outcomes to adjust strategy.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Activity Logs",
+                "description": "Morgan visits the reports page to see a chronological feed of past events.",
+                "action": "Click on a specific battle entry to expand details.",
+                "expected_outcome": "Extended details about the selected battle, including involved entities and exact resource changes, are revealed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API to serve dynamic game data to the frontend",
+        "user_persona": "A developer testing the integration between frontend and backend systems.",
+        "user_goal": "Verify that the frontend can retrieve dynamic player data from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Player Data",
+                "description": "The frontend makes a request to get the current player's information.",
+                "action": "Make a GET request to /api/player/profile.",
+                "expected_outcome": "The backend returns structured player data including profile info, resources, and current status in JSON format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A PostgreSQL database connection configured with specified environment variables",
+        "user_persona": "A system administrator setting up the game server.",
+        "user_goal": "Ensure the backend can connect to the PostgreSQL database using correct credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Database Connection Test",
+                "description": "The backend service attempts to establish a connection to the PostgreSQL database.",
+                "action": "Start the backend server with environment variables set.",
+                "expected_outcome": "The backend successfully connects to the PostgreSQL database at localhost:5432 using myappuser/myapppassword credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A package.json configuration enabling `npm run install:all` and `npm run dev` commands",
+        "user_persona": "A developer setting up the project for local development.",
+        "user_goal": "Install dependencies and start both frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The developer runs the unified installation script to prepare the development environment.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "After installation, the developer starts both development servers with one command.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Concurrent processes start the frontend and backend development servers, making them accessible locally."
+            }
+        ]
+    }
+]

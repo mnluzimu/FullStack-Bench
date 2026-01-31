@@ -1,0 +1,249 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDataAPI": "A real-time stock data API such as Alpha Vantage or Yahoo Finance API for fetching stock information.",
+            "autocompleteResultsLimit": 5
+        },
+        "function": "Allow users to search for stocks using either stock codes or company names.",
+        "static_description": "A search bar positioned at the top of the page with a placeholder text 'Enter stock code or name', accompanied by a magnifying glass icon (searchIcon) on the right side of the input field. Background is white and input border is navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search bar focuses it and allows typing. Clicking the magnifying glass icon initiates the search."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused in the search bar submits the query to the stock data API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autocompleteSuggestionStyle": "Dropdown list styled with white background and navy borders",
+            "maxSuggestionsToShow": 5,
+            "stockSymbolList": "Preloaded list of stock symbols and names for fast local matching before API call"
+        },
+        "function": "Provide auto-suggested stock matches as the user types in the search bar.",
+        "static_description": "An autocomplete dropdown appears below the search bar when typing begins. It displays up to maxSuggestionsToShow items from stockSymbolList, formatted in autocompleteSuggestionStyle.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a suggestion populates the search bar with the selected stock symbol or name and triggers a search."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over suggestions highlights the item visually without triggering any action until clicked."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyLogoPlaceholder": "/assets/images/company-placeholder.png",
+            "basicStockInfoSchema": "Database table containing fields: symbol (string), company_name (string), sector (string), industry (string), current_price (float), last_updated (datetime)"
+        },
+        "function": "Display essential stock details such as company name, sector, industry, and latest price upon selecting a stock.",
+        "static_description": "A card-style layout under the search bar showing company logo (or companyLogoPlaceholder if unavailable), company name, sector, industry, and current stock price. All text uses navy color on white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking anywhere within the card expands it to show additional details like market cap, P/E ratio, and dividend yield temporarily."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with Chart.js or D3.js library for rendering interactive charts",
+            "historicalDataSchema": "Database schema storing daily/hourly prices: date (date), open (float), close (float), high (float), low (float), volume (int)",
+            "timeRangeOptions": [
+                "1D",
+                "1W",
+                "1M",
+                "3M",
+                "6M",
+                "YTD",
+                "1Y",
+                "5Y"
+            ]
+        },
+        "function": "Visualize historical stock performance through interactive line and candlestick charts.",
+        "static_description": "Below the basic info card, a chart area showing price movement over time. A set of time range buttons above the chart allow switching between different periods. Charts use navy lines on white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a time range button fetches and renders the respective historical data using chartLibrary."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart points shows tooltip with exact value and timestamp."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialMetricsSchema": "Table with columns: metric_name (string), value (float), unit (string) e.g., EPS, ROE, Debt-to-Equity Ratio",
+            "keyRatiosIconSet": "/assets/icons/ratios-icons/*.svg"
+        },
+        "function": "Show key financial indicators relevant to investment decisions.",
+        "static_description": "A section beneath the chart displaying key financial metrics in a tabular format with icons from keyRatiosIconSet. Each row includes metric name, numerical value, and unit. Layout maintains white background with navy headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on individual rows may expand them to show definitions or historical comparisons."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportFormatOptions": [
+                "Standard PDF Report",
+                "Executive Summary",
+                "Detailed Analysis"
+            ],
+            "formatSelectorIcons": "/assets/icons/format-icons/*.png"
+        },
+        "function": "Let users choose how they want their generated reports to look.",
+        "static_description": "Radio buttons or dropdown menu labeled 'Select Format' showing available options from reportFormatOptions. Icons from formatSelectorIcons appear next to each option. White background with navy selections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an option updates the preview pane or generates sample output accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentSectionOptions": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "News Sentiment"
+            ],
+            "sectionToggleSwitches": "/assets/components/toggle-switch.css"
+        },
+        "function": "Enable users to customize which parts appear in their final report.",
+        "static_description": "Checkboxes grouped vertically labeled with contentSectionOptions. Toggle switches beside each checkbox allow enabling/disabling inclusion in the report. Styled using sectionToggleSwitches.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling checkboxes enables or disables corresponding sections in the report generation logic."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportTemplateEngine": "Use of templating engine like Handlebars or Jinja2 to dynamically populate content",
+            "generatedReportSchema": "Output structure mapping selected sections and format into HTML/PDF content blocks"
+        },
+        "function": "Compile and render complete stock reports based on user-defined parameters.",
+        "static_description": "Preview panel showing rendered report with title, summary, and selected content sections arranged according to chosen format. Maintains consistent styling with white background and navy text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Generate Report' compiles the selected data and applies formatting rules to produce the full document."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormatsSupported": [
+                "PDF",
+                "Excel (.xlsx)",
+                "CSV"
+            ],
+            "exportButtonIcons": "/assets/icons/export-icons/*.svg",
+            "fileDownloadHandler": "Client-side library like jsPDF or SheetJS for file creation"
+        },
+        "function": "Allow exporting completed reports in commonly used digital formats.",
+        "static_description": "Row of export buttons labeled with supported formats from exportFormatsSupported, each featuring an icon from exportButtonIcons. Positioned prominently near the bottom of the report preview.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Each button triggers download via fileDownloadHandler, generating and prompting save dialog for selected format."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "uiThemeVariables": "{ primaryColor: '#000080', backgroundColor: '#FFFFFF' }",
+            "cssFramework": "Tailwind CSS or Bootstrap configured with custom theme variables"
+        },
+        "function": "Ensure consistent visual identity across all pages and components.",
+        "static_description": "Entire site follows uiThemeVariables applied globally through cssFramework. White backgrounds dominate with navy accents for buttons, headers, and active states.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "websocketConnection": "Establish WebSocket connection to real-time stock feed (e.g., via Pusher or Firebase Realtime Database)",
+            "refreshIntervalSetting": "Configurable timer (default 60 seconds) controlling polling frequency if streaming isn't feasible"
+        },
+        "function": "Keep displayed stock data fresh and up-to-date without manual reloads.",
+        "static_description": "Status indicator (e.g., green dot) visible near the top-right corner indicating live data status. Refresh interval setting accessible via settings modal.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking refresh button forces immediate update from websocketConnection or triggers new API request depending on connectivity mode."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardStockListSchema": "User-specific watchlist stored in DB with fields: user_id (foreign key), stock_symbol (string), added_on (timestamp)",
+            "miniChartComponent": "Reusable component for embedding small-sized version of main chart functionality"
+        },
+        "function": "Give users quick access to monitor several stocks simultaneously.",
+        "static_description": "Dashboard grid presenting mini-cards for each watched stock. Cards include abbreviated info (symbol, price, % change) and embedded miniChartComponent for trend visualization. White background with navy borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a card navigates to the full detail view for that particular stock."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterDatePresets": [
+                "Last Week",
+                "Last Month",
+                "Custom Range"
+            ],
+            "customDatePickerComponent": "Built-in calendar widget supporting start/end date selection"
+        },
+        "function": "Permit refining views and analyses based on specific temporal boundaries.",
+        "static_description": "Filter controls located above chart areas offering preset ranges from filterDatePresets alongside a custom date picker component allowing precise selections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing a preset applies predefined dates; clicking 'Apply' after selecting custom dates filters displayed data accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authSystemSchema": "Users table with email (unique string), password_hash (string), created_at (datetime); Preferences table linked via user_id storing saved settings",
+            "authenticationService": "OAuth providers or JWT-based session management system"
+        },
+        "function": "Manage secure login sessions and persist personalized configurations.",
+        "static_description": "Top navigation bar contains links for Login/Register or Profile/Logout once authenticated. Authenticated users see preference-saving options throughout the app.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Logging in redirects to dashboard where previously saved preferences are loaded. Saving preferences stores updated values back to authSystemSchema."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "CSS media queries targeting common device widths: mobile (<768px), tablet (768px–1024px), desktop (>1024px)",
+            "touchOptimizedControls": "Larger tap targets and swipe-friendly layouts for mobile devices"
+        },
+        "function": "Deliver seamless experience regardless of screen size or input method.",
+        "static_description": "All UI elements scale appropriately per responsiveBreakpoints. Mobile layouts stack vertically, utilize touchOptimizedControls, and hide non-critical features behind hamburger menus.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Resizing browser window reflows layout according to breakpoint thresholds, adjusting spacing, font sizes, and visibility of optional modules."
+            }
+        ]
+    }
+]

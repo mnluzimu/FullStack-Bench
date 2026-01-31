@@ -1,0 +1,226 @@
+[
+    {
+        "requirement_tested": "Display personal information section with name, contact details, and professional summary",
+        "user_persona": "A recruiter browsing an online CV to evaluate a candidate's profile.",
+        "user_goal": "To quickly find the candidate's name, contact information, and professional summary.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Website",
+                "description": "The recruiter opens the CV website and expects to see the personal information section right away.",
+                "action": "Load the homepage.",
+                "expected_outcome": "The 'Personal Information' section is displayed prominently with the name in large text, followed by email, phone, address, and a professional summary, all styled with light pink background and medium violet red headers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show work experience section with job titles, companies, dates, and responsibilities",
+        "user_persona": "A hiring manager reviewing a candidate's career progression.",
+        "user_goal": "To assess the candidate's previous roles, responsibilities, and employment timeline.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Work Experience",
+                "description": "The hiring manager scrolls down or clicks the navigation link to view the candidate's work history.",
+                "action": "Click on the 'Work Experience' link in the navigation menu.",
+                "expected_outcome": "The page scrolls smoothly to the 'Work Experience' section, which displays each job with title, company, date range, and bullet-pointed responsibilities, styled consistently with light pink background and medium violet red headers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present skills section with categorized technical and soft skills",
+        "user_persona": "A technical lead evaluating a candidate's competencies.",
+        "user_goal": "To identify whether the candidate possesses relevant technical and interpersonal skills.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Skills Section",
+                "description": "The technical lead looks for the skills section to review the candidate’s abilities.",
+                "action": "Scroll or click on the 'Skills' navigation link.",
+                "expected_outcome": "The 'Skills' section loads with two distinct subsections: 'Technical Skills' and 'Soft Skills', each listing relevant items in a clean layout, styled with the correct colors and background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include education background section with degrees, institutions, and dates",
+        "user_persona": "An HR representative verifying educational qualifications.",
+        "user_goal": "To confirm the candidate’s academic credentials and graduation timeline.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Education Details",
+                "description": "The HR rep navigates to the education section to validate the candidate's academic history.",
+                "action": "Click on the 'Education' link in the navigation menu.",
+                "expected_outcome": "The 'Education Background' section appears, showing degrees, institutions, and date ranges in a clear, chronological format with consistent styling."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Feature projects section with project titles, descriptions, technologies, and links",
+        "user_persona": "A portfolio reviewer interested in seeing hands-on work examples.",
+        "user_goal": "To explore the candidate’s past projects and the technologies they used.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Projects",
+                "description": "The reviewer clicks on the 'Projects' section to see examples of the candidate's work.",
+                "action": "Navigate to the 'Projects' section via scroll or menu click.",
+                "expected_outcome": "Project cards are displayed with titles, descriptions, technologies used, and clickable links, all styled according to design guidelines."
+            },
+            {
+                "step": 2,
+                "title": "Opening Project Link",
+                "description": "Intrigued by one project, the reviewer clicks on it to view more details externally.",
+                "action": "Click on a project card.",
+                "expected_outcome": "The browser navigates to the external project URL specified in the project data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement responsive navigation menu to access different CV sections",
+        "user_persona": "A mobile user accessing the CV on a smartphone.",
+        "user_goal": "To navigate smoothly between sections despite limited screen space.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu on Mobile",
+                "description": "The user opens the site on a mobile device and uses the navigation menu to jump to the skills section.",
+                "action": "Open the site on mobile and tap the 'Skills' link in the navigation bar.",
+                "expected_outcome": "The menu adapts responsively to the mobile screen, and clicking the link scrolls the page smoothly to the 'Skills' section."
+            },
+            {
+                "step": 2,
+                "title": "Active Section Highlighting",
+                "description": "As the user scrolls manually through sections, they expect visual feedback on which section is active.",
+                "action": "Scroll down the page manually.",
+                "expected_outcome": "The navigation bar updates to highlight the currently visible section as the user scrolls."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply light pink background color throughout the website",
+        "user_persona": "A designer checking brand consistency across the website.",
+        "user_goal": "To ensure the entire website has a uniform light pink background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "The designer inspects various sections of the site to verify the background color remains consistent.",
+                "action": "Visit all major sections of the website.",
+                "expected_outcome": "Every section of the website displays a consistent light pink background (#FFB6C1) as defined in the CSS."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Use medium violet red color for UI components like buttons, headers, and links",
+        "user_persona": "A UI/UX reviewer validating visual consistency.",
+        "user_goal": "To confirm that interactive elements and headers use the correct accent color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking UI Component Colors",
+                "description": "The reviewer scans the page to verify headers, links, and buttons use medium violet red.",
+                "action": "Inspect headers, buttons, and links visually or via developer tools.",
+                "expected_outcome": "All headers, buttons, and links are styled with medium violet red (#C71585) as per the CSS rules."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all content is fetched dynamically from backend APIs",
+        "user_persona": "A developer testing the integration between frontend and backend.",
+        "user_goal": "To confirm that no static or hardcoded data is shown and everything comes from the API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Dynamic Content Load",
+                "description": "The developer opens the network tab and reloads the page to inspect data fetching behavior.",
+                "action": "Reload the CV homepage and monitor network activity.",
+                "expected_outcome": "Multiple GET requests are made to /api/personal-info, /api/work-experience, etc., and content renders only after successful API responses."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up backend server connecting to PostgreSQL database using provided environment variables",
+        "user_persona": "A DevOps engineer deploying the application.",
+        "user_goal": "To ensure the backend connects securely and correctly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The engineer starts the backend server and checks for successful database connection logs.",
+                "action": "Run the backend server with the specified environment variables.",
+                "expected_outcome": "The backend initializes successfully and logs indicate a healthy connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create RESTful API endpoints for personal info, work experience, skills, education, and projects",
+        "user_persona": "A frontend developer integrating with backend services.",
+        "user_goal": "To consume accurate and accessible data from defined API endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing API Endpoints",
+                "description": "The developer sends GET requests to each endpoint to verify data retrieval.",
+                "action": "Send GET requests to /api/personal-info, /api/work-experience, etc.",
+                "expected_outcome": "Each endpoint responds with valid JSON data matching its respective database table schema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design database schema with tables for personal info, work experience, skills, education, and projects",
+        "user_persona": "A database administrator validating schema implementation.",
+        "user_goal": "To ensure that the database contains properly structured tables with correct fields.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Database Tables",
+                "description": "The DBA connects to the PostgreSQL instance and reviews table structures.",
+                "action": "Query the database for table schemas of personal_info, work_experience, etc.",
+                "expected_outcome": "All five tables exist with the correct column names, types, and constraints as defined in the schema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'install:all' script to install frontend and backend dependencies",
+        "user_persona": "A new team member setting up the project locally.",
+        "user_goal": "To easily install all necessary dependencies with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "The developer clones the repo and runs the install script to set up dependencies.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'dev' script to start frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work on the project.",
+        "user_goal": "To launch both frontend and backend servers efficiently for local development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "The developer wants to start both servers with one command for convenience.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently and are accessible in the browser and terminal."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement consistent typography and spacing for readable content presentation",
+        "user_persona": "A content strategist ensuring readability and accessibility.",
+        "user_goal": "To verify that all textual content is presented in a clean, legible format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Evaluating Typography and Spacing",
+                "description": "The strategist inspects the visual presentation of all text sections for consistency.",
+                "action": "Browse all CV sections and observe font styles and spacing.",
+                "expected_outcome": "All headings and paragraphs use Arial font with consistent line height and proper margin spacing as defined in CSS."
+            }
+        ]
+    }
+]

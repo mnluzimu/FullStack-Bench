@@ -1,0 +1,220 @@
+[
+    {
+        "resource_dependency": {
+            "mapbox_api": "Requires integration with Mapbox GL JS for rendering interactive maps.",
+            "neighborhoods_data_schema": "Database table with fields: id (UUID), name (string), coordinates (GeoJSON), population (integer), median_income (float), crime_rate (float), created_at (timestamp), updated_at (timestamp)",
+            "area_selection_icon": "/assets/icons/area-select.svg"
+        },
+        "function": "Display an interactive neighborhood map that allows users to visualize and select different geographic areas for data comparison.",
+        "static_description": "A full-screen map rendered using Mapbox GL JS with ivory background (#FFFFF0) and forest green (#228B22) UI controls. Neighborhood boundaries are displayed with hover effects showing basic area names.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects a neighborhood on the map, highlighting its boundary in forest green and displaying a tooltip with the area name."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Displays a tooltip above neighborhood polygons showing the area name without selecting it."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographics_data_schema": "Database table with fields: id (UUID), neighborhood_id (foreign key to neighborhoods), age_distribution (JSON), gender_ratio (float), education_level (JSON), ethnicity_breakdown (JSON), year (integer)",
+            "comparison_chart_library": "Integration with Chart.js library for creating bar and line charts.",
+            "demographic_icons": "/assets/icons/demographics/*.svg"
+        },
+        "function": "Enable side-by-side comparison of demographic statistics between selected neighborhoods through interactive visualizations.",
+        "static_description": "A panel positioned to the right of the main map view showing demographic categories as tabs. Each tab contains charts comparing selected neighborhoods' demographic data using forest green colored chart elements against an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switches between demographic category tabs (Age Distribution, Gender Ratio, Education Level, Ethnicity) updating the displayed charts accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "economic_data_schema": "Database table with fields: id (UUID), neighborhood_id (foreign key to neighborhoods), median_household_income (float), employment_rate (float), housing_prices (JSON), business_density (integer), unemployment_by_sector (JSON), year (integer)",
+            "economic_comparison_icons": "/assets/icons/economics/*.png"
+        },
+        "function": "Provide comparative analysis tools for economic indicators across chosen neighborhoods.",
+        "static_description": "Tabbed interface within the data dashboard presenting economic metrics such as income levels, employment rates, and housing prices. Charts use forest green bars/lines on ivory backgrounds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Changes displayed economic metric charts based on selected tab (Income, Employment, Housing Prices, Business Density)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crime_data_schema": "Database table with fields: id (UUID), neighborhood_id (foreign key to neighborhoods), total_crimes (integer), violent_crimes (integer), property_crimes (integer), crime_types_breakdown (JSON), clearance_rates (JSON), year (integer)",
+            "crime_heatmap_layer": "Mapbox heatmap layer configuration for overlaying crime density patterns."
+        },
+        "function": "Facilitate comparisons of crime statistics and trends among different neighborhoods.",
+        "static_description": "Dedicated section in dashboard with toggleable heatmap overlay option on main map. Statistical panels show numerical crime data comparisons using forest green text/icons over ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggles visibility of crime heatmap layer on main map when activated via control button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "charting_library": "Chart.js integrated for dynamic chart generation.",
+            "dashboard_layout_css": "CSS variables defining ivory background (--bg-color: #FFFFF0) and forest green components (--component-color: #228B22)"
+        },
+        "function": "Present collected neighborhood data through customizable interactive charts grouped into a unified dashboard.",
+        "static_description": "Dashboard grid layout featuring draggable/resizable chart widgets. Default widgets include demographic distribution pie charts, economic trend lines, and crime rate bar graphs. All components styled with ivory backgrounds and forest green borders/text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Allows repositioning of individual chart widgets within the dashboard grid by dragging their title bars."
+            },
+            {
+                "interaction": "Click",
+                "description": "Opens settings menu for each widget allowing resizing or removal from dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "layout_templates": "Predefined JSON templates for common dashboard arrangements (Grid View, Focus Mode, Comparison Layout)",
+            "save_layout_endpoint": "POST /api/user-layouts endpoint for saving custom configurations"
+        },
+        "function": "Allow users to personalize their dashboard arrangement according to preference or analytical needs.",
+        "static_description": "Settings panel accessible via gear icon in top toolbar. Contains preset layout options displayed as thumbnails alongside 'Save Current Layout' button. Background remains ivory while buttons/icons are forest green.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Applies selected layout template immediately to current dashboard view or saves current configuration under user profile upon clicking 'Save Current Layout'."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "color_palette_variables": ":root CSS variables setting --background-color to #FFFFF0",
+            "ui_framework": "Tailwind CSS configured with custom ivory theme"
+        },
+        "function": "Apply consistent ivory background color throughout entire application interface for aesthetic uniformity.",
+        "static_description": "All page sections, modals, panels, and containers feature solid ivory (#FFFFF0) fill color applied globally via CSS variable definitions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "component_theming": "SCSS/CSS modules applying #228B22 to interactive elements like buttons, toggles, and chart axes",
+            "design_system_tokens": "Design tokens specifying forest green usage for primary actions and highlights"
+        },
+        "function": "Style all interactive UI components consistently with forest green coloring scheme to maintain visual coherence.",
+        "static_description": "Buttons, sliders, checkboxes, active navigation items, and highlighted chart elements utilize forest green (#228B22) as their dominant color against ivory surroundings.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "filter_options_schema": "Database enum list of filter criteria including Population Size, Income Range, Crime Rate Levels",
+            "neighborhood_filter_endpoint": "GET /api/neighborhoods?filters={} returning filtered list of matching areas"
+        },
+        "function": "Provide mechanisms for narrowing down visible neighborhoods based on specific attribute thresholds or ranges.",
+        "static_description": "Vertical sidebar filter panel appearing left of map containing collapsible filter groups (Population, Income, Crime). Sliders and dropdown menus styled with forest green handles over ivory base.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Adjusts slider positions to set minimum/maximum values for numeric filters which dynamically update map markers and dashboard content."
+            },
+            {
+                "interaction": "Click",
+                "description": "Collapses/expands filter groups or applies selected dropdown choices instantly to refine displayed dataset."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "trend_analysis_api": "Time-series query support from existing demographic/economic/crime tables grouped by year field",
+            "line_chart_component": "Reusable React/Vue component wrapping Chart.js line chart renderer"
+        },
+        "function": "Visualize historical changes and emerging patterns in neighborhood characteristics over time periods.",
+        "static_description": "Dedicated 'Trends' tab within dashboard presenting multi-year line graphs showing how key metrics evolved per selected neighborhood. Graph lines drawn in forest green with ivory plot backgrounds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switches between available trend metrics (Population Growth, Income Change, Crime Fluctuations) updating graph series accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "export_service_endpoint": "POST /api/export-report generating downloadable PDF/CSV files from current comparison selections",
+            "report_template_files": "/templates/report-template.{pdf|csv} used as export formatting base"
+        },
+        "function": "Generate shareable documents summarizing current neighborhood comparisons for offline review or presentation purposes.",
+        "static_description": "Floating action button labeled 'Export Report' fixed at bottom-right corner of screen. Styled with forest green background and white text icon resembling document download symbol.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers modal dialog offering choice between PDF or CSV formats then initiates server-side report generation before prompting browser download prompt."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_database_schema": "Users table schema with id (UUID), email (string), password_hash (string), preferences (JSON), last_login (timestamp)",
+            "authentication_mcp": "JWT-based authentication middleware handling login/logout flows"
+        },
+        "function": "Manage secure access to personalized features including saved layouts, favorite neighborhoods, and private reports.",
+        "static_description": "Top navigation bar includes 'Sign In'/'Profile' link aligned right. When signed in, displays user avatar circle cropped image or initials fallback icon in forest green border.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens authentication modal form for signing in/up or navigates to profile/settings page if already authenticated."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_endpoint": "GET /api/search?q={query_string} returning ranked list of matching neighborhood names/addresses",
+            "autocomplete_ui": "Typeahead search input leveraging Algolia Places or similar geolocation suggestion engine"
+        },
+        "function": "Enable rapid location of particular neighborhoods either by typing partial names or browsing suggested matches.",
+        "static_description": "Padded search textbox centered horizontally near top of map interface. Features magnifying glass icon prefix in forest green color followed by placeholder text 'Search neighborhoods...'",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Typing characters triggers debounced API call fetching autocomplete suggestions shown below input field in dropdown list format."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting item from autocomplete results centers map viewport on corresponding neighborhood and selects it automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocket_connection": "Client-side WebSocket subscription to '/ws/data-updates' channel broadcasting live statistic modifications",
+            "data_update_handler": "Redux/Vuex store reducer listening for incoming real-time payloads and triggering reactive UI updates"
+        },
+        "function": "Ensure displayed information reflects most recent available figures sourced directly from authoritative databases.",
+        "static_description": "Status indicator dot placed beside main header logo pulsing subtly every few seconds during active connection periods. Remains hidden unless WebSocket handshake succeeds.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Event",
+                "description": "Relitens relevant charts, adjusts map marker colors/sizes, and refreshes statistical readouts whenever subscribed channels receive updated record notifications."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_grid_framework": "Bootstrap/Flexbox-based responsive layout system ensuring proper scaling across mobile/tablet/desktop breakpoints",
+            "device_testing_mcp": "BrowserStack or equivalent cross-device testing protocol confirming compatibility"
+        },
+        "function": "Guarantee seamless usability regardless of screen dimensions or orientation adopted during browsing sessions.",
+        "static_description": "Fluid container structures adjusting padding/margins/gutters proportionally. Mobile views stack vertically whereas larger screens arrange side-by-side panels. Ivory backgrounds and forest green accents preserved uniformly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Automatically collapses sidebars/filters into hamburger menus below tablet width threshold. Dashboard widgets resize responsively maintaining legibility."
+            }
+        ]
+    }
+]

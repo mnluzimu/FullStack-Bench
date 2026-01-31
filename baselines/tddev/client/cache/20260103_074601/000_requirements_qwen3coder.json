@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all data from backend APIs",
+    "A backend application that connects to a PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+    "Real-time display of restaurant and recipe information",
+    "Functionality for browsing nearby restaurants",
+    "Search functionality for finding specific recipes",
+    "Ability to view user reviews and ratings for restaurants and recipes",
+    "Ability for users to add their own reviews and ratings",
+    "UI styled with lemon chiffon background and chocolate-colored components",
+    "Package.json configured with `npm run install:all` to install both frontend and backend dependencies",
+    "Package.json configured with `npm run dev` to start both frontend and backend concurrently",
+    "API endpoints for retrieving restaurant data",
+    "API endpoints for retrieving recipe data",
+    "API endpoints for retrieving user reviews and ratings",
+    "API endpoints for submitting new user reviews and ratings",
+    "Responsive design compatible with modern browsers"
+]

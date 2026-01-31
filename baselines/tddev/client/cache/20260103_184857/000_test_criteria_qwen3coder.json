@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "A fitness statistics homepage displaying user-specific fitness data",
+        "user_persona": "Alex, a regular gym-goer who tracks progress weekly.",
+        "user_goal": "To view my latest fitness stats including workouts, calories burned, and active minutes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard",
+                "description": "Alex opens the app and navigates to the homepage to check his weekly stats.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The page loads with a spinner, then displays summary cards and charts populated with Alex's fitness data."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Stats",
+                "description": "Curious about today's progress, Alex decides to refresh the data manually.",
+                "action": "Click the 'Refresh' button on the dashboard.",
+                "expected_outcome": "The data reloads dynamically from the backend, updating all charts and summary cards instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Exercise recording functionality allowing users to log fitness activities",
+        "user_persona": "Jamie, a fitness enthusiast who logs her daily workouts.",
+        "user_goal": "To record a new running session she completed this morning.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Exercise Log",
+                "description": "Jamie goes to the exercise logging page and fills out details for her run.",
+                "action": "Select 'Running' from the dropdown, enter 45 mins duration, pick today's date, leave notes blank, and click Submit.",
+                "expected_outcome": "The form validates successfully, submits the data, and clears the form fields upon success."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Invalid Data",
+                "description": "Jamie tries submitting again but leaves the duration field empty.",
+                "action": "Leave duration blank and click Submit.",
+                "expected_outcome": "Inline validation error appears next to the duration field without making an API call."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fitness diary feature enabling users to write and manage diary entries",
+        "user_persona": "Taylor, who likes to reflect on his training journey through journaling.",
+        "user_goal": "To add a new diary entry about how he felt after yesterday’s intense workout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Diary Entry",
+                "description": "Taylor writes a detailed note in the rich-text editor and saves it.",
+                "action": "Type content into the editor and click the 'Save' button.",
+                "expected_outcome": "Entry is saved via POST request and immediately appears in the list below."
+            },
+            {
+                "step": 2,
+                "title": "Editing Existing Entry",
+                "description": "Taylor realizes he made a typo and edits the entry.",
+                "action": "Click the 'Edit' icon next to the entry, make corrections, and click Save.",
+                "expected_outcome": "PUT request updates the entry and reflects changes in the list."
+            },
+            {
+                "step": 3,
+                "title": "Deleting Entry",
+                "description": "Deciding the entry isn’t needed anymore, Taylor deletes it.",
+                "action": "Click the 'Delete' icon and confirm deletion in the prompt.",
+                "expected_outcome": "DELETE request removes the entry and it disappears from the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fitness leaderboard showing user rankings based on activity data",
+        "user_persona": "Riley, who loves competing with others in the community.",
+        "user_goal": "To see where she ranks compared to other users.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Leaderboard",
+                "description": "Riley visits the leaderboard page to see current rankings.",
+                "action": "Navigate to the leaderboard page.",
+                "expected_outcome": "Leaderboard table loads with usernames and workout counts, highlighting top 3 visually."
+            },
+            {
+                "step": 2,
+                "title": "Manually Refreshing Rankings",
+                "description": "After finishing a new workout, Riley wants to see if her rank improved.",
+                "action": "Click the 'Refresh Now' button.",
+                "expected_outcome": "Leaderboard updates instantly by fetching fresh data from the server."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system to manage individual fitness data",
+        "user_persona": "Morgan, a new user signing up for the first time.",
+        "user_goal": "To register an account and start tracking fitness activities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering Account",
+                "description": "Morgan fills out the registration form with her details.",
+                "action": "Enter username, email, password, and matching confirmation password, then click Register.",
+                "expected_outcome": "Account is created, Morgan is automatically logged in, and redirected to the dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Returning the next day, Morgan logs back in using her credentials.",
+                "action": "Enter email and password, then click Login.",
+                "expected_outcome": "JWT token is stored securely and Morgan is redirected to her personalized dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to serve fitness data to the frontend",
+        "user_persona": "Developer working on integrating frontend features.",
+        "user_goal": "To verify that backend endpoints return correct JSON responses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Auth Endpoint",
+                "description": "Developer sends a POST request to authenticate a user.",
+                "action": "Send POST request to `/api/auth/login` with valid credentials.",
+                "expected_outcome": "Returns a JSON object with a valid JWT token and user info."
+            },
+            {
+                "step": 2,
+                "title": "Fetching User Exercises",
+                "description": "Developer verifies that the exercises endpoint returns filtered results.",
+                "action": "Send GET request to `/api/exercises?userId={validUserId}`.",
+                "expected_outcome": "Returns a JSON array of exercises associated with the specified user ID."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all data dynamically from backend APIs",
+        "user_persona": "Casey, exploring different parts of the app.",
+        "user_goal": "To navigate between sections and observe real-time data loading.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Diary Page",
+                "description": "Casey clicks on the Diary link to review past entries.",
+                "action": "Click the 'Diary' navigation item.",
+                "expected_outcome": "Page shows a loading spinner, followed by a list of diary entries fetched from the backend."
+            },
+            {
+                "step": 2,
+                "title": "Encountering Network Error",
+                "description": "While offline, Casey attempts to load the leaderboard.",
+                "action": "Attempt to navigate to the leaderboard while disconnected.",
+                "expected_outcome": "Toast notification informs Casey that data could not be loaded, offering a retry option."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database connection to PostgreSQL using specified environment variables",
+        "user_persona": "DevOps engineer setting up the production environment.",
+        "user_goal": "To ensure the backend connects properly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Engineer sets the required environment variables and starts the backend service.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, etc., and run the backend process.",
+                "expected_outcome": "Service initializes successfully and establishes a connection pool to the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI styled with white background and navy-colored components",
+        "user_persona": "UX designer reviewing visual consistency.",
+        "user_goal": "To confirm that all UI elements follow the defined color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Design",
+                "description": "Designer inspects the homepage layout to verify styles match guidelines.",
+                "action": "Open homepage in browser and inspect CSS variables applied to components.",
+                "expected_outcome": "Global styles apply --bg-color: #FFFFFF and --primary-color: #000080 to all relevant elements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability for users to browse their own recorded exercises",
+        "user_persona": "Jordan, reviewing his month-long fitness history.",
+        "user_goal": "To look through previous exercise logs sorted by date.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading First Batch of Records",
+                "description": "Jordan opens the exercise browsing page to see his earliest entries.",
+                "action": "Visit the exercise log browsing page.",
+                "expected_outcome": "Paginated table displays Jordan’s exercises, sorted by default descending date."
+            },
+            {
+                "step": 2,
+                "title": "Sorting by Duration",
+                "description": "Jordan wants to find his longest workouts.",
+                "action": "Click the 'Duration' column header.",
+                "expected_outcome": "Table re-renders with rows ordered by duration from highest to lowest."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization components for fitness statistics",
+        "user_persona": "Sam, analyzing monthly trends in fitness performance.",
+        "user_goal": "To adjust the time frame of the displayed statistics.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Changing Time Range",
+                "description": "Sam selects 'Last Month' from the time selector dropdown.",
+                "action": "Choose 'Last Month' from the date range selector.",
+                "expected_outcome": "Charts update dynamically to show activity data from the last 30 days."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Input forms for recording new exercises and diary entries",
+        "user_persona": "Quinn, adding multiple new items quickly.",
+        "user_goal": "To fill out and reset forms efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Exercise Details",
+                "description": "Quinn fills in the exercise form with swimming data.",
+                "action": "Fill out form fields and blur each one to trigger validation.",
+                "expected_outcome": "Validation messages appear under incorrect fields as Quinn moves away from them."
+            },
+            {
+                "step": 2,
+                "title": "Resetting Form",
+                "description": "After saving, Quinn wants to clear the form for another entry.",
+                "action": "Click the 'Reset' button.",
+                "expected_outcome": "All input fields are cleared and form returns to its initial state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updating of leaderboard and statistics",
+        "user_persona": "Blake, watching the competition closely.",
+        "user_goal": "To see live updates on the leaderboard after completing a challenge.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Waiting for Auto-Update",
+                "description": "Blake stays on the leaderboard page waiting for automatic refresh.",
+                "action": "Remain idle on the leaderboard page for more than 60 seconds.",
+                "expected_outcome": "Leaderboard data automatically updates with the latest rankings from the server."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile management for personal fitness settings",
+        "user_persona": "Avery, adjusting fitness preferences mid-season.",
+        "user_goal": "To change preferred measurement units and set a new goal weight.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Updating Preferences",
+                "description": "Avery modifies settings in the profile section.",
+                "action": "Change preferred units to kg, enter new goal weight, and click Save.",
+                "expected_outcome": "Profile settings are updated via PUT request and a success message is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configuration with package.json supporting npm run install:all and npm run dev",
+        "user_persona": "New developer joining the project team.",
+        "user_goal": "To get both frontend and backend running locally with minimal effort.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer clones the repo and runs the setup command.",
+                "action": "Run `npm run install:all` in root directory.",
+                "expected_outcome": "Both frontend and backend dependencies install concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Developer launches both environments together.",
+                "action": "Run `npm run dev` in root directory.",
+                "expected_outcome": "Frontend and backend servers start simultaneously and are accessible in development mode."
+            }
+        ]
+    }
+]

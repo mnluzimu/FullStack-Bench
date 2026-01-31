@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API server that connects to a PostgreSQL database using specified environment variables",
+    "User authentication and authorization system for secure access",
+    "Dashboard for users to browse available trading opportunities",
+    "Interface for placing bids and executing trades in real-time",
+    "Trading account management section for users to monitor balances and positions",
+    "Order history page displaying past transactions and trade outcomes",
+    "Real-time updates for bid changes and trade executions",
+    "Search and filter functionality for trading opportunities",
+    "Responsive web design with lemon chiffon background and chocolate-colored components",
+    "User profile settings page for personal information and preferences",
+    "Notifications system for trade confirmations and bid updates",
+    "Admin panel for managing trading listings and user accounts",
+    "`package.json` configured with `install:all` script to install frontend and backend dependencies",
+    "`package.json` configured with `dev` script to start frontend and backend concurrently"
+]

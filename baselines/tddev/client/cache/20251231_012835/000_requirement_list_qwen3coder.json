@@ -1,0 +1,307 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "azure mist",
+            "component_color": "dark slate blue",
+            "service_overview_data_schema": "Database table 'services' with fields: id (UUID), name (string), description (text), duration_minutes (integer), price_cents (integer), created_at (timestamp).",
+            "homepage_services_api": "GET /api/services - Returns list of active cleaning services with name, description, and pricing details."
+        },
+        "function": "Display homepage with overview of house cleaning services using specified color scheme.",
+        "static_description": "Full-width header with navigation menu. Hero section with headline 'Professional House Cleaning Services' and subheading 'Reliable, thorough, and affordable cleaning solutions'. Three-column service preview cards showing popular services with titles and brief descriptions. Azure mist background with all interactive components styled in dark slate blue. Footer with contact information and social media links.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking service card navigates to detailed service page. Clicking navigation links scrolls to respective sections or loads new pages."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Service cards elevate slightly with shadow effect. Navigation links change text decoration to underline."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "service_listings_api": "GET /api/services - Returns complete list of all available cleaning services with detailed information.",
+            "service_details_api": "GET /api/services/{id} - Returns detailed information for a specific service including name, full description, duration, pricing, and included tasks.",
+            "service_images": "/assets/images/service-{id}.jpg"
+        },
+        "function": "Allow users to browse all available cleaning services with comprehensive details.",
+        "static_description": "Dedicated page with filter/search bar at top. Grid layout displaying service cards with images, titles, short descriptions, duration, and starting prices. Each card includes 'Learn More' button. Sidebar with category filters (e.g., Regular Cleaning, Deep Cleaning, Move-In/Move-Out). Azure mist background with dark slate blue cards and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Learn More' button expands card to show full service details or navigates to dedicated service page. Clicking category filters updates displayed services dynamically."
+            },
+            {
+                "interaction": "Type in search bar",
+                "description": "Real-time filtering of services based on typed keywords in name or description."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "inquiry_submission_api": "POST /api/inquiries - Accepts name, email, service_id, subject, message. Returns success confirmation.",
+            "service_dropdown_options": "Populated from GET /api/services endpoint result.",
+            "form_validation_rules": "Name (required, 2-50 chars), Email (required, valid format), Service (required, existing ID), Subject (required, 5-100 chars), Message (required, 20-1000 chars)"
+        },
+        "function": "Enable users to submit inquiries about specific cleaning services through a web form.",
+        "static_description": "Dedicated inquiry page with headline 'Have Questions About Our Services?'. Form with fields: Name, Email, Service Selection (dropdown), Subject, Message Area. Submit button styled in dark slate blue. Confirmation message area below form. Azure mist background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Submit button validates form data and sends POST request to backend. Button becomes disabled during submission with loading spinner."
+            },
+            {
+                "interaction": "Form Validation",
+                "description": "Real-time validation as users type. Invalid fields highlighted in red with error messages. Valid fields show green checkmark."
+            },
+            {
+                "interaction": "Successful Submission",
+                "description": "Displays success message 'Your inquiry has been submitted! We will contact you shortly.' and resets form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "booking_api": "POST /api/bookings - Creates new booking with user details, service_id, date, time slot, address. Returns booking confirmation.",
+            "available_slots_api": "GET /api/availability?date={date}&service_id={id} - Returns available time slots for selected date and service.",
+            "service_selection_options": "From GET /api/services endpoint.",
+            "calendar_widget": "Third-party date picker library (e.g., react-datepicker)",
+            "time_slot_component": "Custom component displaying available time slots in 30-minute intervals"
+        },
+        "function": "Allow users to schedule cleaning services by selecting date, time, and service type.",
+        "static_description": "Multi-step booking form with progress indicator. Step 1: Service selection with cards. Step 2: Date picker calendar. Step 3: Time slot selection grid. Step 4: Contact and address information form. Step 5: Booking summary and confirmation. Dark slate blue buttons for navigation. Azure mist background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking next/previous buttons moves between steps. Clicking date loads available time slots. Clicking time slot selects it. Final submit creates booking record."
+            },
+            {
+                "interaction": "Date Selection",
+                "description": "Selecting date triggers API call to fetch available time slots for that date and service. Slots displayed in grid with available times."
+            },
+            {
+                "interaction": "Form Completion",
+                "description": "All required fields validated before allowing step progression. Final step shows read-only summary with total cost calculation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "user_bookings_api": "GET /api/bookings - Returns list of current user's bookings with status information.",
+            "booking_status_schema": "Database field in bookings table: status (enum: pending, confirmed, in_progress, completed, cancelled) with timestamps for each status change.",
+            "status_icons": "/assets/icons/status-{status}.svg"
+        },
+        "function": "Provide users with dashboard to view and track their booked cleaning service statuses.",
+        "static_description": "User dashboard page requiring authentication. List view of bookings with service name, scheduled date/time, status badge, and address. Status badges use distinct colors (pending-yellow, confirmed-green, in_progress-blue, completed-gray, cancelled-red). Each booking card includes 'View Details' button. Azure mist background with dark slate blue accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'View Details' opens modal with booking specifics including service details, assigned cleaner (if available), and status timeline."
+            },
+            {
+                "interaction": "Refresh Data",
+                "description": "Dashboard automatically polls API every 30 seconds for status updates. Manual refresh button available."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contact_info_data": "Static content: Phone: (555) 123-4567, Email: support@cleaningservice.com, Business Hours: Mon-Fri 8AM-6PM",
+            "contact_map_api": "Interactive map API (e.g., Google Maps) showing business location",
+            "business_location_coordinates": "Latitude: 40.7128, Longitude: -74.0060"
+        },
+        "function": "Display contact information for customer service staff via phone and email.",
+        "static_description": "Dedicated contact page with headline 'Get In Touch With Us'. Left column showing phone number, email address, and business hours with appropriate icons. Right column with embedded interactive map showing business location. Social media links below contact info. Azure mist background with dark slate blue text elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking phone number initiates call on mobile devices. Clicking email address opens default mail client with pre-filled recipient."
+            },
+            {
+                "interaction": "Hover over map",
+                "description": "Map markers highlight with info window showing address details."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "data_fetching_library": "Axios or Fetch API for making HTTP requests",
+            "api_base_url": "http://localhost:3001/api",
+            "loading_indicators": "/assets/icons/loading-spinner.svg",
+            "error_handling_component": "Reusable error display component with retry option"
+        },
+        "function": "Implement frontend data fetching from backend REST APIs for all dynamic content.",
+        "static_description": "React/Vue application with centralized API service layer. All dynamic components show loading spinners during data fetch. Error boundaries around data-dependent sections. Environment-based API URL configuration. Azure mist backgrounds with dark slate blue UI elements throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Mount",
+                "description": "On mount, components initiate API calls to fetch required data. Display loading indicators until response received."
+            },
+            {
+                "interaction": "API Error",
+                "description": "Network errors or server failures display user-friendly error messages with retry button. Failed image loads show fallback placeholders."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresql_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "database_driver": "node-postgres (pg) package",
+            "api_framework": "Express.js or similar Node.js framework",
+            "cors_configuration": "CORS middleware allowing frontend origin http://localhost:3000"
+        },
+        "function": "Establish backend server connecting to PostgreSQL database using provided environment variables.",
+        "static_description": "Node.js Express server running on port 3001. Database connection pool configured with provided env vars. Middleware for CORS, JSON parsing, and error handling. RESTful routes mapped to controller functions. Logging system for API requests and database operations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Server Startup",
+                "description": "Application initializes database connection pool and validates connectivity. Starts listening on port 3001. Logs successful startup or exits with error."
+            },
+            {
+                "interaction": "API Request Handling",
+                "description": "Incoming requests routed to appropriate controllers which query database and return JSON responses. Database connection acquired from pool for each query."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "services_table_schema": "Table: services {id UUID PK, name VARCHAR(100), description TEXT, duration_minutes INTEGER, price_cents INTEGER, is_active BOOLEAN, created_at TIMESTAMP}",
+            "bookings_table_schema": "Table: bookings {id UUID PK, user_id UUID, service_id UUID FK, scheduled_date DATE, scheduled_time TIME, address TEXT, status ENUM, created_at TIMESTAMP}",
+            "inquiries_table_schema": "Table: inquiries {id UUID PK, name VARCHAR(100), email VARCHAR(255), service_id UUID FK, subject VARCHAR(200), message TEXT, created_at TIMESTAMP}",
+            "users_table_schema": "Table: users {id UUID PK, name VARCHAR(100), email VARCHAR(255) UNIQUE, phone VARCHAR(20), created_at TIMESTAMP}"
+        },
+        "function": "Design database schema to support service listings, bookings, user inquiries, and service statuses.",
+        "static_description": "PostgreSQL database named 'myapp' with four main tables: services, bookings, inquiries, and users. Foreign key relationships between bookings/inquiries and services. Enum type for booking status. Indexes on frequently queried columns (email, service_id, scheduled_date). UUID primary keys for all records.",
+        "interaction_and_states": [
+            {
+                "interaction": "Database Initialization",
+                "description": "SQL migration scripts create tables with defined schemas, constraints, and indexes when application starts. Existing data preserved during updates."
+            },
+            {
+                "interaction": "Data Operations",
+                "description": "INSERT operations for new services, bookings, inquiries. UPDATE operations for booking status changes. SELECT queries with JOINs for related data retrieval."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "get_services_endpoint": "GET /api/services - Returns array of active service objects",
+            "post_booking_endpoint": "POST /api/bookings - Accepts booking data, returns confirmation with ID",
+            "get_bookings_endpoint": "GET /api/bookings - Returns authenticated user's bookings",
+            "post_inquiry_endpoint": "POST /api/inquiries - Accepts inquiry form data, returns success response",
+            "get_availability_endpoint": "GET /api/availability - Returns available time slots for date/service"
+        },
+        "function": "Implement RESTful API endpoints for retrieving service info, submitting bookings, and checking service status.",
+        "static_description": "Express.js route handlers for defined endpoints. Controllers interact with database models to perform CRUD operations. JSON request/response bodies with standardized error formats. Authentication middleware for protected routes (/api/bookings). Input validation middleware for POST endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Endpoint Call",
+                "description": "Each endpoint validates request parameters, queries database, and returns structured JSON response. Error responses include HTTP status codes and descriptive messages."
+            },
+            {
+                "interaction": "Authentication Check",
+                "description": "Protected endpoints verify JWT token in Authorization header. Unauthorized requests return 401 status."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_css_framework": "Tailwind CSS or Bootstrap with mobile-first approach",
+            "mobile_viewport_meta": "<meta name='viewport' content='width=device-width, initial-scale=1'>",
+            "touch_target_minimum": "44px x 44px for interactive elements",
+            "breakpoints_definition": "Mobile (<768px), Tablet (768px-1024px), Desktop (>1024px)"
+        },
+        "function": "Ensure website displays properly across desktop and mobile devices with responsive design.",
+        "static_description": "CSS framework implementing mobile-first responsive design. Flexible grid layouts using CSS Grid/Flexbox. Media queries for different screen sizes. Appropriately sized touch targets for mobile interaction. Optimized font sizing and spacing for various viewports. Azure mist background adapts to screen dimensions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Screen Resize",
+                "description": "Layout adjusts fluidly between mobile, tablet, and desktop views. Navigation transforms from hamburger menu to full bar. Content reflows to optimal column counts."
+            },
+            {
+                "interaction": "Touch Interaction",
+                "description": "Buttons and links sized appropriately for finger tapping. Hover effects replaced with tap highlights on touch devices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contact_form_api": "POST /api/contact - Validates and processes contact form submissions",
+            "form_validation_library": "Joi or express-validator for input sanitization",
+            "email_service_integration": "Nodemailer or SendGrid for sending confirmation emails",
+            "confirmation_template": "HTML template for success message display"
+        },
+        "function": "Process contact form submissions with validation and provide confirmation feedback.",
+        "static_description": "Contact form with name, email, subject, and message fields. Real-time client-side validation with visual feedback. Server-side validation before processing. Success page showing confirmation message after submission. Error handling for invalid inputs or server issues. Azure mist background with dark slate blue form elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Form Submission",
+                "description": "Submit button triggers validation. Valid data sent to backend API. Server validates again and stores inquiry. Sends confirmation email to user. Displays thank-you message."
+            },
+            {
+                "interaction": "Validation Errors",
+                "description": "Invalid fields highlighted with specific error messages. Form retains valid data during correction. Resubmission allowed after corrections."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocket_integration": "Socket.IO or Server-Sent Events for real-time updates",
+            "status_update_endpoint": "WebSocket channel /booking-status or GET /api/bookings/updates",
+            "notification_badge_component": "UI element showing unread status count",
+            "real_time_indicator": "Visual element indicating live connection status"
+        },
+        "function": "Implement system for showing real-time service status updates to customers.",
+        "static_description": "Dashboard with live status indicators using WebSocket connection. Visual timeline showing booking progress. Notification badges for status changes. Automatic UI updates without page refresh. Fallback to periodic polling if WebSocket unavailable. Azure mist background with dark slate blue status elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Status Change Event",
+                "description": "Real-time update received via WebSocket triggers UI refresh showing new status. Notification badge increments for unseen changes. Timeline dots update with current status color."
+            },
+            {
+                "interaction": "Connection Issues",
+                "description": "Lost WebSocket connection shows warning icon. System falls back to manual refresh or periodic polling. Reconnection attempts made automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "frontend_package_json": "{\"name\": \"cleaning-frontend\", \"scripts\": {\"install:all\": \"cd ../backend && npm install && cd ../frontend && npm install\", \"dev\": \"concurrently \\\"npm run dev\\\" \\\"cd ../backend && npm run dev\\\"\"}}",
+            "backend_package_json": "{\"name\": \"cleaning-backend\", \"scripts\": {\"install:all\": \"cd ../frontend && npm install && cd ../backend && npm install\", \"dev\": \"nodemon server.js\"}}",
+            "concurrently_package": "Required dependency for running multiple processes"
+        },
+        "function": "Configure package.json scripts to install dependencies and run both frontend and backend concurrently.",
+        "static_description": "Root package.json file with custom scripts for project management. 'install:all' script runs npm install in both frontend and backend directories. 'dev' script uses concurrently package to start both development servers. Relative path references to sibling directories. Dependency on concurrently package for parallel execution.",
+        "interaction_and_states": [
+            {
+                "interaction": "Running npm run install:all",
+                "description": "Command executes npm install in both frontend and backend directories sequentially. Installs all required dependencies for full stack development environment."
+            },
+            {
+                "interaction": "Running npm run dev",
+                "description": "Concurrently starts frontend development server (typically on port 3000) and backend server (on port 3001). Both processes run simultaneously with combined terminal output."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrent_processes_manager": "concurrently npm package for managing multiple processes",
+            "process_restart_capability": "nodemon for backend auto-restart on file changes",
+            "terminal_output_formatting": "Color-coded logging for distinguishing frontend/backend output",
+            "graceful_shutdown_handler": "Signal handling for clean process termination"
+        },
+        "function": "Configure package.json scripts to start both frontend and backend applications concurrently.",
+        "static_description": "Enhanced package.json with 'dev' script using concurrently package. Script launches frontend build tool (e.g., Vite, Webpack Dev Server) and Node.js backend server simultaneously. Color-coded terminal output for process identification. Process monitoring for automatic restarts during development.",
+        "interaction_and_states": [
+            {
+                "interaction": "Executing npm run dev",
+                "description": "Terminal command initiates both frontend (port 3000) and backend (port 3001) development servers. Output streams merged with process identifiers. File watching enabled for hot reloading."
+            },
+            {
+                "interaction": "Process Termination",
+                "description": "Ctrl+C signal gracefully shuts down both processes. Cleanup operations executed for open connections and temporary files. Exit codes reported for debugging."
+            }
+        ]
+    }
+]

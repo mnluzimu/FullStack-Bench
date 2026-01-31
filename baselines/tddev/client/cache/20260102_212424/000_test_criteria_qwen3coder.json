@@ -1,0 +1,380 @@
+[
+    {
+        "requirement_tested": "User authentication system supporting login and registration for both athletes and sports organizations",
+        "user_persona": "A new athlete named Jordan who just heard about the sports recruitment platform.",
+        "user_goal": "Jordan wants to create an account as an athlete and then log in to access the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Registration Page",
+                "description": "Jordan visits the homepage and sees the 'Register' tab. He clicks it to begin signing up.",
+                "action": "Click on the 'Register' tab.",
+                "expected_outcome": "The registration form with name, email, password, confirm password, and role selection fields is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filling Registration Details",
+                "description": "Jordan fills out his personal details, selects 'Athlete' as his role, and submits the form.",
+                "action": "Fill in registration fields and click Submit.",
+                "expected_outcome": "Account is created successfully, and Jordan is redirected to the dashboard."
+            },
+            {
+                "step": 3,
+                "title": "Logging In After Registration",
+                "description": "Jordan logs out and returns later. He clicks the 'Login' tab and enters his credentials.",
+                "action": "Click on 'Login' tab, enter email and password, then click Submit.",
+                "expected_outcome": "Successfully logged in and redirected to the athlete dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Athlete profile management including personal information, sports specialties, and experience",
+        "user_persona": "Jordan, an athlete who has recently joined the platform.",
+        "user_goal": "Update his profile with sports specialties and upload a profile picture.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Profile Section",
+                "description": "After logging in, Jordan goes to his profile section to update personal details.",
+                "action": "Navigate to the profile edit page.",
+                "expected_outcome": "Editable form with fields such as first name, last name, sports specialties, and avatar area is shown."
+            },
+            {
+                "step": 2,
+                "title": "Adding Sports Specialties",
+                "description": "Jordan adds multiple sports he specializes in by typing them into the sports specialty field.",
+                "action": "Type into sportsSpecialties input field and press enter after each sport.",
+                "expected_outcome": "Sports tags appear dynamically below the input field."
+            },
+            {
+                "step": 3,
+                "title": "Uploading Avatar",
+                "description": "He clicks the avatar area to upload a profile photo.",
+                "action": "Click on the avatar area.",
+                "expected_outcome": "File browser opens allowing him to choose an image file."
+            },
+            {
+                "step": 4,
+                "title": "Saving Updated Profile",
+                "description": "Jordan saves the updated profile information.",
+                "action": "Click the Save button.",
+                "expected_outcome": "Profile is updated successfully with a confirmation message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job posting functionality for sports organizations to create and manage job listings",
+        "user_persona": "Coach Taylor, head of a basketball academy looking to hire players.",
+        "user_goal": "Post a new job listing for a basketball player position at his academy.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Job Posting Interface",
+                "description": "Coach Taylor logs in as an organization and navigates to the job posting page.",
+                "action": "Navigate to the job creation form.",
+                "expected_outcome": "Form with fields like title, description, sport type, location, deadline, and requirements appears."
+            },
+            {
+                "step": 2,
+                "title": "Creating New Job Listing",
+                "description": "He fills in all required fields for the job posting and sets the deadline.",
+                "action": "Complete all form fields and click Submit.",
+                "expected_outcome": "New job listing is created and redirected to the job listings page."
+            },
+            {
+                "step": 3,
+                "title": "Editing Existing Job Post",
+                "description": "Later, Coach Taylor realizes there was a typo and edits the job post.",
+                "action": "Click Edit button next to the job entry and make changes.",
+                "expected_outcome": "Changes are saved and reflected immediately in the job listing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job browsing interface allowing users to search and filter available positions",
+        "user_persona": "Jordan, an aspiring athlete searching for opportunities.",
+        "user_goal": "Find a suitable basketball coaching position near his city.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Available Jobs",
+                "description": "Jordan logs in and goes to the job browsing page where he sees a list of jobs.",
+                "action": "Visit the jobs browse page.",
+                "expected_outcome": "Grid of job cards displaying titles, organizations, locations, deadlines, etc., is shown."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Specific Role",
+                "description": "He types 'basketball coach' into the search bar to narrow down results.",
+                "action": "Type keywords into the search bar.",
+                "expected_outcome": "Results update in real time showing only relevant job postings."
+            },
+            {
+                "step": 3,
+                "title": "Filtering by Location",
+                "description": "Jordan applies a filter for jobs located in his preferred city.",
+                "action": "Select location filter option.",
+                "expected_outcome": "Only jobs matching the selected location are displayed."
+            },
+            {
+                "step": 4,
+                "title": "Viewing Detailed Job Info",
+                "description": "He clicks on a promising job card to see more details.",
+                "action": "Click on a job card.",
+                "expected_outcome": "Redirected to the detailed job view page with full description and application option."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Job application system enabling athletes to apply for positions of interest",
+        "user_persona": "Jordan, interested in applying for a basketball coaching position.",
+        "user_goal": "Submit an application for a coaching job along with a cover letter.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Application Modal",
+                "description": "On the job detail page, Jordan clicks the Apply Now button.",
+                "action": "Click the Apply Now button.",
+                "expected_outcome": "Modal window opens with a form asking for a cover letter and start date availability."
+            },
+            {
+                "step": 2,
+                "title": "Completing Application Form",
+                "description": "Jordan writes a brief cover letter explaining why he's fit for the role and selects his earliest availability date.",
+                "action": "Enter text in cover letter textarea and pick a date from calendar.",
+                "expected_outcome": "Form is filled with no errors and ready for submission."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Application",
+                "description": "He submits the completed form.",
+                "action": "Click the Submit button.",
+                "expected_outcome": "Application is submitted successfully with a success message and modal closes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time messaging system facilitating communication between athletes and organizations",
+        "user_persona": "Coach Taylor wants to discuss application details with Jordan.",
+        "user_goal": "Send a direct message to Jordan regarding his job application.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Conversation",
+                "description": "Coach Taylor opens the messaging interface and selects Jordan’s conversation thread.",
+                "action": "Open chat sidebar and click on Jordan’s name.",
+                "expected_outcome": "Message history with Jordan loads in the main chat panel."
+            },
+            {
+                "step": 2,
+                "title": "Sending Message",
+                "description": "Taylor composes a quick message inviting Jordan for an interview and hits send.",
+                "action": "Type message in input box and click Send or press Enter.",
+                "expected_outcome": "Message is sent instantly and appears in both sender and receiver’s chat view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Notification system delivering alerts for job applications, messages, and platform updates",
+        "user_persona": "Jordan checks his notifications after submitting an application.",
+        "user_goal": "Review notifications about his recent job application and incoming messages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Notification Panel",
+                "description": "Jordan notices the bell icon showing unread notifications and clicks it.",
+                "action": "Click the notification bell icon.",
+                "expected_outcome": "Dropdown panel with list of notifications appears, highlighting unread ones."
+            },
+            {
+                "step": 2,
+                "title": "Reading Important Alert",
+                "description": "One notification informs him that his application was received.",
+                "action": "Click on the notification item.",
+                "expected_outcome": "Notification marked as read and redirected to the related job application page."
+            },
+            {
+                "step": 3,
+                "title": "Marking All Read",
+                "description": "Finally, Jordan clears all remaining notifications by marking them as read.",
+                "action": "Click the 'Mark all as read' button.",
+                "expected_outcome": "All notifications are marked as read and the badge count resets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin dashboard for sports organizations to manage posted jobs and applicant communications",
+        "user_persona": "Coach Taylor managing multiple job posts and applicants.",
+        "user_goal": "Review applications received for a posted job and close the listing if needed.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Dashboard",
+                "description": "Taylor logs in and accesses the admin dashboard under the Posted Jobs tab.",
+                "action": "Navigate to the admin dashboard.",
+                "expected_outcome": "Table of posted jobs with columns for title, applicants count, status, and actions is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Applicants",
+                "description": "He clicks on the applicant count link for one job to review submissions.",
+                "action": "Click on the applicant count number.",
+                "expected_outcome": "Modal opens showing a list of applicants with their names, dates, and statuses."
+            },
+            {
+                "step": 3,
+                "title": "Closing Job Listing",
+                "description": "Deciding enough quality candidates have applied, Taylor closes the job posting.",
+                "action": "Toggle the job status switch to closed.",
+                "expected_outcome": "Job status changes to closed and no longer accepts new applications."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with ghost white background and slate gray UI elements",
+        "user_persona": "Jordan viewing the site on different devices throughout the day.",
+        "user_goal": "Use the platform smoothly across desktop and mobile screens.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Desktop Browsing Experience",
+                "description": "Jordan opens the website on his desktop computer and browses various sections.",
+                "action": "Open site on desktop browser.",
+                "expected_outcome": "Site renders with ghost white background and slate gray UI components in a multi-panel layout."
+            },
+            {
+                "step": 2,
+                "title": "Mobile Responsiveness Check",
+                "description": "Later, he checks the same pages on his smartphone.",
+                "action": "Resize browser or open on mobile device.",
+                "expected_outcome": "Layout stacks vertically with consistent styling and readable fonts adjusted for small screen size."
+            },
+            {
+                "step": 3,
+                "title": "Fixed Header Navigation",
+                "description": "While scrolling through long job listings, Jordan scrolls past content but keeps header visible.",
+                "action": "Scroll vertically through content.",
+                "expected_outcome": "Header stays fixed at the top during scrolling on all screen sizes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all dynamic data through backend APIs",
+        "user_persona": "Jordan visiting the job board for the latest openings.",
+        "user_goal": "Load job listings seamlessly with proper feedback on slow networks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "Upon entering the job browsing section, Jordan waits briefly as data loads.",
+                "action": "Visit job listings page.",
+                "expected_outcome": "Spinner/loading indicator shows while fetching data from API before rendering job cards."
+            },
+            {
+                "step": 2,
+                "title": "Handling Network Errors Gracefully",
+                "description": "Due to unstable internet, the API fails once, triggering an error display.",
+                "action": "Simulate network failure during data fetch.",
+                "expected_outcome": "Error toast/banner appears indicating failed data retrieval without breaking the UI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API service connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "System administrator deploying the backend service locally.",
+        "user_goal": "Ensure backend connects properly to PostgreSQL with correct config.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Admin runs the backend server using predefined environment variables for database connection.",
+                "action": "Execute command to start the backend server.",
+                "expected_outcome": "Server initializes and establishes a successful connection to PostgreSQL database using DB_* env vars."
+            },
+            {
+                "step": 2,
+                "title": "Processing Incoming Requests",
+                "description": "Once running, the server receives a GET request for job listings.",
+                "action": "Make a sample API call to retrieve job listings.",
+                "expected_outcome": "Request is handled by appropriate controller function which executes SQL query and returns data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, profiles, job postings, applications, and messages",
+        "user_persona": "Database developer verifying relational structure implementation.",
+        "user_goal": "Confirm that tables were created correctly and maintain referential integrity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initializing Database Schema",
+                "description": "Developer runs setup script to initialize the database with necessary tables.",
+                "action": "Run postgresSetupScript to create database and tables.",
+                "expected_outcome": "Empty tables for users, profiles, jobs, applications, messages, and notifications are created with defined relationships."
+            },
+            {
+                "step": 2,
+                "title": "Testing Referential Integrity",
+                "description": "Inserts a sample user followed by dependent records to validate constraints.",
+                "action": "Insert test data into parent-child linked tables.",
+                "expected_outcome": "Foreign key constraints enforce data consistency preventing orphaned records."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Role-based access control distinguishing between athletes and sports organizations",
+        "user_persona": "Jordan tries to access restricted organizational features.",
+        "user_goal": "Verify unauthorized access attempts are blocked appropriately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "As an athlete, Jordan tries to access the job posting endpoint reserved for organizations.",
+                "action": "Attempt to access POST /api/jobs without organizational privileges.",
+                "expected_outcome": "Request is denied with a 403 Forbidden response due to role guard middleware enforcement."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Performance optimization features ensuring fast loading and smooth user experience",
+        "user_persona": "Jordan repeatedly views job listings daily.",
+        "user_goal": "Experience faster load times thanks to caching and optimized queries.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "First Visit Loads Fresh Data",
+                "description": "On first visit, Jordan sees job listings fetched directly from the database.",
+                "action": "Load job listings page for the first time.",
+                "expected_outcome": "Data retrieved from database and rendered with minimal delay."
+            },
+            {
+                "step": 2,
+                "title": "Subsequent Visits Benefit From Cache",
+                "description": "Returning shortly afterward, Jordan experiences quicker rendering due to cached responses.",
+                "action": "Reload the job listings page within cache expiry period.",
+                "expected_outcome": "Cached version serves the data significantly faster than the initial load."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configuration with package.json supporting npm run install:all and npm run dev commands",
+        "user_persona": "Developer setting up the project for local development.",
+        "user_goal": "Install dependencies and launch both frontend and backend servers concurrently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Project Dependencies",
+                "description": "Developer clones the repo and runs the installation script.",
+                "action": "Run 'npm run install:all'.",
+                "expected_outcome": "Dependencies installed in root, client/, and server/ directories simultaneously."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "After installation, developer starts both frontend and backend services together.",
+                "action": "Run 'npm run dev'.",
+                "expected_outcome": "Frontend starts on port 3000 and backend API server on port 3001 concurrently."
+            }
+        ]
+    }
+]

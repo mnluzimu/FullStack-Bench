@@ -1,0 +1,387 @@
+[
+    {
+        "requirement_tested": "Interactive neighborhood map visualization",
+        "user_persona": "A local community researcher exploring different neighborhoods.",
+        "user_goal": "To select a neighborhood on the map and view its name in a tooltip.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the Map",
+                "description": "Sarah opens the app and sees the full-screen interactive map with various neighborhoods outlined.",
+                "action": "Load the application and observe the map interface.",
+                "expected_outcome": "The map loads successfully with neighborhood boundaries visible and an ivory background with forest green controls."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over a Neighborhood",
+                "description": "Sarah moves her cursor over a neighborhood polygon to preview its name.",
+                "action": "Hover over a neighborhood area on the map.",
+                "expected_outcome": "A tooltip appears above the polygon showing the area's name without selecting it."
+            },
+            {
+                "step": 3,
+                "title": "Selecting a Neighborhood",
+                "description": "Sarah clicks on the neighborhood she is interested in to select it for further analysis.",
+                "action": "Click on a neighborhood polygon.",
+                "expected_outcome": "The neighborhood boundary is highlighted in forest green, and a tooltip with the area name is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Demographic data comparison functionality",
+        "user_persona": "A policy analyst comparing age demographics across districts.",
+        "user_goal": "To switch between demographic tabs and view updated charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Demographic Panel",
+                "description": "After selecting two neighborhoods, Mark looks at the demographic comparison panel next to the map.",
+                "action": "Navigate to the demographic comparison section.",
+                "expected_outcome": "A panel with demographic category tabs (Age Distribution, Gender Ratio, etc.) appears on the right side of the map."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Age Distribution Chart",
+                "description": "Mark wants to start with age distribution and clicks the corresponding tab.",
+                "action": "Click on the 'Age Distribution' tab.",
+                "expected_outcome": "The chart updates to display a bar graph comparing the age distributions of the selected neighborhoods using forest green elements."
+            },
+            {
+                "step": 3,
+                "title": "Switching to Another Category",
+                "description": "Curious about gender ratios, Mark switches to another demographic category.",
+                "action": "Click on the 'Gender Ratio' tab.",
+                "expected_outcome": "The chart now shows a comparison of gender ratios for the same neighborhoods."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Economic data comparison functionality",
+        "user_persona": "An urban planner assessing economic health across regions.",
+        "user_goal": "To analyze employment rates and housing prices for selected areas.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Economic Metrics",
+                "description": "Lisa selects three neighborhoods and goes to the economic data dashboard.",
+                "action": "Open the economic metrics tabbed interface within the dashboard.",
+                "expected_outcome": "Tabs for Income, Employment, Housing Prices, and Business Density appear with default charts loaded."
+            },
+            {
+                "step": 2,
+                "title": "Examining Employment Rates",
+                "description": "She focuses first on employment statistics by clicking the appropriate tab.",
+                "action": "Click on the 'Employment' tab.",
+                "expected_outcome": "Charts comparing employment rates among selected neighborhoods are displayed with forest green bars on an ivory background."
+            },
+            {
+                "step": 3,
+                "title": "Comparing Housing Prices",
+                "description": "Next, Lisa compares average housing prices between the same neighborhoods.",
+                "action": "Click on the 'Housing Prices' tab.",
+                "expected_outcome": "Updated charts reflect housing price comparisons for the selected areas."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Crime data comparison functionality",
+        "user_persona": "A safety officer reviewing crime trends in city zones.",
+        "user_goal": "To toggle a crime heatmap and compare statistical data visually.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Activating Crime Heatmap",
+                "description": "Officer Jenkins wants to visualize overall crime density across the city.",
+                "action": "Click the 'Toggle Crime Heatmap' button in the dashboard.",
+                "expected_outcome": "A heatmap overlay appears on the map indicating crime density patterns."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Numerical Data",
+                "description": "Jenkins then checks numerical breakdowns of crimes in specific neighborhoods.",
+                "action": "Navigate to the statistical crime data panel.",
+                "expected_outcome": "Panels show numerical comparisons of total crimes, violent crimes, and property crimes with forest green text/icons."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data dashboard with interactive charts",
+        "user_persona": "A data analyst customizing their workspace for efficiency.",
+        "user_goal": "To rearrange dashboard widgets for better workflow organization.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Initial Layout",
+                "description": "Alex logs in and views the preloaded dashboard with several chart widgets arranged in a grid.",
+                "action": "Observe the initial dashboard layout with draggable/resizable chart widgets.",
+                "expected_outcome": "Widgets like demographic pie charts, economic trend lines, and crime bar graphs are present with forest green borders on ivory backgrounds."
+            },
+            {
+                "step": 2,
+                "title": "Dragging a Widget",
+                "description": "Wanting to group related charts together, Alex drags one widget to a new position.",
+                "action": "Drag and drop a chart widget to reposition it within the dashboard grid.",
+                "expected_outcome": "The widget smoothly moves to the desired location while maintaining its size and interactivity."
+            },
+            {
+                "step": 3,
+                "title": "Resizing a Chart",
+                "description": "To get a clearer look at a complex chart, Alex decides to make it bigger.",
+                "action": "Click on the widget's settings menu and choose to resize it.",
+                "expected_outcome": "The selected chart expands to occupy more space, improving readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Customizable dashboard layout options",
+        "user_persona": "A frequent user who prefers a focused view during presentations.",
+        "user_goal": "To apply a predefined layout and save it for future use.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Layout Settings",
+                "description": "During preparation for a meeting, Jordan clicks the gear icon to open layout customization options.",
+                "action": "Click the gear icon in the top toolbar to access layout settings.",
+                "expected_outcome": "A settings panel slides out with thumbnails of layout templates and a 'Save Current Layout' button."
+            },
+            {
+                "step": 2,
+                "title": "Applying a Template",
+                "description": "Jordan chooses the 'Focus Mode' template to highlight key metrics.",
+                "action": "Click on the 'Focus Mode' thumbnail.",
+                "expected_outcome": "The dashboard immediately rearranges itself into the selected focus-oriented layout."
+            },
+            {
+                "step": 3,
+                "title": "Saving Custom Configuration",
+                "description": "Satisfied with the setup, Jordan saves this version for later reuse.",
+                "action": "Click the 'Save Current Layout' button.",
+                "expected_outcome": "The customized layout is saved under Jordan’s profile and can be recalled anytime."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with ivory background color",
+        "user_persona": "A designer evaluating visual consistency across the platform.",
+        "user_goal": "To verify that all interface sections maintain the specified ivory tone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Main Interface Areas",
+                "description": "Taylor reviews the homepage, dashboard, and modal windows to ensure visual uniformity.",
+                "action": "Navigate through main pages and inspect background colors.",
+                "expected_outcome": "All sections, including modals and panels, display a solid ivory (#FFFFF0) background."
+            },
+            {
+                "step": 2,
+                "title": "Checking Modal Dialogs",
+                "description": "Taylor opens a filter modal to confirm it follows the same background rule.",
+                "action": "Trigger a modal dialog (e.g., by opening the filter panel).",
+                "expected_outcome": "Modal overlays also feature the global ivory fill color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Forest green colored components",
+        "user_persona": "A UX reviewer checking branding adherence.",
+        "user_goal": "To confirm that all interactive elements use the correct forest green theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Evaluating Buttons and Controls",
+                "description": "Megan inspects primary buttons, toggles, and active navigation items throughout the app.",
+                "action": "Visit various parts of the app and locate interactive components.",
+                "expected_outcome": "All buttons, toggles, checkboxes, and highlighted chart elements are styled with forest green (#228B22)."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Chart Axes and Highlights",
+                "description": "Megan specifically examines charts to verify axis labeling and highlighted points match the brand palette.",
+                "action": "Examine chart widgets for styling of axes, labels, and data point highlights.",
+                "expected_outcome": "Axes, tick marks, and important data highlights use forest green consistently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Area selection and filtering capabilities",
+        "user_persona": "A real estate agent targeting high-income neighborhoods.",
+        "user_goal": "To narrow down visible neighborhoods based on income range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Filter Sidebar",
+                "description": "Emma clicks on the filter icon to reveal filtering options.",
+                "action": "Click the filter toggle to open the vertical sidebar panel.",
+                "expected_outcome": "A collapsible filter panel with groups for Population, Income, and Crime appears on the left side of the map."
+            },
+            {
+                "step": 2,
+                "title": "Setting Income Threshold",
+                "description": "Emma adjusts the income slider to only show affluent areas.",
+                "action": "Drag the income range sliders to set a higher minimum value.",
+                "expected_outcome": "Neighborhood markers on the map dynamically update to reflect only those within the selected income bracket."
+            },
+            {
+                "step": 3,
+                "title": "Applying Additional Filters",
+                "description": "Emma adds a population size constraint to refine her search even more.",
+                "action": "Expand the Population filter group and adjust the slider accordingly.",
+                "expected_outcome": "Map updates again, showing only neighborhoods that meet both income and population criteria."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization tools for trend analysis",
+        "user_persona": "A sociologist studying long-term demographic shifts.",
+        "user_goal": "To track population growth trends over multiple years.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Trend Analysis Tab",
+                "description": "Dr. Lee navigates to the Trends tab after selecting several neighborhoods.",
+                "action": "Click on the 'Trends' tab in the dashboard.",
+                "expected_outcome": "Multi-year line graphs appear, depicting changes in key metrics per selected neighborhood."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Population Growth",
+                "description": "Lee starts by examining how populations have changed over time.",
+                "action": "Click on the 'Population Growth' metric selector.",
+                "expected_outcome": "Line graphs representing population evolution for each selected area are displayed in forest green."
+            },
+            {
+                "step": 3,
+                "title": "Switching Metrics",
+                "description": "Curious about economic impact, Lee switches to income change trends.",
+                "action": "Click on the 'Income Change' metric option.",
+                "expected_outcome": "Graphs now illustrate fluctuations in median household incomes over the years."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Export functionality for comparison reports",
+        "user_persona": "A project manager preparing a stakeholder presentation.",
+        "user_goal": "To generate and download a PDF report summarizing current comparisons.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing Final Selections",
+                "description": "Before exporting, Morgan ensures all necessary data is selected and displayed.",
+                "action": "Finalize neighborhood selections and configure dashboard views.",
+                "expected_outcome": "Chosen datasets and charts are ready for inclusion in the export."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Export Process",
+                "description": "Morgan clicks the floating export button to begin creating a shareable document.",
+                "action": "Click the 'Export Report' floating action button at the bottom-right corner.",
+                "expected_outcome": "A modal dialog prompts Morgan to choose between PDF or CSV formats."
+            },
+            {
+                "step": 3,
+                "title": "Downloading the Report",
+                "description": "Morgan selects PDF and waits for the file to generate and download.",
+                "action": "Choose PDF format and click 'Export'.",
+                "expected_outcome": "A formatted PDF report is generated and automatically downloaded to Morgan’s device."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and profile management",
+        "user_persona": "A returning user accessing personal settings.",
+        "user_goal": "To log in and navigate to saved preferences and layouts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Account",
+                "description": "Returning user Riley clicks the sign-in link to access personalized features.",
+                "action": "Click the 'Sign In' link in the top navigation bar.",
+                "expected_outcome": "An authentication modal appears with fields for entering credentials."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "Riley enters their registered email and password.",
+                "action": "Input valid login credentials and submit.",
+                "expected_outcome": "Authentication succeeds, and Riley is redirected to their dashboard with a welcome message."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Profile Information",
+                "description": "Now logged in, Riley checks their saved settings and favorite neighborhoods.",
+                "action": "Click the user avatar/profile link in the top navigation.",
+                "expected_outcome": "Profile page loads, displaying saved layouts, preferences, and recently viewed areas."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for specific neighborhoods",
+        "user_persona": "A visitor looking up a known neighborhood quickly.",
+        "user_goal": "To find and center the map on a specific district using search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Jamie recalls the name of a district and uses the search function to find it.",
+                "action": "Type a partial neighborhood name into the search textbox near the top of the map.",
+                "expected_outcome": "Autocomplete suggestions appear below the input field in a dropdown list."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Suggestion",
+                "description": "Jamie sees the correct result in the suggestions and clicks it.",
+                "action": "Click on the matching neighborhood name from the autocomplete dropdown.",
+                "expected_outcome": "The map centers on the selected neighborhood, and it is automatically selected with a highlighted border."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data updating capabilities",
+        "user_persona": "A city official monitoring live incident reports.",
+        "user_goal": "To observe automatic updates in displayed data as new information arrives.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Active Connection",
+                "description": "While viewing a dashboard, Officer Patel notices a subtle pulse indicating real-time connectivity.",
+                "action": "Observe the status indicator beside the header logo during normal operation.",
+                "expected_outcome": "A small pulsing dot confirms an active WebSocket connection to live data feeds."
+            },
+            {
+                "step": 2,
+                "title": "Responding to New Data",
+                "description": "Suddenly, a spike in reported incidents occurs nearby, causing immediate UI adjustments.",
+                "action": "Wait for incoming WebSocket event reflecting updated crime data.",
+                "expected_outcome": "Charts and map markers refresh instantly to reflect the latest incident reports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design for multiple device types",
+        "user_persona": "A mobile user conducting field research on-site.",
+        "user_goal": "To seamlessly interact with the application on a smartphone screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading App on Mobile Device",
+                "description": "Researcher Casey accesses the app on their phone while walking through a neighborhood.",
+                "action": "Open the web application on a mobile browser.",
+                "expected_outcome": "Interface adapts to fit the smaller screen with stacked panels and touch-friendly controls."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Collapsed Menus",
+                "description": "Casey taps the hamburger menu to access hidden filters and tools.",
+                "action": "Tap the hamburger menu icon typically located in the top-left or right corner.",
+                "expected_outcome": "Sidebars and filter panels slide in smoothly, preserving ivory backgrounds and forest green accents."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Responsive Dashboard Widgets",
+                "description": "Despite limited space, Casey finds that dashboard widgets scale appropriately.",
+                "action": "Scroll through dashboard content and resize browser window to simulate mobile constraints.",
+                "expected_outcome": "Widgets remain readable and functional, adapting to vertical stacking on smaller screens."
+            }
+        ]
+    }
+]

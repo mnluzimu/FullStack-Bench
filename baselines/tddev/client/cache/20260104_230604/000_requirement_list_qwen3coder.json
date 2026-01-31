@@ -1,0 +1,133 @@
+[
+    {
+        "resource_dependency": {
+            "carInventoryDataSchema": "Database table named 'cars' with columns: id (UUID), make (string), model (string), year (integer), category (string), daily_rate (decimal), image_url (string), availability_status (boolean)",
+            "carInventoryAPIEndpoint": "/api/cars"
+        },
+        "function": "Display available car listings with images, descriptions, and pricing information.",
+        "static_description": "A responsive grid layout displaying car cards with image (referenced via image_url), make, model, year, category, and daily rate. Background set to papaya whip (#FFEFD5) and components styled with dark orange (#FF8C00).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a car card navigates to the car details page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "On hover over a car card, a shadow effect appears around the card and the cursor changes to pointer."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bookingFormValidationRules": "Required fields: pickup date/time, return date/time, selected car ID. Date validation ensures return is after pickup.",
+            "datePickerLibrary": "Use react-datepicker or similar library for calendar UI.",
+            "bookingSubmitAPIEndpoint": "/api/bookings/create"
+        },
+        "function": "Allow users to select rental period through intuitive date and time pickers.",
+        "static_description": "Two labeled sections for 'Pickup' and 'Return', each containing date and time input fields rendered using date picker library. Submit button enabled only when all required fields are filled correctly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on date field opens the calendar popup from the date picker library."
+            },
+            {
+                "interaction": "Select Date",
+                "description": "Upon selecting a date, it populates the respective input field and validates against business rules (e.g., return date cannot be before pickup)."
+            },
+            {
+                "interaction": "Change Time",
+                "description": "Changing time updates the value in the corresponding time input field and revalidates the form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bookingConfirmationTemplate": "HTML template showing booking summary including car info, dates, total cost, and confirmation number.",
+            "bookingRecordStorageSchema": "Table named 'bookings' with columns: id (UUID), user_id (foreign key to users.id), car_id (foreign key to cars.id), start_datetime (timestamp), end_datetime (timestamp), total_cost (decimal), status (enum: pending, confirmed, completed, cancelled)",
+            "confirmationEmailService": "Integration with email service to send booking confirmations."
+        },
+        "function": "Process user selections into a confirmed reservation and display confirmation.",
+        "static_description": "After successful submission, displays a full-screen confirmation screen with booking ID, summary of selected car and dates, and estimated total cost. Includes links to manage booking and view history.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Manage Booking' redirects to the user’s booking management section. Clicking 'Browse More Cars' returns to the main listing page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userAccountDataSchema": "Users table with fields: id (UUID), name (string), email (unique string), password_hash (string), created_at (timestamp)",
+            "authenticationAPIEndpoints": "POST /api/auth/register, POST /api/auth/login, GET /api/auth/logout, GET /api/user/profile",
+            "sessionManagementMechanism": "JWT-based session tokens stored in HTTP-only cookies."
+        },
+        "function": "Enable secure login and registration for accessing personalized features.",
+        "static_description": "Login/Register modal/form overlay with inputs for email, password, and optional name during registration. Papaya whip background with dark orange buttons and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' or 'Register' submits credentials to backend. On success, closes modal and refreshes relevant parts of UI; on failure, shows error messages inline."
+            },
+            {
+                "interaction": "Input Focus",
+                "description": "Focusing on an input highlights the border with dark orange color."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "paymentGatewayIntegrations": "Supports Stripe for credit cards and PayPal Checkout SDK for PayPal transactions.",
+            "paymentProcessingAPIEndpoint": "/api/payments/process",
+            "transactionLoggingSchema": "Payments table with columns: id (UUID), booking_id (foreign key to bookings.id), amount (decimal), method (enum: credit_card, paypal), status (enum: initiated, succeeded, failed), transaction_reference (string)"
+        },
+        "function": "Facilitate secure payment collection using multiple supported gateways.",
+        "static_description": "Embedded payment forms within checkout flow, dynamically loaded based on chosen payment method. Displays options like 'Credit Card' and 'PayPal'. Shows loading indicator while processing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a payment option loads the appropriate form fields. Clicking 'Pay Now' initiates transaction with selected gateway and disables further clicks until response."
+            },
+            {
+                "interaction": "Form Submission",
+                "description": "Submitting valid payment details triggers API call to process transaction and redirects to confirmation page upon success."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "orderDashboardLayout": "Tabbed interface with views for active, past, and cancelled bookings.",
+            "bookingManagementAPIEndpoints": "/api/bookings/{id}/cancel, /api/bookings/history",
+            "bookingStatusUpdateWebhook": "Real-time status updates pushed from backend to frontend."
+        },
+        "function": "Provide administrators or users with tools to monitor and control existing reservations.",
+        "static_description": "Dashboard panel showing tabbed navigation ('Active', 'Past', 'Cancelled') above a list of booking entries. Each entry includes car details, customer name (if admin), dates, current status, and action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking tabs filters displayed bookings accordingly. Clicking 'Cancel' sends DELETE request to cancel endpoint and updates local state immediately."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over actions reveals tooltips explaining their function."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries and flexbox/grid layouts ensuring consistent look across devices.",
+            "themeVariablesFile": ":root CSS variables defining --background-color as #FFEFD5 and --primary-accent as #FF8C00."
+        },
+        "function": "Ensure optimal viewing experience on desktops, tablets, and mobile phones.",
+        "static_description": "Entire application uses responsive units (rem/vw/vh/em) and media breakpoints to adjust layout density and font sizes. Maintains papaya whip background and dark orange accents consistently.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Adjusts column count in grids, hides/shows sidebars/menus, and scales touch targets appropriately without loss of functionality."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Smooth scrolling behavior maintained even when content exceeds viewport height."
+            }
+        ]
+    }
+]

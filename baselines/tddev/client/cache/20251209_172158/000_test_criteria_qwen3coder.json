@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "Dashboard homepage displaying regulatory policies",
+        "user_persona": "A policy analyst who wants to get an overview of all regulatory policies.",
+        "user_goal": "To quickly navigate to the full list of policies from the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Dashboard Homepage",
+                "description": "Mae lands on the lavender-themed homepage and sees a summary of key metrics. She notices a 'View All Policies' link.",
+                "action": "Click on the 'View All Policies' link.",
+                "expected_outcome": "Mae is redirected to the full policy listing page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization capabilities for complex regulatory policies",
+        "user_persona": "A government researcher interested in understanding policy trends.",
+        "user_goal": "To explore detailed analytics by interacting with a chart.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Policy Trends Visualization",
+                "description": "Derek hovers over segments of a pie chart showing jurisdiction distribution to see exact percentages.",
+                "action": "Hover over segments of the pie chart.",
+                "expected_outcome": "Tooltip appears displaying percentage data and contextual information for each jurisdiction."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Related Data",
+                "description": "Derek clicks on a specific segment of the chart to filter the related policy list.",
+                "action": "Click on a chart segment.",
+                "expected_outcome": "The associated list of policies updates to show only those relevant to the selected jurisdiction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Policy browsing functionality",
+        "user_persona": "A legislative assistant looking up recent policy enactments.",
+        "user_goal": "To browse through different policies and access details about one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Scrolling Through Policies",
+                "description": "Jamie scrolls down the list of policy cards, which dynamically load more items as she reaches the bottom.",
+                "action": "Scroll down the policy list.",
+                "expected_outcome": "Additional policy cards are loaded seamlessly without page refresh."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Policy",
+                "description": "Jamie clicks on a policy card titled 'Digital Privacy Act Amendment' to learn more.",
+                "action": "Click on the selected policy card.",
+                "expected_outcome": "She is taken to the detailed view page for that policy."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Policy analysis tools",
+        "user_persona": "An economic advisor assessing policy impacts.",
+        "user_goal": "To perform an impact assessment using built-in analysis tools.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Analysis Tool Panel",
+                "description": "Alex clicks on the 'Impact Assessment Calculator' icon from the analysis toolbar.",
+                "action": "Click on the 'Impact Assessment Calculator' icon.",
+                "expected_outcome": "A modal window opens where Alex can input parameters for analysis."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Related data display for each policy",
+        "user_persona": "A compliance officer gathering supporting documentation.",
+        "user_goal": "To find and preview related documents for a specific policy.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Expanding Related Data Section",
+                "description": "Taylor clicks the expand arrow next to the 'Related Data' section on a policy detail page.",
+                "action": "Click the expand arrow under 'Related Data'.",
+                "expected_outcome": "A list of attached documents and external references becomes visible."
+            },
+            {
+                "step": 2,
+                "title": "Previewing a Document",
+                "description": "Taylor clicks on a PDF titled 'Implementation Guidelines' to review its contents inline.",
+                "action": "Click on the PDF file link.",
+                "expected_outcome": "The document previewer loads the PDF within the browser window."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive charts and graphs",
+        "user_persona": "A public policy student studying historical trends.",
+        "user_goal": "To drill down into specific timeframes using interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Zooming Into Time-Series Data",
+                "description": "Jordan drags across a timeline chart to focus on policy changes during a particular year range.",
+                "action": "Drag across the timeline chart area.",
+                "expected_outcome": "The chart zooms into the selected timeframe, updating axes and data points accordingly."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Data Series Visibility",
+                "description": "Jordan clicks on a legend item to hide certain categories and simplify the view.",
+                "action": "Click on a legend item.",
+                "expected_outcome": "The corresponding data series disappears from the chart temporarily."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filtering capabilities for policies",
+        "user_persona": "A lobbyist researching sector-specific regulations.",
+        "user_goal": "To filter policies by category and apply the selection.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "Riley selects 'Healthcare' from the category dropdown and clicks 'Apply Filters'.",
+                "action": "Select 'Healthcare' in the category filter and click 'Apply Filters'.",
+                "expected_outcome": "Only healthcare-related policies are displayed in the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Sorting functionality for policy listings",
+        "user_persona": "A journalist compiling a report on recently enacted laws.",
+        "user_goal": "To sort policies by enactment date to identify the newest ones first.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Changing Sort Order",
+                "description": "Maya selects 'Date Enacted Descending' from the sort dropdown menu.",
+                "action": "Choose 'Date Enacted Descending' from the sort dropdown.",
+                "expected_outcome": "The policy list reorders itself to show the most recently enacted policies at the top."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Landing page with lavender background color",
+        "user_persona": "A first-time visitor exploring the platform.",
+        "user_goal": "To verify consistent styling across the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Page Background",
+                "description": "Quinn visits the landing page and observes the overall color scheme.",
+                "action": "Load the landing page.",
+                "expected_outcome": "The entire background of the page is consistently lavender (#E6E6FA)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI elements styled with indigo color",
+        "user_persona": "A UX designer evaluating interface consistency.",
+        "user_goal": "To confirm that UI components use the correct indigo accent.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting With Buttons",
+                "description": "Sage hovers over a primary button and checks its appearance.",
+                "action": "Hover over a primary button.",
+                "expected_outcome": "Button color slightly lightens or darkens while maintaining the indigo tone."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for policies",
+        "user_persona": "A legal intern searching for specific legislation.",
+        "user_goal": "To locate a policy using a keyword search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Typing Search Query",
+                "description": "Leo starts typing 'Tax Reform' into the search bar and sees auto-suggested matches.",
+                "action": "Type 'Tax Reform' into the search bar.",
+                "expected_outcome": "Predictive suggestions appear below the input field filtered by matching titles/descriptions."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search Term",
+                "description": "Leo presses Enter after entering the search term.",
+                "action": "Press Enter in the search bar.",
+                "expected_outcome": "Leo is directed to a results page showing policies matching the query."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Policy detail view pages",
+        "user_persona": "A city planner reviewing local ordinances.",
+        "user_goal": "To access referenced material from a policy's detailed view.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to External Reference",
+                "description": "Patricia clicks on a hyperlinked citation within the policy detail page.",
+                "action": "Click on a hyperlinked citation.",
+                "expected_outcome": "Patricia is taken directly to the cited external legal resource or another policy page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Export capabilities for policy data",
+        "user_persona": "A research coordinator preparing reports for stakeholders.",
+        "user_goal": "To export policy data for offline analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Export Process",
+                "description": "Nina clicks the 'Export' button on a policy detail page and chooses CSV format.",
+                "action": "Click the 'Export' button and select 'CSV'.",
+                "expected_outcome": "Browser prompts a download dialog for the generated CSV file containing policy data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and access control",
+        "user_persona": "An administrative staff member logging into the system.",
+        "user_goal": "To securely log in and access personalized dashboard content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Omar enters his username and password and submits the login form.",
+                "action": "Enter credentials and click 'Login'.",
+                "expected_outcome": "Omar is authenticated and redirected to the dashboard tailored to his assigned role."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out",
+                "description": "After finishing work, Omar logs out from the profile menu.",
+                "action": "Click 'Logout' from the profile menu.",
+                "expected_outcome": "Session ends and Omar is returned to the login screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design for multiple devices",
+        "user_persona": "A remote worker accessing the platform on both desktop and mobile.",
+        "user_goal": "To ensure seamless experience regardless of screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Layout Responsiveness",
+                "description": "Fiona resizes her browser window and watches how the layout adapts.",
+                "action": "Resize the browser window.",
+                "expected_outcome": "Page elements adjust spacing, stacking order, and font sizes smoothly based on viewport width."
+            },
+            {
+                "step": 2,
+                "title": "Rotating Mobile Device",
+                "description": "Fiona rotates her phone from portrait to landscape mode while viewing the dashboard.",
+                "action": "Rotate the mobile device.",
+                "expected_outcome": "Layout rearranges appropriately to fit the new screen orientation."
+            }
+        ]
+    }
+]

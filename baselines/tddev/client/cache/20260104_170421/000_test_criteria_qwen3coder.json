@@ -1,0 +1,338 @@
+[
+    {
+        "requirement_tested": "User registration functionality with form validation",
+        "user_persona": "A first-time visitor named Priya who wants to join the matrimonial site to find a life partner.",
+        "user_goal": "Successfully register for a new account by filling out the registration form with valid information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Registration Form",
+                "description": "Priya visits the homepage and sees a prominent 'Register' button. She clicks it to begin her journey.",
+                "action": "Click on the 'Register' button.",
+                "expected_outcome": "The registration form appears with fields for email, password, and confirm password, styled with lemon chiffon background and chocolate content blocks."
+            },
+            {
+                "step": 2,
+                "title": "Entering Valid Details",
+                "description": "Priya fills in her email address, creates a strong password, and confirms it. As she types, real-time validation gives feedback.",
+                "action": "Fill in email, password, and confirm password fields.",
+                "expected_outcome": "Inline validation messages appear confirming correct formats and matching passwords. The 'Register' button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Registration",
+                "description": "Confident that all fields are filled correctly, Priya clicks the 'Register' button to submit her details.",
+                "action": "Click the 'Register' button.",
+                "expected_outcome": "Client-side validation passes, and a POST request is sent to /api/register. Upon success, Priya receives a confirmation message and is redirected to the login page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User login functionality with authentication",
+        "user_persona": "Raj, a returning user who has already registered and now wants to access his account.",
+        "user_goal": "Log into his existing account using his email and password.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Page",
+                "description": "Raj opens the website and notices the 'Login' button prominently displayed on the homepage.",
+                "action": "Click on the 'Login' button.",
+                "expected_outcome": "A centralized login form appears with email and password fields, styled with lemon chiffon background and chocolate-styled inputs."
+            },
+            {
+                "step": 2,
+                "title": "Providing Credentials",
+                "description": "Raj enters his registered email and password. While typing, he gets immediate feedback on the validity of the email format.",
+                "action": "Enter email and password into respective fields.",
+                "expected_outcome": "Email validation displays no errors, and the 'Login' button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Authenticating Account",
+                "description": "Raj clicks the 'Login' button to proceed with accessing his account.",
+                "action": "Click the 'Login' button.",
+                "expected_outcome": "Credentials are submitted via POST to /api/login. On successful authentication, Raj is redirected to the dashboard with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Profile creation interface allowing users to upload photos",
+        "user_persona": "Meera, a newly registered user eager to set up her profile and share some personal information.",
+        "user_goal": "Complete her profile setup by adding personal information and uploading profile pictures.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Profile Creation",
+                "description": "After logging in, Meera is prompted to complete her profile. She begins by entering basic information like name, age, and gender.",
+                "action": "Fill out basic info section of the multi-step form.",
+                "expected_outcome": "Each field accepts input, and navigation to next steps is available."
+            },
+            {
+                "step": 2,
+                "title": "Uploading Photos",
+                "description": "Meera clicks 'Add Photo' to upload her pictures. She selects a photo from her device and uses the cropping tool to adjust it.",
+                "action": "Click 'Add Photo', select an image file, and use the crop tool.",
+                "expected_outcome": "Image preview appears with cropping controls. Cropped image is ready for upload."
+            },
+            {
+                "step": 3,
+                "title": "Saving Profile",
+                "description": "Once satisfied with her entries and uploaded photo, Meera clicks 'Save Profile' to finalize her profile creation.",
+                "action": "Click 'Save Profile'.",
+                "expected_outcome": "All data is sent to the backend via POST to /api/upload/photo and /api/profile/create. Success message confirms profile completion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Profile editing capability for personal information management",
+        "user_persona": "Suresh, a regular user who wants to update his profile after moving to a new city.",
+        "user_goal": "Update his location and add more details to his bio.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Edit Profile",
+                "description": "Suresh logs in and navigates to his profile where he finds the 'Edit Profile' button.",
+                "action": "Click on 'Edit Profile' button.",
+                "expected_outcome": "His current profile information populates a pre-filled form similar to the creation interface."
+            },
+            {
+                "step": 2,
+                "title": "Updating Information",
+                "description": "He updates his location and adds more context to his bio, noticing the live character count updating.",
+                "action": "Modify location and bio fields.",
+                "expected_outcome": "Character counter reflects real-time changes in the bio length. Updated values remain intact."
+            },
+            {
+                "step": 3,
+                "title": "Saving Changes",
+                "description": "Satisfied with the edits, Suresh saves the updated information.",
+                "action": "Click 'Update Profile'.",
+                "expected_outcome": "PUT request is made to /api/profile/update. Profile is refreshed with new information, and a success notification is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Advanced search functionality with multiple filter criteria",
+        "user_persona": "Neha, looking for compatible partners based on specific preferences such as profession and age range.",
+        "user_goal": "Find suitable matches by applying several filters simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Search Panel",
+                "description": "Neha navigates to the search page and opens the filter panel to start refining her search.",
+                "action": "Open the filter sidebar or panel.",
+                "expected_outcome": "Filter options like sliders for age, dropdowns for profession, and checkboxes for hobbies become visible."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "She sets an age range, chooses a preferred profession, and checks off relevant hobbies.",
+                "action": "Adjust age slider, select profession, and check hobby boxes.",
+                "expected_outcome": "Selected filters highlight visually and are ready to apply."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Filtered Results",
+                "description": "Neha clicks 'Apply Filters' to see the refined list of potential partners.",
+                "action": "Click 'Apply Filters'.",
+                "expected_outcome": "POST request is sent to /api/search/partners with filter criteria. Matched profiles are displayed in a grid below."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Partner matching algorithm based on user preferences",
+        "user_persona": "Arjun, curious about seeing how well others match his stated preferences.",
+        "user_goal": "Discover personalized partner recommendations generated by the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Recommendations Section",
+                "description": "Arjun goes to the 'Matches' tab on his dashboard to explore suggested partners.",
+                "action": "Navigate to the Matches section.",
+                "expected_outcome": "A carousel or grid of recommended profiles shows up, each indicating a compatibility percentage."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Recommendations",
+                "description": "Arjun likes one profile and dislikes another to influence future suggestions.",
+                "action": "Click 'Like' on one profile and 'Dislike' on another.",
+                "expected_outcome": "Liked profile increases in relevance; disliked profile disappears from view and affects recommendation logic."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Messaging system for user-to-user communication",
+        "user_persona": "Kavita, interested in starting a conversation with someone she recently matched with.",
+        "user_goal": "Initiate and send a private message to another user.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Contact",
+                "description": "Kavita accesses her inbox and selects a contact from her conversations list.",
+                "action": "Click on a contact in the conversation sidebar.",
+                "expected_outcome": "Message thread associated with that contact loads in the main panel."
+            },
+            {
+                "step": 2,
+                "title": "Composing Message",
+                "description": "She composes a friendly greeting in the message box and presses enter to send.",
+                "action": "Type message and press Enter.",
+                "expected_outcome": "Message is posted to /api/messages/send. Sent message appears instantly in the chat window."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time chat functionality between matched users",
+        "user_persona": "Dev, engaged in a real-time conversation with a match.",
+        "user_goal": "Exchange messages instantly with another user using the real-time chat feature.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Engaging in Live Chat",
+                "description": "While chatting, Dev notices a typing indicator when the other person starts writing.",
+                "action": "Observe incoming typing indicator.",
+                "expected_outcome": "'Is typing...' status is displayed under the recipient's name."
+            },
+            {
+                "step": 2,
+                "title": "Sending Emoji",
+                "description": "Wanting to express emotion, Dev clicks the emoji icon and selects a smiley face.",
+                "action": "Click emoji icon and choose an emoji.",
+                "expected_outcome": "Emoji picker modal opens; selected emoji inserts into the message box."
+            },
+            {
+                "step": 3,
+                "title": "Sending Instant Message",
+                "description": "Dev hits send to deliver the emoji-laden message immediately.",
+                "action": "Click 'Send' button.",
+                "expected_outcome": "Message is emitted over WebSocket and received by the other party almost instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User dashboard displaying profile and match recommendations",
+        "user_persona": "Pooja, checking her daily activity and exploring new matches from the dashboard.",
+        "user_goal": "Review her profile summary, recent matches, and unread messages quickly from the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Dashboard",
+                "description": "Upon logging in, Pooja lands directly on her dashboard which summarizes her account activity.",
+                "action": "Load the dashboard page.",
+                "expected_outcome": "Widgets show profile completion progress, top match recommendations, and unread messages count."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Widgets",
+                "description": "Pooja clicks on the 'Recent Matches' widget to see more potential partners.",
+                "action": "Click on the Recent Matches widget.",
+                "expected_outcome": "Redirected to the full matches page with expanded recommendations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Photo gallery display for user profiles",
+        "user_persona": "Anil, wanting to review and showcase all his uploaded profile photos.",
+        "user_goal": "Browse through his uploaded photos in a clean gallery layout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Gallery Thumbnails",
+                "description": "Anil scrolls down to the photo section of his profile and sees a horizontal row of thumbnails.",
+                "action": "Scroll to the photo gallery section.",
+                "expected_outcome": "Thumbnails of his uploaded photos appear in a neatly arranged row, styled with chocolate borders."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Individual Photo",
+                "description": "Curious about one picture, Anil clicks on a thumbnail to get a better look.",
+                "action": "Click on a photo thumbnail.",
+                "expected_outcome": "Lightbox modal opens showing the enlarged version with navigation arrows and a close control."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design optimized for desktop and mobile",
+        "user_persona": "Rita, browsing the site from her smartphone while commuting.",
+        "user_goal": "Have a seamless experience regardless of screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Mobile View",
+                "description": "Rita accesses the site on her phone and notices the layout adapts to fit her smaller screen.",
+                "action": "Visit the site on a mobile browser.",
+                "expected_outcome": "Layout adjusts dynamically with responsive columns, larger fonts, and a hamburger menu for navigation."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Navigation Menu",
+                "description": "To navigate easily, Rita taps the hamburger menu icon to reveal hidden options.",
+                "action": "Tap the hamburger menu icon.",
+                "expected_outcome": "Navigation menu slides open revealing additional links and sections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application fetching all data from backend APIs",
+        "user_persona": "A developer verifying dynamic content rendering on the frontend.",
+        "user_goal": "Ensure that all displayed data comes from backend API calls instead of hardcoded values.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Data Load",
+                "description": "When visiting any data-dependent page, the frontend shows temporary spinners before content renders.",
+                "action": "Load a page requiring backend data (e.g., dashboard).",
+                "expected_outcome": "Loading indicators appear initially, then disappear once Axios/Fetch retrieves and populates the DOM with actual data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A backend engineer validating database connectivity.",
+        "user_goal": "Confirm that the backend service connects securely to the PostgreSQL database using environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Connection Config",
+                "description": "The engineer reviews the backend configuration files to ensure they reference the correct environment variables.",
+                "action": "Inspect backend config files for database connection parameters.",
+                "expected_outcome": "Configuration references DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME from .env without exposing secrets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with install:all and dev scripts",
+        "user_persona": "A contributor setting up the project locally for development.",
+        "user_goal": "Install dependencies and run both frontend and backend servers concurrently using predefined scripts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The contributor runs the installation script to prepare the local environment.",
+                "action": "Run `npm run install:all` command.",
+                "expected_outcome": "Both frontend and backend node_modules are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "With everything installed, the contributor starts both development servers together.",
+                "action": "Run `npm run dev` command.",
+                "expected_outcome": "Frontend and backend servers launch concurrently, listening on their respective ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI design implementing lemon chiffon background with chocolate content blocks",
+        "user_persona": "A designer reviewing the implemented UI theme consistency.",
+        "user_goal": "Verify that the entire UI follows the prescribed lemon chiffon and chocolate color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Overall Theme",
+                "description": "The designer inspects various pages to confirm consistent usage of colors.",
+                "action": "Navigate through different sections of the app.",
+                "expected_outcome": "All backgrounds use #FFFACD (lemon chiffon), and content blocks consistently utilize #D2691E (chocolate) styling."
+            }
+        ]
+    }
+]

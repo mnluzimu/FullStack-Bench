@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "Frontend application with pages for browsing, sharing, and searching promotions",
+        "user_persona": "A budget-conscious shopper looking for deals.",
+        "user_goal": "Find and share a discount on electronics using the search and share features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens the website to look for tech deals. She immediately sees a clean ivory background with forest green UI blocks.",
+                "action": "Load the homepage.",
+                "expected_outcome": "The page renders with correct colors and layout as per design guidelines."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Electronics",
+                "description": "She types 'laptop' into the search bar and hits Enter.",
+                "action": "Type 'laptop' into the search input and press Enter.",
+                "expected_outcome": "Promotions related to laptops are displayed in a responsive grid below."
+            },
+            {
+                "step": 3,
+                "title": "Sharing a Deal",
+                "description": "Sarah finds a good deal and clicks the share button on the promotion card.",
+                "action": "Click the share icon on a promotion card.",
+                "expected_outcome": "A modal appears with social media icons and a direct link to the promotion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server to manage promotions, users, and website settings",
+        "user_persona": "System administrator maintaining backend services.",
+        "user_goal": "Verify that backend APIs are running and responding correctly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Promotion API Endpoint",
+                "description": "Admin sends a GET request to fetch all promotions from the backend.",
+                "action": "Send GET request to /api/promotions.",
+                "expected_outcome": "Returns a list of promotions in JSON format with HTTP status 200."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "PostgreSQL database connection using environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+        "user_persona": "A DevOps engineer deploying the app.",
+        "user_goal": "Confirm the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Engineer starts the backend service and monitors logs for successful DB connection.",
+                "action": "Start backend server process.",
+                "expected_outcome": "Log indicates successful connection to PostgreSQL using provided environment variables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system for accessing the management backend",
+        "user_persona": "Marketing manager needing access to the admin dashboard.",
+        "user_goal": "Log into the admin panel securely.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Admin Login",
+                "description": "Alex goes to the admin login page to access promotional tools.",
+                "action": "Navigate to /admin/login.",
+                "expected_outcome": "Displays a centered login form with email and password fields."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "He enters his valid email and password then clicks Login.",
+                "action": "Fill in email and password, click 'Login'.",
+                "expected_outcome": "Redirects to /admin/dashboard and stores JWT token in localStorage."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Promotion creation, editing, and deletion functionality in the management backend",
+        "user_persona": "Administrator managing daily offers.",
+        "user_goal": "Update an outdated promotion in the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Promotion Management Panel",
+                "description": "Admin logs in and navigates to the promotions management section.",
+                "action": "Log in and navigate to admin promotions list.",
+                "expected_outcome": "Displays a table of existing promotions with edit and delete actions."
+            },
+            {
+                "step": 2,
+                "title": "Editing Existing Promotion",
+                "description": "Admin selects a promotion to update its end date.",
+                "action": "Click the edit icon next to a promotion entry.",
+                "expected_outcome": "Redirected to the promotion edit form pre-filled with current data."
+            },
+            {
+                "step": 3,
+                "title": "Saving Updated Promotion",
+                "description": "After updating the end date, admin saves the changes.",
+                "action": "Modify end date and click Submit.",
+                "expected_outcome": "Promotion is updated in the database and reflected in the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User management interface in the backend for administrators",
+        "user_persona": "Site owner overseeing team permissions.",
+        "user_goal": "Change a user's role from standard to admin.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing User Accounts",
+                "description": "Owner accesses the user management tab in the admin panel.",
+                "action": "Navigate to user management section.",
+                "expected_outcome": "Shows a table of users including their roles and actions."
+            },
+            {
+                "step": 2,
+                "title": "Updating Role",
+                "description": "Owner finds a user and changes their role to admin.",
+                "action": "Select 'admin' from the role dropdown for a selected user.",
+                "expected_outcome": "User’s role updates instantly in the database and UI reflects change."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Website settings configuration panel in the management backend",
+        "user_persona": "Webmaster configuring site branding.",
+        "user_goal": "Update the website title shown in the browser tab.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Settings Panel",
+                "description": "Webmaster navigates to the settings configuration area.",
+                "action": "Go to the website settings panel in the admin dashboard.",
+                "expected_outcome": "Panel displays editable fields for configurable site settings."
+            },
+            {
+                "step": 2,
+                "title": "Changing Site Title",
+                "description": "Webmaster updates the site title field and saves changes.",
+                "action": "Edit site title input and click Save Changes.",
+                "expected_outcome": "New title is saved and used throughout the frontend where applicable."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality allowing users to filter promotions by keywords or categories",
+        "user_persona": "Casual visitor interested in fashion discounts.",
+        "user_goal": "Filter promotions specifically under the 'Fashion' category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Category Filter",
+                "description": "Visitor chooses 'Fashion' from the category dropdown menu.",
+                "action": "Select 'Fashion' from the category filter dropdown.",
+                "expected_outcome": "Only promotions tagged under Fashion appear in the results grid."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Promotion sharing capability through social media or direct links",
+        "user_persona": "Active social media user promoting a great deal.",
+        "user_goal": "Share a promotion directly to Facebook.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Share Modal",
+                "description": "User clicks the share button on a promotion they want to post about.",
+                "action": "Click share icon on a promotion card.",
+                "expected_outcome": "Modal window opens with social sharing options and direct link."
+            },
+            {
+                "step": 2,
+                "title": "Sharing to Social Media",
+                "description": "They choose to share the promotion on Facebook.",
+                "action": "Click the Facebook icon in the share modal.",
+                "expected_outcome": "Facebook Share Dialog opens with the promotion URL pre-filled."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with ivory colored outer layout and forest green UI blocks",
+        "user_persona": "Mobile user browsing during commute.",
+        "user_goal": "Browse promotions comfortably on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile Device",
+                "description": "User visits the site using a smartphone browser.",
+                "action": "Open site on mobile device.",
+                "expected_outcome": "Site loads with responsive layout adapting to smaller viewport size."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Color Scheme",
+                "description": "User scrolls down to check visual consistency.",
+                "action": "Scroll through different sections of the page.",
+                "expected_outcome": "Outer layout remains ivory (#FFFFF0), inner UI blocks stay forest green (#228B22)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful API endpoints for fetching, creating, updating, and deleting promotions",
+        "user_persona": "Third-party developer integrating with the platform.",
+        "user_goal": "Use the API to add a new promotion programmatically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sending POST Request",
+                "description": "Developer makes a POST request to create a new promotion.",
+                "action": "Make POST request to /api/promotions with valid promotion data.",
+                "expected_outcome": "Receives HTTP 201 Created and the newly created promotion object in response."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data validation and error handling for all user inputs and API requests",
+        "user_persona": "Tester probing edge cases in forms.",
+        "user_goal": "Trigger validation errors intentionally to confirm feedback mechanism works.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Empty Form",
+                "description": "Tester tries submitting the promotion form without filling any fields.",
+                "action": "Leave all fields empty and click Submit Promotion.",
+                "expected_outcome": "Form does not submit; displays clear validation messages for each missing field."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development setup with npm run dev starting both frontend and backend",
+        "user_persona": "Frontend developer working alongside backend logic.",
+        "user_goal": "Run both frontend and backend locally for integrated development.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Concurrent Development Script",
+                "description": "Developer executes the concurrent startup command.",
+                "action": "Execute 'npm run dev' in project root terminal.",
+                "expected_outcome": "Both frontend and backend servers start simultaneously in the same terminal session."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Installation script via package.json supporting npm run install:all for dependencies",
+        "user_persona": "New contributor joining the project.",
+        "user_goal": "Install all necessary dependencies quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Contributor clones repo and runs the full install command.",
+                "action": "Run 'npm run install:all' from the project root.",
+                "expected_outcome": "Installs dependencies for both frontend and backend without manual intervention."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Static asset serving for frontend files when not using dynamic content",
+        "user_persona": "End-user loading static assets like images.",
+        "user_goal": "See placeholder images load correctly on promotion cards.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Promotion Cards",
+                "description": "User views the promotions page and notices placeholder images if real images aren't available.",
+                "action": "Visit promotions browse page.",
+                "expected_outcome": "Each promotion card displays the promo-placeholder.png image correctly."
+            }
+        ]
+    }
+]

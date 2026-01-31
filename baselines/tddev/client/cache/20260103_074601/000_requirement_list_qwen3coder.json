@@ -1,0 +1,219 @@
+[
+    {
+        "resource_dependency": {
+            "restaurantDataSchema": "Database table 'restaurants' with fields: id (UUID), name (string), address (text), location POINT, cuisine_type (string), rating_avg (float), created_at (timestamp)",
+            "recipeDataSchema": "Database table 'recipes' with fields: id (UUID), title (string), ingredients (text[]), preparation_time (integer), difficulty_level (string), rating_avg (float), created_at (timestamp)",
+            "reviewDataSchema": "Database table 'reviews' with fields: id (UUID), user_id (UUID), restaurant_id (UUID, nullable), recipe_id (UUID, nullable), rating (integer), review_text (text), created_at (timestamp)"
+        },
+        "function": "A frontend application that fetches all data from backend APIs",
+        "static_description": "The main web page displays a header navigation bar with links to Home, Restaurants, Recipes, and Reviews sections. Below the header is a hero section with a search bar centered on a lemon chiffon background. Main content area shows cards for restaurants and recipes styled with chocolate borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any restaurant or recipe card navigates to its detailed view page."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scrolling loads additional restaurant and recipe cards dynamically as the user scrolls down."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables configuration: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend application that connects to a PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "static_description": "Backend server initialized with connection pool configured using provided environment variables. Server listens on port 3001 by default.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "websocketAPI": "WebSocket endpoint at /ws for real-time updates",
+            "restaurantUpdateEndpoint": "GET /api/restaurants/updates returning stream of restaurant changes"
+        },
+        "function": "Real-time display of restaurant and recipe information",
+        "static_description": "Restaurant and recipe listings show a 'Live Updates' indicator badge in top right corner. Cards include timestamp showing last update time.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enable Live Updates' toggles WebSocket connection to receive real-time notifications about restaurant and recipe changes."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the live update badge shows tooltip explaining real-time functionality."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "geolocationAPI": "Browser Geolocation API for fetching current position",
+            "mapIntegration": "Map component showing restaurant locations",
+            "nearbyRestaurantsEndpoint": "GET /api/restaurants/nearby?lat=&lng=&radius="
+        },
+        "function": "Functionality for browsing nearby restaurants",
+        "static_description": "Dedicated 'Nearby Restaurants' section featuring a map visualization alongside list view of local establishments. Default zoom level focuses on current location with markers indicating restaurant positions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Find My Location' prompts browser geolocation permission request and fetches restaurants within 5km radius."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging the map updates displayed restaurant list based on new center coordinates."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchRecipesEndpoint": "GET /api/recipes/search?q={query}&filters={cuisine,difficulty}",
+            "filterOptions": [
+                "Cuisine Type",
+                "Difficulty Level",
+                "Preparation Time"
+            ]
+        },
+        "function": "Search functionality for finding specific recipes",
+        "static_description": "Recipe search interface includes a prominent search bar with filter dropdowns below. Results appear in grid layout with recipe thumbnails and brief metadata beneath each card.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking filter dropdown reveals options for cuisine type, difficulty level, and prep time. Selected filters apply immediately to refine results."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing in search field submits query to backend API and refreshes result list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "getReviewsEndpoint": "GET /api/reviews?target_type={restaurant|recipe}&target_id=",
+            "userProfileSchema": "Database table 'users' with fields: id (UUID), username (string), avatar_url (text)"
+        },
+        "function": "Ability to view user reviews and ratings for restaurants and recipes",
+        "static_description": "Each restaurant and recipe detail page contains a dedicated 'Reviews' tab showing star ratings summary above individual user comments. Reviews are listed chronologically with user avatars, usernames, date posted, and full text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the sort dropdown allows ordering reviews by newest, oldest, highest rated, or lowest rated."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling to bottom of reviews list automatically loads older entries via pagination."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "submitReviewEndpoint": "POST /api/reviews with body {target_type, target_id, rating, review_text}",
+            "authState": "User authentication context required for posting reviews"
+        },
+        "function": "Ability for users to add their own reviews and ratings",
+        "static_description": "At the end of every restaurant and recipe review list, authenticated users see a form containing a 5-star rating selector and multiline text input field labeled 'Write your review'. Unauthenticated users see a prompt to log in before reviewing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking stars highlights selected rating value. Clicking 'Submit Review' sends data to backend API and appends new review to list without page reload."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "While focusing on review textarea, pressing Shift+Enter creates line break. Pressing Ctrl+Enter submits the review directly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "lemonChiffonColorCode": "#FFFACD",
+            "chocolateColorCode": "#D2691E",
+            "stylesheetPath": "/src/styles/theme.css"
+        },
+        "function": "UI styled with lemon chiffon background and chocolate-colored components",
+        "static_description": "Entire application uses #FFFACD as base background color applied globally through CSS variables. All buttons, cards, headers, and interactive elements use #D2691E for primary styling including borders, accents, and hover states.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "All chocolate-colored interactive elements slightly darken on hover using CSS transition effect."
+            },
+            {
+                "interaction": "Click",
+                "description": "Buttons depress visually when clicked with subtle shadow inset effect matching theme colors."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScript": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\""
+        },
+        "function": "Package.json configured with `npm run install:all` to install both frontend and backend dependencies",
+        "static_description": "Root package.json file includes custom script entry under scripts section that executes concurrent installation commands targeting frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartScript": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\" --names \\\"FE,BE\\\" --prefix name\"",
+            "processManager": "Concurrently npm package used for parallel execution"
+        },
+        "function": "Package.json configured with `npm run dev` to start both frontend and backend concurrently",
+        "static_description": "Development command defined in root package.json utilizes concurrently utility to launch frontend development server on port 3000 and backend API server on port 3001 simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "getRestaurantsEndpoint": "GET /api/restaurants with optional query params for filtering",
+            "getRestaurantByIdEndpoint": "GET /api/restaurants/{id} for single item retrieval"
+        },
+        "function": "API endpoints for retrieving restaurant data",
+        "static_description": "RESTful API exposes collection endpoint for listing restaurants and individual resource endpoint for accessing specific restaurant details. Both support standard HTTP GET method only.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "getRecipesEndpoint": "GET /api/recipes with search and filter capabilities",
+            "getRecipeByIdEndpoint": "GET /api/recipes/{id} returning complete recipe information"
+        },
+        "function": "API endpoints for retrieving recipe data",
+        "static_description": "Backend provides searchable recipes endpoint supporting query parameters along with direct access endpoint for fetching comprehensive recipe record by unique identifier.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "getReviewsByTargetEndpoint": "GET /api/reviews?target_type={type}&target_id={id}",
+            "aggregateRatingsEndpoint": "GET /api/ratings/average?target_type={type}&target_id={id}"
+        },
+        "function": "API endpoints for retrieving user reviews and ratings",
+        "static_description": "Two distinct endpoints serve review data—one for fetching individual comments and another optimized for calculating average ratings across targets.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "createReviewEndpoint": "POST /api/reviews requiring JWT authentication header",
+            "validationRules": "Rating between 1-5 inclusive, review_text maximum length 1000 characters"
+        },
+        "function": "API endpoints for submitting new user reviews and ratings",
+        "static_description": "Protected POST endpoint accepts structured review payload including target reference, numerical rating, and optional textual feedback. Requires valid authorization token in request headers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveFramework": "CSS media queries and flexbox/grid layouts",
+            "browserCompatibilityList": [
+                "Chrome >= 88",
+                "Firefox >= 86",
+                "Safari >= 14",
+                "Edge >= 88"
+            ]
+        },
+        "function": "Responsive design compatible with modern browsers",
+        "static_description": "Application layout adapts fluidly from mobile portrait through desktop widescreen using responsive units and breakpoints at 768px and 1024px widths. Grid-based components reflow appropriately per viewport size.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing browser window triggers layout recalculations ensuring optimal presentation across device sizes."
+            },
+            {
+                "interaction": "Zoom",
+                "description": "Text scaling up to 200% maintains readability and functional control accessibility throughout interface."
+            }
+        ]
+    }
+]

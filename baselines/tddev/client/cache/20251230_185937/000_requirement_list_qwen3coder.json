@@ -1,0 +1,277 @@
+[
+    {
+        "resource_dependency": {
+            "navigation_menu_items": [
+                "Base",
+                "Ranking",
+                "Store",
+                "Train",
+                "Workers",
+                "Upgrades",
+                "Bank",
+                "Messages",
+                "Reports"
+            ],
+            "page_routes_mapping": "{ '/': BasePage, '/ranking': RankingPage, '/store': StorePage, '/train': TrainPage, '/workers': WorkersPage, '/upgrades': UpgradesPage, '/bank': BankPage, '/messages': MessagesPage, '/reports': ReportsPage }",
+            "game_data_api": "API endpoints under /api/pages/* returning dynamic data for each page"
+        },
+        "function": "Provide multi-page navigation structure with routing between core gameplay sections",
+        "static_description": "A fixed top navigation bar with links to Base, Ranking, Store, Train, Workers, Upgrades, Bank, Messages, and Reports pages. Each link styled with seashell background (#FFF5EE) and crimson content blocks (#DC143C). Active page highlighted visually.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any navigation item navigates the user to the corresponding page route while updating active state styling on the clicked element."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "race_selection_options": [
+                "Humans",
+                "Dragonborns",
+                "Elves",
+                "Dwarfs"
+            ],
+            "race_attributes_schema": "Database table 'races' with columns: id (primary key), name (string), strength_bonus (int), magic_bonus (int), speed_bonus (int), resource_production_modifier (float)",
+            "player_race_assignment_api": "POST /api/player/race endpoint to assign selected race to current player profile"
+        },
+        "function": "Allow players to select one of four distinct races that influence gameplay attributes",
+        "static_description": "A modal or dedicated section showing four race cards arranged horizontally. Each card displays the race name, an associated icon/image, and summary of unique attributes such as strength, magic, speed bonuses, and resource production modifiers. Background is seashell (#FFF5EE), cards have crimson borders (#DC143C).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a race card sends a POST request to /api/player/race assigning the chosen race to the player’s profile and closes the selection interface."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resource_types": [
+                "gold",
+                "iron",
+                "wood",
+                "wheat"
+            ],
+            "resource_tracking_api": "GET /api/resources endpoint returning real-time quantities for each resource type",
+            "resource_update_websocket": "WebSocket connection to push live updates when resources change"
+        },
+        "function": "Track and display real-time quantities of essential game resources",
+        "static_description": "Fixed status bar at the top showing icons and numeric counts for Gold, Iron, Wood, and Wheat. Styled with seashell background (#FFF5EE) and crimson text/icons (#DC143C). Resource values are initially zero until loaded via API.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "Upon loading any page, a GET request is made to /api/resources to populate initial resource counts."
+            },
+            {
+                "interaction": "WebSocket Event",
+                "description": "Receives real-time updates through WebSocket and refreshes displayed resource numbers without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "upgradeable_structures_list": [
+                "Barracks",
+                "Marketplace",
+                "Forge",
+                "Granary",
+                "Town Hall"
+            ],
+            "city_upgrades_schema": "Database table 'city_upgrades' with fields: id (primary key), structure_name (string), level (int), cost_gold (int), cost_iron (int), cost_wood (int), cost_wheat (int), effect_description (text)",
+            "upgrade_action_api": "POST /api/city/upgrade/{structure} to initiate upgrade process"
+        },
+        "function": "Enable players to enhance their city infrastructure through progressive upgrades",
+        "static_description": "Grid layout presenting available structures for upgrade. Each tile shows structure name, current level, upgrade costs in resources, and a crimson-styled 'Upgrade' button. Background uses seashell theme (#FFF5EE).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Upgrade' button triggers POST request to /api/city/upgrade/{structure}, deducting required resources and increasing structure level upon success."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "worker_types": [
+                "Farmer",
+                "Miner",
+                "Lumberjack",
+                "Guard"
+            ],
+            "workers_schema": "Database table 'workers' with fields: id (primary key), type (string), assigned_to (string), level (int), experience (int), efficiency_bonus (float)",
+            "worker_management_api": "GET /api/workers (list), POST /api/workers/assign, POST /api/workers/upgrade"
+        },
+        "function": "Manage assignment and leveling of workforce across different roles",
+        "static_description": "Two-column view: left lists worker types with total count per type; right shows currently assigned workers grouped by role. Crimson-styled buttons for 'Assign Worker' and 'Upgrade'. Seashell background (#FFF5EE).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "'Assign Worker' assigns idle worker to selected task; 'Upgrade' increases worker level using accumulated experience points via respective API calls."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "soldier_classes": [
+                "Infantry",
+                "Archer",
+                "Mage",
+                "Cavalry"
+            ],
+            "training_progression_schema": "Database tables: 'soldiers' (id, class, level, health, attack_power, defense); 'training_queue' (soldier_id, start_time, completion_time)",
+            "soldier_training_api": "POST /api/train/soldier/{class}; GET /api/train/status"
+        },
+        "function": "Allow training and upgrading of military units with time-based progression",
+        "static_description": "Vertical tabs for each soldier class. Tab content includes stats panel, training queue timer, and crimson 'Train Soldier' button. Background uses seashell color scheme (#FFF5EE).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Train Soldier' initiates training process tracked in queue; progress updated via polling GET requests to /api/train/status."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ranking_criteria": [
+                "Total Wealth",
+                "Military Power",
+                "City Level",
+                "Achievements"
+            ],
+            "leaderboard_data_api": "GET /api/ranking?sort_by={criteria}",
+            "rankings_schema": "Database view aggregating player stats joined from users, cities, armies, achievements tables"
+        },
+        "function": "Display competitive standings based on various performance metrics",
+        "static_description": "Leaderboard table listing top players with rank number, username, score/value, and ranking category. Styled with alternating row colors, seashell background (#FFF5EE), crimson headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts leaderboard by selected metric using parameterized GET request to /api/ranking."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "available_store_items": [
+                "Resource Packs",
+                "Worker Boosts",
+                "Training Speedups",
+                "Special Artifacts"
+            ],
+            "store_inventory_schema": "Database table 'store_items' with fields: id, name, description, price_type (enum: gold/resource), price_amount, effect_type, effect_value",
+            "purchase_transaction_api": "POST /api/store/buy/{item_id}"
+        },
+        "function": "Offer purchasable items and enhancements for player progression",
+        "static_description": "Catalog grid displaying store items with name, description, price, and crimson 'Buy Now' button. Filter options above grid allow sorting by item type. Background set to seashell (#FFF5EE).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Buy Now' sends POST request to /api/store/buy/{item_id} which validates funds and applies purchased effect immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bank_operations": [
+                "Deposit",
+                "Withdraw",
+                "Interest Accrual"
+            ],
+            "bank_account_schema": "Database table 'bank_accounts' with fields: player_id (foreign key), balance (decimal), last_interest_timestamp (datetime)",
+            "financial_transactions_api": "POST /api/bank/deposit, POST /api/bank/withdraw"
+        },
+        "function": "Provide secure storage and interest-based growth for accumulated resources",
+        "static_description": "Dashboard showing current bank balance, recent transactions log, and forms for deposit/withdraw actions. Forms include input field and crimson submit button. Background styled with seashell (#FFF5EE).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting deposit or withdrawal form triggers corresponding POST request to update account balance and adjust inventory accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "message_threads_schema": "Database tables: 'conversations' (id, participants), 'messages' (conversation_id, sender_id, content, timestamp)",
+            "messaging_api": "GET /api/messages/conversations, GET /api/messages/thread/{id}, POST /api/messages/send"
+        },
+        "function": "Facilitate communication between players through private and group messaging",
+        "static_description": "Split-pane layout: left sidebar lists conversation threads with preview snippets; main area shows message history with reply input box and crimson send button. All styled with seashell background (#FFF5EE).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting thread loads full conversation; typing and clicking 'Send' submits new message via POST /api/messages/send."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "report_categories": [
+                "Battle Results",
+                "Espionage",
+                "Trade Confirmations",
+                "System Alerts"
+            ],
+            "reports_schema": "Database table 'reports' with fields: id, category, title, content, timestamp, read_status (boolean)",
+            "report_fetching_api": "GET /api/reports?category={type}&limit={n}"
+        },
+        "function": "Log significant in-game events and outcomes for review",
+        "static_description": "List view with collapsible report entries showing category icon, title, date, and unread indicator. Expanding entry reveals full content. Crimson accent used for unread markers. Background uses seashell (#FFF5EE).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Expanding entry marks report as read; filtering by category fetches matching reports via GET /api/reports with query parameters."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dynamic_data_endpoints": [
+                "/api/resources",
+                "/api/player",
+                "/api/city",
+                "/api/workers",
+                "/api/train",
+                "/api/ranking",
+                "/api/store",
+                "/api/bank",
+                "/api/messages",
+                "/api/reports"
+            ],
+            "data_fetching_middleware": "Axios/fetch wrapper ensuring all frontend data sourced from backend APIs"
+        },
+        "function": "Ensure complete decoupling of frontend presentation from hardcoded data by sourcing everything from backend",
+        "static_description": "Blank slate rendering until API responses populate UI components. Loading indicators shown during data fetch. No mock data present anywhere in codebase.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Each route triggers parallel API calls to retrieve relevant data before rendering component views."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgres_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "database_initialization_script": "SQL script creating tables: users, races, resources, city_upgrades, workers, soldiers, training_queue, rankings_view, store_items, bank_accounts, conversations, messages, reports"
+        },
+        "function": "Establish persistent relational storage layer using PostgreSQL with predefined credentials",
+        "static_description": "Backend configuration file containing database connection string built from provided environment variables. Tables created on first run if not existing.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "stylesheet_variables": ":root { --background-color: #FFF5EE; --content-block-color: #DC143C; }",
+            "css_framework_customizations": "Global overrides applying seashell backgrounds and crimson accents to all UI elements"
+        },
+        "function": "Apply consistent visual identity throughout application using specified color palette",
+        "static_description": "Entire app wrapped in global styles setting background to seashell (#FFF5EE) and primary interactive/content areas to crimson (#DC143C).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_scripts": "{ \"install:all\": \"npm install && cd backend && npm install\", \"dev\": \"concurrently \\\"npm run dev:fe\\\" \\\"npm run dev:be\\\"\" }",
+            "development_dependencies": "concurrently, nodemon, webpack-dev-server"
+        },
+        "function": "Streamline local development workflow with unified installation and simultaneous frontend/backend execution",
+        "static_description": "Root-level package.json configured with custom scripts enabling single-command setup and launch of entire stack.",
+        "interaction_and_states": []
+    }
+]

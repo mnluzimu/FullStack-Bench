@@ -1,0 +1,171 @@
+[
+    {
+        "resource_dependency": {
+            "polls_api_endpoint": "/api/polls",
+            "vote_submit_api_endpoint": "/api/vote",
+            "results_api_endpoint": "/api/results",
+            "poll_data_schema": "Table 'polls' with fields: id (UUID), title (TEXT), description (TEXT), created_at (TIMESTAMP). Table 'options' with fields: id (UUID), poll_id (foreign key to polls.id), option_text (TEXT), vote_count (INTEGER DEFAULT 0)."
+        },
+        "function": "Fetch all available polls from the backend API and render them on the frontend.",
+        "static_description": "A white background page with navy-styled cards displaying each poll’s title and description. Cards are arranged vertically with consistent spacing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a poll card navigates the user to the voting page for that specific poll."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Users can scroll through the list of polls if there are more than fit on screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "polls_table_schema": "CREATE TABLE polls (id UUID PRIMARY KEY, title TEXT NOT NULL, description TEXT, created_at TIMESTAMP DEFAULT NOW()); CREATE TABLE options (id UUID PRIMARY KEY, poll_id UUID REFERENCES polls(id), option_text TEXT NOT NULL, vote_count INTEGER DEFAULT 0);"
+        },
+        "function": "Establish connection to PostgreSQL database and define tables to store poll data, options, and vote counts.",
+        "static_description": "No visible UI element; this is a backend setup configuration ensuring persistence of poll-related data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "voting_page_url": "/poll/:id/vote",
+            "submit_vote_api": "/api/vote",
+            "session_tracking_mechanism": "Use cookies or localStorage to track user sessions and prevent duplicate votes."
+        },
+        "function": "Allow users to select an option and submit their vote via an API call.",
+        "static_description": "White background with navy-styled radio buttons representing each voting option, a submit button below, and clear labeling of the current poll question.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a radio button highlights it. Clicking the submit button sends the selected option to the backend API."
+            },
+            {
+                "interaction": "Submit",
+                "description": "After submitting, the system redirects to the results view for the same poll."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "results_display_api": "/api/results/:pollId",
+            "chart_library": "Chart.js or similar library for rendering bar graphs",
+            "result_visualization_component": "Bar chart showing vote distribution among options"
+        },
+        "function": "Display real-time voting results immediately after a user casts their vote.",
+        "static_description": "White background with navy-styled header indicating the poll name. Below, a bar graph visualizes the number of votes per option.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon loading the results page, fetch updated vote counts from the backend and render the chart accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "vote_storage_procedure": "SQL procedure to increment vote count safely using atomic operations",
+            "duplicate_vote_prevention_logic": "Check session identifier before allowing a vote update"
+        },
+        "function": "Ensure all votes are stored persistently in the database and retrieved accurately when needed.",
+        "static_description": "No direct UI representation; ensures reliable backend operation for storing and retrieving votes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "design_tokens": "{ background: '#FFFFFF', primaryColor: '#000080' }"
+        },
+        "function": "Apply consistent styling throughout the application with a white background and navy components.",
+        "static_description": "All pages feature a clean white background (#FFFFFF) with components styled in navy blue (#000080), including headers, buttons, and form elements.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigation_bar_component": "<nav> element with links to Poll List, Current Vote View, and Results Page",
+            "router_library": "React Router or equivalent client-side routing mechanism"
+        },
+        "function": "Enable seamless navigation between browsing polls, casting votes, and viewing results.",
+        "static_description": "Fixed top navigation bar with navy links labeled 'Browse Polls', 'Vote', and 'Results'. Background remains white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any link updates the displayed route without reloading the full page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "error_modal_template": "Modal dialog showing error messages such as 'Invalid selection' or 'Submission failed'",
+            "error_handling_endpoints": "/api/error-handler"
+        },
+        "function": "Handle errors gracefully when invalid selections occur or submissions fail.",
+        "static_description": "Transparent overlay appears over content with centered navy-themed modal containing red-colored error message text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Trigger Error",
+                "description": "Displays appropriate error message in modal upon receiving HTTP error responses from backend."
+            },
+            {
+                "interaction": "Close Modal",
+                "description": "Clicking outside the modal or pressing ESC closes the error notification."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loading_spinner_asset": "Spinner animation asset file path or inline SVG",
+            "loading_overlay_style": "Full-screen semi-transparent overlay with centered spinner"
+        },
+        "function": "Show loading indicators while waiting for asynchronous data from backend APIs.",
+        "static_description": "White background covered by a semi-transparent navy-tinted overlay with a centrally positioned spinning loader icon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Data Fetch Start",
+                "description": "Overlay becomes visible during API requests."
+            },
+            {
+                "interaction": "Data Fetch Complete",
+                "description": "Overlay fades out once data arrives successfully."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_css_framework": "Tailwind CSS or Bootstrap grid utilities",
+            "mobile_viewport_test_cases": "Test cases covering various mobile screen sizes"
+        },
+        "function": "Ensure the entire UI adapts fluidly across desktop and mobile device screens.",
+        "static_description": "Layout adjusts automatically based on viewport size—stacked vertically on small screens, side-by-side where space allows.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_structure": "{\"scripts\": {\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", ...}}"
+        },
+        "function": "Configure package.json scripts to allow installation of both frontend and backend dependencies simultaneously.",
+        "static_description": "Not directly visible but defines how developers trigger unified dependency installations via terminal command.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dev_script_command": "{\"scripts\": {\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\", ...}}"
+        },
+        "function": "Define a development script to launch both frontend and backend services concurrently.",
+        "static_description": "No UI impact; enables efficient local development workflow through a single CLI command.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "session_management_logic": "Client stores unique session token (cookie/localStorage)",
+            "vote_validation_endpoint": "Backend validates session against existing vote records"
+        },
+        "function": "Implement security logic to detect and block multiple votes from the same user/session.",
+        "static_description": "Invisible mechanism working behind the scenes to maintain integrity of poll results.",
+        "interaction_and_states": [
+            {
+                "interaction": "Duplicate Vote Attempt",
+                "description": "Displays an error message indicating that the user has already voted."
+            }
+        ]
+    }
+]

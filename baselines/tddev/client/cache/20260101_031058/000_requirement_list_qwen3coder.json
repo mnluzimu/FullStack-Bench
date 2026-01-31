@@ -1,0 +1,118 @@
+[
+    {
+        "resource_dependency": {
+            "policyDataAPI": "GET /api/policies - Returns paginated list of policies with metadata",
+            "policyDetailAPI": "GET /api/policies/{id} - Returns full policy details including related data and chart configurations",
+            "filterOptionsAPI": "GET /api/filters - Returns available filter categories and values",
+            "chartRenderingLibrary": "https://cdn.jsdelivr.net/npm/chart.js",
+            "indigoUIColor": "#4B0082",
+            "lavenderBackgroundColor": "#E6E6FA"
+        },
+        "function": "Display a dashboard interface showing regulatory policies with interactive data visualizations",
+        "static_description": "A full-screen dashboard with lavender background (#E6E6FA) featuring a top navigation bar with indigo (#4B0082) UI elements. Main content area contains a grid of policy cards, each showing title, category, status, and key metrics. Right sidebar displays interactive charts and graphs rendered using Chart.js library. Filter panel on left sidebar shows collapsible filter sections. Sort controls appear above the policy grid.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a policy card navigates to detailed view page. Clicking filter checkboxes applies filters immediately. Clicking sort headers reorders the policy list."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over policy cards highlights them with indigo border. Hovering over chart elements shows tooltips with additional data."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Vertical scrolling moves through the policy list. Horizontal scrolling available within wide chart containers."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policyDataSchema": "Table 'policies' with columns: id (UUID), title (string), description (text), category (string), status (enum: active/inactive/proposed), effective_date (date), created_at (timestamp), updated_at (timestamp)",
+            "relatedDataSchema": "Table 'policy_metrics' with columns: policy_id (foreign key), metric_name (string), value (decimal), unit (string)",
+            "chartConfigSchema": "Table 'chart_configs' with columns: policy_id (foreign key), chart_type (string), data_source (string), config_json (jsonb)",
+            "DB_CONNECTION_ENV_VARS": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Provide backend API endpoints serving regulatory policy data from PostgreSQL database",
+        "static_description": "RESTful API server connecting to PostgreSQL database using specified environment variables. Exposes endpoints for retrieving policy lists, individual policy details, filter options, and chart configurations. Database schema includes tables for policies, related metrics, and chart rendering settings.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request",
+                "description": "Receives GET requests to /api/policies with optional query parameters for filtering and sorting. Responds with JSON-formatted policy data retrieved from PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterPanelComponent": "Collapsible sidebar panel containing checkbox groups for policy categories, statuses, date ranges",
+            "filterAPIEndpoint": "GET /api/filters - Returns structured data for all available filter options",
+            "appliedFiltersState": "Array tracking currently selected filter criteria"
+        },
+        "function": "Allow users to narrow down displayed policies using various filter criteria",
+        "static_description": "Left-hand sidebar panel with indigo headers containing grouped filter options. Categories include policy type, status, effective date range, and regulatory domain. Each group can be expanded/collapsed. Selected filters show with lavender tags above the policy grid.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking filter checkboxes adds/removes criteria. Clicking 'Clear All' resets all filters. Clicking individual filter tags removes that specific filter."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over filter groups shows expand/collapse indicators. Hovering over applied filter tags shows removal 'x' icon."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sortHeaders": "Clickable column headers above policy grid: Title, Category, Status, Effective Date, Last Updated",
+            "sortIndicatorIcons": "Up/down arrow icons indicating current sort direction",
+            "sortAPIParam": "Query parameter 'sort_by' and 'order' passed to /api/policies endpoint"
+        },
+        "function": "Enable sorting of policy listings by different attributes",
+        "static_description": "Horizontal row of clickable headers above the policy grid. Headers display text in indigo color matching current sort field. Arrow icons indicate ascending/descending order. Default sort is by last updated date descending.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a header sorts policies by that attribute. First click sorts ascending, second click descending, third click removes sort. Visual indicator updates to show current sort state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartContainer": "Dedicated right sidebar section for displaying interactive charts",
+            "chartLibrary": "Chart.js CDN link for rendering interactive visualizations",
+            "chartDataAPI": "GET /api/policies/{id}/charts - Returns pre-configured chart data and rendering options",
+            "chartTypes": [
+                "bar",
+                "line",
+                "pie",
+                "radar"
+            ]
+        },
+        "function": "Present policy-related data through interactive charts and graphs",
+        "static_description": "Fixed-width right sidebar showing multiple chart widgets stacked vertically. Each widget has indigo header with chart title. Canvas areas render different chart types using Chart.js. Sample charts include compliance timeline, impact distribution, and regulatory coverage.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements displays tooltips with precise values. Hovering over legend items highlights corresponding data series."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of data series. Clicking chart export button downloads image version."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonFile": "Root-level package.json file with custom scripts configuration",
+            "installAllScript": "npm run install:all - Runs 'npm install' in both frontend and backend directories",
+            "devConcurrentScript": "npm run dev - Uses concurrently package to run frontend and backend development servers together"
+        },
+        "function": "Configure repository package management scripts for streamlined development workflow",
+        "static_description": "Standard package.json file in project root directory containing custom script definitions. Scripts section includes 'install:all' and 'dev' commands alongside default npm scripts. Dependencies include concurrently package for running multiple processes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Line Execution",
+                "description": "Running 'npm run install:all' executes installation in both frontend and backend folders. Running 'npm run dev' starts both development servers simultaneously with unified logging output."
+            }
+        ]
+    }
+]

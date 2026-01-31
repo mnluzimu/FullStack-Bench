@@ -1,0 +1,282 @@
+[
+    {
+        "requirement_tested": "A static website with no dynamic data requirements",
+        "user_persona": "A freelance web developer evaluating tech stack options for a client project.",
+        "user_goal": "To confirm that the website does not require backend services or databases since it's purely informational.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Site Architecture",
+                "description": "Alex visits the homepage and checks network requests in DevTools to verify there are no calls to APIs or database connections.",
+                "action": "Open browser DevTools > Network tab and refresh the page.",
+                "expected_outcome": "Only static asset requests (HTML, CSS, JS, images) appear; no XHR/fetch requests to backend endpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend pages for software solutions and staffing business introduction",
+        "user_persona": "A small business owner exploring potential IT partners.",
+        "user_goal": "To understand what services the company offers within software development and staffing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Services Page",
+                "description": "Jamie clicks on the 'Services' link in the navigation menu hoping to learn about available offerings.",
+                "action": "Click the 'Services' link in the top navigation bar.",
+                "expected_outcome": "The Services page loads, showing two distinct service categories: Custom Software Development and IT Staffing Solutions."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Service Details",
+                "description": "Intrigued by the overview, Jamie clicks 'Learn More' under each service to get additional context.",
+                "action": "Click the 'Learn More' button below each service card.",
+                "expected_outcome": "Each click expands the respective service description inline without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product and service description pages",
+        "user_persona": "An operations manager researching ERP and CRM systems for her company.",
+        "user_goal": "To compare product features and determine suitability for internal use.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Products Section",
+                "description": "Patricia navigates to the Products page from the main navigation to explore available software tools.",
+                "action": "Click the 'Products' link in the header navigation.",
+                "expected_outcome": "A responsive grid of product cards appears, each featuring an image, title, and summary."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Product Details",
+                "description": "Interested in the ERP system, Patricia clicks on its card to read more specifics.",
+                "action": "Click the 'Enterprise Resource Planning (ERP)' product card.",
+                "expected_outcome": "She is redirected to a dedicated product detail page with comprehensive information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Industry news and trends section",
+        "user_persona": "A CTO staying updated on technology shifts affecting his industry.",
+        "user_goal": "To find recent articles discussing emerging trends relevant to his sector.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing News Articles",
+                "description": "David scrolls down to the News section on the homepage and clicks 'See All' to view latest posts.",
+                "action": "Click the 'See All News' button.",
+                "expected_outcome": "He lands on the News page displaying articles in a masonry-style grid layout."
+            },
+            {
+                "step": 2,
+                "title": "Reading an Article",
+                "description": "He finds an intriguing headline and clicks the article card to dive deeper into the topic.",
+                "action": "Click an article thumbnail/card.",
+                "expected_outcome": "The full article opens either in a modal or a new page with readable formatting and metadata."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Customer cases and success stories section",
+        "user_persona": "A procurement officer assessing vendor credibility before partnership.",
+        "user_goal": "To review past successes and evaluate how well the vendor delivers results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Success Stories",
+                "description": "Maria clicks the 'Cases' link in the navigation to explore proven outcomes.",
+                "action": "Click the 'Cases' link in the main navigation menu.",
+                "expected_outcome": "Accordion-style panels appear, each summarizing a client challenge, solution, and result."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Story Details",
+                "description": "She selects one case study header to see detailed implementation insights.",
+                "action": "Click the header of a success story panel.",
+                "expected_outcome": "The panel expands to show extended content including measurable impact metrics."
+            },
+            {
+                "step": 3,
+                "title": "Downloading Full Report",
+                "description": "Wanting official documentation, Maria clicks to download the complete PDF version.",
+                "action": "Click the 'Download PDF' button associated with the expanded story.",
+                "expected_outcome": "A file download prompt initiates, saving the full case study document locally."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Contact page with form for user inquiries",
+        "user_persona": "A startup founder seeking custom software advice.",
+        "user_goal": "To reach out directly with questions about building a tailored application.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contact Form",
+                "description": "Rajesh clicks the 'Contact Us' link at the bottom of the homepage looking to initiate communication.",
+                "action": "Click the 'Contact' link in the footer navigation.",
+                "expected_outcome": "The Contact page loads with a centered form containing fields for name, email, company, and message."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Inquiry",
+                "description": "After filling in his details, Rajesh submits the inquiry expecting confirmation of receipt.",
+                "action": "Fill all required fields and click the 'Submit' button.",
+                "expected_outcome": "A toast notification confirms successful submission, indicating the message was sent."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for browsing relevant information",
+        "user_persona": "A marketing director searching for integration capabilities among listed products.",
+        "user_goal": "To quickly locate content related to API integrations across services and products.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Global Search Bar",
+                "description": "While browsing the homepage, Lisa notices the search bar and begins typing a query.",
+                "action": "Type 'integration' into the global search bar located in the header.",
+                "expected_outcome": "Autocomplete suggestions populate dynamically in a dropdown grouped by content type (articles, products, services)."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Relevant Result",
+                "description": "Lisa sees a promising article suggestion and clicks it to learn more.",
+                "action": "Click the suggested article item in the search dropdown.",
+                "expected_outcome": "She is taken to the selected article page providing detailed information on integrations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design optimized for small to medium-sized businesses",
+        "user_persona": "A sales executive reviewing vendor websites on his tablet during travel.",
+        "user_goal": "To seamlessly navigate and consume content regardless of device used.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Layout Adaptation",
+                "description": "On his tablet, Marcus resizes the browser window to simulate different screen widths.",
+                "action": "Manually resize the browser window to trigger various breakpoints.",
+                "expected_outcome": "Layout elements reflow appropriately, fonts scale, and navigation adapts for optimal viewing at each size."
+            },
+            {
+                "step": 2,
+                "title": "Interacting via Touch",
+                "description": "While viewing a carousel of featured products, he swipes left to see more items.",
+                "action": "Swipe horizontally across a product carousel on a mobile screen.",
+                "expected_outcome": "Carousel transitions smoothly between slides based on touch gesture input."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Engaging and easy-to-understand content presentation",
+        "user_persona": "A non-technical business owner wanting clear explanations of complex concepts.",
+        "user_goal": "To grasp key offerings easily without needing prior technical knowledge.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Scanning Homepage Highlights",
+                "description": "Susan scrolls slowly through the homepage observing animated elements and structured content.",
+                "action": "Scroll vertically down the homepage.",
+                "expected_outcome": "Animated text fades in progressively, enhancing engagement while maintaining clarity of messaging."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Consistent color scheme with misty rose backgrounds and firebrick components",
+        "user_persona": "A designer checking brand consistency across digital assets.",
+        "user_goal": "To validate adherence to specified color palette throughout the entire site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Color Usage",
+                "description": "Alex inspects element styles using DevTools to confirm correct background and accent colors.",
+                "action": "Right-click any page element and inspect its computed CSS styles.",
+                "expected_outcome": "Background color is consistently '#FFE4E1' (misty rose), and interactive components are styled with '#B22222' (firebrick)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navigation menu for seamless browsing across sections",
+        "user_persona": "A visitor unfamiliar with the site trying to locate specific information efficiently.",
+        "user_goal": "To effortlessly jump between major content areas without confusion.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Navigation Menu",
+                "description": "On a mobile phone, Tom taps the hamburger icon to reveal hidden menu links.",
+                "action": "Tap the hamburger menu icon in the top right corner.",
+                "expected_outcome": "A vertical dropdown menu slides open revealing all primary navigation links."
+            },
+            {
+                "step": 2,
+                "title": "Jumping to Target Section",
+                "description": "Tom selects the 'Products' option to explore available software solutions.",
+                "action": "Click the 'Products' link within the revealed navigation drawer.",
+                "expected_outcome": "The Products page loads instantly, allowing him to continue exploring."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article and news reading interface",
+        "user_persona": "A busy executive who wants focused reading without distractions.",
+        "user_goal": "To read long-form articles comfortably without visual clutter.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Reading Mode",
+                "description": "While viewing an article, Jordan activates reading mode to reduce peripheral distractions.",
+                "action": "Click the 'Reading Mode' toggle button on the article page.",
+                "expected_outcome": "Surrounding UI dims, centering attention solely on the article text for improved focus."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "SEO-friendly content structure",
+        "user_persona": "A digital marketer auditing website performance in search rankings.",
+        "user_goal": "To ensure proper indexing and rich snippets display in search engine results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Meta Tags",
+                "description": "Emily views the page source to confirm presence of essential SEO metadata.",
+                "action": "Right-click the page and select 'View Page Source'.",
+                "expected_outcome": "Meta tags such as title, description, Open Graph properties, and JSON-LD structured data are present and correctly formatted."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Accessibility compliance for inclusive user experience",
+        "user_persona": "A visually impaired user navigating the site with assistive technologies.",
+        "user_goal": "To fully interact with the website using only keyboard controls and screen reader support.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Keyboard Navigation",
+                "description": "Without a mouse, John tabs through interactive elements starting from the homepage.",
+                "action": "Press the Tab key repeatedly to move focus through navigational links and buttons.",
+                "expected_outcome": "Focus moves logically between controls, highlighting each element visibly as focus shifts."
+            },
+            {
+                "step": 2,
+                "title": "Screen Reader Compatibility",
+                "description": "Using a screen reader, Sarah listens to how the homepage content is announced.",
+                "action": "Activate screen reader and listen to the announcement of page elements.",
+                "expected_outcome": "All headings, images with alt-text, and interactive components are accurately described by the screen reader."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Performance optimization for fast loading times",
+        "user_persona": "A remote worker accessing the site over a slow internet connection.",
+        "user_goal": "To experience minimal delays when browsing pages despite limited bandwidth.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Initial Load Speed",
+                "description": "Upon first visit, Mark notes how quickly the homepage renders above-the-fold content.",
+                "action": "Load the homepage in a fresh browser session.",
+                "expected_outcome": "Above-the-fold content appears almost instantly due to optimized critical resource loading."
+            }
+        ]
+    }
+]

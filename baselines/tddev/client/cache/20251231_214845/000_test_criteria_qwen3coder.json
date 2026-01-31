@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A frontend dashboard interface that displays financial data from multiple companies",
+        "user_persona": "A financial analyst reviewing quarterly results across several client companies.",
+        "user_goal": "Quickly assess overall financial health by viewing key metrics from all associated companies on a single screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Dashboard",
+                "description": "Sarah logs into the system and lands on the main dashboard where she expects to see an overview of her clients' finances.",
+                "action": "Navigate to the root URL after logging in.",
+                "expected_outcome": "The page loads showing a grid of company cards with names, logos, and key financial figures like revenue and profit against a mint cream background with teal accents."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Company Card",
+                "description": "She notices one client's revenue seems unusually low and decides to investigate further by clicking on their card.",
+                "action": "Click on a specific company card.",
+                "expected_outcome": "The browser navigates to the detailed financial page for that particular company."
+            },
+            {
+                "step": 3,
+                "title": "Examining Metric Details",
+                "description": "While scanning the dashboard again, Sarah hovers over a profit figure to better understand its context before discussing it with the team.",
+                "action": "Hover over a financial metric value on any company card.",
+                "expected_outcome": "A tooltip appears displaying additional contextual information about the metric."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API service that aggregates financial data from multiple company sources",
+        "user_persona": "A frontend developer integrating live financial feeds into the dashboard UI.",
+        "user_goal": "Retrieve up-to-date consolidated financial data from all companies to populate the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Aggregated Data",
+                "description": "The developer configures the frontend to pull financial summaries from the aggregation endpoint during initial load.",
+                "action": "Make a GET request to `/api/v1/companies/financials`.",
+                "expected_outcome": "Receives a JSON response containing structured financial data for all companies sourced from the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database connection to PostgreSQL using environment variables: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+        "user_persona": "A DevOps engineer setting up the production deployment pipeline.",
+        "user_goal": "Verify that the backend successfully connects to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "After configuring the correct environment variables, the engineer starts the backend server to test connectivity.",
+                "action": "Run the backend application with environment variables set: DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "The backend initializes successfully and establishes a connection to the PostgreSQL database without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Company-specific financial data browsing capability",
+        "user_persona": "An operations manager needing to review last month’s expenditures for a specific subsidiary.",
+        "user_goal": "Access detailed historical financial data for a single company.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Detailed View",
+                "description": "From the main dashboard, the manager selects a company to view more granular financial details.",
+                "action": "Click on a company card representing the target subsidiary.",
+                "expected_outcome": "Redirected to the company detail page (`/dashboard/company/:companyId`) which displays historical charts and tables of financial records."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Time Range",
+                "description": "To focus on recent activity, they adjust the time filter to show only the past month's data.",
+                "action": "Select 'Last Month' from the time range dropdown.",
+                "expected_outcome": "The chart and table update dynamically to reflect only the financial data from the selected period."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Consolidated financial reporting across all companies",
+        "user_persona": "A CFO preparing board meeting materials.",
+        "user_goal": "Generate a comprehensive financial summary report covering all subsidiaries for presentation purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Consolidated Reports",
+                "description": "The CFO navigates to the consolidated reports section to get an overview of the entire organization's performance.",
+                "action": "Visit the consolidated report panel or click a 'View Consolidated Report' button.",
+                "expected_outcome": "A panel loads showing combined totals for revenue, profit, and expenses across all companies."
+            },
+            {
+                "step": 2,
+                "title": "Downloading Full Report",
+                "description": "Satisfied with the snapshot, the CFO wants to share the full report with other executives.",
+                "action": "Click the 'Download Report' button.",
+                "expected_outcome": "A PDF file containing the full consolidated financial report is generated and downloaded."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Cross-company financial comparison functionality",
+        "user_persona": "A business strategist evaluating market positioning among peer organizations.",
+        "user_goal": "Compare profitability ratios across three competing firms within the same industry.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Comparison",
+                "description": "The strategist goes to the comparison tool and selects 'Profit' as the metric and chooses three relevant companies.",
+                "action": "Use dropdown menus to select 'Profit' and pick three company IDs.",
+                "expected_outcome": "A bar chart updates visually comparing the selected companies’ profits side-by-side."
+            },
+            {
+                "step": 2,
+                "title": "Switching Metrics",
+                "description": "Curious about revenue instead, the strategist changes the metric selection.",
+                "action": "Change the metric dropdown to 'Revenue'.",
+                "expected_outcome": "The chart automatically refreshes to display comparative revenue data for the chosen companies."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Financial management tools for user interaction",
+        "user_persona": "An accountant correcting an erroneous entry in last quarter's filings.",
+        "user_goal": "Update incorrect financial data for a specific company.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Entry to Edit",
+                "description": "On the company's detailed financial page, the accountant identifies the inaccurate record and clicks the edit icon next to it.",
+                "action": "Click the pencil/edit icon beside a financial record.",
+                "expected_outcome": "A modal form pops up pre-filled with the current values of the selected financial record."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Correction",
+                "description": "After making corrections in the form, the accountant submits the updated data.",
+                "action": "Modify fields and click 'Save' in the modal.",
+                "expected_outcome": "The record is updated in the database and reflected immediately on the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reporting generation and export capabilities",
+        "user_persona": "A compliance officer compiling regulatory submissions.",
+        "user_goal": "Export financial data in standard formats for audit documentation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Export Format",
+                "description": "At the end of a reporting session, the officer opts to save the findings in spreadsheet format for internal review.",
+                "action": "Click the 'Export as CSV' button in the reporting section.",
+                "expected_outcome": "A CSV file containing the requested report data begins downloading instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system",
+        "user_persona": "A new employee accessing the platform for the first time.",
+        "user_goal": "Log into the financial dashboard securely using assigned credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Login Page",
+                "description": "The employee opens the app and is directed to the login portal.",
+                "action": "Navigate to `/auth/login`.",
+                "expected_outcome": "Presented with a clean login form featuring username and password input fields styled appropriately."
+            },
+            {
+                "step": 2,
+                "title": "Authenticating Successfully",
+                "description": "They enter their corporate credentials and submit the form.",
+                "action": "Fill in valid username/password and click 'Login'.",
+                "expected_outcome": "Redirected to the dashboard with a valid JWT token now stored for secure API access."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization components for financial metrics",
+        "user_persona": "A portfolio manager analyzing investment trends.",
+        "user_goal": "Understand how monthly revenues have evolved over the past year through graphical representation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Trend Visualization",
+                "description": "On a company’s detail page, the manager focuses on the revenue trend graph to spot patterns.",
+                "action": "Look at the revenue line chart displayed on the page.",
+                "expected_outcome": "A smooth line graph illustrates monthly revenue fluctuations over the past 12 months."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Specific Values",
+                "description": "Wanting precise numbers for a spike seen mid-year, they hover over the peak point.",
+                "action": "Hover cursor over a data point on the revenue chart.",
+                "expected_outcome": "A tooltip emerges showing the exact date and monetary value for that point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout with mint cream background and teal-styled components",
+        "user_persona": "A remote worker checking financial dashboards on a tablet during travel.",
+        "user_goal": "Access and interact with the dashboard seamlessly regardless of device size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard on Mobile Device",
+                "description": "Using a smartphone, the user opens the dashboard expecting it to render properly despite limited screen space.",
+                "action": "Load the dashboard homepage on a mobile browser.",
+                "expected_outcome": "Layout adjusts responsively with stacked elements maintaining readability; background remains mint cream and buttons retain teal coloring."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data fetching from backend APIs to frontend",
+        "user_persona": "A trading desk supervisor monitoring live financial movements.",
+        "user_goal": "Stay informed of sudden shifts in key financial indicators as they happen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Live Updates",
+                "description": "Upon opening the dashboard, the supervisor relies on real-time updates to track volatile metrics.",
+                "action": "Open the dashboard and observe ongoing updates.",
+                "expected_outcome": "Dashboard values auto-refresh periodically or via WebSocket push notifications, reflecting near-instantaneous changes in underlying data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Multi-tenant architecture supporting separate company data isolation",
+        "user_persona": "A SaaS provider ensuring data privacy between enterprise customers.",
+        "user_goal": "Confirm that each tenant sees only their own financial data even when querying shared endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making Tenant-Specific Requests",
+                "description": "When requesting financial data, the backend must distinguish requests based on tenant identity.",
+                "action": "Send API call to `/api/v1/companies/financials` including header `X-Tenant-ID: 123`.",
+                "expected_outcome": "Response contains financial data exclusively belonging to the company identified by Tenant ID 123."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Administrative controls for managing company data sources",
+        "user_persona": "An IT administrator responsible for connecting new client systems to the platform.",
+        "user_goal": "Register a newly onboarded company's data feed into the central dashboard infrastructure.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding New Data Source",
+                "description": "As an admin, the technician accesses the source management area to integrate another company’s ERP system.",
+                "action": "Navigate to `/admin/data-sources` and click 'Add Source'.",
+                "expected_outcome": "A guided setup wizard appears prompting for necessary connection parameters and metadata."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with npm run install:all and npm run dev scripts",
+        "user_persona": "A new developer joining the project team.",
+        "user_goal": "Set up the local development environment efficiently with minimal manual effort.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Following the README, the developer uses the convenience script to install dependencies for both frontend and backend.",
+                "action": "Execute command `npm run install:all` in the root directory.",
+                "expected_outcome": "Both client and server node_modules folders are populated with required packages concurrently."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "Once installed, the developer spins up both environments together for integrated testing.",
+                "action": "Run `npm run dev` from the project root.",
+                "expected_outcome": "Concurrently launches both frontend and backend development servers allowing seamless debugging and preview."
+            }
+        ]
+    }
+]

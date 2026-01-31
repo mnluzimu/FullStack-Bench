@@ -1,0 +1,214 @@
+[
+    {
+        "resource_dependency": {
+            "chatInterfaceStyles": "CSS variables or theme configuration defining snow (#fffafa) for background and dim gray (#696969) for component borders and text.",
+            "chatMessageSchema": "Database table schema: message_id (UUID), session_id (UUID), sender_type (enum: 'user', 'bot'), content (text), timestamp (datetime with timezone).",
+            "chatSessionSchema": "Database table schema: session_id (UUID), user_id (optional UUID), created_at (datetime with timezone), last_active (datetime with timezone)."
+        },
+        "function": "Provide a real-time chat interface for users to interact with the support chatbot.",
+        "static_description": "A fixed-position chat widget at the bottom-right corner of the screen. It includes a header bar displaying 'Support Chat', a scrollable message history area showing alternating user and bot messages styled with snow backgrounds and dim gray text/borders, and an input field with a send button at the bottom.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the chat widget toggles visibility of the full chat window. Clicking the send button submits the current input text as a new message."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while the input field is focused sends the current message."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling within the message history area allows viewing older messages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chatbotLogicAPI": "RESTful API endpoint POST /api/chat/send-message expecting { session_id, message } and returning { response_message, status }.",
+            "faqDataSchema": "Database table schema: faq_id (UUID), question (text), answer (text), category (text), created_at (datetime with timezone).",
+            "productInfoSchema": "Database table schema: product_id (UUID), name (string), description (text), price (decimal), image_url (string), metadata (JSONB).",
+            "orderAssistanceSchema": "Database table schema: order_id (UUID), user_id (UUID), status (string), details (text), created_at (datetime with timezone)."
+        },
+        "function": "Process user inputs, generate appropriate responses, and manage conversation flow using predefined logic and data sources.",
+        "static_description": "This backend service runs independently and exposes API endpoints for handling chat interactions. It does not render any UI but manages internal state and communicates with the database.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request",
+                "description": "Receives POST requests to /api/chat/send-message, processes the message against FAQ, product, and order data, then returns a structured response."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fetchFAQsEndpoint": "GET /api/faqs returning array of FAQ objects.",
+            "fetchProductInfoEndpoint": "GET /api/products/:id returning product object.",
+            "fetchOrderAssistanceEndpoint": "GET /api/orders/:orderId/assist returning assistance details."
+        },
+        "function": "Expose RESTful endpoints allowing the chatbot backend to retrieve necessary data such as FAQs, product information, and order assistance.",
+        "static_description": "Three distinct API routes exposed via HTTP that return JSON-formatted data upon request. These are used internally by the chatbot logic service.",
+        "interaction_and_states": [
+            {
+                "interaction": "HTTP GET Request",
+                "description": "Each endpoint responds to GET requests with relevant data fetched from the PostgreSQL database based on query parameters or path variables."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp used to establish connection pool.",
+            "chatLogsTable": "Table definition: log_id (UUID), session_id (UUID), message_id (UUID), direction (enum: 'inbound', 'outbound'), payload (JSONB), logged_at (datetime with timezone)."
+        },
+        "function": "Persist all chat interactions and session data for audit, analytics, and continuity purposes.",
+        "static_description": "PostgreSQL tables storing chat sessions, individual messages, and logs. Connection established using provided environment variables.",
+        "interaction_and_states": [
+            {
+                "interaction": "Database Write",
+                "description": "Upon receiving a message or sending a response, corresponding records are inserted into respective tables."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "faqTableDefinition": "CREATE TABLE faqs (faq_id UUID PRIMARY KEY, question TEXT NOT NULL, answer TEXT NOT NULL, category TEXT, created_at TIMESTAMPTZ DEFAULT NOW());",
+            "productsTableDefinition": "CREATE TABLE products (product_id UUID PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, price DECIMAL(10, 2), image_url TEXT, metadata JSONB);",
+            "ordersTableDefinition": "CREATE TABLE orders (order_id UUID PRIMARY KEY, user_id UUID, status VARCHAR(50), details TEXT, created_at TIMESTAMPTZ DEFAULT NOW());"
+        },
+        "function": "Define relational database structure to store static content and transactional data needed by the chatbot.",
+        "static_description": "SQL table definitions executed during initial setup to prepare storage for FAQs, products, and order-related data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chatAPIClient": "Frontend JavaScript module making authenticated fetch calls to /api/chat/send-message and related endpoints."
+        },
+        "function": "Ensure all dynamic content in the chat interface is sourced from live backend APIs rather than hardcoded values.",
+        "static_description": "Client-side code that initializes empty states for messages and session, then populates them via asynchronous API calls once mounted.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Mount",
+                "description": "Triggers useEffect hook to initiate session creation and load previous chat history if available."
+            },
+            {
+                "interaction": "Form Submit",
+                "description": "Serializes user input and dispatches it to the backend API, updating local state with both sent and received messages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeCSSFile": "Global CSS file containing :root variables --background-snow: #fffafa; --component-dim-gray: #696969; applied throughout the application."
+        },
+        "function": "Apply consistent visual styling across the entire application using specified color palette.",
+        "static_description": "All components inherit base styles defined in global stylesheet, ensuring uniformity of background (snow) and component colors (dim gray).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScript": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\" added under scripts in root package.json."
+        },
+        "function": "Enable single-command installation of dependencies for both frontend and backend projects.",
+        "static_description": "Root-level package.json script entry that orchestrates parallel execution of npm install commands in nested directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "CLI Command Execution",
+                "description": "Running `npm run install:all` executes dependency installations concurrently in both frontend and backend folders."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "devScript": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" added under scripts in root package.json."
+        },
+        "function": "Facilitate simultaneous development server startup for frontend and backend applications.",
+        "static_description": "Root-level package.json script enabling concurrent launching of dev servers from nested project directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "CLI Command Execution",
+                "description": "Executing `npm run dev` starts both frontend and backend development environments concurrently."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionManagementAPI": "API endpoints POST /api/sessions/create and GET /api/sessions/:id to initialize and retrieve chat sessions.",
+            "userSessionsTable": "Database table: session_id (UUID), user_identifier (string or null), start_time (datetime), end_time (datetime or null)."
+        },
+        "function": "Track and maintain context for each user’s interaction with the chatbot over time.",
+        "static_description": "Mechanism to assign unique identifiers to conversations and associate subsequent exchanges with those identifiers.",
+        "interaction_and_states": [
+            {
+                "interaction": "New Session Initiation",
+                "description": "Automatically triggered when a user opens the chat interface for the first time or after a timeout period."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketLibrary": "Socket.IO or similar library integrated into both frontend and backend to enable bidirectional communication.",
+            "realtimeMessagingSchema": "Messages transmitted over WebSocket channel follow format: { event: 'message', data: { sender, content, timestamp } }."
+        },
+        "function": "Deliver instant message updates between user and chatbot without requiring page refresh.",
+        "static_description": "Persistent connection maintained between client and server facilitating immediate exchange of chat events.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Event Emission",
+                "description": "Client emits 'sendMessage' event upon user submission; server listens and broadcasts 'receiveMessage' back to connected clients."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingMiddleware": "Centralized error catching layer in backend returning standardized JSON error responses.",
+            "fallbackResponseMessage": "Predefined string 'Sorry, I am currently unable to assist. Please try again later.' returned on API failure."
+        },
+        "function": "Gracefully manage unexpected issues such as network timeouts, invalid payloads, or downstream service unavailability.",
+        "static_description": "Integrated safeguards preventing crashes and informing users about problems without exposing system internals.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Failure",
+                "description": "Returns fallback message to user and logs detailed error server-side for diagnostics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "inputValidationRules": "Joi or Yup schema validating message length (>0 chars, <1000 chars), allowed characters, and presence of required fields.",
+            "validationErrorResponse": "Standardized JSON response indicating which fields failed validation and why."
+        },
+        "function": "Prevent injection attacks and malformed data from compromising the integrity of the chat system.",
+        "static_description": "Server-side checks ensuring incoming messages conform to expected formats before processing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Malformed Payload Submission",
+                "description": "Rejects request with 400 Bad Request and descriptive error message if validation fails."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loggingService": "Winston or Bunyan logger writing structured logs to console/file with levels info/warn/error.",
+            "performanceMetricsSchema": "Log entries include duration, success/failure flags, and identifiers for tracing interactions."
+        },
+        "function": "Capture operational insights for debugging, optimization, and compliance auditing.",
+        "static_description": "Background process recording significant events like message exchanges, errors, and performance metrics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Event Occurrence",
+                "description": "Every processed message and notable backend activity generates a timestamped log entry enriched with contextual metadata."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveChatStyles": "Media queries adjusting chat window dimensions, font sizes, and layout orientation for mobile, tablet, and desktop viewports."
+        },
+        "function": "Adapt the chat interface presentation to fit various screen sizes and device capabilities.",
+        "static_description": "CSS rules modifying element sizing and positioning depending on viewport width to ensure usability on handheld devices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Viewport Resize",
+                "description": "Dynamically adjusts padding, margins, and flex properties to optimize readability and touch interaction."
+            }
+        ]
+    }
+]

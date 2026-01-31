@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Client identification functionality with search and selection capabilities",
+        "user_persona": "A customer service representative named Sarah who needs to quickly find client information during a support call.",
+        "user_goal": "To identify and select the correct client from a search result list.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Client Search",
+                "description": "Sarah receives a call from a client and begins typing the client's name into the search field to locate their profile.",
+                "action": "Click on the search input field and start typing the client's name.",
+                "expected_outcome": "The input field is focused and a dropdown list of matching clients appears as she types."
+            },
+            {
+                "step": 2,
+                "title": "Selecting the Correct Client",
+                "description": "After seeing several matches, Sarah clicks on the correct client from the dropdown list to proceed.",
+                "action": "Click on the correct client from the dropdown list.",
+                "expected_outcome": "The dropdown closes, and the client's information is displayed in a highlighted card with their name, ID, and contact details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Call type selection dropdown or radio button component",
+        "user_persona": "A customer service agent named Mark who is logging a new call.",
+        "user_goal": "To select the appropriate category for the incoming customer call.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Call Type Dropdown",
+                "description": "Mark needs to categorize the reason for the customer's call and clicks on the call type dropdown to view available options.",
+                "action": "Click on the 'Call Type' dropdown.",
+                "expected_outcome": "The dropdown expands to show all available call types fetched from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Call Type",
+                "description": "Mark identifies the relevant call type and clicks on it to make his selection.",
+                "action": "Click on the desired call type option.",
+                "expected_outcome": "The dropdown collapses and the selected call type is displayed in the dropdown field."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Information recording form fields for capturing call details",
+        "user_persona": "A customer service rep named Lisa who is documenting details about a customer's issue.",
+        "user_goal": "To accurately record the specifics of the customer's call for future reference.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing Call Details Field",
+                "description": "Lisa clicks on the call details textarea to begin entering information about the customer's issue.",
+                "action": "Click on the 'Call Details' textarea.",
+                "expected_outcome": "The textarea becomes focused and ready for text input."
+            },
+            {
+                "step": 2,
+                "title": "Entering Call Information",
+                "description": "Lisa types a detailed description of the customer's problem into the textarea.",
+                "action": "Type the call details into the textarea.",
+                "expected_outcome": "The entered text is visible in the textarea and stored in the component's state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Action step recording section for documenting actions taken during calls",
+        "user_persona": "A customer service agent named Tom who is resolving a client's issue.",
+        "user_goal": "To document the steps he has taken to resolve the customer's problem.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding an Action Item",
+                "description": "Tom has performed a specific action to help the customer and wants to record it in the system.",
+                "action": "Type action description in the input field and press Enter.",
+                "expected_outcome": "A new action item appears in the list with the entered description and an unchecked completion box."
+            },
+            {
+                "step": 2,
+                "title": "Marking Action as Completed",
+                "description": "Tom has finished the documented action and wants to mark it as complete.",
+                "action": "Click the checkbox next to the action item.",
+                "expected_outcome": "The checkbox becomes checked, indicating the action has been completed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Follow-up step recording functionality for scheduling future actions",
+        "user_persona": "A customer service representative named Emma who needs to schedule a follow-up call.",
+        "user_goal": "To schedule a follow-up action with a specific due date.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Follow-up Date",
+                "description": "Emma needs to schedule a follow-up and clicks on the date picker to select when it should happen.",
+                "action": "Click on the date picker input.",
+                "expected_outcome": "A calendar widget appears for date selection."
+            },
+            {
+                "step": 2,
+                "title": "Creating Follow-up Item",
+                "description": "Emma selects the date, enters a description for the follow-up, and adds it to the system.",
+                "action": "Select a date, enter description, and click 'Add Follow-up' button.",
+                "expected_outcome": "The new follow-up item appears in the list with the selected date and description."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Additional information recording field for miscellaneous notes",
+        "user_persona": "A customer service agent named Alex who wants to add extra context to a call log.",
+        "user_goal": "To record additional observations that don't fit in other sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Additional Notes",
+                "description": "Alex has some extra information about the customer's situation and wants to record it.",
+                "action": "Click on the 'Additional Notes' textarea and type the information.",
+                "expected_outcome": "The textarea becomes focused and accepts text input."
+            },
+            {
+                "step": 2,
+                "title": "Saving Notes",
+                "description": "After typing the notes, Alex saves them to ensure they're recorded in the system.",
+                "action": "Click the 'Save' button next to the notes textarea.",
+                "expected_outcome": "The notes are saved and persisted through the backend API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "New call log creation form with all required data entry components",
+        "user_persona": "A new customer service agent named Jordan who is logging his first customer call.",
+        "user_goal": "To create a complete call log record with all necessary information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Call Log Form",
+                "description": "Jordan fills out all required fields in the call log form including client info, call type, and details.",
+                "action": "Complete all fields in the new call log form.",
+                "expected_outcome": "All form fields are filled with appropriate data and the submit button becomes enabled."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Call Log",
+                "description": "Jordan reviews his entries and submits the completed call log to the system.",
+                "action": "Click the 'Submit' button at the bottom of the form.",
+                "expected_outcome": "The form data is validated and sent to the backend API to create a new call log record."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "View open calls page displaying unresolved customer service calls",
+        "user_persona": "A team supervisor named Patricia who wants to check the status of ongoing issues.",
+        "user_goal": "To review all currently open customer service calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Open Calls Page",
+                "description": "Patricia goes to the open calls page to get an overview of unresolved issues.",
+                "action": "Navigate to the 'Open Calls' page.",
+                "expected_outcome": "A list of open call log cards is displayed, showing client names, call types, and timestamps."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Specific Call Details",
+                "description": "Patricia clicks on one of the open calls to see more detailed information about it.",
+                "action": "Click on a specific call log card.",
+                "expected_outcome": "The system navigates to the detailed view of the selected call log."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "View to-do calls page showing pending follow-up items",
+        "user_persona": "A customer service manager named David who needs to track upcoming tasks.",
+        "user_goal": "To review all pending follow-up items that require attention.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing To-Do Calls Page",
+                "description": "David navigates to the to-do page to see all pending follow-up items.",
+                "action": "Navigate to the 'To-Do Calls' page.",
+                "expected_outcome": "A sortable list of pending call logs is displayed with client names, call types, and due dates."
+            },
+            {
+                "step": 2,
+                "title": "Sorting To-Do Items",
+                "description": "David wants to prioritize his work by sorting the items by due date.",
+                "action": "Click on the 'Due Date' column header.",
+                "expected_outcome": "The list is sorted by due date, with the most urgent items appearing first."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Call log reports generation feature with export capabilities",
+        "user_persona": "A customer service director named Rebecca who needs monthly performance reports.",
+        "user_goal": "To generate and download a report of call logs for the past month.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Call Log Report",
+                "description": "Rebecca sets the date range for the last month and generates a report of all call logs.",
+                "action": "Set date range and click the 'Generate Report' button.",
+                "expected_outcome": "A report preview is displayed with summary statistics and charts based on the selected date range."
+            },
+            {
+                "step": 2,
+                "title": "Exporting Report",
+                "description": "Rebecca exports the generated report in PDF format for sharing with stakeholders.",
+                "action": "Click the 'PDF Export' button.",
+                "expected_outcome": "The report is downloaded as a PDF file to her computer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Client creator wizard with multi-step form for adding new clients",
+        "user_persona": "A customer service representative named Kevin who needs to register a new client.",
+        "user_goal": "To add a new client to the system using the multi-step wizard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Client Creation Wizard",
+                "description": "Kevin opens the client creation wizard to add a new client's basic information.",
+                "action": "Open the client creator wizard and fill in basic information fields.",
+                "expected_outcome": "The first step of the wizard is displayed with basic info fields, and the 'Next' button becomes enabled."
+            },
+            {
+                "step": 2,
+                "title": "Completing Wizard Steps",
+                "description": "Kevin navigates through the wizard steps, filling in contact details and additional information.",
+                "action": "Click 'Next' to go through each step, then click 'Submit' on the final step.",
+                "expected_outcome": "All client data is submitted to the backend API and the new client is added to the system."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Client information modification interface for updating existing client data",
+        "user_persona": "A customer service agent named Michelle who needs to update a client's contact information.",
+        "user_goal": "To modify and save updated contact details for an existing client.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Client Information",
+                "description": "Michelle accesses a client's profile and clicks on the phone number field to update it.",
+                "action": "Click on the phone number input field and enter the new phone number.",
+                "expected_outcome": "The phone number field becomes editable and accepts the new input."
+            },
+            {
+                "step": 2,
+                "title": "Saving Updated Information",
+                "description": "After updating the phone number, Michelle saves the changes to update the client record.",
+                "action": "Click the 'Save' button at the bottom of the form.",
+                "expected_outcome": "The updated client information is sent to the backend API and the changes are persisted."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Permission control system for managing user access levels",
+        "user_persona": "A system administrator named Robert who needs to configure user permissions.",
+        "user_goal": "To verify that different user roles have appropriate access to system features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging in as Administrator",
+                "description": "Robert logs into the system with his admin credentials to access permission settings.",
+                "action": "Log in with admin credentials.",
+                "expected_outcome": "Robert gains access to admin-only features including permission management tools."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Role-Based Access",
+                "description": "Robert navigates to different sections to confirm that admin-specific options are visible.",
+                "action": "Navigate to various pages and check for admin-only UI elements.",
+                "expected_outcome": "Admin-only configuration options and menu items are visible and accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A customer service agent named Amanda who uses the application daily.",
+        "user_goal": "To access up-to-date client and call information through the web interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Client Data",
+                "description": "Amanda navigates to the client search page which automatically fetches client data from the backend.",
+                "action": "Navigate to the client search page.",
+                "expected_outcome": "The page loads and dynamically fetches client data from the backend API for display."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Data",
+                "description": "Amanda refreshes the page to ensure she has the most current information.",
+                "action": "Refresh the browser page.",
+                "expected_outcome": "The page reloads and refetches all displayed data from the backend APIs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API layer connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A system developer named Chris who is deploying the application.",
+        "user_goal": "To ensure the backend properly connects to the database using configured environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Chris starts the backend server with the required environment variables set for database connection.",
+                "action": "Start the backend server with DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "The server starts successfully and establishes a connection to the PostgreSQL database."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Operations",
+                "description": "Chris makes an API request that requires database access to verify connectivity.",
+                "action": "Make a GET request to /api/clients to fetch client data.",
+                "expected_outcome": "The API returns client data from the PostgreSQL database without connection errors."
+            }
+        ]
+    }
+]

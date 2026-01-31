@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "A frontend dashboard interface that displays financial data from multiple companies",
+        "user_persona": "A financial analyst reviewing quarterly performance across several client companies.",
+        "user_goal": "Quickly assess the latest financial health of multiple companies at a glance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Dashboard",
+                "description": "Maria logs in and lands on the main dashboard. She immediately sees a grid of summary cards, each representing a company's latest financial snapshot.",
+                "action": "Load the dashboard page.",
+                "expected_outcome": "A mint cream background fills the screen with teal-styled summary cards showing each company's name, logo placeholder, and key metrics like revenue and profit."
+            },
+            {
+                "step": 2,
+                "title": "Hovering Over Summary Card",
+                "description": "Maria hovers her mouse over one of the company cards to get more attention on it.",
+                "action": "Hover over a company summary card.",
+                "expected_outcome": "The card gains a subtle shadow effect indicating interactivity."
+            },
+            {
+                "step": 3,
+                "title": "Navigating to Detailed View",
+                "description": "She clicks on a specific company card to dive deeper into its financial history.",
+                "action": "Click on a company summary card.",
+                "expected_outcome": "The dashboard transitions to the detailed financial data view for the selected company."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API endpoints to fetch financial data from an external PostgreSQL database",
+        "user_persona": "A developer verifying backend integration with the financial database.",
+        "user_goal": "Confirm that the backend correctly retrieves and structures financial data from the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Companies List",
+                "description": "The frontend makes a request to retrieve all registered companies from the database.",
+                "action": "Send a GET request to `/api/companies`.",
+                "expected_outcome": "Returns a JSON array of company objects with id, name, and industry fields matching the companiesTableSchema."
+            },
+            {
+                "step": 2,
+                "title": "Requesting Financial Data",
+                "description": "The developer now requests financial data for a specific company using its UUID.",
+                "action": "Send a GET request to `/api/financial-data/{companyId}`.",
+                "expected_outcome": "Receives a structured JSON response containing historical financial records aligned with financialDataTableSchema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization to access the multi-company dashboard",
+        "user_persona": "A new employee logging into the financial dashboard for the first time.",
+        "user_goal": "Access the dashboard securely using personal login credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Dashboard Without Session",
+                "description": "Alex opens the dashboard URL but hasn't logged in yet.",
+                "action": "Navigate to the dashboard landing page.",
+                "expected_outcome": "Redirected to a login form with fields for username and password."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "He enters his assigned username and password into the form.",
+                "action": "Fill in username and password fields, then press Enter.",
+                "expected_outcome": "Credentials are sent to the server; upon successful validation, he is redirected to the main dashboard with a JWT token saved locally."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Company selection interface allowing users to switch between different company views",
+        "user_persona": "A portfolio manager tracking investments across various firms.",
+        "user_goal": "Easily switch focus between different companies’ financial data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Company Selector",
+                "description": "Sarah looks at the top of the dashboard where she finds the company selector dropdown.",
+                "action": "Click on the 'Select Company' dropdown.",
+                "expected_outcome": "A list of available companies fetched from the backend appears below the dropdown."
+            },
+            {
+                "step": 2,
+                "title": "Switching Company View",
+                "description": "She selects a different company from the list to review its financials.",
+                "action": "Click on a company option in the dropdown.",
+                "expected_outcome": "Dashboard content updates dynamically to display data exclusively for the chosen company."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Consolidated financial reports view aggregating data across all selected companies",
+        "user_persona": "A CFO preparing for a board meeting requiring an overview of group performance.",
+        "user_goal": "View and analyze consolidated financial summaries across all active companies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Consolidated Reports",
+                "description": "James navigates to the consolidated reports section from the sidebar menu.",
+                "action": "Click on the 'Consolidated Reports' link in navigation.",
+                "expected_outcome": "Loads a full-screen panel displaying aggregated financial KPIs and a bar chart visualization."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Report with New Dates",
+                "description": "He adjusts the date range to match the last quarter before regenerating the report.",
+                "action": "Modify start/end dates and click 'Generate Report'.",
+                "expected_outcome": "Chart and summary numbers update to reflect only the specified period’s aggregated data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Cross-company comparison charts and tables for financial metrics",
+        "user_persona": "An equity researcher evaluating competitive positioning among peers.",
+        "user_goal": "Compare key financial metrics across multiple companies visually and numerically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Comparison Screen",
+                "description": "Emma accesses the cross-company comparison tool to evaluate revenue trends.",
+                "action": "Navigate to the comparison section.",
+                "expected_outcome": "Two panels load side-by-side—one showing a sortable table and the other a trend line chart for selected companies."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Table Rows",
+                "description": "She clicks a row in the table to highlight the corresponding data series in the chart.",
+                "action": "Click on a table row.",
+                "expected_outcome": "The associated company’s data points on the chart become visually emphasized."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Financial data browsing by company with filtering and sorting capabilities",
+        "user_persona": "An auditor checking transactional accuracy for a particular firm.",
+        "user_goal": "Browse and sort historical financial entries efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Company Financial History",
+                "description": "David selects a company and views its financial data presented in a tabular format.",
+                "action": "Navigate to the financial data browsing view for a selected company.",
+                "expected_outcome": "A paginated table loads with columns for date, revenue, profit, and expenses."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Entries",
+                "description": "He wants to see the highest profits first, so he clicks the 'Profit' column header.",
+                "action": "Click the 'Profit' column header.",
+                "expected_outcome": "Table rows reorder descending by profit value."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updates of financial data through dynamic API calls",
+        "user_persona": "A trader monitoring live fluctuations in corporate earnings.",
+        "user_goal": "Stay informed about real-time changes in financial figures without manual refresh.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Activating Live Updates",
+                "description": "Nina notices a toggle for real-time updates and enables it to track ongoing changes.",
+                "action": "Toggle the 'Real-Time Updates' switch to ON.",
+                "expected_outcome": "A WebSocket connection establishes and begins receiving live financial updates from the backend."
+            },
+            {
+                "step": 2,
+                "title": "Observing Live Changes",
+                "description": "As market conditions shift, she watches the dashboard numbers adjust automatically.",
+                "action": "Wait for incoming live data events.",
+                "expected_outcome": "Displayed financial values update instantly in response to new data pushed from the server."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Teal-themed UI components styled consistently throughout the application",
+        "user_persona": "A UX designer auditing brand consistency during product launch.",
+        "user_goal": "Verify that all interactive elements use the correct teal theme styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Button Styles",
+                "description": "Tom inspects various buttons across the dashboard to confirm they follow the teal palette.",
+                "action": "Visit multiple dashboard sections and observe button appearances.",
+                "expected_outcome": "All buttons utilize the teal color scheme defined in tealColorPalette and maintain readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Mint cream background color applied across all dashboard pages",
+        "user_persona": "A front-end developer validating CSS implementation.",
+        "user_goal": "Ensure consistent application-wide use of mint cream background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Background Across Pages",
+                "description": "Riley visits multiple dashboard routes to verify consistent background styling.",
+                "action": "Navigate between dashboard pages (home, reports, comparisons).",
+                "expected_outcome": "Each page displays a solid mint cream (#F5FFFA) background as defined in backgroundStyleClass."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive reporting tools enabling users to generate custom financial reports",
+        "user_persona": "A department head needing a specialized report for internal planning.",
+        "user_goal": "Build and export a custom financial report tailored to his team's needs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Custom Report Builder",
+                "description": "Michael drags desired financial metrics onto the canvas to construct his report.",
+                "action": "Drag metric blocks into the report builder area.",
+                "expected_outcome": "Selected metrics appear in the preview pane ready for configuration."
+            },
+            {
+                "step": 2,
+                "title": "Generating Final Report",
+                "description": "After setting filters, he clicks the generate button to produce the document.",
+                "action": "Click the 'Generate' button.",
+                "expected_outcome": "A downloadable PDF or CSV file is produced based on the customized setup."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data visualization components such as graphs, charts, and summary cards",
+        "user_persona": "A business stakeholder presenting quarterly results to executives.",
+        "user_goal": "Present clear visual insights derived from complex financial datasets.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Summary Cards",
+                "description": "Lisa scans the summary cards at the top of the dashboard for quick takeaways.",
+                "action": "Load the dashboard and scan the top summary cards.",
+                "expected_outcome": "Cards clearly display major KPIs like revenue and profit using the standard template structure."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Chart Details",
+                "description": "She hovers over segments of a pie chart to reveal precise percentage breakdowns.",
+                "action": "Hover over segments in a chart visualization.",
+                "expected_outcome": "Tooltips appear showing exact numeric values and labels for hovered chart regions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout ensuring usability on desktop and mobile devices",
+        "user_persona": "A remote worker accessing the dashboard from a tablet during travel.",
+        "user_goal": "Use the dashboard effectively regardless of device size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "On her laptop, Priya resizes the window to simulate mobile viewing.",
+                "action": "Manually resize browser window to narrow width.",
+                "expected_outcome": "Layout adapts responsively—navigation collapses into a hamburger menu and components rearrange accordingly."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Mobile Menu",
+                "description": "She taps the hamburger icon to access hidden navigation links.",
+                "action": "Click the hamburger menu icon.",
+                "expected_outcome": "Mobile navigation slides open revealing all dashboard sections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration in package.json for `npm run install:all` to install frontend and backend dependencies",
+        "user_persona": "A DevOps engineer setting up a fresh development environment.",
+        "user_goal": "Install all project dependencies quickly using a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Jake clones the repo and runs the installation script to prepare both environments.",
+                "action": "Execute `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend folders have their node_modules installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration in package.json for `npm run dev` to start both frontend and backend concurrently",
+        "user_persona": "A full-stack developer beginning daily development work.",
+        "user_goal": "Launch both frontend and backend services with one terminal command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Maya uses the convenience script to boot up both development servers together.",
+                "action": "Run `npm run dev` from the project root.",
+                "expected_outcome": "Frontend starts on port 3000 and backend on port 8080 simultaneously in the same terminal session."
+            }
+        ]
+    }
+]

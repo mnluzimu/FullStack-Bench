@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement a whistleblower secrets/awareness website to expose truths about business and society. The website should have an anonymous reporting feature, where users can submit their insights and evidence. The website should also have a discussion forum, where users can discuss and share their thoughts and opinions. The website should have a search function, where users can search for specific topics and keywords. The website should also have a news and blog section, where the latest news and articles are published. Use a azure background and apply midnight blue to the UI components.

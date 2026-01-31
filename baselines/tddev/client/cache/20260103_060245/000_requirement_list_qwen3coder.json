@@ -1,0 +1,191 @@
+[
+    {
+        "resource_dependency": {
+            "newsDataAPI": "GET /api/news endpoint returning list of news articles with fields: id, title, summary, content, published_at, image_url.",
+            "companyProfilesAPI": "GET /api/companies endpoint returning list of companies with fields: id, name, description, logo_url, website.",
+            "eventsAPI": "GET /api/events endpoint returning list of events with fields: id, title, description, event_date, location, is_past_event.",
+            "newsletterSubscribeAPI": "POST /api/newsletter/subscribe expecting { email: string } in request body.",
+            "adSpacesAPI": "GET /api/ads endpoint returning list of active ads with fields: id, title, image_url, target_url, placement_area.",
+            "backgroundColorStyle": "#FDF5E6",
+            "componentColorStyle": "#BC8F8F"
+        },
+        "function": "Display homepage with navigation bar and sections for News, Companies, Events, Newsletter Subscription, and Ad Spaces.",
+        "static_description": "The page displays a header with navigation links to News, Companies, Events, and Admin Panel. Below the header is a main content area featuring a grid layout showing latest news snippets, followed by company cards, upcoming events, and an advertisement banner. At the bottom, there’s a newsletter subscription form with an input field for email and a subscribe button. Background color set to #FDF5E6 (old lace) and component borders/text use #BC8F8F (rosy brown).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any news card navigates to the full article view."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on any company card navigates to the detailed company profile page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on any event card navigates to the event details page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the Subscribe button submits the entered email via POST to /api/newsletter/subscribe."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminLoginAPI": "POST /api/admin/login expecting { username: string, password: string }, returns JWT token upon success.",
+            "authMiddleware": "All protected routes require Bearer Token Authorization header.",
+            "backgroundColorStyle": "#FDF5E6",
+            "componentColorStyle": "#BC8F8F"
+        },
+        "function": "Provide secure login access to administrative backend panel.",
+        "static_description": "A standalone login page displayed when accessing /admin without valid credentials. Contains two input fields labeled Username and Password, along with a Login button. Page background uses #FDF5E6 (old lace) and form elements styled with #BC8F8F (rosy brown).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Login button sends credentials to /api/admin/login. On success, redirects to admin dashboard; otherwise shows error message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "newsManagementAPIs": "GET /api/admin/news (list), GET /api/admin/news/:id (single), POST /api/admin/news (create), PUT /api/admin/news/:id (update), DELETE /api/admin/news/:id (delete)",
+            "newsFormFields": [
+                "title",
+                "summary",
+                "content",
+                "published_at",
+                "image_url"
+            ],
+            "backgroundColorStyle": "#FDF5E6",
+            "componentColorStyle": "#BC8F8F"
+        },
+        "function": "Allow authenticated admins to manage news articles through CRUD operations.",
+        "static_description": "Admin dashboard contains a tabbed interface with 'News', 'Companies', 'Events', and 'Ads'. In the News tab, a table lists existing articles with columns for Title, Date, Summary, Actions. Above the table is a Create New Article button which opens a modal containing form inputs for each news attribute.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Create New Article opens a modal with a blank form for entering article details."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Save in the modal sends data via POST to /api/admin/news. Upon success, the new entry appears in the table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Edit next to an article loads its data into the same modal via GET /api/admin/news/:id. Clicking Save updates the record via PUT /api/admin/news/:id."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Delete prompts confirmation then removes the article via DELETE /api/admin/news/:id."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyProfileManagementAPIs": "GET /api/admin/companies (list), GET /api/admin/companies/:id (single), POST /api/admin/companies (create), PUT /api/admin/companies/:id (update), DELETE /api/admin/companies/:id (delete)",
+            "companyFormFields": [
+                "name",
+                "description",
+                "logo_url",
+                "website"
+            ],
+            "backgroundColorStyle": "#FDF5E6",
+            "componentColorStyle": "#BC8F8F"
+        },
+        "function": "Enable administrators to create, update, and delete company profiles.",
+        "static_description": "Within the Companies tab of the admin dashboard, a table displays all current company entries with Name, Description preview, Website link, and Action buttons. There is also a Create New Company button above the table that opens a modal with form fields matching company attributes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Create New Company opens a modal with empty form fields for company info."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Save in the modal sends data via POST to /api/admin/companies. Success adds the new row to the table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Edit loads the selected company's data into the modal via GET /api/admin/companies/:id. Saving updates it via PUT /api/admin/companies/:id."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Delete confirms deletion before sending DELETE request to /api/admin/companies/:id."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "eventManagementAPIs": "GET /api/admin/events (list), GET /api/admin/events/:id (single), POST /api/admin/events (create), PUT /api/admin/events/:id (update), DELETE /api/admin/events/:id (delete)",
+            "eventFormFields": [
+                "title",
+                "description",
+                "event_date",
+                "location",
+                "is_past_event"
+            ],
+            "backgroundColorStyle": "#FDF5E6",
+            "componentColorStyle": "#BC8F8F"
+        },
+        "function": "Support creation, modification, and removal of industry events by authorized users.",
+        "static_description": "Inside the Events tab of the admin panel, a sortable table shows all events including columns for Title, Event Date, Location, Status (Past/Future), and Action buttons. A Create New Event button sits atop the table, opening a modal form pre-filled with event-related input fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Create New Event opens a modal with form fields for event details."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Save posts data to /api/admin/events. Successful submission appends the event to the table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Edit retrieves event data via GET /api/admin/events/:id and populates the modal. Changes saved via PUT /api/admin/events/:id."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Delete requires confirmation prior to executing DELETE /api/admin/events/:id."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adSpaceManagementAPIs": "GET /api/admin/ads (list), GET /api/admin/ads/:id (single), POST /api/admin/ads (create), PUT /api/admin/ads/:id (update), DELETE /api/admin/ads/:id (delete)",
+            "adFormFields": [
+                "title",
+                "image_url",
+                "target_url",
+                "placement_area"
+            ],
+            "backgroundColorStyle": "#FDF5E6",
+            "componentColorStyle": "#BC8F8F"
+        },
+        "function": "Allow administrators to control advertising space placements throughout the frontend.",
+        "static_description": "Located within the Ads tab of the admin dashboard, this section presents a table listing all current advertisements showing Title, Placement Area, Preview Image, Target URL, and Action controls. A Create New Ad Space button leads to a modal form allowing upload or selection of ad assets and configuration of placement areas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Create New Ad Space opens a modal with form fields for ad metadata and asset references."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Save submits the ad data via POST to /api/admin/ads. If successful, the ad is added to the table."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Edit pulls existing ad data via GET /api/admin/ads/:id and fills the modal. Updates are sent via PUT /api/admin/ads/:id."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Delete asks for confirmation before triggering DELETE /api/admin/ads/:id."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbSchemaInstructions": "CREATE TABLE news_articles (id SERIAL PRIMARY KEY, title TEXT NOT NULL, summary TEXT, content TEXT NOT NULL, published_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, image_url TEXT); CREATE TABLE companies (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, logo_url TEXT, website TEXT); CREATE TABLE events (id SERIAL PRIMARY KEY, title TEXT NOT NULL, description TEXT, event_date DATE NOT NULL, location TEXT, is_past_event BOOLEAN DEFAULT FALSE); CREATE TABLE advertisements (id SERIAL PRIMARY KEY, title TEXT, image_url TEXT, target_url TEXT, placement_area TEXT); CREATE TABLE newsletter_subscribers (id SERIAL PRIMARY KEY, email VARCHAR(255) UNIQUE NOT NULL, subscribed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP); CREATE TABLE admins (id SERIAL PRIMARY KEY, username VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT NOT NULL);"
+        },
+        "function": "Define database schema to support core entities: news articles, companies, events, advertisements, subscribers, and admin accounts.",
+        "static_description": "A PostgreSQL database initialized with tables named news_articles, companies, events, advertisements, newsletter_subscribers, and admins. Each table includes appropriate primary keys, foreign keys where needed, and relevant columns per entity specifications.",
+        "interaction_and_states": []
+    }
+]

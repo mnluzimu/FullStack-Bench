@@ -1,0 +1,254 @@
+[
+    {
+        "resource_dependency": {
+            "editorIcons": "/assets/editor-icons/",
+            "livePreviewFrame": "<iframe id='preview-frame'></iframe>",
+            "syntaxHighlighterLibrary": "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js",
+            "htmlParserLibrary": "https://cdn.jsdelivr.net/npm/turndown@7.1.1/dist/turndown.min.js",
+            "projectDataSchema": "Database table projects(project_id UUID PRIMARY KEY, name TEXT NOT NULL, created_at TIMESTAMP DEFAULT NOW(), updated_at TIMESTAMP)",
+            "documentDataSchema": "Database table documents(document_id UUID PRIMARY KEY, project_id UUID REFERENCES projects(project_id), title TEXT NOT NULL, content TEXT, file_type TEXT CHECK(file_type IN ('html', 'template')), created_at TIMESTAMP DEFAULT NOW(), updated_at TIMESTAMP)",
+            "fileAssetDataSchema": "Database table file_assets(asset_id UUID PRIMARY KEY, document_id UUID REFERENCES documents(document_id), filename TEXT NOT NULL, url TEXT NOT NULL, mime_type TEXT, size INTEGER, uploaded_at TIMESTAMP DEFAULT NOW())"
+        },
+        "function": "Provide a dual-mode HTML editor with live preview that supports switching between code and text editing modes.",
+        "static_description": "The editor displays two main panels side-by-side. Left panel contains a tabbed interface with 'Code Editor' and 'Text Editor' tabs. Right panel shows live preview rendered in an iframe. Background color set to honeydew (#F0FFF0) and component borders/buttons in dark olive green (#556B2F). Toolbar includes buttons for mode switching, save, undo/redo actions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching between 'Code Editor' and 'Text Editor' tabs changes the left panel content. Clicking 'Save' persists current content to backend API. Undo/redo buttons trigger respective editor actions."
+            },
+            {
+                "interaction": "Type",
+                "description": "Typing in either editor updates the live preview frame in real-time after a debounce delay of 500ms."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "prismCSS": "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css",
+            "prismJS": "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js",
+            "codeMirrorLibrary": "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"
+        },
+        "function": "Implement syntax highlighting for HTML code editing mode using external libraries.",
+        "static_description": "Code editor panel uses CodeMirror with Prism theme applied. Line numbers displayed on left margin. Text appears with colored tags, attributes, and values matching standard HTML syntax highlighting conventions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As user types HTML code, syntax highlighting applies immediately with appropriate colors for elements, attributes, strings, and comments."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Editor scrolls vertically/horizontally while maintaining line number alignment."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "turndownService": "https://cdn.jsdelivr.net/npm/turndown@7.1.1/dist/turndown.min.js",
+            "markdownGuideLink": "#markdown-guide-modal"
+        },
+        "function": "Enable markdown-style text editing that automatically converts to semantic HTML markup.",
+        "static_description": "Text editor resembles a clean writing surface with minimal styling. Toolbar above provides formatting options (bold, italic, headers). Help link opens modal explaining supported markdown syntax.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Markdown syntax (*italic*, **bold**) converts to corresponding HTML (<em>, <strong>) in real-time preview."
+            },
+            {
+                "interaction": "Click",
+                "description": "Formatting toolbar buttons wrap selected text in appropriate markdown symbols which then render as HTML in preview."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "projectTreeComponent": "<div class='project-tree'></div>",
+            "newProjectModal": "#create-project-modal",
+            "projectAPISpec": "GET /api/projects, POST /api/projects, PUT /api/projects/{id}, DELETE /api/projects/{id}",
+            "documentAPISpec": "GET /api/documents?project_id={id}, POST /api/documents, PUT /api/documents/{id}, DELETE /api/documents/{id}"
+        },
+        "function": "Manage organization of multiple HTML documents under named projects via hierarchical navigation.",
+        "static_description": "Left sidebar shows collapsible tree view listing projects and their associated documents. New project/document creation forms appear in modals. Each item displays icon indicating type (folder/project, file/document).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking project/document items loads content into editor. Right-click reveals context menu with rename/delete options. '+' button creates new project or adds document to selected project."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging documents between projects reassigns ownership in backend database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "saveTemplateButton": "<button class='save-template'>Save as Template</button>",
+            "templateLibraryModal": "#template-library",
+            "templateAPISpec": "POST /api/templates, GET /api/templates, DELETE /api/templates/{id}",
+            "templateDataSchema": "Database table templates(template_id UUID PRIMARY KEY, name TEXT NOT NULL, html_content TEXT, created_at TIMESTAMP DEFAULT NOW())"
+        },
+        "function": "Allow users to save current document content as reusable templates and access saved templates.",
+        "static_description": "Templates section accessible through dedicated button in toolbar or separate library view. Saved templates listed with thumbnails and titles. Preview available before applying to current document.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save as Template' prompts naming dialog then stores current HTML to templates table. Selecting existing template inserts its content into active editor."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "helpModalContent": "## Getting Started\n1. Create a Project\n2. Add Documents\n3. Edit Content\n4. Save Templates\n\n### Keyboard Shortcuts\nCtrl+S: Save Document\nCtrl+Shift+N: New Document",
+            "helpIcon": "/assets/help-icon.svg"
+        },
+        "function": "Integrate basic user guide explaining core functionalities and keyboard shortcuts.",
+        "static_description": "Help icon positioned top-right corner opens modal containing formatted guide text with headings, lists, and shortcut references. Guide organized into sections covering setup, usage, and troubleshooting.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking help icon toggles visibility of user guide modal overlay."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveCSS": "/* Media queries targeting mobile/tablet/desktop breakpoints */",
+            "touchSupportJS": "/* Touch event handlers for mobile devices */"
+        },
+        "function": "Ensure consistent experience across desktop, tablet, and mobile platforms.",
+        "static_description": "Layout adjusts responsively with stacked panels on small screens and side-by-side on larger ones. Buttons sized appropriately for touch targets. Font scaling maintains readability on all devices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Window resizing triggers layout adjustments - collapsing sidebars, stacking panels, adjusting font sizes."
+            },
+            {
+                "interaction": "Touch",
+                "description": "Touch events handled gracefully with tap equivalents for click actions and swipe gestures for panel navigation where applicable."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "projectAPIEndpoints": "GET /api/projects, POST /api/projects, PUT /api/projects/{id}, DELETE /api/projects/{id}",
+            "documentAPIEndpoints": "GET /api/documents, POST /api/documents, PUT /api/documents/{id}, DELETE /api/documents/{id}",
+            "templateAPIEndpoints": "GET /api/templates, POST /api/templates, DELETE /api/templates/{id}",
+            "fileUploadEndpoint": "POST /api/files/upload"
+        },
+        "function": "Connect frontend components to RESTful backend services for managing dynamic data.",
+        "static_description": "All CRUD operations for projects, documents, templates, and files routed through defined API endpoints. Requests include proper authentication headers and handle success/error responses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Form",
+                "description": "Form submissions trigger async API calls with loading indicators during request lifecycle. Success displays confirmation; errors show user-friendly messages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaFiles": "./db/schema.sql"
+        },
+        "function": "Establish secure connection to PostgreSQL instance using provided environment configuration.",
+        "static_description": "Backend initializes pool connection to PostgreSQL server at startup using environment variables. Connection validated through health check query upon initialization.",
+        "interaction_and_states": [
+            {
+                "interaction": "Application Start",
+                "description": "Server bootstraps database connection and validates schema integrity. Failed connections prevent application launch with error logging."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fetchPolyfill": "https://polyfill.io/v3/polyfill.min.js?features=fetch",
+            "dataFetchingHooks": "Custom React hooks abstracting fetch logic with loading/error states"
+        },
+        "function": "Dynamically retrieve all application data exclusively through backend API requests.",
+        "static_description": "Frontend never contains hardcoded sample data. All content loaded via authenticated HTTP(S) requests to backend endpoints. Loading placeholders shown until responses received.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Initial page load triggers fetch calls to populate projects, recent documents, and templates. Subsequent navigations update only relevant data segments."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptPath": "./scripts/install-all.sh",
+            "packageJsonStructure": "{ \"scripts\": { \"install:all\": \"./scripts/install-all.sh\" } }"
+        },
+        "function": "Configure monorepo build system to install dependencies for both frontend and backend simultaneously.",
+        "static_description": "Root package.json includes script entry 'install:all' executing shell command that sequentially runs npm install in client/ and server/ directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Execution",
+                "description": "Running 'npm run install:all' from terminal executes dependency installations for both frontend and backend modules in parallel or sequence depending on implementation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentDevScript": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+            "devDependencies": "concurrently package added to root devDependencies"
+        },
+        "function": "Enable simultaneous development server execution for frontend and backend processes.",
+        "static_description": "Root package.json defines 'dev' script launching both frontend (typically Vite/Webpack dev server) and backend (Node.js server) using concurrent process manager.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Execution",
+                "description": "Executing 'npm run dev' spawns both servers in same terminal window with prefixed logs distinguishing source (FE/BE). Process termination stops both servers cleanly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalStylesheet": ":root { --bg-color: #F0FFF0; --component-color: #556B2F; } body { background-color: var(--bg-color); } .component { color: var(--component-color); }",
+            "themeTokens": "CSS custom properties defining honeydew background and dark olive green accents used throughout app"
+        },
+        "function": "Apply specified color scheme consistently across entire application interface.",
+        "static_description": "Global CSS variables define honeydew background (#F0FFF0) and dark olive green components (#556B2F). Applied to base elements, buttons, inputs, and navigation bars uniformly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Render",
+                "description": "All UI components inherit themed styles automatically without requiring manual class assignment. Theme remains consistent regardless of viewport size or device orientation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fileUploadDropzone": "<div class='dropzone'>Drag & drop files here</div>",
+            "assetManagerModal": "#manage-assets",
+            "uploadAPISpec": "POST /api/files/upload, GET /api/files, DELETE /api/files/{id}",
+            "fileStoragePath": "/uploads/"
+        },
+        "function": "Support uploading, storing, and retrieving image and asset files linked to documents.",
+        "static_description": "Dedicated asset management area allows browsing previously uploaded files. Drag-and-drop zone accepts multiple file types. Uploaded files stored securely with unique identifiers and metadata tracking.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging files onto dropzone initiates upload sequence showing progress bar per file. Successful uploads display thumbnail previews and insertable links/code snippets."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking uploaded assets copies embed code/link to clipboard. Delete option removes file from storage and database references."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "localStorageKeys": "['currentProjectId', 'recentDocuments', 'savedTemplates']",
+            "sessionPersistenceLogic": "JavaScript module handling automatic saving/restoring of editor/project states"
+        },
+        "function": "Persist temporary working state locally to reduce reliance on backend roundtrips.",
+        "static_description": "Browser localStorage retains information about last opened project, recently edited documents, draft changes, and favorite templates. Data encrypted minimally if sensitive.",
+        "interaction_and_states": [
+            {
+                "interaction": "Unload Page",
+                "description": "Before closing tab/window, current state serialized and saved to localStorage. Next visit restores previous session automatically unless explicitly cleared."
+            },
+            {
+                "interaction": "Refresh",
+                "description": "Hard refresh preserves critical session data but clears transient UI states like selection ranges or scroll positions."
+            }
+        ]
+    }
+]

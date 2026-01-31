@@ -1,0 +1,242 @@
+[
+    {
+        "resource_dependency": {
+            "policyDataAPI": "RESTful API endpoint at /api/policies returning paginated list of policies with filtering and sorting support",
+            "policyDetailAPI": "RESTful API endpoint at /api/policies/{id} returning full policy details including metadata and attachments",
+            "chartingLibrary": "Integration with Chart.js library for rendering interactive charts",
+            "databaseSchema": "PostgreSQL tables: policies(id, title, description, category, jurisdiction, effective_date, status, created_at, updated_at), policy_metadata(policy_id, key, value), policy_attachments(policy_id, filename, url)",
+            "authAPI": "RESTful endpoints for user login/logout and session management"
+        },
+        "function": "Display regulatory policy dashboard with interactive data visualizations",
+        "static_description": "Dashboard page with lavender background (#E6E6FA) featuring indigo (#4B0082) header navigation bar, main content area containing grid of policy cards, sidebar filters panel, top search bar, and chart visualization section above the policy listings",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on policy card navigates to detailed policy view page"
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements displays tooltip with additional data points"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policyListAPI": "RESTful API endpoint at /api/policies supporting query parameters for pagination, filters, and sorting",
+            "filterOptionsData": "Predefined categories, jurisdictions, statuses, and date ranges sourced from backend configuration",
+            "searchAPI": "API endpoint at /api/policies/search accepting keyword queries"
+        },
+        "function": "Enable browsing and searching through regulatory policies with advanced filtering",
+        "static_description": "Left-aligned vertical filter panel with indigo headers showing collapsible sections for Category, Jurisdiction, Status, Date Range, and Search field; main content area shows responsive grid of policy summary cards with consistent spacing and typography",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking filter checkboxes applies filters immediately and updates policy listing without page reload"
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in search field triggers API call to retrieve matching policies"
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loading more policies as user reaches bottom of current results"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingAPI": "API endpoint at /api/policies/charts providing aggregated data for visualization",
+            "chartTypes": [
+                "bar",
+                "line",
+                "pie",
+                "area"
+            ],
+            "colorPalette": "Indigo-based color scheme for chart elements"
+        },
+        "function": "Render interactive charts representing policy data distributions and trends",
+        "static_description": "Horizontal bar chart showing policy count by category, line graph displaying policy enactment timeline, pie chart illustrating jurisdiction distribution; all rendered within bordered containers with indigo-themed controls and tooltips",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of corresponding data series"
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart segments reveals detailed numerical values and percentages"
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging chart time range selector adjusts displayed temporal scope dynamically"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterAPI": "Query parameter-based filtering mechanism integrated into policy list API",
+            "filterFields": [
+                "category",
+                "jurisdiction",
+                "status",
+                "effective_date_range"
+            ]
+        },
+        "function": "Allow users to refine policy views using multiple filter criteria",
+        "static_description": "Collapsible side panel with indigo-styled accordion headers containing checkbox groups for each filter category, clear filters button, and apply/reset actions positioned consistently regardless of screen size",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting/deselecting checkboxes updates live preview of filtered policy count"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Clear Filters' resets all selections and refreshes policy listing"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sortAPI": "Sort parameters supported via query string in policy list API endpoint",
+            "sortableFields": [
+                "title",
+                "effective_date",
+                "created_at",
+                "jurisdiction",
+                "category"
+            ]
+        },
+        "function": "Provide sorting capabilities for organizing policy lists",
+        "static_description": "Dropdown menu labeled 'Sort By' placed prominently near top right corner of policy listing area, styled with indigo border and arrow indicator; default selection shown as 'Most Recent'",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opening dropdown reveals alphabetical list of sortable fields with ascending/descending toggle option"
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting sort option re-fetches policy data with new ordering applied instantly"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingService": "Axios or Fetch API implementation handling GET requests to backend services",
+            "loadingIndicator": "Spinner animation SVG component while awaiting API responses"
+        },
+        "function": "Fetch all policy-related data dynamically from backend REST APIs",
+        "static_description": "Empty state placeholders replaced progressively with loaded content; centralized spinner animation during initial load sequences; error messaging container visible only upon failed API calls",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component mounts trigger automatic fetching of relevant datasets from configured API endpoints"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "expressAppSetup": "Node.js Express server setup with pg client pool configuration"
+        },
+        "function": "Serve API endpoints connected to PostgreSQL database instance",
+        "static_description": "Express.js server routing layer exposing /api/* paths mapped to database query handlers; middleware stack includes CORS, body parsing, and authentication checks before reaching data layers",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "policiesTableSchema": "CREATE TABLE policies (id SERIAL PRIMARY KEY, title VARCHAR(255), description TEXT, category VARCHAR(100), jurisdiction VARCHAR(100), effective_date DATE, status VARCHAR(50), created_at TIMESTAMP DEFAULT NOW(), updated_at TIMESTAMP DEFAULT NOW())",
+            "metadataTableSchema": "CREATE TABLE policy_metadata (policy_id INTEGER REFERENCES policies(id), key VARCHAR(100), value TEXT)",
+            "attachmentsTableSchema": "CREATE TABLE policy_attachments (policy_id INTEGER REFERENCES policies(id), filename VARCHAR(255), url TEXT)"
+        },
+        "function": "Define relational database structure for storing regulatory policy information",
+        "static_description": "Normalized PostgreSQL schema consisting of three interconnected tables managed under public schema; indexes defined on frequently queried columns such as title, category, jurisdiction, and effective_date",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --background-color: #E6E6FA; --primary-color: #4B0082; }",
+            "themeTokens": "Design tokens specifying lavender backgrounds and indigo accents throughout application stylesheets"
+        },
+        "function": "Apply prescribed color palette globally across UI components",
+        "static_description": "Consistent use of lavender (#E6E6FA) for page backgrounds and indigo (#4B0082) for buttons, links, form inputs, navigation bars, and chart elements; CSS custom properties ensure maintainable theme consistency",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mediaQueries": "@media screen and (max-width: 768px) breakpoints for mobile adaptation",
+            "flexboxGridSystem": "CSS Flexbox-based responsive grid framework"
+        },
+        "function": "Ensure optimal viewing experience across device sizes",
+        "static_description": "Fluid layouts adapting between multi-column desktop grids and single-column stacked mobile presentations; touch-friendly tap targets sized appropriately for fingers; scalable vector icons maintaining clarity on high-DPI screens",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchEndpoint": "GET /api/policies/search?q={query}",
+            "autocompleteAPI": "Optional future enhancement for predictive text suggestions"
+        },
+        "function": "Enable keyword-based discovery of specific regulatory policies",
+        "static_description": "Prominent search input field located centrally above policy listings, featuring magnifying glass icon prefix, placeholder text prompting users to enter keywords or identifiers, and subtle indigo focus ring when active",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Submitting search executes debounced API request returning matched policies ranked by relevance score"
+            },
+            {
+                "interaction": "Type",
+                "description": "Real-time character entry triggers delayed auto-search after brief pause in typing activity"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policyDetailsEndpoint": "GET /api/policies/{id} returning complete record set including attachments and metadata",
+            "markdownRenderer": "Library for displaying formatted policy documents and descriptions"
+        },
+        "function": "Present comprehensive overview of individual policy upon selection",
+        "static_description": "Dedicated policy detail page structured into tabbed sections: Overview, Full Text, Metadata, Attachments; clean typography hierarchy emphasizing title and executive summary with indigo-accented tabs and back navigation link",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigating between tabs loads respective content blocks without refreshing entire page"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportService": "Server-side PDF/CSV generation utility exposed through /api/export endpoint",
+            "downloadLinkHandler": "Client-side blob URL creation facilitating file downloads"
+        },
+        "function": "Permit downloading of policy data and generated visualizations",
+        "static_description": "Floating action button fixed to lower-right corner featuring downward arrow icon indicating export capability; context-sensitive menu appearing on click offering choices like 'Download CSV', 'Export Chart Image', and 'Print Summary'",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiating export generates downloadable artifact based on currently displayed dataset or chart view"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginAPI": "POST /api/auth/login validating credentials against user table",
+            "sessionMiddleware": "JWT token handling and verification middleware chain",
+            "protectedRoutes": "Authentication guards preventing unauthorized access to sensitive routes"
+        },
+        "function": "Control access to restricted policy information based on user roles",
+        "static_description": "Modal overlay triggered upon visiting protected pages, presenting standard username/password form with indigo-styled submit button and optional password recovery link; authenticated sessions persist via secure HTTP-only cookies",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Successful login redirects user to originally requested protected resource with persistent session established"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonTemplate": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }",
+            "concurrentlyDependency": "Development dependency ensuring parallel execution of frontend and backend processes"
+        },
+        "function": "Configure unified development workflow commands for repository",
+        "static_description": "Root-level package.json file containing script definitions enabling simultaneous installation and startup of frontend/backend projects using concurrently utility; no build artifacts included in version control",
+        "interaction_and_states": []
+    }
+]

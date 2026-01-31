@@ -1,0 +1,181 @@
+[
+    {
+        "resource_dependency": {
+            "questionFormSubmitAPI": "POST /api/questions",
+            "titleFieldPlaceholder": "Enter your question title",
+            "contentFieldPlaceholder": "Describe your question in detail"
+        },
+        "function": "Allow users to submit new questions with a title and content.",
+        "static_description": "A form with two input fields: one for the question title and a larger text area for the question content. Both fields use placeholders from resource dependencies. Submit button styled with saddle brown background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends the form data via POST request to the backend API endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "questionListFetchAPI": "GET /api/questions",
+            "questionDataSchema": "Table 'questions' with columns: id (UUID), title (string), content_excerpt (string), created_at (timestamp)",
+            "defaultBackgroundStyle": "background-color: beige;",
+            "componentAccentColor": "color: saddlebrown;"
+        },
+        "function": "Display a list of submitted questions with their titles and content excerpts.",
+        "static_description": "A vertically stacked list of cards showing each question's title and excerpt. Background set to beige, card borders styled with saddle brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a question card navigates to the detailed question page for that question."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "questionDetailFetchAPI": "GET /api/questions/{id}",
+            "answerListFetchAPI": "GET /api/questions/{id}/answers",
+            "questionDataSchema": "Table 'questions' with columns: id (UUID), title (string), content (text), created_at (timestamp)",
+            "answerDataSchema": "Table 'answers' with columns: id (UUID), question_id (foreign key), content (text), rating (integer), created_at (timestamp)"
+        },
+        "function": "Show the full content of a selected question along with all associated answers.",
+        "static_description": "Top section displays the complete question title and content. Below it, a section lists all answers related to this question. Background is beige with saddle brown accents on headers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "answerSubmitAPI": "POST /api/questions/{id}/answers",
+            "answerTextAreaPlaceholder": "Write your answer here..."
+        },
+        "function": "Provide an interface for submitting answers to a specific question.",
+        "static_description": "Located below the question details, includes a text area with placeholder text and a submit button styled in saddle brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button posts the answer content to the backend API for the current question."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "answerListFetchAPI": "GET /api/questions/{id}/answers",
+            "answerDataSchema": "Table 'answers' with columns: id (UUID), question_id (foreign key), content (text), rating (integer), created_at (timestamp)"
+        },
+        "function": "Render all submitted answers beneath their corresponding question.",
+        "static_description": "Each answer appears in a separate card with its content and current rating displayed. Cards have beige background with saddle brown borders.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "ratingUpdateAPI": "PATCH /api/answers/{id}/rate",
+            "ratingIcons": {
+                "upvote": "▲",
+                "downvote": "▼"
+            }
+        },
+        "function": "Enable users to vote on the helpfulness of answers through upvotes/downvotes.",
+        "static_description": "Each answer shows two directional buttons (up/down arrows) next to the current rating count. Buttons are colored saddle brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking either arrow sends a PATCH request to update the rating value in the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketConnection": "WebSocket connection for real-time updates",
+            "ratingUpdateEvent": "Event name: 'answer_rated'"
+        },
+        "function": "Update answer ratings dynamically without requiring a page reload.",
+        "static_description": "Ratings appear as numerical counts adjacent to voting controls. No visible changes during idle state.",
+        "interaction_and_states": [
+            {
+                "interaction": "Real-time Event",
+                "description": "Upon receiving a 'answer_rated' event over WebSocket, the relevant answer’s rating count updates immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "schemaDefinition": "CREATE TABLE questions (id UUID PRIMARY KEY, title TEXT NOT NULL, content TEXT NOT NULL, created_at TIMESTAMP DEFAULT NOW()); CREATE TABLE answers (id UUID PRIMARY KEY, question_id UUID REFERENCES questions(id), content TEXT NOT NULL, rating INTEGER DEFAULT 0, created_at TIMESTAMP DEFAULT NOW());"
+        },
+        "function": "Store all questions, answers, and answer ratings persistently in a PostgreSQL database.",
+        "static_description": "Not applicable - this defines backend persistence only.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "createQuestionEndpoint": "POST /api/questions",
+            "getQuestionsEndpoint": "GET /api/questions",
+            "getQuestionDetailEndpoint": "GET /api/questions/{id}",
+            "submitAnswerEndpoint": "POST /api/questions/{id}/answers",
+            "getAnswersEndpoint": "GET /api/questions/{id}/answers",
+            "rateAnswerEndpoint": "PATCH /api/answers/{id}/rate"
+        },
+        "function": "Expose RESTful API endpoints to support creation, retrieval, and rating operations for questions and answers.",
+        "static_description": "Defined as HTTP routes mapped to CRUD operations against the database tables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalStylesheet": "body { background-color: beige; } .accent { color: saddlebrown; }",
+            "componentLibrary": "@mui/material with custom theme overrides"
+        },
+        "function": "Apply consistent styling throughout the application using a beige background and saddle brown accent colors.",
+        "static_description": "All pages inherit beige background. Interactive elements and headers utilize saddle brown styling classes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigationLinks": [
+                "/questions",
+                "/question/{id}"
+            ],
+            "routerLibrary": "React Router DOM"
+        },
+        "function": "Support navigation between different views such as question listings and individual question details.",
+        "static_description": "Navigation bar or links allowing movement between main sections. Styled consistently with global theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking navigation links triggers client-side routing to load respective views without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbSchemaSQL": "CREATE TABLE questions (...); CREATE TABLE answers (...); CREATE TABLE ratings (...);",
+            "tableRelationships": "answers.question_id references questions.id"
+        },
+        "function": "Define relational database structure for storing questions, answers, and associated metadata.",
+        "static_description": "Three core tables defined in SQL schema with appropriate primary keys and foreign key relationships.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "envFileTemplate": "DB_HOST=localhost\nDB_PORT=5432\nDB_USERNAME=myappuser\nDB_PASSWORD=myapppassword\nDB_NAME=myapp"
+        },
+        "function": "Configure secure access credentials for connecting the backend to the PostgreSQL database.",
+        "static_description": "Environment variables stored in a .env file used by backend services for database connectivity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"concurrently \\\"npm install\\\" \\\"cd backend && npm install\\\"\"",
+            "devStartCommand": "\"dev\": \"concurrently \\\"npm run dev:frontend\\\" \\\"npm run dev:backend\\\"\""
+        },
+        "function": "Provide unified commands for installing dependencies and starting development servers concurrently.",
+        "static_description": "Scripts defined within package.json enabling simultaneous setup and execution of frontend and backend processes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "@media (max-width: 768px)",
+            "mobileFirstDesign": "CSS media queries applied to adjust layouts for smaller screens"
+        },
+        "function": "Ensure optimal display and usability across various device sizes including desktop and mobile.",
+        "static_description": "Layout adjusts fluidly based on screen size using responsive CSS techniques. Components stack vertically on small screens.",
+        "interaction_and_states": []
+    }
+]

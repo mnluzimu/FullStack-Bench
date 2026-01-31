@@ -1,0 +1,17 @@
+[
+    "A frontend that fetches all data from backend APIs",
+    "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+    "Functionality for publishing health-related articles",
+    "User interface for browsing and searching articles",
+    "Commenting system for users to post comments on articles",
+    "Categorization feature for organizing articles by topic",
+    "Functionality for users to follow specific topics",
+    "Search bar component for finding articles by keywords",
+    "Article display page with title, content, author, and publication date",
+    "Category filtering mechanism on the main blog page",
+    "User comment display section under each article",
+    "Topic subscription management for users",
+    "Global styling with misty rose background color",
+    "Component styling using firebrick color for all UI elements",
+    "Repository configuration with package.json supporting `npm run install:all` and `npm run dev`"
+]

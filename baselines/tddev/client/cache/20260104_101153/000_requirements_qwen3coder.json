@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "User authentication and authorization system for secure access",
+    "Case information browsing interface with search and filter capabilities",
+    "Real-time report submission functionality with live updates",
+    "Work hours logging feature with time tracking capabilities",
+    "Estimated expense sheet generation and viewing functionality",
+    "Service assignment sheet creation and management interface",
+    "Data collection and storage system for all application entities",
+    "Real-time reporting dashboard with live data visualization",
+    "Responsive UI design with beige background and saddle brown styled components",
+    "Concurrent development server setup for frontend and backend",
+    "Automated installation script for both frontend and backend dependencies",
+    "Database schema design supporting cases, reports, work hours, expenses, and assignments",
+    "API endpoints for CRUD operations on all core application entities"
+]

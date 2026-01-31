@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API server that connects to a PostgreSQL database using specified environment variables",
+    "Database schema supporting barbers, services, and client notification records",
+    "UI for browsing existing barbers with name, photo and specialization details",
+    "UI for browsing available services with name, description and pricing information",
+    "Functionality to add new barbers including name, contact info, and specialization",
+    "Functionality to add new services including name, description, duration and price",
+    "Integration capability to send WhatsApp notifications to clients",
+    "User interface styled with snow-themed background and dim gray interface elements",
+    "Responsive layout suitable for desktop and mobile browsing",
+    "Authentication mechanism for admin access to manage barbers and services",
+    "Form validation for barber and service creation inputs",
+    "Client-side routing for navigation between barbers, services and management sections",
+    "Notification log or history tracking sent messages",
+    "Concurrent development server setup for frontend and backend via npm scripts"
+]

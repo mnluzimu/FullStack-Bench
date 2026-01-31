@@ -1,0 +1,217 @@
+[
+    {
+        "resource_dependency": {
+            "servicePlanDataSchema": "Database table 'service_plans' with fields: id (UUID), name (string), price (decimal), data_limit (string), call_minutes (string), sms_limit (string), features (array of strings), created_at (timestamp), updated_at (timestamp)",
+            "servicePlansAPIEndpoint": "/api/service-plans"
+        },
+        "function": "Display a list of service plans with detailed information including pricing, data limits, call minutes, SMS limits, and additional features.",
+        "static_description": "A grid or list layout showing multiple service plan cards. Each card displays the plan name, monthly price, data allowance, call minutes, SMS count, and a bullet-point list of features. The background color is light goldenrod (#FAFAD2) and main components use olive drab (#6B8E23) as primary color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a service plan card expands it to show more detailed information about that specific plan."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "customerSupportAPISchema": "Database tables: 'support_tickets' with fields: id (UUID), user_id (foreign key), subject (string), message (text), status (enum: open, in-progress, resolved), created_at (timestamp); 'chat_messages' with fields: id (UUID), ticket_id (foreign key), sender (enum: user, agent), message (text), timestamp (timestamp)",
+            "liveChatAPI": "WebSocket connection endpoint /ws/support-chat for real-time messaging",
+            "ticketSubmissionAPI": "/api/support/tickets"
+        },
+        "function": "Provide an online customer support tool with both live chat functionality and a ticketing system for users to get help.",
+        "static_description": "A support interface with two tabs: 'Live Chat' and 'Submit Ticket'. The Live Chat tab shows a message history panel and a text input field. The Submit Ticket tab contains a form with subject field, message textarea, and submit button. Background is light goldenrod with olive drab colored form elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching between Live Chat and Submit Ticket tabs changes the displayed content. Clicking submit on the ticket form sends the data to the backend."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in the chat input field sends the message if the field is not empty."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterOptionsData": [
+                "Price Low to High",
+                "Price High to Low",
+                "Data Limit",
+                "Call Minutes"
+            ],
+            "servicePlansFilterAPI": "/api/service-plans?filter={criteria}&sort={order}"
+        },
+        "function": "Enable users to browse and filter available service plans based on different criteria such as price, data limit, and call minutes.",
+        "static_description": "Above the service plans list, there is a filter dropdown menu with options for sorting and filtering. The dropdown button uses olive drab coloring. Selected filter is displayed next to the dropdown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the filter dropdown opens a menu with sorting/filtering options. Selecting an option applies the filter and refreshes the service plans list from the API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "accountUpdateAPISchema": "API endpoint PATCH /api/users/{id} accepting fields: first_name, last_name, email, phone_number, address",
+            "userAccountDataSchema": "Database table 'users' with fields: id (UUID), first_name (string), last_name (string), email (string), phone_number (string), address (text), password_hash (string), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Implement account management functionality allowing authenticated users to update their personal information.",
+        "static_description": "An account management form with fields for first name, last name, email, phone number, and address. All fields are pre-filled with current user data. Save button uses olive drab color. Background is light goldenrod.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the save button validates the form data and sends updates to the backend API. Form fields are disabled during submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userProfileAPISchema": "API endpoint GET /api/users/{id} returning user profile data",
+            "authenticationToken": "Bearer token in Authorization header for accessing protected user data"
+        },
+        "function": "Allow authenticated users to access and view their personal details securely through a dedicated profile page.",
+        "static_description": "A profile page displaying user information in a read-only format: full name, email, phone number, and address. Information is organized in a clean card layout with olive drab headers on a light goldenrod background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an 'Edit Profile' button navigates to the account management form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --background-color: #FAFAD2; /* light goldenrod */ }"
+        },
+        "function": "Apply light goldenrod as the background color for the entire website body to maintain consistent styling across all pages.",
+        "static_description": "The entire website body has a light goldenrod (#FAFAD2) background color applied through CSS variables. This affects all pages and components unless specifically overridden.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "primaryColorCSS": ":root { --primary-color: #6B8E23; /* olive drab */ }"
+        },
+        "function": "Use olive drab as the primary accent color for main UI components like buttons, headers, and interactive elements throughout the website.",
+        "static_description": "Main UI components including navigation bars, buttons, headers, and form elements use olive drab (#6B8E23) as their primary color. This is implemented via CSS custom properties.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "CSS media queries at 768px and 1024px breakpoints",
+            "mobileFirstDesign": "Base styles for mobile, enhanced for tablet and desktop"
+        },
+        "function": "Create a responsive layout that automatically adapts to different screen sizes ensuring compatibility with both desktop and mobile devices.",
+        "static_description": "Layout adjusts based on screen size with stacked elements on mobile, side-by-side columns on tablets, and wider layouts on desktops. Navigation transforms to a hamburger menu on small screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing the browser window triggers layout changes according to defined breakpoints. Mobile navigation toggles between hamburger menu and full menu."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationItems": [
+                "Service Plans",
+                "Support",
+                "Account"
+            ],
+            "siteLogo": "/assets/logo.svg"
+        },
+        "function": "Include a navigation menu providing clear access to the main sections of the website: service plans, customer support, and account management.",
+        "static_description": "A horizontal navigation bar at the top of the page featuring the company logo on the left and menu items (Service Plans, Support, Account) on the right. Uses olive drab for active/hover states against light goldenrod background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a navigation item loads the corresponding section. Active page is highlighted with olive drab color."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over navigation items changes their background color to a lighter shade of olive drab."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authAPISchema": "API endpoints: POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me. Returns JWT tokens for session management.",
+            "userCredentialsSchema": "Database table 'users' includes email and password_hash fields for authentication"
+        },
+        "function": "Integrate user authentication system to protect account-related features and ensure secure access to personalized content.",
+        "static_description": "Login form with email and password fields when user is not authenticated. Authenticated users see logout option in navigation. Olive drab styled form elements on light goldenrod background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking login submits credentials to authentication API. Successful login redirects to account dashboard. Logout click ends the session."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "helpFormFields": [
+                "Name",
+                "Email",
+                "Subject",
+                "Message"
+            ],
+            "contactSubmissionAPI": "/api/contact"
+        },
+        "function": "Design a contact form interface allowing users to submit help requests which are processed by the customer support system.",
+        "static_description": "Contact form with labeled input fields for name, email, subject, and a larger message textarea. Submit button styled with olive drab color. Placed within the support section against light goldenrod background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking submit button validates all required fields and sends form data to the backend API endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingLibrary": "Axios or Fetch API for making HTTP requests",
+            "apiBaseURL": "Environment variable REACT_APP_API_URL pointing to backend origin"
+        },
+        "function": "Ensure all dynamic content including service plans, user profiles, and support data is fetched exclusively from backend APIs rather than using mock or hardcoded data.",
+        "static_description": "Empty loading states shown while data is being fetched from APIs. Components render actual data once received. Error messages display if API calls fail.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component mounts trigger API calls to fetch relevant data. Loading indicators appear until responses are received."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresqlConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaFiles": "SQL migration files defining tables for users, service_plans, support_tickets, and chat_messages"
+        },
+        "function": "Set up backend API endpoints that connect to a PostgreSQL database using the specified environment variables for storing and retrieving application data.",
+        "static_description": "Backend server configured to establish database connection using provided environment variables. RESTful API routes defined for each resource type with CRUD operations mapped to database queries.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentDevScript": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+            "installAllScript": "concurrently \"npm install --prefix client\" \"npm install --prefix server\""
+        },
+        "function": "Configure package.json scripts to enable convenient development workflow with simultaneous frontend and backend startup and unified dependency installation.",
+        "static_description": "Root package.json file containing script definitions for 'dev' (runs both frontend and backend servers concurrently) and 'install:all' (installs dependencies for both projects).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "websocketLibrary": "Socket.IO or native WebSocket implementation",
+            "realtimeSupportAPI": "WebSocket endpoint /ws/support-chat for bidirectional communication"
+        },
+        "function": "Support real-time updates for customer support interactions enabling instant messaging between users and support agents.",
+        "static_description": "WebSocket connection established when entering the support chat interface. New messages appear instantly without page refresh. Connection status indicator visible to users.",
+        "interaction_and_states": [
+            {
+                "interaction": "Send Message",
+                "description": "Sending a message transmits it immediately via WebSocket to the support agent and displays in the user's chat history."
+            },
+            {
+                "interaction": "Receive Message",
+                "description": "Incoming messages from support agents appear instantly in the chat interface through WebSocket listeners."
+            }
+        ]
+    }
+]

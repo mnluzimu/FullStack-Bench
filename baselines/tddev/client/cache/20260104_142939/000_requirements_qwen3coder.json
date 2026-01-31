@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all species biological data from backend APIs",
+    "A backend API service that connects to a PostgreSQL database using specified environment variables",
+    "Database schema design to store species biological information data",
+    "Browse functionality to display lists of species with their biological information",
+    "Search functionality allowing users to find specific species or biological data",
+    "Filtering capabilities to narrow down species data based on various criteria",
+    "Responsive web design with linen as the base color and maroon for all UI components",
+    "Species detail pages displaying comprehensive biological information",
+    "Pagination or infinite scroll for browsing large datasets",
+    "API endpoints for retrieving species data with support for search and filter parameters",
+    "User interface components for search input and filter controls",
+    "Data management capabilities for adding and updating species information",
+    "Package.json configuration with 'install:all' script for installing frontend and backend dependencies",
+    "Package.json configuration with 'dev' script for running frontend and backend concurrently",
+    "Error handling for database connections and API requests"
+]

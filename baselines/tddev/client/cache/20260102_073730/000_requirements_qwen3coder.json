@@ -1,0 +1,17 @@
+[
+    "Frontend application with pages for browsing, searching, filtering, and booking apartments",
+    "Backend API service to manage apartment data, bookings, and user interactions",
+    "PostgreSQL database connection using environment variables: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+    "Apartment listing page displaying available apartments with key details",
+    "Search functionality allowing users to find apartments by location, dates, and other criteria",
+    "Filter options for refining apartment searches by price, amenities, type, and availability",
+    "Apartment detail page showing comprehensive information, images, and pricing",
+    "Booking system enabling users to select dates and submit rental requests",
+    "User authentication and session management for secure booking and record access",
+    "Booking history page where users can view their past and upcoming reservations",
+    "Admin interface or capability for managing apartment listings and bookings",
+    "Responsive design optimized for desktop and mobile browsing experiences",
+    "Visual styling with linen background and maroon-colored interactive components",
+    "Package.json configuration with 'install:all' script for simultaneous frontend and backend dependency installation",
+    "Development setup with 'dev' script to run frontend and backend concurrently"
+]

@@ -1,0 +1,310 @@
+[
+    {
+        "requirement_tested": "Display a course catalog with searchable and filterable course listings",
+        "user_persona": "A prospective student browsing for cybersecurity courses.",
+        "user_goal": "Find beginner-level courses in the 'Network Security' category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Course Catalog",
+                "description": "Sarah visits the Global Institute website and navigates to the course catalog page to explore available courses.",
+                "action": "Navigate to /courses",
+                "expected_outcome": "The course catalog loads with a search bar and filter options above a grid of course cards on a lavender background."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Sarah wants to narrow down her options, so she clicks the filter icon and selects 'Network Security' under Category and 'Beginner' under Difficulty Level.",
+                "action": "Click the filter icon, then select 'Network Security' and 'Beginner' from the dropdown menus.",
+                "expected_outcome": "The course grid updates dynamically to show only beginner-level network security courses with indigo-styled cards."
+            },
+            {
+                "step": 3,
+                "title": "Reviewing Filtered Results",
+                "description": "Sarah hovers over one of the filtered course cards to get a better look before deciding which course to learn more about.",
+                "action": "Hover over a course card.",
+                "expected_outcome": "The hovered card slightly elevates with a shadow effect, emphasizing its interactivity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show detailed course information pages including descriptions, prerequisites, and schedules",
+        "user_persona": "A student interested in enrolling in a specific course.",
+        "user_goal": "Learn more about the 'Introduction to Ethical Hacking' course before enrolling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Course Details",
+                "description": "After browsing the catalog, Alex clicks on the 'Introduction to Ethical Hacking' course card to see its full details.",
+                "action": "Click on the course card titled 'Introduction to Ethical Hacking'.",
+                "expected_outcome": "Alex is redirected to the course detail page with a lavender background and indigo headings displaying the course description, prerequisites, and schedule."
+            },
+            {
+                "step": 2,
+                "title": "Deciding to Enroll",
+                "description": "Convinced by the content, Alex decides to enroll and clicks the prominent 'Enroll Now' button located at the top of the page.",
+                "action": "Click the 'Enroll Now' button.",
+                "expected_outcome": "Alex is redirected to the enrollment flow page where he can proceed with registration or login."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable online course enrollment with user registration and payment processing",
+        "user_persona": "A new user ready to register and pay for a course.",
+        "user_goal": "Register for an account and complete payment for the selected course.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Enrollment",
+                "description": "Jamie, a first-time visitor, begins the enrollment process and is prompted to either log in or register.",
+                "action": "Click 'Register' and fill in personal details like name, email, and password.",
+                "expected_outcome": "The registration form validates inputs and creates a new user record upon submission, redirecting to the payment step."
+            },
+            {
+                "step": 2,
+                "title": "Completing Payment",
+                "description": "Jamie reviews the course details and proceeds to enter payment information securely through the integrated payment gateway.",
+                "action": "Click 'Proceed to Payment' after reviewing the course summary.",
+                "expected_outcome": "The payment gateway interface appears, allowing Jamie to complete the transaction safely."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate a chatbot for user support and inquiries",
+        "user_persona": "A confused user seeking help navigating the site.",
+        "user_goal": "Get assistance understanding how to apply filters on the course catalog.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Chat Support",
+                "description": "While browsing the course catalog, Morgan notices the chat icon in the bottom-right corner and clicks it to ask a question.",
+                "action": "Click the chatbot icon in the bottom-right corner.",
+                "expected_outcome": "A chat window opens with an indigo header and message bubbles on a lavender background."
+            },
+            {
+                "step": 2,
+                "title": "Sending Inquiry",
+                "description": "Morgan types a question asking how to filter courses by difficulty level and submits it.",
+                "action": "Type 'How do I filter courses by difficulty?' and press Enter.",
+                "expected_outcome": "The chatbot responds instantly with instructions on using the filter dropdowns."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a contact form for direct communication with the institute",
+        "user_persona": "A potential corporate client wanting more information.",
+        "user_goal": "Send a message to inquire about customized training packages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Contact Page",
+                "description": "Riley, representing a company, goes to the contact page to send an inquiry about group training sessions.",
+                "action": "Navigate to /contact",
+                "expected_outcome": "The contact form with fields for name, email, subject, and message appears on a lavender background with indigo-styled input fields."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Inquiry",
+                "description": "Riley fills out the form with his details and a request for a consultation, then clicks the 'Send Message' button.",
+                "action": "Fill in the form fields and click 'Send Message'.",
+                "expected_outcome": "The form submits successfully, storing the inquiry in the database and notifying the institute's support team."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present certification pathways with progress tracking and completion status",
+        "user_persona": "A returning student checking progress toward certification.",
+        "user_goal": "View current progress in the Cybersecurity Expert certification track.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Certification Pathways",
+                "description": "Taylor logs in and navigates to the certification pathways section to check her progress.",
+                "action": "Click on 'Certifications' in the main navigation menu.",
+                "expected_outcome": "Taylor sees a list of certification tracks with titles, descriptions, and indigo-styled progress bars indicating completion percentage."
+            },
+            {
+                "step": 2,
+                "title": "Checking Detailed Progress",
+                "description": "She clicks on the 'Cybersecurity Expert' track to see detailed information and her current standing.",
+                "action": "Click on the 'Cybersecurity Expert' certification track.",
+                "expected_outcome": "A detailed view loads showing required courses, completed modules, and a visual indicator of overall progress."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement user authentication and account management features",
+        "user_persona": "A registered user updating personal information.",
+        "user_goal": "Update contact details in the account settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Jordan returns to the site and logs into his existing account to make some changes.",
+                "action": "Go to /login, enter valid credentials, and submit the form.",
+                "expected_outcome": "Jordan is authenticated and redirected to his dashboard with a welcome message."
+            },
+            {
+                "step": 2,
+                "title": "Updating Profile Information",
+                "description": "From the dashboard, Jordan navigates to the account settings and updates his phone number.",
+                "action": "Click 'Account Settings', edit the phone field, and click 'Save Changes'.",
+                "expected_outcome": "The updated phone number is saved in the database and reflected immediately on the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a responsive navigation menu and consistent page layout",
+        "user_persona": "A mobile user exploring different sections of the site.",
+        "user_goal": "Browse the course catalog and certifications using the mobile navigation menu.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Mobile Menu",
+                "description": "Using his smartphone, Marcus visits the homepage and needs to navigate to the courses section.",
+                "action": "Click the hamburger menu icon in the top navigation bar.",
+                "expected_outcome": "The mobile menu expands vertically with links for Home, Courses, Certifications, Contact, and Dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Sections",
+                "description": "Marcus taps on 'Courses' to browse the catalog and later switches to 'Certifications' to explore pathways.",
+                "action": "Tap on 'Courses' and then tap on 'Certifications' from the expanded menu.",
+                "expected_outcome": "Each tap smoothly transitions to the respective section, maintaining the lavender background and indigo-styled components."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply lavender background color and indigo component styling across all pages",
+        "user_persona": "A visually impaired user relying on consistent styling for readability.",
+        "user_goal": "Navigate the site comfortably with consistent visual cues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Patricia opens the homepage and immediately appreciates the high-contrast lavender and indigo color scheme.",
+                "action": "Load the homepage.",
+                "expected_outcome": "All elements display a consistent lavender background (#E6E6FA) with indigo (#4B0082) used for headers, buttons, and interactive components."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Other Pages",
+                "description": "Patricia moves between the course catalog, contact page, and dashboard, noting the uniform design language throughout.",
+                "action": "Navigate to multiple pages including /courses, /contact, and /dashboard.",
+                "expected_outcome": "Every visited page maintains the same lavender background and indigo-styled UI elements for consistency."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to browse courses by category, difficulty level, or certification track",
+        "user_persona": "A career changer looking for advanced cloud security courses.",
+        "user_goal": "Find advanced courses within the Cloud Security certification track.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Advanced Filters",
+                "description": "Casey wants to focus on advanced topics, so she uses the filter options to refine the course catalog.",
+                "action": "Click the filter icon and select 'Cloud Security' under Certification Track and 'Advanced' under Difficulty Level.",
+                "expected_outcome": "The course grid updates to display only advanced-level courses associated with the Cloud Security certification track."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display course availability and enrollment deadlines",
+        "user_persona": "A last-minute learner trying to enroll before the deadline.",
+        "user_goal": "Check if there are still seats available in a desired course before the enrollment deadline.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Availability",
+                "description": "Dana finds a course she’s interested in and checks whether it’s still accepting enrollments.",
+                "action": "View the course card in the catalog.",
+                "expected_outcome": "Each course card displays the number of available seats and the enrollment deadline in indigo text on a lavender background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a user dashboard to manage enrolled courses and certifications",
+        "user_persona": "A busy professional managing multiple ongoing courses.",
+        "user_goal": "Quickly access active courses and certification progress from the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "After logging in, Sam is taken directly to his personalized dashboard to monitor his learning activities.",
+                "action": "Log in and land on the dashboard.",
+                "expected_outcome": "The dashboard displays indigo-styled cards for Enrolled Courses, Certification Progress, Account Settings, and Support on a lavender background."
+            },
+            {
+                "step": 2,
+                "title": "Managing Learning Activities",
+                "description": "Sam clicks on his enrolled course card to continue studying and later checks his certification progress.",
+                "action": "Click on a course card and then click on a certification progress card.",
+                "expected_outcome": "Clicking the course card takes him to the course detail page; clicking the certification card shows his progress details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement search functionality across course catalog and certification pathways",
+        "user_persona": "A researcher searching for specific topics covered in courses or certifications.",
+        "user_goal": "Use the global search bar to find courses and certifications related to 'Penetration Testing'.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Typing Search Query",
+                "description": "Ashley types 'Penetration Testing' into the global search bar located in the header.",
+                "action": "Type 'Penetration Testing' into the search bar.",
+                "expected_outcome": "Real-time suggestions appear below the search bar, highlighting matching courses and certification pathways."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Search",
+                "description": "Ashley presses Enter to view all results related to her query.",
+                "action": "Press Enter after typing the search term.",
+                "expected_outcome": "A results page lists all matching courses and certification paths with indigo highlights on a lavender background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide confirmation and receipt generation for successful enrollments",
+        "user_persona": "A newly enrolled student expecting proof of purchase.",
+        "user_goal": "Receive a confirmation page and email receipt after completing enrollment.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Confirmation",
+                "description": "After finishing the payment process, Chris expects to see a confirmation page summarizing the transaction.",
+                "action": "Complete the enrollment and payment process.",
+                "expected_outcome": "A confirmation page loads displaying a receipt with course details, payment amount, and transaction ID using indigo headers on a lavender background."
+            },
+            {
+                "step": 2,
+                "title": "Getting Email Receipt",
+                "description": "Chris also looks forward to receiving an email copy of the receipt shortly after.",
+                "action": "Wait for email delivery.",
+                "expected_outcome": "An automated email arrives with the same receipt details formatted according to the HTML/CSS template."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure accessibility compliance and mobile-responsive design",
+        "user_persona": "A user with motor impairments accessing the site via keyboard navigation.",
+        "user_goal": "Successfully navigate the entire site using only keyboard controls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Keyboard Navigation",
+                "description": "Kevin relies solely on keyboard navigation due to limited mobility and accesses the site accordingly.",
+                "action": "Tab through the homepage and other key pages without using a mouse.",
+                "expected_outcome": "All interactive elements are reachable and usable via Tab key, with clear focus indicators adhering to WCAG 2.1 standards."
+            },
+            {
+                "step": 2,
+                "title": "Responsive Layout Check",
+                "description": "Kevin resizes the browser window to ensure content remains accessible on smaller screens.",
+                "action": "Resize the browser window to simulate mobile viewing.",
+                "expected_outcome": "Content reflows appropriately using CSS media queries, ensuring readability and usability on all device sizes."
+            }
+        ]
+    }
+]

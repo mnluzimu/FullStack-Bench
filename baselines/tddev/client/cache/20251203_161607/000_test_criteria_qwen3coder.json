@@ -1,0 +1,345 @@
+[
+    {
+        "requirement_tested": "Stock search functionality by code or name",
+        "user_persona": "A financial analyst who wants to quickly find information about a specific stock.",
+        "user_goal": "To search for a stock using its name or symbol and navigate to its summary page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing the Search Bar",
+                "description": "Sarah lands on the homepage and sees the centered search bar. She clicks inside it to begin her search.",
+                "action": "Click inside the search bar.",
+                "expected_outcome": "The search bar is focused, allowing text input, and the placeholder 'Enter stock code or name' is visible."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Name",
+                "description": "Sarah types 'Apple Inc.' into the search bar to look up the company's stock.",
+                "action": "Type 'Apple Inc.' into the search bar.",
+                "expected_outcome": "The typed text appears in the input field with navy text on a white background."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Search Query",
+                "description": "After typing the name, Sarah presses Enter to submit her query.",
+                "action": "Press the Enter key.",
+                "expected_outcome": "A dropdown list of matching stocks appears below the search bar, retrieved via the real-time stock data API."
+            },
+            {
+                "step": 4,
+                "title": "Selecting a Result",
+                "description": "Sarah hovers over the first result, 'AAPL - Apple Inc.', and clicks it to proceed.",
+                "action": "Hover over the first result, then click it.",
+                "expected_outcome": "The search bar is populated with 'AAPL', and the page navigates to the stock summary page for Apple."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Stock information summarization feature",
+        "user_persona": "A portfolio manager reviewing a potential investment.",
+        "user_goal": "To view a concise summary of key stock metrics and understand what they mean.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing the Summary Card",
+                "description": "Michael lands on the stock summary page for Tesla and scans the card displaying key metrics.",
+                "action": "Observe the summary card layout.",
+                "expected_outcome": "A clean card with a white background and navy borders shows Tesla's name, symbol, price, change, P/E ratio, and other metrics."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Metric Details",
+                "description": "Curious about the P/E ratio, Michael clicks on it to understand its significance.",
+                "action": "Click on the 'P/E Ratio' metric.",
+                "expected_outcome": "A tooltip appears explaining that the P/E ratio measures a company's current share price relative to its per-share earnings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Customized stock report generation capability",
+        "user_persona": "An investor preparing for a client meeting.",
+        "user_goal": "To generate a custom report focusing only on market trends and financial data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Report Sections",
+                "description": "Jenny navigates to the report generator page and selects 'Market Trends Analysis' and 'Historical Financial Data' from the checklist.",
+                "action": "Click checkboxes for 'Market Trends Analysis' and 'Historical Financial Data'.",
+                "expected_outcome": "Both checkboxes are checked, indicating these sections will be included in the report."
+            },
+            {
+                "step": 2,
+                "title": "Generating the Report",
+                "description": "Jenny clicks the 'Generate Report' button to compile her custom report.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A modal overlay appears with a loading spinner, and the report is processed by the backend engine."
+            },
+            {
+                "step": 3,
+                "title": "Receiving Confirmation",
+                "description": "Once processing completes, Jenny sees a success banner with a download link.",
+                "action": "Wait for the process to complete.",
+                "expected_outcome": "The loading spinner is replaced by a success banner with a link to view or download the generated report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Report format selection options",
+        "user_persona": "A researcher who prefers working with Markdown files.",
+        "user_goal": "To generate a report in Markdown format for easy documentation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Format Dropdown",
+                "description": "David scrolls down to the format selector and clicks the dropdown to see available options.",
+                "action": "Click the 'Choose Format' dropdown.",
+                "expected_outcome": "A list of export formats including PDF, Word Document, Plain Text, and Markdown appears."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Markdown",
+                "description": "David selects 'Markdown (.md)' from the dropdown as his preferred format.",
+                "action": "Click on 'Markdown (.md)' from the dropdown list.",
+                "expected_outcome": "The dropdown closes, and 'Markdown (.md)' is now selected as the output format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Content selection for reports",
+        "user_persona": "A junior analyst tasked with compiling a partial report.",
+        "user_goal": "To exclude analyst opinions and focus only on basic and financial data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Unchecking Unwanted Sections",
+                "description": "Emma deselects 'Analyst Opinions' since it's not required for this report.",
+                "action": "Click the checkbox next to 'Analyst Opinions' to uncheck it.",
+                "expected_outcome": "The checkbox is unchecked, confirming that the section will be excluded from the report."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Selections",
+                "description": "Emma verifies that only 'Basic Info', 'Market Trends', and 'Financial Data' are selected.",
+                "action": "Review the selected checkboxes.",
+                "expected_outcome": "Only the desired sections remain checked, aligning with her reporting scope."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Basic stock information display",
+        "user_persona": "A new investor learning about a company.",
+        "user_goal": "To understand fundamental details like headquarters and CEO of a company.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Basic Info Section",
+                "description": "Robert scrolls to the basic information section on the stock page.",
+                "action": "Navigate to the basic information panel.",
+                "expected_outcome": "A two-column layout appears with a company logo placeholder on the left and key facts listed on the right."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Key Facts",
+                "description": "He hovers over the 'CEO' field to get more context about the leadership.",
+                "action": "Hover over the 'CEO' field.",
+                "expected_outcome": "A tooltip appears showing additional context about the current CEO's role and tenure."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Market trends analysis section",
+        "user_persona": "A trader evaluating short-term performance.",
+        "user_goal": "To analyze recent stock movements compared to the S&P 500.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adjusting Time Range",
+                "description": "Sophia clicks the '1M' button to view the stock's performance over the past month.",
+                "action": "Click the '1M' time range button.",
+                "expected_outcome": "The chart updates to show price movements over the last month."
+            },
+            {
+                "step": 2,
+                "title": "Adding Benchmark Overlay",
+                "description": "She selects 'S&P 500' from the benchmark options to compare performance.",
+                "action": "Click the 'S&P 500' benchmark option.",
+                "expected_outcome": "The S&P 500 trendline overlays on the existing chart, allowing visual comparison."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Financial data integration",
+        "user_persona": "A financial auditor verifying reported earnings.",
+        "user_goal": "To review quarterly financial data and export it for offline analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Quarterly Data",
+                "description": "Thomas switches the view to 'Quarterly View' to see detailed financial breakdowns.",
+                "action": "Click the 'Quarterly View' toggle.",
+                "expected_outcome": "The table updates to show quarterly financial data including revenue, EPS, and net income."
+            },
+            {
+                "step": 2,
+                "title": "Exporting Raw Data",
+                "description": "He clicks the export link to download the data for further scrutiny.",
+                "action": "Click the 'Download raw data as CSV file' link.",
+                "expected_outcome": "A CSV file containing the visible financial data is downloaded to his computer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Automated report generation engine",
+        "user_persona": "A busy executive needing a quick report.",
+        "user_goal": "To generate and download a comprehensive report without delays.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Generation",
+                "description": "Patricia selects all sections and clicks 'Generate Report' to compile everything.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A modal with a loading spinner appears, indicating the report is being processed asynchronously."
+            },
+            {
+                "step": 2,
+                "title": "Downloading the Final Report",
+                "description": "Once the success banner appears, Patricia clicks the download link.",
+                "action": "Click the download link in the success banner.",
+                "expected_outcome": "The fully compiled report is downloaded in the selected format without page reloads."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "White background with navy component color scheme",
+        "user_persona": "A UX reviewer checking brand consistency.",
+        "user_goal": "To verify that all UI components follow the specified color palette.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Page Background",
+                "description": "James examines the homepage to confirm the overall design uses a white background.",
+                "action": "Observe the main background color.",
+                "expected_outcome": "The entire page background is consistently white as defined in the global stylesheet."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Colors",
+                "description": "He inspects buttons and headers to ensure they use the navy accent color.",
+                "action": "Look at interactive elements like buttons and headings.",
+                "expected_outcome": "All interactive controls and headings are styled with the navy color (#000080)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User input interface for stock queries",
+        "user_persona": "A casual user exploring stock options.",
+        "user_goal": "To enter a partial stock name and submit the query successfully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Partial Query",
+                "description": "Lisa begins typing 'Micro' into the input field, hoping to find Microsoft.",
+                "action": "Type 'Micro' into the input textbox.",
+                "expected_outcome": "The text 'Micro' appears in the input field with navy borders and placeholder text still visible."
+            },
+            {
+                "step": 2,
+                "title": "Activating Submit Button",
+                "description": "As she types, the previously disabled submit button becomes active.",
+                "action": "Continue typing until validation passes.",
+                "expected_outcome": "The 'Submit Query' button changes to an enabled state, ready for interaction."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Query",
+                "description": "Lisa clicks the now-enabled submit button to send her query.",
+                "action": "Click the 'Submit Query' button.",
+                "expected_outcome": "The query is forwarded to the backend for processing, triggering a search action."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Report preview functionality",
+        "user_persona": "A content editor proofreading a draft report.",
+        "user_goal": "To preview changes before finalizing the report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making Edits",
+                "description": "Nina adjusts the selected sections and formatting options for the report.",
+                "action": "Modify content selections and format preferences.",
+                "expected_outcome": "Changes are registered in the configuration panel awaiting preview update."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Preview",
+                "description": "She clicks the 'Refresh Preview' button to see how her edits affect the layout.",
+                "action": "Click the 'Refresh Preview' button.",
+                "expected_outcome": "The iframe preview pane reloads, reflecting the updated report draft."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Exportable report formats",
+        "user_persona": "A compliance officer needing reports in multiple formats.",
+        "user_goal": "To download the same report in both PDF and DOCX formats.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Downloading as PDF",
+                "description": "Marcus clicks the PDF icon to save the report in portable document format.",
+                "action": "Click the PDF export icon.",
+                "expected_outcome": "A browser prompt initiates the download of the report as a PDF file."
+            },
+            {
+                "step": 2,
+                "title": "Downloading as DOCX",
+                "description": "He then clicks the DOCX icon to get a version compatible with word processors.",
+                "action": "Click the DOCX export icon.",
+                "expected_outcome": "Another download prompt starts, saving the report as a .docx file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time stock data fetching",
+        "user_persona": "A day trader monitoring live price movements.",
+        "user_goal": "To observe real-time updates of a stock's price throughout the trading session.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Live Updates",
+                "description": "Carlos watches the stock price on the summary page, noting it refreshes every few seconds.",
+                "action": "Stay on the stock summary page for a minute.",
+                "expected_outcome": "The displayed price updates automatically based on real-time data fetched from external APIs."
+            },
+            {
+                "step": 2,
+                "title": "Adjusting Update Frequency",
+                "description": "He navigates to settings and increases the refresh rate for faster updates.",
+                "action": "Change the auto-update interval setting to 5 seconds.",
+                "expected_outcome": "The page now fetches and displays new stock data every 5 seconds."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User-friendly navigation and layout",
+        "user_persona": "A mobile user accessing the platform on a tablet.",
+        "user_goal": "To easily navigate between sections using the responsive menu bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Navigation Menu",
+                "description": "Elena taps the menu bar at the top of the screen to explore other sections.",
+                "action": "Tap the navigation menu bar.",
+                "expected_outcome": "Menu items like 'Home', 'Search Stocks', 'My Reports', and 'Settings' are clearly visible and evenly spaced."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to My Reports",
+                "description": "She clicks on 'My Reports' to view previously generated documents.",
+                "action": "Click the 'My Reports' link.",
+                "expected_outcome": "The page smoothly transitions to the My Reports section, adapting layout to fit the tablet screen."
+            }
+        ]
+    }
+]

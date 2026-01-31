@@ -1,0 +1,297 @@
+[
+    {
+        "resource_dependency": {
+            "authFormIcons": [
+                "/assets/icons/login-icon.svg",
+                "/assets/icons/signup-icon.svg"
+            ],
+            "authAPIEndpoints": {
+                "login": "/api/auth/login",
+                "signup": "/api/auth/signup",
+                "logout": "/api/auth/logout"
+            },
+            "userSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(100) UNIQUE NOT NULL, password_hash TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Provide secure user registration, login, session management, and role-based access control.",
+        "static_description": "A centered card with tabs for Login and Sign Up. Tab labels use steel blue color. Input fields for username/email, password, and confirm password (for signup). Steel blue buttons labeled 'Login' or 'Sign Up'. Icons from authFormIcons displayed next to relevant inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching between Login and Sign Up tabs toggles form visibility and resets input fields. Clicking 'Login' or 'Sign Up' submits credentials via POST request to respective authAPIEndpoints endpoints."
+            },
+            {
+                "interaction": "Input Focus",
+                "description": "Field borders highlight in steel blue when focused. Password strength indicator appears during typing on sign-up."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "createGroupFormFields": [
+                "title",
+                "description",
+                "topics"
+            ],
+            "groupTopicsList": [
+                "Mathematics",
+                "Science",
+                "Literature",
+                "History",
+                "Programming",
+                "Languages"
+            ],
+            "groupCreationAPI": "/api/groups/create",
+            "groupsTableSchema": "CREATE TABLE study_groups (id SERIAL PRIMARY KEY, title VARCHAR(100) NOT NULL, description TEXT, topics TEXT[], creator_id INTEGER REFERENCES users(id), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Enable authenticated users to initiate new study groups with specified metadata.",
+        "static_description": "A form titled 'Create Study Group' with input fields matching createGroupFormFields. Topics are selected from a dropdown menu populated with groupTopicsList. Submit button styled with steel blue background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting topics adds them to a tag list below the dropdown. Clicking the submit button sends a POST request to groupCreationAPI with form data."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "Real-time character counter updates beneath title/description fields as user types."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBarPlaceholderText": "Search groups by topic or keyword...",
+            "joinGroupAPI": "/api/groups/join",
+            "groupSearchResultsSchema": "SELECT g.id, g.title, g.description, g.topics, COUNT(m.user_id) AS member_count FROM study_groups g LEFT JOIN group_members m ON g.id = m.group_id WHERE g.title ILIKE $1 OR g.description ILIKE $1 GROUP BY g.id;",
+            "groupMembershipsTableSchema": "CREATE TABLE group_members (group_id INTEGER REFERENCES study_groups(id), user_id INTEGER REFERENCES users(id), joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (group_id, user_id));"
+        },
+        "function": "Allow users to discover and enroll in existing study groups through search functionality.",
+        "static_description": "Top section features a search bar with placeholder text searchBarPlaceholderText. Below displays grid cards showing group titles, descriptions, topics, and member counts. Each card includes a 'Join Group' button styled with steel blue.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Change",
+                "description": "Typing in the search bar triggers debounced API calls filtering results dynamically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Join Group' sends a POST request to joinGroupAPI with the group ID. Button becomes disabled and shows 'Joined' after successful enrollment."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "uploadResourceAPI": "/api/resources/upload",
+            "downloadResourceAPI": "/api/resources/download/{resourceId}",
+            "resourcesTableSchema": "CREATE TABLE shared_resources (id SERIAL PRIMARY KEY, group_id INTEGER REFERENCES study_groups(id), uploader_id INTEGER REFERENCES users(id), filename VARCHAR(255) NOT NULL, file_path TEXT NOT NULL, mime_type VARCHAR(100), size BIGINT, uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Support uploading and downloading educational materials within study groups.",
+        "static_description": "File upload area with drag-and-drop zone and 'Choose File' button. List view below shows uploaded files with names, sizes, and download icons. Download links styled with steel blue hover effect.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging files over the drop zone highlights it visually. Dropping uploads the file immediately via multipart/form-data POST to uploadResourceAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Choose File' opens native file browser. Clicking download icons initiates GET requests to downloadResourceAPI with corresponding resourceId parameter."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "discussionThreadAPIs": {
+                "listThreads": "/api/projects/{projectId}/threads",
+                "createThread": "/api/projects/{projectId}/threads/new",
+                "postComment": "/api/threads/{threadId}/comments"
+            },
+            "projectCollaborationSchema": "CREATE TABLE project_threads (id SERIAL PRIMARY KEY, project_id INTEGER REFERENCES projects(id), title VARCHAR(150), starter_id INTEGER REFERENCES users(id), started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP); CREATE TABLE thread_comments (id SERIAL PRIMARY KEY, thread_id INTEGER REFERENCES project_threads(id), commenter_id INTEGER REFERENCES users(id), content TEXT, posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);",
+            "fileSharingInProjectsSchema": "CREATE TABLE project_files (id SERIAL PRIMARY KEY, project_id INTEGER REFERENCES projects(id), uploader_id INTEGER REFERENCES users(id), filename VARCHAR(255), file_path TEXT, mime_type VARCHAR(100), uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Facilitate collaborative project workspaces featuring threaded discussions and file sharing.",
+        "static_description": "Sidebar navigation listing active project threads. Main panel shows selected thread messages stacked chronologically with avatars and timestamps. Message composer at bottom with text input and attachment option. All components styled with steel blue accents against alice blue background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a thread loads its comments via GET from discussionThreadAPIs.listThreads. Clicking 'Post' sends message content to postComment endpoint. Attachment icon opens file picker which uploads to associated projectFiles table."
+            },
+            {
+                "interaction": "Input Submit",
+                "description": "Pressing Enter in message box posts content unless Shift is held."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileFieldsToShow": [
+                "Username",
+                "Email",
+                "Member Since",
+                "Activity History"
+            ],
+            "activityHistoryEndpoint": "/api/user/activity",
+            "usersTableForProfileData": "ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_picture_url TEXT;"
+        },
+        "function": "Display individual user profiles including account details and participation records.",
+        "static_description": "Left-aligned profile header with avatar image and basic info matching profileFieldsToShow. Right-aligned activity timeline showing recent actions like 'Joined group', 'Uploaded resource', etc., retrieved from activityHistoryEndpoint.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Loading more historical entries upon reaching page bottom by appending additional items fetched from paginated activityHistoryEndpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "groupManagementActions": [
+                "Remove Member",
+                "Edit Group Info",
+                "Delete Group"
+            ],
+            "groupAdminAPIs": {
+                "removeMember": "/api/groups/{groupId}/members/remove",
+                "updateGroupInfo": "/api/groups/{groupId}/update",
+                "deleteGroup": "/api/groups/{groupId}/delete"
+            },
+            "groupAdminPermissionsSchema": "ALTER TABLE study_groups ADD COLUMN IF NOT EXISTS is_private BOOLEAN DEFAULT FALSE;"
+        },
+        "function": "Empower group creators to administer membership, settings, and content moderation.",
+        "static_description": "Dashboard tab visible only to group admins. Displays member roster with action buttons per row aligned with groupManagementActions. Settings panel allows editing group name, description, privacy toggle, and deletion confirmation modal.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking action buttons triggers corresponding DELETE/PUT requests to groupAdminAPIs. Confirmation prompts appear before destructive operations like removing members or deleting the group."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeMessagingAPI": "WebSocket connection to /ws/chat/{groupId}",
+            "chatMessageSchema": "CREATE TABLE chat_messages (id SERIAL PRIMARY KEY, group_id INTEGER REFERENCES study_groups(id), sender_id INTEGER REFERENCES users(id), content TEXT, sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Implement instant messaging capability inside each study group environment.",
+        "static_description": "Full-height sidebar conversation pane showing timestamped messages with sender names and avatars. Bottom fixed input textbox with send button. Real-time status indicator shown near top right corner.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Send button click emits WebSocket event containing message content. Incoming messages render instantly without page reload."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Submitting message via Enter key while focusing input field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notificationBellIcon": "/assets/icons/notification-bell.svg",
+            "notificationsAPI": "/api/notifications",
+            "notificationsSchema": "CREATE TABLE notifications (id SERIAL PRIMARY KEY, recipient_id INTEGER REFERENCES users(id), source_group_id INTEGER REFERENCES study_groups(id), type VARCHAR(50), content TEXT, read BOOLEAN DEFAULT FALSE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        },
+        "function": "Alert users about important events such as new messages, resource uploads, or invitations.",
+        "static_description": "Top navbar contains notification bell icon (notificationBellIcon). Dropdown menu reveals unread alerts with brief descriptions and timestamps. Red badge indicates count of unopened notifications.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking bell icon expands dropdown showing latest notifications fetched from notificationsAPI. Marking as read updates notification status in backend and decrements badge counter."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Dropdown remains open while mouse hovers over it."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignBreakpoints": "{ mobile: 768px, tablet: 1024px }",
+            "colorPalette": {
+                "background": "#F0F8FF",
+                "component": "#4682B4"
+            }
+        },
+        "function": "Ensure consistent styling and adaptability across different device screens.",
+        "static_description": "Entire layout uses alice blue (#F0F8FF) background color. Buttons, headers, cards, and interactive elements utilize steel blue (#4682B4). Responsive breakpoints adjust spacing, font sizes, and element stacking order according to responsiveDesignBreakpoints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontendFetchLogic": "Use Axios or Fetch API to call all backend routes prefixed with REACT_APP_API_BASE_URL environment variable.",
+            "apiRouteExamples": [
+                "/api/auth/login",
+                "/api/groups/list",
+                "/api/resources/download/123"
+            ]
+        },
+        "function": "Build client-side interfaces that retrieve and display live data exclusively from backend services.",
+        "static_description": "Each React/Vue/Angular component makes HTTP(S) requests to appropriate endpoints listed under apiRouteExamples using configured base URL. Data rendering waits until responses are received and processed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Component Mount",
+                "description": "Upon mounting, components execute useEffect/onMounted hooks triggering initial data fetches from backend APIs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": {
+                "host": "DB_HOST",
+                "port": "DB_PORT",
+                "username": "DB_USERNAME",
+                "password": "DB_PASSWORD",
+                "database": "DB_NAME"
+            },
+            "postgresEnvVariables": [
+                "DB_HOST=localhost",
+                "DB_PORT=5432",
+                "DB_USERNAME=myappuser",
+                "DB_PASSWORD=myapppassword",
+                "DB_NAME=myapp"
+            ],
+            "serverFramework": "Express.js or Fastify with pg-promise/knex ORM setup"
+        },
+        "function": "Establish RESTful API layer interfacing directly with PostgreSQL instance using provided credentials.",
+        "static_description": "Node.js server initialized with middleware parsing JSON bodies, CORS enabled, and route handlers mapped to CRUD operations. Database pool configured using values injected from postgresEnvVariables.",
+        "interaction_and_states": [
+            {
+                "interaction": "Incoming Request",
+                "description": "Routes validate JWT tokens for protected paths. Successful queries return structured JSON payloads. Errors handled globally and formatted consistently."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "requiredTablesAndRelationships": "users(id), study_groups(id,creator_id->users.id), group_members(group_id->study_groups.id,user_id->users.id), shared_resources(group_id->study_groups.id,uploader_id->users.id), projects(id,group_id->study_groups.id), project_threads(project_id->projects.id,starter_id->users.id), thread_comments(thread_id->project_threads.id,commenter_id->users.id), chat_messages(group_id->study_groups.id,sender_id->users.id), notifications(recipient_id->users.id,source_group_id->study_groups.id)"
+        },
+        "function": "Define relational schema supporting core domain entities and their associations.",
+        "static_description": "SQL migration script defining tables as described in requiredTablesAndRelationships with foreign keys enforcing referential integrity. Indexes added on frequently queried columns like user_id, group_id, and timestamps.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" }}"
+        },
+        "function": "Configure unified development workflow enabling simultaneous startup of frontend and backend processes.",
+        "static_description": "Root-level package.json includes two custom scripts named install:all and dev. These orchestrate parallel execution of child directory installations and development servers respectively.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "browseGroupsPageLayout": "Grid of cards showing group title, short description, topic tags, and join status",
+            "filterOptionsList": [
+                "Topic",
+                "Member Count",
+                "Creation Date"
+            ],
+            "groupsListingEndpoint": "/api/groups/browse?filters={topic,minMembers,dateRange}"
+        },
+        "function": "Offer intuitive interface for exploring public study groups with filtering capabilities.",
+        "static_description": "Main section presents browsable grid of study group cards similar to search results but with filter controls above. Filters include dropdowns/checkboxes corresponding to filterOptionsList. Cards show group metadata and current user's join status ('Joined' or 'Join').",
+        "interaction_and_states": [
+            {
+                "interaction": "Change Filter Selection",
+                "description": "Adjusting filters automatically updates query parameters sent to groupsListingEndpoint, refreshing displayed results accordingly."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Join' button enrolls user in group and updates local UI state synchronously pending server acknowledgment."
+            }
+        ]
+    }
+]

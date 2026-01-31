@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all data from backend APIs",
+        "user_persona": "An employee named Sarah who needs to check her attendance records.",
+        "user_goal": "Sarah wants to view her attendance history by logging into the system and navigating to the history section.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Application",
+                "description": "Sarah opens the attendance tracking website and sees a login page with fields for username and password.",
+                "action": "Navigate to the root URL of the application.",
+                "expected_outcome": "The frontend loads successfully, displaying the login form styled with papaya whip background and dark orange components."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Sarah enters her credentials and submits the form to access her dashboard.",
+                "action": "Enter valid username and password, then click the Submit button.",
+                "expected_outcome": "Frontend makes an API call to authenticate and redirects to the employee dashboard upon success."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Attendance Records",
+                "description": "Once logged in, Sarah navigates to the attendance history tab where she expects to see her records loaded dynamically.",
+                "action": "Click on the 'Attendance History' tab within the dashboard.",
+                "expected_outcome": "Frontend fetches data from /api/v1/attendance/history and displays a table of Sarah's attendance records."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer setting up the backend service locally.",
+        "user_goal": "To ensure the backend connects properly to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Environment Variables",
+                "description": "The developer configures the necessary environment variables for database connectivity before starting the backend server.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp in the backend .env file.",
+                "expected_outcome": "Environment variables are correctly read by the backend application at startup."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Server",
+                "description": "Developer runs the backend server to verify connection to the database.",
+                "action": "Run `npm run dev` command in the backend directory.",
+                "expected_outcome": "Backend server starts without errors and establishes a successful connection to the PostgreSQL database using the provided credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Employee authentication and authorization system",
+        "user_persona": "An employee named John trying to access his attendance dashboard.",
+        "user_goal": "John aims to securely log in to the system and gain access to his personalized dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Login Page",
+                "description": "John visits the login page which has a clean layout with a centered form.",
+                "action": "Open browser and navigate to the login URL.",
+                "expected_outcome": "Login page is displayed with company logo, username and password fields, and a submit button, all styled according to theme."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "John types in his username and password carefully, ensuring no mistakes.",
+                "action": "Fill in the username and password fields.",
+                "expected_outcome": "Input fields accept text entry and do not expose passwords visibly unless hovered over the reveal icon."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Login Form",
+                "description": "After entering his details, John clicks the submit button to proceed.",
+                "action": "Click the Submit button or press Enter while focused on either field.",
+                "expected_outcome": "System validates credentials via the authentication API; if correct, John is redirected to his dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Employee clock-in functionality with timestamp recording",
+        "user_persona": "An employee named Lisa arriving at work early Monday morning.",
+        "user_goal": "Lisa wants to accurately record her arrival time by clocking in through the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Lisa logs into the system and lands on her dashboard, ready to start her day.",
+                "action": "Log in as an employee and reach the main dashboard.",
+                "expected_outcome": "Dashboard is displayed with options including a prominent 'Clock In' button."
+            },
+            {
+                "step": 2,
+                "title": "Clocking In",
+                "description": "Seeing the current time displayed, Lisa decides it's time to officially begin her shift.",
+                "action": "Click the 'Clock In' button located prominently on the dashboard.",
+                "expected_outcome": "System sends a POST request to /api/v1/attendance/clock-in with Lisa’s ID and current timestamp. Button disables after successful submission."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Employee clock-out functionality with timestamp recording",
+        "user_persona": "An employee named Mark finishing his workday.",
+        "user_goal": "Mark intends to log his departure time by using the clock-out feature.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Ensuring Clock-In Record Exists",
+                "description": "Before attempting to clock out, Mark confirms he had previously clocked in today.",
+                "action": "Check dashboard for presence of active clock-in record.",
+                "expected_outcome": "'Clock Out' button is enabled only when a corresponding clock-in exists for the same day."
+            },
+            {
+                "step": 2,
+                "title": "Clocking Out",
+                "description": "Satisfied with his day's work, Mark clicks the clock-out button to end his session.",
+                "action": "Click the 'Clock Out' button.",
+                "expected_outcome": "System issues a POST request to /api/v1/attendance/clock-out updating the existing record with the current timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Employee dashboard to view personal attendance records",
+        "user_persona": "An employee named Emma reviewing her monthly attendance.",
+        "user_goal": "Emma wishes to review her past attendance records organized in a clear table format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Attendance History Tab",
+                "description": "Emma navigates to the attendance history section of her dashboard.",
+                "action": "Click on the 'Attendance History' tab.",
+                "expected_outcome": "A sortable table appears showing columns such as Date, Clock-In Time, Clock-Out Time, and Status."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Records",
+                "description": "To find specific entries easily, Emma decides to sort the records by date.",
+                "action": "Click on the 'Date' column header.",
+                "expected_outcome": "Table contents reorder chronologically based on selected sorting criteria."
+            },
+            {
+                "step": 3,
+                "title": "Refreshing Data",
+                "description": "Noticing some missing recent entries, Emma refreshes the data manually.",
+                "action": "Click the 'Refresh' button associated with the history table.",
+                "expected_outcome": "Latest data is fetched again from the personalAttendanceHistoryEndpoint and displayed instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display of employee's attendance time and absence time",
+        "user_persona": "An employee named Olivia checking her performance metrics.",
+        "user_goal": "Olivia wants to understand how much time she spent present versus absent during last month.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Summary Metrics",
+                "description": "Upon accessing her dashboard, Olivia looks below the history table for summary statistics.",
+                "action": "Scroll down to locate the attendance summary cards area.",
+                "expected_outcome": "Summary cards appear showing cumulative values like Total Present Hours, Absent Hours, and Percentage Attendance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Administrator authentication and authorization system",
+        "user_persona": "An administrator named Robert preparing to oversee team attendance.",
+        "user_goal": "Robert seeks secure access to administrative features exclusive to his role.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Admin Login Screen",
+                "description": "Robert goes to the dedicated admin login portal designed specifically for privileged users.",
+                "action": "Navigate to the admin login URL.",
+                "expected_outcome": "A separate login interface loads, visually similar to standard login but marked for admin purposes."
+            },
+            {
+                "step": 2,
+                "title": "Authenticating as Administrator",
+                "description": "He provides his administrative credentials and submits them.",
+                "action": "Enter admin-specific username and password, then click Submit.",
+                "expected_outcome": "Credentials are validated against the adminAuthAPI endpoint, granting access to the admin dashboard if authorized."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin dashboard to view all employees' attendance records",
+        "user_persona": "An HR manager named Diana needing an overview of staff attendance.",
+        "user_goal": "Diana desires a comprehensive view of all employee attendance logs with filtering capabilities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Full Attendance Logs",
+                "description": "As an admin, Diana logs in and accesses the full attendance log viewer.",
+                "action": "Log in as admin and navigate to the attendance management section.",
+                "expected_outcome": "Fullscreen grid displays all employee attendance records with headers matching specified column names."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Records",
+                "description": "Wanting more targeted information, Diana applies a filter to narrow down results.",
+                "action": "Use dropdown menus to select 'By Department' and choose Marketing.",
+                "expected_outcome": "Grid updates dynamically to show only Marketing department employees’ records retrieved from the allEmployeesAttendanceEndpoint with appropriate query parameters."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Administrative functionality to perform attendance statistics",
+        "user_persona": "An operations analyst named Kevin generating weekly reports.",
+        "user_goal": "Kevin wants to pull statistical summaries about daily attendance trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Reports Section",
+                "description": "Kevin heads to the reporting tab within the admin dashboard.",
+                "action": "Click on the 'Reports' tab from the admin navigation menu.",
+                "expected_outcome": "Reporting interface opens with options to configure and generate various statistical outputs."
+            },
+            {
+                "step": 2,
+                "title": "Generating Statistical Report",
+                "description": "He selects a date range and initiates report generation to get key metrics.",
+                "action": "Choose a date range and click the 'Generate Report' button.",
+                "expected_outcome": "System calls statisticsReportGeneratorAPI and returns calculated metrics like Average Daily Attendance and Late Arrivals Count rendered in charts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Administrative functionality to perform attendance analysis",
+        "user_persona": "A department head named Michelle exploring long-term attendance behavior.",
+        "user_goal": "Michelle aims to analyze workforce attendance patterns over several weeks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Analysis Module",
+                "description": "Michelle moves to the advanced analysis section to dig deeper into attendance data.",
+                "action": "Navigate to the 'Analysis' section from the admin dashboard sidebar.",
+                "expected_outcome": "Multi-dimensional visualization tools load presenting options for Weekly Patterns, Departmental Trends, etc."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Trends",
+                "description": "She chooses to focus on weekly patterns to identify recurring behaviors.",
+                "action": "Select 'Weekly Patterns' option and initiate data processing.",
+                "expected_outcome": "analysisEngineAPI is queried and updated visualizations reflect processed trend data accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI styled with papaya whip as base color and dark orange for components",
+        "user_persona": "A new designer joining the project team evaluating UI consistency.",
+        "user_goal": "Verify that the entire web application follows the prescribed color scheme throughout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Global Styles",
+                "description": "Designer inspects CSS files and views multiple pages to confirm uniformity.",
+                "action": "Open browser DevTools and inspect stylesheets linked globally.",
+                "expected_outcome": "Global stylesheet defines #FFEFD5 as base background and #FF8C00 applied to interactive components across the site."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Consistency",
+                "description": "Designer checks various UI elements like buttons, forms, and tables to ensure thematic alignment.",
+                "action": "Visit different sections of the app (login, dashboard, reports) and observe component styling.",
+                "expected_outcome": "All interactive components maintain consistent dark orange coloring while backgrounds remain papaya whip."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for clocking in and out",
+        "user_persona": "A QA engineer testing backend clocking functionality.",
+        "user_goal": "Ensure backend endpoints correctly handle clock-in and clock-out requests with proper validation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Clock-In Endpoint",
+                "description": "QA sends a sample POST request simulating an employee clocking in.",
+                "action": "Send a POST request to /api/v1/attendance/clock-in with employee ID and ISO timestamp payload.",
+                "expected_outcome": "Endpoint accepts request, stores the record in the database, and returns a confirmation response."
+            },
+            {
+                "step": 2,
+                "title": "Testing Clock-Out Endpoint",
+                "description": "Next, QA tests the counterpart endpoint for ending shifts.",
+                "action": "Issue another POST to /api/v1/attendance/clock-out with matching employee ID and timestamp.",
+                "expected_outcome": "Endpoint updates the existing record with the clock-out time and responds affirmatively."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for retrieving attendance records",
+        "user_persona": "A mobile app developer integrating with backend services.",
+        "user_goal": "Fetch paginated and filtered attendance data relevant to individual employees and admins.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Personal Records",
+                "description": "Mobile app calls endpoint to retrieve a logged-in employee's attendance history.",
+                "action": "Make a GET request to /api/v1/attendance/history with JWT token in Authorization header.",
+                "expected_outcome": "Returns a paginated JSON array of records belonging solely to the authenticated user."
+            },
+            {
+                "step": 2,
+                "title": "Fetching All Records for Admin",
+                "description": "Same developer now tests fetching collective data accessible only to administrators.",
+                "action": "Call /api/v1/admin/attendance/all endpoint with admin-scoped JWT token.",
+                "expected_outcome": "Receives full list of attendance records from all employees respecting pagination support."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server setup via npm run dev",
+        "user_persona": "A junior developer joining the team for the first time.",
+        "user_goal": "Quickly spin up both frontend and backend development environments simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Unified Development Command",
+                "description": "Developer clones the repo and attempts to launch everything with one script.",
+                "action": "Execute `npm run dev` from the project root directory.",
+                "expected_outcome": "Both frontend and backend servers boot concurrently thanks to concurrently package usage in package.json."
+            }
+        ]
+    }
+]

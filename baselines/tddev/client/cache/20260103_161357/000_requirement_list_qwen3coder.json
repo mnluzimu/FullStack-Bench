@@ -1,0 +1,209 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "papaya whip",
+            "component_style_color": "dark orange",
+            "link_tree_icon": "/assets/linktree-icon.svg"
+        },
+        "function": "Display a user's link tree with visually styled components on a themed background.",
+        "static_description": "The page displays a centered vertical list of clickable links over a papaya whip background. Each link is rendered in a card styled with dark orange borders and text. At the top, there is a header showing the user's name or avatar represented by 'link_tree_icon'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any link navigates the user to the target URL in a new tab."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a link highlights it slightly with a shadow effect while maintaining the dark orange theme."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_session_api": "POST /api/auth/login, POST /api/auth/logout, GET /api/auth/session",
+            "login_form_fields": [
+                "email",
+                "password"
+            ],
+            "signup_form_fields": [
+                "username",
+                "email",
+                "password"
+            ]
+        },
+        "function": "Manage authenticated sessions for users to access their personalized link trees.",
+        "static_description": "A modal or dedicated route shows login/signup forms. Fields include email, password, and username where applicable. Submit buttons are present along with social login options if needed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' or 'Sign Up' submits credentials via auth_session_api and redirects upon success."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing enter after filling out either field triggers submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profile_creation_api": "POST /api/users/profile",
+            "user_profile_schema": "Table: users { id UUID primary key, username STRING unique, created_at TIMESTAMP }"
+        },
+        "function": "Allow users to create a unique profile which serves as the root for their personal link tree.",
+        "static_description": "After successful authentication, a prompt appears asking the user to set up their profile with a preferred username. A confirmation button confirms creation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form calls profile_creation_api to register the user’s unique link tree profile."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "add_link_form_fields": [
+                "title",
+                "url"
+            ],
+            "link_submit_api": "POST /api/links",
+            "url_validation_regex": "^https?://[\\w.-]+(?:\\/[\\S]*)?$"
+        },
+        "function": "Enable users to add new links to their personal link tree through validated form input.",
+        "static_description": "An 'Add Link' button reveals a form containing title and URL input fields alongside a submit button. All elements follow the dark orange styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit' validates inputs against url_validation_regex and sends data to link_submit_api."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "Real-time feedback indicates invalid URL formats during typing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "edit_link_api": "PUT /api/links/{id}",
+            "existing_link_data": "{ id: UUID, title: STRING, url: STRING }"
+        },
+        "function": "Provide functionality for users to modify details of existing links within their link tree.",
+        "static_description": "Each link entry includes an 'Edit' icon next to it. Clicking this opens a pre-filled form identical in structure to the add link form but populated with current values.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Changes' updates the link using edit_link_api with modified data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "delete_link_api": "DELETE /api/links/{id}"
+        },
+        "function": "Allow deletion of unwanted links from a user's link tree.",
+        "static_description": "Next to each link, a trash bin icon represents the delete action. It maintains consistent styling with other interactive elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete icon prompts a confirmation dialog. Confirming removes the link via delete_link_api."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "crud_endpoints": [
+                "GET /api/links (fetch all)",
+                "POST /api/links (create)",
+                "PUT /api/links/{id} (update)",
+                "DELETE /api/links/{id} (delete)"
+            ]
+        },
+        "function": "Expose RESTful API endpoints enabling full lifecycle management of user-specific link data.",
+        "static_description": "These endpoints are configured behind authentication middleware ensuring only authorized access to respective user data.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "db_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "pg_client_library": "node-postgres (pg)"
+        },
+        "function": "Establish secure database connectivity for persistent storage using provided PostgreSQL configuration.",
+        "static_description": "Backend initializes connection pool referencing pg_client_library and uses db_connection_config environment variables at startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "users_table_schema": "CREATE TABLE users (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), username VARCHAR(50) UNIQUE NOT NULL, created_at TIMESTAMPTZ DEFAULT NOW());",
+            "links_table_schema": "CREATE TABLE links (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), user_id UUID REFERENCES users(id), title TEXT NOT NULL, url TEXT NOT NULL, position INTEGER, created_at TIMESTAMPTZ DEFAULT NOW());"
+        },
+        "function": "Define relational database schema supporting user profiles and their associated links.",
+        "static_description": "Two tables are created: one for storing user identities and another mapping links to those users with optional ordering support.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "public_url_format": "/u/{username}",
+            "shareable_link_generator": "Generates shareable URLs based on username lookup"
+        },
+        "function": "Automatically generate and assign a publicly accessible URL tied to each individual user's link tree.",
+        "static_description": "Upon profile creation, a shareable path such as '/u/john_doe' becomes available for public viewing of john_doe’s link tree.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "public_view_endpoint": "GET /u/{username}",
+            "public_link_tree_renderer": "Renders read-only version of user's links without requiring login"
+        },
+        "function": "Render a publicly visible page displaying a user's curated collection of links without authentication.",
+        "static_description": "This endpoint returns HTML/CSS rendering of the same styled link cards used in private views but omits edit/delete controls.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsive_breakpoints": "@media(max-width:768px) { ... }",
+            "mobile_first_layout": "flexbox-based columnar arrangement adjusting padding/margin for small screens"
+        },
+        "function": "Ensure optimal display experience across various device sizes including desktops, tablets, and smartphones.",
+        "static_description": "Layout adjusts dynamically using CSS media queries. Cards stack vertically on smaller screens while maintaining color scheme consistency.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "form_validator_utility": "Built-in regex validation + frontend JS logic",
+            "error_message_templates": "{ invalidUrl: 'Please enter a valid URL starting with http(s)' }"
+        },
+        "function": "Enforce correctness of submitted link data by validating format before processing.",
+        "static_description": "Validation messages appear inline beneath respective fields when incorrect data is entered.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Blur",
+                "description": "Leaving an unfilled or incorrectly formatted field triggers immediate validation message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loading_spinner_component": "<Spinner /> reusable React component",
+            "error_toast_notifications": "Toast library (e.g., react-toastify)"
+        },
+        "function": "Provide clear indicators during asynchronous operations and inform users about request outcomes.",
+        "static_description": "During API requests, a spinner overlays relevant sections. Toast notifications show brief status updates for errors/successes.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request Start",
+                "description": "Displays loading_spinner_component until completion."
+            },
+            {
+                "interaction": "API Response Error",
+                "description": "Shows toast notification with descriptive error message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrent_dev_script": "concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"",
+            "package_json_scripts": "{ \"install:all\": \"npm install && cd frontend && npm install && cd ../backend && npm install\", \"dev\": \"concurrently ...\" }"
+        },
+        "function": "Facilitate simultaneous local development of both frontend and backend services through unified command execution.",
+        "static_description": "Scripts defined inside package.json enable developers to bootstrap entire application stack with simple terminal commands.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,268 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A health-conscious user named Sarah who wants to look up nutrition data for her favorite snacks.",
+        "user_goal": "To successfully retrieve and view accurate nutrition information by searching for a snack.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Website",
+                "description": "Sarah opens the website and sees a clean interface with a linen background and maroon components.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "The homepage loads smoothly, displaying sections for product search, nutrition analysis, and packaging design."
+            },
+            {
+                "step": 2,
+                "title": "Searching for a Snack",
+                "description": "Sarah types 'granola bar' into the search box and hits Enter.",
+                "action": "Type 'granola bar' into the search input box and press Enter.",
+                "expected_outcome": "Frontend makes an API request to `/api/search`, and the search results section populates with cards showing matching products and their basic nutrition info."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using environment variables",
+        "user_persona": "A developer named Alex responsible for verifying backend connectivity.",
+        "user_goal": "To confirm that the backend successfully connects to the PostgreSQL database and retrieves food data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Backend Request",
+                "description": "Alex initiates a search for 'apple' via the frontend to trigger a backend query.",
+                "action": "Enter 'apple' in the search box and press Enter.",
+                "expected_outcome": "Backend connects to the PostgreSQL database using the specified environment variables and returns nutrition data for apples stored in the `food_nutritions` table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A product search function allowing users to input food names or keywords to search for related nutrition information",
+        "user_persona": "A busy mom named Lisa looking up quick healthy options for her kids.",
+        "user_goal": "To find nutrition facts for a specific food item quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Feature",
+                "description": "Lisa enters 'banana chips' into the search bar and submits the search.",
+                "action": "Type 'banana chips' into the search input and press Enter.",
+                "expected_outcome": "The application displays relevant search results including nutrition data for banana chips retrieved from the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A nutrition analysis function allowing users to input food ingredients and serving sizes to calculate nutritional value",
+        "user_persona": "A fitness enthusiast named Mike preparing a homemade protein bowl.",
+        "user_goal": "To determine the total nutritional value of his custom recipe.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Ingredients",
+                "description": "Mike types 'chicken breast, quinoa, spinach' into the ingredients text area.",
+                "action": "Enter 'chicken breast, quinoa, spinach' into the ingredients textarea.",
+                "expected_outcome": "Serving size input fields appear below for each ingredient."
+            },
+            {
+                "step": 2,
+                "title": "Specifying Serving Sizes",
+                "description": "Mike fills in the serving sizes: 150g chicken, 100g quinoa, 50g spinach.",
+                "action": "Fill numeric input fields with 150, 100, and 50 respectively.",
+                "expected_outcome": "Each field accepts numeric input and updates accordingly."
+            },
+            {
+                "step": 3,
+                "title": "Calculating Nutrition",
+                "description": "Mike clicks the 'Calculate Nutrition' button to get the combined nutritional value.",
+                "action": "Click the 'Calculate Nutrition' button.",
+                "expected_outcome": "API processes the data and returns a Canadian-style nutrition facts label showing aggregated values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A packaging design function allowing users to create custom food packaging according to Canadian regulations",
+        "user_persona": "A small business owner named Emma launching a new energy bar brand.",
+        "user_goal": "To design compliant packaging for her product online.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Packaging Tool",
+                "description": "Emma navigates to the packaging design section of the site.",
+                "action": "Navigate to the packaging design tab or section.",
+                "expected_outcome": "An interactive canvas and toolbar with design elements load properly."
+            },
+            {
+                "step": 2,
+                "title": "Designing Package",
+                "description": "Emma drags a text box onto the canvas to add the product name and adjusts its placement.",
+                "action": "Drag a text element from the toolbar onto the canvas and reposition it.",
+                "expected_outcome": "Text box appears on canvas and moves freely while staying within compliance boundaries."
+            },
+            {
+                "step": 3,
+                "title": "Saving Design",
+                "description": "After completing the layout, Emma saves her design.",
+                "action": "Click the 'Save Design' button.",
+                "expected_outcome": "Canvas state is sent to the backend via `/api/packaging-design` and saved successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display of Canadian nutrition facts labels based on retrieved or calculated data",
+        "user_persona": "A dietitian named Raj helping clients understand food choices.",
+        "user_goal": "To present clients with accurate, regulation-compliant nutrition labels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Nutrition Data",
+                "description": "Raj searches for 'Greek yogurt' and views the result.",
+                "action": "Search for 'Greek yogurt' and select one of the results.",
+                "expected_outcome": "A Canadian-format nutrition facts label is displayed with correct formatting and nutrient breakdown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A text input box for entering food names or keywords in the search function",
+        "user_persona": "A curious teenager named Zoe exploring different foods.",
+        "user_goal": "To easily search for any food item she's interested in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing Input Box",
+                "description": "Zoe clicks on the search box to begin typing.",
+                "action": "Click the search input box.",
+                "expected_outcome": "Input box gains focus and cursor blinks ready for typing."
+            },
+            {
+                "step": 2,
+                "title": "Performing Search",
+                "description": "She types 'blueberries' and presses Enter.",
+                "action": "Type 'blueberries' and press Enter key.",
+                "expected_outcome": "Search results populate dynamically below the input field."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A text input area for entering multiple food ingredients in the nutrition analysis function",
+        "user_persona": "A culinary student named Jordan working on a nutrition project.",
+        "user_goal": "To analyze the nutritional profile of a multi-ingredient dish.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Multiple Ingredients",
+                "description": "Jordan lists several ingredients like 'salmon, sweet potato, kale' in the input area.",
+                "action": "Click the ingredients textarea and type 'salmon, sweet potato, kale'.",
+                "expected_outcome": "Textarea captures all comma-separated items without error."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Input fields for specifying serving sizes corresponding to each ingredient in the nutrition analysis function",
+        "user_persona": "A parent named Tom calculating meal portions for his toddler.",
+        "user_goal": "To ensure portion sizes are appropriate for young children.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Portion Sizes",
+                "description": "Tom sees input fields for salmon (g), sweet potato (g), and kale (g). He enters 50, 80, and 30 respectively.",
+                "action": "Enter 50, 80, and 30 into the respective numeric input fields.",
+                "expected_outcome": "Fields accept integer inputs and reflect the entered values accurately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive UI components for designing food packaging compliant with Canadian labeling regulations",
+        "user_persona": "A graphic designer named Clara designing packaging for a client.",
+        "user_goal": "To build packaging that meets legal standards without violating layout constraints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding Elements",
+                "description": "Clara clicks the 'Add Text' icon and places a heading on the canvas.",
+                "action": "Click the 'Add Text' SVG icon from the toolbar.",
+                "expected_outcome": "A new editable text block appears on the packaging canvas."
+            },
+            {
+                "step": 2,
+                "title": "Adjusting Layout",
+                "description": "She drags the text block near the bottom edge but notices it snaps back slightly due to compliance rules.",
+                "action": "Attempt to drag the text block too close to the edge.",
+                "expected_outcome": "Element automatically adjusts position to remain compliant with regulatory margins."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time display of updated nutrition facts label during packaging design process",
+        "user_persona": "A startup founder named Drew integrating nutrition info into his product packaging.",
+        "user_goal": "To see how changes in product formulation affect the nutrition label on the package.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Updating Recipe",
+                "description": "Drew modifies ingredient quantities in the analysis section and recalculates.",
+                "action": "Change ingredient amounts and click 'Calculate Nutrition'.",
+                "expected_outcome": "Nutrition facts label updates instantly in both the analysis panel and the live preview next to the packaging canvas."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Visual styling with a linen background and maroon-colored components throughout the interface",
+        "user_persona": "A UX researcher named Maya evaluating visual consistency.",
+        "user_goal": "To verify that the entire app follows consistent styling guidelines.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Visual Theme",
+                "description": "Maya observes the homepage and checks background and component colors.",
+                "action": "Open homepage and visually inspect layout.",
+                "expected_outcome": "Background shows linen texture, and all interactive components (buttons, inputs) use maroon borders and text."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout ensuring usability across desktop and mobile devices",
+        "user_persona": "A frequent traveler named Kevin checking nutrition info on his phone.",
+        "user_goal": "To seamlessly access the website’s features on a mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Kevin visits the website on his smartphone.",
+                "action": "Open website URL on a mobile browser.",
+                "expected_outcome": "Layout adapts to smaller screen with vertically stacked elements and appropriately sized touch targets."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for invalid inputs such as non-existent foods or incorrect serving size formats",
+        "user_persona": "A meticulous user named Priya double-checking her inputs.",
+        "user_goal": "To receive helpful feedback when making mistakes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Invalid Food Name",
+                "description": "Priya searches for 'unicorn meat', which doesn't exist.",
+                "action": "Enter 'unicorn meat' in the search box and press Enter.",
+                "expected_outcome": "An error banner appears stating 'Food not found'."
+            },
+            {
+                "step": 2,
+                "title": "Entering Incorrect Serving Size",
+                "description": "She accidentally enters 'abc' instead of a number for serving size.",
+                "action": "Enter 'abc' in a serving size input field and click 'Calculate Nutrition'.",
+                "expected_outcome": "Error message appears below the field saying 'Please enter valid numbers'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading indicators during API requests for search results, nutrition calculations, and packaging updates",
+        "user_persona": "A patient user named Omar waiting for results on a slow connection.",
+        "user_goal": "To know that the system is processing his request even if there's a delay.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Long Search",
+                "description": "Omar performs a broad search like 'pasta sauce' that takes time to resolve.",
+                "action": "Type 'pasta sauce' into the search box and hit Enter.",
+                "expected_outcome": "A full-screen overlay with a spinning loader appears until the results are fetched."
+            }
+        ]
+    }
+]

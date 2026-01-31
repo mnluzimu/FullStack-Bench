@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "A game lobby interface displaying available game rooms, current game status, and player information",
+        "user_persona": "A casual poker enthusiast looking to find an available game quickly.",
+        "user_goal": "To browse the lobby and identify an open game room with available seats.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering the Lobby",
+                "description": "Sarah opens the poker website and logs in. She lands on the lobby page which shows a list of available game rooms.",
+                "action": "Navigate to the lobby page.",
+                "expected_outcome": "The lobby loads with a grid of game room cards showing room names, statuses, and player lists on a azure background with midnight blue cards."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Rooms",
+                "description": "Sarah scans the room cards, noting which rooms have open seats and are currently in the 'waiting' status.",
+                "action": "Hover over a room card to see extra details.",
+                "expected_outcome": "The hovered card shows additional information like creation time and creator with a subtle shadow effect."
+            },
+            {
+                "step": 3,
+                "title": "Selecting a Room",
+                "description": "Finding a suitable room, Sarah clicks on the card to join it.",
+                "action": "Click on a room card labeled 'Open' with available seats.",
+                "expected_outcome": "Sarah is navigated to the selected game room interface."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to create or join game rooms",
+        "user_persona": "A regular player who prefers hosting private games with friends.",
+        "user_goal": "To create a new private game room and share it with friends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Room Creation",
+                "description": "Mark wants to host a game night and decides to create a private room for his friends.",
+                "action": "Click the 'Create Room' button in the lobby.",
+                "expected_outcome": "A modal form appears asking for room details."
+            },
+            {
+                "step": 2,
+                "title": "Configuring the Room",
+                "description": "Mark fills in the room name and sets the maximum players to 6.",
+                "action": "Fill in room name and select player limit, then submit the form.",
+                "expected_outcome": "The form validates inputs and submits successfully, creating a new room entry in the database."
+            },
+            {
+                "step": 3,
+                "title": "Accessing Created Room",
+                "description": "After submitting, Mark expects to be taken directly to his newly created room.",
+                "action": "Submit the create room form.",
+                "expected_outcome": "Mark is redirected to the newly created game room where he waits for friends to join."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A Texas Hold'em poker table interface showing player hand cards, community cards, and betting information",
+        "user_persona": "A competitive online poker player focused on game strategy.",
+        "user_goal": "To view their hand and the community cards to make informed decisions during gameplay.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering the Game Room",
+                "description": "Jessica joins a room and takes a seat at the poker table.",
+                "action": "Enter a game room and wait for the game to start.",
+                "expected_outcome": "The poker table interface loads with placeholders for cards and betting information on an azure background with midnight blue elements."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Hole Cards",
+                "description": "As the game begins, Jessica eagerly awaits her hole cards.",
+                "action": "Wait for the initial card deal.",
+                "expected_outcome": "The component fetches Jessica's hand cards via API and displays them face down in her designated position."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Community Cards",
+                "description": "During the flop round, community cards are revealed.",
+                "action": "Observe the center of the table as community cards are dealt.",
+                "expected_outcome": "Three community cards appear in the center of the table, updating in real-time as the game progresses."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interactive action buttons for game moves such as fold, check, call, raise, and bet",
+        "user_persona": "An intermediate poker player making strategic moves.",
+        "user_goal": "To make a calculated raise during a key moment in the game.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Waiting for Turn",
+                "description": "Robert watches the game progress and waits for his turn to act.",
+                "action": "Wait until it's his turn to make a decision.",
+                "expected_outcome": "The action buttons remain disabled until it's Robert's turn."
+            },
+            {
+                "step": 2,
+                "title": "Deciding to Raise",
+                "description": "Seeing a strong hand, Robert decides to raise the current bet.",
+                "action": "Click the 'Raise' button.",
+                "expected_outcome": "An input modal appears prompting Robert to enter the raise amount."
+            },
+            {
+                "step": 3,
+                "title": "Executing the Raise",
+                "description": "Robert enters his desired raise amount and confirms the action.",
+                "action": "Enter raise amount and confirm submission.",
+                "expected_outcome": "The raise action is sent to the backend via API, updating the pot and Robert's chip count accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time chat functionality within game rooms",
+        "user_persona": "A social player who enjoys chatting with opponents.",
+        "user_goal": "To engage in friendly banter with other players during a game break.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Chat",
+                "description": "During a break between hands, Lisa notices the chat sidebar and decides to say hello.",
+                "action": "Locate the chat sidebar and click on the text input field.",
+                "expected_outcome": "The chat sidebar is visible with previous messages displayed and an active input field ready for typing."
+            },
+            {
+                "step": 2,
+                "title": "Sending a Message",
+                "description": "Lisa types a greeting and sends it to the group.",
+                "action": "Type 'Good luck everyone!' and press Enter.",
+                "expected_outcome": "The message is transmitted via WebSocket and instantly appears in the chat display area for all players."
+            },
+            {
+                "step": 3,
+                "title": "Receiving Responses",
+                "description": "Lisa waits to see if anyone responds to her message.",
+                "action": "Monitor the chat display for incoming messages.",
+                "expected_outcome": "New messages from other players appear in real-time without requiring a page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and account management system",
+        "user_persona": "A new user excited to start playing online poker.",
+        "user_goal": "To register for a new account and log in for the first time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Registration",
+                "description": "Alex visits the site for the first time and wants to create an account.",
+                "action": "Click the 'Register' button on the homepage.",
+                "expected_outcome": "A registration form with midnight blue themed inputs appears."
+            },
+            {
+                "step": 2,
+                "title": "Completing Registration",
+                "description": "Alex fills out the registration form with personal details.",
+                "action": "Enter username, email, and password, then submit the form.",
+                "expected_outcome": "The form validates inputs and creates a new user entry in the database, issuing a JWT token upon successful registration."
+            },
+            {
+                "step": 3,
+                "title": "Logging In",
+                "description": "After registering, Alex logs in to access the game lobby.",
+                "action": "Navigate to login page, enter credentials, and click 'Login'.",
+                "expected_outcome": "Alex is authenticated and redirected to the lobby page with a personalized welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Capability to view past game records and history",
+        "user_persona": "A stats-oriented player who likes to analyze performance.",
+        "user_goal": "To review the results of a recent tournament game.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing History Page",
+                "description": "After finishing a game, Tom wants to see how he performed.",
+                "action": "Navigate to the game history section from the user profile menu.",
+                "expected_outcome": "Tom sees a tabular list of past games showing dates, results, and chip changes."
+            },
+            {
+                "step": 2,
+                "title": "Finding Specific Record",
+                "description": "Tom looks for a particular game he played earlier that day.",
+                "action": "Scan the history list and click on the relevant game record.",
+                "expected_outcome": "The selected record expands or navigates to a detailed view showing full game progression."
+            },
+            {
+                "step": 3,
+                "title": "Analyzing Results",
+                "description": "In the detailed view, Tom examines the final hands and betting sequence.",
+                "action": "Review the detailed game log and final hand rankings.",
+                "expected_outcome": "Complete game information including all player actions and final outcomes is displayed accurately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend that fetches all dynamic data from backend APIs",
+        "user_persona": "A tech-savvy user concerned about application performance.",
+        "user_goal": "To ensure the application loads fresh data without any hard-coded values.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Data Load",
+                "description": "Pat opens the lobby page and expects to see real-time data.",
+                "action": "Load the lobby page for the first time.",
+                "expected_outcome": "Loading indicators appear briefly before live game room data is fetched and displayed from backend APIs."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Dynamic Content",
+                "description": "Pat checks that player information updates dynamically.",
+                "action": "Observe player lists in room cards as players join or leave.",
+                "expected_outcome": "Player information updates in real-time without manual refresh, confirming API-driven content."
+            },
+            {
+                "step": 3,
+                "title": "Checking Authentication Flow",
+                "description": "Pat logs out and back in to verify session handling.",
+                "action": "Log out and then log back in using valid credentials.",
+                "expected_outcome": "Authentication process correctly exchanges credentials for tokens and fetches user profile data from protected API endpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend service connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the application for production use.",
+        "user_goal": "To verify the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "DevOps engineer starts the backend service with configured environment variables.",
+                "action": "Start the backend service with correct DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME values.",
+                "expected_outcome": "Application initializes successfully and establishes a connection pool to the PostgreSQL database without errors."
+            },
+            {
+                "step": 2,
+                "title": "Testing Database Operations",
+                "description": "The engineer tests basic database operations to confirm connectivity.",
+                "action": "Execute a simple query through an API endpoint that accesses the database.",
+                "expected_outcome": "Query executes successfully through the established connection pool, returning expected data from the database."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Data Persistence",
+                "description": "Confirm that game data is properly saved to the database.",
+                "action": "Create a new game room and check database records.",
+                "expected_outcome": "New room entry is created in the database with correct information matching the API request."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with azure page background and midnight blue elements",
+        "user_persona": "A mobile user accessing the poker site on a smartphone.",
+        "user_goal": "To navigate the site comfortably on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Jamie opens the poker site on their smartphone browser.",
+                "action": "Visit the homepage using a mobile device.",
+                "expected_outcome": "Site layout adjusts to fit the mobile screen with azure background and midnight blue interactive elements maintained."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Elements",
+                "description": "Jamie taps on various buttons and links to navigate.",
+                "action": "Tap on lobby buttons and navigation links.",
+                "expected_outcome": "Elements respond appropriately to touch interactions with consistent color scheme and proper sizing for mobile."
+            },
+            {
+                "step": 3,
+                "title": "Checking Visual Consistency",
+                "description": "Jamie verifies that the visual theme remains consistent across different pages.",
+                "action": "Navigate between lobby, game room, and profile pages.",
+                "expected_outcome": "All pages maintain the azure background and midnight blue element colors regardless of screen size."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time synchronization of game state across all players in a room",
+        "user_persona": "A player in a multiplayer game expecting seamless gameplay.",
+        "user_goal": "To experience synchronized game actions with other players.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Joining a Multiplayer Room",
+                "description": "Four players including Max join the same game room and connect to the WebSocket channel.",
+                "action": "Enter a game room with multiple players.",
+                "expected_outcome": "All players establish WebSocket connections to the room-specific channel for real-time updates."
+            },
+            {
+                "step": 2,
+                "title": "Observing Synchronized Actions",
+                "description": "As one player makes a bet, Max watches to see if it reflects immediately for everyone.",
+                "action": "Watch the table as another player places a bet.",
+                "expected_outcome": "The bet action appears simultaneously for all players with updated pot and chip counts shown instantly."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Consistent State",
+                "description": "Max checks that all players see identical game information.",
+                "action": "Compare visible game state with other players' views.",
+                "expected_outcome": "All players observe identical community cards, pot values, and player positions in real-time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Player seating and position management at the poker table",
+        "user_persona": "A new player joining an ongoing game session.",
+        "user_goal": "To select an available seat and understand their position at the table.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Joining Table with Occupied Seats",
+                "description": "Taylor enters a room where some seats are already taken.",
+                "action": "Look for available seats at the poker table.",
+                "expected_outcome": "The table displays 8 positions with clear indicators of occupied and empty seats."
+            },
+            {
+                "step": 2,
+                "title": "Choosing a Seat",
+                "description": "Taylor selects an open seat to join the game.",
+                "action": "Click on an 'Empty Seat' placeholder.",
+                "expected_outcome": "Taylor is assigned to that seat position and appears in the player list for others."
+            },
+            {
+                "step": 3,
+                "title": "Understanding Position Roles",
+                "description": "Taylor checks their role in the current hand.",
+                "action": "Look for dealer button and blind indicators near their seat.",
+                "expected_outcome": "Clear visual indicators show Taylor's position relative to dealer and blinds for the upcoming hand."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Chip tracking and betting mechanics implementation",
+        "user_persona": "A strategic player managing their chip stack carefully.",
+        "user_goal": "To place a bet and verify accurate chip deductions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Chip Balance",
+                "description": "Before making a move, Casey reviews their available chips.",
+                "action": "Look at the chip stack display next to their player position.",
+                "expected_outcome": "Current chip count is clearly displayed next to Casey's seat with accurate value matching database."
+            },
+            {
+                "step": 2,
+                "title": "Placing a Bet",
+                "description": "Casey decides to call the current bet during their turn.",
+                "action": "Click the 'Call' button when it becomes active.",
+                "expected_outcome": "Chips are deducted from Casey's stack and added to the current pot with correct amounts reflected immediately."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Pot Distribution",
+                "description": "After winning a hand, Casey expects to receive the correct chip payout.",
+                "action": "Win a hand and observe chip distribution.",
+                "expected_outcome": "Pot chips are automatically distributed to Casey's stack based on winning hand strength and side pot calculations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Game logic engine handling Texas Hold'em rules and hand evaluation",
+        "user_persona": "A rule-conscious player expecting fair gameplay.",
+        "user_goal": "To have their hand correctly evaluated according to Texas Hold'em rules.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Playing a Complete Hand",
+                "description": "Drew participates in a full hand from pre-flop to showdown.",
+                "action": "Play through all betting rounds and reveal cards at showdown.",
+                "expected_outcome": "System correctly progresses through dealing phases, betting rounds, and timing of community card reveals."
+            },
+            {
+                "step": 2,
+                "title": "Hand Evaluation",
+                "description": "At showdown, Drew's hand is compared against opponents.",
+                "action": "Reveal cards and await hand evaluation results.",
+                "expected_outcome": "System accurately evaluates Drew's hand strength using standard poker rankings and determines correct winner."
+            },
+            {
+                "step": 3,
+                "title": "Rule Enforcement",
+                "description": "Drew attempts an illegal action to test validation.",
+                "action": "Try to call a bet with insufficient chips without going all-in.",
+                "expected_outcome": "System prevents the invalid action and prompts Drew to either go all-in or fold according to Texas Hold'em rules."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Session management for logged-in users",
+        "user_persona": "A frequent user who stays logged in across multiple sessions.",
+        "user_goal": "To maintain authenticated access without repeated logins during active use.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Authenticated Session",
+                "description": "Jordan logs in and begins playing several games.",
+                "action": "Log in successfully and navigate between different sections.",
+                "expected_outcome": "Session token is issued and used for subsequent API requests, keeping Jordan logged in across navigation."
+            },
+            {
+                "step": 2,
+                "title": "Extending Session Through Activity",
+                "description": "Jordan continues playing actively, expecting session to persist.",
+                "action": "Perform various actions like joining rooms, chatting, and playing hands.",
+                "expected_outcome": "Each activity extends session lifetime, preventing automatic logout during active gameplay."
+            },
+            {
+                "step": 3,
+                "title": "Handling Inactivity Timeout",
+                "description": "After stepping away, Jordan returns to find session expired.",
+                "action": "Return to the site after extended inactivity period.",
+                "expected_outcome": "Inactive session has expired and Jordan is automatically redirected to the login page."
+            }
+        ]
+    }
+]

@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "Create a responsive website with a professional layout tailored for small to medium-sized businesses.",
+        "user_persona": "A small business owner browsing the website on a laptop.",
+        "user_goal": "To navigate the website easily and find relevant information quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah visits the homepage and notices a clean layout with a header containing the logo, navigation menu, and a contact button. The background is misty rose, and all components are styled in firebrick.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "The page renders with a full-width header, misty rose background, and firebrick-styled UI components."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Sections",
+                "description": "Curious about services, Sarah clicks on the 'Services' link in the navigation menu.",
+                "action": "Click on the 'Services' navigation link.",
+                "expected_outcome": "The page scrolls smoothly to the services section or loads the dedicated services page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a homepage introducing software solutions and staffing services with clear value propositions.",
+        "user_persona": "A potential customer exploring the homepage for business solutions.",
+        "user_goal": "To understand the value offered by the software and staffing services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Hero Section",
+                "description": "Mike lands on the homepage and sees a hero banner with a headline and subheadline explaining how the company streamlines operations for SMBs.",
+                "action": "Load the homepage.",
+                "expected_outcome": "A hero section with background image, headline, and subheadline is displayed prominently."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Value Propositions",
+                "description": "He scrolls down and notices three boxes titled 'Custom Software Solutions', 'Expert Staffing Services', and 'Proven Success Stories'.",
+                "action": "Scroll down the homepage.",
+                "expected_outcome": "Three value proposition boxes appear with clear, non-technical descriptions."
+            },
+            {
+                "step": 3,
+                "title": "Learning More",
+                "description": "Intrigued, Mike clicks the 'Learn More About Our Services' button.",
+                "action": "Click the CTA button.",
+                "expected_outcome": "Redirected to the services overview page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add dedicated sections for detailed product and service descriptions.",
+        "user_persona": "A business manager looking for specific service details.",
+        "user_goal": "To learn detailed information about available software and staffing services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Services Page",
+                "description": "Lisa navigates to the services page to explore offerings.",
+                "action": "Navigate to the '/services' route.",
+                "expected_outcome": "Page displays categorized service cards with icons and brief summaries fetched dynamically."
+            },
+            {
+                "step": 2,
+                "title": "Reading Service Details",
+                "description": "She clicks on a service card labeled 'Custom Software Development'.",
+                "action": "Click on a service card.",
+                "expected_outcome": "Card expands or redirects to a standalone page showing full service description."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement an industry news and trends section displaying latest updates in an engaging format.",
+        "user_persona": "A curious visitor interested in staying updated on tech trends.",
+        "user_goal": "To browse and read the latest industry news articles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting News Section",
+                "description": "Tom clicks on the 'News' link in the navigation bar to find recent updates.",
+                "action": "Click the 'News' navigation link.",
+                "expected_outcome": "Redirected to the '/news' page showing a list of recent articles with headlines and summaries."
+            },
+            {
+                "step": 2,
+                "title": "Reading an Article",
+                "description": "He finds an interesting article and clicks on it to read more.",
+                "action": "Click on a news article.",
+                "expected_outcome": "Article opens in a detailed view with full content and optional thumbnail."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Feature a customer cases and success stories section with real-world examples.",
+        "user_persona": "A prospect wanting to see real-life success stories.",
+        "user_goal": "To explore customer case studies and testimonials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Success Stories",
+                "description": "Emma navigates to the 'Success Stories' page to see how others benefited.",
+                "action": "Click on the 'Success Stories' link in the navigation menu.",
+                "expected_outcome": "Redirected to the '/success-stories' page displaying case study cards with company names and challenges."
+            },
+            {
+                "step": 2,
+                "title": "Exploring a Case Study",
+                "description": "She clicks on a case study card for a logistics company.",
+                "action": "Click on a case study card.",
+                "expected_outcome": "Case study expands or redirects to a page showing the full story including solution and outcome."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design all page backgrounds using misty rose color (#FFE4E1).",
+        "user_persona": "A designer reviewing the website's visual consistency.",
+        "user_goal": "To verify that all pages use the correct background color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Homepage Background",
+                "description": "Alex inspects the homepage to confirm the background color.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Body background color is set to #FFE4E1 across the entire page."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Other Pages",
+                "description": "He navigates to other sections like Services, News, and Contact to ensure uniformity.",
+                "action": "Visit multiple pages.",
+                "expected_outcome": "Each page has a consistent misty rose background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style all UI components such as buttons, headers, and links using firebrick color (#B22222).",
+        "user_persona": "A frontend developer validating UI styling.",
+        "user_goal": "To confirm all interactive elements are styled with firebrick.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Buttons",
+                "description": "Jamie examines the buttons on the homepage to ensure they match the brand style.",
+                "action": "Inspect button styles using browser tools.",
+                "expected_outcome": "Buttons have #B22222 background with white text."
+            },
+            {
+                "step": 2,
+                "title": "Testing Hover Effects",
+                "description": "He hovers over a button to see if there's a visual feedback.",
+                "action": "Hover over a button.",
+                "expected_outcome": "Button darkens slightly indicating interactivity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to browse content through intuitive navigation menus.",
+        "user_persona": "A casual visitor exploring the website.",
+        "user_goal": "To effortlessly navigate through different sections of the website.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "Riley clicks on the 'News' link in the sticky navigation bar.",
+                "action": "Click on the 'News' link in the navigation menu.",
+                "expected_outcome": "Smoothly scrolls to or loads the news section."
+            },
+            {
+                "step": 2,
+                "title": "Mobile Navigation",
+                "description": "On a mobile device, Riley taps the hamburger icon to open the menu.",
+                "action": "Click the hamburger icon on mobile view.",
+                "expected_outcome": "Navigation drawer slides out with menu options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate a search functionality allowing users to find specific information or products.",
+        "user_persona": "A user searching for specific information.",
+        "user_goal": "To locate relevant content using the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Chris notices the search bar in the header and types 'cloud services' into it.",
+                "action": "Type 'cloud services' into the search bar and press Enter.",
+                "expected_outcome": "Search results page loads showing articles and services related to 'cloud services'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a contact form or contact page for visitors to request more information.",
+        "user_persona": "A potential client wanting to get in touch.",
+        "user_goal": "To submit a contact form with inquiries.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Contact Form",
+                "description": "Patricia goes to the contact page and fills in her name, email, company, and message.",
+                "action": "Fill out the contact form fields and click 'Submit'.",
+                "expected_outcome": "Form validates inputs and sends data to backend. A success message is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all content is written in clear, easy-to-understand language targeted at non-technical audiences.",
+        "user_persona": "A non-technical business owner reading website content.",
+        "user_goal": "To understand the content without confusion.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Homepage Content",
+                "description": "David reads the homepage content to understand what the company offers.",
+                "action": "Browse through the homepage text.",
+                "expected_outcome": "Content is clear, jargon-free, and easy to comprehend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Optimize the website for engagement with visually appealing layouts and readable fonts.",
+        "user_persona": "A user evaluating the website's readability.",
+        "user_goal": "To experience a visually pleasing and easy-to-read interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Assessing Typography",
+                "description": "Jordan reviews the font choices and spacing on various pages.",
+                "action": "Browse different pages and inspect text layout.",
+                "expected_outcome": "Text uses 'Open Sans', sans-serif font with good line spacing and visual hierarchy."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up static file serving for images, stylesheets, and client-side scripts.",
+        "user_persona": "A developer checking asset delivery.",
+        "user_goal": "To ensure static assets load properly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Assets",
+                "description": "Taylor checks if images and stylesheets are loading correctly.",
+                "action": "Visit homepage and inspect network tab for asset requests.",
+                "expected_outcome": "Images, CSS, and JS files are loaded from the public directory without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'install:all' script to install frontend and backend dependencies concurrently.",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "To install all dependencies efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Morgan clones the repository and runs the install script.",
+                "action": "Run 'npm run install:all' in terminal.",
+                "expected_outcome": "Frontend and backend dependencies install simultaneously without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with 'dev' script to start both frontend and backend servers concurrently.",
+        "user_persona": "A developer starting the development environment.",
+        "user_goal": "To launch both servers with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Casey runs the dev script to start working on the project.",
+                "action": "Run 'npm run dev' in terminal.",
+                "expected_outcome": "Both frontend and backend servers start concurrently and are accessible."
+            }
+        ]
+    }
+]

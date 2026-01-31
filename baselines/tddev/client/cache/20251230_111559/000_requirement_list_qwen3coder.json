@@ -1,0 +1,233 @@
+[
+    {
+        "resource_dependency": {
+            "map_api": "An interactive map API such as Mapbox or Leaflet for rendering neighborhood boundaries and enabling area selection.",
+            "charting_library": "A JavaScript charting library such as Chart.js or D3.js for rendering interactive charts.",
+            "database_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Fetch all dynamic data from backend APIs for use in the frontend application.",
+        "static_description": "The frontend loads without displaying any hard-coded data. All visualizations, maps, and dashboards remain blank until populated via API responses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Triggers automatic fetching of available neighborhood data, demographic summaries, and default dashboard configurations from backend APIs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgresql_database": "Set up a PostgreSQL database with tables: neighborhoods(area_id, name, boundary_polygon), demographics(area_id, population, age_distribution, income_median), economics(area_id, employment_rate, business_count, avg_income), crimes(area_id, total_incidents, incident_types, year)"
+        },
+        "function": "Establish secure database connections using provided environment variables and handle potential connection errors gracefully.",
+        "static_description": "Backend initializes but remains idle until an API request triggers a database query.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request Received",
+                "description": "Establishes a new database connection using environment variables and executes queries based on endpoint logic."
+            },
+            {
+                "interaction": "Connection Error",
+                "description": "Logs the error internally and returns a standardized HTTP 500 response indicating database connectivity issues."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "map_api": "An interactive map API such as Mapbox or Leaflet for rendering neighborhood boundaries and enabling area selection."
+        },
+        "function": "Display neighborhood boundaries and enable user interaction to select areas for further analysis.",
+        "static_description": "A full-width interactive map centered on the region of interest, showing outlined neighborhood boundaries with labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects or deselects a neighborhood polygon. Selected polygons are visually highlighted with a border or fill color change."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Displays a tooltip with basic information about the hovered neighborhood such as name and area ID."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographic_data_schema": "Table schema: area_id (foreign key), population (integer), age_distribution (JSON), income_median (float)",
+            "economic_data_schema": "Table schema: area_id (foreign key), employment_rate (float), business_count (integer), avg_income (float)",
+            "crime_data_schema": "Table schema: area_id (foreign key), total_incidents (integer), incident_types (JSON), year (integer)"
+        },
+        "function": "Allow users to compare selected neighborhoods based on demographic, economic, and crime statistics.",
+        "static_description": "Comparison panel displayed below or beside the map, showing tabbed sections for Demographics, Economics, and Crime. Each section lists metrics side-by-side for selected neighborhoods.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tab Switch",
+                "description": "Changes displayed data view between Demographics, Economics, and Crime tabs dynamically updating the table content."
+            },
+            {
+                "interaction": "Add Area",
+                "description": "Includes additional neighborhood row in the comparison table after selection on the map."
+            },
+            {
+                "interaction": "Remove Area",
+                "description": "Removes a selected neighborhood from the comparison table when deselected on the map or removed via UI control."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "charting_library": "A JavaScript charting library such as Chart.js or D3.js for rendering interactive charts."
+        },
+        "function": "Provide interactive data dashboards for visualizing demographic, economic, and crime trends per area.",
+        "static_description": "Dashboard grid layout containing multiple resizable chart widgets, each representing one dataset category (e.g., population distribution pie chart, income bar graph). Widgets show sample loading placeholders before data load.",
+        "interaction_and_states": [
+            {
+                "interaction": "Widget Click",
+                "description": "Activates focus mode expanding the widget to occupy most screen space while hiding others."
+            },
+            {
+                "interaction": "Legend Hover",
+                "description": "Highlights corresponding data series within the chart for easier identification."
+            },
+            {
+                "interaction": "Chart Resize",
+                "description": "Allows resizing of individual chart containers through drag handles located at corners."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "layout_options_data": "Predefined layout templates stored either client-side or fetched from backend (lightweight JSON structures defining widget positions and sizes)"
+        },
+        "function": "Enable users to customize their dashboard layout by rearranging and resizing widgets.",
+        "static_description": "Dashboard displays widgets arranged according to a default template. Controls appear upon hover allowing movement or resizing actions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag Start",
+                "description": "Initiates dragging operation on a widget allowing repositioning within the grid system."
+            },
+            {
+                "interaction": "Drop",
+                "description": "Finalizes widget placement at the drop location and updates internal layout configuration."
+            },
+            {
+                "interaction": "Resize Handle Drag",
+                "description": "Adjusts dimensions of a widget proportionally and notifies other adjacent widgets accordingly."
+            },
+            {
+                "interaction": "Save Layout",
+                "description": "Stores current layout preferences locally or sends them to the backend for persistence."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_color": "#FFFFF0",
+            "component_color": "#228B22"
+        },
+        "function": "Apply consistent styling throughout the application using ivory background and forest green components.",
+        "static_description": "Entire page uses #FFFFF0 as the base background color. Buttons, headers, cards, and navigation bars utilize #228B22 as primary accent color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover over Component",
+                "description": "Applies subtle darkening effect to #228B22 colored elements enhancing interactivity feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "demographic_data_schema": "Table schema: area_id (foreign key), population (integer), age_distribution (JSON), income_median (float)"
+        },
+        "function": "Expose RESTful API endpoints to retrieve demographic data filtered by geographic area identifiers.",
+        "static_description": "Endpoint accessible at /api/demographics/{areaId} returning structured JSON response including all relevant demographic fields.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "economic_data_schema": "Table schema: area_id (foreign key), employment_rate (float), business_count (integer), avg_income (float)"
+        },
+        "function": "Serve economic data through dedicated API routes indexed by area identifier.",
+        "static_description": "Accessible endpoint at /api/economics/{areaId} delivering JSON formatted economic indicators related to the specified area.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "crime_data_schema": "Table schema: area_id (foreign key), total_incidents (integer), incident_types (JSON), year (integer)"
+        },
+        "function": "Deliver crime-related datasets grouped by area via standardized API interfaces.",
+        "static_description": "Endpoint available at /api/crimes/{areaId} responding with detailed criminal activity records tied to the requested area.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "charting_library": "A JavaScript charting library such as Chart.js or D3.js for rendering interactive charts."
+        },
+        "function": "Implement reusable UI components capable of rendering various types of data-driven charts.",
+        "static_description": "Reusable React/Vue components wrapping chart libraries with props accepting chart type, data source URL, and customization settings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Data Update",
+                "description": "Re-renders chart visuals automatically when underlying data changes or new data arrives from API calls."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "neighborhood_selection_ui_elements": "Buttons, checkboxes, or multi-select dropdown menus used to choose which neighborhoods will be compared."
+        },
+        "function": "Facilitate intuitive area selection mechanisms integrated into map controls or separate panels.",
+        "static_description": "Panel alongside or above the map featuring searchable list of neighborhoods with checkboxes next to each entry for toggling inclusion in comparisons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Checkbox Toggle",
+                "description": "Marks/unmarks a neighborhood for inclusion in comparative views and synchronizes with map highlights."
+            },
+            {
+                "interaction": "Search Input Typing",
+                "description": "Filters visible neighborhood entries in real time matching typed keywords against area names."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_css_framework": "CSS framework like Bootstrap or Tailwind CSS supporting adaptive layouts across device sizes."
+        },
+        "function": "Ensure optimal viewing experience across desktop and tablet screen resolutions.",
+        "static_description": "Flexible grid layouts adjusting column counts and font sizes depending on viewport width. Navigation transforms into collapsible menu on smaller screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Screen Resize",
+                "description": "Dynamically adjusts element sizing and arrangement maintaining usability and readability regardless of orientation or resolution."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "install_script_command": "npm run install:all",
+            "dev_server_command": "npm run dev"
+        },
+        "function": "Configure package.json scripts to manage installation and development server startup processes efficiently.",
+        "static_description": "Scripts defined under 'scripts' key in package.json file ensuring simultaneous setup of frontend and backend environments.",
+        "interaction_and_states": [
+            {
+                "interaction": "Terminal Command Execution",
+                "description": "`npm run install:all` runs npm install in both frontend and backend directories concurrently. `npm run dev` launches watchers and servers for live reloading during development."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "database_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Manage database connections robustly with built-in retry logic and clear error reporting.",
+        "static_description": "Backend module establishes persistent pool of database connections initialized at app boot utilizing provided credentials.",
+        "interaction_and_states": [
+            {
+                "interaction": "Query Initiated",
+                "description": "Acquires free connection from pool, performs SQL execution, releases back to pool once done preventing leaks."
+            },
+            {
+                "interaction": "Timeout/Error Occurs",
+                "description": "Retries failed operations up to configured limit before throwing exception caught globally for logging and HTTP response generation."
+            }
+        ]
+    }
+]

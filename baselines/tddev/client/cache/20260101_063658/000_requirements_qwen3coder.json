@@ -1,0 +1,18 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "Functionality for users to create new chess games",
+    "Functionality for users to join existing chess games",
+    "Interactive chessboard allowing users to move pieces according to chess rules",
+    "Ability for users to undo their last move",
+    "Option for users to resign from a game",
+    "Interface controls for selecting different board themes",
+    "Interface controls for selecting difficulty levels",
+    "Display area showing game history including all moves made",
+    "Section for viewing player statistics such as wins, losses, and win rate",
+    "Real-time synchronization of game state between players",
+    "User authentication system to manage player sessions",
+    "Responsive layout styled with alice blue background and steel blue interface elements",
+    "Configuration in package.json to install dependencies for both frontend and backend with 'npm run install:all'",
+    "Configuration in package.json to start both frontend and backend concurrently with 'npm run dev'"
+]

@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API service that connects to a PostgreSQL database using specified environment variables",
+    "Player statistics tracking functionality with detailed views",
+    "Team management features including roster editing and financial management",
+    "Live game simulation engine with real-time result visualization",
+    "Interactive lineup and strategy adjustment interface for users",
+    "User interface with floral white background and dark goldenrod interactive elements",
+    "Database schema supporting players, teams, statistics, and game simulations",
+    "Authentication and user session management system",
+    "Dashboard for overview of team performance and upcoming games",
+    "Historical game results and statistics archive",
+    "Real-time updates during game simulations",
+    "Configuration in package.json for `npm run install:all` to install frontend and backend dependencies",
+    "Configuration in package.json for `npm run dev` to start frontend and backend concurrently",
+    "Responsive web design compatible with desktop and mobile browsers"
+]

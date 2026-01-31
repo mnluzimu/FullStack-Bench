@@ -1,0 +1,223 @@
+[
+    {
+        "resource_dependency": {
+            "authAPI": "API endpoints for user registration, login, logout, and session validation.",
+            "userSchema": "Database table: users(id UUID PRIMARY KEY, email VARCHAR(255) UNIQUE, password_hash TEXT, created_at TIMESTAMP DEFAULT NOW(), updated_at TIMESTAMP)."
+        },
+        "function": "Enable user registration and secure authentication with session management.",
+        "static_description": "A centered form with fields for email, password, confirm password, and a forest green submit button on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends credentials to the authAPI for processing. Displays success message or errors based on response."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on any input field triggers form submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileEditAPI": "API endpoint for updating user profile information including file uploads.",
+            "photoUploadAPI": "API endpoint specifically for uploading profile images.",
+            "profileSchema": "Database table: profiles(user_id UUID REFERENCES users(id), full_name TEXT, phone_number TEXT, skills TEXT[], qualifications TEXT, photo_url TEXT, updated_at TIMESTAMP)."
+        },
+        "function": "Allow users to create and update their personal and professional details along with uploading a profile picture.",
+        "static_description": "Form containing text inputs for name, phone number, email (read-only), multi-select dropdown for skills, textarea for qualifications, image preview area, and a forest green save button on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking save submits data via profileEditAPI. Clicking upload triggers photo selection dialog and sends selected image to photoUploadAPI."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing selections in skill dropdown updates internal state before saving."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "jobPostAPI": "API endpoints for creating, reading, updating, and deleting job listings.",
+            "employerDashboardAPI": "API endpoints to fetch employer-specific job posts and related applications.",
+            "jobSchema": "Database tables: jobs(id UUID PRIMARY KEY, title TEXT, description TEXT, category_id INT REFERENCES categories(id), location TEXT, wage_range TEXT, posted_by UUID REFERENCES users(id), created_at TIMESTAMP DEFAULT NOW()), categories(id SERIAL PRIMARY KEY, name TEXT UNIQUE)."
+        },
+        "function": "Provide tools for employers to create and manage job postings including title, description, category, location, and wage range.",
+        "static_description": "Form with input fields for job title, category dropdown, location textbox, wage range selector, rich-text editor for description, and a forest green publish button on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking publish submits the form to jobPostAPI. Category dropdown shows options fetched from categories table."
+            },
+            {
+                "interaction": "Change",
+                "description": "Selecting a different category updates the form’s internal value before submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchJobsAPI": "API endpoint that supports filtering by category, keyword, location, wage, etc.",
+            "categoryListAPI": "API endpoint returning list of available job categories.",
+            "categoriesSchema": "Database table: categories(id SERIAL PRIMARY KEY, name TEXT UNIQUE)."
+        },
+        "function": "Allow job seekers to filter job listings by predefined categories such as construction, plumbing, electrical work, etc.",
+        "static_description": "Sidebar or top bar filters with checkboxes/dropdowns for each category (fetched dynamically), search box, and a forest green apply filters button on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking apply filters sends selected criteria to searchJobsAPI and refreshes job results."
+            },
+            {
+                "interaction": "Change",
+                "description": "Selecting/unselecting filter items updates active filters list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "browseJobsAPI": "Paginated or scroll-based API endpoint for fetching job listings.",
+            "jobsSchema": "Database table: jobs(id UUID PRIMARY KEY, title TEXT, description TEXT, category_id INT REFERENCES categories(id), location TEXT, wage_range TEXT, posted_by UUID REFERENCES users(id), created_at TIMESTAMP DEFAULT NOW())."
+        },
+        "function": "Display a list of available jobs with pagination or infinite scrolling mechanism.",
+        "static_description": "Grid or list layout showing job cards with title, short description, category badge, location, wage range, and a forest green apply now button per card on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Reaching bottom of page triggers loading next batch of jobs if using infinite scroll."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a job card navigates to detailed job view. Clicking 'apply now' redirects to application form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "applicationSubmitAPI": "API endpoint for submitting job applications.",
+            "applicationsSchema": "Database table: applications(id UUID PRIMARY KEY, job_id UUID REFERENCES jobs(id), applicant_id UUID REFERENCES users(id), status TEXT CHECK(status IN ('pending', 'reviewed', 'accepted', 'rejected')) DEFAULT 'pending', submitted_at TIMESTAMP DEFAULT NOW())."
+        },
+        "function": "Enable candidates to apply for jobs and track the status of those applications.",
+        "static_description": "Modal or dedicated page displaying job details followed by a forest green apply button. Confirmation screen appears after successful submission on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking apply opens confirmation prompt then submits through applicationSubmitAPI. Shows success/error feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "employerDashboardAPI": "API endpoints for retrieving employer's posted jobs and associated applications.",
+            "jobSchema": "Database table: jobs(id UUID PRIMARY KEY, title TEXT, description TEXT, category_id INT REFERENCES categories(id), location TEXT, wage_range TEXT, posted_by UUID REFERENCES users(id), created_at TIMESTAMP DEFAULT NOW())."
+        },
+        "function": "Provide employers with a centralized interface to view, edit, delete job posts and review incoming applications.",
+        "static_description": "Tabbed interface with sections for 'My Jobs' and 'Applications'. Job cards show title, applicants count, and actions like edit/delete. Application lists show candidate names, applied date, and status toggles on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking tabs switches views. Clicking edit/delete modifies/deletes job entry via employerDashboardAPI. Status toggle changes application statuses."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "candidateDashboardAPI": "API endpoints for retrieving candidate's profile and application history.",
+            "applicationsSchema": "Database table: applications(id UUID PRIMARY KEY, job_id UUID REFERENCES jobs(id), applicant_id UUID REFERENCES users(id), status TEXT CHECK(status IN ('pending', 'reviewed', 'accepted', 'rejected')) DEFAULT 'pending', submitted_at TIMESTAMP DEFAULT NOW())."
+        },
+        "function": "Offer candidates access to manage their profile and monitor the progress of their job applications.",
+        "static_description": "Split-screen layout with left panel showing profile summary and right panel listing past applications with titles, dates, and current statuses on an ivory background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'edit profile' navigates to profile editor. Clicking individual applications reveals more details."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseSetupInstructions": "Initialize PostgreSQL database using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp. Create tables: users, profiles, jobs, applications, categories with defined relationships."
+        },
+        "function": "Define relational structure for storing user accounts, profiles, job listings, job applications, and job categories.",
+        "static_description": "No visible UI element; this defines underlying data structures referenced throughout the app.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointSpecs": "Defined routes under /api/v1/: auth (register/login), profile (get/update), jobs (list/create/update/delete), applications (submit/list/update)"
+        },
+        "function": "Expose RESTful services enabling frontend components to interact with backend logic securely.",
+        "static_description": "No visible UI element; specifies how frontend communicates with backend systems.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "#FFFFF0 for ivory background, #228B22 for forest green buttons and links"
+        },
+        "function": "Apply consistent color scheme across entire platform using specified ivory and forest green tones.",
+        "static_description": "All pages feature ivory (#FFFFF0) backgrounds and forest green (#228B22) accents for buttons, links, and interactive controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Forest green buttons darken slightly when hovered over."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveFramework": "Use CSS media queries and flexible grid layouts to adapt content to various screen sizes."
+        },
+        "function": "Ensure optimal viewing experience on both desktop and mobile devices without horizontal scrolling or misaligned elements.",
+        "static_description": "Layout adjusts fluidly between desktop-wide columns and stacked mobile rows depending on viewport size.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "UI reflows automatically to fit smaller screens, collapsing sidebars into hamburger menus where appropriate."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "fileUploadService": "Integration point for handling multipart/form-data uploads for profile pictures.",
+            "photoStoragePath": "/uploads/profile_photos/"
+        },
+        "function": "Allow users to upload and store profile photographs within the system.",
+        "static_description": "Image uploader widget with drag-and-drop zone or standard file browser trigger inside profile form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging an image onto the drop zone highlights it and initiates upload upon release."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the upload area opens native file picker. Selected files are sent to fileUploadService."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "validationLibrary": "Client-side library for validating form inputs before sending to server.",
+            "errorHandlingMiddleware": "Server-side middleware returning structured error messages."
+        },
+        "function": "Prevent invalid submissions and provide clear guidance when corrections are needed.",
+        "static_description": "Inline red error labels appear beneath improperly filled fields during real-time validation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Blur",
+                "description": "Leaving a field triggers immediate validation check and displays relevant error if found."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting forms triggers full validation suite; failed checks prevent request and highlight issues."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonConfig": "{ \"scripts\": { \"install:all\": \"cd frontend && npm install && cd ../backend && npm install\", \"dev\": \"concurrently \\\"cd frontend && npm start\\\" \\\"cd backend && npm run dev\\\"\" } }"
+        },
+        "function": "Streamline local development workflow with unified installation and startup commands.",
+        "static_description": "Root-level package.json script definitions allowing developers to use npm run install:all and npm run dev.",
+        "interaction_and_states": []
+    }
+]

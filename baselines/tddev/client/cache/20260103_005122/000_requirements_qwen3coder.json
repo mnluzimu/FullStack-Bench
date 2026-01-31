@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend API server that connects to a PostgreSQL database using specified environment variables",
+    "User authentication and authorization system for coaches and users",
+    "Personality assessment functionality with interactive questionnaire interface",
+    "User profile creation and management with editable personal information",
+    "Coach profile creation and management with specialization and experience details",
+    "Search and filtering functionality for users to find suitable coaches",
+    "Matching algorithm or mechanism to suggest coaches based on personality assessment results",
+    "Scheduling system for booking one-to-one coaching sessions",
+    "Session management dashboard to view upcoming and past coaching sessions",
+    "Goal setting interface allowing users to define personalized coaching objectives",
+    "Progress tracking visualization to monitor goal achievement over time",
+    "Responsive web design with beige background and saddle brown colored components",
+    "Package.json configuration with 'install:all' script for frontend and backend installation",
+    "Package.json configuration with 'dev' script to start frontend and backend concurrently"
+]

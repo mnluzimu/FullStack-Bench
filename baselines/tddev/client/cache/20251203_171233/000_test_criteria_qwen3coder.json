@@ -1,0 +1,233 @@
+[
+    {
+        "requirement_tested": "Implement a search functionality allowing users to input stock codes or names",
+        "user_persona": "A new investor looking to quickly find stock information.",
+        "user_goal": "To successfully enter a stock name into the search bar and trigger the search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Focusing on Search Bar",
+                "description": "Sarah opens the website and sees the search bar prominently placed. She wants to look up Apple Inc. and clicks inside the search bar to start typing.",
+                "action": "Click inside the search bar.",
+                "expected_outcome": "The cursor appears in the search bar, ready for input, with placeholder text 'Enter stock code or name'."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Name",
+                "description": "Sarah types 'Apple' into the search bar. As she finishes, she presses Enter to initiate the search.",
+                "action": "Type 'Apple' and press Enter.",
+                "expected_outcome": "The system processes the search query and begins loading results or suggestions related to 'Apple'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide auto-suggestions or dropdown options during stock search",
+        "user_persona": "An experienced trader who knows specific ticker symbols but wants quick selection.",
+        "user_goal": "To use the auto-suggestions dropdown to select the correct stock quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Typing Partial Query",
+                "description": "Michael starts typing 'TSLA' in the search bar. Immediately, a dropdown list of matching stocks appears below.",
+                "action": "Type 'TSLA' into the search bar.",
+                "expected_outcome": "A navy-themed dropdown menu appears showing suggestions including Tesla Inc. (TSLA)."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Suggestion",
+                "description": "He hovers over the first option, 'Tesla Inc. (TSLA)', then clicks it to confirm his choice.",
+                "action": "Hover over the suggestion and click on 'Tesla Inc. (TSLA)'.",
+                "expected_outcome": "The search bar is populated with 'TSLA', and the system proceeds to display Tesla's stock information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display basic stock information including company name, ticker symbol, and current price",
+        "user_persona": "A casual observer interested in checking a company's latest price.",
+        "user_goal": "To view the core details of a searched stock immediately after searching.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Stock",
+                "description": "Emily searches for 'Microsoft' using the search bar and hits Enter.",
+                "action": "Search for 'Microsoft' and submit.",
+                "expected_outcome": "A card-style panel loads below the search bar displaying Microsoft Corp. (MSFT) with its current stock price highlighted."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show detailed financial data such as revenue, earnings, and market capitalization",
+        "user_persona": "A finance student analyzing key financial indicators for a project.",
+        "user_goal": "To review the financial health metrics of a selected stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Financial Section",
+                "description": "After finding Coca-Cola's stock, Alex scrolls down to the 'Financial Data' section to study its numbers.",
+                "action": "Scroll to the Financial Data section.",
+                "expected_outcome": "A two-column layout presents key metrics like Revenue, EPS, Market Cap, and Dividend Yield clearly labeled with values in navy text."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present market trend visualizations including price charts and performance graphs",
+        "user_persona": "A day trader evaluating buying opportunities based on recent trends.",
+        "user_goal": "To analyze visual representations of a stock’s performance over time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting with Charts",
+                "description": "Jamie views Amazon's price history chart and hovers over a point to see the exact value at that moment.",
+                "action": "Hover over a data point on the price chart.",
+                "expected_outcome": "A tooltip appears displaying the precise price and date corresponding to the hovered point."
+            },
+            {
+                "step": 2,
+                "title": "Toggling Data Sets",
+                "description": "She clicks on the 'Volume' legend item to hide it temporarily and focus only on price movements.",
+                "action": "Click on the 'Volume' legend item.",
+                "expected_outcome": "The volume line disappears from the chart, leaving only the price line visible for clearer analysis."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to customize report content by selecting specific data sections",
+        "user_persona": "A portfolio manager preparing a tailored report for a client meeting.",
+        "user_goal": "To build a custom report focusing only on relevant sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Customizing Sections",
+                "description": "David navigates to the report customization area and checks boxes for 'Basic Info', 'Financial Data', and 'Analyst Recommendations'.",
+                "action": "Check the checkboxes for Basic Info, Financial Data, and Analyst Recommendations.",
+                "expected_outcome": "Each checked box visually confirms selection, indicating those sections will be included in the generated report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to choose from multiple report formats (PDF, HTML, Excel)",
+        "user_persona": "An analyst needing to integrate data into different platforms.",
+        "user_goal": "To pick the most suitable format for sharing and further processing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Format",
+                "description": "Lisa prefers working with spreadsheets and decides to generate her report in Excel format.",
+                "action": "Click the 'Excel' format button.",
+                "expected_outcome": "The Excel button becomes visually highlighted, storing the choice for report generation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate automated stock reports based on selected parameters and customizations",
+        "user_persona": "A busy executive requiring fast access to comprehensive reports.",
+        "user_goal": "To get an instant, personalized stock report compiled automatically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Report",
+                "description": "After setting preferences, Robert clicks the 'Generate Report' button to compile everything he needs about Netflix.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A success message appears, followed by download links once the report has been compiled."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a report summary section highlighting key insights and recommendations",
+        "user_persona": "An investor seeking expert-like guidance before making decisions.",
+        "user_goal": "To read summarized insights and actionable advice upfront in the report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Summary",
+                "description": "Chen downloads his Google stock report and immediately scans the 'Summary & Insights' section at the top.",
+                "action": "Open the downloaded report and scroll to the Summary & Insights section.",
+                "expected_outcome": "Bullet points with italicized analyst-style recommendations are presented clearly at the beginning of the document."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide export functionality for generated reports in user-selected formats",
+        "user_persona": "A researcher archiving reports for future reference.",
+        "user_goal": "To save a copy of the report locally in a preferred file type.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Downloading Report",
+                "description": "Patricia chooses to download her finalized Apple report in PDF format for easy printing later.",
+                "action": "Click the 'Download PDF' button.",
+                "expected_outcome": "The browser prompts her to save the PDF version of the report directly to her computer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a clean user interface with white background and navy component colors",
+        "user_persona": "A UX designer reviewing competitor UI design choices.",
+        "user_goal": "To verify consistency in color usage throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Interface",
+                "description": "Marcus browses the homepage and observes the overall theme applied consistently across elements.",
+                "action": "Navigate through the main sections of the site.",
+                "expected_outcome": "All backgrounds remain white, while buttons, headers, and borders maintain a consistent navy blue tone per the style guide."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add filtering options for date ranges and data sources",
+        "user_persona": "A historian researching past market behaviors.",
+        "user_goal": "To narrow down data to a specific historical period and source.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Filters",
+                "description": "Dr. Rivera sets a custom date range from January to March 2020 and selects 'Historical Archive' as the data source.",
+                "action": "Use the date range picker and select 'Historical Archive'.",
+                "expected_outcome": "Subsequent searches and data displays reflect only information from that timeframe and archive source."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display real-time or delayed stock data updates",
+        "user_persona": "A day trader relying on timely updates for split-second decisions.",
+        "user_goal": "To ensure the displayed stock prices are current and reliable.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Updates",
+                "description": "Taylor watches Intel’s stock price closely and notices a small indicator pulsing next to the number, signaling live data flow.",
+                "action": "Observe the live update indicator near the price figure.",
+                "expected_outcome": "The pulsating dot remains active, confirming continuous real-time updates without manual refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include company profile information such as sector, industry, and headquarters",
+        "user_persona": "A business journalist gathering background facts for an article.",
+        "user_goal": "To gather non-financial corporate details efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Company Profile",
+                "description": "Raj switches to the 'Company Profile' tab for General Electric to learn where they're headquartered and their industry classification.",
+                "action": "Click on the 'Company Profile' tab.",
+                "expected_outcome": "Structured blocks display GE's sector, industry, headquarters location, CEO name, and employee count with appropriate icons."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable user authentication and profile management for saving preferences",
+        "user_persona": "A frequent visitor wanting to retain personal settings.",
+        "user_goal": "To securely log in and manage saved preferences like favorite stocks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Returning user Olivia clicks the profile icon in the top right corner and logs in with her credentials.",
+                "action": "Click the profile icon and proceed to log in.",
+                "expected_outcome": "Olivia is redirected to her personalized dashboard where her saved preferences and watchlist are accessible."
+            }
+        ]
+    }
+]

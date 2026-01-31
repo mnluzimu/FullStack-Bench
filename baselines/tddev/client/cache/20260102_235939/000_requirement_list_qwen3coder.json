@@ -1,0 +1,242 @@
+[
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "email",
+                "password"
+            ],
+            "registerFormFields": [
+                "name",
+                "email",
+                "password",
+                "confirmPassword",
+                "role"
+            ],
+            "authAPI": "POST /api/auth/register, POST /api/auth/login",
+            "userSessionSchema": "Table: sessions(session_id UUID PRIMARY KEY, user_id UUID REFERENCES users(id), token TEXT UNIQUE, expires_at TIMESTAMP)"
+        },
+        "function": "Allow users to register and log in based on their roles (student or training provider)",
+        "static_description": "A centered card with form fields for email and password. Below the form there are buttons labeled 'Login' and 'Register'. Background color is Azure (#F0FFFF) and buttons use Midnight Blue (#191970).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Register' toggles visibility of additional registration-specific fields like name, confirm password, and role selection."
+            },
+            {
+                "interaction": "Click",
+                "description": "Submitting the login form sends credentials to the auth API endpoint and redirects authenticated user to respective dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileEditFields": [
+                "first_name",
+                "last_name",
+                "phone_number",
+                "address",
+                "date_of_birth",
+                "qualifications",
+                "career_preferences"
+            ],
+            "profileUpdateAPI": "PUT /api/profile/:userId",
+            "userProfileSchema": "Table: user_profiles(user_id UUID PRIMARY KEY, first_name VARCHAR(50), last_name VARCHAR(50), phone_number VARCHAR(20), address TEXT, date_of_birth DATE, qualifications JSONB, career_preferences JSONB)"
+        },
+        "function": "Enable students to input and update personal details, qualifications, and career preferences",
+        "static_description": "A vertical form layout containing editable text inputs for basic info, expandable sections for qualifications and career preferences, save/cancel buttons at bottom. Uses Azure background with Midnight Blue controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Changes' submits updated data via PUT request to the profile update API and displays success confirmation message."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Cancel' reverts unsaved changes back to previously saved values without sending a request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardWidgets": [
+                "matched_programs",
+                "application_status"
+            ],
+            "fetchProgramsAPI": "GET /api/student/matched-programs",
+            "getApplicationStatusAPI": "GET /api/student/applications/status",
+            "programMatchSchema": "Table: program_matches(id SERIAL PRIMARY KEY, student_id UUID REFERENCES users(id), program_id UUID REFERENCES training_programs(id), match_score DECIMAL, created_at TIMESTAMP)",
+            "applicationStatusSchema": "Table: applications(student_id UUID REFERENCES users(id), program_id UUID REFERENCES training_programs(id), status ENUM('pending','accepted','rejected'), applied_at TIMESTAMP)"
+        },
+        "function": "Provide students with a centralized overview of matched training programs and current application statuses",
+        "static_description": "Two side-by-side panels showing lists of matched programs and pending/recent applications. Each item includes title, brief description, institution name, and relevant status indicators. Azure background with Midnight Blue accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a program navigates to its detailed view page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over items highlights them and shows tooltips with more context about match scores or deadlines."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "matchingAlgorithmLogic": "Filters candidates by qualification level, geographic proximity, study area alignment, and interest compatibility using weighted scoring system.",
+            "runMatchingAPI": "POST /api/matching/run",
+            "matchResultsEndpoint": "GET /api/matching/results?userId={id}",
+            "matchingCriteriaSchema": "Table: matching_criteria(criteria_id UUID PRIMARY KEY, category VARCHAR(50), weight INT, description TEXT)"
+        },
+        "function": "Generate personalized recommendations for training programs aligned with student attributes and preferences",
+        "static_description": "Hidden logic executed server-side upon triggering event such as profile updates. No visible UI element but affects displayed content on student dashboards.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "applyButtonAction": "POST /api/application/submit",
+            "programDetailsAPI": "GET /api/training-program/:programId",
+            "applicationSubmissionSchema": "Table: applications(student_id UUID REFERENCES users(id), program_id UUID REFERENCES training_programs(id), submitted_data JSONB, submission_date TIMESTAMP)"
+        },
+        "function": "Allow students to submit applications directly through an easy-to-use interface linked from program listings",
+        "static_description": "Prominent 'Apply Now' button within each program listing card. Clicking opens modal dialog displaying full program details alongside simplified application form requiring minimal extra information beyond existing profile data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Apply Now' opens a modal window pre-filled with available student information ready for review before final submission."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Application' sends collected data to backend endpoint which records the application entry and returns confirmation feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "providerDashboardSections": [
+                "my_programs",
+                "matched_students"
+            ],
+            "manageListingsAPI": "GET /api/provider/my-programs, POST /api/provider/programs/create",
+            "viewStudentsAPI": "GET /api/provider/matched-students",
+            "trainingProgramSchema": "Table: training_programs(program_id UUID PRIMARY KEY, provider_id UUID REFERENCES users(id), title VARCHAR(100), description TEXT, location VARCHAR(100), field_of_study VARCHAR(50))"
+        },
+        "function": "Offer training providers tools to publish, modify, and monitor their educational offerings along with access to compatible student profiles",
+        "static_description": "Tabbed navigation panel switching between 'My Programs' and 'Matched Students'. 'My Programs' tab displays sortable table of owned listings; 'Matched Students' shows filtered list of prospective applicants matching set criteria. Azure theme maintained throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking '+' icon allows creation of new program listing via popup form."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a student row reveals summary stats and contact options beneath it."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchFilterOptions": [
+                "qualification_level",
+                "location_radius",
+                "study_area",
+                "interest_match"
+            ],
+            "filterStudentProfilesAPI": "GET /api/provider/search-students?filters={...}",
+            "studentSearchIndexSchema": "Table: student_search_index(student_id UUID PRIMARY KEY, qualifications TEXT[], location POINT, interests TEXT[], searchable BOOLEAN)"
+        },
+        "function": "Empower training providers to discover suitable students efficiently using customizable filters",
+        "static_description": "Left sidebar with collapsible filter categories offering checkboxes/dropdown menus for narrowing results. Right pane shows filtered student cards arranged in grid format. Clear visual distinction between active/inactive filters.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling any filter option dynamically reloads student list by calling search API with updated parameters."
+            },
+            {
+                "interaction": "Click",
+                "description": "Pressing 'Reset Filters' clears all selections and restores original unfiltered dataset display."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messageThreadUI": "Real-time chat-like interface supporting threaded conversations initiated either by student or provider.",
+            "sendMessageAPI": "POST /api/messages/send",
+            "getMessageHistoryAPI": "GET /api/messages/history?participantIds=[id1,id2]",
+            "messagingSchema": "Table: messages(message_id UUID PRIMARY KEY, sender_id UUID REFERENCES users(id), recipient_id UUID REFERENCES users(id), content TEXT, timestamp TIMESTAMP, read_status BOOLEAN)"
+        },
+        "function": "Facilitate secure communication channels enabling direct engagement between enrolled students and participating institutions",
+        "static_description": "Sidebar listing recent chats sorted chronologically. Main panel shows conversation history with typing indicator when recipient is online. Message input area below with send button. Consistent styling with Azure/Midnight Blue palette.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a chat thread loads complete message exchange between parties into main viewing area."
+            },
+            {
+                "interaction": "Click",
+                "description": "Typing and hitting 'Send' transmits message instantly while updating both participants’ views simultaneously."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgresSetupInstructions": "Initialize empty PostgreSQL instance with tables defined across schema definitions provided earlier"
+        },
+        "function": "Ensure reliable long-term storage and retrieval of all user-generated content and operational metadata",
+        "static_description": "No visual representation since this operates entirely behind the scenes. All frontend components rely on this persistent layer for accurate rendering and behavioral consistency.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingMechanism": "Axios or Fetch API used uniformly across frontend components to query RESTful endpoints exposed by backend services",
+            "frontendStateManagement": "Redux or Context API managing global app states including authentication tokens, user roles, and loading indicators"
+        },
+        "function": "Guarantee seamless synchronization between client-side presentation layer and underlying business logic/data layers",
+        "static_description": "Transparent architectural pattern ensuring every dynamic piece of UI pulls fresh data rather than relying on hardcoded placeholders or local mocks.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiLayerStructure": "Express.js-based routing handling GET, POST, PUT, DELETE requests mapped to corresponding database queries",
+            "crudOperationsMapping": "Each entity (users, profiles, programs etc.) has dedicated controller files encapsulating standard Create, Read, Update, Delete operations"
+        },
+        "function": "Serve as intermediary gateway mediating all exchanges between frontend clients and PostgreSQL datastore",
+        "static_description": "Server-side abstraction responsible for translating incoming HTTP calls into executable database commands then returning structured responses consumable by frontend consumers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "rbacMiddleware": "Custom middleware checking JWT claims against protected route permissions to enforce separation of duties",
+            "permissionMatrixDefinition": "Defined roles: STUDENT vs PROVIDER granting exclusive access rights to specific features and data subsets"
+        },
+        "function": "Prevent unauthorized cross-role access while maintaining clean separation between distinct user experiences",
+        "static_description": "Backend security mechanism invisible to end-users but critical for safeguarding sensitive operations and protecting privacy boundaries.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS Grid/Flexbox combined with media queries ensuring adaptability across desktop/tablet/mobile viewports",
+            "colorPaletteSpec": "Primary background color: Azure (#F0FFFF); Secondary interactive/control elements: Midnight Blue (#191970)"
+        },
+        "function": "Deliver consistent usability experience regardless of device screen size or orientation",
+        "static_description": "Fluid layouts adjusting gracefully under various viewport dimensions. Uniform color scheme featuring light Azure backdrop complemented by rich Midnight Blue highlights enhancing readability and focus areas.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+            "projectRootPackageJson": "{ scripts: { \"install:all\": \"<command_above>\" } }"
+        },
+        "function": "Streamline initial setup workflow allowing developers to bootstrap entire stack quickly with single command execution",
+        "static_description": "Entry inside root package.json file configuring automated dependency installation across multiple nested directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devModeStartupCommand": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\"",
+            "developmentToolchainIntegration": "Webpack/Vite bundler for frontend + nodemon watcher for backend processes orchestrated via concurrent execution utility"
+        },
+        "function": "Accelerate iterative development cycles by launching both frontend and backend environments synchronously during testing phase",
+        "static_description": "Another entry added to top-level package.json facilitating simultaneous hot-reloading development servers for rapid prototyping and debugging purposes.",
+        "interaction_and_states": []
+    }
+]

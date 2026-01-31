@@ -1,0 +1,283 @@
+[
+    {
+        "resource_dependency": {
+            "frontend_api_client": "Axios-based API client configured to communicate with backend endpoints.",
+            "backend_db_connection": "PostgreSQL connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Fetch dynamic data from backend APIs for use across the frontend application.",
+        "static_description": "The frontend displays loading indicators while fetching data such as user profile information, available bookings, reimbursements, and settlement reports.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "On page load, the frontend makes authenticated requests to backend endpoints to retrieve relevant data based on the current route or context."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresql_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "database_schema_definitions": "Database schema definitions for users, roles, permissions, bookings, expenses, receipts, policies, settlements, payments, etc."
+        },
+        "function": "Establish a secure connection to a PostgreSQL database using predefined environment variables and support CRUD operations for all entities involved in travel reimbursement and payment workflows.",
+        "static_description": "Backend initializes a database connection pool upon startup using provided credentials and exposes ORM models representing business entities.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "login_form_fields": [
+                "email",
+                "password"
+            ],
+            "auth_token_storage": "JWT tokens stored securely in HTTP-only cookies or localStorage depending on security configuration.",
+            "user_role_permissions": "Role-based access control table mapping roles (employee, admin, finance) to accessible routes and actions."
+        },
+        "function": "Provide login/logout functionality and manage session state along with role-based access control for different parts of the system.",
+        "static_description": "Login screen with email and password fields, submit button, and optional links for password recovery or registration. Background is white with navy-colored buttons and inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' submits credentials via POST /api/auth/login. On success, redirects to dashboard; otherwise shows error message."
+            },
+            {
+                "interaction": "Submit Form",
+                "description": "Submitting invalid credentials results in inline validation errors displayed under respective input fields."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "flight_search_api": "External flight search API returning real-time availability and pricing data.",
+            "booking_confirmation_template": "Template for displaying confirmed booking summary including flight number, departure time, seat info, and total cost.",
+            "airline_logo_assets": "Directory path containing airline logo images used in display listings."
+        },
+        "function": "Allow employees to search for flights, compare options, and confirm their selections.",
+        "static_description": "Flight booking interface showing search form at top (origin, destination, dates), followed by a list of filtered flight results displayed in cards with price, duration, stops, and airline logos. Selected flight shows expanded details before confirmation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Search Flights' triggers query to external API using selected filters. Results populate dynamically below the form."
+            },
+            {
+                "interaction": "Select Flight Card",
+                "description": "Selecting a flight card expands additional information like baggage allowance, meal options, and seat selection preview."
+            },
+            {
+                "interaction": "Confirm Booking",
+                "description": "Clicking 'Confirm Booking' sends selected flight details to backend which stores the booking record and returns confirmation page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "hotel_search_api": "API endpoint providing hotel inventory including room types, prices, amenities, photos, and location data.",
+            "filter_options": [
+                "Price Range",
+                "Star Rating",
+                "Amenities",
+                "Location Proximity"
+            ],
+            "reservation_summary_modal": "Modal window presenting selected hotel name, check-in/out dates, room type, rate plan, cancellation policy, and total amount due."
+        },
+        "function": "Enable searching for hotels, applying filters, and reserving rooms.",
+        "static_description": "Hotel booking page features a filter sidebar on left and main area showing grid of hotel cards with image thumbnails, ratings, short descriptions, and starting rates. Each card includes quick-view option and reserve button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Apply Filters",
+                "description": "Adjusting any filter criteria updates the displayed list of hotels instantly without full reload."
+            },
+            {
+                "interaction": "Reserve Room",
+                "description": "Clicking 'Reserve' opens modal summarizing reservation details. Clicking 'Confirm Reservation' creates booking entry in database and redirects to payment flow."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "train_schedule_api": "API offering train schedules, seat availability, class types, and fare structures.",
+            "seat_map_visualization": "Interactive SVG element allowing users to choose preferred seats when applicable.",
+            "ticket_purchase_confirmation": "Confirmation screen detailing journey specifics, boarding point, coach/class, and e-ticket download link."
+        },
+        "function": "Display train schedules and allow users to purchase tickets directly through the platform.",
+        "static_description": "Train booking interface consists of a schedule lookup section (source, destination, date), timetable listing matching trains with departure times, arrival estimates, duration, and available classes. Train rows can be clicked for more details.",
+        "interaction_and_states": [
+            {
+                "interaction": "View Schedule Details",
+                "description": "Clicking a train row expands detailed view showing intermediate stations, live delay status, and class-specific fares."
+            },
+            {
+                "interaction": "Purchase Ticket",
+                "description": "Clicking 'Book Now' navigates to passenger details and seat selection screen. After completion, generates ticket confirmation with downloadable PDF."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "settlement_report_template": "Predefined HTML/PDF template outlining categorized expenses, associated bookings, reimbursed amounts, and net balances per employee or period.",
+            "report_generation_endpoint": "Backend endpoint /api/reports/settlements that accepts parameters like date range, department, and export format."
+        },
+        "function": "Generate comprehensive settlement reports aggregating travel expenses against approved budgets and processed reimbursements.",
+        "static_description": "Settlements report generator presents a dashboard with filters for selecting reporting period, department/team, and export format (CSV, Excel, PDF). Generated reports appear in a downloadable table format.",
+        "interaction_and_states": [
+            {
+                "interaction": "Generate Report",
+                "description": "Clicking 'Generate Settlement Report' calls backend endpoint with filter parameters and renders result either inline or provides file download link."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reimbursement_form_fields": [
+                "expense type",
+                "amount",
+                "currency",
+                "date incurred",
+                "description",
+                "receipt upload"
+            ],
+            "document_upload_handler": "File uploader supporting image and PDF formats with size limits and automatic thumbnail generation.",
+            "submission_success_page": "Success confirmation page with reference ID, next steps, and option to track progress later."
+        },
+        "function": "Allow users to submit reimbursement claims with attached documentation and categorized expense entries.",
+        "static_description": "Reimbursement form includes multiple sections for adding individual expense items, uploading receipts, entering justification notes, and reviewing submitted claim before final submission. All containers have white background with navy borders/buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Add Expense Item",
+                "description": "Clicking '+ Add Another Expense' appends new line item field group to the form for additional entries."
+            },
+            {
+                "interaction": "Upload Receipt",
+                "description": "Dragging or browsing for files initiates upload process and displays thumbnail previews alongside corresponding expense lines."
+            },
+            {
+                "interaction": "Submit Application",
+                "description": "Clicking 'Submit Reimbursement Request' validates all required fields, uploads documents, and posts data to backend for approval workflow initiation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "status_timeline_component": "Timeline visualization indicating stages of reimbursement processing (submitted, reviewed, approved, paid).",
+            "status_update_notifications": "Push notifications or banner alerts informing users about changes in reimbursement statuses."
+        },
+        "function": "Provide visibility into reimbursement request lifecycle with clear indication of current stage and expected resolution timeline.",
+        "static_description": "Dashboard view lists recent reimbursement submissions with status badges (Pending, Under Review, Approved, Paid) and clickable rows leading to detailed status pages. White container backgrounds with navy headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "View Detailed Status",
+                "description": "Clicking on a reimbursement row navigates to dedicated status page showing timeline, comments from reviewers, and uploaded documents."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_navigation_menu": "Sidebar menu listing administrative modules like Manage Bookings, Process Reimbursements, User Management.",
+            "approval_workflow_controls": "Buttons for Approve, Reject, Request Changes, and Comment actions within reimbursement detail views.",
+            "bulk_action_toolbar": "Toolbar enabling mass operations on selected bookings or reimbursement records (e.g., approve multiple requests)."
+        },
+        "function": "Offer tools for administrators to oversee travel arrangements, evaluate reimbursement claims, and perform managerial tasks efficiently.",
+        "static_description": "Admin panel features a responsive layout with collapsible side navigation and central working area displaying tabular data grids for bookings and reimbursements. Containers are styled with white backgrounds and navy accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Approve Reimbursement",
+                "description": "Clicking 'Approve' updates reimbursement status in backend, logs decision timestamp, and notifies requester via system notification or email."
+            },
+            {
+                "interaction": "Edit Booking",
+                "description": "Selecting a booking allows editing key fields like traveler name, itinerary dates, and accommodation preferences. Changes saved back to database immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "payment_gateway_integration": "Integration with third-party payment processor supporting major credit cards, bank transfers, and corporate accounts.",
+            "transaction_logging_schema": "Schema for recording transaction IDs, amounts, timestamps, statuses, and related booking/reimbursement identifiers.",
+            "secure_checkout_flow": "PCI-compliant checkout form collecting minimal necessary billing information and securely transmitting it to payment provider."
+        },
+        "function": "Handle financial transactions for travel purchases and reimbursements ensuring secure, auditable exchanges.",
+        "static_description": "Checkout screens follow standard multi-step pattern: cart review → payment method selection → secure form entry → confirmation. Visual styling uses white backgrounds and navy call-to-action buttons throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Complete Payment",
+                "description": "After filling out payment details, clicking 'Pay Now' encrypts sensitive data and forwards it to payment gateway. Upon successful charge, updates booking/payment status accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "category_dropdown_options": [
+                "Airfare",
+                "Lodging",
+                "Ground Transportation",
+                "Meals",
+                "Miscellaneous"
+            ],
+            "receipt_management_interface": "Interface for viewing, tagging, deleting, and associating uploaded receipts with specific expense entries.",
+            "ocr_receipt_scanner": "Optional OCR service integration to extract line-item data from scanned receipts automatically."
+        },
+        "function": "Organize travel-related expenditures into logical categories and maintain digital copies of supporting documentation.",
+        "static_description": "Receipt management screen displays uploaded files in a gallery-style grid with category tags overlaid. Users can click to zoom, edit metadata, or delete unwanted scans. Categorized expenses listed in sortable tables.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tag Receipt",
+                "description": "Clicking a receipt allows assignment of an appropriate expense category and linking to one or more reimbursement line items."
+            },
+            {
+                "interaction": "Delete Receipt",
+                "description": "Selecting 'Delete' prompts confirmation dialog and removes both file and database references permanently after confirmation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policy_validation_rules_engine": "Logic engine evaluating proposed bookings or reimbursement claims against company-defined spending limits, eligible vendors, and pre-approved categories.",
+            "violation_alert_banner": "Banner-style alert shown prominently during booking or reimbursement submission when violations occur.",
+            "policy_override_request_flow": "Workflow enabling users to seek manual approvals for exceptions exceeding policy constraints."
+        },
+        "function": "Enforce organizational travel policies during booking creation and reimbursement processing phases to prevent unauthorized spending.",
+        "static_description": "Policy compliance checks occur silently behind the scenes but surface violation warnings near relevant input areas (e.g., over-limit hotel costs trigger inline notice). Override requests prompt explanatory note fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Detect Policy Violation",
+                "description": "If user selects a hotel exceeding budget cap, an alert appears explaining the discrepancy and suggesting alternatives or override pathway."
+            },
+            {
+                "interaction": "Request Override",
+                "description": "Clicking 'Request Exception' opens modal asking for reason justification and manager contact info before routing exception for review."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "finance_dashboard_layout": "Dashboard presenting charts, summaries, and drill-down tables covering monthly spend trends, departmental allocations, pending approvals, and settled reimbursements.",
+            "export_controls": "Options for exporting raw datasets or rendered visualizations in common formats (PDF, PNG, CSV).",
+            "filter_presets": "Saved views for frequently accessed reports like quarterly summaries, team comparisons, or vendor performance analytics."
+        },
+        "function": "Deliver actionable insights to finance teams regarding travel spending patterns, outstanding obligations, and reconciliation readiness.",
+        "static_description": "Finance reporting dashboard uses white-background panels containing navy-tinted graphs, KPI boxes, and interactive tables. Sidebar contains quick-access filters and preset report selections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drill Into Data",
+                "description": "Clicking segments of pie/bar charts filters underlying data tables to show only related subsets for deeper investigation."
+            },
+            {
+                "interaction": "Save Custom View",
+                "description": "Applying custom filters then clicking 'Save View' adds a bookmarked report configuration to personal dashboard shortcuts."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_css_framework": "Tailwind CSS or Bootstrap framework enforcing consistent mobile-first responsiveness and color palette adherence.",
+            "color_palette_definition": "#FFFFFF for container backgrounds, #001F54 for primary component colors (buttons, headings, icons)",
+            "breakpoint_media_queries": "CSS media queries targeting desktop (>1024px), tablet (768px–1023px), and mobile (<768px) viewports."
+        },
+        "function": "Ensure consistent look-and-feel across devices with adaptive layouts optimized for various screen sizes and orientations.",
+        "static_description": "All UI components utilize a unified design language featuring clean white container surfaces contrasted by bold navy accents on buttons, headers, and interactive elements. Layout adjusts fluidly between breakpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "As viewport width decreases, navigation menus collapse into hamburger icons, forms stack vertically, and spacing adjusts to preserve readability and usability."
+            }
+        ]
+    }
+]

@@ -1,0 +1,274 @@
+[
+    {
+        "resource_dependency": {
+            "frontendFramework": "React.js",
+            "backendFramework": "Node.js with Express",
+            "databaseConnection": "PostgreSQL connection using pg library with environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "authLibrary": "Passport.js or similar JWT-based authentication",
+            "uiLibrary": "Material-UI or Tailwind CSS",
+            "storageService": "AWS S3 or local file system for document storage"
+        },
+        "function": "Serve as the primary frontend application that dynamically fetches all data through backend APIs without using any hardcoded or mock data.",
+        "static_description": "A responsive web page with a consistent header containing navigation links, main content area displaying dynamic project-related information, and footer. Background color is light gray (#f0f0f0) and UI elements such as buttons, headers, and navigation bars use dark red (#8B0000).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigation menu items load corresponding views dynamically via API calls."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll or pagination loads additional data when reaching the end of lists like project timelines or messages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseSchema": "Set up a PostgreSQL database named myapp with tables for users, projects, documents, schedules, messages, cost_estimates, time_logs, and resources. Use environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+            "apiEndpoints": "RESTful endpoints under /api/v1/* for handling CRUD operations related to projects, documents, scheduling, messaging, costing, time tracking, and resource management.",
+            "authenticationAPIs": "Endpoints for user registration, login, logout, session validation, and role-based access control."
+        },
+        "function": "Provide a backend application that connects to a PostgreSQL database using specified environment variables and exposes RESTful APIs for frontend consumption.",
+        "static_description": "No visible UI; serves only as an API layer communicating between frontend and database. Uses Node.js server listening on port defined by environment variable or defaulting to 5000.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authDatabaseSchema": "Users table with fields: id (UUID), username (string, unique), email (string, unique), password_hash (string), role (enum: admin/user), created_at (timestamp), updated_at (timestamp)",
+            "jwtSecretEnvVar": "JWT_SECRET environment variable used for signing tokens",
+            "loginEndpoint": "/api/v1/auth/login",
+            "registerEndpoint": "/api/v1/auth/register",
+            "logoutEndpoint": "/api/v1/auth/logout"
+        },
+        "function": "Enable secure user authentication and role-based authorization within the system.",
+        "static_description": "Login/Register forms displayed on dedicated routes. Header shows logged-in user name after successful authentication.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button sends credentials to backend for verification. Upon success, redirects to dashboard and stores JWT token in localStorage."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers form submission when focus is inside input fields."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "projectFormFields": [
+                "name",
+                "description",
+                "start_date",
+                "end_date",
+                "status"
+            ],
+            "projectListEndpoint": "/api/v1/projects",
+            "projectDetailEndpoint": "/api/v1/projects/:id",
+            "createProjectEndpoint": "/api/v1/projects",
+            "updateProjectEndpoint": "/api/v1/projects/:id",
+            "deleteProjectEndpoint": "/api/v1/projects/:id",
+            "projectDatabaseSchema": "Projects table with fields: id (UUID), name (string), description (text), start_date (date), end_date (date), status (enum: planning/in-progress/completed/cancelled), created_by (foreign key to users.id), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Allow authenticated users to create, view, update, and delete construction projects.",
+        "static_description": "Dashboard view listing existing projects in card or table format. Each entry includes project name, status indicator, dates, and action buttons. Create Project modal/form accessible via primary CTA button styled with dark red theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Add New Project button opens modal with form. Save button submits new project data to backend. Edit/Delete icons allow modification/removal of existing entries."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Status indicators show tooltips explaining current project phase."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "uploadButtonIcon": "Upload icon SVG",
+            "documentDatabaseSchema": "Documents table with fields: id (UUID), project_id (foreign key to projects.id), filename (string), filepath (string), uploaded_by (foreign key to users.id), size (integer), mime_type (string), created_at (timestamp)",
+            "fileUploadEndpoint": "/api/v1/documents/upload",
+            "documentListEndpoint": "/api/v1/documents?projectId=:id",
+            "documentDownloadEndpoint": "/api/v1/documents/:id/download",
+            "documentDeleteEndpoint": "/api/v1/documents/:id"
+        },
+        "function": "Enable uploading, storing, retrieving, and deleting project-related documents securely.",
+        "static_description": "Document management panel showing list of files associated with selected project. Includes upload area featuring dark red-styled upload button with icon, file list with metadata, and download/delete options per item.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Upload button triggers native file picker. After selection, file uploads automatically. Download button initiates browser download. Delete button removes document from storage and database."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging files over upload zone highlights it visually. Dropping adds files to queue for automatic upload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ganttChartLibrary": "DHTMLX Gantt or similar Gantt chart rendering library",
+            "scheduleDatabaseSchema": "Tasks table with fields: id (UUID), project_id (foreign key to projects.id), title (string), description (text), start_date (datetime), end_date (datetime), duration (integer), progress (float), dependencies (array of task IDs), assigned_to (foreign key to users.id), created_at (timestamp), updated_at (timestamp)",
+            "taskListEndpoint": "/api/v1/tasks?projectId=:id",
+            "createTaskEndpoint": "/api/v1/tasks",
+            "updateTaskEndpoint": "/api/v1/tasks/:id",
+            "deleteTaskEndpoint": "/api/v1/tasks/:id"
+        },
+        "function": "Provide interactive Gantt charts and task management tools for visualizing and controlling project timelines.",
+        "static_description": "Timeline tab displaying Gantt chart with horizontal bars representing tasks aligned along date axis. Sidebar allows viewing/editing task details. Toolbar contains zoom controls and add-task button in dark red style.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Task bar selects/highlights task. Add Task button opens form. Save updates backend with modified schedule data."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging task bars adjusts start/end times which sync with backend upon release."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messagingDatabaseSchema": "Messages table with fields: id (UUID), project_id (foreign key to projects.id), sender_id (foreign key to users.id), content (text), timestamp (timestamp), read_status (boolean)",
+            "sendMessageEndpoint": "/api/v1/messages",
+            "fetchMessagesEndpoint": "/api/v1/messages?projectId=:id",
+            "markAsReadEndpoint": "/api/v1/messages/:id/read"
+        },
+        "function": "Facilitate real-time internal communication among team members working on shared projects.",
+        "static_description": "Chat interface divided into message history pane above and compose area below. Messages appear chronologically with sender avatars/names. Send button styled in dark red. Message bubbles adapt color based on sender vs receiver.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Send button posts message to backend. Refresh/reload fetches latest messages periodically or via WebSocket push notifications."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "In message composition box, sends message instantly unless Shift+Enter is pressed for line break."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "costEstimateDatabaseSchema": "Cost_Estimates table with fields: id (UUID), project_id (foreign key to projects.id), material_costs (decimal), labor_costs (decimal), equipment_costs (decimal), overhead_percentage (float), total_estimate (decimal), created_by (foreign key to users.id), created_at (timestamp)",
+            "calculateEstimateEndpoint": "/api/v1/cost-estimates/calculate",
+            "saveEstimateEndpoint": "/api/v1/cost-estimates",
+            "getEstimateEndpoint": "/api/v1/cost-estimates?projectId=:id"
+        },
+        "function": "Support accurate estimation of job costs including materials, labor, equipment, and overhead calculations.",
+        "static_description": "Estimator module presents form inputs categorized under Materials, Labor, Equipment tabs. Summary section displays calculated totals in monetary units. Save Estimate button uses dark red styling. Historical estimates can be loaded for comparison.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save Estimate button persists calculation results to backend. Calculate button computes sum dynamically based on entered values."
+            },
+            {
+                "interaction": "Input Change",
+                "description": "Real-time recalculation updates total estimate whenever numeric fields change."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "timeTrackingDatabaseSchema": "Time_Logs table with fields: id (UUID), project_id (foreign key to projects.id), user_id (foreign key to users.id), task_id (foreign key to tasks.id), hours_worked (float), date_logged (date), notes (text), created_at (timestamp)",
+            "logTimeEndpoint": "/api/v1/time-logs",
+            "getTimeLogsEndpoint": "/api/v1/time-logs?projectId=:id&userId=:userId",
+            "exportLogsEndpoint": "/api/v1/time-logs/export?format=csv"
+        },
+        "function": "Track individual contributions and overall effort spent on various project activities.",
+        "static_description": "Time tracker displays calendar-style grid with daily hour blocks fillable manually or auto-populated from ongoing timers. Weekly summary view aggregates logged hours. Export feature offers CSV download in dark red-themed button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Start Timer begins recording active work period. Stop Timer logs accumulated time against chosen task. Manual entry boxes accept direct input for past days."
+            },
+            {
+                "interaction": "Double-click",
+                "description": "Opens detailed log editor allowing modification of recorded time entries."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resourceManagementDatabaseSchema": "Resources table with fields: id (UUID), name (string), type (enum: human/equipment/material), quantity_available (integer), allocated_to_projects (array of project IDs), last_updated (timestamp)",
+            "getResourceListEndpoint": "/api/v1/resources",
+            "allocateResourceEndpoint": "/api/v1/resources/allocate",
+            "deallocateResourceEndpoint": "/api/v1/resources/deallocate",
+            "resourceUsageReportEndpoint": "/api/v1/resources/report?projectId=:id"
+        },
+        "function": "Monitor availability and allocation status of personnel, machinery, and supplies across multiple projects.",
+        "static_description": "Dashboard widget showing categorized resource pools with utilization percentages. Allocation matrix maps resources to projects. Color-coded badges indicate low/high availability. Dark red accentuates key CTAs like Allocate Resource.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Allocate button assigns selected resource to project. Deallocate frees up previously assigned capacity. Filter dropdown narrows display to specific resource categories."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Progress bars reveal numerical availability stats in tooltip popups."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalStylesheet": "CSS global styles setting body background to #f0f0f0",
+            "themeVariables": ":root { --bg-light-gray: #f0f0f0; }"
+        },
+        "function": "Apply a uniform light gray background (#f0f0f0) throughout all website pages to maintain consistency.",
+        "static_description": "Every webpage background rendered in light gray tone regardless of viewport size or device orientation.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "primaryColorStyles": "CSS variables defining primary color as dark red (#8B0000)",
+            "buttonStyleClass": ".dark-red-button { background-color: #8B0000; color: white; border: none; padding: 10px 20px; cursor: pointer; }",
+            "headerStyleRule": "Header elements styled with dark red background and white text"
+        },
+        "function": "Ensure all interactive UI components including buttons, headers, and navigational menus utilize dark red (#8B0000) theming.",
+        "static_description": "All clickable buttons, top navigation headers, sidebar titles, and highlighted sections consistently use dark red backgrounds with contrasting foreground colors.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons darken slightly while retaining original hue during mouseover events."
+            },
+            {
+                "interaction": "Focus",
+                "description": "Focused interactive elements receive subtle outline or shadow effect maintaining dark red aesthetic."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveMediaQueries": "@media screen and (max-width: 768px) rules adjusting layout proportions",
+            "mobileFirstApproach": "Base CSS optimized for small screens then enhanced progressively for larger breakpoints"
+        },
+        "function": "Adapt layout fluidly across different screen sizes ensuring usability on both desktop computers and handheld mobile devices.",
+        "static_description": "Layout reflows seamlessly from multi-column desktop arrangement to stacked mobile-friendly presentation. Font sizes scale appropriately. Touch targets expand adequately for finger interaction.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Sidebar collapses into hamburger menu toggle on smaller resolutions. Grid layouts adjust column count accordingly."
+            },
+            {
+                "interaction": "Touch Tap",
+                "description": "Mobile-specific gestures enable swipe navigation where appropriate."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{\"scripts\": {\"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\"}}",
+            "concurrentlyDependency": "\"concurrently\": \"^7.0.0\" listed in root package.json devDependencies"
+        },
+        "function": "Define unified command in root package.json to simultaneously install dependencies for both frontend and backend modules.",
+        "static_description": "Root-level package.json includes script alias install:all that executes npm install commands concurrently for nested client/server directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "{\"scripts\": {\"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\"}}",
+            "nodemonDevDependency": "nodemon added to server devDependencies",
+            "reactDevServer": "client dev script runs Vite or Webpack Dev Server"
+        },
+        "function": "Configure development workflow enabling simultaneous launch of frontend and backend services via single terminal command.",
+        "static_description": "Running npm run dev from root directory starts both React frontend dev server and Express backend nodemon watcher concurrently in same shell window.",
+        "interaction_and_states": []
+    }
+]

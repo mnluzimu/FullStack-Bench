@@ -1,0 +1,17 @@
+[
+    "Frontend application with pages for browsing, sharing, and searching promotions",
+    "Backend API server to manage promotions, users, and website settings",
+    "PostgreSQL database connection using environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+    "User authentication system for accessing the management backend",
+    "Promotion creation, editing, and deletion functionality in the management backend",
+    "User management interface in the backend for administrators",
+    "Website settings configuration panel in the management backend",
+    "Search functionality allowing users to filter promotions by keywords or categories",
+    "Promotion sharing capability through social media or direct links",
+    "Responsive web design with ivory colored outer layout and forest green UI blocks",
+    "RESTful API endpoints for fetching, creating, updating, and deleting promotions",
+    "Data validation and error handling for all user inputs and API requests",
+    "Concurrent development setup with npm run dev starting both frontend and backend",
+    "Installation script via package.json supporting npm run install:all for dependencies",
+    "Static asset serving for frontend files when not using dynamic content"
+]

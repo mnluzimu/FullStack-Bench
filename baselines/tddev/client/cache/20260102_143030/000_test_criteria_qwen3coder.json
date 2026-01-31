@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A hospital administrator named Sarah who needs real-time updates on hospital operations.",
+        "user_goal": "To view the latest hospital metrics without seeing stale or hardcoded information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Dashboard",
+                "description": "Sarah opens the hospital management website to get an overview of current operations. She expects to see live data reflecting the hospital's status.",
+                "action": "Navigate to the homepage/dashboard URL.",
+                "expected_outcome": "The page loads dynamically fetching data from backend APIs, displaying up-to-date financial, inventory, and patient metrics."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A system developer named Alex responsible for ensuring backend services are properly connected.",
+        "user_goal": "To confirm that the backend service connects securely to the correct PostgreSQL database instance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Alex starts the backend server and wants to verify it establishes a successful connection to the PostgreSQL database.",
+                "action": "Run the backend server startup command.",
+                "expected_outcome": "The backend logs indicate a successful connection to the PostgreSQL database using the environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Financial management module for collecting patient fees and managing hospital finances",
+        "user_persona": "A billing clerk named Mia who handles patient payments and tracks hospital income.",
+        "user_goal": "To record a new patient payment and ensure it reflects correctly in the financial records.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Fee Collection Form",
+                "description": "Mia goes to the financial section and looks for the option to enter a new patient fee.",
+                "action": "Click on the 'Collect Patient Fees' button in the Financial Management dashboard.",
+                "expected_outcome": "A form appears where she can input patient ID, amount, transaction type, and description."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Payment Information",
+                "description": "After filling out the necessary fields, Mia submits the form to record the payment.",
+                "action": "Click the 'Submit' button after entering valid data.",
+                "expected_outcome": "The system saves the transaction and displays a confirmation message. The updated transaction history now includes the new entry."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reporting module generating inventory reports, patient reports, and financial reports",
+        "user_persona": "A department head named James who prepares weekly reports for senior management.",
+        "user_goal": "To generate and export an inventory report showing current stock levels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Reports Section",
+                "description": "James accesses the reporting dashboard to find options for different types of reports.",
+                "action": "Click on the 'Reports' link in the main navigation menu.",
+                "expected_outcome": "Three tabs appear: Inventory, Patient, and Financial Reports."
+            },
+            {
+                "step": 2,
+                "title": "Generating Inventory Report",
+                "description": "He selects the Inventory tab and clicks the generate button to produce a report.",
+                "action": "Click on the 'Generate Inventory Report' button.",
+                "expected_outcome": "An inventory report is displayed with current item counts and low-stock warnings."
+            },
+            {
+                "step": 3,
+                "title": "Exporting the Report",
+                "description": "James decides to share this report by exporting it as a CSV file.",
+                "action": "Click the 'Export as CSV' button next to the report.",
+                "expected_outcome": "A downloadable CSV file containing the inventory report data is generated and ready for download."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Daily report submission feature for employees to provide detailed activity information to superiors",
+        "user_persona": "A nurse named Linda who must submit her daily work summary to her supervisor.",
+        "user_goal": "To submit her daily activities report and confirm it reaches her supervisor.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Daily Report Form",
+                "description": "Linda navigates to the daily reporting section to fill in today’s tasks.",
+                "action": "Click on the 'Submit Daily Report' button in her personal dashboard.",
+                "expected_outcome": "A form opens with fields for date selection and a large text area for activity details."
+            },
+            {
+                "step": 2,
+                "title": "Filling and Submitting Report",
+                "description": "She fills in her duties and submits the report for review.",
+                "action": "Fill in the activity details and click the 'Submit' button.",
+                "expected_outcome": "The system confirms submission and marks the report status as pending approval in the supervisor’s view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Pharmacy management module for medicine inventory tracking",
+        "user_persona": "A pharmacist named Tom who manages medicine stocks in the hospital pharmacy.",
+        "user_goal": "To update the quantity of a particular medicine after receiving a new shipment.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Medicine Inventory",
+                "description": "Tom checks the current inventory list to locate the medicine needing restocking.",
+                "action": "Navigate to the Pharmacy Management section and view the medicine list.",
+                "expected_outcome": "A searchable table of medicines with names, quantities, and expiry dates is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Updating Stock Quantity",
+                "description": "Tom finds the medicine and increases its quantity to reflect the new supply.",
+                "action": "Click the 'Edit' button beside the medicine row, change the quantity field, and click 'Update'.",
+                "expected_outcome": "The system updates the quantity in the database and refreshes the inventory table to show the new value."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Patient electronic files storing name, date of visit, diagnosis, and comments",
+        "user_persona": "A doctor named Dr. Lee who reviews patient history during consultations.",
+        "user_goal": "To access and review a patient's past visits and diagnoses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Patient File",
+                "description": "Dr. Lee searches for a patient's file using their name to check previous visits.",
+                "action": "Go to the Patient Files section and enter the patient's name into the search bar.",
+                "expected_outcome": "A filtered list of matching patient files appears, including dates of visits and diagnoses."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Visit Details",
+                "description": "Dr. Lee clicks on a specific visit to see full details like diagnosis and comments.",
+                "action": "Click on a patient file from the search results.",
+                "expected_outcome": "A detailed view panel expands showing the patient's name, date of visit, diagnosis, and any additional comments made during that session."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Claim formulation functionality for processing medical claims",
+        "user_persona": "An insurance coordinator named Rachel who processes medical claims for reimbursement.",
+        "user_goal": "To create and submit a new medical claim for a treated patient.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating New Claim",
+                "description": "Rachel begins creating a new claim for a recently treated patient.",
+                "action": "Click the 'New Claim' button in the Claims Management section.",
+                "expected_outcome": "A form opens requesting patient ID, treatment details, and claim amount."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Claim for Processing",
+                "description": "After filling in the required information, Rachel submits the claim.",
+                "action": "Click the 'Submit Claim' button after completing the form.",
+                "expected_outcome": "The system saves the claim and sets its status to 'Pending', making it visible in the processing queue."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Laboratory management system for handling lab operations",
+        "user_persona": "A lab technician named Jordan who performs tests and logs results.",
+        "user_goal": "To mark a test as completed and enter the results into the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Pending Test",
+                "description": "Jordan checks the lab dashboard for pending tests assigned to him.",
+                "action": "Navigate to the Laboratory Management section and filter by 'Pending' status.",
+                "expected_outcome": "A list of pending tests assigned to Jordan is displayed, along with relevant patient IDs and test types."
+            },
+            {
+                "step": 2,
+                "title": "Entering Results and Marking Completion",
+                "description": "Jordan completes a blood test and enters the result before marking it done.",
+                "action": "Click on the test, enter results in the provided form, then click 'Complete Test'.",
+                "expected_outcome": "The system updates the test status to 'Completed' and stores the entered results linked to the patient's record."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Theater management module for operating room scheduling and tracking",
+        "user_persona": "An OR scheduler named Emma who coordinates surgeries and assigns resources.",
+        "user_goal": "To schedule a new surgery in an available operating theater.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Theater Availability",
+                "description": "Emma views the calendar to identify free time slots for scheduling a new surgery.",
+                "action": "Open the Theater Scheduling calendar view.",
+                "expected_outcome": "A weekly calendar shows booked and available times across multiple theaters."
+            },
+            {
+                "step": 2,
+                "title": "Booking Surgery Slot",
+                "description": "She schedules a new procedure by filling in the required details and saving the booking.",
+                "action": "Select an open slot, click 'Schedule Surgery', fill in surgeon, patient, and surgery type, then click 'Save'.",
+                "expected_outcome": "The calendar now shows the newly scheduled surgery marked in Indian Red, preventing conflicts for other bookings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and role-based access control for different employee types",
+        "user_persona": "A new receptionist named Olivia who has just been granted access to the system.",
+        "user_goal": "To log in with her assigned role and gain access only to permitted sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Olivia visits the login page and attempts to sign in with her new credentials.",
+                "action": "Enter username and password, select 'Receptionist' role, and click 'Login'.",
+                "expected_outcome": "She is redirected to the Receptionist dashboard which limits access to only patient registration and appointment modules."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard displaying key metrics across finance, inventory, and patient data",
+        "user_persona": "A hospital director named Robert who monitors overall performance daily.",
+        "user_goal": "To quickly assess hospital health through key performance indicators.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Main Dashboard",
+                "description": "Robert logs in and immediately views the central dashboard for a snapshot of operations.",
+                "action": "Log in and land on the default dashboard screen.",
+                "expected_outcome": "Metric cards for total revenue, inventory alerts, and active patients are prominently displayed with visual indicators."
+            },
+            {
+                "step": 2,
+                "title": "Drilling Down into Metrics",
+                "description": "He clicks on a card to explore more detailed analytics behind the numbers.",
+                "action": "Click on the 'Total Revenue' metric card.",
+                "expected_outcome": "A detailed chart appears showing revenue trends over the last week, helping identify fluctuations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data entry forms for patient information, inventory updates, and financial transactions",
+        "user_persona": "A registrar named Grace who frequently inputs new patient registrations.",
+        "user_goal": "To register a new patient accurately using the standardized data entry form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Patient Entry Form",
+                "description": "Grace accesses the form used specifically for registering new patients.",
+                "action": "Click on the 'Register New Patient' button in the Patients section.",
+                "expected_outcome": "A multi-field form opens pre-configured with validation rules and mandatory fields highlighted."
+            },
+            {
+                "step": 2,
+                "title": "Saving Patient Record",
+                "description": "Grace fills in all required details and saves the new patient record.",
+                "action": "Complete all fields and click the 'Save' button.",
+                "expected_outcome": "The system validates the data, saves the record, and returns a success notification. The new patient is now searchable in the system."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Background color configured to peach puff with components using indian red",
+        "user_persona": "A UI designer named Casey evaluating whether the website meets brand guidelines.",
+        "user_goal": "To visually verify that the site follows the specified color scheme consistently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Global Styling",
+                "description": "Casey inspects the base styles applied throughout the application.",
+                "action": "Load any page and inspect the body background style.",
+                "expected_outcome": "The background color is set to Peach Puff (#FFDAB9) globally across all pages."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Component Colors",
+                "description": "Casey examines interactive elements such as buttons and form headers.",
+                "action": "Check the color properties of primary buttons and section headers.",
+                "expected_outcome": "All primary interactive elements utilize Indian Red (#CD5C5C) as per design specifications."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server setup for frontend and backend via npm scripts",
+        "user_persona": "A developer named Ethan setting up a local development environment for the first time.",
+        "user_goal": "To run both frontend and backend servers simultaneously using a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Ethan ensures all project dependencies are installed locally.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend packages are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "Ethan starts both development servers together for efficient coding.",
+                "action": "Execute `npm run dev` in the terminal.",
+                "expected_outcome": "Frontend and backend servers start concurrently, with output indicating they're listening on their respective ports."
+            }
+        ]
+    }
+]

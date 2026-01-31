@@ -1,0 +1,226 @@
+[
+    {
+        "resource_dependency": {
+            "api_endpoint": "/api/data",
+            "database_connection": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A frontend that fetches all dynamic data from backend APIs",
+        "static_description": "The UI displays loading indicators while fetching data from the backend. Components such as search results, booking history, and seat maps dynamically populate after successful API responses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "On page load, the frontend makes an HTTP GET request to /api/data to retrieve initial application state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend that connects to an external PostgreSQL database using environment variables",
+        "static_description": "Backend server initializes a connection pool to PostgreSQL using provided environment variables. All database queries are executed through this pool.",
+        "interaction_and_states": [
+            {
+                "interaction": "Server Start",
+                "description": "Upon startup, the backend reads environment variables and establishes a persistent connection to the PostgreSQL instance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "user_registration_form_fields": [
+                "username",
+                "email",
+                "password",
+                "confirm_password"
+            ],
+            "validation_rules": "Username must be unique; Email must be valid format; Passwords must match and meet complexity requirements.",
+            "api_endpoint": "/api/auth/register"
+        },
+        "function": "User registration functionality with account creation and validation",
+        "static_description": "Registration form includes fields for username, email, password, and confirm password. Submit button is disabled until all validations pass. Dim gray styling applied throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Change",
+                "description": "As user types into each field, real-time client-side validation checks against predefined rules."
+            },
+            {
+                "interaction": "Submit Click",
+                "description": "Submits validated form data to /api/auth/register endpoint. Displays success message or error feedback accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "login_form_fields": [
+                "email_or_username",
+                "password"
+            ],
+            "session_management": "JWT-based tokens stored in HttpOnly cookies",
+            "api_endpoint": "/api/auth/login"
+        },
+        "function": "User login functionality with authentication and session management",
+        "static_description": "Login form contains email/username and password fields. Snow-themed background with dim gray components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Click",
+                "description": "Form submits credentials to /api/auth/login. Upon successful authentication, JWT token is issued and stored securely. Redirects to dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_filters": [
+                "origin",
+                "destination",
+                "date",
+                "time",
+                "transport_type"
+            ],
+            "api_endpoint": "/api/search/tickets"
+        },
+        "function": "Search functionality for bus and railway tickets with filters for date, time, origin, and destination",
+        "static_description": "Search panel with dropdowns for origin and destination, date/time pickers, and toggle for transport type (bus/railway). Search button initiates query.",
+        "interaction_and_states": [
+            {
+                "interaction": "Filter Selection",
+                "description": "Users select values in dropdowns or input fields to filter available tickets."
+            },
+            {
+                "interaction": "Search Click",
+                "description": "Triggers API call to /api/search/tickets with current filter parameters. Results displayed below."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "seat_map_visualization": "Interactive SVG grid showing available, booked, and selected seats",
+            "pricing_logic": "Dynamic calculation based on route distance and class",
+            "api_endpoint": "/api/seats/availability"
+        },
+        "function": "Real-time display of seat availability and pricing for selected routes",
+        "static_description": "Seat map visualization shows available (dim gray), reserved (lighter gray), and selected (highlighted) seats. Pricing information updates in real-time beside the map.",
+        "interaction_and_states": [
+            {
+                "interaction": "Seat Click",
+                "description": "Selecting a seat toggles its status visually and recalculates total price. Selected seats are highlighted."
+            },
+            {
+                "interaction": "Route Change",
+                "description": "Changing route triggers re-fetch of seat availability from /api/seats/availability and refreshes the map."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "payment_gateway_integration": "Integration with Stripe or similar PCI-compliant service",
+            "secure_payment_endpoint": "/api/payments/process"
+        },
+        "function": "Secure payment processing integration for ticket purchases",
+        "static_description": "Payment modal appears when confirming booking. Includes card number, expiry, CVC inputs with dim gray styling. Snow background maintained across modals.",
+        "interaction_and_states": [
+            {
+                "interaction": "Confirm Payment Click",
+                "description": "Submits encrypted payment details to /api/payments/process which interacts with external payment gateway. Shows loading indicator during transaction."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notification_service": "Email/SMS gateway integration (e.g., Twilio or SendGrid)",
+            "confirmation_template": "Booking ID, travel details, QR code for ticket",
+            "api_endpoint": "/api/bookings/confirm"
+        },
+        "function": "Booking confirmation system that sends notifications via email or SMS",
+        "static_description": "After payment, a confirmation screen displays booking summary including QR code. Notification preferences shown before sending.",
+        "interaction_and_states": [
+            {
+                "interaction": "Booking Completion",
+                "description": "Upon successful payment, backend calls /api/bookings/confirm to generate confirmation and send via configured notification channels."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "booking_history_endpoint": "/api/users/bookings/history",
+            "past_transaction_schema": "Booking ID, date, route, amount, status"
+        },
+        "function": "User dashboard displaying booking history and past transactions",
+        "static_description": "Dashboard lists previous bookings in reverse chronological order. Each entry includes ID, date, route, amount, and status. Snow background with dim gray cards.",
+        "interaction_and_states": [
+            {
+                "interaction": "View Details Click",
+                "description": "Clicking a booking opens detailed view with printable ticket option."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "printable_ticket_template": "HTML/CSS formatted printable version of ticket",
+            "download_icon": "printer-icon.svg"
+        },
+        "function": "Ticket printing functionality for confirmed bookings",
+        "static_description": "Each confirmed booking in the dashboard includes a print icon next to the details. Printable ticket preview rendered in browser window.",
+        "interaction_and_states": [
+            {
+                "interaction": "Print Icon Click",
+                "description": "Opens a new tab/window with a printer-friendly version of the ticket. Browser’s native print dialog triggered automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_breakpoints": "Mobile (<768px), Tablet (768px–1024px), Desktop (>1024px)"
+        },
+        "function": "Responsive design that adapts to both mobile and desktop devices",
+        "static_description": "Layout adjusts fluidly between breakpoints. Navigation becomes hamburger menu on mobile. Seat selection optimized for touch interfaces.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "UI elements rearrange themselves according to CSS media queries at defined breakpoints."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "background_image_path": "/assets/snow-background.jpg"
+        },
+        "function": "All page backgrounds configured with snow theme",
+        "static_description": "Every page uses a full-screen snow-themed background image set via CSS body style referencing background_image_path.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "color_palette": "#A9A9A9 (dim gray) used consistently for buttons, forms, text, borders, etc."
+        },
+        "function": "All UI components styled with dim gray color scheme",
+        "static_description": "All interactive and static UI components use #A9A9A9 as primary color. Consistent styling applied globally through CSS variables or theme file.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_scripts": "{ \"install:all\": \"concurrently \\\"npm install --prefix frontend\\\" \\\"npm install --prefix backend\\\"\" }"
+        },
+        "function": "Repository package.json configured with npm run install:all to install both frontend and backend dependencies",
+        "static_description": "Root-level package.json defines script 'install:all' that runs concurrent installation commands for frontend and backend directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Run",
+                "description": "Executing 'npm run install:all' triggers parallel dependency installations in respective subdirectories."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_dev_script": "{ \"dev\": \"concurrently \\\"npm run dev --prefix frontend\\\" \\\"npm run dev --prefix backend\\\"\" }"
+        },
+        "function": "Repository package.json configured with npm run dev to start both frontend and backend concurrently",
+        "static_description": "Root-level package.json defines script 'dev' that starts development servers for both frontend and backend simultaneously.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Run",
+                "description": "Running 'npm run dev' launches both frontend and backend services concurrently using concurrently package."
+            }
+        ]
+    }
+]

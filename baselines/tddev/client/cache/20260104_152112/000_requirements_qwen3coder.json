@@ -1,0 +1,17 @@
+[
+    "Frontend application that fetches all dynamic data from backend APIs",
+    "Backend server connecting to external PostgreSQL database using provided environment variables",
+    "User registration functionality with account creation",
+    "User login/authentication system",
+    "Article browsing interface organized by categories",
+    "Search functionality to find articles by keywords",
+    "Article collection feature allowing users to save favorites",
+    "Article sharing capability to external platforms",
+    "Reading history tracking for logged-in users",
+    "User profile management for collection and history access",
+    "Responsive layout styled with old lace background and rosy brown interface elements",
+    "Package.json configured with 'install:all' script for simultaneous frontend and backend dependency installation",
+    "Package.json configured with 'dev' script to run frontend and backend concurrently",
+    "Database schema supporting users, articles, categories, collections, and reading history",
+    "API endpoints for user authentication, article retrieval, search, and user-specific data management"
+]

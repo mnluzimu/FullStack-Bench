@@ -1,0 +1,211 @@
+[
+    {
+        "resource_dependency": {
+            "searchInputIcon": "/icons/search-icon.svg",
+            "stockSearchAPI": "An API endpoint at /api/stocks/search that accepts a query parameter 'q' for stock code or name and returns matching stock summaries.",
+            "sessionStateSchema": "Database table sessions(session_id UUID PRIMARY KEY, user_preferences JSONB, created_at TIMESTAMP DEFAULT NOW())"
+        },
+        "function": "Allows users to search for stocks by entering either stock codes or names into an input field.",
+        "static_description": "A centered search bar with a magnifying glass icon on the left side, placeholder text 'Enter stock code or name', white background, navy-colored border and text. Positioned near the top of the page.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the input field and displays a cursor ready for typing."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers a call to the stockSearchAPI with the current input value as the query parameter. Displays loading indicator while fetching results."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "summaryCardComponent": "<div class='stock-summary-card'><h3>{symbol}</h3><p>{companyName}</p><span>{currentPrice}</span></div>",
+            "stockSummaryAPI": "An API endpoint at /api/stocks/{id}/summary returning structured summary data including symbol, company name, current price, and brief trend info.",
+            "errorDisplayComponent": "<div class='error-message'>No matching stocks found. Please try another term.</div>"
+        },
+        "function": "Displays summarized stock information returned from a search query in a visually distinct card format.",
+        "static_description": "Below the search bar, a responsive grid layout containing stock summary cards. Each card shows stock symbol in bold, company name below it, and current price aligned right. Background remains white, all text in navy. Initially empty until populated after a search.",
+        "interaction_and_states": [
+            {
+                "interaction": "Data Fetch Success",
+                "description": "Populates the grid with summaryCardComponent elements based on the number of results received from stockSummaryAPI."
+            },
+            {
+                "interaction": "Data Fetch Failure (No Results)",
+                "description": "Displays errorDisplayComponent indicating no matches were found for the entered query."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptionsList": [
+                "PDF",
+                "Markdown",
+                "HTML"
+            ],
+            "dropdownArrowIcon": "/icons/dropdown-arrow.svg",
+            "reportFormatSelectionAPI": "An API endpoint at /api/report/formats returning available report formats supported by the system."
+        },
+        "function": "Provides users with options to choose their preferred format for generated stock reports.",
+        "static_description": "A labeled dropdown menu titled 'Report Format' positioned below the search results area. Default selected option is 'Select Format'. Options list includes PDF, Markdown, HTML. White background with navy text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens the dropdown menu revealing formatOptionsList items."
+            },
+            {
+                "interaction": "Option Selection",
+                "description": "Updates the displayed selected value to match the clicked item and stores this preference in session state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentSectionCheckboxes": [
+                {
+                    "label": "Basic Stock Info",
+                    "value": "basic_info"
+                },
+                {
+                    "label": "Market Trends",
+                    "value": "market_trends"
+                },
+                {
+                    "label": "Financial Data",
+                    "value": "financial_data"
+                }
+            ],
+            "checkboxCheckedIcon": "/icons/checkmark.svg",
+            "reportContentSelectionAPI": "An API endpoint at /api/report/content-options providing a list of selectable content sections for inclusion in reports."
+        },
+        "function": "Enables users to customize which sections are included in their generated stock report through checkbox selections.",
+        "static_description": "Grouped checkboxes under the heading 'Include Sections'. Labels include Basic Stock Info, Market Trends, Financial Data. All checkboxes unchecked by default. Styled with white background and navy text/icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggles individual checkboxes between checked and unchecked states, updating internal selection tracking accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generateButtonIcon": "/icons/generate-report.svg",
+            "reportGenerationTriggerAPI": "POST /api/reports/generate accepting parameters such as stock_id, format, and selected_sections to initiate report creation.",
+            "loadingSpinner": "/icons/spinner.gif"
+        },
+        "function": "Initiates the process of generating a custom stock report based on user-selected inputs when clicked.",
+        "static_description": "A prominent navy button labeled 'Generate Report' placed prominently beneath the content selection controls. Features a small document icon next to the label. Disabled initially until valid selections are made.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Calls reportGenerationTriggerAPI with collected user inputs. Disables itself and replaces label with loadingSpinner during processing."
+            },
+            {
+                "interaction": "Validation Error",
+                "description": "If required fields are missing (e.g., no stock selected), highlights relevant UI elements and prevents submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generatedReportContainer": "<div id='report-output'>{report_content}</div>",
+            "downloadReportLink": "<a href='/api/reports/download/{reportId}' download>Download Report</a>",
+            "reportOutputAPI": "GET /api/reports/{id} returning full generated report content along with metadata like title, date, and download link."
+        },
+        "function": "Displays the fully generated stock report once processing completes, offering view and download capabilities.",
+        "static_description": "A dedicated section titled 'Generated Report' appearing below the Generate button upon successful completion. Contains scrollable container showing formatted report content with embedded charts or tables where applicable. Includes a Download Report link styled similarly to buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Report Ready Event",
+                "description": "Receives generated content via reportOutputAPI and injects it into generatedReportContainer for display."
+            },
+            {
+                "interaction": "Click on Download Link",
+                "description": "Starts downloading the file associated with the generated report using the provided URL."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeStockDataAPI": "External financial data provider API capable of delivering real-time stock prices, historical performance, and related news updates.",
+            "authenticationTokenEnvVar": "STOCK_API_KEY stored securely server-side"
+        },
+        "function": "Fetches live stock market data dynamically from external sources to ensure accurate and up-to-date reporting.",
+        "static_description": "Not directly visible but integral to backend operations ensuring fresh data availability whenever frontend requests occur.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Uses environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp for connection setup.",
+            "databaseSchemaDefinitionSQL": "CREATE TABLE stocks(stock_id SERIAL PRIMARY KEY, symbol VARCHAR(10) UNIQUE NOT NULL, company_name TEXT, last_updated TIMESTAMP); CREATE TABLE reports(report_id UUID PRIMARY KEY, stock_id INT REFERENCES stocks(stock_id), content_sections JSONB, format_type VARCHAR(20));"
+        },
+        "function": "Establishes secure communication with a PostgreSQL database instance to store and retrieve application-specific data.",
+        "static_description": "No direct visual representation; serves as foundational infrastructure supporting persistent storage needs across the platform.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "stockDataTableSchema": "Table definition: stocks(stock_id SERIAL PRIMARY KEY, symbol VARCHAR(10) UNIQUE NOT NULL, company_name TEXT, last_updated TIMESTAMP)",
+            "trendDataStorageSchema": "Table definition: market_trends(trend_id SERIAL PRIMARY KEY, stock_id INT REFERENCES stocks(stock_id), period VARCHAR(20), trend_data JSONB)",
+            "financialDataSchema": "Table definition: financials(finance_id SERIAL PRIMARY KEY, stock_id INT REFERENCES stocks(stock_id), fiscal_year INT, revenue NUMERIC, profit NUMERIC)"
+        },
+        "function": "Defines how critical business entities like stocks, trends, and financial records are stored within the database schema.",
+        "static_description": "Structured relational models outlining how stock-related data will be organized and maintained inside the connected PostgreSQL database.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchEndpointSpec": "GET /api/stocks/search?q={query}",
+            "summaryEndpointSpec": "GET /api/stocks/{id}/summary",
+            "generateReportEndpointSpec": "POST /api/reports/generate"
+        },
+        "function": "Exposes RESTful interfaces allowing frontend components to interact programmatically with backend services for various functionalities.",
+        "static_description": "Defined set of HTTP routes exposing backend logic without visible interface implications.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mainCSSFile": "body { background-color: #FFFFFF; } .component { color: #000080; }"
+        },
+        "function": "Applies consistent styling theme throughout the entire website featuring a clean white background paired with professional navy accents.",
+        "static_description": "Global CSS rule applied universally making body backgrounds pure white (#FFFFFF) and primary component texts deep navy blue (#000080).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mobileBreakpointMediaQuery": "@media screen and (max-width: 768px)",
+            "responsiveGridClass": ".grid-responsive { display: flex; flex-direction: column; }"
+        },
+        "function": "Ensures optimal viewing experience regardless of device screen size by adapting layouts fluidly between desktop and mobile presentations.",
+        "static_description": "Layout adjusts seamlessly using media queries so that columns stack vertically on smaller screens while maintaining readability and usability.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "sessionManagementMechanism": "Client-side cookie storing session_id used to maintain preferences like previously selected report settings across visits.",
+            "preferencesStorageSchema": "sessions table with session_id and user_preferences JSONB column"
+        },
+        "function": "Preserves user choices regarding report customization even after navigating away or closing the browser temporarily.",
+        "static_description": "Transparent mechanism leveraging cookies and backend session tables to persistently remember user configurations without explicit login requirement.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "invalidCodeErrorMessage": "Invalid stock code or name entered. Please check your input.",
+            "dataUnavailableMessage": "Requested data could not be retrieved due to temporary unavailability."
+        },
+        "function": "Handles exceptional scenarios gracefully by informing users about issues rather than failing silently.",
+        "static_description": "Non-intrusive alert messages shown inline or modally depending on severity level, helping guide users toward corrective actions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spinnerGIFAsset": "/assets/loading-spinner.gif",
+            "progressOverlayStyle": "#loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); display: flex; justify-content: center; align-items: center; z-index: 9999; }"
+        },
+        "function": "Visually indicates ongoing background processes preventing user confusion during wait times for data retrieval or report generation.",
+        "static_description": "Semi-transparent overlay covering the main viewport with centrally located animated spinner GIF signaling active computation behind the scenes.",
+        "interaction_and_states": []
+    }
+]

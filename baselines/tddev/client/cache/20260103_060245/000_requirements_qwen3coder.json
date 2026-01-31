@@ -1,0 +1,17 @@
+[
+    "Frontend application with dynamic data fetching from backend APIs",
+    "Backend API server connecting to PostgreSQL database using specified environment variables",
+    "News section displaying latest shipping industry news articles",
+    "Company profiles section showcasing detailed company information",
+    "Events section listing upcoming and past industry events",
+    "Newsletter subscription functionality with email capture",
+    "Backend administration panel for managing ad spaces",
+    "Responsive website layout with old lace background color",
+    "UI components styled with rosy brown color scheme",
+    "Database schema supporting news articles, company profiles, events, and advertisements",
+    "User browsing capabilities for all content sections",
+    "Administrative authentication system for backend management access",
+    "Content management system for creating and editing news articles",
+    "Company profile creation and editing interface in admin panel",
+    "Event management system with date and location details"
+]

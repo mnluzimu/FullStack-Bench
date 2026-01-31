@@ -1,0 +1,254 @@
+[
+    {
+        "requirement_tested": "Frontend application that fetches all data from backend APIs with no hardcoded or mock data",
+        "user_persona": "A poetry enthusiast visiting the homepage for the first time.",
+        "user_goal": "To see a list of poetry posts loaded dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Maya opens the poetry blog website and expects to see real poetry content fetched from the server.",
+                "action": "Load the homepage URL in browser.",
+                "expected_outcome": "The page displays a grid of poetry cards populated with live data from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Scrolling Down",
+                "description": "As Maya scrolls toward the bottom, she anticipates seeing more poetry load automatically.",
+                "action": "Scroll down near the bottom of the page.",
+                "expected_outcome": "Additional poetry entries are fetched and appended seamlessly without requiring a page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server that connects to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the backend service.",
+        "user_goal": "To confirm the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Jamie sets up the environment variables and starts the backend server.",
+                "action": "Run `npm run dev` in the backend directory.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting poetry posts, user accounts, and comments",
+        "user_persona": "A database administrator reviewing the setup.",
+        "user_goal": "To verify the correct schema is implemented in the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Tables",
+                "description": "Alex inspects the database to ensure all necessary tables exist.",
+                "action": "Query the database for tables: users, poetry, and comments.",
+                "expected_outcome": "All three tables exist with appropriate columns and foreign key relationships defined."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Poetry browsing functionality with categorized views for different types of poetry",
+        "user_persona": "A reader interested in exploring Haikus specifically.",
+        "user_goal": "To browse only Haiku poems using category filters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating Categories",
+                "description": "Riley notices the horizontal category bar and wants to filter by 'Haiku'.",
+                "action": "Click on the 'Haiku' category link.",
+                "expected_outcome": "Page updates dynamically to show only poetry entries tagged with the 'Haiku' category."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality allowing users to find specific poetry by keywords or filters",
+        "user_persona": "Someone looking for poems about 'autumn'.",
+        "user_goal": "To search for poetry containing the word 'autumn' in its content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Search Query",
+                "description": "Jordan types 'autumn' into the search bar and selects 'Content' as the filter.",
+                "action": "Type 'autumn' into the search input. Select 'Content' from dropdown. Press Enter.",
+                "expected_outcome": "Results update to show only poems whose content contains the word 'autumn'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system for posting poetry and commenting",
+        "user_persona": "A new poet wanting to join the community.",
+        "user_goal": "To register an account and log in to start participating.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Signing Up",
+                "description": "Taylor clicks 'Sign Up', fills out the registration form, and submits it.",
+                "action": "Fill in email, username, password, and confirm password. Click 'Sign Up'.",
+                "expected_outcome": "Account is created successfully and Taylor receives confirmation message."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "After signing up, Taylor logs in with the new credentials.",
+                "action": "Enter username and password. Click 'Log In'.",
+                "expected_outcome": "Successfully logged in, redirected to homepage with session maintained via JWT."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Poetry submission form with fields for title, content, category, and author",
+        "user_persona": "An authenticated user ready to share their original poem.",
+        "user_goal": "To publish a new poem titled 'Sunset Dreams'.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Submission Form",
+                "description": "Casey navigates to the 'Post Poetry' section and sees the submission form.",
+                "action": "Navigate to poetry submission page.",
+                "expected_outcome": "Form appears with fields for Title, Category, and Content."
+            },
+            {
+                "step": 2,
+                "title": "Submitting New Poem",
+                "description": "Casey fills in the details and submits the poem.",
+                "action": "Enter 'Sunset Dreams' as title, choose 'Lyric' as category, write some lines in content. Click Submit.",
+                "expected_outcome": "New poem is saved to database and user is redirected to the poem's detail page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Commenting system allowing users to comment on poetry posts",
+        "user_persona": "A reader who enjoyed a poem and wants to leave feedback.",
+        "user_goal": "To post a thoughtful comment on a specific poem.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading a Poem",
+                "description": "Morgan reads a beautiful poem and scrolls down to the comments section.",
+                "action": "Open a poetry detail page and scroll to comments area.",
+                "expected_outcome": "Existing comments are displayed, along with a text area to enter a new comment."
+            },
+            {
+                "step": 2,
+                "title": "Posting Comment",
+                "description": "Morgan writes a comment and submits it immediately.",
+                "action": "Type 'This poem gave me chills!' in the textarea. Click 'Post Comment'.",
+                "expected_outcome": "Comment appears instantly under the poem without needing to reload the entire page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout design with light goldenrod color scheme",
+        "user_persona": "A mobile user accessing the site on a phone.",
+        "user_goal": "To navigate the site comfortably on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Site on Mobile",
+                "description": "Drew visits the poetry blog on their smartphone and checks the visual appeal.",
+                "action": "Resize viewport to mobile size or open on mobile device.",
+                "expected_outcome": "Layout adjusts responsively, maintaining readability and usability with light goldenrod background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Button and card components styled with olive drab color",
+        "user_persona": "A UI reviewer checking consistency of component styles.",
+        "user_goal": "To verify buttons and cards use the correct olive drab styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Buttons",
+                "description": "Quinn examines various buttons across the site to check uniformity.",
+                "action": "Locate and inspect multiple buttons such as 'Login', 'Submit', and 'Search'.",
+                "expected_outcome": "All buttons have olive drab background (#6B8E23) and white text, with slight hover effect."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Cards",
+                "description": "Quinn also reviews how poetry cards look visually.",
+                "action": "Look at several poetry cards in the feed.",
+                "expected_outcome": "Cards have thin olive drab borders and match the defined style guide."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script for frontend and backend dependency installation",
+        "user_persona": "A contributor cloning the project for local development.",
+        "user_goal": "To install dependencies for both frontend and backend efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Sam clones the repo and runs the unified install command.",
+                "action": "Execute `npm run install:all` from root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'dev' script to concurrently start frontend and backend services",
+        "user_persona": "A developer beginning daily work on the project.",
+        "user_goal": "To launch both frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Dev Environment",
+                "description": "Riley prepares to develop locally by starting both services together.",
+                "action": "Run `npm run dev` from the root folder.",
+                "expected_outcome": "Both frontend and backend servers start concurrently, accessible at their respective ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful API endpoints for poetry CRUD operations",
+        "user_persona": "A tester validating API behavior for poetry management.",
+        "user_goal": "To perform basic CRUD operations on poetry resources via API calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating a Poem",
+                "description": "Tester sends a POST request to create a new poem entry.",
+                "action": "Send POST request to `/api/poetry` with valid payload.",
+                "expected_outcome": "Returns 201 Created with the newly created poem object."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving a Poem",
+                "description": "Tester retrieves the same poem using its ID.",
+                "action": "Send GET request to `/api/poetry/{id}`.",
+                "expected_outcome": "Returns 200 OK with the full poem details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for user authentication and session management",
+        "user_persona": "An API consumer integrating authentication features.",
+        "user_goal": "To authenticate a user and obtain a session token.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Authenticating User",
+                "description": "Developer makes a login request with valid credentials.",
+                "action": "Send POST request to `/api/auth/login` with username and password.",
+                "expected_outcome": "Receives 200 OK with a JWT token included in response body or headers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database migration scripts for setting up tables and relationships",
+        "user_persona": "A deployment engineer initializing the database schema.",
+        "user_goal": "To set up the database schema using migration files.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Migrations",
+                "description": "DevOps engineer executes migration scripts to build database structure.",
+                "action": "Run `knex migrate:latest` in the backend directory.",
+                "expected_outcome": "Tables for users, poetry, and comments are created with proper constraints and relationships."
+            }
+        ]
+    }
+]

@@ -1,0 +1,173 @@
+[
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)",
+            "checkIcon": "<svg>check icon</svg>",
+            "deleteIcon": "<svg>delete icon</svg>",
+            "editIcon": "<svg>edit icon</svg>"
+        },
+        "function": "Create new to-do items with title and description fields",
+        "static_description": "A form at the top of the page with a text input field for task title, a text area for task description, and a submit button. The form has a lavender background and indigo borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button creates a new task with the provided title and description, then clears the form fields."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in the title input field submits the form if both title and description are filled."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)"
+        },
+        "function": "Edit existing to-do items including title and description",
+        "static_description": "Each task item displays an edit icon. When clicked, the task transforms into an editable form with pre-filled title input and description text area, along with save and cancel buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the edit icon converts the task display into an editable form. Clicking save updates the task in the database and returns to display mode. Clicking cancel reverts changes and returns to display mode."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)",
+            "deleteIcon": "<svg>delete icon</svg>"
+        },
+        "function": "Delete to-do items permanently",
+        "static_description": "Each task item includes a delete icon button positioned on the right side. The button uses the delete icon resource.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete button removes the task from the database and immediately removes it from the visible list without confirmation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)",
+            "checkIcon": "<svg>check icon</svg>"
+        },
+        "function": "Mark to-do items as completed with visual indication",
+        "static_description": "Each task displays a checkbox on the left side. Completed tasks show a checked checkbox with a strike-through title and lighter text color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the checkbox toggles the task's completed status in the database and updates the visual styling - checked tasks show strike-through text and dimmed appearance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)"
+        },
+        "function": "Filter to-do items by status (all, active, completed)",
+        "static_description": "Three filter buttons displayed above the task list: 'All', 'Active', and 'Completed'. Buttons are styled with indigo color scheme and lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'All' shows all tasks. Clicking 'Active' shows only incomplete tasks. Clicking 'Completed' shows only finished tasks. The active filter button is visually highlighted."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)"
+        },
+        "function": "Search to-do items by keyword across title and description",
+        "static_description": "A search input field positioned above the filter buttons with a magnifying glass icon. The input field has indigo borders on a lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "As the user types, the task list dynamically filters to show only tasks whose title or description contains the search term (case-insensitive)."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the clear button (X) in the search field resets the search and displays all tasks according to the current filter setting."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)"
+        },
+        "function": "Browse all to-do items in a list view",
+        "static_description": "A vertically stacked list of task items below the input forms and controls. Each task card has consistent spacing, indigo borders, and lavender background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)"
+        },
+        "function": "Display to-do items with clear visual distinction between completed and active tasks",
+        "static_description": "Task cards use different styling: active tasks have bold text and solid indigo left border, while completed tasks have strike-through text, lighter font color, and dashed indigo left border.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Provide a text input field for entering new task titles",
+        "static_description": "A single-line text input field with placeholder 'Enter task title' positioned in the new task form. Styled with indigo borders on lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Typing in the field updates the input value. The submit button becomes enabled when the field contains text."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Include a text area for detailed task descriptions",
+        "static_description": "A multi-line text area with placeholder 'Enter task description' below the title input in the new task form. Styled with indigo borders on lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Typing in the text area expands it vertically to accommodate content and updates the input value."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), completed (boolean), createdAt (timestamp), updatedAt (timestamp)"
+        },
+        "function": "Show a counter displaying total and completed task counts",
+        "static_description": "A status bar below the controls showing 'X tasks total, Y completed' in indigo text on lavender background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Implement a clean and intuitive user interface",
+        "static_description": "Consistent spacing, typography, and alignment throughout the application with clear visual hierarchy. All interactive elements have appropriate hover states.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and interactive elements show subtle indigo color darkening on hover for better feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Apply lavender background color to all application pages",
+        "static_description": "Entire application viewport has a solid lavender background color (#E6E6FA). All components maintain this background consistently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Style all UI components with indigo color scheme",
+        "static_description": "All buttons, borders, icons, and interactive elements use various shades of indigo (#4B0082 to #9370DB) for consistent color scheme.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Ensure responsive design for different screen sizes",
+        "static_description": "Layout adjusts fluidly from mobile to desktop views. Task list stacks vertically on small screens and maintains proper spacing and readability.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Component widths adjust proportionally, text sizes remain readable, and touch targets maintain adequate size for mobile interaction."
+            }
+        ]
+    }
+]

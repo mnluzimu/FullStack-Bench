@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement a hospital management website for managing hospital finances, reports, inventory, and patient information. The website should have financial management functionality, including collecting patient fees and managing hospital finances. The reporting functionality should include inventory reports, patient reports, and financial reports. Employees should be able to submit daily reports to superiors, including detailed information about daily activities. Pharmacy management should include inventory management of medicines. Patient electronic files should include patient name, date of visit, diagnosis, and comments. The website should also have claim formulation, laboratory management, and theater management. Configure the background color to peach puff, with components using indian red.

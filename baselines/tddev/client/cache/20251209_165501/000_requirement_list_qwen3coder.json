@@ -1,0 +1,181 @@
+[
+    {
+        "resource_dependency": {
+            "pollListDataSchema": "Database table 'polls' with fields: poll_id (UUID), title (string), description (text), created_at (datetime), category (string), options (array of strings), creator_id (UUID).",
+            "navigationBarIcons": [
+                "home-icon.svg",
+                "filter-icon.svg",
+                "profile-icon.svg"
+            ]
+        },
+        "function": "Display a list of available polls for users to browse.",
+        "static_description": "A vertically scrollable page with a white background and navy-colored cards displaying each poll's title, short description, creation date, and category. Navigation bar at the top includes icons for home, filter, and profile.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a poll card navigates to the detailed poll view. Clicking on filter icon opens sorting/filtering options."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads more polls dynamically if pagination is enabled."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "voteSubmissionAPISpec": "POST /api/vote with body { poll_id, option_index } returning success status.",
+            "votingOptionsDataSchema": "Field 'options' within the 'polls' table stores selectable choices as an array of strings."
+        },
+        "function": "Allow users to select and vote for specific poll options.",
+        "static_description": "Poll detail page showing full description, metadata, and radio buttons or clickable divs styled in navy representing each voting option.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an option highlights it. Submitting sends the selection via POST request to the voting endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resultsUpdateAPISpec": "GET /api/poll/{id}/results returning updated vote counts per option.",
+            "resultVisualizationComponent": "Bar chart library such as Chart.js or D3.js"
+        },
+        "function": "Show real-time or updated voting results after submission.",
+        "static_description": "Results section appears immediately after voting, featuring a horizontal bar graph with navy bars indicating percentage distribution among options.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Refreshing manually fetches latest data from the results API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeCSSFile": "Global CSS variables defining --background-color: #ffffff; and related styling rules."
+        },
+        "function": "Implement a clean user interface with white background.",
+        "static_description": "Entire application uses a solid white background across all pages and components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navyThemeStylesheet": "CSS classes and global styles applying navy (#000080) to text, borders, buttons, and interactive elements."
+        },
+        "function": "Style all UI components with navy color scheme.",
+        "static_description": "All buttons, headers, links, form controls, and active states use consistent navy coloring throughout the site.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "detailedPollViewSchema": "Expanded dataset from GET /api/poll/{id} including extended description, metadata, and full options list."
+        },
+        "function": "Enable users to view detailed poll information before voting.",
+        "static_description": "Detailed view displays long-form description, creation timestamp, creator name, and categorized tags beneath the main question heading.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Back button returns to the poll list. Vote button becomes enabled only when an option is selected."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "successFeedbackAnimation": "Green checkmark SVG animation or Toast notification module."
+        },
+        "function": "Provide visual feedback when a vote is successfully submitted.",
+        "static_description": "After successful vote submission, a green checkmark animates briefly near the submit button followed by a toast message confirming receipt.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "resultChartLibrary": "Pre-configured chart rendering component capable of parsing numeric result arrays into proportional visuals."
+        },
+        "function": "Ensure poll results are displayed in an easily understandable format.",
+        "static_description": "Results shown as labeled horizontal bars with percentages overlaying each segment, accompanied by total votes count above the chart.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigationRoutesMap": "{ '/': Poll List, '/poll/:id': Poll Detail, '/results/:id': Results View }",
+            "routerConfig": "React Router or similar client-side routing setup."
+        },
+        "function": "Include navigation between different sections of the website.",
+        "static_description": "Top navigation bar provides persistent access to Home, My Votes, and Categories sections regardless of current location.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking navigation items transitions smoothly between views without full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionTrackingMechanism": "JWT-based cookie or localStorage token storing unique voter identifier tied to device/browser.",
+            "duplicateVoteCheckLogic": "Backend logic preventing multiple votes based on stored identifiers and IP logging."
+        },
+        "function": "Maintain user session or tracking to prevent duplicate voting.",
+        "static_description": "No visible indicators; however, system prevents re-voting through backend validation upon subsequent attempts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Attempting to re-vote shows an alert stating 'You’ve already voted in this poll.'"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pollMetadataFieldsDefinition": "Additional fields in 'polls' schema: created_at (timestamp), last_updated (timestamp), author_display_name (string)"
+        },
+        "function": "Display poll creation date and relevant metadata.",
+        "static_description": "Each poll card and detail view includes small italicized text showing creation time, author, and update history where applicable.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveGridFramework": "CSS media queries and flexbox/grid configurations ensuring layout adapts to mobile/tablet/desktop breakpoints."
+        },
+        "function": "Implement responsive design for various screen sizes.",
+        "static_description": "Layout adjusts column count, font scaling, and spacing dynamically while preserving usability on phones, tablets, and desktop monitors.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingModule": "Centralized error display mechanism showing inline messages or modal popups depending on severity."
+        },
+        "function": "Include error handling for invalid selections or submissions.",
+        "static_description": "Error messages appear below affected inputs or centrally as modals, styled consistently with red text against light backgrounds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Retry or dismiss actions clear transient errors and allow resubmission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "WCAGComplianceGuide": "Document outlining contrast ratios, keyboard navigation paths, ARIA labeling standards."
+        },
+        "function": "Provide accessibility features for inclusive user experience.",
+        "static_description": "Screen reader labels accompany interactive elements, focus outlines follow standard visibility guidelines, and semantic HTML structures support assistive tools.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tab Navigation",
+                "description": "Pressing Tab cycles through actionable items in logical reading order."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sortFilterAPISpec": "Query parameters for GET /api/polls?category=...&sortBy=date allowing dynamic filtering/sorting.",
+            "dropdownFilterContent": "[\"All\", \"Recent\", \"Popular\", \"By Category\"]"
+        },
+        "function": "Enable sorting or filtering of polls by categories or dates.",
+        "static_description": "Dropdown menu labeled 'Sort By' allows selecting filters like Recent, Popular, or Category. Filtered results replace existing list instantly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing a sort option triggers new API call with appropriate query parameters and refreshes the poll list accordingly."
+            }
+        ]
+    }
+]

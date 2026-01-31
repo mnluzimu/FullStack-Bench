@@ -1,0 +1,17 @@
+[
+    "Frontend application that fetches all data from backend APIs with no hard-coded or mock data",
+    "Backend API server that connects to PostgreSQL database using provided environment variables",
+    "Database schema for storing sales leads with fields for contact information, status, and categorization",
+    "User interface for browsing and managing sales leads with search and filtering capabilities",
+    "Functionality for updating lead information including contact details and pipeline status",
+    "Automated message sending system for lead nurturing and communication",
+    "Lead organization and categorization features with customizable tags and segments",
+    "Settings management interface for configuring application preferences and business rules",
+    "Dropdown menu management system for maintaining configurable options and selections",
+    "Reporting dashboard displaying sales metrics, lead conversion rates, and performance analytics",
+    "Advice and guidance section providing best practices for CRM usage and integration tips",
+    "User authentication and authorization system for secure access control",
+    "Responsive web design with papaya whip background and dark orange styled components",
+    "Package.json configuration with 'install:all' script for simultaneous frontend and backend dependency installation",
+    "Development environment setup with 'dev' script to run frontend and backend concurrently"
+]

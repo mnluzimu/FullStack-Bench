@@ -1,0 +1,18 @@
+[
+    "Agricultural news browsing functionality",
+    "Farm product information display",
+    "Weather forecast checking feature",
+    "Search functionality for news, products, and weather",
+    "Filter options for news categories",
+    "Filter options for farm product types",
+    "Filter options for weather locations",
+    "Responsive web design with light cyan background",
+    "Cadet blue themed UI elements",
+    "Frontend fetching data from backend APIs",
+    "Backend connecting to PostgreSQL database using specified environment variables",
+    "Repository package.json with npm run install:all script",
+    "Repository package.json with npm run dev script",
+    "Database schema for storing news articles",
+    "Database schema for storing farm product data",
+    "Database schema for storing weather forecast information"
+]

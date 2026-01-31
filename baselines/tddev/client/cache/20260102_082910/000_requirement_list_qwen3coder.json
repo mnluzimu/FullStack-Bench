@@ -1,0 +1,306 @@
+[
+    {
+        "resource_dependency": {
+            "authAPI": "RESTful API for user registration, login, session management, role-based access control",
+            "userDatabaseSchema": "Table: users(id UUID PK, email VARCHAR(255) UNIQUE, password_hash TEXT, first_name VARCHAR(100), last_name VARCHAR(100), role ENUM('admin','user'), created_at TIMESTAMP, updated_at TIMESTAMP)"
+        },
+        "function": "Provide secure user authentication and role-based authorization",
+        "static_description": "Login form with email and password fields, register link, and remember me checkbox. Registration form with name, email, password, and confirm password fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking login submits credentials to authAPI for validation and redirects to dashboard on success or shows error message on failure"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking register creates new user account via authAPI and redirects to confirmation page"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPI": "RESTful API endpoint for querying domains with filters and sorting parameters",
+            "domainDatabaseSchema": "Table: domains(id UUID PK, name VARCHAR(255) UNIQUE, status ENUM('available','leased','pending_transfer'), price DECIMAL(10,2), tld VARCHAR(10), created_at TIMESTAMP, updated_at TIMESTAMP)",
+            "filterOptions": [
+                "TLD (.com, .net, .org)",
+                "Price Range",
+                "Status (Available/Leased)",
+                "Sort By (Name, Price, Popularity)"
+            ]
+        },
+        "function": "Allow users to search for domains with advanced filtering and sorting capabilities",
+        "static_description": "Search bar with filter dropdowns below showing TLD options, price range sliders, status checkboxes, and sort order buttons. Results displayed in grid with domain names, prices, and status indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking search button sends query to searchAPI and displays results in real-time"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking filter options updates search results dynamically without page reload"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leaseAPI": "RESTful API for initiating and managing domain lease transactions",
+            "leaseTerms": [
+                "1 Year - $XX.XX",
+                "2 Years - $XX.XX (5% discount)",
+                "5 Years - $XX.XX (10% discount)"
+            ],
+            "leaseDatabaseSchema": "Table: leases(id UUID PK, domain_id UUID FK, user_id UUID FK, start_date DATE, end_date DATE, term_length INTEGER, total_cost DECIMAL(10,2), status ENUM('active','expired','cancelled'), created_at TIMESTAMP)"
+        },
+        "function": "Enable users to lease domains for selected time periods with pricing discounts",
+        "static_description": "Domain detail page showing available lease terms as radio buttons with pricing information. Lease summary section showing selected term, total cost, and proceed to checkout button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting different lease terms updates total cost calculation in real-time"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Proceed to Checkout' initiates lease transaction via leaseAPI"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "renewalAPI": "RESTful API for extending active domain leases",
+            "expirationTracking": "Background job checking lease expiration dates daily",
+            "renewalDatabaseSchema": "Table: renewals(id UUID PK, lease_id UUID FK, previous_end_date DATE, new_end_date DATE, renewal_cost DECIMAL(10,2), status ENUM('completed','pending_payment'), created_at TIMESTAMP)"
+        },
+        "function": "Allow users to extend their domain leases before expiration with automatic tracking",
+        "static_description": "User dashboard showing upcoming expirations with renewal buttons. Renewal modal displaying current lease details, extension options, and total cost.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking renewal button opens renewal options modal with pricing breakdown"
+            },
+            {
+                "interaction": "Click",
+                "description": "Confirming renewal processes payment via renewalAPI and extends lease period"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "transferAPI": "RESTful API for submitting and processing domain transfer requests",
+            "transferDatabaseSchema": "Table: transfers(id UUID PK, domain_id UUID FK, from_user_id UUID FK, to_user_id UUID FK, status ENUM('requested','approved','rejected','completed'), request_date TIMESTAMP, completion_date TIMESTAMP, transfer_code VARCHAR(50))",
+            "transferProcessSteps": [
+                "Initiate Transfer",
+                "Verify Ownership",
+                "Approve Request",
+                "Complete Transfer"
+            ]
+        },
+        "function": "Facilitate secure transfer of domain ownership between users with verification steps",
+        "static_description": "Transfer initiation form requiring recipient email and security code generation. Transfer status tracking panel showing progress through verification steps.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting transfer request generates unique code and sends notification via transferAPI"
+            },
+            {
+                "interaction": "Click",
+                "description": "Recipient approving transfer completes ownership change through transferAPI"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardAPI": "RESTful API aggregating user's leased domains and transaction history",
+            "dashboardDatabaseViews": "Materialized views for quick retrieval of user-specific domain data",
+            "leasingHistorySchema": "View combining leases, renewals, and transfers tables filtered by user_id"
+        },
+        "function": "Provide centralized overview of user's domain portfolio and transaction activities",
+        "static_description": "Dashboard layout with leased domains grid, upcoming expirations list, recent transactions timeline, and quick action buttons for renewal/transfer.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking domain card navigates to detailed domain information page"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking transaction items expands to show full details and related actions"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "orderAPI": "RESTful API managing all domain-related transactions as orders",
+            "orderDatabaseSchema": "Table: orders(id UUID PK, user_id UUID FK, order_type ENUM('lease','renewal','transfer'), item_id UUID, amount DECIMAL(10,2), status ENUM('pending','processing','completed','failed'), created_at TIMESTAMP, completed_at TIMESTAMP)",
+            "orderStatusFlow": [
+                "Pending Payment",
+                "Processing",
+                "Completed",
+                "Failed/Canceled"
+            ]
+        },
+        "function": "Track and manage all financial transactions related to domain operations",
+        "static_description": "Order management page with sortable table showing order ID, type, date, amount, and status. Filter controls for date range and status types.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking order row expands to show detailed transaction information and receipt"
+            },
+            {
+                "interaction": "Click",
+                "description": "Filtering by status updates displayed orders in real-time via orderAPI"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "paymentAPI": "Integration with Stripe/PayPal for processing payments",
+            "paymentDatabaseSchema": "Table: payments(id UUID PK, order_id UUID FK, amount DECIMAL(10,2), method ENUM('credit_card','paypal','bank_transfer'), status ENUM('pending','success','failed','refunded'), transaction_id VARCHAR(255), created_at TIMESTAMP)",
+            "supportedPaymentMethods": [
+                "Credit Card",
+                "PayPal",
+                "Bank Transfer"
+            ]
+        },
+        "function": "Handle secure payment processing for all domain transactions with multiple payment options",
+        "static_description": "Checkout page with payment method selection cards, secure payment form fields, order summary sidebar, and complete purchase button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting payment method reveals corresponding input fields and processes payment via paymentAPI"
+            },
+            {
+                "interaction": "Click",
+                "description": "Completing payment updates order status and redirects to confirmation page"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminAPI": "RESTful API providing CRUD operations for user and domain management",
+            "adminDatabasePermissions": "Role-based permissions restricting admin functions to authorized users only",
+            "inventoryManagementSchema": "Extended domain schema with admin-only fields: acquisition_cost, resale_value, notes TEXT"
+        },
+        "function": "Provide administrative interface for managing platform users and domain inventory",
+        "static_description": "Admin panel with navigation sidebar containing Users, Domains, Orders sections. Main content area showing data grids with bulk action capabilities.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking user/domain rows enables editing/deletion via adminAPI with appropriate permissions check"
+            },
+            {
+                "interaction": "Click",
+                "description": "Using bulk action checkboxes allows simultaneous operations on multiple records"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "Old lace (#FDF5E6) for background, rosy brown (#BC8F8F) for component accents and borders",
+            "responsiveFramework": "CSS media queries and flexbox/grid for mobile-first responsive design",
+            "uiComponentLibrary": "Custom styled components following consistent color scheme and typography"
+        },
+        "function": "Ensure consistent visual design across all devices with specified color palette",
+        "static_description": "Website featuring old lace background with rosy brown borders, buttons, and accent elements. Responsive grid layouts adapting to screen sizes with touch-friendly controls.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Layout adjusts fluidly between desktop, tablet, and mobile views maintaining usability"
+            },
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements show rosy brown highlight states for better user feedback"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiDocumentation": "OpenAPI/Swagger specification defining all endpoints, request/response formats, and authentication methods",
+            "endpointRouting": "Consistent RESTful URL patterns (e.g., /api/v1/domains, /api/v1/users)",
+            "errorHandling": "Standardized JSON error responses with HTTP status codes and descriptive messages"
+        },
+        "function": "Provide comprehensive backend services supporting all frontend data requirements",
+        "static_description": "Backend structure exposing documented API endpoints grouped by resource type. Consistent response formats including pagination for list endpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Request",
+                "description": "Frontend calls trigger corresponding API endpoints returning structured JSON data or appropriate error responses"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnection": "PostgreSQL connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "migrationScripts": "SQL migration files for creating initial database schema and sample data",
+            "connectionPooling": "Database connection pooling configuration for efficient resource usage"
+        },
+        "function": "Establish persistent database connectivity for storing and retrieving application data",
+        "static_description": "Backend service initializing PostgreSQL connection pool at startup using provided environment variables. Connection health monitoring endpoints for operational visibility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Startup",
+                "description": "Application initializes database connection pool and validates connectivity before serving requests"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonTemplate": "{ \"scripts\": { \"install:all\": \"npm install && cd backend && npm install && cd ../frontend && npm install\", \"dev\": \"concurrently \\\"npm run dev --prefix backend\\\" \\\"npm run dev --prefix frontend\\\"\" } }",
+            "dependencyManagement": "Separate package.json files for frontend and backend with shared devDependencies where appropriate",
+            "concurrentExecution": "Concurrently library for running multiple development servers simultaneously"
+        },
+        "function": "Streamline development workflow with unified installation and execution commands",
+        "static_description": "Root package.json file containing convenience scripts for installing dependencies and starting development servers for both frontend and backend.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Line",
+                "description": "Running 'npm run install:all' executes dependency installation across both projects sequentially"
+            },
+            {
+                "interaction": "Command Line",
+                "description": "Running 'npm run dev' launches both frontend and backend development servers concurrently"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "domainInfoAPI": "RESTful API endpoint returning comprehensive domain metadata and specifications",
+            "domainDetailsSchema": "Extended domain table with fields: description TEXT, dns_records JSONB, whois_info JSONB, seo_metrics JSONB",
+            "specificationCategories": [
+                "Technical Details",
+                "SEO Information",
+                "DNS Records",
+                "Ownership History"
+            ]
+        },
+        "function": "Display detailed technical and ownership information about individual domains",
+        "static_description": "Domain information page organized in tabbed sections showing technical specifications, DNS records, SEO metrics, and ownership history with expandable detail views.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching tabs loads corresponding domain information categories via domainInfoAPI"
+            },
+            {
+                "interaction": "Click",
+                "description": "Expanding detail rows reveals additional technical information without page refresh"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notificationAPI": "Webhook-based notification system sending alerts via email and in-app notifications",
+            "notificationDatabaseSchema": "Table: notifications(id UUID PK, user_id UUID FK, type ENUM('lease_expiration','transaction_update','transfer_request'), message TEXT, read BOOLEAN DEFAULT false, created_at TIMESTAMP)",
+            "notificationTriggers": "Automated events for lease expirations (7/3/1 days prior), transaction completions, and transfer approvals"
+        },
+        "function": "Keep users informed about important domain-related events and transaction statuses",
+        "static_description": "Notification bell icon in header showing unread count. Dropdown panel listing recent notifications with timestamps and mark-as-read controls. Dedicated notifications page for full history.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking notification bell toggles visibility of notification dropdown panel"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking individual notifications marks them as read and navigates to relevant transaction page"
+            }
+        ]
+    }
+]

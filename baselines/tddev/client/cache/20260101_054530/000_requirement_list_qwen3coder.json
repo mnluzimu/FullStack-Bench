@@ -1,0 +1,263 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "db_connection_env_vars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "The main application shell with navigation bar, content area, and footer. Navigation includes links to Home, Contests, Leaderboard, Profile, and Admin Panel. Content area displays different views based on route.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on navigation links updates the URL and renders corresponding view components dynamically by fetching data from backend APIs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresql_db_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "cors_settings": "*",
+            "session_secret_key": "generate_secure_random_string"
+        },
+        "function": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "static_description": "RESTful API endpoints served over HTTP at port 3001. Endpoints handle CRUD operations for users, contests, questions, answers, and scores. Middleware handles CORS, request parsing, and authentication checks.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "login_form_fields": [
+                "username/email",
+                "password"
+            ],
+            "signup_form_fields": [
+                "full name",
+                "email",
+                "username",
+                "password",
+                "confirm password"
+            ],
+            "jwt_token_storage": "localStorage or httpOnly cookies",
+            "auth_api_endpoints": "/api/auth/login, /api/auth/signup, /api/auth/logout"
+        },
+        "function": "User authentication and session management system",
+        "static_description": "Login page with username/email and password fields, 'Remember Me' checkbox, and 'Forgot Password?' link. Signup page with full name, email, username, password, and confirm password fields. Both pages have submit buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting login form sends credentials to backend; upon success, stores JWT token and redirects to dashboard. Submitting signup form creates new account and logs user in automatically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking logout clears stored tokens and redirects to homepage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contest_search_filters": [
+                "category",
+                "difficulty level",
+                "start date range"
+            ],
+            "contest_list_item_fields": [
+                "title",
+                "description",
+                "start time",
+                "duration",
+                "participants count"
+            ],
+            "search_api_endpoint": "/api/contests/search"
+        },
+        "function": "Contest browsing and search functionality",
+        "static_description": "Contests page featuring filter options above a scrollable grid/list of contest cards. Each card shows title, brief description, start time, duration, participant count, and an 'Enroll' button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting filters triggers API call to fetch filtered results and updates displayed list."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on a contest card navigates to contest details page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "enrollment_confirmation_modal": "Modal dialog confirming successful enrollment with option to go to contest lobby.",
+            "enroll_button_text": "Enroll Now",
+            "enrollment_api_endpoint": "/api/contests/:id/enroll"
+        },
+        "function": "Contest enrollment and registration feature",
+        "static_description": "Contest detail page with overview information including title, category, difficulty, schedule, rules, and an 'Enroll Now' primary action button prominently placed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enroll Now' makes authenticated POST request to backend. On success, displays confirmation modal and enables access to contest lobby."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "question_display_types": [
+                "multiple choice",
+                "true/false",
+                "short answer"
+            ],
+            "timer_component": "Live countdown timer showing remaining time per question",
+            "next_question_button": "Next Question →",
+            "submit_answers_button": "Submit Answers",
+            "question_api_endpoint": "/api/contests/:id/questions"
+        },
+        "function": "Interactive question display interface for live contests",
+        "static_description": "Full-screen contest interface divided vertically into question panel (top) and answer panel (bottom). Timer is visible near top right. Question text and options are shown in central area.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an answer highlights selection. Clicking 'Next Question' saves current response locally and loads next question. Final question changes button label to 'Submit Answers'."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Answers' submits all responses via POST to backend and transitions to score summary screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "answer_validation_rules": "Required field check, format matching (for short answers)",
+            "error_message_styles": "Red bordered inputs with inline error messages below invalid fields",
+            "submission_api_endpoint": "/api/contests/:id/answers"
+        },
+        "function": "Answer submission form with validation",
+        "static_description": "Answer input section below each question allowing user to enter or select response. Includes visual feedback indicators during submission processing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Attempting to proceed without answering triggers validation errors beside respective inputs. Valid submissions are sent to backend endpoint for grading."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "score_calculation_logic": "Backend logic calculating points based on correctness and speed",
+            "live_score_update_mechanism": "WebSocket connection pushing real-time score updates",
+            "score_display_format": "Numerical score with optional breakdown (correct/wrong/time bonus)"
+        },
+        "function": "Real-time scoring calculation and display",
+        "static_description": "Scoreboard overlay appearing after submission or accessible throughout contest showing current user’s score updated instantly as answers are processed.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Event",
+                "description": "Receiving score update events refreshes displayed score value dynamically without manual reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leaderboard_columns": [
+                "Rank #",
+                "Username",
+                "Total Score",
+                "Completion Time"
+            ],
+            "refresh_interval": "Automatic refresh every 30 seconds",
+            "leaderboard_api_endpoint": "/api/contests/:id/leaderboard"
+        },
+        "function": "Leaderboard showing user rankings and scores",
+        "static_description": "Dedicated leaderboard tab/page presenting ranked list of contestants sorted by highest score then fastest completion time. Top three ranks highlighted visually.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling through long lists loads additional entries progressively via infinite scrolling technique."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profile_stats_sections": [
+                "Overall Performance Summary",
+                "Recent Contest History",
+                "Badges/Achievements"
+            ],
+            "personal_history_api_endpoint": "/api/users/me/history",
+            "stats_visualization_charts": "Bar chart showing category-wise performance; line graph for score progression"
+        },
+        "function": "User profile page displaying personal stats and contest history",
+        "static_description": "Profile dashboard split into sections: user info header, performance summary cards, recent activity timeline, and achievement badges gallery.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on individual contest entries in history opens detailed result view with question-by-question breakdown."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "admin_contest_management_crud": "Create, Read, Update, Delete actions for contests",
+            "contest_creation_form_fields": [
+                "Title",
+                "Description",
+                "Category",
+                "Difficulty",
+                "Start Date",
+                "Duration",
+                "Questions (bulk upload or manual entry)"
+            ],
+            "admin_panel_routes": "/admin/contests, /admin/users, /admin/analytics",
+            "admin_auth_check": "Role-based access control requiring admin privileges"
+        },
+        "function": "Admin panel for creating and managing trivia contests",
+        "static_description": "Protected admin dashboard with sidebar menu listing administrative modules such as Manage Contests, User Management, Analytics Reports. Main panel shows tables/lists of entities with action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Create New Contest opens multi-step form wizard. Save publishes draft/published versions depending on status toggle. Edit/Delete modify existing records directly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "users_table_schema": "id (UUID), full_name (TEXT), email (TEXT UNIQUE), username (TEXT UNIQUE), password_hash (BYTEA), created_at (TIMESTAMP)",
+            "contests_table_schema": "id (UUID), title (TEXT), description (TEXT), category (TEXT), difficulty (ENUM), start_time (TIMESTAMP), duration_minutes (INTEGER), created_by (FK to users.id)",
+            "questions_table_schema": "id (UUID), contest_id (FK to contests.id), question_text (TEXT), question_type (ENUM: mcq/tf/short), correct_answer (TEXT), options (JSON ARRAY)",
+            "answers_table_schema": "id (UUID), user_id (FK to users.id), contest_id (FK to contests.id), question_id (FK to questions.id), submitted_answer (TEXT), is_correct (BOOLEAN), answered_at (TIMESTAMP)",
+            "scores_table_schema": "id (UUID), user_id (FK to users.id), contest_id (FK to contests.id), total_score (INTEGER), completed_at (TIMESTAMP)"
+        },
+        "function": "Database schema supporting users, contests, questions, answers, and scores",
+        "static_description": "Logical grouping of interrelated tables modeling core domain entities. Relationships enforced via foreign keys ensuring referential integrity across contest participation flow.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "color_palette_css_variables": ":root { --base-bg-color: beige; --component-accent-color: saddlebrown; }",
+            "responsive_breakpoints": "@media queries targeting mobile (<768px), tablet (768–1024px), desktop (>1024px)",
+            "mobile_navigation_menu_icon": "Hamburger icon SVG"
+        },
+        "function": "Responsive UI design with beige as base color and saddle brown for components",
+        "static_description": "Entire application styled consistently using CSS variables for base background (beige) and component accents (saddle brown). Layout adapts fluidly between device sizes maintaining usability and aesthetic coherence.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Adjusts layout breakpoints accordingly, switching between stacked mobile view and side-by-side desktop layouts while preserving consistent styling."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "install_all_script_command": "\"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\"",
+            "concurrently_package_version": "^7.0.0"
+        },
+        "function": "Package.json configured with npm run install:all for frontend and backend installation",
+        "static_description": "Root package.json file containing script definition enabling simultaneous installation of frontend and backend dependencies when executing 'npm run install:all'.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dev_server_start_script": "\"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\"",
+            "nodemon_dev_dependency": "^2.0.0",
+            "vite_dev_dependency": "^4.0.0"
+        },
+        "function": "Package.json configured with npm run dev for concurrent frontend and backend development servers",
+        "static_description": "Root package.json script command launching both frontend Vite dev server and backend Node/Nodemon server concurrently under unified terminal output stream.",
+        "interaction_and_states": []
+    }
+]

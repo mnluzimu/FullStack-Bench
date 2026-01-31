@@ -1,0 +1,217 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "Search icon SVG or image file path",
+            "stockDataAPI": "An API providing real-time and historical stock data, including company details, prices, financials, dividends, and analyst ratings"
+        },
+        "function": "Enable users to input stock codes or names to initiate a search.",
+        "static_description": "A search bar component with a placeholder 'Enter stock code or name', positioned prominently at the top of the page. The background is white, and the input field border and text are navy. A search icon is displayed inside or adjacent to the input field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the search bar focuses the input field, enabling text entry."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates the search action and clears the suggestion dropdown if visible."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autoSuggestDropdownStyle": "CSS class defining dropdown styles with white background and navy borders/text",
+            "stockSuggestionsAPI": "An API endpoint that returns a list of matching stocks based on partial input from the user"
+        },
+        "function": "Provide auto-suggested stock matches dynamically while the user types in the search bar.",
+        "static_description": "A dropdown list appears below the search bar when typing begins. Each item shows the stock name and symbol. Background is white, text and borders are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a suggestion populates the search bar with the selected stock identifier and closes the dropdown."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "If many suggestions exist, scrolling allows navigation through the list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyLogoPlaceholder": "/images/default-logo.png",
+            "basicStockInfoSchema": "Database table schema: stock_id (PK), symbol (string), company_name (string), sector (string), current_price (float), last_updated (datetime)"
+        },
+        "function": "Display essential information about the searched stock such as company name, sector, and latest price.",
+        "static_description": "A card-style section beneath the search bar displays the company logo (or placeholder), full company name, stock symbol, sector, and current price. All elements use navy text on a white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with a charting library like Chart.js or D3.js",
+            "marketTrendDataSchema": "Table storing time-series data: date (datetime), open_price (float), close_price (float), high (float), low (float), volume (int)"
+        },
+        "function": "Visualize market trends over various periods using interactive charts.",
+        "static_description": "A line chart showing closing prices over time, with axes labeled and tooltips enabled. Default period is 1 month. Background is white, chart lines and labels are navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on different time range buttons (1D, 1W, 1M, 3M, 1Y) updates the chart data accordingly."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over data points shows detailed tooltip information including exact price and timestamp."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTableSchema": "Database table: stock_id (FK), fiscal_year (int), revenue (float), net_income (float), eps (float), pe_ratio (float), debt_equity_ratio (float)",
+            "currencyFormatter": "Utility function to format large numbers with appropriate currency symbols"
+        },
+        "function": "Present key financial metrics including revenue, earnings, and important financial ratios.",
+        "static_description": "A tabular view displaying rows per fiscal year with columns for revenue, net income, EPS, P/E ratio, and debt-to-equity ratio. Headers and data are styled in navy on a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table ascending/descending by that metric."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptionsList": [
+                "PDF",
+                "Word (.docx)",
+                "Markdown",
+                "HTML"
+            ],
+            "reportTemplateFiles": "Pre-defined templates for each supported format"
+        },
+        "function": "Allow users to choose their preferred output format for generated reports.",
+        "static_description": "A horizontal row of radio buttons or a dropdown menu listing available formats ('PDF', 'Word', 'Markdown', 'HTML'). Selected option is visually highlighted with navy outline/text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an option highlights it and stores the selection for report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "customizationPanelContent": "Checkboxes and toggles for selecting sections like 'Market Trends', 'Financial Data', 'Analyst Ratings', etc.",
+            "reportSectionFlagsSchema": "Boolean flags indicating inclusion of each customizable section in the final report"
+        },
+        "function": "Let users define which sections and how much detail they want included in the generated report.",
+        "static_description": "Expandable panel containing checkboxes/toggles grouped under categories like Overview, Financials, Analysis, History. Labels and controls follow navy-on-white theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling any checkbox updates internal settings used during report generation."
+            },
+            {
+                "interaction": "Click",
+                "description": "Expanding/coll椿psing category groups reveals/hides sub-options."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "downloadButtonIcon": "Download icon asset",
+            "reportGenerationService": "Backend service responsible for compiling selected data into chosen format and returning downloadable file"
+        },
+        "function": "Generate and allow download of the fully customized stock report in the selected format.",
+        "static_description": "A prominent 'Download Report' button featuring a download icon, placed near customization controls. Styled with navy background and white text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers report compilation and prompts browser-native file download dialog once complete."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "keyInsightsGeneratorLogic": "Algorithm or NLP-based system to extract highlights from stock data",
+            "insightBoxStyle": "Card layout with bullet-pointed insights and bold emphasis on key figures"
+        },
+        "function": "Summarize critical findings about the stock in a concise overview section.",
+        "static_description": "A dedicated summary box presenting 3–5 bullet points summarizing recent performance, valuation status, and risk indicators. Uses navy headings on white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "historicalPriceChartSchema": "Same as market trend data but extended for multi-year support",
+            "comparisonToolAPI": "Optional third-party tool for comparing multiple stocks’ historical performance"
+        },
+        "function": "Illustrate past price movements across longer durations with clear visual cues.",
+        "static_description": "An expanded version of the market trend chart supporting up to 5 years of data, with optional toggle for logarithmic scale. Axis labels and legend in navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Timeframe selector changes displayed data window."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Shows precise value at cursor position along with date."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "analystRatingSchema": "Table: rating_id (PK), stock_id (FK), firm_name (string), recommendation (enum: Buy/Hold/Sell), target_price (float), published_date (date)",
+            "ratingDistributionChart": "Bar or pie chart showing distribution of buy/hold/sell recommendations among analysts"
+        },
+        "function": "Expose aggregated professional opinions regarding the stock’s future prospects.",
+        "static_description": "Two-part display: a list of individual analyst ratings with firm names and recommendations, and a small chart showing overall sentiment distribution. Text and visuals in navy on white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking individual entries expands to show full commentary or source link if available."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dividendHistorySchema": "Table: dividend_id (PK), stock_id (FK), ex_dividend_date (date), payment_date (date), amount_per_share (float), yield_percentage (float)",
+            "calendarIcon": "Icon representing dates/payments"
+        },
+        "function": "Convey dividend-related benefits and consistency of payouts over time.",
+        "static_description": "Timeline-style visualization of past dividend payments with amounts and dates. Accompanied by average annual yield percentage. Navy-colored timeline markers and labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a dividend event reveals additional info such as declaration date or payout frequency notes."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "industryBenchmarkAPI": "External or internal dataset comparing this stock against sector averages for key KPIs",
+            "comparisonMetricsSchema": "Fields: metric_name (string), company_value (float), benchmark_value (float), variance_percent (float)"
+        },
+        "function": "Contrast the stock’s performance and health against standard industry measures.",
+        "static_description": "Side-by-side comparison table or bar chart showing differences between company and industry average values for metrics like PE ratio, ROE, revenue growth. Highlighted disparities in navy/blue tones.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays explanation of what each metric signifies when hovering over its label."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketConnection": "Real-time connection to live stock feed via WebSocket protocol",
+            "liveUpdateIndicator": "UI element indicating active/live data stream (e.g., pulsating dot)"
+        },
+        "function": "Keep all displayed data synchronized with live market conditions without manual refresh.",
+        "static_description": "Small indicator light next to dynamic components turns green when receiving live updates. Current price and relevant charts update automatically every few seconds.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalThemeVariables": ":root CSS variables setting base colors --bg-color: #FFFFFF; --primary-color: #000080;",
+            "componentColorOverrides": "Navy-specific overrides applied to form inputs, buttons, cards, and text"
+        },
+        "function": "Ensure uniform visual identity throughout the application using predefined color palette.",
+        "static_description": "All interface components feature clean white backgrounds with navy accents for borders, icons, buttons, and typography. Consistent spacing and alignment enforced globally.",
+        "interaction_and_states": []
+    }
+]

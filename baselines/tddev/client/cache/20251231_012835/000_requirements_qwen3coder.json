@@ -1,0 +1,17 @@
+[
+    "A homepage displaying an overview of house cleaning services with azure mist background and dark slate blue components",
+    "A service browsing page listing all available cleaning services with detailed descriptions",
+    "A service inquiry form allowing users to ask questions about specific cleaning services",
+    "A booking system enabling users to schedule cleaning services by selecting date, time, and service type",
+    "A user dashboard for checking the status of booked cleaning services",
+    "A contact us page with phone number and email address for reaching customer service staff",
+    "Frontend application that fetches all dynamic data from backend APIs",
+    "Backend API server connecting to PostgreSQL database using provided environment variables",
+    "Database schema supporting service listings, bookings, user inquiries, and service statuses",
+    "RESTful API endpoints for retrieving service information, submitting bookings, and checking service status",
+    "Responsive web design compatible with desktop and mobile browsing",
+    "Contact form submission functionality with validation and confirmation",
+    "Service status tracking system showing real-time updates to customers",
+    "Package.json configured with 'install:all' script to install both frontend and backend dependencies",
+    "Package.json configured with 'dev' script to start both frontend and backend concurrently"
+]

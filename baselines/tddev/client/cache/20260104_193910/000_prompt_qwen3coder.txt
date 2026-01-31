@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement an animal spotter website that recognizes wild animals and sends SMS alerts. The website should have the functionality to identify different types of wild animals, and assign different color codes to each animal. Users should be able to set alert conditions, and when a specific animal is detected, the system will automatically send an SMS alert. Users should be able to browse detection records, view animal information, and set personalized alerts. Set misty rose as the body background and use firebrick for the UI.

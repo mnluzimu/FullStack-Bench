@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A traveling employee named Sam who needs up-to-date travel and reimbursement information.",
+        "user_goal": "Sam wants to view his latest bookings and reimbursement status on the travel portal.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard",
+                "description": "Sam logs in and lands on the dashboard, expecting to see his most recent travel bookings and reimbursement updates.",
+                "action": "Page loads and frontend makes authenticated API requests to fetch user-specific data.",
+                "expected_outcome": "Dashboard populates dynamically with Sam's upcoming trips and reimbursement statuses without requiring manual refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Taylor responsible for deploying backend services.",
+        "user_goal": "Taylor wants to ensure the backend connects properly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Taylor deploys the backend and ensures it initializes using the correct database environment variables.",
+                "action": "Start backend server with DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Backend successfully establishes a connection to the PostgreSQL database and logs confirmation of initialization."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for employees",
+        "user_persona": "An employee named Jordan trying to access the travel portal.",
+        "user_goal": "Jordan wants to securely log in to the system and access his personalized dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Jordan visits the login page and enters his email and password to gain access.",
+                "action": "Enter valid email and password, then click the 'Login' button.",
+                "expected_outcome": "Jordan is redirected to his personalized dashboard with no error messages displayed."
+            },
+            {
+                "step": 2,
+                "title": "Handling Invalid Credentials",
+                "description": "Jordan mistakenly enters the wrong password and tries to log in again.",
+                "action": "Submit incorrect password and observe form feedback.",
+                "expected_outcome": "Inline validation error appears under the password field prompting Jordan to re-enter his credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ticket booking interface for flights with search, selection, and confirmation",
+        "user_persona": "A frequent flyer named Riley planning a business trip.",
+        "user_goal": "Riley needs to book a flight from New York to San Francisco for next week.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Flights",
+                "description": "Riley fills out the flight search form with origin, destination, and travel dates.",
+                "action": "Fill in 'New York' as origin, 'San Francisco' as destination, select dates, and click 'Search Flights'.",
+                "expected_outcome": "A list of available flights with prices, durations, and airline logos populates below the search form."
+            },
+            {
+                "step": 2,
+                "title": "Selecting and Confirming Flight",
+                "description": "Riley reviews flight options and selects one that fits his schedule.",
+                "action": "Click on a flight card to expand details, then click 'Confirm Booking'.",
+                "expected_outcome": "Booking confirmation page displays with flight details, seat info, and total cost."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Hotel booking interface with search, filtering, and reservation capabilities",
+        "user_persona": "A project manager named Casey looking for a hotel near the conference venue.",
+        "user_goal": "Casey wants to find and reserve a hotel within a specific price range and location.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filtering Hotels",
+                "description": "Casey applies filters to narrow down hotel options based on price and location.",
+                "action": "Adjust price range slider and select proximity filter, then apply filters.",
+                "expected_outcome": "Hotel listings update instantly to show only those matching Casey's criteria."
+            },
+            {
+                "step": 2,
+                "title": "Reserving a Room",
+                "description": "Casey chooses a suitable hotel and proceeds to reserve a room.",
+                "action": "Click 'Reserve' on a hotel card, review details in the modal, then click 'Confirm Reservation'.",
+                "expected_outcome": "Reservation is created successfully, and Casey is redirected to the payment flow."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Train booking interface with schedule viewing and ticket purchasing",
+        "user_persona": "A commuter named Alex traveling between cities for a meeting.",
+        "user_goal": "Alex needs to check train schedules and purchase a ticket for tomorrow's commute.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Train Schedules",
+                "description": "Alex searches for available trains between two cities on a specific date.",
+                "action": "Enter source and destination cities, select travel date, and click search.",
+                "expected_outcome": "Timetable of matching trains with departure times, duration, and class options is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Purchasing a Ticket",
+                "description": "Alex selects a convenient train and proceeds to buy a ticket.",
+                "action": "Click 'Book Now' on a train row, fill in passenger details, select seat, and complete purchase.",
+                "expected_outcome": "Ticket confirmation screen appears with journey details and a downloadable PDF e-ticket."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Settlements report generation feature for travel expenses",
+        "user_persona": "A finance analyst named Morgan tasked with monthly travel expense reporting.",
+        "user_goal": "Morgan wants to generate a settlement report for a specific department and date range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Settlement Report",
+                "description": "Morgan accesses the report generator and sets filters for the desired report scope.",
+                "action": "Select department, set date range, choose export format, and click 'Generate Settlement Report'.",
+                "expected_outcome": "Report is generated and made available for download in the selected format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reimbursement application submission form with expense details and documentation upload",
+        "user_persona": "An employee named Taylor returning from a business trip.",
+        "user_goal": "Taylor wants to submit a reimbursement application with multiple expenses and attached receipts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding Expenses",
+                "description": "Taylor begins filling out the reimbursement form by adding multiple expense items.",
+                "action": "Click '+ Add Another Expense' to add several expense entries with details.",
+                "expected_outcome": "Multiple expense fields are appended to the form, ready for input."
+            },
+            {
+                "step": 2,
+                "title": "Uploading Receipts",
+                "description": "Taylor uploads digital copies of receipts corresponding to each expense.",
+                "action": "Drag and drop receipt files or browse to upload them, associating each with the correct expense.",
+                "expected_outcome": "Thumbnail previews of uploaded receipts appear next to their associated expenses."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Application",
+                "description": "Taylor reviews all entries and submits the reimbursement request.",
+                "action": "Click 'Submit Reimbursement Request' after validating all required fields.",
+                "expected_outcome": "Application is successfully submitted, and Taylor sees a confirmation page with a reference ID."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reimbursement status tracking dashboard for users",
+        "user_persona": "A manager named Quinn checking the status of submitted reimbursements.",
+        "user_goal": "Quinn wants to monitor the processing status of recent reimbursement claims.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Quinn logs in and navigates to the reimbursement status dashboard.",
+                "action": "Navigate to the reimbursement dashboard after logging in.",
+                "expected_outcome": "Dashboard displays a list of recent reimbursement submissions with current status badges."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Detailed Status",
+                "description": "Quinn clicks on a reimbursement entry to see detailed progress information.",
+                "action": "Click on a reimbursement row to view detailed status page.",
+                "expected_outcome": "Status page shows a timeline of processing stages, reviewer comments, and uploaded documents."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin panel for processing reimbursements and managing bookings",
+        "user_persona": "An admin named Bailey overseeing travel arrangements and reimbursements.",
+        "user_goal": "Bailey wants to approve a pending reimbursement and modify an existing booking.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Approving Reimbursement",
+                "description": "Bailey reviews a pending reimbursement and decides to approve it.",
+                "action": "Open reimbursement details and click the 'Approve' button.",
+                "expected_outcome": "Reimbursement status updates to 'Approved', and the requester receives a notification."
+            },
+            {
+                "step": 2,
+                "title": "Editing Booking",
+                "description": "Bailey notices a mistake in a booking and edits the details.",
+                "action": "Select the booking, make necessary edits to fields like traveler name or dates, and save.",
+                "expected_outcome": "Changes are saved successfully, and the updated booking reflects in the system immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Payment integration for handling travel transactions",
+        "user_persona": "A traveler named Devon completing a hotel reservation.",
+        "user_goal": "Devon wants to pay securely for his hotel booking online.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Payment Details",
+                "description": "Devon reaches the checkout page and fills in his payment information.",
+                "action": "Enter credit card details in the secure checkout form and click 'Pay Now'.",
+                "expected_outcome": "Payment is processed securely, and Devon receives confirmation of his booking and payment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Expense categorization and receipt management system",
+        "user_persona": "An employee named Robin organizing travel receipts after returning from a trip.",
+        "user_goal": "Robin wants to tag receipts with appropriate categories and delete irrelevant ones.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Tagging Receipts",
+                "description": "Robin uploads several receipts and assigns them to specific expense categories.",
+                "action": "Click on each receipt and assign an appropriate category from the dropdown.",
+                "expected_outcome": "Each receipt is tagged with the selected category and linked to corresponding expense entries."
+            },
+            {
+                "step": 2,
+                "title": "Deleting Unwanted Receipts",
+                "description": "Robin finds a duplicate receipt and deletes it from the system.",
+                "action": "Select the receipt and click 'Delete', then confirm the deletion.",
+                "expected_outcome": "Receipt is removed permanently from the system with no trace left in storage or database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Travel policy validation during booking and reimbursement processes",
+        "user_persona": "A budget-conscious employee named Lee making a hotel reservation.",
+        "user_goal": "Lee wants to book a hotel that complies with company travel policies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Detecting Policy Violation",
+                "description": "Lee selects a hotel that exceeds the allowed budget limit.",
+                "action": "Choose a high-cost hotel and attempt to proceed with booking.",
+                "expected_outcome": "An alert banner appears warning Lee about the policy violation and suggesting alternatives."
+            },
+            {
+                "step": 2,
+                "title": "Requesting Policy Override",
+                "description": "Lee decides to request an exception for the higher-cost hotel.",
+                "action": "Click 'Request Exception', provide justification, and submit for approval.",
+                "expected_outcome": "Override request is sent to the manager for review, and Lee receives a notification of submission."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reporting dashboard for finance teams to review settlements",
+        "user_persona": "A finance lead named Jordan analyzing travel spending trends.",
+        "user_goal": "Jordan wants to explore monthly spending data and save a customized report view.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Drilling Into Data",
+                "description": "Jordan clicks on a chart segment to investigate specific spending categories.",
+                "action": "Click on a bar segment in the monthly spending chart.",
+                "expected_outcome": "Underlying data table filters to show only the related subset for further analysis."
+            },
+            {
+                "step": 2,
+                "title": "Saving Custom View",
+                "description": "Jordan applies custom filters and saves the view for future reference.",
+                "action": "Apply custom filters and click 'Save View'.",
+                "expected_outcome": "Customized report configuration is added to Jordan's personal dashboard shortcuts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with white container backgrounds and navy component visuals",
+        "user_persona": "A mobile user named Taylor accessing the travel portal on a smartphone.",
+        "user_goal": "Taylor wants to navigate and use the portal seamlessly on a small screen device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adaptive Layout on Mobile",
+                "description": "Taylor opens the portal on a mobile browser and begins browsing content.",
+                "action": "Load the portal on a mobile device and interact with the interface.",
+                "expected_outcome": "UI elements adjust appropriately—navigation collapses into a hamburger menu, forms stack vertically, and spacing remains readable."
+            }
+        ]
+    }
+]

@@ -1,0 +1,205 @@
+[
+    {
+        "resource_dependency": {
+            "reportSubmissionAPI": "POST /api/reports endpoint accepting title, content, attachments, and optional metadata.",
+            "reportDataSchema": "Table 'reports' with fields: id (UUID), title (string), content (text), submitted_at (timestamp), status (enum: pending, reviewed, published, rejected), attachment_urls (array of strings)."
+        },
+        "function": "Allow users to anonymously submit insights and evidence through a secure form.",
+        "static_description": "A form titled 'Submit Anonymous Report' featuring input fields for report title, main content area, file upload zone for evidence, and a prominent 'Submit' button. All UI components use midnight blue styling over an azure background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Submit' button sends the filled data to the reportSubmissionAPI and displays a success message upon completion."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging files into the upload zone highlights the drop area and initiates file preview before submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "forumThreadAPI": "GET /api/forum/threads for listing threads; POST /api/forum/threads for creating new ones.",
+            "threadReplyAPI": "GET /api/forum/threads/{id}/replies for fetching replies; POST /api/forum/threads/{id}/replies for adding replies.",
+            "forumDataSchema": "Tables: 'forum_threads' (id, title, author_id, created_at) and 'forum_replies' (id, thread_id, content, author_id, posted_at)."
+        },
+        "function": "Provide a platform for community-driven discussion around submitted reports and general topics.",
+        "static_description": "A threaded discussion interface displaying a list of topics with titles, authors, timestamps, and reply counts. Each thread expands to show full conversation history. Midnight blue styled cards on azure background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a thread loads its full content and associated replies dynamically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Post Reply' submits the reply via threadReplyAPI and appends it to the current thread view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPI": "GET /api/search?q={query}&type={content_type}&sort={newest|popular} supporting query parameters for filtering and sorting.",
+            "searchIndexSchema": "Search index covering reports.title, reports.content, forum_threads.title, blog_posts.title, blog_posts.content."
+        },
+        "function": "Enable keyword-based search across reports, forums, blogs, and news sections.",
+        "static_description": "A centralized search bar positioned at the top navigation, accompanied by filter dropdowns for result type and sort order. Search results appear in categorized tabs below. Styled with midnight blue elements against azure backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers search request to searchAPI with entered keywords and selected filters applied."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting different filter/sort options re-fetches results from searchAPI without page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "blogNewsAPI": "GET /api/blog-posts for listing; GET /api/blog-posts/{id} for individual article views.",
+            "blogEditorAPI": "POST /api/blog-posts for admins to publish new articles.",
+            "blogContentSchema": "Table 'blog_posts' with fields: id (UUID), title (string), content (markdown/text), author_id, published_at, tags (array)."
+        },
+        "function": "Display regularly updated articles and announcements relevant to whistleblowing and societal awareness.",
+        "static_description": "A grid layout showcasing featured articles with thumbnails, headlines, excerpts, and publication dates. Individual article pages render markdown-formatted content. Consistent midnight blue card design on azure canvas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an article tile navigates to its dedicated view rendered using blogNewsAPI response."
+            },
+            {
+                "interaction": "Click",
+                "description": "Admins clicking 'New Post' open a rich-text editor modal interfacing with blogEditorAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPaletteDefinition": "{ primaryBackground: '#F0FFFF', componentColor: '#191970' }",
+            "uiComponentLibrary": "Pre-built React components utilizing midnight blue (#191970) for borders/buttons and azure (#F0FFFF) for backgrounds."
+        },
+        "function": "Establish consistent visual identity aligned with requested color scheme throughout the application.",
+        "static_description": "Entire site features azure (#F0FFFF) background. Navigation bars, buttons, forms, and containers utilize midnight blue (#191970) accents and borders. Typography uses accessible contrast ratios.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingLayer": "Axios or Fetch API wrappers configured for all endpoints: /api/reports, /api/forum/*, /api/search, /api/blog-posts.",
+            "authenticationTokenHandler": "JWT token interceptor for authenticated routes managed client-side."
+        },
+        "function": "Ensure all dynamic content originates from backend services rather than hardcoded values.",
+        "static_description": "Frontend application structured with modular API clients handling asynchronous requests to respective backend modules. No inline or embedded datasets present.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables used directly: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+            "databaseORM": "Sequelize or similar ORM mapping models to PostgreSQL tables."
+        },
+        "function": "Connect backend logic to persistent storage layer using provided credentials.",
+        "static_description": "Backend server initializes connection pool referencing environment-specific PostgreSQL settings during startup sequence. ORM manages schema synchronization.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "npmScriptDefinition": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\""
+        },
+        "function": "Streamline dependency installation process for entire monorepo structure.",
+        "static_description": "Root-level package.json containing script definition triggering parallel installations in frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devServerScript": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Facilitate simultaneous local development of frontend and backend applications.",
+        "static_description": "Root-level package.json script launching both development servers concurrently under unified terminal output.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "secureReportStorage": "Encrypted storage field for sensitive report metadata or attachments if required beyond standard database encryption.",
+            "reportAuditTrailSchema": "Additional table 'report_audits': log_id, report_id, action (submitted, viewed, status_changed), timestamp, actor_role."
+        },
+        "function": "Guarantee integrity and confidentiality of submitted whistleblower information.",
+        "static_description": "Database records for submitted reports include automatic timestamping and audit logging capabilities. Sensitive fields may be encrypted at rest depending on compliance needs.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": "POST /api/auth/login, POST /api/auth/register-anonymous, GET /api/auth/me",
+            "anonymousUserSchema": "Table 'users' with role='anonymous_reporter'; session tokens issued via JWT with short expiry."
+        },
+        "function": "Manage access control ensuring reporters remain anonymous while preserving system integrity.",
+        "static_description": "Authentication module issuing temporary anonymous sessions upon report submission initiation. No personal identifiers collected unless explicitly provided by user.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "moderationToolsAPI": "PUT /api/moderate/report-status, DELETE /api/forum/thread, PATCH /api/forum/reply",
+            "moderatorDashboardSchema": "View aggregating flagged items, recent activity, pending reviews with quick-action controls."
+        },
+        "function": "Empower moderators to review, approve, reject, or remove inappropriate content efficiently.",
+        "static_description": "Moderator-only dashboard presenting queues of pending reports, flagged forum posts, and tools for bulk actions. Controls styled consistently with midnight blue theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Moderation actions update statuses via moderationToolsAPI and refresh affected content lists instantly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "advancedSearchOptions": "Query parameters for date range, category tags, content type filters exposed in UI dropdown menus.",
+            "sortableResultsList": "Client-side sorting hooks bound to API responses allowing toggling between relevance, newest, oldest, popularity metrics."
+        },
+        "function": "Enhance discoverability of content through refined filtering and ordering mechanisms.",
+        "static_description": "Search interface includes collapsible advanced filters panel offering selection by date ranges, categories, and content types. Sortable column headers on result listings trigger updated queries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling filter checkboxes updates live-preview count and applies selections when searching again."
+            },
+            {
+                "interaction": "Click",
+                "description": "Sorting icons toggle ascending/descending order and re-fetch results accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "richTextEditorLibrary": "Integration of Markdown or WYSIWYG editor library such as Draft.js or TinyMCE.",
+            "articlePreviewRenderer": "Live-rendered HTML preview pane reflecting formatting changes in real time."
+        },
+        "function": "Allow editorial staff to compose engaging articles using familiar formatting tools.",
+        "static_description": "Admin blog creation screen incorporates split-pane layout showing rich text input area alongside live-updating HTML preview window. Toolbar includes bold, italic, headings, links, image embeds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Real-time rendering updates the adjacent preview pane as content is typed or formatted."
+            },
+            {
+                "interaction": "Click",
+                "description": "Insert media/upload buttons prompt file selection dialogs then append appropriate markup/code snippets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminPanelRoutes": "Protected routes like /admin/reports, /admin/blog, /admin/analytics accessible only after admin login.",
+            "managementAPIs": "CRUD operations for managing blog posts, viewing report summaries, banning users, configuring site settings."
+        },
+        "function": "Centralize administrative oversight and content management tasks behind secure access.",
+        "static_description": "Dedicated admin portal featuring navigation sidebar linking to various management modules. Dashboard widgets summarize key metrics like total reports, active users, trending topics. Midnight blue themed interface matching rest of site.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigating between admin sections loads corresponding data grids and management forms dynamically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Performing CRUD actions (create/edit/delete) triggers calls to respective managementAPIs and refreshes displayed data immediately."
+            }
+        ]
+    }
+]

@@ -1,0 +1,208 @@
+[
+    {
+        "resource_dependency": {
+            "homepageLayoutImage": "/assets/homepage-layout.png",
+            "navMenuItems": [
+                "Menus",
+                "Private Poker Room",
+                "Events & Promotions",
+                "Reservations/Purchases"
+            ],
+            "brandColorContainer": "peach puff",
+            "brandColorVisuals": "indian red"
+        },
+        "function": "Serve as the main landing page providing navigation to key sections of the website.",
+        "static_description": "The homepage displays a header with navigation links to Menus, Private Poker Room, Events & Promotions, and Reservations/Purchases. The background uses peach puff for containers and indian red for visual elements such as buttons or icons. A hero section showcases featured content.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any navigation link scrolls or navigates to the respective section or page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "menuDataSchema": "Database table named 'menus' with fields: id (UUID), name (string), description (text), price (decimal), category (string), image_url (string).",
+            "menuAPIEndpoint": "/api/menus"
+        },
+        "function": "Display bourbon and cocktail menus with descriptions and pricing fetched dynamically from backend.",
+        "static_description": "A grid or list layout showing menu items. Each item includes an image, name, description, and price. Containers use peach puff background while borders and text highlights use indian red.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Users can scroll through the list of menu items displayed in a responsive grid."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pokerRoomDetailsContent": "Text content describing the private poker room features, membership benefits, access requirements, and images.",
+            "authenticationRequiredPopup": "Modal prompting login/signup when trying to access restricted content."
+        },
+        "function": "Introduce the membership-only private poker room with details and access requirements.",
+        "static_description": "A dedicated section with rich text content explaining the private poker room, including photos, amenities, and membership criteria. Peach puff is used for background containers and indian red for headings or call-to-action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on 'Learn More' reveals additional details. Clicking on 'Access Now' prompts authentication if not logged in."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "eventsPromosDataSchema": "Database table named 'events_promotions' with fields: id (UUID), title (string), description (text), start_date (datetime), end_date (datetime), registration_required (boolean), image_url (string).",
+            "eventsPromosAPIEndpoint": "/api/events-promotions"
+        },
+        "function": "List upcoming events and ongoing promotions with dates, descriptions, and registration options.",
+        "static_description": "Cards or timeline layout presenting each event/promotion with title, date range, description, and optional registration CTA. Background uses peach puff; accents like titles or buttons use indian red.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a card expands more details or redirects to a registration form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reservationFormFields": [
+                "Full Name",
+                "Email",
+                "Phone Number",
+                "Date & Time",
+                "Number of Guests",
+                "Type of Reservation (Table/Private Poker)"
+            ],
+            "reservationSubmitAPI": "/api/reservations",
+            "reservationConfirmationMessage": "Thank you! Your reservation request has been submitted successfully."
+        },
+        "function": "Enable users to make online reservations for tables or private poker room sessions.",
+        "static_description": "A form embedded within a peach puff container featuring labeled input fields for personal info, time/date selection, guest count, and reservation type dropdown. Submit button styled with indian red.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends data to the backend and shows a confirmation message upon success."
+            },
+            {
+                "interaction": "Select Dropdown",
+                "description": "Choosing between Table or Private Poker Room updates related conditional fields or validation rules."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cartSystemAssets": [
+                "Add to Cart Icon",
+                "Checkout Button SVG"
+            ],
+            "purchaseAPIEndpoint": "/api/purchase",
+            "securePaymentGatewayIntegration": "Integration with Stripe or PayPal for secure transactions.",
+            "orderConfirmationTemplate": "Order confirmed! You will receive an email shortly with order details."
+        },
+        "function": "Allow users to purchase items from the menu online with secure checkout functionality.",
+        "static_description": "Each menu item has an 'Add to Cart' icon. Shopping cart appears as a floating basket indicator using indian red. Checkout screen shows selected items and payment form inside a peach puff container.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add to Cart' adds item to cart. Clicking 'Checkout' opens the payment interface which processes payments securely."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries and Flexbox/Grid layouts",
+            "colorPaletteDefinition": "{ containerBackground: '#FFDAB9', componentAccent: '#CD5C5C' }"
+        },
+        "function": "Implement responsive design with peach puff container backgrounds and indian red component visuals.",
+        "static_description": "All pages adapt to various screen sizes using CSS media queries. Containers feature peach puff (#FFDAB9) background color, and accent elements like buttons, borders, or headers utilize indian red (#CD5C5C).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "contactSectionContent": "Address, phone number, operating hours, Google Maps embed URL, customer service email.",
+            "locationMapAPI": "Google Maps Embed API for displaying venue location"
+        },
+        "function": "Include a contact section with location, hours, and customer service information.",
+        "static_description": "Contact section includes address, phone number, business hours, embedded map, and support email. Peach puff background with indian red heading and links.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the map opens it in full view or new tab depending on configuration."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authLoginAPI": "/api/auth/login",
+            "authSignupAPI": "/api/auth/signup",
+            "memberAreaAccessRoute": "/private-poker-room-details",
+            "JWTTokenStorageMechanism": "Browser localStorage/sessionStorage"
+        },
+        "function": "Provide user authentication for accessing member-only areas like the private poker room details.",
+        "static_description": "Login/Signup modal or overlay styled with peach puff container and indian red action buttons. Includes username/email and password inputs along with remember me checkbox.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting credentials authenticates the user and grants access to protected routes. Invalid credentials show error messages inline."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseInitializationScript": "SQL script to create tables for menus, events_promotions, reservations, purchases, users, etc."
+        },
+        "function": "Support dynamic content updates via a backend connected to an external PostgreSQL database.",
+        "static_description": "Backend establishes connection to PostgreSQL instance using provided environment variables. Schemas define tables for storing dynamic content like menus, events, promotions, reservations, purchases, and user accounts.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "noHardcodedDataPolicy": "All frontend data must originate from backend API calls.",
+            "dataFetchingHooksLibrary": "React Query / SWR or equivalent library for managing API requests"
+        },
+        "function": "Ensure all data is fetched from backend APIs; no hardcoded or mock data in the frontend.",
+        "static_description": "Frontend components render exclusively from data retrieved asynchronously via RESTful API endpoints. No static strings or images are included directly in JSX unless part of UI assets.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "envVarFilePlaceholder": ".env file containing DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Configure environment variables for database connection: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME.",
+        "static_description": "Environment variables stored in a .env file located at root directory. These values are injected during runtime to configure database connectivity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+            "devStartScriptCommand": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
+        },
+        "function": "Set up package.json scripts: `npm run install:all` for frontend and backend installation, `npm run dev` for concurrent development startup.",
+        "static_description": "Root-level package.json contains two custom scripts: install:all runs npm install in both frontend and backend directories, and dev starts both applications concurrently using concurrently CLI tool.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "menuAPIEndpoint": "/api/menus",
+            "eventsPromosAPIEndpoint": "/api/events-promotions",
+            "reservationsAPIEndpoint": "/api/reservations",
+            "purchasesAPIEndpoint": "/api/purchases",
+            "authAPIEndpoints": [
+                "/api/auth/login",
+                "/api/auth/signup"
+            ]
+        },
+        "function": "Implement API endpoints for menus, events, promotions, reservations, and purchases.",
+        "static_description": "RESTful API endpoints defined under /api namespace for handling CRUD operations related to menus, events/promotions, reservations, purchases, and user authentication flows.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "uiComponentStyleGuide": "Reusable component styles leveraging CSS modules or styled-components",
+            "brandingColors": "{ containerBackground: '#FFDAB9', componentAccent: '#CD5C5C' }"
+        },
+        "function": "Design UI components that align with branding colors: peach puff for containers and indian red for visual elements.",
+        "static_description": "UI components follow consistent styling using peach puff for backgrounds and indian red for interactive or highlight elements. Colors applied via CSS variables or theme objects.",
+        "interaction_and_states": []
+    }
+]

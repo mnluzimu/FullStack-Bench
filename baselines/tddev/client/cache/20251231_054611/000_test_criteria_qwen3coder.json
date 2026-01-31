@@ -1,0 +1,366 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A sales representative named Alex who needs to quickly access up-to-date lead information.",
+        "user_goal": "Alex wants to view the most recent sales leads without manually refreshing the page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Leads",
+                "description": "Alex navigates to the CRM dashboard where he expects to see the latest leads loaded automatically from the backend.",
+                "action": "Navigate to the dashboard URL.",
+                "expected_outcome": "Sales leads are fetched via the /api/leads endpoint and displayed in a table with correct styling."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Lead Details",
+                "description": "Alex notices an interesting lead and decides to click on the row to get more details.",
+                "action": "Click on a lead row in the table.",
+                "expected_outcome": "A modal pops up showing detailed information about the selected lead."
+            },
+            {
+                "step": 3,
+                "title": "Loading More Leads",
+                "description": "As Alex scrolls down, he reaches the bottom of the current list and expects older leads to load.",
+                "action": "Scroll to the bottom of the leads table.",
+                "expected_outcome": "Additional leads are fetched and appended to the table seamlessly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Sam responsible for ensuring the backend connects securely to the database.",
+        "user_goal": "Sam wants to verify that the backend service successfully connects to PostgreSQL using the provided environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Sam starts the backend server and monitors logs to confirm successful database connection.",
+                "action": "Run `npm run dev` in the backend directory.",
+                "expected_outcome": "The backend initializes a pool connection to PostgreSQL using pg library with DB_HOST=localhost, DB_PORT=5432, etc."
+            },
+            {
+                "step": 2,
+                "title": "Checking Connection Logs",
+                "description": "Sam checks the console output for confirmation of database connectivity.",
+                "action": "Review terminal/console logs after starting the server.",
+                "expected_outcome": "Log indicates successful connection to myapp database with user myappuser."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management system",
+        "user_persona": "Jordan, a new team member, needs to log into the CRM platform for the first time.",
+        "user_goal": "Jordan aims to log into the CRM dashboard using valid credentials.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Page",
+                "description": "Jordan visits the CRM homepage and looks for the login option.",
+                "action": "Visit root URL and locate the login form.",
+                "expected_outcome": "A login form with username/password fields appears against a papaya whip background with a dark orange submit button."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "Jordan enters his assigned username and password into the form fields.",
+                "action": "Fill in valid username and password and click the submit button.",
+                "expected_outcome": "System sends a POST request to /api/auth/login and returns a session token."
+            },
+            {
+                "step": 3,
+                "title": "Successful Authentication",
+                "description": "Upon submitting valid credentials, Jordan anticipates being redirected to the main dashboard.",
+                "action": "Observe redirection behavior after clicking submit.",
+                "expected_outcome": "Redirected to the dashboard page with a welcome message confirming successful login."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard for browsing and managing sales leads with search and filter capabilities",
+        "user_persona": "Taylor, a sales manager, wants to find specific leads using search and filtering tools.",
+        "user_goal": "Taylor needs to filter leads by status and search for a particular lead by name.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Dashboard",
+                "description": "Taylor opens the CRM dashboard and sees the leads grid along with search and filter options.",
+                "action": "Navigate to the dashboard page.",
+                "expected_outcome": "Dashboard renders with a search bar, filter dropdowns, and responsive lead grid/table layout on a papaya whip background."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Taylor clicks the filter dropdown to choose 'Status' and selects 'Contacted' to narrow down the list.",
+                "action": "Click the filter dropdown and select 'Contacted' under Status.",
+                "expected_outcome": "The lead list updates dynamically to show only leads marked as 'Contacted'."
+            },
+            {
+                "step": 3,
+                "title": "Searching for Leads",
+                "description": "Taylor remembers a lead named 'Acme Corp' and begins typing in the search box.",
+                "action": "Type 'Acme Corp' into the search bar.",
+                "expected_outcome": "Search results update in real-time as Taylor types, showing matching leads."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Lead management interface allowing creation, editing, categorization, and status updates",
+        "user_persona": "Casey, a junior sales rep, needs to add a new lead and later update its status.",
+        "user_goal": "Casey wants to create a new lead entry and then change its status from New to Qualified.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating a New Lead",
+                "description": "Casey clicks the 'Add Lead' button to open the lead creation form.",
+                "action": "Click the 'Add Lead' button on the dashboard.",
+                "expected_outcome": "A modal form appears with fields for name, email, phone, status, and category, styled with dark orange buttons."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Lead Info",
+                "description": "Casey fills out the required fields and sets the initial status to 'New'.",
+                "action": "Enter lead details and select 'New' from the status dropdown.",
+                "expected_outcome": "Internal state reflects the selected value; save button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Saving the Lead",
+                "description": "After filling the form, Casey saves the new lead entry.",
+                "action": "Click the Save button.",
+                "expected_outcome": "POST request is made to /api/leads; success message confirms creation and closes the modal."
+            },
+            {
+                "step": 4,
+                "title": "Editing Lead Status",
+                "description": "Later, Casey finds the newly added lead and clicks to edit it, changing the status to 'Qualified'.",
+                "action": "Find the lead row, click it, then change the status dropdown to 'Qualified' and click Save.",
+                "expected_outcome": "PUT request updates the lead's status in the database, and the change is reflected immediately in the UI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Automated message sending functionality for lead communication",
+        "user_persona": "Riley, a marketing coordinator, wants to schedule follow-up emails for leads.",
+        "user_goal": "Riley needs to configure and send an automated message to multiple leads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Message Templates",
+                "description": "Riley goes to the messaging section to review existing templates.",
+                "action": "Navigate to the messages section.",
+                "expected_outcome": "Message template editor and schedule configuration panel appear with papaya whip background and dark orange controls."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Leads and Template",
+                "description": "Riley selects several leads and picks a standard follow-up template.",
+                "action": "Check boxes next to desired leads and select a pre-defined template.",
+                "expected_outcome": "Selected leads are associated with the chosen message template."
+            },
+            {
+                "step": 3,
+                "title": "Scheduling Delivery",
+                "description": "Riley sets a future date/time for automatic delivery of the messages.",
+                "action": "Set a future date/time and activate scheduling.",
+                "expected_outcome": "Cron job is scheduled to deliver messages automatically at the specified time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Settings panel for updating application configurations and dropdown menu options",
+        "user_persona": "Morgan, an administrator, wants to customize the categories used for leads.",
+        "user_goal": "Morgan aims to update the dropdown options available for lead categorization.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Settings",
+                "description": "Morgan accesses the settings panel to modify global application parameters.",
+                "action": "Click the Settings link in the navigation menu.",
+                "expected_outcome": "Settings page loads with editable forms for global parameters and dropdown lists, styled with papaya whip background and dark orange elements."
+            },
+            {
+                "step": 2,
+                "title": "Updating Dropdown Options",
+                "description": "Morgan edits the category dropdown options to better reflect company segments.",
+                "action": "Modify entries in the category dropdown list and click Save.",
+                "expected_outcome": "PUT request updates the dropdown options in the backend database via /api/settings endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reporting module displaying sales metrics and performance analytics",
+        "user_persona": "Jamie, a business analyst, needs monthly sales reports for presentation.",
+        "user_goal": "Jamie wants to generate and download a report summarizing lead conversion rates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Reports",
+                "description": "Jamie navigates to the reports section to analyze sales data visually.",
+                "action": "Go to the reports section.",
+                "expected_outcome": "Charts and tables summarizing KPIs like conversion rates appear using Chart.js or D3.js."
+            },
+            {
+                "step": 2,
+                "title": "Generating Report Data",
+                "description": "Jamie reviews the displayed metrics and prepares to export them.",
+                "action": "Interact with chart/table to ensure latest data is shown.",
+                "expected_outcome": "Report reflects the most recent sales activity and performance analytics."
+            },
+            {
+                "step": 3,
+                "title": "Exporting Report",
+                "description": "Jamie clicks the export button to download the report in PDF format.",
+                "action": "Click the export button.",
+                "expected_outcome": "GET request to /api/export generates and returns the report as a downloadable PDF attachment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Advice section providing best practices and integration recommendations",
+        "user_persona": "Pat, a new hire, seeks guidance on improving CRM usage efficiency.",
+        "user_goal": "Pat wants to read articles offering CRM best practices and integration tips.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Advice Section",
+                "description": "Pat explores the navigation menu to locate helpful resources.",
+                "action": "Click the Advice or Help link.",
+                "expected_outcome": "Articles sourced from markdown files render cleanly with papaya whip background and dark orange headings."
+            },
+            {
+                "step": 2,
+                "title": "Reading Content",
+                "description": "Pat reads through recommended practices for maximizing CRM effectiveness.",
+                "action": "Browse article titles and read content.",
+                "expected_outcome": "Content is well-formatted and provides actionable insights without interactive elements."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI components styled with papaya whip background and dark orange elements",
+        "user_persona": "Quinn, a UX designer, evaluates whether the site meets brand style guidelines.",
+        "user_goal": "Quinn wants to confirm that all UI components use the correct colors consistently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Overall Styling",
+                "description": "Quinn opens the site on various devices to assess visual consistency.",
+                "action": "Load the application on desktop and mobile browsers.",
+                "expected_outcome": "Entire application uses CSS custom properties for background (papaya whip) and primary color (dark orange)."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Colors",
+                "description": "Quinn examines individual components such as buttons, forms, and tables.",
+                "action": "Inspect styles of buttons, tables, and other UI components.",
+                "expected_outcome": "All interactive elements utilize dark orange as the accent color with papaya whip backgrounds."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Role-based access control for different user permissions",
+        "user_persona": "Devon, a viewer-level employee, tries to access restricted administrative features.",
+        "user_goal": "Devon wants to understand which parts of the CRM he can access based on his role.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In as Viewer",
+                "description": "Devon logs in with a viewer-only account to explore accessible areas.",
+                "action": "Log in with viewer credentials.",
+                "expected_outcome": "Dashboard and basic lead viewing functions are accessible; administrative links are hidden or disabled."
+            },
+            {
+                "step": 2,
+                "title": "Attempting Unauthorized Actions",
+                "description": "Devon attempts to navigate to the settings area, which should be restricted.",
+                "action": "Try accessing the settings URL directly.",
+                "expected_outcome": "Access denied message or redirect occurs due to RBAC middleware preventing unauthorized access."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data validation and error handling for all user inputs",
+        "user_persona": "Jordan, again, makes a mistake while entering lead information.",
+        "user_goal": "Jordan wants to be guided through correcting invalid input during form submission.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Invalid Data",
+                "description": "While adding a new lead, Jordan leaves the email field empty and submits the form.",
+                "action": "Leave email field blank and click Save.",
+                "expected_outcome": "Client-side validation prevents submission and highlights the empty email field with an error message."
+            },
+            {
+                "step": 2,
+                "title": "Correcting Errors",
+                "description": "Jordan fills in the missing email address and resubmits the corrected form.",
+                "action": "Enter a valid email and click Save again.",
+                "expected_outcome": "Form submits successfully, and no further validation errors occur."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Audit trail logging for lead modifications and user activities",
+        "user_persona": "Audrey, a compliance officer, audits changes made to sensitive lead records.",
+        "user_goal": "Audrey wants to track who modified a specific lead and when.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Modifying a Lead",
+                "description": "Audrey updates a lead’s status and notes the change in her logbook.",
+                "action": "Edit a lead and save the changes.",
+                "expected_outcome": "Express middleware captures the action and writes a record to the audit_logs table."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Audit Entry",
+                "description": "Audrey queries the audit logs to confirm the modification was recorded properly.",
+                "action": "Query the audit_logs table for the recent change.",
+                "expected_outcome": "Entry shows user ID, action type ('update'), entity type ('lead'), and timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Export functionality for reports and lead data",
+        "user_persona": "Taylor, the sales manager, wants to share lead data with stakeholders.",
+        "user_goal": "Taylor needs to export the current list of leads into a spreadsheet format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Export",
+                "description": "Taylor locates the export feature near the leads table and clicks it.",
+                "action": "Click the Export button adjacent to the leads table.",
+                "expected_outcome": "Triggered GET request to /api/export initiates file generation process."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Download File",
+                "description": "After clicking export, Taylor waits for the download prompt.",
+                "action": "Wait for browser to initiate file download.",
+                "expected_outcome": "Browser downloads a CSV/XLSX file containing the exported lead data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development setup with npm scripts for installing and running both frontend and backend",
+        "user_persona": "A new developer joins the project and needs to set up their local environment.",
+        "user_goal": "The developer wants to easily install dependencies and start both applications simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The developer clones the repository and runs the command to install all necessary packages.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Frontend and backend directories install their respective dependencies recursively."
+            },
+            {
+                "step": 2,
+                "title": "Running Both Applications",
+                "description": "Once installation completes, the developer starts both services with one command.",
+                "action": "Execute `npm run dev` in the root folder.",
+                "expected_outcome": "Both frontend and backend servers launch concurrently using concurrently package."
+            }
+        ]
+    }
+]

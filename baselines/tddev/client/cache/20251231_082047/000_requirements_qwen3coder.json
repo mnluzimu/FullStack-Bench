@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all poll data dynamically from backend APIs",
+    "A backend API service that connects to a PostgreSQL database using specified environment variables",
+    "User interface allowing users to browse available polls and their options",
+    "Functionality for users to cast votes for specific poll options",
+    "Ability to view real-time or updated voting results for each poll",
+    "Styling with a white background color throughout the website",
+    "UI components styled with navy color as the primary accent",
+    "Database schema to store polls, poll options, and vote records",
+    "API endpoints for retrieving poll lists, individual poll details, and submitting votes",
+    "API endpoint for fetching voting results for a specific poll",
+    "Frontend routing to navigate between browsing polls, voting, and viewing results",
+    "Responsive design ensuring usability across desktop and mobile devices",
+    "Package.json configured with `install:all` script to install both frontend and backend dependencies",
+    "Package.json configured with `dev` script to start both frontend and backend concurrently",
+    "Error handling for invalid poll IDs, expired polls, or submission failures"
+]

@@ -1,0 +1,17 @@
+[
+    "Frontend application with user-friendly interface for browsing and booking car rentals",
+    "Backend API service that connects to PostgreSQL database using specified environment variables",
+    "Car browsing functionality with filtering and search capabilities",
+    "Date and time selection interface for rental periods",
+    "Car booking system with reservation confirmation",
+    "Booking history and record management for users",
+    "Multiple payment method integration (credit card, PayPal, etc.)",
+    "Order management dashboard for tracking reservations",
+    "User authentication and account management system",
+    "Responsive design with papaya whip background and dark orange components",
+    "Database schema for cars, bookings, users, and payments",
+    "API endpoints for fetching car inventory and availability",
+    "Booking status tracking and management features",
+    "Payment processing and transaction handling system",
+    "Concurrent development setup with npm scripts for installation and running both frontend and backend"
+]

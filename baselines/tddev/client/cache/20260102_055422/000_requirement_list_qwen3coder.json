@@ -1,0 +1,320 @@
+[
+    {
+        "resource_dependency": {
+            "database_connection_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "product_search_api": "API endpoint for searching products with filters for category, parameters, and state",
+            "price_comparison_api": "API endpoint for comparing product prices across states and identifying lowest-priced products",
+            "product_details_api": "API endpoint for retrieving detailed product information including price, quantity, and supplier data"
+        },
+        "function": "A frontend that fetches all data from backend APIs",
+        "static_description": "The website displays a clean interface with seashell background color applied to the canvas. All visible UI components are styled with crimson color. The layout includes a header with navigation, main content area for search results, and footer. Initial view shows loading placeholders while data is being fetched.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on search buttons triggers API calls to fetch product data. Clicking on product items navigates to detailed product information pages."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over product cards shows additional quick view information without leaving the current page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresql_database_config": "Database connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "database_schema_definition": "Tables required: products(product_id, name, category, parameters, description), suppliers(supplier_id, name, contact_info, business_info), prices(price_id, product_id, supplier_id, state, price, quantity, last_updated), states(state_id, state_name, state_code)"
+        },
+        "function": "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "static_description": "Backend server configured to establish database connections using the provided environment variables. Database schema includes tables for products, suppliers, prices, and states with appropriate relationships defined.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request",
+                "description": "When frontend makes requests to product search, price comparison, or product details endpoints, backend queries the PostgreSQL database using the established connection and returns formatted data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "category_filter_options": [
+                "Electronics",
+                "Clothing",
+                "Home & Garden",
+                "Automotive",
+                "Books",
+                "Sports"
+            ],
+            "parameter_selection_interface": "Dropdown menus and input fields for selecting product-specific parameters like size, color, brand, etc.",
+            "search_button_component": "Crimson-colored button labeled 'Search' that triggers the product search functionality"
+        },
+        "function": "Product search functionality allowing users to select specific product categories and parameters",
+        "static_description": "A filter section at the top of the page with dropdown menu for product categories and parameter input fields. All components are styled with crimson color against the seashell background. A prominent search button initiates the search process.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the category dropdown reveals available categories. Clicking the search button sends selected filters to the backend API to retrieve matching products."
+            },
+            {
+                "interaction": "Selection Change",
+                "description": "Changing selections in category dropdowns or parameter fields updates the search criteria dynamically before submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "state_comparison_logic": "Backend algorithm for comparing identical products across different states",
+            "geographic_data_mapping": "Mapping between state codes and full state names for display purposes",
+            "comparison_results_display": "Tabular or card-based layout showing price differences across states"
+        },
+        "function": "Automatic comparison of product prices across different states",
+        "static_description": "Search results display includes a comparison section for each product showing prices in different states. Visual indicators highlight price differences with crimson-colored elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a product in the comparison view expands detailed state-by-state pricing information."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over state price entries shows additional supplier information and last updated timestamps."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "lowest_price_highlight_indicator": "Visual styling (bold text, special badge, or color emphasis) to identify lowest-priced products",
+            "price_sorting_mechanism": "Backend sorting functionality to order products by price ascending",
+            "comparison_visualization": "Chart or table showing price rankings across states"
+        },
+        "function": "Display of lowest-priced products in search results",
+        "static_description": "Search results prominently feature lowest-priced products with special crimson highlighting or badges. Products are sorted by default with lowest prices appearing first.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on lowest-price indicators shows detailed comparison with other state prices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "product_details_template": "Layout template for individual product pages including sections for images, descriptions, pricing details, and supplier information",
+            "supplier_contact_integration": "Integration with supplier contact systems or display of stored contact information",
+            "quantity_display_formatting": "Standardized formatting for displaying product quantities (units, bulk options, availability)"
+        },
+        "function": "Detailed product information pages showing price, quantity, and supplier information",
+        "static_description": "Individual product pages with comprehensive information sections. Background remains seashell with all content elements in crimson. Displays include product images, detailed descriptions, current pricing, available quantities, and complete supplier profiles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on supplier names navigates to supplier profile pages. Clicking on 'Contact Supplier' opens communication options."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "seashell_background_css": "CSS styling rule applying seashell color (#FFF5EE) to the main canvas/background elements",
+            "color_palette_reference": "Seashell background color code: #FFF5EE"
+        },
+        "function": "User interface with seashell background color applied to the canvas",
+        "static_description": "Entire website canvas features a consistent seashell (#FFF5EE) background color. All content areas, headers, and footers use this background with proper contrast for crimson text and components.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "crimson_color_scheme": "CSS styling rules applying crimson color (#DC143C) to all visible UI components including buttons, links, borders, and text elements",
+            "component_styling_guidelines": "Consistent application of crimson color theme across all interactive and static UI elements"
+        },
+        "function": "All visible UI components styled with crimson color",
+        "static_description": "Every visible UI element including buttons, form inputs, navigation links, headings, and interactive components uses crimson (#DC143C) color styling. Consistent theme applied throughout all pages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hover effects on crimson components provide subtle darkening or lightening while maintaining the base crimson color scheme."
+            },
+            {
+                "interaction": "Click",
+                "description": "Active/clicked states of crimson components show appropriate visual feedback while preserving the crimson theme."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "category_filter_data": "Predefined list of product categories retrieved from backend database",
+            "filter_sidebar_layout": "Left-hand sidebar or top filter bar containing category selection controls",
+            "multi_select_functionality": "Ability to select multiple categories simultaneously for broader searches"
+        },
+        "function": "Category selection filters for refining product searches",
+        "static_description": "Filter sidebar or top bar featuring category checkboxes or dropdowns. All filter elements styled with crimson color against seashell background. Clear visual indication of currently selected categories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking category checkboxes adds/removes them from active filters. Clicking 'Apply Filters' button triggers new search with selected categories."
+            },
+            {
+                "interaction": "Selection Change",
+                "description": "Changing category selections updates preview counts or highlights matching products in real-time."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "us_states_list": [
+                "Alabama",
+                "Alaska",
+                "Arizona",
+                "Arkansas",
+                "California",
+                "Colorado",
+                "Connecticut",
+                "Delaware",
+                "Florida",
+                "Georgia",
+                "Hawaii",
+                "Idaho",
+                "Illinois",
+                "Indiana",
+                "Iowa",
+                "Kansas",
+                "Kentucky",
+                "Louisiana",
+                "Maine",
+                "Maryland",
+                "Massachusetts",
+                "Michigan",
+                "Minnesota",
+                "Mississippi",
+                "Missouri",
+                "Montana",
+                "Nebraska",
+                "Nevada",
+                "New Hampshire",
+                "New Jersey",
+                "New Mexico",
+                "New York",
+                "North Carolina",
+                "North Dakota",
+                "Ohio",
+                "Oklahoma",
+                "Oregon",
+                "Pennsylvania",
+                "Rhode Island",
+                "South Carolina",
+                "South Dakota",
+                "Tennessee",
+                "Texas",
+                "Utah",
+                "Vermont",
+                "Virginia",
+                "Washington",
+                "West Virginia",
+                "Wisconsin",
+                "Wyoming"
+            ],
+            "state_selection_interface": "Dropdown menu or map-based selector for choosing states",
+            "geographic_filter_logic": "Backend logic for filtering products by selected states"
+        },
+        "function": "State selection functionality for geographic filtering",
+        "static_description": "Geographic filter section featuring state selection dropdown or interactive map. All components styled with crimson color. Selected states are visually indicated with checkmarks or highlighting.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the state dropdown reveals all US states. Clicking individual states adds them to the filter selection. Clicking 'Apply Geographic Filter' updates search results to show only products from selected states."
+            },
+            {
+                "interaction": "Selection Change",
+                "description": "Adding or removing states from selection updates the displayed count of matching products."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "real_time_update_mechanism": "WebSocket or polling mechanism for fetching latest price data",
+            "price_change_notification": "Visual indicators for price changes (up/down arrows, color coding)",
+            "auto_refresh_interval": "Configurable time interval (default 5 minutes) for automatic data refresh"
+        },
+        "function": "Real-time price comparison updates",
+        "static_description": "Search results and comparison views include timestamp indicators showing last update time. Subtle visual elements suggest ongoing monitoring for price changes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Refresh Now' button immediately fetches latest price data from backend APIs."
+            },
+            {
+                "interaction": "Auto Refresh",
+                "description": "Prices automatically update at regular intervals with visual notifications when significant changes occur."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "supplier_profile_template": "Standard layout for displaying supplier information including business name, address, phone, email, and website",
+            "contact_method_integration": "Integration with email, phone dialer, or contact forms for supplier communication",
+            "business_verification_badges": "Visual indicators for verified supplier status or ratings"
+        },
+        "function": "Supplier details display including contact or business information",
+        "static_description": "Supplier information sections within product listings and dedicated supplier profile pages. All information presented with crimson-themed styling. Contact methods clearly displayed with appropriate icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking supplier contact methods (phone, email, website) opens appropriate applications or forms. Clicking 'View Supplier Profile' navigates to comprehensive supplier information page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sorting_options_list": [
+                "Price: Low to High",
+                "Price: High to Low",
+                "State: Alphabetical",
+                "Relevance",
+                "Quantity Available"
+            ],
+            "sort_control_interface": "Dropdown menu or button group for selecting sorting preferences",
+            "backend_sorting_implementation": "Server-side implementation of sorting algorithms for efficient data ordering"
+        },
+        "function": "Search result sorting options including by price, state, and relevance",
+        "static_description": "Sorting controls positioned near search results header. Dropdown menu or button group showing available sorting options. Current sort method clearly indicated with crimson highlighting.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking sorting options reorders search results according to selected criteria. Clicking the sort dropdown reveals all available sorting methods."
+            },
+            {
+                "interaction": "Selection Change",
+                "description": "Changing sort selection triggers immediate re-sorting of displayed results via backend API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_design_framework": "CSS media queries and flexible grid layouts for adapting to different screen sizes",
+            "mobile_navigation_pattern": "Hamburger menu or collapsible filter sections for mobile views",
+            "touch_interaction_support": "Appropriate sizing and spacing for touch-based interactions on mobile devices"
+        },
+        "function": "Responsive design compatible with desktop and mobile views",
+        "static_description": "Website layout automatically adjusts between desktop and mobile formats. Navigation transforms to hamburger menu on small screens. Filter sections collapse into accordions. All elements maintain proper spacing and readability.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing browser window triggers layout adjustments maintaining optimal viewing experience across device sizes."
+            },
+            {
+                "interaction": "Touch",
+                "description": "Touch interactions on mobile devices properly trigger clicks and gestures with appropriately sized touch targets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "package_json_configuration": "Root package.json file with scripts for installing dependencies and running both frontend and backend concurrently",
+            "concurrent_process_runner": "Dependency like concurrently or npm-run-all for executing multiple processes simultaneously",
+            "development_environment_setup": "Scripts configuration ensuring both frontend and backend development servers start correctly"
+        },
+        "function": "Configuration of package.json to support `npm run install:all` for FE & BE dependencies and `npm run dev` for concurrent development startup",
+        "static_description": "Root package.json file containing script definitions for 'install:all' and 'dev' commands. File structure supports monorepo pattern with separate frontend and backend directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Execution",
+                "description": "Running 'npm run install:all' executes dependency installation for both frontend and backend projects. Running 'npm run dev' starts both development servers concurrently with proper port configurations."
+            }
+        ]
+    }
+]

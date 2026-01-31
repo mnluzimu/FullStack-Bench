@@ -1,0 +1,17 @@
+[
+    "Display a list of property listings on the homepage",
+    "Show detailed property information on individual property pages",
+    "Implement a search bar for users to search properties by keywords",
+    "Provide filter options for users to refine property searches",
+    "Fetch all property data dynamically from backend APIs",
+    "Connect backend to external PostgreSQL database using provided environment variables",
+    "Set up frontend to consume data via RESTful API endpoints",
+    "Support browsing property listings without page reloads where applicable",
+    "Allow users to click on a property listing to view its full details",
+    "Enable filtering properties by attributes such as price, location, or type",
+    "Ensure consistent styling with alice blue background and steel blue elements",
+    "Configure package.json to support `npm run install:all` for both frontend and backend",
+    "Configure package.json to support `npm run dev` to start both frontend and backend concurrently",
+    "Implement responsive design for usability across devices",
+    "Include error handling for failed API requests or missing data"
+]

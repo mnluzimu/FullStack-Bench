@@ -1,0 +1,133 @@
+[
+    {
+        "resource_dependency": {
+            "fundraiserIntroContent": "Welcome to Fundraiser Day! Join us in making a difference through community support and giving.",
+            "fundraiserLogoImage": "/assets/images/fundraiser-logo.png"
+        },
+        "function": "Display introductory information about the Fundraiser Day event to engage visitors immediately upon landing.",
+        "static_description": "A full-width header section with a centered title 'Fundraiser Day', descriptive text from fundraiserIntroContent, and a logo image sourced from fundraiserLogoImage. Background color set to cornsilk (#FFF8DC). Text aligned center with padding.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "offersCarouselDataSchema": "Database table named 'offers' with fields: id (UUID), title (string), description (text), imageUrl (string), ctaText (string), ctaLink (string), isActive (boolean).",
+            "carouselControlColor": "#CD853F"
+        },
+        "function": "Automatically cycle through promotional offers related to Fundraiser Day to highlight current opportunities for participation or donation.",
+        "static_description": "A horizontally scrollable carousel occupying the central area of the viewport. Each slide displays an offer image, headline, brief description, and call-to-action button styled with peru controls. Navigation arrows on either side also use peru coloring. Auto-scroll enabled every 5 seconds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Pauses auto-scroll when mouse hovers over the carousel container."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking left/right arrow buttons navigates to previous/next slide manually."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "testimonialsDataSchema": "Database table named 'testimonials' with fields: id (UUID), name (string), role (string), quote (text), avatarUrl (string), featured (boolean).",
+            "testimonialCardBackground": "#FFF8DC"
+        },
+        "function": "Showcase real stories from past fundraisers to build credibility and encourage engagement.",
+        "static_description": "Grid-based layout presenting testimonial cards arranged vertically or in rows depending on screen size. Each card contains a profile picture, person’s name, their role/title, and quoted feedback. Cards have light beige background matching testimonialCardBackground. Controls remain consistent with peru theme where applicable.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "companyInfoContent": "Learn more about our mission to empower communities through charitable initiatives and sustainable fundraising practices.",
+            "contactEmail": "contact@fundraiserday.org",
+            "socialMediaLinks": {
+                "facebook": "https://www.facebook.com/FundraiserDay",
+                "twitter": "https://twitter.com/FundraiserDay"
+            }
+        },
+        "function": "Present organizational details including mission statement, contact methods, and social media links to establish trust and provide outreach options.",
+        "static_description": "Dedicated section featuring company mission paragraph derived from companyInfoContent, contact email link styled underlined in blue, and icons linking to Facebook and Twitter profiles. Uses same cornsilk background as base with subtle shadow effect separating it visually from other sections.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the email address opens default mail client pre-filled with recipient field. Clicking social icons redirects users to respective platform pages in new tabs."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "primaryBackgroundColor": "#FFF8DC",
+            "controlElementsColor": "#CD853F"
+        },
+        "function": "Apply consistent branding colors throughout the site to maintain visual coherence and reinforce brand identity.",
+        "static_description": "Entire webpage background rendered in cornsilk (#FFF8DC) while interactive elements like buttons, form inputs, pagination dots, and navigation bars utilize peru (#CD853F) as accent color.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Enable seamless vertical scrolling experience allowing access to all content areas without requiring page reloads or separate views.",
+        "static_description": "Single continuous HTML document structured into distinct semantic <section> blocks representing each major component (intro, carousel, testimonials, etc.) stacked vertically within body element.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Users can smoothly navigate between different content zones by scrolling up/down through the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "{ mobile: max-width 768px, tablet: min-width 769px and max-width 1024px, desktop: min-width 1025px }"
+        },
+        "function": "Ensure optimal viewing experience across various device types by adapting layout dynamically based on screen dimensions.",
+        "static_description": "CSS media queries applied at breakpoints defined in responsiveBreakpoints to adjust font sizes, spacing, grid arrangements, and component visibility accordingly.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "smoothScrollScript": "JavaScript function implementing window.scrollTo() with behavior: 'smooth' triggered by anchor links."
+        },
+        "function": "Facilitate easy movement between sections via clearly marked navigation points rather than relying solely on manual scrolling.",
+        "static_description": "Fixed-position top navbar containing clickable anchors labeled ‘Home’, ‘Offers’, ‘Testimonials’, and ‘About Us’ spaced evenly along horizontal axis. Highlighted active section during scroll tracking.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Activating any nav item scrolls view smoothly towards corresponding section using smoothScrollScript logic."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "offersAPIEndpoint": "/api/offers",
+            "testimonialsAPIEndpoint": "/api/testimonials",
+            "databaseConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Retrieve latest data for offers and testimonials directly from backend services instead of embedding static content.",
+        "static_description": "Frontend JavaScript fetches JSON responses from offersAPIEndpoint and testimonialsAPIEndpoint during initial load lifecycle hooks. Backend uses databaseConnectionEnvVars configuration to connect to PostgreSQL instance hosting relevant tables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installAllCommand": "concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\""
+        },
+        "function": "Streamline local development setup by providing unified command that prepares both frontend and backend environments simultaneously.",
+        "static_description": "'scripts' entry added inside root-level package.json file assigning value of installAllCommand to key 'install:all'. Execution runs two parallel processes installing dependencies in frontend/ and backend/ directories respectively.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartCommand": "concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\""
+        },
+        "function": "Allow developers to launch complete application stack locally using one terminal invocation.",
+        "static_description": "Additional script labeled 'dev' included in package.json executing devStartCommand which initiates hot-reloading servers for both frontend and backend modules concurrently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "host=DB_HOST, port=DB_PORT, username=DB_USERNAME, password=DB_PASSWORD, database=DB_NAME",
+            "offersTableDefinition": "CREATE TABLE offers (id UUID PRIMARY KEY, title VARCHAR(255), description TEXT, imageUrl VARCHAR(512), ctaText VARCHAR(100), ctaLink VARCHAR(512), isActive BOOLEAN);",
+            "testimonialsTableDefinition": "CREATE TABLE testimonials (id UUID PRIMARY KEY, name VARCHAR(255), role VARCHAR(255), quote TEXT, avatarUrl VARCHAR(512), featured BOOLEAN);"
+        },
+        "function": "Establish persistence layer connectivity ensuring dynamic content retrieval from relational store adhering to predefined schema definitions.",
+        "static_description": "Backend server initializes PostgreSQL connection pool referencing postgresConnectionConfig values. Tables created using offersTableDefinition and testimonialsTableDefinition SQL statements if they do not exist prior to serving requests.",
+        "interaction_and_states": []
+    }
+]

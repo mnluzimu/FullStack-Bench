@@ -1,0 +1,17 @@
+[
+    "User registration and login functionality",
+    "User profile creation and management",
+    "Job posting creation and management by clients",
+    "Job application submission and tracking by users",
+    "Contact form with submission capability",
+    "Home page with navigation to all main sections",
+    "About Us page with company information",
+    "Clients page showcasing client services or testimonials",
+    "Drivers page with driver-related content or profiles",
+    "Jobs listing page displaying available positions",
+    "Contact page with contact form and information",
+    "Frontend fetching all dynamic data from backend APIs",
+    "Backend connecting to PostgreSQL database using specified environment variables",
+    "Package.json configured with npm run install:all for FE & BE installation",
+    "Package.json configured with npm run dev to start FE & BE concurrently"
+]

@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Display basketball match data with real-time updates",
+        "user_persona": "A sports enthusiast who wants to keep track of live games.",
+        "user_goal": "To view real-time updates of ongoing basketball matches.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Jordan visits the homepage and looks for the latest match information.",
+                "action": "Load the homepage.",
+                "expected_outcome": "A section with upcoming, ongoing, and recently completed matches appears in a card-based layout."
+            },
+            {
+                "step": 2,
+                "title": "Observing Live Match Card",
+                "description": "Jordan notices a match card showing a game currently in progress and clicks it for more details.",
+                "action": "Click on a live match card.",
+                "expected_outcome": "The card expands to reveal quarter-by-quarter scores and referee information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide interactive data visualizations for team and player statistics",
+        "user_persona": "A fantasy basketball manager analyzing player performance.",
+        "user_goal": "To compare player stats using interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Player Stats Section",
+                "description": "Alex goes to the player statistics page and sees various chart options available.",
+                "action": "Navigate to the player statistics tab.",
+                "expected_outcome": "Tabbed interface with line charts, bar graphs, and pie charts representing different stats is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Chart Data Points",
+                "description": "Alex hovers over a data point on the chart to get precise values and cross-reference them.",
+                "action": "Hover over a data point on the chart.",
+                "expected_outcome": "Tooltip displays exact numerical value and highlights corresponding data points across linked visualizations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show match history and past performance trends",
+        "user_persona": "A coach researching opponent teams before an important game.",
+        "user_goal": "To review historical match records and performance trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Historical Matches Timeline",
+                "description": "Coach Taylor scrolls through a timeline of past matches involving the opposing team.",
+                "action": "Scroll down the match history timeline.",
+                "expected_outcome": "More entries load dynamically without requiring a page reload."
+            },
+            {
+                "step": 2,
+                "title": "Examining Detailed Match Report",
+                "description": "Taylor clicks on a specific match from the history to see detailed statistics and plays.",
+                "action": "Click on a historical match entry.",
+                "expected_outcome": "A modal window opens showing the full box score and play-by-play breakdown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display current team rankings and standings",
+        "user_persona": "A basketball fan checking playoff chances for his favorite team.",
+        "user_goal": "To find where his favorite team stands in the league.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Team Rankings Page",
+                "description": "Mike navigates to the team rankings section to check his team’s position.",
+                "action": "Go to the team rankings page.",
+                "expected_outcome": "Two-column layout showing Eastern and Western Conference rankings is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Deeper Analytics",
+                "description": "Mike clicks on his team's name in the rankings to see more in-depth analytics.",
+                "action": "Click on his favorite team in the ranking list.",
+                "expected_outcome": "Redirected to the team’s dedicated profile page with deeper analytics."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present detailed player performance metrics and analytics",
+        "user_persona": "A scout evaluating potential draft picks.",
+        "user_goal": "To analyze a player's strengths compared to league averages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Player Profile",
+                "description": "The scout selects a player profile to assess detailed metrics and visual comparisons.",
+                "action": "Navigate to a specific player’s profile.",
+                "expected_outcome": "Player headshot, basic info, and a statistical radar chart comparing strengths vs league averages are shown."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Performance Metrics",
+                "description": "The scout taps on a stat category to focus on specific aspects of the player’s performance.",
+                "action": "Click on a stat category filter.",
+                "expected_outcome": "Displayed data adjusts accordingly and radar chart axes update to reflect selected metric."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate match predictions based on historical data and trends",
+        "user_persona": "A casual viewer curious about upcoming match outcomes.",
+        "user_goal": "To see which team is favored to win in an upcoming match.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Prediction Section",
+                "description": "Jamie browses the predictions section to see forecasts for upcoming games.",
+                "action": "Visit the match predictions section.",
+                "expected_outcome": "List of upcoming fixtures with AI-generated probabilities for each outcome is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Prediction Factors",
+                "description": "Jamie clicks on a prediction to understand why a certain team is favored.",
+                "action": "Click on a predicted match result.",
+                "expected_outcome": "Underlying factors such as recent form and head-to-head records are revealed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer personalized betting recommendations and insights",
+        "user_persona": "An experienced bettor looking for smart wager opportunities.",
+        "user_goal": "To discover personalized betting suggestions based on his preferences.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Betting Recommendations Feed",
+                "description": "Derek logs in and checks his personalized betting feed for new opportunities.",
+                "action": "Access the personalized betting recommendations feed.",
+                "expected_outcome": "Feed shows categorized wagers by safety level and estimated ROI with match details and best odds."
+            },
+            {
+                "step": 2,
+                "title": "Adding Recommendation to Watchlist",
+                "description": "Derek finds an interesting bet and decides to track it for changes in odds.",
+                "action": "Click on a betting recommendation.",
+                "expected_outcome": "Option to add the bet to watchlist and set alerts for line movements becomes available."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a dashboard overview of key basketball statistics",
+        "user_persona": "A daily visitor wanting a snapshot of essential stats.",
+        "user_goal": "To quickly glance at today’s most relevant basketball stats.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard Overview",
+                "description": "Sarah opens the website and immediately views her customized dashboard.",
+                "action": "Open the dashboard page.",
+                "expected_outcome": "Modular widgets including live scoreboard, top performers leaderboard, and prediction accuracy tracker appear."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Widget Details",
+                "description": "Sarah wants more detail on one of the widgets and clicks its header.",
+                "action": "Click on a widget header.",
+                "expected_outcome": "Widget expands to show detailed inspection view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to filter data by teams, players, dates and leagues",
+        "user_persona": "A researcher compiling data for a study.",
+        "user_goal": "To narrow down large datasets to only relevant information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Filter Controls",
+                "description": "Emma uses the filter controls to isolate data from a specific team during a particular period.",
+                "action": "Select filters for team and date range then click 'Apply Filters'.",
+                "expected_outcome": "Dataset refreshes to show only filtered results while maintaining scroll position."
+            },
+            {
+                "step": 2,
+                "title": "Resetting Filters",
+                "description": "After reviewing, Emma resets the filters to see all data again.",
+                "action": "Click the reset button.",
+                "expected_outcome": "Filters clear and default view is restored."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide comparison tools for team vs team and player vs player analysis",
+        "user_persona": "A fantasy league participant preparing lineup decisions.",
+        "user_goal": "To determine which player performs better against a given opponent.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Comparison Tool",
+                "description": "Chris accesses the comparison tool to pit two players against each other.",
+                "action": "Navigate to the comparison tool and select two players.",
+                "expected_outcome": "Split-screen interface shows both players’ stats side-by-side with matching categories."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Differences Visually",
+                "description": "Chris clicks on a stat row to highlight differences numerically and visually.",
+                "action": "Click on a comparison row.",
+                "expected_outcome": "Row highlights differences through bar length or shading intensity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display odds information from multiple betting providers",
+        "user_persona": "A sharp bettor hunting for the best lines.",
+        "user_goal": "To compare odds across various bookmakers before placing a bet.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Odds Listings",
+                "description": "Riley checks the odds listings for a specific match to identify value bets.",
+                "action": "Visit the odds listings section for a selected match.",
+                "expected_outcome": "Table format displays latest odds offered by various bookmakers for that match."
+            },
+            {
+                "step": 2,
+                "title": "Placing Bet via Best Odds Provider",
+                "description": "Riley clicks on the best available odds to go directly to the bookmaker’s site.",
+                "action": "Click on a specific odd entry.",
+                "expected_outcome": "Redirected to the associated bookmaker’s site to place the bet."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show injury reports and roster changes affecting predictions",
+        "user_persona": "A fantasy owner adjusting lineups due to breaking news.",
+        "user_goal": "To stay informed about impactful roster moves and injuries.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Injury Reports",
+                "description": "Tyler scans the injury report section to adjust his fantasy lineup accordingly.",
+                "action": "Visit the injury reports section.",
+                "expected_outcome": "List of injured players with descriptions, impact severity, and expected return timelines is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Understanding Impact of Roster Change",
+                "description": "Tyler clicks on a recent roster move to see how it might affect upcoming matchups.",
+                "action": "Click on a roster change entry.",
+                "expected_outcome": "Pop-up summarizes how the transaction affects team projections and betting lines."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a search functionality for specific teams, players or matches",
+        "user_persona": "A newcomer trying to learn about star players.",
+        "user_goal": "To quickly locate information about a famous athlete.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Maya types a well-known player’s name into the search bar to find their profile.",
+                "action": "Type keywords into the search bar.",
+                "expected_outcome": "Auto-suggested dropdown menu updates in real-time beneath the input box."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Player Profile",
+                "description": "Maya clicks on the suggested player name to visit their detailed profile page.",
+                "action": "Click on a search suggestion.",
+                "expected_outcome": "Redirected directly to the player’s profile page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement user authentication for personalized experiences",
+        "user_persona": "A returning user seeking saved settings and customizations.",
+        "user_goal": "To log in and regain access to personalized features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Signing In",
+                "description": "Alex returns to the site and clicks the sign-in link to access his account.",
+                "action": "Click the 'Sign In' link in the navigation bar.",
+                "expected_outcome": "OAuth flow initiates and redirects to the secure authentication portal."
+            },
+            {
+                "step": 2,
+                "title": "Regaining Personalized Experience",
+                "description": "After logging in, Alex sees his personalized dashboard and preferences restored.",
+                "action": "Complete successful login process.",
+                "expected_outcome": "User-specific dashboard modules populate and session tokens are saved securely."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Maintain a clean interface with ghost white background and slate gray components",
+        "user_persona": "A designer verifying brand consistency.",
+        "user_goal": "To ensure the site adheres to the defined visual style guide.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Designer Morgan inspects the overall look of the site to verify adherence to the color scheme.",
+                "action": "Observe the background color of the main pages.",
+                "expected_outcome": "Background is consistently rendered in ghost white (#F8F8FF)."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Component Styling",
+                "description": "Morgan examines interactive and static components to confirm they use the correct accent color.",
+                "action": "Check styling of cards, buttons, and text elements.",
+                "expected_outcome": "All components utilize slate gray (#708090) as specified."
+            }
+        ]
+    }
+]

@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A form-filling function for users to input personal information and credit status",
+        "user_persona": "A user interested in credit repair services who wants to share basic information.",
+        "user_goal": "To successfully fill out and submit the personal information form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Form",
+                "description": "Maria visits the homepage and scrolls down to find the lead generation form. She sees fields for her name, email, phone, credit score range, and issue description.",
+                "action": "Click inside the 'Full Name' input field.",
+                "expected_outcome": "The field is focused and ready for text entry."
+            },
+            {
+                "step": 2,
+                "title": "Entering Details",
+                "description": "Maria fills in her name, email, and selects her approximate credit score range from the dropdown.",
+                "action": "Fill in all required fields and select a credit score range.",
+                "expected_outcome": "Each field accepts input, and the 'Submit' button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Form",
+                "description": "After reviewing her entries, Maria clicks the Submit button to send her information.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "Form data is validated and sent to the /api/leads endpoint, showing a success confirmation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A credit score inquiry function",
+        "user_persona": "A curious visitor wanting a quick estimate of their credit standing.",
+        "user_goal": "To get an estimated credit score by entering minimal identifying information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Inquiry Section",
+                "description": "John finds the 'Check Your Credit Score' section on the homepage and sees fields for partial SSN and date of birth.",
+                "action": "Click inside the 'Last 4 Digits of SSN' input field.",
+                "expected_outcome": "The field focuses and allows John to enter numeric characters only."
+            },
+            {
+                "step": 2,
+                "title": "Providing Required Data",
+                "description": "John enters his last four digits of SSN and date of birth accurately.",
+                "action": "Enter valid SSN digits and date of birth.",
+                "expected_outcome": "Both fields accept the input and the 'Get Estimate' button becomes clickable."
+            },
+            {
+                "step": 3,
+                "title": "Requesting Estimate",
+                "description": "John clicks the 'Get Estimate' button to retrieve his credit score approximation.",
+                "action": "Click the 'Get Estimate' button.",
+                "expected_outcome": "Data is submitted to the external API and the estimated credit score is displayed below the form."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An introduction section to credit repair services",
+        "user_persona": "A new visitor unfamiliar with credit repair processes.",
+        "user_goal": "To understand what services the company offers through the introductory content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Service Introduction",
+                "description": "Emily scrolls to the 'Our Services' section on the homepage where she expects to see general descriptions of offerings.",
+                "action": "View the 'Our Services' section.",
+                "expected_outcome": "Descriptive paragraphs about debt negotiation, report disputes, and other services are visible with proper headings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A browsing interface for users to learn about credit repair services",
+        "user_persona": "A user wanting detailed knowledge about specific credit repair options.",
+        "user_goal": "To navigate to and read more about individual credit repair services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Navigation Menu",
+                "description": "David clicks on the 'Services' link in the main navigation menu to explore available offerings.",
+                "action": "Click on the 'Services' link in the navigation bar.",
+                "expected_outcome": "Submenu links to specific service pages like '/services/debt-negotiation' become visible."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Specific Service",
+                "description": "David chooses 'Debt Negotiation' to learn how it works.",
+                "action": "Click on the 'Debt Negotiation' submenu link.",
+                "expected_outcome": "He is redirected to the detailed service page at '/services/debt-negotiation'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A lead submission form for collecting user information",
+        "user_persona": "A potential client ready to engage with the company.",
+        "user_goal": "To provide contact details and credit concerns to initiate communication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Lead Form",
+                "description": "Sarah scrolls to the bottom of the homepage where the lead form is prominently displayed.",
+                "action": "Focus on the 'Full Name' field within the lead form.",
+                "expected_outcome": "The field activates and accepts typed input."
+            },
+            {
+                "step": 2,
+                "title": "Completing Fields",
+                "description": "Sarah fills out all necessary fields including her name, email, phone number, and a note about her credit issues.",
+                "action": "Enter all requested information and choose a credit score option.",
+                "expected_outcome": "Fields display correct formatting and the 'Send Information' button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Sending Lead Info",
+                "description": "Confident in her input, Sarah submits the form hoping to be contacted soon.",
+                "action": "Click the 'Send Information' button.",
+                "expected_outcome": "The form sends a POST request to /api/leads and stores the record in the PostgreSQL database, confirming receipt."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend that fetches all data from backend APIs",
+        "user_persona": "A returning visitor expecting updated service information.",
+        "user_goal": "To view dynamically loaded service content rather than static placeholders.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Homepage",
+                "description": "Robert opens the homepage and waits for dynamic content to load instead of seeing hardcoded text.",
+                "action": "Load the homepage in browser.",
+                "expected_outcome": "Service descriptions and other content areas populate via HTTP requests to http://localhost:3001/api."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend that connects to an external PostgreSQL database using specified environment variables",
+        "user_persona": "System administrator checking backend connectivity.",
+        "user_goal": "To confirm the backend server establishes a successful database connection.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Admin starts the backend server locally and checks logs for successful database initialization.",
+                "action": "Run backend server process.",
+                "expected_outcome": "Logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run install:all to install both frontend and backend dependencies",
+        "user_persona": "Developer setting up project for first time.",
+        "user_goal": "To install all project dependencies quickly with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Jamie clones the repo and runs the custom install script to prepare both environments.",
+                "action": "Execute `npm run install:all` from root directory.",
+                "expected_outcome": "Frontend and backend directories install their respective node_modules concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with npm run dev to start both frontend and backend concurrently",
+        "user_persona": "Developer beginning local development session.",
+        "user_goal": "To launch both frontend and backend development servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Dev Servers",
+                "description": "Alex wants to begin working on features and needs both sides of the app running.",
+                "action": "Execute `npm run dev` from root directory.",
+                "expected_outcome": "Concurrent processes start frontend and backend dev servers successfully."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Body background styled with old lace color",
+        "user_persona": "Designer verifying visual consistency.",
+        "user_goal": "To verify the entire site uses the correct background color theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background",
+                "description": "Taylor loads the homepage and inspects the overall background color.",
+                "action": "Open homepage in browser.",
+                "expected_outcome": "The body background is consistently rendered with #FDF5E6 (Old Lace)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI elements styled with rosy brown color",
+        "user_persona": "End-user navigating the website interface.",
+        "user_goal": "To experience consistent thematic coloring of interactive elements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing UI Elements",
+                "description": "Jordan notices the uniformity of colors across buttons, borders, and headers.",
+                "action": "Navigate through key sections like forms and menus.",
+                "expected_outcome": "Interactive elements such as buttons and input borders use #BC8F8F (Rosy Brown) consistently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Form validation for user input fields",
+        "user_persona": "User attempting to submit incomplete form data.",
+        "user_goal": "To be guided by real-time feedback when making input mistakes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Leaving Incomplete Field",
+                "description": "Mike tries to leave the email field blank and moves focus away.",
+                "action": "Tab out of empty 'Email Address' field.",
+                "expected_outcome": "Inline error message appears stating the field is required."
+            },
+            {
+                "step": 2,
+                "title": "Trying Invalid Submission",
+                "description": "Without correcting errors, Mike attempts to click the submit button.",
+                "action": "Click the 'Submit' button with invalid data present.",
+                "expected_outcome": "Submission is blocked and problematic fields are highlighted visually with error indicators."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data storage for lead information in PostgreSQL database",
+        "user_persona": "QA tester validating backend data persistence.",
+        "user_goal": "To ensure submitted lead data is properly stored in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Valid Lead",
+                "description": "Tester fills and submits a valid lead form from the frontend.",
+                "action": "Complete and submit the lead form with valid data.",
+                "expected_outcome": "A new record appears in the 'leads' table with matching field values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for handling form submissions and credit score inquiries",
+        "user_persona": "Developer testing integration points between frontend and backend.",
+        "user_goal": "To validate correct behavior of exposed RESTful endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Lead Endpoint",
+                "description": "Dev sends a sample POST request to the lead submission route.",
+                "action": "Make a POST request to `/api/leads` with valid payload.",
+                "expected_outcome": "Endpoint responds with success status and stores the lead in the database."
+            },
+            {
+                "step": 2,
+                "title": "Testing Credit Inquiry Endpoint",
+                "description": "Dev makes a GET call to the credit score inquiry endpoint with parameters.",
+                "action": "Make a GET request to `/api/credit-score` with query parameters.",
+                "expected_outcome": "Endpoint proxies the external API and returns the credit score estimation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design for cross-device compatibility",
+        "user_persona": "Mobile user accessing the website on a smartphone.",
+        "user_goal": "To have a seamless browsing experience regardless of device size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "User resizes the browser window to simulate smaller screens.",
+                "action": "Resize browser viewport width to less than 768px.",
+                "expected_outcome": "Layout adjusts responsively; columns stack vertically, font sizes adapt, and navigation menus reposition accordingly."
+            }
+        ]
+    }
+]

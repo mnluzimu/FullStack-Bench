@@ -1,0 +1,244 @@
+[
+    {
+        "resource_dependency": {
+            "courseDataSchema": "Database table 'courses' with fields: id (UUID), title (string), description (text), duration (string), level (enum: beginner, intermediate, advanced), category (string), certification_pathway_id (foreign key to certification_pathways.id), created_at (timestamp), updated_at (timestamp)",
+            "apiEndpoint": "/api/courses",
+            "lavenderBackgroundStyle": "background-color: #E6E6FA",
+            "indigoComponentStyle": "color: #4B0082; border-color: #4B0082"
+        },
+        "function": "Display a course catalog page with a list of available courses",
+        "static_description": "A page with lavender background containing a grid layout of course cards. Each card features the course title in indigo text, brief description, duration, difficulty level indicator, and a 'View Details' button styled with indigo borders. Header includes navigation menu and search/filter bar.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a course card navigates to the detailed course information page for that course."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling loads additional courses via infinite scroll pagination."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "courseDetailDataSchema": "Extended course data including full syllabus, instructor information, prerequisites, materials needed, and enrollment status for authenticated users",
+            "apiEndpoint": "/api/courses/{id}",
+            "enrollButtonIcon": "/assets/icons/enroll-icon.svg",
+            "lavenderBackgroundStyle": "background-color: #E6E6FA",
+            "indigoComponentStyle": "color: #4B0082; border-color: #4B0082"
+        },
+        "function": "Show detailed course information pages for each course",
+        "static_description": "A dedicated page per course with lavender background featuring a header section with course title in indigo, detailed description, syllabus outline, instructor bio, duration, difficulty level, and an 'Enroll Now' button with indigo styling. Includes breadcrumb navigation and related courses section.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enroll Now' opens the online enrollment form modal if user is authenticated, otherwise redirects to login/signup."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "enrollmentFormSchema": "Database table 'enrollments' with fields: id (UUID), user_id (foreign key to users.id), course_id (foreign key to courses.id), enrollment_date (timestamp), status (enum: pending, confirmed, cancelled), payment_status (enum: unpaid, paid, refunded)",
+            "userAuthenticationAPI": "/api/auth",
+            "paymentIntegration": "Third-party payment gateway API integration for processing enrollment fees",
+            "apiEndpoint": "/api/enrollments",
+            "formValidationRules": "Required fields: name, email, phone number, emergency contact; Terms and conditions acceptance checkbox"
+        },
+        "function": "Enable users to enroll in courses through an online enrollment form",
+        "static_description": "A modal form overlay with indigo-styled input fields for personal information, course selection confirmation, payment method options, and terms acceptance. Submit button styled with indigo background. Form appears after clicking 'Enroll Now' on course detail pages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form validates inputs, processes payment if applicable, creates enrollment record in database, and displays confirmation message."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in any form field advances focus to the next field or submits if on the last field."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chatbotScript": "External chatbot widget script from service provider (e.g., Dialogflow, Microsoft Bot Framework)",
+            "chatbotIcon": "/assets/icons/chatbot-icon.svg",
+            "chatbotAPI": "Real-time messaging API for handling user queries and responses"
+        },
+        "function": "Implement a chatbot integration for user assistance",
+        "static_description": "A floating chatbot icon positioned at the bottom right corner of every page with indigo coloring. When clicked, expands into a chat window with greeting message and input field for user questions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the chatbot icon toggles visibility of the chat interface. Sending messages triggers API calls to backend for processing and response generation."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the chatbot icon shows tooltip text 'Need help? Chat with us!'"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactFormDataSchema": "Database table 'contact_messages' with fields: id (UUID), name (string), email (string), subject (string), message (text), submitted_at (timestamp), status (enum: received, replied, resolved)",
+            "apiEndpoint": "/api/contact",
+            "emailServiceAPI": "SMTP or email service API for sending contact form submissions to institute staff"
+        },
+        "function": "Include a contact form for users to reach the institute",
+        "static_description": "A dedicated contact page with lavender background featuring a form with indigo-styled input fields for name, email, subject, and message. Submit button has indigo background. Includes institute contact information sidebar with phone, email, and address.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form validates required fields, saves message to database, sends notification email to institute, and displays success confirmation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "certificationPathwaySchema": "Database table 'certification_pathways' with fields: id (UUID), name (string), description (text), required_courses (array of course IDs), total_duration (string), career_outcomes (text array), created_at (timestamp)",
+            "apiEndpoint": "/api/certifications",
+            "pathwayVisualization": "/assets/images/pathway-diagram.svg"
+        },
+        "function": "Display certification pathways and their requirements",
+        "static_description": "A certification pathways page with lavender background showing cards for each pathway. Each card displays pathway name in indigo text, description, required courses listed with checkmarks, estimated completion time, and visual pathway diagram. 'View Courses' button styled with indigo.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'View Courses' filters the course catalog to show only courses belonging to the selected certification pathway."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --lavender-bg: #E6E6FA; --indigo-primary: #4B0082; }",
+            "globalStylesheet": "/styles/global.css"
+        },
+        "function": "Ensure all pages have a lavender background and indigo components styling",
+        "static_description": "All website pages feature a consistent lavender (#E6E6FA) background color with indigo (#4B0082) colored headers, buttons, links, and form elements. Typography uses indigo for headings and primary text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Indigo buttons and links change shade slightly on hover for visual feedback while maintaining color scheme consistency."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "courseAPIEndpoint": "/api/courses",
+            "authenticationHeaders": "Bearer token authentication for protected endpoints"
+        },
+        "function": "Fetch course data dynamically from backend APIs",
+        "static_description": "Course catalog and detail pages make asynchronous HTTP GET requests to /api/courses endpoints to retrieve current course information. Loading indicators appear during data fetching with indigo spinner animation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Upon page load, frontend JavaScript initiates API call to fetch course data and populates DOM elements dynamically without page refresh."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresqlConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaFiles": "/db/schema.sql containing CREATE TABLE statements for courses, users, enrollments, etc."
+        },
+        "function": "Connect backend to PostgreSQL database using provided environment variables",
+        "static_description": "Backend server configuration file referencing environment variables for PostgreSQL connection parameters. Database connection pool established at application startup using these credentials.",
+        "interaction_and_states": [
+            {
+                "interaction": "Application Start",
+                "description": "On server initialization, database connection is established using env vars. Failed connections log error and prevent application startup."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userAuthSchema": "Database table 'users' with fields: id (UUID), username (string), email (string), password_hash (string), role (enum: student, admin), created_at (timestamp)",
+            "authAPIEndpoints": "/api/auth/login, /api/auth/register, /api/auth/logout",
+            "jwtSecret": "Environment variable JWT_SECRET for token signing"
+        },
+        "function": "Support user authentication for enrollment functionality",
+        "static_description": "Login/registration forms with indigo-styled inputs positioned in top right navigation area. Authentication state tracked via JWT tokens stored in HTTP-only cookies. User profile dropdown appears when logged in.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting login form validates credentials against database, generates JWT token, sets cookie, and redirects to previous page or dashboard."
+            },
+            {
+                "interaction": "Logout",
+                "description": "Clicking logout deletes authentication cookie and redirects to homepage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "/api/courses/search",
+            "filterOptions": "Category dropdown, difficulty level checkboxes, duration range slider, certification pathway filter"
+        },
+        "function": "Provide search and filter options for the course catalog",
+        "static_description": "Search bar with magnifying glass icon and filter sidebar panel on course catalog page. Filter options include category dropdown, difficulty level checkboxes (beginner/intermediate/advanced), duration range slider, and certification pathway filter. All elements styled with indigo accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Typing in search bar triggers debounced API call to filter courses by title/description match."
+            },
+            {
+                "interaction": "Change",
+                "description": "Selecting filter options updates URL query parameters and re-fetches filtered course list from API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobileBreakpoints": "@media (max-width: 768px)",
+            "responsiveGridCSS": "CSS Grid and Flexbox media queries for adaptive layouts"
+        },
+        "function": "Implement responsive design for all pages",
+        "static_description": "Website layout adjusts automatically based on screen size. Course cards stack vertically on mobile, navigation becomes hamburger menu, and forms adapt to smaller screens while maintaining lavender background and indigo component styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing browser window triggers CSS media queries that adjust element sizes, reorganize content layout, and modify navigation presentation for optimal viewing on different devices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": "[Home, Courses, Certifications, Contact, Login/Register]",
+            "logoImage": "/assets/logo/giis-logo.svg"
+        },
+        "function": "Include navigation menu with links to key sections",
+        "static_description": "Fixed header navigation bar with institute logo on left and menu items on right. Menu items include Home, Courses, Certifications, Contact, and Login/Register (changes to Profile when authenticated). All text styled in indigo with lavender background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking menu items navigates to corresponding sections/pages. Hovering over items shows underline effect with indigo color."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "footerContent": "Contact info: phone, email, address | Quick links: Privacy Policy, Terms of Service, FAQ | Social media icons",
+            "socialMediaIcons": "[/assets/icons/facebook.svg, /assets/icons/twitter.svg, /assets/icons/linkedin.svg]"
+        },
+        "function": "Add footer with contact information and quick links",
+        "static_description": "Consistent footer across all pages with three-column layout: contact information (phone, email, address), quick links (Privacy Policy, Terms of Service, FAQ) in indigo text, and social media icons. Background matches main lavender theme with indigo text and borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking footer links navigates to respective pages or external sites. Social media icons open new tabs to institute profiles."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{ \"scripts\": { \"install:all\": \"cd frontend && npm install && cd ../backend && npm install\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" } }",
+            "concurrentlyDependency": "concurrently package for running multiple npm scripts"
+        },
+        "function": "Configure package.json with install:all and dev scripts for frontend and backend",
+        "static_description": "Root package.json file containing scripts section with install:all command that sequentially installs dependencies in frontend and backend directories, and dev command that uses concurrently to run both frontend and backend development servers simultaneously.",
+        "interaction_and_states": [
+            {
+                "interaction": "Terminal Command",
+                "description": "Running 'npm run install:all' executes dependency installation in both frontend and backend folders. Running 'npm run dev' starts both development environments concurrently in same terminal session."
+            }
+        ]
+    }
+]

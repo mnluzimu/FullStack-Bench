@@ -1,0 +1,271 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "magnifying-glass-icon.svg",
+            "stockDataAPI": "An API providing real-time or latest stock data including prices, company info, and metadata.",
+            "autocompleteResultsSchema": "Database table with fields: symbol (string), name (string), exchange (string), sector (string)"
+        },
+        "function": "Allow users to input stock codes or names to initiate a search for relevant stocks.",
+        "static_description": "A centered search bar with a magnifying glass icon on the left side. Placeholder text reads 'Enter stock code or name'. Background is white, border is navy, and text input area uses standard styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the input field focuses it and prepares it for typing."
+            },
+            {
+                "interaction": "Type",
+                "description": "As the user types, the system sends requests to fetch matching stock suggestions via the stockDataAPI and displays them in a dropdown list below the input."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "suggestionListStyle": "Dropdown menu with max-height: 200px, overflow-y: auto, background-color: #ffffff, border: 1px solid navy",
+            "stockSymbolFont": "Bold font for symbol display",
+            "companyNameFont": "Lighter font weight for full company name"
+        },
+        "function": "Provide auto-suggested stock matches as the user types in the search bar.",
+        "static_description": "Below the search bar appears a scrollable dropdown containing up to 10 items. Each item shows the stock symbol in bold followed by the company name in lighter text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "When hovering over a suggestion, the background color changes to light gray to indicate selection readiness."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a suggestion populates the search bar with the chosen stock symbol and triggers navigation to the stock details page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyLogoPlaceholder": "/assets/images/default-logo.png",
+            "basicStockInfoSchema": "Database schema with fields: symbol (string), companyName (string), industry (string), sector (string), currentPrice (float), priceChange (float), percentChange (float)",
+            "refreshButtonIcon": "refresh-icon.svg"
+        },
+        "function": "Display essential information about the selected stock including company details and live pricing.",
+        "static_description": "Top section includes a small placeholder logo aligned left. To its right, the company name is shown prominently, followed by secondary lines showing industry, sector, and exchange. On the far right, current price, absolute change, and percentage change are displayed with directional coloring (green/red). A refresh icon allows manual update triggering.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the refresh icon initiates a new query to retrieve updated stock data from the backend."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with Chart.js or similar chart rendering library",
+            "marketTrendDataSchema": "Time-series data schema with date (timestamp) and closingPrice (float) fields",
+            "timeRangeButtons": [
+                "1D",
+                "1W",
+                "1M",
+                "3M",
+                "YTD",
+                "1Y",
+                "5Y"
+            ]
+        },
+        "function": "Visualize historical and current market trend movements using interactive charts.",
+        "static_description": "Centered chart canvas with a line graph representing price movement over time. Below the chart, horizontally arranged buttons allow switching between different time ranges such as 1 Day, 1 Week, etc. Default view shows 1 Month of data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any time range button updates the chart with corresponding data points fetched from the server."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Mouse hover over chart elements highlights the point and displays tooltip with exact value and timestamp."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialMetricsSchema": "Fields include P/E ratio (float), EPS (float), Dividend Yield (%), Market Cap (string), Beta (float), ROE (%), Debt-to-Equity (float)",
+            "infoTooltipIcon": "question-mark-circle-icon.svg"
+        },
+        "function": "Present key financial indicators and ratios related to the selected stock.",
+        "static_description": "Two-column grid layout presenting labeled financial metrics alongside their numeric values. Each metric label includes a small '?' icon indicating additional explanation on hover. All text is black on white background with navy borders separating rows/columns.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the tooltip icon beside each metric reveals a brief definition or significance of that metric in a small overlay box."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptionsList": [
+                "PDF Report",
+                "Word Document (.docx)",
+                "Plain Text (.txt)",
+                "HTML Summary"
+            ],
+            "exportFormatSelectorStyle": "Styled dropdown with navy border and white background"
+        },
+        "function": "Enable users to choose preferred report output formats before generation.",
+        "static_description": "Labeled dropdown menu titled 'Select Format', populated with predefined export options. Selected option defaults to PDF Report unless changed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking opens the dropdown revealing all available export format choices."
+            },
+            {
+                "interaction": "Select Option",
+                "description": "Choosing an option sets the selected format which will be used when generating the final report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sectionCheckboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "Analyst Ratings",
+                "Dividends & Actions"
+            ],
+            "checkboxCheckedIcon": "checkmark-icon.svg",
+            "contentSelectionPanelStyle": "Box container with checkboxes stacked vertically, navy borders and padding"
+        },
+        "function": "Allow customization of report contents by enabling/disabling specific sections.",
+        "static_description": "Vertical panel listing checkboxes for various content categories like Basic Info, Market Trends, Financial Data, Analyst Ratings, and Dividends & Actions. By default, all boxes are checked except optional ones.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a checkbox toggles its checked status, determining whether that section will appear in the generated report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generateReportAPI": "Backend endpoint responsible for compiling selected data and formatting into requested document type",
+            "loadingSpinner": "spinner.gif"
+        },
+        "function": "Compile and produce a downloadable stock report based on user-selected parameters.",
+        "static_description": "Primary 'Generate Report' button located beneath configuration panels. Upon click, displays loading spinner animation while processing occurs behind the scenes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers submission of selected preferences to the generateReportAPI. Shows loading indicator until download link becomes ready."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "supportedExportFormats": [
+                ".pdf",
+                ".docx",
+                ".txt",
+                ".html"
+            ],
+            "downloadLinkStyle": "Standard hyperlink styled with navy underline"
+        },
+        "function": "Provide mechanisms for exporting completed reports in multiple file formats.",
+        "static_description": "After successful report generation, a row of clickable links labeled according to supported formats (e.g., Download as PDF, DOCX, TXT, HTML) appear just above the Generate Report button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any format-specific link starts automatic download of the compiled report in that respective file type."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": {
+                "background": "#FFFFFF",
+                "componentColor": "#000080"
+            },
+            "globalStylesheet": "CSS variables defining --bg-color: #FFFFFF; --primary-color: #000080;"
+        },
+        "function": "Ensure consistent visual theme across the application featuring a clean white background and navy components.",
+        "static_description": "Entire site utilizes a minimalist aesthetic with pure white backgrounds throughout pages and components rendered primarily in navy blue accents including headers, buttons, and borders.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "realTimeDataProvider": "WebSocket connection or polling mechanism to receive live stock updates",
+            "lastUpdatedTimestampField": "Text element displaying last refreshed datetime"
+        },
+        "function": "Continuously present the most recent available stock data to ensure accuracy.",
+        "static_description": "Subtle timestamp indicator positioned near top-right corner stating 'Last Updated: [datetime]' reflecting freshness of currently displayed data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Auto Refresh",
+                "description": "System automatically polls or listens via WebSocket every minute to update displayed figures without requiring explicit user action."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalPriceDataSchema": "Table with columns: date (date), open (float), close (float), high (float), low (float), volume (int)",
+            "performanceChartLibrary": "Same or compatible charting tool used previously for consistency"
+        },
+        "function": "Illustrate past price behavior and comparative performance through graphical representations.",
+        "static_description": "Separate tabbed section labeled 'Historical Performance' containing candlestick or OHLC chart covering extended periods. Axis labels denote dates and price levels clearly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Zoom In / Out",
+                "description": "Users can zoom into specific intervals using mouse wheel or pinch gestures on touch devices."
+            },
+            {
+                "interaction": "Pan",
+                "description": "Dragging horizontally shifts visible portion along timeline axis for deeper exploration."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "analystRatingsSchema": "Fields: firm (string), rating (enum: Buy/Hold/Sell), targetPrice (float), dateIssued (date)",
+            "ratingLegend": [
+                "Buy",
+                "Hold",
+                "Sell"
+            ]
+        },
+        "function": "Aggregate and showcase professional opinions regarding future outlook of given stocks.",
+        "static_description": "Dedicated panel displaying aggregated analyst ratings summary including average recommendation score and breakdown per institution. Listed firms, issued ratings, and target prices shown in tabular form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Sort Columns",
+                "description": "Clicking column headers sorts entries ascending/descending order by selected attribute such as firm name or rating level."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dividendHistorySchema": "Table with fields: exDate (date), paymentDate (date), amountPerShare (float), frequency (string)",
+            "corporateActionsSchema": "Event type (split/dividend/acquisition), effectiveDate (date), impactSummary (text)"
+        },
+        "function": "Expose critical income-related events and significant corporate developments affecting shareholder value.",
+        "static_description": "Tabbed interface under 'Income & Events' showing two subsections – one listing upcoming/past dividends with payout schedules, another detailing notable corporate actions like splits or mergers impacting share count or valuation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Toggle Tabs",
+                "description": "Clicking either 'Dividends' or 'Corporate Actions' switches visibility between both datasets within same container region."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authServiceEndpoint": "OAuth-based authentication API supporting registration/login/logout flows",
+            "userProfileSchema": "User fields: id (UUID), email (string), passwordHash (string), createdAt (datetime), savedReports (array of report IDs)"
+        },
+        "function": "Support authenticated access allowing personalized experiences like saving favorite reports or settings.",
+        "static_description": "Top navigation bar features login/register links transitioning to modal forms upon activation. Authenticated users see username/avatar instead plus dropdown menu offering profile settings and logout option.",
+        "interaction_and_states": [
+            {
+                "interaction": "Login Submit",
+                "description": "Submitting credentials validates against authServiceEndpoint and redirects back to previous location after session establishment."
+            },
+            {
+                "interaction": "Register New Account",
+                "description": "New signups trigger account creation flow storing secure hashes and initializing empty user record in database."
+            },
+            {
+                "interaction": "Logout",
+                "description": "Clicking logout terminates active session and clears stored tokens forcing re-authentication prompt."
+            }
+        ]
+    }
+]

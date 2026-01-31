@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Display a homepage with navigation to Menus, Private Poker Room, Events & Promotions, and Reservations/Purchases",
+        "user_persona": "A first-time visitor curious about what The All-In Bourbon Bar offers.",
+        "user_goal": "To explore different sections of the website using the main navigation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens her browser and visits the homepage of The All-In Bourbon Bar. She sees a welcoming hero image and a navigation bar at the top.",
+                "action": "Observe the page load and display the header with navigation links.",
+                "expected_outcome": "The homepage loads successfully, showing the logo and a fixed navigation bar with links: Menus, Private Poker Room, Events & Promotions, and Reservations/Purchases."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Menus",
+                "description": "Interested in drinks, Sarah clicks on the 'Menus' link in the navigation bar.",
+                "action": "Click on the 'Menus' navigation link.",
+                "expected_outcome": "The page navigates smoothly to the Menus section, displaying bourbon and cocktail options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Showcase bourbon and cocktail menus with descriptions and pricing fetched dynamically from backend",
+        "user_persona": "A bourbon enthusiast visiting the bar for the first time.",
+        "user_goal": "To view available bourbons and cocktails along with their prices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Bourbon Menu",
+                "description": "On the Menus page, Alex sees tabs for Bourbons and Cocktails. He clicks on 'Bourbons' to see the selection.",
+                "action": "Click on the 'Bourbons' tab.",
+                "expected_outcome": "The bourbon menu items are displayed dynamically with names, descriptions, and prices fetched from the backend."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Cocktails",
+                "description": "Curious about cocktails, Alex switches to the Cocktails tab.",
+                "action": "Click on the 'Cocktails' tab.",
+                "expected_outcome": "Cocktail items appear instantly with updated content reflecting the switch, maintaining responsiveness and style."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Introduce the membership-only private poker room with details and access requirements",
+        "user_persona": "A potential member interested in exclusive amenities.",
+        "user_goal": "Learn about the private poker room and how to get access.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Poker Room Page",
+                "description": "Jordan clicks on the 'Private Poker Room' link from the homepage to learn more.",
+                "action": "Navigate to the Private Poker Room page.",
+                "expected_outcome": "The page loads with an image gallery followed by columns detailing membership benefits and access requirements."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Gallery Images",
+                "description": "Intrigued by the visuals, Jordan clicks one of the poker room images to see it enlarged.",
+                "action": "Click on a poker room gallery thumbnail.",
+                "expected_outcome": "A modal lightbox opens showing the full-size version of the clicked image."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "List upcoming events and ongoing promotions with dates, times, and descriptions",
+        "user_persona": "A local resident looking for weekend entertainment.",
+        "user_goal": "Find upcoming events or current promotions happening at the bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Events & Promotions",
+                "description": "Taylor clicks on 'Events & Promotions' from the navigation to find something fun to do this weekend.",
+                "action": "Visit the Events & Promotions page.",
+                "expected_outcome": "A timeline list of cards appears, each showing event/promotion title, date range, and brief description."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Event Details",
+                "description": "Seeing an interesting event, Taylor clicks on its card to read more details.",
+                "action": "Click on an event card.",
+                "expected_outcome": "The card expands to reveal extended information including sharing options and RSVP button."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to make online reservations for tables or private poker room sessions",
+        "user_persona": "A group organizer planning a night out.",
+        "user_goal": "Book a table reservation for a group dinner at the bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Reservation Form",
+                "description": "Casey clicks on 'Reservations/Purchases' to book a table for eight people next Friday.",
+                "action": "Navigate to the Reservations/Purchases page and locate the reservation form.",
+                "expected_outcome": "A vertical form with labeled fields such as Name, Date, Time, Party Size, etc., is visible."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Date and Time",
+                "description": "Casey focuses on the date field to choose Friday and then selects a preferred time slot.",
+                "action": "Focus on the Date field, then select a date and time using picker tools.",
+                "expected_outcome": "Calendar and time pickers open and allow precise selection. Selected values populate the fields."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Reservation",
+                "description": "After filling in all required details, Casey clicks the Submit button.",
+                "action": "Fill out all necessary fields and click the Submit button.",
+                "expected_outcome": "Form data is sent to the backend, and a success message confirms the reservation has been made."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to purchase products (bottles, merchandise) directly through the website",
+        "user_persona": "A loyal customer wanting to buy favorite bourbon and branded merch.",
+        "user_goal": "Purchase a bottle of bourbon and some branded merchandise online.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Product Catalog",
+                "description": "Riley goes to the Reservations/Purchases section to shop for bourbon bottles and merchandise.",
+                "action": "Visit the product catalog page.",
+                "expected_outcome": "Products are shown in a responsive grid with images, names, descriptions, and prices."
+            },
+            {
+                "step": 2,
+                "title": "Adding Items to Cart",
+                "description": "Riley finds a limited-edition bourbon and a t-shirt, clicking 'Add to Cart' for both.",
+                "action": "Click 'Add to Cart' buttons for multiple items.",
+                "expected_outcome": "Cart icon in the header updates with new item counts, and items are added to the shopping cart."
+            },
+            {
+                "step": 3,
+                "title": "Proceeding to Checkout",
+                "description": "Ready to complete the purchase, Riley clicks the cart icon to review items and proceed.",
+                "action": "Click the cart icon and then the checkout button.",
+                "expected_outcome": "Checkout process initiates securely through the integrated payment gateway after reviewing selections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a responsive design with peach puff container backgrounds and indian red component visuals",
+        "user_persona": "A mobile user exploring the website on their phone during lunch break.",
+        "user_goal": "Browse the website comfortably on a smartphone without layout issues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Website on Mobile",
+                "description": "Jamie opens the website on their smartphone and checks how it looks compared to desktop.",
+                "action": "Open the homepage on a mobile device.",
+                "expected_outcome": "Layout adjusts responsively, with containers having peach puff backgrounds and components highlighted in indian red."
+            },
+            {
+                "step": 2,
+                "title": "Interacting Across Sections",
+                "description": "Jamie scrolls through various sections including menus, events, and contact info.",
+                "action": "Scroll and interact with elements like buttons and forms.",
+                "expected_outcome": "All interactive elements maintain proper styling and spacing regardless of screen size or orientation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a contact section with location, hours, and inquiry form",
+        "user_persona": "A customer needing help or clarification about services.",
+        "user_goal": "Send a question about private poker room membership to the bar staff.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Contact Information",
+                "description": "Morgan scrolls to the bottom of the homepage and finds the Contact Us section.",
+                "action": "Scroll to the footer and locate the Contact section.",
+                "expected_outcome": "Section displays embedded map, operating hours, and a vertical inquiry form with fields for Name, Email, Subject, and Message."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Inquiry",
+                "description": "Morgan fills in personal details and writes a question regarding poker room membership, then submits.",
+                "action": "Complete form fields and click the Submit button.",
+                "expected_outcome": "Form validates inputs and sends data to the backend, displaying a success confirmation afterward."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide user authentication for members to access exclusive poker room content",
+        "user_persona": "A registered member seeking access to exclusive poker room resources.",
+        "user_goal": "Log into the member portal to access exclusive poker room content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Access to Member Area",
+                "description": "Alex tries to visit the private poker room page but gets redirected to login since he's not authenticated.",
+                "action": "Try navigating directly to the private poker room page.",
+                "expected_outcome": "Redirected to the login form due to lack of authentication."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Alex enters his registered email and password and clicks Sign In.",
+                "action": "Enter valid credentials and click the Sign In button.",
+                "expected_outcome": "Successfully logged in and redirected back to the originally requested poker room content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support dynamic data loading via backend APIs for all content sections",
+        "user_persona": "A frequent visitor who wants fresh content every time they visit.",
+        "user_goal": "See newly added events and updated menus without reloading manually.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "When Emma visits the Events & Promotions page, she expects the latest updates to show automatically.",
+                "action": "Visit the Events & Promotions page.",
+                "expected_outcome": "Page initially shows skeleton loaders, which are replaced with real-time data fetched from the backend API."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect backend to PostgreSQL database using provided environment variables",
+        "user_persona": "System administrator verifying backend connectivity.",
+        "user_goal": "Confirm that the backend connects properly to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Admin starts the backend server and ensures it initializes with correct database settings.",
+                "action": "Start the backend service using configured environment variables.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json to support `npm run install:all` and `npm run dev` commands",
+        "user_persona": "Developer setting up project locally for the first time.",
+        "user_goal": "Set up and run both frontend and backend concurrently using predefined scripts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Dev runs the unified install command to set up dependencies for both client and server.",
+                "action": "Run `npm run install:all` in terminal.",
+                "expected_outcome": "Both frontend and backend dependencies install successfully without errors."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "Once installed, Dev runs the dev script to start both servers simultaneously.",
+                "action": "Execute `npm run dev` command.",
+                "expected_outcome": "Frontend and backend development servers launch concurrently and communicate effectively."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all pages are fully browsable without requiring authentication except for member areas",
+        "user_persona": "Casual browser just checking out the bar’s offerings.",
+        "user_goal": "Explore public sections freely without being prompted to log in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Public Pages",
+                "description": "Lee clicks through the homepage, menus, and events without logging in.",
+                "action": "Navigate to multiple public-facing pages.",
+                "expected_outcome": "Pages load normally without prompting for authentication or redirecting to login screens."
+            },
+            {
+                "step": 2,
+                "title": "Trying Restricted Access",
+                "description": "Lee attempts to access the private poker room page to confirm restriction behavior.",
+                "action": "Attempt to navigate to the private poker room page.",
+                "expected_outcome": "Redirected to login form because the page requires member authentication."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include image galleries for menu items, poker room, and event highlights",
+        "user_persona": "Photography enthusiast interested in visual presentation.",
+        "user_goal": "View high-quality images of menu items, poker room, and past events.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Image Gallery",
+                "description": "While viewing the poker room page, Sam notices a gallery of photos and clicks one.",
+                "action": "Click on a thumbnail in the poker room gallery.",
+                "expected_outcome": "Lightbox modal opens with full-size image, navigation arrows, and close option."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Through Gallery",
+                "description": "Sam uses arrow keys to flip through several poker room images.",
+                "action": "Use keyboard arrows or click navigation arrows in the modal.",
+                "expected_outcome": "Images transition smoothly within the modal viewer, preserving quality and context."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add social media integration and sharing options for events and promotions",
+        "user_persona": "Social media influencer promoting local events.",
+        "user_goal": "Share an upcoming event on social media platforms easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Sharing Options",
+                "description": "On an event page, Maya sees small icons for Facebook, Twitter, and Instagram near the event description.",
+                "action": "Look for social sharing buttons on an event/promotion card.",
+                "expected_outcome": "Icons for Facebook, Twitter, and Instagram are visible beneath the event content."
+            },
+            {
+                "step": 2,
+                "title": "Sharing Event",
+                "description": "Maya clicks the Facebook icon to share the event with her followers.",
+                "action": "Click the Facebook sharing icon.",
+                "expected_outcome": "Native Facebook sharing dialog opens with pre-filled title, description, and URL of the event."
+            }
+        ]
+    }
+]

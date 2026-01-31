@@ -1,0 +1,17 @@
+[
+    "Display real-time weather and air quality data",
+    "Show air quality index (AQI) for the past two weeks",
+    "Allow users to compare pollution and air quality changes over time",
+    "Provide browsing of current weather data including temperature and humidity",
+    "Display gas sensor data in real-time",
+    "Implement real-time update functionality for all data",
+    "Use azure mist as the primary background color",
+    "Style UI elements with dark slate blue",
+    "Fetch all dynamic data from backend APIs",
+    "Connect backend to external PostgreSQL database using provided environment variables",
+    "Configure package.json with npm run install:all to install frontend and backend dependencies",
+    "Configure package.json with npm run dev to start frontend and backend concurrently",
+    "Implement API endpoints for serving weather and air quality data",
+    "Design responsive UI components for data visualization",
+    "Include date/time stamps for all displayed data points"
+]

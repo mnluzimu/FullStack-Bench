@@ -1,0 +1,167 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/icons/search-icon.svg",
+            "stockDataAPI": "An API for retrieving real-time and historical stock data, including basic info, market trends, and financials.",
+            "reportGenerationAPI": "An API that accepts user-defined parameters (stock code/name, format, content) and returns a generated report.",
+            "loadingSpinner": "/assets/loading-spinner.gif"
+        },
+        "function": "Enable users to search for stocks by entering stock codes or names via an input field.",
+        "static_description": "A centered search bar with a navy border and placeholder text 'Enter stock code or name'. A navy-colored search icon aligned to the right inside the input field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon or pressing Enter after typing initiates the stock lookup request to the backend API."
+            },
+            {
+                "interaction": "Input Text",
+                "description": "As the user types, the input updates dynamically without triggering a search until submission."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "checkboxUncheckedIcon": "/icons/unchecked-box.svg",
+            "checkboxCheckedIcon": "/icons/checked-box.svg",
+            "formatOptionsList": [
+                "PDF",
+                "Markdown",
+                "HTML"
+            ],
+            "contentSectionsList": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ]
+        },
+        "function": "Allow users to customize their stock report by selecting preferred formats and content sections.",
+        "static_description": "Two sections displayed below the search area: 'Report Format' and 'Content Sections', each containing labeled checkboxes in navy color. Default unchecked state uses checkboxUncheckedIcon; checked state uses checkboxCheckedIcon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a checkbox toggles its selection status between checked and unchecked states."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generateButtonIcon": "/icons/generate-report-button.svg",
+            "reportGenerationAPI": "An API that accepts user-defined parameters (stock code/name, format, content) and returns a generated report."
+        },
+        "function": "Trigger the automated generation of customized stock reports based on selected options.",
+        "static_description": "A navy 'Generate Report' button positioned beneath the customization options, featuring generateButtonIcon to the left of the label text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the button sends the current selections (stock identifier, format, content) to the backend API to initiate report generation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stockInfoSchema": "Database schema for storing stock metadata such as symbol, company name, sector, industry, exchange, etc.",
+            "stockInfoAPI": "An API endpoint that retrieves basic stock information using stock identifiers."
+        },
+        "function": "Display essential stock information within the generated reports.",
+        "static_description": "A dedicated section titled 'Basic Stock Information' at the top of the generated report showing fields like Symbol, Company Name, Sector, Industry, Exchange, etc., styled in navy headings over white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "marketTrendsSchema": "Database schema containing time-series price/volume data for trend visualization.",
+            "trendChartComponent": "/components/trend-chart.js",
+            "marketTrendsAPI": "An API returning historical pricing and volume data used to render trend charts."
+        },
+        "function": "Visualize and display market trends relevant to the selected stock within the generated reports.",
+        "static_description": "A chart container labeled 'Market Trends' embedded in the report, rendering line graphs or candlestick plots using trendChartComponent against a white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "financialDataSchema": "Database schema storing quarterly/yearly financial statements including revenue, net income, EPS, etc.",
+            "financialDataTableComponent": "/components/financial-data-table.js",
+            "financialDataAPI": "An API providing structured access to financial statement data per stock."
+        },
+        "function": "Present detailed financial data within the generated reports.",
+        "static_description": "A table titled 'Financial Data' rendered using financialDataTableComponent, displaying rows for periods (Q1–Q4/Years) and columns for metrics like Revenue, Net Income, Earnings Per Share (EPS), etc., styled with navy headers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "backgroundCSSClass": "{ \"backgroundColor\": \"white\" }"
+        },
+        "function": "Apply consistent white background styling across all pages and components.",
+        "static_description": "All webpages utilize a global CSS class applying a solid white background (#FFFFFF) behind all content containers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorCSSClass": "{ \"color\": \"navy\", \"borderColor\": \"navy\" }"
+        },
+        "function": "Ensure all interactive and static components use navy as the primary accent color.",
+        "static_description": "Text labels, form controls, buttons, icons, and borders inherit styles from a globally defined navy-themed CSS class.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "heroImage": "/images/home-hero-image.jpg",
+            "serviceDescriptionText": "Our platform enables fast and insightful stock reporting tailored to your preferences. Search any stock, choose what you want to see, and get professional-grade summaries instantly."
+        },
+        "function": "Introduce visitors to the stock report generation service through a welcoming homepage interface.",
+        "static_description": "Homepage layout features heroImage centered above a brief paragraph styled with serviceDescriptionText, followed by a prominent call-to-action directing users to begin searching.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "reportContainerStyles": "{ \"padding\": \"20px\", \"boxShadow\": \"0 2px 8px rgba(0,0,0,0.1)\" }",
+            "reportOutputAPI": "An API serving pre-generated report data including text blocks, charts, tables, and formatting metadata."
+        },
+        "function": "Display fully generated stock reports once processing completes.",
+        "static_description": "A clean, scrollable card-based view titled 'Generated Stock Report', styled with reportContainerStyles, presenting fetched content from the backend.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveMediaQueries": "@media screen and (max-width: 768px)"
+        },
+        "function": "Ensure seamless usability and visual consistency across desktop and mobile platforms.",
+        "static_description": "Layout adjusts fluidly under responsiveMediaQueries, reorganizing elements vertically, scaling fonts appropriately, and optimizing touch targets for smaller screens while preserving core functionality.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loadingOverlay": "/components/loading-overlay.js",
+            "spinnerAsset": "/assets/loading-spinner.gif"
+        },
+        "function": "Provide feedback during asynchronous operations such as data fetching and report generation.",
+        "static_description": "During active requests, loadingOverlay covers the main content area with semi-transparent overlay and spinnerAsset spinning centrally.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorMessageStyles": "{ \"color\": \"red\", \"fontSize\": \"14px\" }",
+            "errorHandlingMiddleware": "Backend middleware intercepting invalid inputs or missing resources before responding to frontend."
+        },
+        "function": "Notify users when issues occur due to incorrect stock codes or inaccessible data sources.",
+        "static_description": "Inline error messages appear beneath affected components, styled according to errorMessageStyles, conveying clear reasons such as 'Invalid stock symbol' or 'Data temporarily unavailable.'",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontendAPIClient": "Axios client configured to communicate with backend endpoints using base URL /api/",
+            "databaseConnectionConfig": "PostgreSQL connection established using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Serve dynamic frontend content sourced entirely from backend APIs connected to a PostgreSQL database.",
+        "static_description": "Frontend application bootstrapped with frontendAPIClient pointing to internal API routes, which proxy requests to services interacting with databaseConnectionConfig.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbSchemaDefinition": "CREATE TABLE stocks (symbol VARCHAR PRIMARY KEY, name TEXT, sector TEXT, industry TEXT, exchange TEXT); CREATE TABLE financials (id SERIAL PRIMARY KEY, stock_symbol VARCHAR REFERENCES stocks(symbol), period DATE, revenue NUMERIC, net_income NUMERIC, eps NUMERIC); CREATE TABLE market_trends (id SERIAL PRIMARY KEY, stock_symbol VARCHAR REFERENCES stocks(symbol), date DATE, open_price NUMERIC, close_price NUMERIC, volume BIGINT);",
+            "postgresConnectionModule": "/lib/postgres-connection.js"
+        },
+        "function": "Establish persistence layer supporting stock lookup, financials retrieval, and trend tracking via PostgreSQL integration.",
+        "static_description": "Database initialized with dbSchemaDefinition managed through postgresConnectionModule leveraging standard PG driver and secure credential injection.",
+        "interaction_and_states": []
+    }
+]

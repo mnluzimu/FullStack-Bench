@@ -1,0 +1,175 @@
+[
+    {
+        "resource_dependency": {
+            "cartoonStyleCSS": "CSS file implementing a cartoon-style theme with seashell backgrounds for containers and crimson-colored components.",
+            "responsiveDesignFramework": "Use of CSS media queries or responsive framework like TailwindCSS or Bootstrap to ensure cross-device compatibility."
+        },
+        "function": "Provide a visually appealing frontend application designed specifically for children using a cartoon aesthetic.",
+        "static_description": "The website uses a playful color scheme with seashell background tones for container areas and crimson accents for interactive elements. All buttons, panels, and UI components follow a cartoonish design style. The layout adjusts responsively based on screen size.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "wasteItemImages": "Set of image assets representing various recyclable items (e.g., plastic bottle, paper, glass jar) in a cartoon style.",
+            "recyclingContainerAssets": "Image assets for recycling bins labeled clearly for different waste categories (plastic, paper, metal/glass, organic).",
+            "dragDropLibrary": "Frontend library such as HTML5 Drag and Drop API or React DnD for enabling drag-and-drop functionality."
+        },
+        "function": "Allow children to interactively sort virtual waste items into appropriate recycling containers.",
+        "static_description": "Multiple cartoon-style waste item icons are displayed on the left side of the screen. On the right side, there are four distinct recycling bin containers labeled for plastic, paper, metal/glass, and organic waste. Each container features a seashell background texture.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can drag waste item images from the display area onto one of the recycling bins. Upon dropping, the item disappears from view and triggers validation logic via API call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "feedbackPopupAssets": "Icons and messages indicating correct ('Great job!') or incorrect ('Try again!') feedback responses.",
+            "soundEffects": "Audio clips for success/failure sounds triggered during sorting actions."
+        },
+        "function": "Provide immediate feedback after each sorting decision made by the child.",
+        "static_description": "A notification popup appears centered above the game board showing either a positive emoji with encouraging text or a gentle correction message depending on correctness.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "After an item is dropped into a bin, a short animation plays followed by a pop-up message and audio cue indicating if the choice was correct or not."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "rewardIcons": "Visual assets for badges, stars, coins, etc., awarded upon successful sorting attempts.",
+            "rewardAPIEndpoint": "/api/rewards"
+        },
+        "function": "Motivate continued engagement through rewarding correct recycling decisions.",
+        "static_description": "At the top-right corner of the screen, a counter displays earned rewards such as stars or coins. Visual badges appear when milestones are reached.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Upon correct placement, the reward counter increases visibly and a celebratory animation plays briefly near the counter area."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "leaderboardAPIEndpoint": "/api/leaderboard",
+            "playerAvatarPlaceholder": "Default avatar image used when no custom avatar is provided by user."
+        },
+        "function": "Display a ranked list of top players to foster healthy competition among users.",
+        "static_description": "Located at the bottom of the main page, a scrollable leaderboard panel shows player avatars, usernames, and total points scored, ordered from highest to lowest.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "User scrolls vertically within the leaderboard container to see more entries beyond the initially visible ones."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameDataSchema": "Fields: player_id (UUID), session_id (UUID), timestamp (datetime), item_sorted (string), target_bin (string), result_correct (boolean), score_delta (integer)",
+            "scoreTrackingSchema": "Fields: player_id (UUID), total_score (integer), last_updated (datetime)",
+            "leaderboardSchema": "Fields: player_id (UUID), username (string), total_score (integer), rank (integer)"
+        },
+        "function": "Expose endpoints for managing game events, scoring updates, and retrieving leaderboard data.",
+        "static_description": "RESTful API routes available under /api/game providing POST for recording sort results, GET for fetching current leaderboard standings, and PATCH for updating scores.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseInitScript": "SQL script initializing tables: game_sessions, player_scores, leaderboard_entries, player_profiles"
+        },
+        "function": "Establish persistent storage layer for all game-related data using PostgreSQL.",
+        "static_description": "Database schema includes tables for tracking individual game sessions, cumulative player scores, and global leaderboard rankings. Connection established using predefined environment variables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "playerProfileSchema": "Fields: player_id (UUID), username (string), avatar_url (optional string), created_at (datetime)",
+            "authenticationAPIEndpoint": "/api/auth/register"
+        },
+        "function": "Enable identification and progress tracking for returning players without requiring complex login flows.",
+        "static_description": "A simple registration form allows entry of a unique username which gets stored along with a generated UUID. Optional profile picture upload supported but not mandatory.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the register form generates a new player record and returns a token or identifier used for future requests."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "animationLibrary": "JavaScript/CSS libraries such as GSAP or Framer Motion for smooth animations.",
+            "interactiveSoundLibrary": "Web Audio API or Howler.js implementation for playing engaging sound effects."
+        },
+        "function": "Enhance interactivity and appeal through animated transitions and audio cues tailored for children.",
+        "static_description": "All major UI changes (item drop, feedback reveal, reward increment) include subtle bounce/slide animations. Matching sound effects accompany these events.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Upon release of dragged item, a small bounce effect occurs before disappearing. Correct answers trigger cheerful jingle while mistakes play soft chime."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "educationalContentAssets": "Pop-up modals or tooltips containing illustrated guides explaining what belongs in each recycling category.",
+            "infoModalTrigger": "Small info icon next to each recycling bin label that opens educational content overlay."
+        },
+        "function": "Integrate learning opportunities directly into gameplay mechanics.",
+        "static_description": "Each recycling bin has an adjacent 'i' icon. Clicking reveals a modal window with colorful illustrations and brief descriptions about acceptable materials for that category.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the info icon overlays a semi-transparent modal explaining the contents of that particular recycling bin with supporting graphics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "progressTrackingAPIEndpoint": "/api/player/progress",
+            "graphVisualizationComponent": "Charting tool like Chart.js to render progress graphs over time."
+        },
+        "function": "Help children visualize their improvement and stay motivated through measurable achievements.",
+        "static_description": "Accessible via menu tab, this section presents line charts plotting accuracy rate and total score growth over multiple sessions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting 'My Progress' navigates to dashboard where historical performance metrics are visualized using simple chart elements."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "Implementation using mobile-first CSS techniques ensuring compatibility across smartphones, tablets, and desktop browsers."
+        },
+        "function": "Ensure optimal viewing experience regardless of device type or orientation.",
+        "static_description": "Layout dynamically adapts to screen dimensions using flexible grids and scalable font sizes. Touch targets adjust appropriately for smaller screens.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "\"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\""
+        },
+        "function": "Streamline development setup by allowing installation of both frontend and backend dependencies simultaneously.",
+        "static_description": "Running 'npm run install:all' executes two parallel processes installing packages for client-side and server-side codebases respectively.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devServerScripts": "\"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\" --names \\\"CLIENT,SERV\\\" --prefix name\""
+        },
+        "function": "Facilitate simultaneous local development of frontend and backend services.",
+        "static_description": "Executing 'npm run dev' launches both the frontend development server and backend Node.js instance concurrently, displaying logs prefixed by 'CLIENT' and 'SERV'.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "persistenceSchemas": "Defined earlier: game_sessions, player_scores, leaderboard_entries, player_profiles with appropriate indexes and constraints."
+        },
+        "function": "Maintain long-term records of gameplay activity, user achievements, and statistical insights.",
+        "static_description": "PostgreSQL tables store every sorting event, maintain cumulative point totals per player, update global rankings automatically, and preserve basic profile information securely.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,219 @@
+[
+    {
+        "requirement_tested": "Implement a 2048 game board with a 4x4 grid layout",
+        "user_persona": "A casual gamer named Alex who wants to play a quick round of 2048 during a break.",
+        "user_goal": "To see the 4x4 game grid loaded properly with initial tiles and start playing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Game Website",
+                "description": "Alex opens the 2048 game website and expects to see the game board right away.",
+                "action": "Load the webpage.",
+                "expected_outcome": "A 4x4 grid is displayed prominently on a linen background, with two starting tiles (e.g., two '2' tiles) visible in random positions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support tile movement in four directions: up, down, left, and right",
+        "user_persona": "A frequent player named Taylor who prefers using keyboard shortcuts for faster gameplay.",
+        "user_goal": "To move all tiles in the desired direction using arrow keys.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Tile Movement",
+                "description": "Taylor sees the initial tiles and decides to move them to the right by pressing the Right Arrow key.",
+                "action": "Press the Right Arrow key.",
+                "expected_outcome": "All tiles shift towards the right edge of the grid, stopping either at the edge or before colliding with another tile."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable merging of identical adjacent tiles during movement",
+        "user_persona": "Jordan, an experienced player aiming to build higher-value tiles efficiently.",
+        "user_goal": "To merge two adjacent tiles of the same value into one with their combined value.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Merge Scenario",
+                "description": "Jordan arranges the board so that two '4' tiles are side-by-side horizontally and prepares to move right.",
+                "action": "Press the Right Arrow key.",
+                "expected_outcome": "The two '4' tiles merge into a single '8' tile, and the score increases by 8."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Track and display the current game score",
+        "user_persona": "Morgan, a competitive player aiming to beat their personal best score.",
+        "user_goal": "To monitor the current score and compare it with their best score.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Initial Score Display",
+                "description": "Morgan looks at the top of the game board to verify the current and best scores are shown.",
+                "action": "Observe the score panel above the grid.",
+                "expected_outcome": "Two clearly labeled sections are visible: 'Score: 0' and 'Best: [previous best]', both styled in maroon text against the linen background."
+            },
+            {
+                "step": 2,
+                "title": "Updating After Merge",
+                "description": "Morgan makes a move that causes two tiles to merge, increasing the score.",
+                "action": "Merge two tiles by moving them together.",
+                "expected_outcome": "The 'Score' value updates instantly to reflect the points gained from the merge."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Detect and handle game over state when no moves are available",
+        "user_persona": "Casey, a focused player who has been playing for a while and just made a move that might end the game.",
+        "user_goal": "To be notified when there are no more valid moves and the game ends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Game Over Condition",
+                "description": "After a series of moves, Casey fills the entire grid with tiles such that no adjacent tiles are identical and no moves remain.",
+                "action": "Make a final move that leaves no possible next moves.",
+                "expected_outcome": "The screen slightly dims, and a modal pops up displaying 'Game Over!' in large maroon font, with 'Revive' and 'New Game' buttons."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to start a new game at any time",
+        "user_persona": "Riley, a curious player experimenting with different strategies.",
+        "user_goal": "To reset the game and begin a fresh session mid-play.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating New Game Button",
+                "description": "While playing, Riley notices the 'New Game' button near the top-right corner and decides to restart.",
+                "action": "Click the circular 'New Game' button with the '+' icon.",
+                "expected_outcome": "The game board resets to its initial state with two new random tiles, and the score returns to zero."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement win condition detection when a tile reaches 2048",
+        "user_persona": "Sam, a determined player close to winning the classic 2048 challenge.",
+        "user_goal": "To be acknowledged once they successfully create a 2048 tile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating the 2048 Tile",
+                "description": "Sam carefully maneuvers tiles until finally merging two '1024' tiles into a '2048' tile.",
+                "action": "Merge two '1024' tiles.",
+                "expected_outcome": "A celebratory modal appears with 'You Win!' in bold maroon text, accompanied by confetti animation effects, while the game remains playable."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a revive option after game over to continue playing",
+        "user_persona": "Jamie, deeply engaged in a long-running game that ended unexpectedly.",
+        "user_goal": "To resume the game from the point of loss instead of starting over.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing to Revive",
+                "description": "After seeing the Game Over modal, Jamie chooses to continue rather than restart completely.",
+                "action": "Click the 'Revive' button in the Game Over modal.",
+                "expected_outcome": "The modal disappears, and the game board reactivates with the previous grid state restored, ready for the next move."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design the game interface with a linen background color",
+        "user_persona": "Taylor, a design-conscious user appreciating clean aesthetics.",
+        "user_goal": "To enjoy a visually soothing interface with consistent background styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Background Color",
+                "description": "Taylor loads the game and takes note of the overall visual theme, especially the background.",
+                "action": "View the game page.",
+                "expected_outcome": "The entire page background is rendered in a soft linen tone (#FAF0E6), providing a warm and inviting backdrop for the game."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Style all game components using maroon as the primary color",
+        "user_persona": "Jordan, a detail-oriented player who pays attention to UI consistency.",
+        "user_goal": "To observe uniform usage of maroon across all interactive and structural elements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Visual Consistency",
+                "description": "Jordan scans the interface looking for cohesive use of the chosen accent color.",
+                "action": "Look at various UI elements including buttons, grid borders, and score text.",
+                "expected_outcome": "All relevant elements—buttons, grid lines, score numbers, and modal headers—are styled consistently with maroon (#800000)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure smooth tile animations during movement and merging",
+        "user_persona": "Morgan, someone who enjoys polished gaming experiences.",
+        "user_goal": "To experience seamless and pleasant motion feedback when manipulating tiles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Animating Tile Movements",
+                "description": "Morgan slides tiles across the board and watches how they transition between positions.",
+                "action": "Move tiles using arrow keys.",
+                "expected_outcome": "Tiles glide smoothly into place using CSS transitions (~150ms), with subtle fade-in effects upon creation and scaling during merges."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display numeric values clearly on each tile",
+        "user_persona": "Casey, a practical player needing immediate recognition of tile values.",
+        "user_goal": "To quickly identify the numeric value of each tile at a glance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Tile Values",
+                "description": "Casey focuses on individual tiles to confirm their numeric representation is readable.",
+                "action": "Observe several tiles with varying values.",
+                "expected_outcome": "Each tile displays a bold, centered number matching its value, sized appropriately for clarity and high contrast against the tile background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Maintain game state persistence during gameplay",
+        "user_persona": "Riley, often interrupted during play sessions and wants to pick up where they left off.",
+        "user_goal": "To retain the current game state even after accidentally refreshing the page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reloading Mid-Game",
+                "description": "In the middle of a promising game, Riley refreshes the browser unintentionally.",
+                "action": "Refresh the browser page.",
+                "expected_outcome": "The game resumes exactly from the last known state, preserving the grid configuration and score due to local storage caching."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include responsive design for different screen sizes",
+        "user_persona": "Sam, primarily plays on a mobile device but occasionally switches to desktop.",
+        "user_goal": "To have a consistent and usable experience regardless of screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Mobile Layout",
+                "description": "Sam accesses the game on their smartphone and checks if everything fits well and remains functional.",
+                "action": "Open the game on a mobile device.",
+                "expected_outcome": "The layout adjusts gracefully to the smaller viewport, maintaining readability and usability with appropriately scaled grid and controls."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add keyboard support for arrow key navigation",
+        "user_persona": "Alex, a power user comfortable navigating entirely through keyboard input.",
+        "user_goal": "To fully control the game without touching the mouse.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Keyboard Controls",
+                "description": "Alex focuses on the game board and uses only arrow keys to make moves.",
+                "action": "Press ArrowUp, ArrowDown, ArrowLeft, and ArrowRight keys.",
+                "expected_outcome": "Each key press initiates the corresponding tile movement action, equivalent to swiping on a touchscreen, enabling full keyboard-based gameplay."
+            }
+        ]
+    }
+]

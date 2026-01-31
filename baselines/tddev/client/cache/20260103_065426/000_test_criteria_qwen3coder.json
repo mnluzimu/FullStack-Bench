@@ -1,0 +1,282 @@
+[
+    {
+        "requirement_tested": "Agricultural news browsing functionality",
+        "user_persona": "A farmer looking to stay updated on the latest agricultural trends.",
+        "user_goal": "Browse and read the latest agricultural news articles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting News Section",
+                "description": "Maria navigates to the news section of the agriculture website to find updates.",
+                "action": "Navigate to the news section.",
+                "expected_outcome": "A list of news articles is displayed in a grid format with titles, summaries, and thumbnails."
+            },
+            {
+                "step": 2,
+                "title": "Reading an Article",
+                "description": "Maria sees an interesting article titled 'New Crop Technologies' and clicks on it to read more.",
+                "action": "Click on a news card.",
+                "expected_outcome": "The full article page loads, showing detailed content related to the selected news."
+            },
+            {
+                "step": 3,
+                "title": "Loading More Articles",
+                "description": "After reading, Maria scrolls down to discover more articles.",
+                "action": "Scroll to the bottom of the news list.",
+                "expected_outcome": "Additional articles are automatically loaded, extending the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Farm product information display",
+        "user_persona": "A buyer interested in purchasing fresh produce directly from farms.",
+        "user_goal": "View detailed information about farm products available for purchase.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Products",
+                "description": "James visits the products page to explore what's currently available.",
+                "action": "Navigate to the products section.",
+                "expected_outcome": "A responsive grid of product cards is displayed, each showing name, type, price, and availability status."
+            },
+            {
+                "step": 2,
+                "title": "Checking Product Details",
+                "description": "He finds organic tomatoes and clicks on the card to learn more.",
+                "action": "Click on a product card.",
+                "expected_outcome": "A modal or dedicated page opens with detailed information about the selected product."
+            },
+            {
+                "step": 3,
+                "title": "Quick Actions",
+                "description": "While browsing other products, he hovers over a card for carrots to see quick options.",
+                "action": "Hover over a product card.",
+                "expected_outcome": "Quick action buttons like 'Add to Favorites' appear on the card."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Weather forecast checking feature",
+        "user_persona": "An agronomist planning fieldwork based on weather conditions.",
+        "user_goal": "Check the weather forecast for different agricultural regions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Weather Forecasts",
+                "description": "Dr. Lee goes to the weather section to review forecasts for upcoming field visits.",
+                "action": "Navigate to the weather forecast section.",
+                "expected_outcome": "Weather cards grouped by location are displayed with min/max temperatures, conditions, and humidity levels."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Location",
+                "description": "She selects the 'North Region' from the map to get localized data.",
+                "action": "Click on a location pin on the map.",
+                "expected_outcome": "The weather forecast panel updates to show data specific to the North Region."
+            },
+            {
+                "step": 3,
+                "title": "Highlighting Data",
+                "description": "As she reviews, Dr. Lee hovers over a weather card for tomorrow’s forecast.",
+                "action": "Hover over a weather card.",
+                "expected_outcome": "The corresponding entry on the map is highlighted for better correlation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality for news, products, and weather",
+        "user_persona": "A researcher gathering data across multiple agricultural topics.",
+        "user_goal": "Use the search bar to quickly locate specific news, products, or weather information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Alex remembers reading something about irrigation techniques and uses the search bar.",
+                "action": "Click inside the search bar.",
+                "expected_outcome": "Autocomplete suggestions appear below the search input."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Query",
+                "description": "He types 'irrigation' and presses Enter to submit his query.",
+                "action": "Type 'irrigation' and press Enter.",
+                "expected_outcome": "Redirected to a results page showing matches from news, products, and weather sections."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filter options for news categories",
+        "user_persona": "A policy analyst focusing on agricultural regulations.",
+        "user_goal": "Filter news articles to focus only on policy-related updates.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Category Filter",
+                "description": "Sarah wants to narrow down her news feed to 'Policy Changes' only.",
+                "action": "Click on the 'Policy Changes' category tag.",
+                "expected_outcome": "Only news articles categorized under 'Policy Changes' are displayed, with the tag highlighted."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filter options for farm product types",
+        "user_persona": "A chef sourcing ingredients for a restaurant menu.",
+        "user_goal": "Find only vegetable products available for purchase.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filtering by Product Type",
+                "description": "Chef Miguel uses the filter dropdown to view only vegetables.",
+                "action": "Select 'Vegetables' from the 'Filter by Type' dropdown.",
+                "expected_outcome": "The product grid updates to show only vegetable-type items."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filter options for weather locations",
+        "user_persona": "A regional coordinator managing multiple farming sites.",
+        "user_goal": "Check weather forecasts specifically for the East Plains region.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Region Filter",
+                "description": "Tommy wants to monitor weather conditions in the East Plains.",
+                "action": "Choose 'East Plains' from the location filter dropdown.",
+                "expected_outcome": "Weather forecast panel refreshes to display data specific to the East Plains area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with light cyan background",
+        "user_persona": "A frequent mobile user accessing the site on various devices.",
+        "user_goal": "Access the website seamlessly on desktop and mobile with consistent visuals.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Site on Desktop",
+                "description": "Emily opens the website on her laptop to check today’s news.",
+                "action": "Load the homepage on a desktop browser.",
+                "expected_outcome": "Entire page background is rendered in light cyan (#E0FFFF) with proper responsiveness."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Mobile View",
+                "description": "Later, she accesses the same site on her phone while commuting.",
+                "action": "Resize viewport or switch to mobile device.",
+                "expected_outcome": "Layout adjusts responsively, maintaining the light cyan background and readable content."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Cadet blue themed UI elements",
+        "user_persona": "A designer evaluating UI consistency across platforms.",
+        "user_goal": "Verify that all interactive elements follow the cadet blue theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Buttons",
+                "description": "Jordan notices the buttons on the homepage and checks their styling.",
+                "action": "Hover over a primary button.",
+                "expected_outcome": "Button maintains cadet blue color (#5F9EA0) and gains subtle shadow or darkening effect."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching data from backend APIs",
+        "user_persona": "A developer verifying dynamic data integration.",
+        "user_goal": "Confirm that frontend components fetch real-time data instead of using mocks.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading News Dynamically",
+                "description": "Developer Sam inspects network activity when loading the news section.",
+                "action": "Open browser DevTools Network tab and navigate to news section.",
+                "expected_outcome": "HTTP GET request made to /api/news endpoint; no hardcoded data found in source code."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer validating backend setup.",
+        "user_goal": "Ensure backend connects securely to PostgreSQL with correct configurations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "DevOps engineer Alice checks if backend service initializes properly with given DB settings.",
+                "action": "Start backend server locally with environment variables set.",
+                "expected_outcome": "Server logs confirm successful connection to PostgreSQL at localhost:5432 using myappuser credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json with npm run install:all script",
+        "user_persona": "A new contributor setting up the project locally.",
+        "user_goal": "Install dependencies for both frontend and backend efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Unified Install Command",
+                "description": "Bob clones the repo and runs the unified installation command.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json with npm run dev script",
+        "user_persona": "A developer starting local development servers.",
+        "user_goal": "Launch both frontend and backend development environments together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Developer Tina begins working by starting both application layers.",
+                "action": "Execute `npm run dev` from the root folder.",
+                "expected_outcome": "Frontend and backend servers start concurrently, accessible via their respective ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema for storing news articles",
+        "user_persona": "A database administrator reviewing data models.",
+        "user_goal": "Validate that news articles are stored according to defined schema.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Structure",
+                "description": "DBA Raj queries the database to verify the structure of news_articles table.",
+                "action": "Connect to PostgreSQL and run DESCRIBE or equivalent on news_articles.",
+                "expected_outcome": "Table exists with columns: id, title, summary, content, category, published_at, image_url matching schema definition."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema for storing farm product data",
+        "user_persona": "A data analyst ensuring accurate product tracking.",
+        "user_goal": "Confirm that farm product records match the defined database schema.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Product Table",
+                "description": "Analyst Kim checks how farm product data is structured in the database.",
+                "action": "Query the farm_products table schema.",
+                "expected_outcome": "Schema matches CREATE TABLE statement with fields: id, name, type, description, price, image_url, availability_status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema for storing weather forecast information",
+        "user_persona": "A meteorologist collaborating on agricultural forecasting tools.",
+        "user_goal": "Ensure weather data storage supports temporal and spatial analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Validating Forecast Schema",
+                "description": "Meteorologist Paul verifies that weather data is stored appropriately for analysis.",
+                "action": "Examine the weather_forecasts table structure.",
+                "expected_outcome": "Table has composite key (location_id, forecast_date) and includes fields: location_name, temperature_min/max, condition, humidity, wind_speed."
+            }
+        ]
+    }
+]

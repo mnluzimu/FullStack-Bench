@@ -1,0 +1,173 @@
+[
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), isCompleted (boolean), createdAt (datetime), priority (enum: low, medium, high)",
+            "indigoColorPalette": "#6366F1",
+            "lavenderBackgroundColor": "#E6E6FA"
+        },
+        "function": "Create new to-do items with title and description fields",
+        "static_description": "A form at the top of the page with a lavender background (#E6E6FA) and indigo (#6366F1) input field for title, indigo text area for description, and an indigo submit button labeled 'Add Task'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Add Task' button creates a new task entry in the database with provided title and description, then clears the form fields."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), isCompleted (boolean), createdAt (datetime), priority (enum: low, medium, high)"
+        },
+        "function": "Edit existing to-do items including title and description",
+        "static_description": "Each task item displays editable title and description fields when in edit mode. Edit icon appears on hover.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the edit icon transforms the task display into an editable form with pre-filled title and description fields. A save button confirms changes which updates the database record."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), isCompleted (boolean), createdAt (datetime), priority (enum: low, medium, high)"
+        },
+        "function": "Delete to-do items permanently",
+        "static_description": "Each task item includes a trash can icon positioned to the right side of the task row.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the trash can icon removes the task from the database and immediately updates the task list view without page refresh."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskDataSchema": "Database table 'tasks' with fields: id (UUID), title (string), description (text), isCompleted (boolean), createdAt (datetime), priority (enum: low, medium, high)",
+            "checkmarkIcon": "/assets/icons/checkmark.svg"
+        },
+        "function": "Mark to-do items as completed with visual indication",
+        "static_description": "Each task shows a checkbox next to the title. Completed tasks have a strikethrough title and faded text color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the checkbox toggles the isCompleted status in the database and visually updates the task styling to show completion state with strikethrough text and checkmark icon."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filterOptions": [
+                "All",
+                "Active",
+                "Completed"
+            ]
+        },
+        "function": "Filter to-do items by status (all, active, completed)",
+        "static_description": "Three indigo-colored filter buttons aligned horizontally above the task list: 'All', 'Active', 'Completed'. Default selection is 'All'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any filter button updates the displayed task list to show only items matching the selected status while maintaining current search/filter context."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "/api/tasks/search"
+        },
+        "function": "Search to-do items by keyword across titles and descriptions",
+        "static_description": "A search bar with lavender background and indigo border positioned above the task list, featuring a magnifying glass icon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing searches both title and description fields in real-time, updating the task list dynamically without page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "taskListEndpoint": "/api/tasks/list"
+        },
+        "function": "Browse all to-do items in a list view",
+        "static_description": "Vertically stacked list of tasks on a lavender background, each task displayed in an indigo-bordered card showing title, truncated description, creation date, and action icons.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "completedTaskStyle": "strikethrough text with #9CA3AF color",
+            "activeTaskStyle": "normal text with #111827 color"
+        },
+        "function": "Display to-do items with clear visual distinction between completed and active tasks",
+        "static_description": "Tasks are displayed in cards with either normal dark text for active tasks or light gray strikethrough text for completed tasks.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "inputFieldStyle": "indigo border with lavender background"
+        },
+        "function": "Provide a text input field for entering new task titles",
+        "static_description": "Single-line text input field with placeholder 'Enter task title' styled with indigo border and lavender background at the top of the task creation form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter focuses on the description textarea below for continued input flow."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "textareaStyle": "multi-line indigo bordered box with lavender background"
+        },
+        "function": "Include a text area for detailed task descriptions",
+        "static_description": "Multi-line text area below the title input with placeholder 'Enter task description' and matching indigo border/lavender background styling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "counterDisplayLogic": "total = count(tasks); completed = count(tasks where isCompleted=true)"
+        },
+        "function": "Show a counter displaying total and completed task numbers",
+        "static_description": "Status bar beneath filters showing 'X tasks remaining' where X reflects live count of incomplete tasks out of total task count.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "sortOptions": [
+                "Creation Date",
+                "Priority"
+            ]
+        },
+        "function": "Enable task sorting by creation date or priority",
+        "static_description": "Dropdown menu labeled 'Sort By:' with options 'Creation Date' and 'Priority', styled with indigo theme colors.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a sort option reorders the visible task list according to chosen criteria, preserving current filter/search settings."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "Mobile (<768px): stacked layout; Desktop (≥768px): multi-column layout"
+        },
+        "function": "Implement responsive design for mobile and desktop viewing",
+        "static_description": "Layout adjusts based on screen size - narrow single column on mobile devices and wider two/three-column arrangement on desktops, maintaining consistent lavender/indigo styling.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorValue": "#E6E6FA"
+        },
+        "function": "Apply lavender background color consistently across all pages",
+        "static_description": "Entire application viewport uses solid lavender (#E6E6FA) as the base background color behind all UI elements.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentStyles": "Indigo primary color applied to buttons, borders, checkboxes, and interactive elements"
+        },
+        "function": "Style all UI components with indigo color scheme",
+        "static_description": "All interactive components including buttons, checkboxes, inputs, and selection controls use indigo (#6366F1) as their primary accent color against the lavender backdrop.",
+        "interaction_and_states": []
+    }
+]

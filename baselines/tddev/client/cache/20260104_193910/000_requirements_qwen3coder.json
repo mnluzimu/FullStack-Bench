@@ -1,0 +1,17 @@
+[
+    "Frontend application with a dashboard displaying animal detection records",
+    "Backend API service connecting to a PostgreSQL database using specified environment variables",
+    "Animal recognition system that identifies wild animals from uploaded images or camera feeds",
+    "Color coding feature assigning unique colors to each identified animal type",
+    "User interface allowing users to configure alert conditions for specific animals",
+    "SMS notification system triggered when specified animals are detected",
+    "Database schema storing animal detection records with timestamps and metadata",
+    "User authentication and profile management for personalized alert settings",
+    "Animal information pages displaying species details and characteristics",
+    "Real-time detection feed showing live animal identifications",
+    "Alert configuration panel with options to set detection thresholds and schedules",
+    "Browsing interface for historical detection records with search and filter capabilities",
+    "Responsive web design with misty rose background and firebrick UI elements",
+    "API endpoints for retrieving detection data, animal information, and user settings",
+    "Concurrent development server setup with npm scripts for frontend and backend"
+]

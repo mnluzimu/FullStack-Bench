@@ -1,0 +1,226 @@
+[
+    {
+        "resource_dependency": {
+            "teamMemberDataSchema": "Table 'team_members' with columns: id (UUID), name (string), role (string), bio (text), avatar_url (string), social_links (JSONB).",
+            "teamIntroductionAPIEndpoint": "/api/team-members"
+        },
+        "function": "Display team members along with their roles and brief bios.",
+        "static_description": "A section titled 'Meet Our Team', showing cards arranged horizontally. Each card contains a circular avatar image, member name in bold, role beneath the name, and a short biography excerpt. Cards use dark cyan text on a whitesmoke background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a team member card expands it to show full bio and social media links."
+            },
+            {
+                "interaction": "Hover",
+                "description": "On hover over a team member card, shadow effect intensifies and scale slightly increases."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "projectDataSchema": "Table 'projects' with columns: id (UUID), title (string), description (text), cover_image_url (string), gallery_images (array of strings), technologies_used (array of strings), project_url (string).",
+            "projectShowcaseAPIEndpoint": "/api/projects"
+        },
+        "function": "List and visually present completed or ongoing team projects.",
+        "static_description": "A grid-based section titled 'Our Projects'. Each project displayed as a card with a cover image, title, short description, and tags representing technologies used. Background is whitesmoke, text is dark cyan.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a project card navigates to a dedicated project detail page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a project card displays a zoom-in effect on the cover image and highlights the title."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "skillDataSchema": "Table 'skills' with columns: id (UUID), category (enum: technical, soft), name (string), proficiency_level (integer between 1-5).",
+            "skillShowcaseAPIEndpoint": "/api/skills"
+        },
+        "function": "Highlight the team's key technical and soft skills with proficiency indicators.",
+        "static_description": "Two subsections under 'Skills': 'Technical Skills' and 'Soft Skills'. Each skill shown as a horizontal bar chart labeled with the skill name and a numeric proficiency level out of 5. Bars filled proportionally to indicate level. Uses dark cyan fill against whitesmoke background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a skill bar shows a tooltip with additional context about how the skill was applied."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactInfoDataSchema": "Table 'contact_info' with columns: id (UUID), method_type (enum: email, phone, address, social_media), value (string), label (string), icon_url (string).",
+            "contactDetailsAPIEndpoint": "/api/contact-info"
+        },
+        "function": "Provide clear methods for contacting the team via multiple channels.",
+        "static_description": "A section titled 'Get In Touch' with icons and labels for each contact method listed vertically. Icons sourced from resource paths, values clearly visible next to icons. Styled with dark cyan headings and text on whitesmoke background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on an email or social media link opens respective platform interface or external browser tab."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "frontendFetchLogic": "Axios or Fetch API calls to retrieve data from backend endpoints such as /api/team-members, /api/projects etc."
+        },
+        "function": "Dynamically render frontend content by fetching live data from backend services.",
+        "static_description": "Each main section populated with data retrieved asynchronously after initial load. Loading spinners shown until data arrives. Content rendered inside styled containers matching site-wide theme (whitesmoke/dark cyan).",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon DOMContentLoaded event, initiate API requests to fetch all relevant datasets and populate sections accordingly."
+            },
+            {
+                "interaction": "Error State Handling",
+                "description": "If any API request fails, display user-friendly error message within affected section without breaking entire UI flow."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backendEndpoints": [
+                "GET /api/team-members",
+                "GET /api/projects",
+                "GET /api/skills",
+                "GET /api/contact-info",
+                "POST /api/contact-message"
+            ],
+            "databaseConnectionConfig": "Uses environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp to connect to PostgreSQL."
+        },
+        "function": "Serve structured data related to team members, projects, skills, and contact info through RESTful API endpoints.",
+        "static_description": "Express.js server exposing defined routes returning JSON responses containing queried data from PostgreSQL tables. Server configured to accept cross-origin requests from local frontend during development.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbSchemaDefinition": {
+                "team_members": "id UUID PRIMARY KEY, name VARCHAR(255), role VARCHAR(255), bio TEXT, avatar_url TEXT, social_links JSONB",
+                "projects": "id UUID PRIMARY KEY, title VARCHAR(255), description TEXT, cover_image_url TEXT, gallery_images TEXT[], technologies_used TEXT[], project_url TEXT",
+                "skills": "id UUID PRIMARY KEY, category VARCHAR(50) CHECK (category IN ('technical', 'soft')), name VARCHAR(255), proficiency_level INT CHECK (proficiency_level BETWEEN 1 AND 5)",
+                "contact_info": "id UUID PRIMARY KEY, method_type VARCHAR(50) CHECK (method_type IN ('email', 'phone', 'address', 'social_media')), value TEXT, label TEXT, icon_url TEXT"
+            }
+        },
+        "function": "Define relational database schema to store all necessary information about team members, projects, skills, and contact methods.",
+        "static_description": "PostgreSQL database named 'myapp' created with four tables: team_members, projects, skills, and contact_info. All tables defined with appropriate constraints and field types to support application logic.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "envFileContent": "DB_HOST=localhost\nDB_PORT=5432\nDB_USERNAME=myappuser\nDB_PASSWORD=myapppassword\nDB_NAME=myapp"
+        },
+        "function": "Configure secure access to PostgreSQL instance using predefined environment variables.",
+        "static_description": ".env file placed at root directory storing database credentials which backend uses to establish connection upon startup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                {
+                    "label": "Home",
+                    "href": "#home"
+                },
+                {
+                    "label": "Team",
+                    "href": "#team"
+                },
+                {
+                    "label": "Projects",
+                    "href": "#projects"
+                },
+                {
+                    "label": "Skills",
+                    "href": "#skills"
+                },
+                {
+                    "label": "Contact",
+                    "href": "#contact"
+                }
+            ]
+        },
+        "function": "Allow seamless navigation between major sections of the website.",
+        "static_description": "Fixed top navigation bar with five items aligned horizontally. Each item styled with dark cyan text on whitesmoke background. Active/current section highlighted differently.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a menu item scrolls smoothly to the corresponding anchor element within the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mediaQueryStyles": "@media screen and (max-width: 768px)"
+        },
+        "function": "Ensure optimal viewing experience regardless of device screen size.",
+        "static_description": "Layout adjusts automatically when viewed on smaller screens. Navigation collapses into hamburger menu; grids reflow into vertical stacks; font sizes adapt accordingly while maintaining contrast and readability.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Changing window dimensions triggers CSS media queries causing layout rearrangements to maintain usability."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "projectDetailPageRoute": "/project/:id",
+            "projectDetailsAPISchema": "GET /api/projects/{projectId} returns extended details including gallery images and long-form description."
+        },
+        "function": "Enable users to explore more detailed insights into selected projects.",
+        "static_description": "Dedicated route displaying expanded project view featuring large header image, detailed narrative, technology stack breakdown, and interactive gallery carousel. Page inherits global styling (whitesmoke/dark cyan).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking gallery thumbnails switches featured image preview dynamically without reloading page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contactFormFields": [
+                {
+                    "name": "fullName",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "required": true
+                },
+                {
+                    "name": "message",
+                    "type": "textarea",
+                    "required": true
+                }
+            ],
+            "contactSubmissionAPI": "POST /api/contact-message expects body with fullName, email, and message fields."
+        },
+        "function": "Facilitate direct communication between visitors and the team.",
+        "static_description": "Contact form embedded within 'Get In Touch' section comprising three labeled inputs and a submit button. Form styled consistently with rest of site using dark cyan borders/buttons on whitesmoke canvas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting valid form sends POST request to backend endpoint. Success prompts confirmation alert; failure highlights invalid fields."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm start\\\" \\\"cd server && npm run dev\\\"\" } }"
+        },
+        "function": "Streamline setup and concurrent execution of frontend and backend environments.",
+        "static_description": "Root-level package.json file includes two custom scripts: 'install:all' runs installation commands for both directories, and 'dev' launches both development servers simultaneously using concurrently utility.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentExecutionTool": "concurrently npm package installed globally or locally in project root"
+        },
+        "function": "Run both frontend and backend development servers concurrently using a single command.",
+        "static_description": "Command-line tool configured to execute both React/Vue dev server and Node/Express API server together, logging outputs separately but unified in terminal session.",
+        "interaction_and_states": []
+    }
+]

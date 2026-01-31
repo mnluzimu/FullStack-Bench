@@ -1,0 +1,230 @@
+[
+    {
+        "resource_dependency": {
+            "api_base_url": "http://localhost:3001/api",
+            "auth_token_storage": "localStorage",
+            "contest_list_endpoint": "/contests",
+            "enroll_contest_endpoint": "/contests/{contestId}/enroll",
+            "question_display_endpoint": "/contests/{contestId}/questions",
+            "submit_answer_endpoint": "/contests/{contestId}/answers",
+            "leaderboard_endpoint": "/contests/{contestId}/leaderboard",
+            "score_dashboard_endpoint": "/users/me/scores"
+        },
+        "function": "Fetch dynamic data from backend APIs for contest browsing, enrollment, question display, answer submission, scoring, and leaderboard.",
+        "static_description": "The frontend application displays contest listings, question interfaces, score dashboards, and leaderboards dynamically fetched from backend endpoints. All components use beige (#F5F5DC) as the base background color and saddle brown (#8B4513) for buttons, headers, borders, and active states.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a contest card navigates to the contest detail page which loads questions via API."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enroll' on a contest triggers an API call to register the user in the selected contest."
+            },
+            {
+                "interaction": "Click",
+                "description": "Submitting an answer sends the response to the backend and fetches updated scoring information."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling through the leaderboard updates only visible entries without reloading entire dataset."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "db_host": "localhost",
+            "db_port": 5432,
+            "db_username": "myappuser",
+            "db_password": "myapppassword",
+            "db_name": "myapp",
+            "postgresql_connection_library": "pg"
+        },
+        "function": "Establish connection to PostgreSQL database using provided environment variables and manage CRUD operations for users, contests, questions, answers, and leaderboard data.",
+        "static_description": "Backend connects securely to PostgreSQL instance using DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME environment variables. It exposes RESTful APIs for managing contest-related entities.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "login_page_url": "/login",
+            "signup_page_url": "/signup",
+            "session_timeout_duration": "2 hours",
+            "jwt_secret_key": "process.env.JWT_SECRET",
+            "user_profile_schema": "id (UUID), username (string), email (string), password_hash (string), created_at (timestamp)"
+        },
+        "function": "Manage user authentication and maintain secure sessions during contest participation.",
+        "static_description": "Login and signup pages allow users to authenticate. Upon successful login, JWT tokens are stored in cookies or localStorage. Session timeouts occur after 2 hours of inactivity.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' validates credentials and redirects authenticated users to the home screen."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Logout' clears session tokens and returns user to the login page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contest_card_component": "Reusable card component with title, description, start/end times, and enroll button",
+            "browse_contests_api": "/contests?status=open",
+            "contest_image_placeholder": "/assets/images/default-contest-image.png"
+        },
+        "function": "Display a list of available knowledge competitions that users can browse.",
+        "static_description": "A grid or list layout presents open contests with titles, descriptions, start/end times, and default images. Each entry includes an 'Enroll Now' button styled with saddle brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a contest card navigates to its detail page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enroll Now' enrolls the current user in the contest."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "enroll_button_text": "Enroll Now",
+            "enrolled_status_text": "Already Enrolled",
+            "enrollment_confirmation_modal": "Modal confirming successful enrollment",
+            "contest_enrollment_api": "/contests/{contestId}/enroll"
+        },
+        "function": "Allow users to join available contests by registering their interest.",
+        "static_description": "Each contest listing shows either an 'Enroll Now' button or 'Already Enrolled' status depending on the user's registration. Buttons are colored saddle brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Enroll Now' calls the backend API to register the user in the contest and changes the button to 'Already Enrolled'."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "question_display_container": "Single-question view container with timer, options, and navigation controls",
+            "question_timer_icon": "/assets/icons/timer-icon.svg",
+            "next_question_button": "Next Question",
+            "submit_answers_button": "Submit Answers"
+        },
+        "function": "Present contest questions one at a time with clear formatting and intuitive navigation.",
+        "static_description": "Displays one question per screen with multiple-choice options or free-text input field. Includes a countdown timer icon and navigation buttons ('Next', 'Submit') styled in saddle brown.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Next' advances to the next question in sequence."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit' submits all remaining answers and ends the quiz."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "answer_submission_api": "/contests/{contestId}/answers",
+            "multiple_choice_option_style": "Radio buttons or checkboxes",
+            "free_text_input_field": "Text area for written answers",
+            "submit_button_text": "Submit Answer"
+        },
+        "function": "Enable users to submit answers to displayed contest questions.",
+        "static_description": "Multiple-choice questions show radio buttons or checkboxes. Free-text questions provide a text area. Submit button appears below each question in saddle brown styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Answer' sends the selected option(s) or typed text to the backend and proceeds to the next question or summary screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "scoring_algorithm_logic": "Calculated based on correct answers and submission speed",
+            "real_time_score_update_api": "/users/me/score",
+            "score_display_format": "Points out of total possible points"
+        },
+        "function": "Calculate and update user scores instantly upon answer submission.",
+        "static_description": "Score panel updates automatically after each submitted answer. Displays total earned points versus maximum possible, along with time-based bonuses if applicable.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "personal_score_dashboard_url": "/dashboard/scores",
+            "score_chart_visualization": "Bar chart or line graph showing performance over time",
+            "rank_indicator_icon": "/assets/icons/rank-badge.svg",
+            "contest_history_section": "List of past contests with scores and ranks"
+        },
+        "function": "Provide personalized insights into user performance across enrolled contests.",
+        "static_description": "Dashboard features a score overview chart, rank badge indicating standing, and a history section listing previous contests with corresponding scores and rankings. Background is beige with saddle brown accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a contest in the history section reveals detailed results and feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "public_leaderboard_url": "/leaderboards/{contestId}",
+            "top_performer_badge": "Gold/Silver/Bronze medal icons",
+            "leaderboard_entry_template": "{position}. {username} – {score} pts",
+            "refresh_interval": "Every 30 seconds"
+        },
+        "function": "Showcase top performers within each contest to encourage competition.",
+        "static_description": "Leaderboard lists top scorers with position numbers, usernames, and scores. Top three entries receive gold/silver/bronze badges. Refreshes periodically every 30 seconds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling down loads more ranked participants beyond initial top 10."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparison_feature_endpoint": "/users/me/comparison/{contestId}",
+            "peer_comparison_visual": "Side-by-side bar graphs comparing user vs average/top scores",
+            "percentile_rank_display": "You're in the top X%!"
+        },
+        "function": "Allow users to compare their performance against peers in the same contest.",
+        "static_description": "Comparison view overlays user’s score against average and top scores using visual charts. Displays percentile ranking message such as 'You're in the top 15%' beneath the graph.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "color_palette_config": {
+                "base_background_color": "#F5F5DC",
+                "primary_accent_color": "#8B4513"
+            },
+            "responsive_breakpoints": "Mobile (<768px), Tablet (768–1024px), Desktop (>1024px)"
+        },
+        "function": "Ensure consistent UI design with beige backgrounds and saddle brown components across devices.",
+        "static_description": "All screens utilize beige (#F5F5DC) as the primary background color and saddle brown (#8B4513) for buttons, headers, links, and active states. Layout adjusts responsively between mobile, tablet, and desktop views.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "install_all_script": "concurrently \"cd client && npm install\" \"cd server && npm install\"",
+            "client_directory": "./client",
+            "server_directory": "./server"
+        },
+        "function": "Configure package.json to support installing dependencies for both frontend and backend applications simultaneously.",
+        "static_description": "Root package.json defines an 'install:all' script that executes npm install commands in both ./client and ./server directories concurrently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dev_start_script": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+            "concurrently_package": "^7.0.0"
+        },
+        "function": "Define a development startup command that launches both frontend and backend services together.",
+        "static_description": "Root package.json contains a 'dev' script utilizing the concurrently library to launch client-side and server-side development servers at once.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "database_schema_definition": "CREATE TABLE users(id UUID PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(100) UNIQUE NOT NULL, password_hash TEXT NOT NULL, created_at TIMESTAMP DEFAULT NOW()); CREATE TABLE contests(id UUID PRIMARY KEY, title VARCHAR(100) NOT NULL, description TEXT, start_time TIMESTAMP NOT NULL, end_time TIMESTAMP NOT NULL); CREATE TABLE questions(id UUID PRIMARY KEY, contest_id UUID REFERENCES contests(id), question_text TEXT NOT NULL, question_type VARCHAR(20) CHECK(question_type IN ('multiple_choice', 'free_text')), options JSONB); CREATE TABLE answers(id UUID PRIMARY KEY, user_id UUID REFERENCES users(id), contest_id UUID REFERENCES contests(id), question_id UUID REFERENCES questions(id), answer_text TEXT, is_correct BOOLEAN, submitted_at TIMESTAMP DEFAULT NOW()); CREATE TABLE leaderboard(contest_id UUID REFERENCES contests(id), user_id UUID REFERENCES users(id), score INTEGER NOT NULL, rank SERIAL, PRIMARY KEY(contest_id, user_id));"
+        },
+        "function": "Establish database tables for storing user accounts, contest metadata, contest questions, submitted answers, and calculated leaderboard rankings.",
+        "static_description": "PostgreSQL schema includes five main tables: users, contests, questions, answers, and leaderboard. Relationships are enforced via foreign keys ensuring referential integrity.",
+        "interaction_and_states": []
+    }
+]

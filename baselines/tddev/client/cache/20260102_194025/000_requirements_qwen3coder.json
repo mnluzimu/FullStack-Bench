@@ -1,0 +1,17 @@
+[
+    "User registration and authentication system",
+    "Profile creation and editing interface with fields for name, contact info, skills, qualifications, email, and photo upload",
+    "Job listing creation and management for employers",
+    "Search and filtering functionality for job listings by category (construction, plumbing, electrical, etc.)",
+    "Browse jobs page with pagination or infinite scroll",
+    "Job application submission and tracking system",
+    "Employer dashboard to manage posted jobs and view applications",
+    "Candidate dashboard to manage profile and track job applications",
+    "Database schema design for users, profiles, jobs, applications, and categories",
+    "API endpoints for user authentication, profile management, job listings, and applications",
+    "Frontend styled with ivory background and forest green interactive elements",
+    "Responsive layout compatible with desktop and mobile devices",
+    "File upload system for user profile photos",
+    "Data validation and error handling for all forms and API requests",
+    "Repository configuration with package.json scripts for install:all and dev commands"
+]

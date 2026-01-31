@@ -1,0 +1,225 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "stockDatabaseSchema": "Create a database table named 'stocks' with fields: id (primary key), symbol (string, unique), name (string), current_price (decimal), last_updated (datetime), market_cap (decimal), sector (string), industry (string).",
+            "stockSearchAPI": "Integrate with an external stock data API (e.g., Alpha Vantage, Yahoo Finance) to fetch real-time or delayed stock information based on user input."
+        },
+        "function": "Allow users to search for stocks by entering either stock codes or company names.",
+        "static_description": "A search bar component positioned at the top center of the page with a white background and navy-colored border. It includes a placeholder text 'Enter stock code or name' and a search icon aligned to the right inside the input field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the input field when clicked, enabling text entry."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Triggers the search action when the Enter key is pressed while the input field is focused."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autoSuggestDropdownStyle": "Navy-themed dropdown list with white text and hover effect highlighting selected item in light gray.",
+            "stockSuggestionsAPI": "An API endpoint that returns suggested stock matches based on partial user input (prefix matching)."
+        },
+        "function": "Provide auto-suggested stock options as the user types in the search bar.",
+        "static_description": "Below the search bar, a dropdown menu appears dynamically showing up to 5 suggested stock entries with their symbols and company names formatted in navy theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Highlights individual suggestions within the dropdown list without selecting them."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selects the hovered suggestion, populating the search bar with the full stock symbol or name and triggering the report generation view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptions": [
+                "PDF",
+                "HTML"
+            ],
+            "exportIcon": "/assets/icons/export-icon.svg"
+        },
+        "function": "Allow users to choose the format in which they want to receive the generated stock report.",
+        "static_description": "Two toggle buttons labeled 'PDF' and 'HTML', placed horizontally below the search area. Both are styled with navy borders and white fill, indicating unselected state. One can be toggled active at a time.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggles between PDF and HTML selection states. Clicking one deselects the other and highlights the chosen option with a navy fill."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "customizationPanelLayout": "Sidebar panel layout with checkboxes and sliders for customizing report content sections such as 'Basic Info', 'Market Trends', 'Financial Data', and 'Historical Prices'.",
+            "sectionIcons": {
+                "basicInfo": "/assets/icons/basic-info.svg",
+                "marketTrends": "/assets/icons/trend-chart.svg",
+                "financialData": "/assets/icons/financial-data.svg",
+                "historicalPrices": "/assets/icons/historical-prices.svg"
+            }
+        },
+        "function": "Enable users to select specific content sections and parameters for inclusion in their stock reports.",
+        "static_description": "A collapsible sidebar panel titled 'Report Customization' containing labeled checkboxes for major content categories and adjustable sliders for parameter settings like date ranges or chart types.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Expands or collapses the customization panel when clicking the header title."
+            },
+            {
+                "interaction": "Click",
+                "description": "Checks or unchecks content category checkboxes to include/exclude sections from the final report."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Adjusts slider positions to modify numerical parameters such as number of months of historical data included."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGenerationEngine": "Integration with a backend engine capable of compiling structured stock data into customizable reports based on user selections.",
+            "loadingSpinner": "/assets/animations/loading-spinner.gif"
+        },
+        "function": "Automatically compile and display a stock report tailored to user preferences upon request.",
+        "static_description": "A main content area where the generated report is displayed after processing completes. Initially shows a loading spinner animation during compilation followed by the complete report once ready.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiates the report generation process when the user clicks the 'Generate Report' button, displaying the loading spinner until completion."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "infoCardDesign": "Card-style container with navy headers and white body areas displaying company logo, name, ticker symbol, and live-updating price.",
+            "companyLogoPlaceholder": "/assets/placeholders/company-logo-placeholder.png"
+        },
+        "function": "Display essential identifying information about the selected stock.",
+        "static_description": "At the top of the report section, a card presents the company’s name, stock ticker symbol, and current trading price, all styled in navy font against a white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with a JavaScript charting library (e.g., Chart.js or D3.js) for rendering interactive market trend visualizations.",
+            "trendDataEndpoint": "API endpoint returning time-series data points for plotting market trends over various intervals (daily, weekly, monthly)."
+        },
+        "function": "Visualize recent market performance through dynamic charts or graphs.",
+        "static_description": "Below the basic info card, a line graph shows the stock’s price movement over the past month with axes labeled and tooltips enabled for detailed point inspection.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays tooltip information showing exact price and timestamp at any given data point along the trend line."
+            },
+            {
+                "interaction": "Click",
+                "description": "Allows switching between different time interval views (e.g., daily vs weekly) via control buttons beneath the chart."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTableSchema": "Database schema for storing quarterly financial metrics including revenue, net income, EPS, P/E ratio, debt-to-equity ratio, ROE, etc.",
+            "financialMetricsAPI": "External API providing access to quarterly and annual financial statements and calculated key ratios."
+        },
+        "function": "Present summarized financial health indicators derived from official filings.",
+        "static_description": "A tabular section listing key financial figures in rows under clear column headings such as Revenue, Earnings Per Share, Price-to-Earnings Ratio, Debt-to-Equity Ratio, Return on Equity.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Sorts table columns ascending/descending when clicking on respective column headers."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "priceHistoryChartComponent": "Candlestick or line chart component built using a visualization framework for displaying long-term price movements.",
+            "historicalPriceDataAPI": "API endpoint supplying historical OHLC (Open, High, Low, Close) pricing data over extended periods."
+        },
+        "function": "Illustrate how the stock has performed historically using graphical representations.",
+        "static_description": "A dedicated chart area presenting multi-year price history as candlesticks or smoothed lines, annotated with significant events or splits if applicable.",
+        "interaction_and_states": [
+            {
+                "interaction": "Zoom",
+                "description": "Enables zooming in/out on specific date ranges using mouse scroll or touch pinch gestures."
+            },
+            {
+                "interaction": "Drag and Select",
+                "description": "Allows dragging across the chart timeline to highlight and analyze a particular period of interest."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeUpdateMechanism": "WebSocket connection or polling mechanism to periodically refresh displayed prices.",
+            "delayedTagIndicator": "Text label indicating whether the shown price is real-time or delayed ('Delayed by 15 min')."
+        },
+        "function": "Keep displayed stock prices updated according to available feed accuracy.",
+        "static_description": "The current price indicator in the basic info card updates every minute with a small tag noting 'Real-Time' or 'Delayed' status depending on subscription level or data provider capabilities.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "customizableTemplateSystem": "Backend system managing multiple report templates adaptable to varying user-defined configurations.",
+            "templatePreviewImage": "/assets/images/template-preview.png"
+        },
+        "function": "Support diverse reporting needs by offering flexible customization features.",
+        "static_description": "A preview pane showcasing sample layouts reflecting applied customizations before finalizing the report output.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Applies selected template changes instantly to the preview panel for immediate feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "uiThemeDefinition": "CSS variables defining global styles: --background-color: #FFFFFF; --component-color: #000080;",
+            "responsiveBreakpoints": "@media queries targeting screen widths <768px (mobile), >=768px (tablet), >=1024px (desktop)"
+        },
+        "function": "Maintain consistent branding and usability across devices through thoughtful styling choices.",
+        "static_description": "Entire interface utilizes a clean aesthetic featuring white backgrounds complemented by navy accents throughout navigation bars, buttons, and informational cards.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mobileNavigationMenu": "Hamburger-style collapsible navigation adapted for smaller screens.",
+            "touchFriendlyElements": "Larger tap targets ensuring ease-of-use on touchscreen interfaces."
+        },
+        "function": "Ensure seamless experience regardless of device type or viewport size.",
+        "static_description": "Layout adjusts fluidly between desktop grid arrangement and stacked mobile-friendly presentation with appropriately sized interactive elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens/closes hamburger menu overlaying main content on mobile viewports."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorMessagingFramework": "Predefined alert banners or modal dialogs used to communicate failures gracefully.",
+            "invalidInputMessage": "Sorry, no results found for [entered_value]. Please check spelling or try another symbol."
+        },
+        "function": "Handle edge cases involving incorrect inputs or missing data sources effectively.",
+        "static_description": "Upon submission of an unrecognized stock identifier, an inline notification banner displays above the search bar explaining what went wrong and suggesting corrective actions.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "downloadButtonIcon": "/assets/icons/download-icon.svg",
+            "exportServiceEndpoint": "Server-side utility responsible for packaging compiled report content into downloadable file formats (PDF/HTML)."
+        },
+        "function": "Permit saving completed reports locally for offline review or sharing purposes.",
+        "static_description": "Located near the bottom of each generated report, a prominent navy-styled button labeled 'Download Report' accompanied by a download arrow icon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers browser-native save dialog prompting user to choose location and confirm download of the selected report format."
+            }
+        ]
+    }
+]

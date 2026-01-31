@@ -1,0 +1,152 @@
+[
+    {
+        "resource_dependency": {
+            "contentDataSchema": "Database table named 'contents' with fields: id (UUID), title (string), description (text), media_url (string, optional), author_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp)",
+            "userDataSchema": "Database table named 'users' with fields: id (UUID), username (string, unique), email (string, unique), password_hash (string), avatar_url (string, optional), bio (text, optional), created_at (timestamp)",
+            "apiEndpointContents": "/api/v1/contents"
+        },
+        "function": "Fetch and display a list of user-created imaginative works from the backend API.",
+        "static_description": "A grid-based layout showing cards of creative works. Each card displays a thumbnail image (if available), title, short excerpt of description, author name with avatar, and creation date. Background uses Azure Mist (#E0F7FA) and all component containers use Dark Slate Blue (#483D8B).",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scrolling loads more content as the user scrolls down the page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on a content card navigates to the detailed view page for that specific creative work."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formDataSchema": "Database tables involved: 'contents', 'users'. Form submission creates new entry in contents linked to authenticated user.",
+            "apiEndpointSubmitIdea": "/api/v1/contents",
+            "imageUploadAPI": "External file upload service API endpoint for handling media uploads securely"
+        },
+        "function": "Allow authenticated users to submit their creative ideas through a form interface.",
+        "static_description": "A multi-field form presented over a modal or dedicated page. Fields include Title (text input), Description (textarea), Media Upload (file input button), Submit button. All elements styled with Dark Slate Blue theme against Azure Mist background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit' sends validated form data to the backend API and redirects user to newly created content page upon success."
+            },
+            {
+                "interaction": "File Selection",
+                "description": "Selecting a file opens native OS file picker; selected filename is displayed next to the upload button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "discussionSchema": "Database table named 'discussions' with fields: id (UUID), content_id (foreign key to contents.id), author_id (foreign key to users.id), message (text), parent_id (optional, UUID for nested replies), created_at (timestamp)",
+            "apiEndpointComments": "/api/v1/discussions?content_id={id}"
+        },
+        "function": "Enable discussion threads under individual creative works where users can post messages and reply to existing comments.",
+        "static_description": "Below each content item, a threaded comment section shows chronological posts with avatars, usernames, timestamps, and reply buttons. Nested replies are indented visually. Uses consistent Azure Mist background and Dark Slate Blue text/buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Reply' reveals an inline textarea and submit button beneath the respective comment."
+            },
+            {
+                "interaction": "Submit",
+                "description": "Submitting a new comment adds it immediately to the thread without full page reload after successful API response."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "interactionsSchema": "Database tables: 'likes' (id UUID, user_id UUID, content_id UUID, created_at timestamp); 'follows' (follower_id UUID, followed_id UUID, created_at timestamp)",
+            "apiEndpointsInteract": "/api/v1/interactions/{type}/{target_id}"
+        },
+        "function": "Provide mechanisms for users to engage with content and other users via likes, comments, and follow actions.",
+        "static_description": "Each content card includes icons/buttons for Like (heart icon), Comment (speech bubble), and Follow (plus sign or person icon if not following). Counters show current numbers beside each action. Active states indicated by color change.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Tapping/clicking Like toggles the state (liked/unliked) and updates counter dynamically. Clicking Follow switches between Follow/Unfollow modes and updates backend accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileDataSchema": "Aggregated data from 'users', 'contents', 'likes', 'follows' tables filtered by user ID",
+            "apiEndpointUserProfile": "/api/v1/users/{userId}/profile"
+        },
+        "function": "Display personalized user profile pages aggregating shared content, activity history, followers/following counts.",
+        "static_description": "Profile header contains large avatar, username, bio, stats (posts count, followers, following). Below this, tabs organize content: Shared Works, Liked Items, Activity Feed. Tab panels present relevant filtered lists using same styling as main content grid but scoped to user context.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tab Switch",
+                "description": "Switching tabs re-fetches and renders different subsets of user-related data dynamically without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchFilterSchema": "Supports querying 'contents' table with filters on title/description keywords, tags (future extension), sort orders (newest/popular), pagination parameters",
+            "apiEndpointSearch": "/api/v1/search?q={query}&sort={order}&limit={n}&offset={m}"
+        },
+        "function": "Implement search and filtering tools allowing users to discover content efficiently based on various criteria.",
+        "static_description": "Prominent search bar atop main content area with filter dropdown menus nearby offering sorting options (e.g., Newest First, Most Popular). Filters collapse into hamburger menu on smaller screens. Results update within the same content grid structure used elsewhere.",
+        "interaction_and_states": [
+            {
+                "interaction": "Enter Key Press",
+                "description": "Pressing Enter while typing in the search box triggers a query request to the backend and populates results below."
+            },
+            {
+                "interaction": "Dropdown Selection",
+                "description": "Choosing a filter option modifies the query string sent to the API which returns appropriately sorted/filtered content."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignAssets": "CSS media queries and scalable vector assets ensuring compatibility across screen sizes from mobile (min-width: 320px) to desktop (max-width: 1920px)"
+        },
+        "function": "Ensure consistent usability and visual appeal regardless of device or viewport size.",
+        "static_description": "Layout adjusts fluidly using CSS Grid/Flexbox techniques. Content cards stack vertically on narrow screens, horizontal navigation transforms into collapsible hamburger menu. Font sizes scale proportionally. Touch targets meet minimum accessibility standards (>44px).",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Resizing browser window or rotating mobile device causes adaptive layout shifts maintaining readability and touch operability."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authSessionSchema": "Session tokens stored server-side or JWT-based approach using secure cookies. User sessions tracked in 'sessions' table: token (hashed string), user_id (UUID), expires_at (timestamp)",
+            "loginRegisterAPIs": "/api/v1/auth/login, /api/v1/auth/register, /api/v1/auth/logout"
+        },
+        "function": "Manage user identity verification and maintain login state throughout the session lifecycle.",
+        "static_description": "Top-right corner shows either Login/Register links or logged-in user avatar dropdown menu depending on session status. Authentication forms contain standard fields: Email, Password (+ Confirm Password during registration). Styled consistently with global Azure Mist/Dark Slate Blue palette.",
+        "interaction_and_states": [
+            {
+                "interaction": "Form Submission",
+                "description": "Successful login sets encrypted HTTP-only cookie containing session identifier used for subsequent authenticated requests until logout or expiration."
+            },
+            {
+                "interaction": "Logout Click",
+                "description": "Clicking Logout deletes local credentials and invalidates server-side session record then redirects to homepage unauthenticated."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseSetupInstructions": "Initialize PostgreSQL DB named 'myapp' with tables: users, contents, discussions, likes, follows, sessions. Apply proper indexing on frequently queried columns such as user_id, content_id, created_at. Enforce referential integrity constraints.",
+            "envVarsConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish foundational relational storage layer supporting all application entities and relationships.",
+        "static_description": "Structured relational schema diagram outlining primary keys, foreign key references, and sample field definitions for each logical entity group (Users, Contents, Interactions). Provided as setup documentation rather than rendered UI element.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "crudApiEndpointsSpec": "Defined RESTful routes including GET /api/v1/contents[/:id], POST /api/v1/contents, PUT/PATCH /api/v1/contents/:id, DELETE /api/v1/contents/:id and similar patterns for related entities"
+        },
+        "function": "Expose standardized programmatic access points enabling frontend applications to perform Create, Read, Update, Delete operations on core domain resources.",
+        "static_description": "Machine-readable API contract definition (OpenAPI/Swagger format) documenting path structures, supported methods, expected payloads/responses, error codes, rate limits (if any). Served at /docs endpoint.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,205 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/icons/search-icon.svg",
+            "stockDataAPI": "An external API providing real-time stock data lookup by code or name.",
+            "autoSuggestEndpoint": "A predictive text endpoint returning matching stock names/codes based on partial input."
+        },
+        "function": "Allow users to search for stocks using either stock codes or company names with real-time suggestions.",
+        "static_description": "A centered search bar at the top of the page featuring a navy border and placeholder text 'Enter stock code or name'. A magnifying glass icon is placed inside the right edge of the input field.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the input field focuses it and prepares it for typing."
+            },
+            {
+                "interaction": "Key Press",
+                "description": "As the user types, auto-suggested results appear below the input in a dropdown menu with a white background and navy borders."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting an item from the dropdown populates the input field and triggers a redirect or display update showing the selected stock’s information."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "basicStockInfoSchema": "Database schema with fields: stock_id (unique ID), company_name (string), ticker_symbol (string), current_price (float), last_updated (timestamp)."
+        },
+        "function": "Display fundamental information about a selected stock including company name, ticker symbol, and current price.",
+        "static_description": "Below the search bar, a card-style container displays the company name in bold navy font, followed by the ticker symbol in parentheses and the current price aligned to the right.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon selecting or entering a valid stock identifier, this section dynamically updates with retrieved data from the database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Integration with a charting library like Chart.js or D3.js for rendering interactive graphs.",
+            "marketTrendDataSchema": "Database schema containing historical prices and timestamps per stock_id."
+        },
+        "function": "Visualize market trends through time-series charts or graphs for selected stocks.",
+        "static_description": "A full-width chart area beneath the basic info section showing a line graph of the stock's performance over time. X-axis shows dates, Y-axis shows price range. Background remains white with navy axes labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over any point on the chart reveals a tooltip displaying the exact date and value."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on different intervals (e.g., 1D, 5D, 1M) reloads the chart with updated data ranges."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataSchema": "Database schema with tables: revenues (recollected quarterly/yearly), earnings (EPS values), ratios (P/E ratio, debt-to-equity, etc.) linked via stock_id."
+        },
+        "function": "Present essential financial metrics relevant to investment decisions.",
+        "static_description": "A tabular view displayed under the chart, listing key financial indicators such as Revenue, Earnings Per Share (EPS), P/E Ratio, Debt-to-Equity, and Dividend Yield in rows with headers styled in navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "If the table exceeds vertical space, scrolling allows viewing additional entries while keeping header fixed."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportFormatOptions": [
+                "PDF",
+                "Word Document (.docx)",
+                "Plain Text (.txt)"
+            ]
+        },
+        "function": "Permit selection among various output formats when exporting generated reports.",
+        "static_description": "A horizontal row of buttons labeled 'PDF', 'DOCX', and 'TXT' positioned near the bottom of the customization panel, all styled with navy backgrounds and white text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Pressing a format button highlights it visually and sets the chosen format for report generation/export."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "customizationCheckboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "Analyst Opinions",
+                "News Summary"
+            ],
+            "reportSectionsSchema": "Database table mapping user-selected sections to their inclusion status in the report template."
+        },
+        "function": "Let users choose which parts they want included in their custom-generated stock report.",
+        "static_description": "A checklist grouped vertically with checkboxes next to each option ('Basic Info', 'Market Trends', etc.), styled with navy checkmarks against a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Ticking or unticking boxes toggles whether those sections will be part of the final report content."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGenerationEngine": "A backend engine capable of compiling selected components into a structured document.",
+            "templateFiles": [
+                "/templates/report-template-pdf.html",
+                "/templates/report-template-docx.xml"
+            ]
+        },
+        "function": "Compile and produce a complete stock report tailored according to user inputs and selections.",
+        "static_description": "A prominent 'Generate Report' button centered below the customization tools, colored solid navy with white text stating 'Create My Report'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Pressing the button initiates processing, disables further clicks temporarily, and starts the report assembly workflow."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "previewRenderer": "Frontend module that renders compiled HTML version of the report before download."
+        },
+        "function": "Offer users a live preview of how their report will look prior to downloading or sharing.",
+        "static_description": "A scrollable iframe or embedded viewer immediately after clicking 'Generate Report', displaying formatted report content in real-time within a bordered white panel.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Users can scroll through the rendered preview to inspect formatting and content accuracy."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportHandler": "Client-side logic managing file downloads in supported formats."
+        },
+        "function": "Enable saving/exporting of finalized reports in commonly used digital formats.",
+        "static_description": "Once previewed, two adjacent buttons labeled 'Download PDF' and 'Export as DOCX' become active beneath the preview window, both navy-themed.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Each button triggers a download event specific to its associated format without reloading the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Define consistent styling across UI elements using a white background and navy accents.",
+        "static_description": "All containers, cards, forms, and panels maintain a white background. Interactive components such as buttons, borders, and headings use navy (#000080) for contrast and branding.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {},
+        "function": "Ensure optimal usability and readability regardless of screen size or device orientation.",
+        "static_description": "Layout adjusts fluidly between desktop and mobile views. Navigation bars collapse into hamburger menus on smaller screens, and font sizes scale accordingly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing browser windows or switching devices reflows content blocks responsively while preserving core functionality."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorMessagingSchema": "Standardized messages stored as constants for invalid inputs or missing data scenarios."
+        },
+        "function": "Inform users clearly when errors occur due to incorrect stock identifiers or unavailable data sources.",
+        "static_description": "An inline alert banner appears above the search bar if an invalid entry is submitted, styled red but outlined in navy, with concise messaging like 'Invalid stock symbol.'",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Invalid Input",
+                "description": "Displays appropriate error message directly below the input field until corrected or dismissed."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loadingIndicatorAsset": "/assets/spinner-whitebg-navy.gif"
+        },
+        "function": "Provide feedback during system-intensive operations such as report compilation or data fetching.",
+        "static_description": "A centrally-aligned animated spinner replaces the main action button or overlays the preview pane during long-running tasks, maintaining visibility against the white backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Process Start",
+                "description": "Loading indicator becomes visible once report generation begins and hides upon completion."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionStorageSchema": "Browser-based storage mechanism tracking recent searches, report preferences, and past exports tied to individual sessions."
+        },
+        "function": "Retain user settings and historical activity throughout browsing sessions.",
+        "static_description": "No visible UI element; however, behind-the-scenes, preferences such as previously selected report formats and recently viewed stocks persist even after refreshes.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate Away and Return",
+                "description": "Previous selections remain accessible via local/session storage mechanisms unless explicitly cleared by the user."
+            }
+        ]
+    }
+]

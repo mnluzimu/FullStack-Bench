@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all promotion data dynamically from backend APIs",
+        "user_persona": "A visitor interested in browsing current deals.",
+        "user_goal": "To view a list of available promotions fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Sarah opens the website and expects to see a list of promotions right away.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "The frontend makes a GET request to `/api/promotions` and displays a grid of promotions returned by the API."
+            },
+            {
+                "step": 2,
+                "title": "Scrolling Down",
+                "description": "As Sarah scrolls down, she expects more promotions to load automatically.",
+                "action": "Scroll to the bottom of the page.",
+                "expected_outcome": "Infinite scroll triggers another API call to fetch the next set of promotions, appending them to the existing list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using the specified environment variables",
+        "user_persona": "A developer starting up the backend service for the first time.",
+        "user_goal": "To verify the backend successfully connects to the PostgreSQL database using environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer sets the required environment variables and starts the backend server.",
+                "action": "Run `npm run dev` in the backend directory after setting DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, and DB_NAME.",
+                "expected_outcome": "Server logs indicate successful connection to the PostgreSQL database without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface with ivory-colored outer layout and forest green UI blocks",
+        "user_persona": "A designer reviewing the visual consistency of the website.",
+        "user_goal": "To confirm the correct usage of ivory for the outer layout and forest green for UI elements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Page Background",
+                "description": "The designer inspects the background color of the main page container.",
+                "action": "Open browser DevTools and inspect the outermost div.",
+                "expected_outcome": "Background color is confirmed as ivory (#FFFFF0)."
+            },
+            {
+                "step": 2,
+                "title": "Checking Button Color",
+                "description": "Designer checks the color of a primary button like 'Submit'.",
+                "action": "Inspect the 'Submit Promotion' button on the share page.",
+                "expected_outcome": "Button background color is forest green (#228B22)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Promotion browsing functionality displaying available promotions to users",
+        "user_persona": "A casual user looking for interesting deals.",
+        "user_goal": "To browse through currently available promotions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Browse Page",
+                "description": "Alex wants to see all available promotions and clicks the browse link.",
+                "action": "Navigate to `/promotions`.",
+                "expected_outcome": "Page loads with a responsive grid of promotion cards fetched from the backend."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Promotion Details",
+                "description": "Alex sees an interesting deal and clicks on the promotion card to learn more.",
+                "action": "Click on a promotion card.",
+                "expected_outcome": "Redirected to the detailed view page for that specific promotion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Promotion sharing capability allowing users to submit new promotions",
+        "user_persona": "An active community member wanting to contribute a new deal.",
+        "user_goal": "To submit a new promotion successfully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Share Form",
+                "description": "Jamie has a great discount code and wants to share it with others.",
+                "action": "Navigate to `/promotions/new`.",
+                "expected_outcome": "A form appears with fields for Title, Description, Discount Percentage, Expiration Date, and Category."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Promotion",
+                "description": "Jamie fills out the form completely and submits it.",
+                "action": "Fill in all required fields and click 'Submit'.",
+                "expected_outcome": "Form data is sent via POST to `/api/promotions`, and Jamie is redirected to the promotions browsing page with a success message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Promotion search feature enabling users to find promotions by keywords or filters",
+        "user_persona": "A targeted shopper looking for electronics discounts.",
+        "user_goal": "To find promotions related to electronics using filters.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Taylor wants to look for tech-related deals and uses the search bar.",
+                "action": "Type 'electronics' into the search bar and press Enter.",
+                "expected_outcome": "Results update to show only promotions matching the keyword 'electronics'."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filters",
+                "description": "Taylor refines results further by applying category and discount filters.",
+                "action": "Select 'Electronics' from category checkboxes and adjust minimum discount slider to 20% then click 'Apply Filters'.",
+                "expected_outcome": "Displayed promotions match both the keyword and applied filters."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system to manage user sessions and permissions",
+        "user_persona": "A registered user trying to log in.",
+        "user_goal": "To access personalized features by logging in.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Jordan visits the site and decides to log in to share a promotion.",
+                "action": "Click the login button, enter valid credentials, and submit.",
+                "expected_outcome": "JWT token is stored in HTTP-only cookie, Jordan is redirected to the homepage, and their profile avatar appears in the header."
+            },
+            {
+                "step": 2,
+                "title": "Logging Out",
+                "description": "After finishing, Jordan wants to securely end the session.",
+                "action": "Click the logout option from the profile menu.",
+                "expected_outcome": "Cookie is cleared, and Jordan is redirected to the login screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin management dashboard for overseeing users, promotions, and website settings",
+        "user_persona": "An administrator managing the platform.",
+        "user_goal": "To edit a user's role from the admin dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Dashboard",
+                "description": "Admin logs in and navigates to the administration area.",
+                "action": "Visit `/admin/users` route.",
+                "expected_outcome": "Admin dashboard loads showing a table of users with pagination and inline editing options."
+            },
+            {
+                "step": 2,
+                "title": "Editing User Role",
+                "description": "Admin finds a regular user and promotes them to admin.",
+                "action": "Click 'Edit' next to the user row, change role to 'admin', and save.",
+                "expected_outcome": "PUT request updates the user’s role in the database, and the change reflects immediately in the UI."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful API endpoints for CRUD operations on promotions",
+        "user_persona": "A developer testing API endpoints.",
+        "user_goal": "To verify creation and deletion of a promotion via REST API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Promotion",
+                "description": "Developer sends a POST request to add a new promotion.",
+                "action": "Send POST request to `/api/promotions` with valid promotion data.",
+                "expected_outcome": "New promotion is created in the database, and API returns a 201 Created status with the new promotion object."
+            },
+            {
+                "step": 2,
+                "title": "Deleting Promotion",
+                "description": "Developer removes the previously created promotion.",
+                "action": "Send DELETE request to `/api/promotions/{id}` where {id} matches the newly created promotion.",
+                "expected_outcome": "Promotion is removed from the database, and API returns a 204 No Content status."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, promotions, and configuration settings",
+        "user_persona": "A database administrator verifying schema integrity.",
+        "user_goal": "To ensure tables are properly defined and related.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Table Structures",
+                "description": "DBA reviews the defined tables to ensure they meet requirements.",
+                "action": "Query the database for table schemas of 'users', 'promotions', and 'settings'.",
+                "expected_outcome": "Tables exist with correct columns including foreign key relationships between users and promotions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend pages for browsing, sharing, and searching promotions",
+        "user_persona": "A frequent user navigating different parts of the site.",
+        "user_goal": "To seamlessly move between core promotional functions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Promotions",
+                "description": "Casey starts by exploring what's available.",
+                "action": "Visit `/promotions`.",
+                "expected_outcome": "Lands on the Browse Promotions page showing a list of current offers."
+            },
+            {
+                "step": 2,
+                "title": "Sharing a Deal",
+                "description": "Casey finds a good offer and wants to share one too.",
+                "action": "Navigate to `/promotions/new`.",
+                "expected_outcome": "Arrives at the Share Promotion form ready to fill out details."
+            },
+            {
+                "step": 3,
+                "title": "Searching for Specific Deals",
+                "description": "Casey now looks for something specific.",
+                "action": "Go to `/promotions/search`.",
+                "expected_outcome": "Search interface loads with input field and optional filters visible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible across desktop and mobile devices",
+        "user_persona": "A mobile user accessing the site on a smartphone.",
+        "user_goal": "To navigate and interact with the site comfortably on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile",
+                "description": "Riley opens the site on their phone and checks if it adapts correctly.",
+                "action": "Open the homepage on a mobile device or simulate mobile viewport in browser tools.",
+                "expected_outcome": "Layout adjusts appropriately; navigation collapses into a hamburger menu, fonts resize, and elements stack vertically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `install:all` script to install both frontend and backend dependencies",
+        "user_persona": "A new contributor cloning the project.",
+        "user_goal": "To quickly get started by installing all dependencies with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "After cloning, the contributor wants to install everything at once.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend directories execute `npm install` concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with `dev` script to run both frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work on the project.",
+        "user_goal": "To launch both frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Developer wants to begin working locally with both services running.",
+                "action": "Execute `npm run dev` from the root directory.",
+                "expected_outcome": "Concurrently launches frontend development server and backend API server, both watching for file changes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling and validation for user inputs and API requests",
+        "user_persona": "A tester checking how the system handles bad input.",
+        "user_goal": "To trigger validation errors and observe proper feedback.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Invalid Data",
+                "description": "Tester attempts to submit a promotion with missing title.",
+                "action": "On `/promotions/new`, leave the Title field empty and click Submit.",
+                "expected_outcome": "Frontend shows inline validation error indicating the title is required, and no request is made to the backend."
+            },
+            {
+                "step": 2,
+                "title": "Handling API Error Response",
+                "description": "Tester simulates an internal server error from the API.",
+                "action": "Force backend to throw a 500 error during a promotion submission.",
+                "expected_outcome": "Frontend receives standardized JSON error response and displays a generic error message to the user."
+            }
+        ]
+    }
+]

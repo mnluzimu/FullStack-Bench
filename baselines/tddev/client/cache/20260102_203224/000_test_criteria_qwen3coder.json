@@ -1,0 +1,275 @@
+[
+    {
+        "requirement_tested": "A student panel with authentication and authorization",
+        "user_persona": "A college junior named Alex looking for summer internship opportunities.",
+        "user_goal": "To log into the student panel and access the dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Site",
+                "description": "Alex visits the internship portal homepage and sees the option to log in.",
+                "action": "Click on the 'Login' button.",
+                "expected_outcome": "A login form with email and password fields appears."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "Alex enters his registered email and password into the form.",
+                "action": "Fill in valid email and password, then click Submit.",
+                "expected_outcome": "The system authenticates Alex and redirects him to the student dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A company panel with authentication and authorization",
+        "user_persona": "HR manager Sarah from TechCorp wanting to post new internship openings.",
+        "user_goal": "To log into the company panel to manage internship listings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Login Page",
+                "description": "Sarah navigates to the site and selects the login option.",
+                "action": "Click on the 'Login' button.",
+                "expected_outcome": "A login form is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Logging In",
+                "description": "Sarah fills in her company credentials and submits them.",
+                "action": "Enter valid company email and password, then click Submit.",
+                "expected_outcome": "She is redirected to the company dashboard where she can manage internships."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Internship browsing and search functionality for students",
+        "user_persona": "Alex, a computer science student searching for remote internships.",
+        "user_goal": "Find remote internships with a minimum stipend of $500.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Internships",
+                "description": "After logging in, Alex goes to the Browse Internships section.",
+                "action": "Navigate to the internship browsing page.",
+                "expected_outcome": "A grid of internship cards is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Results",
+                "description": "Alex uses the filters to find remote internships with a stipend of at least $500.",
+                "action": "Select 'Remote' from location dropdown and adjust stipend slider to $500.",
+                "expected_outcome": "The list updates automatically to show only matching internships."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Internship application submission for students",
+        "user_persona": "Alex finds an interesting internship and decides to apply.",
+        "user_goal": "Submit an application for a software development internship.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Application Form",
+                "description": "Alex clicks on the 'Apply' button for a suitable internship listing.",
+                "action": "Click the 'Apply' button on an internship card.",
+                "expected_outcome": "An application modal with cover letter and resume upload fields opens."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Application",
+                "description": "Alex writes a cover letter and uploads his resume before submitting.",
+                "action": "Write a cover letter, upload resume file, and click 'Submit Application'.",
+                "expected_outcome": "The application is submitted successfully and confirmation is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Internship posting management for companies",
+        "user_persona": "Sarah wants to add a new internship opportunity for her company.",
+        "user_goal": "Post a new internship listing for a data analyst position.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating New Post",
+                "description": "Sarah logs into the company panel and looks for the option to post an internship.",
+                "action": "Click on 'Post Internship' link in the navigation menu.",
+                "expected_outcome": "A form with internship details fields is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filling and Submitting Form",
+                "description": "Sarah fills out all required fields for the new internship and submits it.",
+                "action": "Complete all form fields and click 'Post Internship'.",
+                "expected_outcome": "The new internship is created and appears in the company's listings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profiles for both students and companies",
+        "user_persona": "Alex needs to update his university information in his profile.",
+        "user_goal": "Update personal profile information accurately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile",
+                "description": "Alex navigates to his profile page from the main menu.",
+                "action": "Click on 'Profile' in the navigation bar.",
+                "expected_outcome": "His current profile information is displayed in read-only mode."
+            },
+            {
+                "step": 2,
+                "title": "Editing Information",
+                "description": "Alex clicks the edit button and updates his university name.",
+                "action": "Click 'Edit Profile', change university field, and save changes.",
+                "expected_outcome": "His updated profile information is saved and reflected immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design optimized for speed and user experience",
+        "user_persona": "Alex is using his tablet while commuting to review internship listings.",
+        "user_goal": "Easily browse internships on a mobile device without performance issues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Portal on Tablet",
+                "description": "Alex opens the internship portal website on his tablet.",
+                "action": "Open the website on a tablet-sized screen.",
+                "expected_outcome": "The layout adjusts responsively to fit the tablet screen size."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Content",
+                "description": "He scrolls through internship listings which load quickly even with images.",
+                "action": "Scroll down the list of internships.",
+                "expected_outcome": "Images and content load smoothly without noticeable delay."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navigation menu with links to key sections",
+        "user_persona": "Sarah frequently switches between managing internships and viewing her profile.",
+        "user_goal": "Quickly navigate between different parts of the company panel.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Navigation Menu",
+                "description": "While logged in, Sarah uses the top navigation bar to switch sections.",
+                "action": "Click on 'My Listings' in the navigation menu.",
+                "expected_outcome": "She is taken to the My Listings page instantly."
+            },
+            {
+                "step": 2,
+                "title": "Switching Sections",
+                "description": "Sarah then moves to her profile page using the same menu.",
+                "action": "Click on 'Profile' in the navigation menu.",
+                "expected_outcome": "Her profile page loads without requiring another login."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to serve dynamic data to the frontend",
+        "user_persona": "Developer testing integration between frontend and backend systems.",
+        "user_goal": "Verify that internship listings are fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Internship Data",
+                "description": "When visiting the internship browsing page, data should come from backend API.",
+                "action": "Visit the internship browsing page.",
+                "expected_outcome": "Internship listings are loaded via GET request to /api/internships endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend fetching all data dynamically from backend APIs",
+        "user_persona": "Alex checks his recently submitted applications after applying to several positions.",
+        "user_goal": "View real-time updates of his application statuses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Applications",
+                "description": "Alex navigates to the My Applications section to see his submissions.",
+                "action": "Click on 'My Applications' in the navigation menu.",
+                "expected_outcome": "Applications are fetched dynamically from /api/applications endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "PostgreSQL database connection using specified environment variables",
+        "user_persona": "System administrator verifying database connectivity.",
+        "user_goal": "Confirm that the backend service connects properly to PostgreSQL.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "The backend server starts up and attempts to connect to PostgreSQL.",
+                "action": "Start the backend service with correct environment variables set.",
+                "expected_outcome": "Service establishes connection to PostgreSQL at localhost:5432 using myappuser credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with install:all and dev scripts",
+        "user_persona": "New developer joining the team setting up the local development environment.",
+        "user_goal": "Install dependencies and start both frontend and backend servers easily.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The developer runs the command to install all project dependencies.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed simultaneously."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "Once setup is done, the developer starts both servers for development work.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Both frontend and backend services start concurrently in watch mode."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Mint cream background color applied throughout the site",
+        "user_persona": "UX designer reviewing visual consistency across the platform.",
+        "user_goal": "Ensure the entire site has a uniform mint cream background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Background",
+                "description": "The designer inspects the background color of the homepage visually and in code.",
+                "action": "Visit the homepage and inspect body element style.",
+                "expected_outcome": "Body element has background-color: mintcream applied consistently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Teal color scheme for all UI components",
+        "user_persona": "Alex interacts with various buttons and cards during his session.",
+        "user_goal": "Experience a consistent teal-themed interface throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting with Buttons",
+                "description": "As Alex browses, he notices that all buttons use shades of teal.",
+                "action": "Hover over multiple buttons across different pages.",
+                "expected_outcome": "Buttons display teal colors and darken slightly on hover as per design."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Role-based access control for student and company panels",
+        "user_persona": "Alex accidentally tries to access the company-only section.",
+        "user_goal": "Be prevented from accessing unauthorized areas of the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "Alex manually types a URL that leads to the company panel while logged in as a student.",
+                "action": "Try to navigate directly to '/company/dashboard' URL.",
+                "expected_outcome": "Access is denied and Alex is redirected to his own dashboard or login page."
+            }
+        ]
+    }
+]

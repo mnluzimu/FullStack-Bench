@@ -1,0 +1,17 @@
+[
+    "A practice question bank feature allowing users to browse and select individual questions",
+    "Simulated exam functionality enabling users to take full practice tests",
+    "Error analysis dashboard displaying detailed feedback on incorrect answers",
+    "Exam scoring system showing results and performance metrics after each test",
+    "User interface with floral white background and dark goldenrod colored components",
+    "Frontend application that fetches all practice questions and exam data from backend APIs",
+    "Backend server connecting to a PostgreSQL database using specified environment variables",
+    "Database schema supporting storage of questions, user responses, and exam results",
+    "Question selection interface allowing users to choose topics or randomize practice questions",
+    "Timer functionality for simulated exams to mimic real testing conditions",
+    "Score history tracking to allow users to review past exam performances",
+    "Answer explanation display for both correct and incorrect responses",
+    "Responsive design ensuring usability across desktop and mobile devices",
+    "User session management to track progress and maintain state during exams",
+    "Package.json configuration enabling concurrent frontend and backend development startup"
+]

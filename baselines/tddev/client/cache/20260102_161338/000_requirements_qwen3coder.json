@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "Employee authentication and authorization system",
+    "Employee clock-in functionality with timestamp recording",
+    "Employee clock-out functionality with timestamp recording",
+    "Employee dashboard to view personal attendance records",
+    "Display of employee's attendance time and absence time",
+    "Administrator authentication and authorization system",
+    "Admin dashboard to view all employees' attendance records",
+    "Administrative functionality to perform attendance statistics",
+    "Administrative functionality to perform attendance analysis",
+    "UI styled with papaya whip as base color and dark orange for components",
+    "API endpoints for clocking in and out",
+    "API endpoints for retrieving attendance records",
+    "Concurrent development server setup via npm run dev"
+]

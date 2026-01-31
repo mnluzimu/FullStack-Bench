@@ -1,0 +1,17 @@
+[
+    "A frontend application with multiple pages: base, ranking, store, train, workers, upgrades, bank, messages, and reports",
+    "A page for players to select from four races: Humans, Dragonborns, Elves, and Dwarfs, each with unique attributes",
+    "A resource management system displaying gold, iron, wood, and wheat quantities",
+    "A city upgrade system allowing players to enhance their base infrastructure",
+    "A worker management page to assign and upgrade workers",
+    "A military training page to recruit and upgrade soldiers",
+    "A store interface for purchasing resources, items, or upgrades",
+    "A banking system for managing resource storage and interest",
+    "A messaging system for player communication",
+    "A battle system enabling players to engage in combat with others",
+    "A ranking page displaying player scores and positions",
+    "A reports page showing historical activity and battle outcomes",
+    "A backend API to serve dynamic game data to the frontend",
+    "A PostgreSQL database connection configured with specified environment variables",
+    "A package.json configuration enabling `npm run install:all` and `npm run dev` commands"
+]

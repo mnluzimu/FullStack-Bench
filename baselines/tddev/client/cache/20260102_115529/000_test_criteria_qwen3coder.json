@@ -1,0 +1,394 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A regular user accessing the SMS platform for the first time.",
+        "user_goal": "To navigate to the dashboard and view message history without seeing static or outdated data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Platform",
+                "description": "Sarah opens her browser and navigates to the SMS platform URL. She expects to see real-time data loaded dynamically.",
+                "action": "Load the root URL of the web application.",
+                "expected_outcome": "Frontend application loads successfully with Azure Mist background and Dark Slate Blue styled components, initiating API calls to fetch dynamic data."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Dashboard",
+                "description": "Sarah clicks on the 'Dashboard' link in the navigation menu expecting to see her message history fetched from the backend.",
+                "action": "Click on the 'Dashboard' navigation link.",
+                "expected_outcome": "Dashboard view loads dynamically via an API call to retrieve message history, displaying a table of messages without a full page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the backend service.",
+        "user_goal": "To verify that the backend service initializes and connects to the PostgreSQL database using the correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Alex deploys the backend server and starts it with the required environment variables set for database connection.",
+                "action": "Start the backend server with environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Backend server initializes successfully and establishes a secure connection to the PostgreSQL database using the provided environment variables."
+            },
+            {
+                "step": 2,
+                "title": "Making an API Request",
+                "description": "Alex makes a sample API request to ensure the backend can query the connected database.",
+                "action": "Send a GET request to an endpoint like `/api/users`.",
+                "expected_outcome": "Server responds with data retrieved from the PostgreSQL database, confirming successful connectivity and query execution."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management system",
+        "user_persona": "An existing user returning to the SMS platform.",
+        "user_goal": "To log in securely and access restricted areas of the platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Login Page",
+                "description": "Jamie arrives at the login page and sees fields for email and password, ready to enter credentials.",
+                "action": "Navigate to the login route.",
+                "expected_outcome": "Login form is displayed with fields for email and password, and optionally a 'Remember Me' checkbox."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "Jamie enters valid credentials and submits the form to authenticate.",
+                "action": "Enter valid email and password, then click the 'Submit' button.",
+                "expected_outcome": "Credentials are validated against the database, and a secure session is initiated, redirecting Jamie to the dashboard."
+            },
+            {
+                "step": 3,
+                "title": "Logging Out",
+                "description": "After finishing work, Jamie clicks the logout button to end the session securely.",
+                "action": "Click the 'Logout' button.",
+                "expected_outcome": "Current session is invalidated, and Jamie is redirected to the login screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interface for sending short messages with recipient and content input fields",
+        "user_persona": "A user needing to send an urgent SMS.",
+        "user_goal": "To compose and send a short message to a specified recipient.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Message Composition Area",
+                "description": "Taylor navigates to the 'Send Message' section to begin composing a new message.",
+                "action": "Click on the 'Send Message' navigation link.",
+                "expected_outcome": "Message composition area appears with fields labeled 'Recipient(s)' and 'Message Content', and a 'Send' button."
+            },
+            {
+                "step": 2,
+                "title": "Filling in Message Details",
+                "description": "Taylor fills in the recipient's phone number and writes a brief message.",
+                "action": "Type a valid phone number in the 'Recipient(s)' field and a short message in the 'Message Content' field.",
+                "expected_outcome": "As both fields are filled with valid input, the 'Send' button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Sending the Message",
+                "description": "Taylor clicks the 'Send' button to dispatch the message.",
+                "action": "Click the 'Send' button.",
+                "expected_outcome": "Message details are submitted to the backend API endpoint for processing and delivery, and a success confirmation is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dashboard for viewing short message sending records and history",
+        "user_persona": "A user reviewing past message activity.",
+        "user_goal": "To view a history of sent messages including their status.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Dashboard",
+                "description": "Jordan logs in and goes to the dashboard to review previously sent messages.",
+                "action": "Click on the 'Dashboard' link in the navigation menu.",
+                "expected_outcome": "Dashboard loads and displays a table of message history with columns for Timestamp, Recipient, Message Content preview, and Delivery Status."
+            },
+            {
+                "step": 2,
+                "title": "Refreshing Data",
+                "description": "Jordan wants to ensure the data is up-to-date and refreshes the dashboard.",
+                "action": "Click the refresh button or perform a manual browser refresh.",
+                "expected_outcome": "Dashboard re-fetches the latest message history from the backend API and updates the table accordingly."
+            },
+            {
+                "step": 3,
+                "title": "Sorting Records",
+                "description": "Jordan sorts the message records by timestamp to see the most recent ones first.",
+                "action": "Click on the 'Timestamp' column header.",
+                "expected_outcome": "Table rows are sorted descending by timestamp, showing the newest messages at the top."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile management section for updating personal information",
+        "user_persona": "A user wanting to update their contact information.",
+        "user_goal": "To edit and save updated personal information in their profile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Profile Section",
+                "description": "Casey clicks on the profile link to manage personal details.",
+                "action": "Click on the 'User Profile' link in the navigation menu.",
+                "expected_outcome": "Profile section loads with a form pre-filled with Casey's existing information: Name, Email, Phone Number, and Avatar upload option."
+            },
+            {
+                "step": 2,
+                "title": "Editing Information",
+                "description": "Casey updates their phone number and decides to save the changes.",
+                "action": "Modify the 'Phone Number' field and click the 'Save' button.",
+                "expected_outcome": "Updated phone number is sent to the backend via PUT /api/users/profile, and a success message confirms the update."
+            },
+            {
+                "step": 3,
+                "title": "Uploading New Avatar",
+                "description": "Casey chooses to upload a new profile picture.",
+                "action": "Click the 'Upload Avatar' button and select a new image file.",
+                "expected_outcome": "New avatar is uploaded to /api/users/avatar/upload and replaces the previous image after successful processing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Policy configuration panel for setting message sending rules and limits",
+        "user_persona": "An administrator configuring message sending policies.",
+        "user_goal": "To adjust daily message sending limits and apply the new policy.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Policy Configuration",
+                "description": "Morgan, an admin, navigates to the policy configuration panel to adjust message sending rules.",
+                "action": "Click on the 'Policy Configuration' link in the navigation menu.",
+                "expected_outcome": "Policy configuration panel loads with adjustable inputs for parameters like daily maximum sends and rate limits."
+            },
+            {
+                "step": 2,
+                "title": "Adjusting Policy Parameters",
+                "description": "Morgan increases the daily send limit using the provided input field.",
+                "action": "Change the value in the 'Daily Maximum Sends' input field.",
+                "expected_outcome": "Input value updates temporarily, and the 'Save' button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Saving Updated Policies",
+                "description": "Morgan saves the updated policy to apply it system-wide.",
+                "action": "Click the 'Save' button.",
+                "expected_outcome": "Updated policy is sent to the backend via PUT /api/policies/configure and applied globally, affecting future message transmissions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Monitoring dashboard displaying real-time short message sending statistics",
+        "user_persona": "An operations manager overseeing SMS traffic.",
+        "user_goal": "To monitor real-time SMS delivery performance and trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Monitoring Dashboard",
+                "description": "Riley accesses the monitoring dashboard to observe real-time SMS metrics.",
+                "action": "Click on the 'Monitoring' link in the navigation menu.",
+                "expected_outcome": "Monitoring dashboard loads with interactive charts showing real-time message throughput, delivery statuses, and latency, auto-updating periodically."
+            },
+            {
+                "step": 2,
+                "title": "Filtering Metrics",
+                "description": "Riley applies a date range filter to focus on today's data.",
+                "action": "Select a date range using the filter controls.",
+                "expected_outcome": "Charts update to reflect only the data within the selected date range, providing focused insights."
+            },
+            {
+                "step": 3,
+                "title": "Inspecting Detailed Metrics",
+                "description": "Riley hovers over a chart element to inspect specific metric values.",
+                "action": "Hover over a point on the delivery status chart.",
+                "expected_outcome": "Tooltip appears displaying the exact metric value and timestamp for the hovered data point."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with Azure Mist background and dark slate blue styled components",
+        "user_persona": "A user accessing the platform on various devices.",
+        "user_goal": "To use the platform seamlessly across different screen sizes and orientations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Application on Mobile Device",
+                "description": "Drew opens the SMS platform on a smartphone and expects a responsive layout.",
+                "action": "Open the application on a mobile browser.",
+                "expected_outcome": "Application loads with Azure Mist background and Dark Slate Blue styled components, adapting layout to fit the mobile screen size."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Browser Window",
+                "description": "Drew resizes the browser window to simulate different device widths.",
+                "action": "Resize the browser window to various widths.",
+                "expected_outcome": "UI adjusts responsively, maintaining usability and visual consistency across mobile, tablet, and desktop views."
+            },
+            {
+                "step": 3,
+                "title": "Rotating Device",
+                "description": "Drew rotates their tablet to switch between portrait and landscape modes.",
+                "action": "Rotate the device from portrait to landscape mode.",
+                "expected_outcome": "Layout fluidly adjusts to the new orientation, preserving readability and component functionality."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, messages, policies, and monitoring data",
+        "user_persona": "A database administrator verifying schema integrity.",
+        "user_goal": "To confirm that the database schema correctly supports all required entities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Database",
+                "description": "Pat connects to the PostgreSQL database to inspect the schema.",
+                "action": "Use database client to connect with credentials: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Connection is established successfully to the PostgreSQL database instance."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Tables",
+                "description": "Pat queries the database to list all tables and verify their existence.",
+                "action": "Execute SQL command: SELECT tablename FROM pg_tables WHERE schemaname = 'public';",
+                "expected_outcome": "Query returns the expected tables: users, messages, policies, and monitoring_logs."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Table Structures",
+                "description": "Pat examines the structure of each table to ensure it matches the defined schema.",
+                "action": "Execute SQL commands to describe each table (e.g., \\d users).",
+                "expected_outcome": "Each table shows the correct columns and data types as per the schema definition: users(id, name, email, role), messages(id, sender_id, recipients, content, status, created_at), policies(id, user_id, config), monitoring_logs(id, event_type, timestamp, metadata)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for message sending, retrieval, and status updates",
+        "user_persona": "A developer testing backend API functionality.",
+        "user_goal": "To validate that core message-related API endpoints function as expected.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sending a Message via API",
+                "description": "Dev sends a POST request to the message sending endpoint to test message dispatch.",
+                "action": "Send a POST request to /api/messages/send with valid message data.",
+                "expected_outcome": "Backend creates a new message entry, processes it for delivery, and returns a success response with the message ID."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving a Message",
+                "description": "Dev retrieves the details of the previously sent message using its ID.",
+                "action": "Send a GET request to /api/messages/{id} where {id} is the ID of the sent message.",
+                "expected_outcome": "Backend returns the detailed record of the message, including current status and audit trail."
+            },
+            {
+                "step": 3,
+                "title": "Updating Message Status",
+                "description": "Dev updates the status of the message to simulate a delivery confirmation.",
+                "action": "Send a PATCH request to /api/messages/{id}/status with updated status data.",
+                "expected_outcome": "Backend updates the message status in the database and returns a confirmation of the update."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin interface for managing user accounts and permissions",
+        "user_persona": "An administrator managing user roles and access.",
+        "user_goal": "To modify a user's role and delete an inactive user account.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Interface",
+                "description": "Admin logs in and navigates to the admin panel to manage users.",
+                "action": "Click on the 'Admin Panel' link in the navigation menu.",
+                "expected_outcome": "Admin interface loads, displaying a table of registered users with columns like Username, Role, Last Active, and Actions."
+            },
+            {
+                "step": 2,
+                "title": "Changing User Role",
+                "description": "Admin selects a user and changes their role from 'user' to 'admin'.",
+                "action": "Select a user row and change the role dropdown to 'admin', then save.",
+                "expected_outcome": "User's role is updated via PUT /api/admin/users/:id/role, immediately impacting their authorization level within the app."
+            },
+            {
+                "step": 3,
+                "title": "Deleting a User",
+                "description": "Admin identifies an inactive user and deletes their account.",
+                "action": "Click the 'Delete' button next to the inactive user's row.",
+                "expected_outcome": "User is permanently removed from the system via a DELETE request, preventing further logins or actions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Logging and error handling for tracking message delivery issues",
+        "user_persona": "A system administrator troubleshooting delivery failures.",
+        "user_goal": "To identify and diagnose errors related to message delivery using logs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Simulating an Error",
+                "description": "SysAdmin intentionally triggers a backend error during message processing to test logging.",
+                "action": "Send a malformed request to a message endpoint that causes an internal server error.",
+                "expected_outcome": "Backend generates an exception, logs the error with a unique ID and contextual metadata using Winston/Bunyan, and returns an error response with the ID."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Logs",
+                "description": "SysAdmin checks the logs to find the error trace and understand the issue.",
+                "action": "Access backend logs or send a request to the error log endpoint POST /api/logs/error.",
+                "expected_outcome": "Log entry with the unique ID, stack trace, and metadata is found, providing sufficient context for diagnosing the problem."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data validation for message content, recipient information, and policy settings",
+        "user_persona": "A user entering data into the platform.",
+        "user_goal": "To receive immediate feedback when entering invalid data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Invalid Recipient",
+                "description": "User tries to send a message but enters an invalid phone number format.",
+                "action": "In the 'Recipient(s)' field, type an invalid format like 'abc123' and attempt to send.",
+                "expected_outcome": "Client-side validation triggers, highlighting the 'Recipient(s)' field with an error message indicating the format issue."
+            },
+            {
+                "step": 2,
+                "title": "Exceeding Message Length",
+                "description": "User writes a message longer than allowed and tries to submit.",
+                "action": "Type a message exceeding the maximum allowed length in the 'Message Content' field and click 'Send'.",
+                "expected_outcome": "Validation prevents submission and shows a tooltip or inline message indicating the content is too long."
+            },
+            {
+                "step": 3,
+                "title": "Setting Invalid Policy Value",
+                "description": "Admin tries to set a negative value for a policy parameter.",
+                "action": "In the Policy Configuration panel, enter a negative number in a rate limit field and try to save.",
+                "expected_outcome": "Field is highlighted with an error, and saving is prevented until a valid positive number is entered."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development scripts in package.json for running frontend and backend together",
+        "user_persona": "A developer setting up the local development environment.",
+        "user_goal": "To start both frontend and backend servers simultaneously using a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Dev prepares the environment by installing all necessary packages for both frontend and backend.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed successfully without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Dev starts both development servers concurrently to begin working on the application.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently, typically indicated by terminal output showing both services running."
+            }
+        ]
+    }
+]

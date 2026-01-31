@@ -1,0 +1,17 @@
+[
+    "A form-filling function for users to input personal information and credit status",
+    "A credit score inquiry function",
+    "An introduction section to credit repair services",
+    "A browsing interface for users to learn about credit repair services",
+    "A lead submission form for collecting user information",
+    "Frontend that fetches all data from backend APIs",
+    "Backend that connects to an external PostgreSQL database using specified environment variables",
+    "Repository package.json configured with npm run install:all to install both frontend and backend dependencies",
+    "Repository package.json configured with npm run dev to start both frontend and backend concurrently",
+    "Body background styled with old lace color",
+    "UI elements styled with rosy brown color",
+    "Form validation for user input fields",
+    "Data storage for lead information in PostgreSQL database",
+    "API endpoints for handling form submissions and credit score inquiries",
+    "Responsive design for cross-device compatibility"
+]

@@ -1,0 +1,352 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A curious visitor exploring creative works on the World of Imagination website.",
+        "user_goal": "Browse a list of user-created imaginative works fetched dynamically from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Sarah opens her browser and visits the 'World of Imagination' homepage to explore creative content.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The page loads with a grid-based layout displaying cards of creative works fetched from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Scrolling for More Content",
+                "description": "As Sarah scrolls down the page, she expects to see more content loaded automatically without needing to click anything.",
+                "action": "Scroll down the page.",
+                "expected_outcome": "Additional content cards load seamlessly as the scroll reaches the bottom, simulating infinite scrolling behavior."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Details of a Creative Work",
+                "description": "Sarah finds an interesting artwork and decides to click on its card to view detailed information about it.",
+                "action": "Click on a content card.",
+                "expected_outcome": "She is redirected to the detailed view page for that specific creative work."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API server that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer setting up the backend server for deployment.",
+        "user_goal": "Verify that the backend successfully connects to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting the Backend Server",
+                "description": "Alex runs the backend server locally to ensure it initializes properly and connects to the database.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "Server logs indicate successful connection to the PostgreSQL database using the environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Database Content",
+                "description": "Alex makes a GET request to the '/api/v1/contents' endpoint to confirm data can be retrieved from the connected database.",
+                "action": "Send a GET request to '/api/v1/contents'.",
+                "expected_outcome": "The API responds with a list of creative works retrieved from the 'contents' table in the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management system",
+        "user_persona": "A returning member wanting to log into their account.",
+        "user_goal": "Log in securely and maintain session state across the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Login Page",
+                "description": "Jamie clicks on the 'Login' link located at the top right corner of the homepage.",
+                "action": "Click the 'Login' link.",
+                "expected_outcome": "A login form with email and password fields appears."
+            },
+            {
+                "step": 2,
+                "title": "Entering Credentials",
+                "description": "Jamie enters valid login credentials into the form fields.",
+                "action": "Fill in email and password fields, then click 'Submit'.",
+                "expected_outcome": "Upon successful validation, an HTTP-only cookie is set containing the session identifier."
+            },
+            {
+                "step": 3,
+                "title": "Logging Out",
+                "description": "After browsing, Jamie clicks the logout option in the user dropdown menu.",
+                "action": "Click the 'Logout' button.",
+                "expected_outcome": "Session is invalidated server-side, the cookie is deleted, and Jamie is redirected to the homepage in an unauthenticated state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Content browsing interface to view user-created imaginative works",
+        "user_persona": "An art enthusiast looking for inspiration.",
+        "user_goal": "Explore and view imaginative artworks submitted by users.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on the Browse Page",
+                "description": "Taylor visits the main content browsing section to look at imaginative creations.",
+                "action": "Load the content browsing page.",
+                "expected_outcome": "A responsive grid of content cards is displayed, each showing thumbnail image, title, excerpt, author name, and creation date."
+            },
+            {
+                "step": 2,
+                "title": "Clicking on a Content Card",
+                "description": "Taylor clicks on one of the content cards to see the full details of the creative work.",
+                "action": "Click on a content card.",
+                "expected_outcome": "Redirected to the detailed view page of the selected creative work."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Share Ideas form for users to submit their creative concepts",
+        "user_persona": "An artist ready to share their latest idea.",
+        "user_goal": "Submit a new creative concept via the Share Ideas form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the Share Ideas Form",
+                "description": "Morgan, a registered user, clicks the 'Share Idea' button to begin submitting a new creative concept.",
+                "action": "Click the 'Share Idea' button.",
+                "expected_outcome": "A modal or dedicated page opens with a form containing Title, Description, and Media Upload fields."
+            },
+            {
+                "step": 2,
+                "title": "Uploading a File",
+                "description": "Morgan selects an image file to upload along with the idea.",
+                "action": "Click the 'Choose File' button and select a file from the OS file picker.",
+                "expected_outcome": "Selected filename appears next to the upload button."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Form",
+                "description": "After filling out the form, Morgan clicks the Submit button.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "Form data is sent to the backend API, and Morgan is redirected to the newly created content detail page upon success."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Discussion forum or comment section for each creative work",
+        "user_persona": "A community participant interested in engaging with creators.",
+        "user_goal": "Leave feedback and reply to comments under a creative work.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Existing Comments",
+                "description": "Jordan views the discussion thread beneath a creative piece.",
+                "action": "Load the content detail page.",
+                "expected_outcome": "A threaded comment section appears below the content, showing previous comments with avatars, usernames, and timestamps."
+            },
+            {
+                "step": 2,
+                "title": "Replying to a Comment",
+                "description": "Jordan wants to respond directly to another user's comment.",
+                "action": "Click the 'Reply' button under a specific comment.",
+                "expected_outcome": "An inline textarea and submit button appear beneath the comment."
+            },
+            {
+                "step": 3,
+                "title": "Posting the Reply",
+                "description": "Jordan writes their response and submits it.",
+                "action": "Type into the reply textarea and click the 'Submit' button.",
+                "expected_outcome": "The reply is added immediately to the comment thread without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interaction features including likes, comments, and follows",
+        "user_persona": "A regular user engaging with the platform’s social features.",
+        "user_goal": "Like a post, follow an author, and leave a comment.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Liking a Post",
+                "description": "Casey sees an inspiring artwork and decides to like it.",
+                "action": "Click the heart icon (Like button) associated with a content card.",
+                "expected_outcome": "The heart icon changes color indicating the post has been liked, and the like counter increments."
+            },
+            {
+                "step": 2,
+                "title": "Following the Author",
+                "description": "Impressed by the creator's work, Casey chooses to follow them.",
+                "action": "Click the 'Follow' button near the author's name.",
+                "expected_outcome": "Button label changes to 'Unfollow', and the backend records the follow relationship."
+            },
+            {
+                "step": 3,
+                "title": "Commenting on the Post",
+                "description": "Casey leaves a thoughtful comment about the creative work.",
+                "action": "Click the speech bubble icon to open the comment input, type a message, and submit.",
+                "expected_outcome": "The comment appears instantly in the discussion section below the post."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile pages displaying shared content and activity",
+        "user_persona": "A content creator checking their personal contributions.",
+        "user_goal": "Review their shared works and recent activities on their profile page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Profile Page",
+                "description": "Riley navigates to their own profile page to review their published content.",
+                "action": "Click on the profile avatar in the header and select 'My Profile'.",
+                "expected_outcome": "The profile page loads, displaying Riley's avatar, bio, and statistics such as number of posts, followers, and following."
+            },
+            {
+                "step": 2,
+                "title": "Switching Tabs",
+                "description": "Riley wants to see only the works they've shared recently.",
+                "action": "Click the 'Shared Works' tab.",
+                "expected_outcome": "The content grid updates dynamically to show only Riley’s shared creative works."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search and filtering capabilities for browsing content",
+        "user_persona": "Someone seeking specific types of imaginative content.",
+        "user_goal": "Find content related to a keyword and sort it by popularity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Content",
+                "description": "Dana uses the search bar to find content related to 'fantasy landscapes'.",
+                "action": "Type 'fantasy landscapes' into the search bar and press Enter.",
+                "expected_outcome": "Results matching the query populate the content grid below."
+            },
+            {
+                "step": 2,
+                "title": "Applying Sorting Filter",
+                "description": "Dana prefers to see the most popular items first.",
+                "action": "Select 'Most Popular' from the sort dropdown menu.",
+                "expected_outcome": "The content grid refreshes with results sorted by popularity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with desktop and mobile devices",
+        "user_persona": "A frequent mobile user accessing the site on the go.",
+        "user_goal": "Use the website smoothly on both mobile and desktop screens.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile Device",
+                "description": "Elliot opens the website on his smartphone to browse content.",
+                "action": "Visit the website on a mobile device.",
+                "expected_outcome": "Layout adjusts appropriately—cards stack vertically, navigation collapses into a hamburger menu, and touch targets are sufficiently large."
+            },
+            {
+                "step": 2,
+                "title": "Rotating Screen Orientation",
+                "description": "Elliot rotates his phone from portrait to landscape mode.",
+                "action": "Rotate the device screen.",
+                "expected_outcome": "UI adapts fluidly to the new orientation, maintaining readability and usability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dark slate blue color scheme applied to all UI components",
+        "user_persona": "A designer reviewing the visual consistency of the site.",
+        "user_goal": "Confirm that all interactive components use the correct dark slate blue theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Component Colors",
+                "description": "Zoe inspects various UI elements like buttons, cards, and headers to verify consistent color usage.",
+                "action": "Navigate through multiple pages and inspect component styles.",
+                "expected_outcome": "All component containers consistently use Dark Slate Blue (#483D8B) as the primary color against the Azure Mist background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Azure mist background theme implemented across all pages",
+        "user_persona": "A UI reviewer validating brand consistency.",
+        "user_goal": "Ensure that every page maintains the Azure Mist background theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Background Consistency",
+                "description": "Max navigates through several sections of the website to check if the background remains consistent.",
+                "action": "Visit different pages like Home, Profile, Search, and Detail View.",
+                "expected_outcome": "Each page displays the Azure Mist (#E0F7FA) background uniformly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository package.json configured with install:all and dev scripts",
+        "user_persona": "A developer setting up the project for development.",
+        "user_goal": "Install dependencies and start both frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Sam clones the repository and needs to install all frontend and backend dependencies quickly.",
+                "action": "Run `npm run install:all` command in terminal.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Sam wants to launch both frontend and backend services together.",
+                "action": "Run `npm run dev` command.",
+                "expected_outcome": "Frontend and backend servers start concurrently, allowing seamless development workflow."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, content, discussions, and interactions",
+        "user_persona": "A database administrator setting up the production schema.",
+        "user_goal": "Ensure all necessary tables and relationships exist in the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Table Creation",
+                "description": "Devon checks whether the required tables have been created according to the schema specification.",
+                "action": "Query the PostgreSQL database to list existing tables.",
+                "expected_outcome": "Tables named 'users', 'contents', 'discussions', 'likes', 'follows', and 'sessions' are present."
+            },
+            {
+                "step": 2,
+                "title": "Checking Foreign Key Relationships",
+                "description": "Devon verifies that foreign key constraints are enforced among tables.",
+                "action": "Examine table schemas to identify foreign key references.",
+                "expected_outcome": "Foreign key relationships like author_id referencing users.id are correctly defined."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for content creation, retrieval, updating, and deletion",
+        "user_persona": "A frontend engineer integrating CRUD operations with the backend.",
+        "user_goal": "Successfully call standard RESTful endpoints for managing content resources.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Content",
+                "description": "Taylor sends a POST request to add a new creative work to the database.",
+                "action": "Make a POST request to '/api/v1/contents' with valid payload.",
+                "expected_outcome": "New content is inserted into the 'contents' table and returned with a generated ID."
+            },
+            {
+                "step": 2,
+                "title": "Retrieving Specific Content",
+                "description": "Taylor retrieves the previously created content by ID.",
+                "action": "Make a GET request to '/api/v1/contents/{id}'.",
+                "expected_outcome": "Returns the full details of the requested content item."
+            },
+            {
+                "step": 3,
+                "title": "Updating Content",
+                "description": "Taylor edits the description of the content and updates it.",
+                "action": "Make a PUT request to '/api/v1/contents/{id}' with updated data.",
+                "expected_outcome": "The content record is updated in the database and reflects the new values."
+            },
+            {
+                "step": 4,
+                "title": "Deleting Content",
+                "description": "Finally, Taylor removes the content from the database.",
+                "action": "Make a DELETE request to '/api/v1/contents/{id}'.",
+                "expected_outcome": "The content record is removed from the 'contents' table."
+            }
+        ]
+    }
+]

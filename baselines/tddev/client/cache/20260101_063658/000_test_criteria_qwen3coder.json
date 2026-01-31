@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "Interactive chessboard allowing users to move pieces according to chess rules",
+        "user_persona": "A casual chess enthusiast playing a friend online.",
+        "user_goal": "To make a valid move by dragging a piece to a legal square.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting a Piece",
+                "description": "Alex clicks on their white pawn at e2 to prepare for a move.",
+                "action": "Click on the pawn at e2.",
+                "expected_outcome": "The pawn is visually selected, and all legal moves are highlighted on the board."
+            },
+            {
+                "step": 2,
+                "title": "Dragging to Legal Square",
+                "description": "Alex drags the pawn from e2 to e4, a valid opening move.",
+                "action": "Drag the pawn from e2 to e4.",
+                "expected_outcome": "The pawn moves to e4, the board updates, and the move is sent to the backend for validation and synchronization."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for users to create new chess games",
+        "user_persona": "A player looking to start a fresh match.",
+        "user_goal": "To create a new public game with default settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening New Game Modal",
+                "description": "Jordan clicks the 'Create New Game' button from the dashboard.",
+                "action": "Click the 'Create New Game' button.",
+                "expected_outcome": "A modal titled 'New Game Setup' appears with options for theme, difficulty, and privacy."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Game Creation",
+                "description": "Jordan accepts the defaults and confirms creation.",
+                "action": "Click the 'Confirm' button in the modal.",
+                "expected_outcome": "A new game is created on the backend and Jordan is redirected to the game lobby waiting for an opponent."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for users to join existing chess games",
+        "user_persona": "A player searching for a quick match.",
+        "user_goal": "To join an open game listed in the lobby.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Available Games",
+                "description": "Taylor scrolls through the list of open games on the lobby page.",
+                "action": "Scroll down the list of available games.",
+                "expected_outcome": "More games are loaded dynamically as Taylor reaches the end of the list."
+            },
+            {
+                "step": 2,
+                "title": "Joining a Game",
+                "description": "Taylor sees a suitable game and decides to join it.",
+                "action": "Click the 'Join' button next to the chosen game.",
+                "expected_outcome": "Taylor is added as the second player and redirected to the active game screen."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability for users to undo their last move",
+        "user_persona": "A player who just made a mistake.",
+        "user_goal": "To undo the last move they made.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Undo",
+                "description": "Casey realizes they moved to the wrong square and wants to take it back.",
+                "action": "Click the 'Undo Move' button beneath the board.",
+                "expected_outcome": "A confirmation dialog appears asking if Casey really wants to undo the move."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Undo",
+                "description": "Casey confirms the undo action.",
+                "action": "Click 'Confirm' in the dialog.",
+                "expected_outcome": "The last move is reverted on the board and synced with the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Option for users to resign from a game",
+        "user_persona": "A player who knows they're outmatched.",
+        "user_goal": "To resign gracefully from a losing game.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Resignation",
+                "description": "Riley sees no way out and decides to resign rather than continue.",
+                "action": "Click the 'Resign' button above the board.",
+                "expected_outcome": "A modal pops up confirming Riley's intent to resign."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Resignation",
+                "description": "Riley confirms resignation in the modal.",
+                "action": "Click 'Confirm' in the resignation modal.",
+                "expected_outcome": "The game is marked as resigned, and the result screen is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interface controls for selecting different board themes",
+        "user_persona": "A player who prefers a classic look.",
+        "user_goal": "To switch the board theme to 'Classic Light'.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Theme",
+                "description": "Morgan wants a cleaner look and selects a new theme.",
+                "action": "Click the 'Classic Light' option in the theme selector.",
+                "expected_outcome": "The board immediately updates to the Classic Light theme and the preference is saved server-side."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interface controls for selecting difficulty levels",
+        "user_persona": "A beginner wanting a fair challenge.",
+        "user_goal": "To set the game difficulty to Beginner mode.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Difficulty",
+                "description": "Pat wants an easier game and chooses the lowest difficulty.",
+                "action": "Click the 'Beginner' option in the difficulty selector.",
+                "expected_outcome": "The difficulty is adjusted for future AI interactions and saved to Pat's profile."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display area showing game history including all moves made",
+        "user_persona": "A curious observer reviewing past moves.",
+        "user_goal": "To review the sequence of moves made so far.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing History",
+                "description": "Quinn scrolls through the move history panel to understand how the position was reached.",
+                "action": "Scroll through the game history sidebar.",
+                "expected_outcome": "Earlier moves become visible without triggering additional network requests."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Section for viewing player statistics such as wins, losses, and win rate",
+        "user_persona": "A competitive player checking their progress.",
+        "user_goal": "To view personal win-loss record and overall performance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Stats",
+                "description": "Robin opens the user menu and navigates to the stats section.",
+                "action": "Click the 'Stats' tab in the user menu.",
+                "expected_outcome": "Statistical overview including wins, losses, and win rate is displayed in charts and numbers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time synchronization of game state between players",
+        "user_persona": "One of two players making simultaneous moves.",
+        "user_goal": "To see opponent's move appear instantly on the board.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Opponent Move",
+                "description": "Sam waits for their opponent to make a move, watching the board.",
+                "action": "Wait for WebSocket event.",
+                "expected_outcome": "Opponent's move appears on Sam's board instantly with smooth animation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system to manage player sessions",
+        "user_persona": "A returning player logging in to play again.",
+        "user_goal": "To log in and resume playing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Terry clicks the sign-in link and enters their credentials.",
+                "action": "Click 'Sign In', enter email and password, then submit.",
+                "expected_outcome": "Terry is authenticated and redirected back to the home page with session active."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout styled with alice blue background and steel blue interface elements",
+        "user_persona": "A mobile user accessing the app on a phone.",
+        "user_goal": "To navigate the app comfortably on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Window",
+                "description": "Uma resizes the browser window to simulate mobile view.",
+                "action": "Resize the browser window.",
+                "expected_outcome": "Layout adjusts responsively, maintaining usability with alice blue background and steel blue accents."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration in package.json to install dependencies for both frontend and backend with 'npm run install:all'",
+        "user_persona": "A developer setting up the project locally.",
+        "user_goal": "To install dependencies for both frontend and backend in one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Victor clones the repo and runs the unified install script.",
+                "action": "Run 'npm run install:all' in the terminal.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration in package.json to start both frontend and backend concurrently with 'npm run dev'",
+        "user_persona": "A developer beginning work on the project.",
+        "user_goal": "To launch both frontend and backend servers together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Wanda prepares to develop by starting both apps at once.",
+                "action": "Run 'npm run dev' in the terminal.",
+                "expected_outcome": "Both frontend and backend servers start concurrently and are ready for development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A user loading the latest game data.",
+        "user_goal": "To see accurate, up-to-date information pulled from the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Game Data",
+                "description": "Xavier loads the game lobby and expects to see real-time data.",
+                "action": "Load the game lobby page.",
+                "expected_outcome": "Game list is fetched from backend API and displayed accurately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A system administrator verifying backend connectivity.",
+        "user_goal": "To confirm the backend can connect to the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "Yara checks that the backend uses correct environment variables to connect.",
+                "action": "Start the backend server with correct .env values.",
+                "expected_outcome": "Server initializes successfully and connects to PostgreSQL using DB_HOST, DB_PORT, etc."
+            }
+        ]
+    }
+]

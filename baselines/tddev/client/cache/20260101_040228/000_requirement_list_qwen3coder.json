@@ -1,0 +1,227 @@
+[
+    {
+        "resource_dependency": {
+            "realTimeSolarGenerationAPI": "GET /api/solar/generation - Returns current solar power generation in kW.",
+            "solarPanelIcon": "/assets/icons/solar-panel.svg"
+        },
+        "function": "Display real-time solar power generation value fetched from backend API.",
+        "static_description": "A card component with a honeydew background and dark olive green border showing the label 'Solar Generation', an icon referenced as solarPanelIcon, and a numeric value field displaying the latest solar power generation in kW.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component fetches data from realTimeSolarGenerationAPI on mount and displays the returned value."
+            },
+            {
+                "interaction": "Interval Update",
+                "description": "Every 5 seconds, the component re-fetches data from realTimeSolarGenerationAPI and updates the displayed value without page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimePowerConsumptionAPI": "GET /api/consumption - Returns current power consumption in kW.",
+            "homeIcon": "/assets/icons/home.svg"
+        },
+        "function": "Display real-time power consumption value fetched from backend API.",
+        "static_description": "A card component with a honeydew background and dark olive green border showing the label 'Power Consumption', an icon referenced as homeIcon, and a numeric value field displaying the latest power consumption in kW.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component fetches data from realTimePowerConsumptionAPI on mount and displays the returned value."
+            },
+            {
+                "interaction": "Interval Update",
+                "description": "Every 5 seconds, the component re-fetches data from realTimePowerConsumptionAPI and updates the displayed value without page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeBatteryPercentageAPI": "GET /api/battery - Returns current battery charge level as a percentage.",
+            "batteryIcon": "/assets/icons/battery.svg"
+        },
+        "function": "Display real-time battery percentage value fetched from backend API.",
+        "static_description": "A card component with a honeydew background and dark olive green border showing the label 'Battery Level', an icon referenced as batteryIcon, and a numeric value field displaying the latest battery percentage followed by '%'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Component fetches data from realTimeBatteryPercentageAPI on mount and displays the returned value."
+            },
+            {
+                "interaction": "Interval Update",
+                "description": "Every 5 seconds, the component re-fetches data from realTimeBatteryPercentageAPI and updates the displayed value without page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalDataQueryAPI": "GET /api/history?start={startDate}&end={endDate} - Returns historical records between two timestamps.",
+            "dateRangePickerLibrary": "React Date Range Picker library or equivalent"
+        },
+        "function": "Allow users to query historical solar data by specifying a custom date range.",
+        "static_description": "Two date input fields labeled 'Start Date' and 'End Date' with calendar pickers rendered via dateRangePickerLibrary, placed within a form container with a honeydew background and dark olive green text labels.",
+        "interaction_and_states": [
+            {
+                "interaction": "Select Start Date",
+                "description": "Opens a calendar widget allowing selection of start date; selected value populates the corresponding input field."
+            },
+            {
+                "interaction": "Select End Date",
+                "description": "Opens a calendar widget allowing selection of end date; selected value populates the corresponding input field."
+            },
+            {
+                "interaction": "Submit Form",
+                "description": "Triggers a request to historicalDataQueryAPI with selected dates as parameters, then passes results to downstream charting components."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartAnalysisLibrary": "Chart.js or similar JavaScript charting library",
+            "historicalTrendDataSchema": "Database table schema: id (serial primary key), timestamp (timestamptz), solar_generation_kw (float), power_consumption_kw (float), battery_percentage (int)"
+        },
+        "function": "Visualize historical trends of solar metrics using line charts.",
+        "static_description": "Three separate line charts rendered with chartAnalysisLibrary inside containers styled with honeydew background and dark olive green borders. Charts represent Solar Generation (kW), Power Consumption (kW), and Battery Percentage (%) over time.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Charts render default view with last 7 days of data upon initial load."
+            },
+            {
+                "interaction": "Update Data Source",
+                "description": "Receives filtered dataset from historicalDataQueryAPI and redraws all three charts dynamically with updated datasets."
+            },
+            {
+                "interaction": "Hover Over Point",
+                "description": "Displays tooltip showing exact metric value and timestamp at hovered data point."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataFetchingService": "Axios or native fetch API implementation"
+        },
+        "function": "Ensure all frontend data originates exclusively from backend APIs, eliminating hardcoded or mock values.",
+        "static_description": "Not a visible UI element but a configuration ensuring all data retrieval methods use dataFetchingService pointing to defined endpoints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaDefinition": "Tables: realtime_metrics(id serial PK, timestamp timestamptz, solar_generation_kw float, power_consumption_kw float, battery_percentage int); historical_metrics same structure with indexing on timestamp."
+        },
+        "function": "Establish secure connection to PostgreSQL database using provided credentials and define required tables.",
+        "static_description": "Not a visible UI element but a server-side setup defining how backend services connect to postgres using postgresConnectionConfig and initialize databaseSchemaDefinition.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "globalCSSVariables": ":root { --background-color: honeydew; }"
+        },
+        "function": "Apply consistent honeydew background color across entire dashboard UI.",
+        "static_description": "All main layout wrappers and page containers inherit their background-color style from globalCSSVariables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentStyleRules": "CSS class definitions setting text color, border color, and accent elements to dark olive green (#556B2F)"
+        },
+        "function": "Style all interactive and informational components uniformly with dark olive green theme.",
+        "static_description": "Text labels, borders, buttons, and other UI controls utilize componentStyleRules to apply #556B2F coloring throughout.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "metricsVisualizationLibrary": "Chart.js or D3-based solution for rendering time-series data",
+            "metricIcons": [
+                "/assets/icons/sun.svg",
+                "/assets/icons/lightning.svg",
+                "/assets/icons/battery-full.svg"
+            ]
+        },
+        "function": "Render visually distinct charts representing solar-related metrics over time.",
+        "static_description": "Three side-by-side panels each containing one chart rendered by metricsVisualizationLibrary, titled respectively 'Solar Output', 'Energy Usage', and 'Battery Status', each featuring corresponding icons from metricIcons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Charts resize responsively maintaining readability on desktop and tablet breakpoints."
+            },
+            {
+                "interaction": "Toggle Metric Visibility",
+                "description": "(Optional future feature) Click legend items to hide/show individual metrics in multi-line charts."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dateSelectionUIComponent": "Custom-built or third-party date picker supporting dual-calendar selection",
+            "dateFormatterUtility": "JavaScript utility formatting ISO strings into human-readable formats"
+        },
+        "function": "Provide intuitive date range selector enabling historical data filtering.",
+        "static_description": "Horizontal inline form group comprising two inputs labeled 'From' and 'To', populated with formatted dates using dateFormatterUtility, integrated with dateSelectionUIComponent.",
+        "interaction_and_states": [
+            {
+                "interaction": "Open Calendar",
+                "description": "Clicking either input opens associated calendar modal for date selection."
+            },
+            {
+                "interaction": "Confirm Selection",
+                "description": "Clicking 'Apply' submits the chosen date pair to trigger historicalDataQueryAPI call."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "liveUpdateMechanism": "WebSocket connection or polling mechanism every 5 seconds"
+        },
+        "function": "Automatically refresh real-time metric values periodically without manual intervention.",
+        "static_description": "Background process continuously invoking liveUpdateMechanism to update displayed values in real-time cards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Poll Interval Trigger",
+                "description": "At fixed intervals, triggers refetch of real-time APIs and updates DOM elements accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "@media screen and (max-width: 1024px) and (min-width: 768px)",
+            "mobileFirstGridSystem": "CSS Grid or Flexbox-based responsive layout system"
+        },
+        "function": "Ensure optimal display experience across desktop and tablet screen sizes.",
+        "static_description": "Layout adjusts column count and spacing using responsiveBreakpoints and mobileFirstGridSystem when viewed on tablets vs larger screens.",
+        "interaction_and_states": [
+            {
+                "interaction": "Window Resize",
+                "description": "Layout recalculates grid dimensions and reflows child components smoothly during viewport resizing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"cd frontend && npm install && cd ../backend && npm install\""
+        },
+        "function": "Enable unified installation of frontend and backend dependencies through single command.",
+        "static_description": "Defined under scripts section in root package.json file referencing installScriptCommand.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run install:all' sequentially installs packages in frontend and backend directories."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentExecutionTool": "concurrently or similar NPM package",
+            "devScriptDefinition": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Launch both frontend development server and backend application simultaneously.",
+        "static_description": "Defined under scripts section in root package.json file utilizing concurrentExecutionTool as per devScriptDefinition.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Dev Script",
+                "description": "Running 'npm run dev' spawns parallel processes launching frontend (typically on port 3000) and backend servers (on port 5000 or configured port)."
+            }
+        ]
+    }
+]

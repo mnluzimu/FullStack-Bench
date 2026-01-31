@@ -1,0 +1,233 @@
+[
+    {
+        "resource_dependency": {
+            "searchFormIcons": [
+                "/icons/train.svg",
+                "/icons/plane.svg",
+                "/icons/hotel.svg"
+            ],
+            "travelSearchAPI": "External API providing real-time availability and pricing for trains, flights, and hotels.",
+            "databaseSchema": "Tables: users(user_id, email, password_hash), searches(search_id, user_id, origin, destination, departure_date, return_date, passengers_count, created_at)"
+        },
+        "function": "Display a homepage with a unified search form allowing users to input travel preferences across trains, flights, and hotels.",
+        "static_description": "A full-width header bar with navigation links. Below it, a centered card with three tabs labeled 'Trains', 'Flights', and 'Hotels'. Each tab reveals a set of input fields including origin/destination, check-in/out dates, number of travelers, and class options. Peach puff background with Indian red accents on buttons and active tab indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a tab switches the visible search form section accordingly without reloading the page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button submits the filled form data to the backend API and redirects to the search results page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resultsDataAPI": "Backend endpoint returning paginated lists of available travel options based on search parameters.",
+            "filterOptions": [
+                "Price Range",
+                "Departure Time",
+                "Arrival Time",
+                "Duration",
+                "Stops/Amenities"
+            ],
+            "sortOptions": [
+                "Lowest Price",
+                "Shortest Duration",
+                "Earliest Departure",
+                "Latest Arrival"
+            ]
+        },
+        "function": "Render a dynamic search results page showing filtered and sorted travel options for the selected mode of transport.",
+        "static_description": "A two-column layout: left sidebar contains collapsible filters and sorting controls; main area displays cards representing individual travel options (train schedules, flight itineraries, hotel listings) with images/icons, prices, durations, departure times, and book buttons. Background uses peach puff; components use Indian red highlights.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a filter applies it instantly to refine displayed results."
+            },
+            {
+                "interaction": "Click",
+                "description": "Choosing a sort option reorders the list of travel options immediately."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a 'Book Now' button navigates the user to the booking confirmation page for that item."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bookingFormFields": [
+                "Traveler Name",
+                "Email",
+                "Phone Number",
+                "Passenger Details",
+                "Special Requests"
+            ],
+            "bookingSubmitAPI": "POST /api/bookings endpoint accepting selected travel option ID and passenger details."
+        },
+        "function": "Allow users to confirm their selection by entering personal and passenger information before proceeding to payment.",
+        "static_description": "A multi-step form presented in a modal or dedicated page showing summary of selected travel option followed by sections for collecting traveler contact info, passenger details, and optional special requests. Peach puff background with Indian red borders around input fields.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Continue to Payment' validates inputs and sends collected data to the backend for creating a temporary booking record."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "paymentGatewayIntegration": "Secure third-party payment gateway supporting credit/debit cards and digital wallets.",
+            "paymentProcessingAPI": "Internal POST /api/payments endpoint which communicates with the external payment provider."
+        },
+        "function": "Process secure financial transactions initiated during the booking flow.",
+        "static_description": "Embedded iframe or hosted checkout page provided by the payment gateway showing total amount due, accepted payment methods, and secured entry fields for card/wallet details. Maintains consistent color scheme with peach puff base and Indian red call-to-action elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting payment details triggers communication with the backend, which forwards transaction to the payment gateway. Upon success, redirects to the order confirmation screen; on failure, shows error message and allows retry."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "orderHistoryAPI": "GET /api/orders endpoint retrieving past bookings linked to authenticated user’s account.",
+            "orderStatusMapping": "{ pending: 'Awaiting Confirmation', confirmed: 'Confirmed', cancelled: 'Cancelled', completed: 'Completed' }"
+        },
+        "function": "Present a centralized view of all previous and current travel reservations made by the logged-in user.",
+        "static_description": "Tabbed interface listing upcoming trips, past bookings, and cancellations. Each tab shows a timeline or grid of booking cards displaying trip type, dates, status badge, and action buttons. Uses peach puff background with Indian red status tags indicating different stages.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an order card expands additional details such as booking reference, payment receipt link, and cancellation policy."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": "POST /api/auth/register, POST /api/auth/login, GET /api/auth/me",
+            "authDatabaseSchema": "users table includes unique email, hashed password, session tokens, profile data."
+        },
+        "function": "Enable new visitors to register accounts and existing users to log in securely.",
+        "static_description": "Login/Register overlay panel accessible from top navigation bar featuring email/password fields, remember me checkbox, forgot password link, social login buttons, and submit/register buttons styled with Indian red accents against peach puff backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting credentials authenticates user and stores JWT/session token client-side for maintaining login state throughout the app."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Forgot Password?' opens recovery workflow prompting user to enter registered email address."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveCSSFramework": "Tailwind CSS or Bootstrap configured with custom theme settings.",
+            "colorPaletteTokens": "{ backgroundPrimary: '#FFDAB9', componentAccent: '#CD5C5C' }"
+        },
+        "function": "Ensure consistent styling and responsiveness across devices while enforcing brand colors.",
+        "static_description": "All pages utilize a shared CSS framework applying peach puff (#FFDAB9) as primary background color and Indian red (#CD5C5C) for interactive components like buttons, links, and form focus states. Responsive breakpoints ensure usability on mobile/tablet/desktop.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "externalProviderAPIs": [
+                "Train API for live timetables and seat availability",
+                "Flight API for airline routes, fares, and schedules",
+                "Hotel API for room inventory and pricing"
+            ],
+            "dataAggregationLayer": "Node.js service polling multiple APIs, normalizing responses, caching frequently accessed data."
+        },
+        "function": "Fetch up-to-date travel data from disparate external systems and expose them through internal RESTful endpoints.",
+        "static_description": "No visible UI element directly tied to this backend-only requirement. Ensures dynamic data feeds populate frontend views.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp used by ORM/database driver.",
+            "databaseMigrations": "Scripts to initialize schema tables: users, bookings, payments, sessions, etc."
+        },
+        "function": "Establish persistent storage layer for application data using PostgreSQL.",
+        "static_description": "Transparent infrastructure setup ensuring reliable access to stored records. No direct UI impact but foundational for entire system operation.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontendAPIClient": "Axios/fetch wrapper configured to consume backend endpoints exclusively.",
+            "backendAPIRoutes": "Defined routes exposing data operations for search, booking, auth, orders, and admin tasks."
+        },
+        "function": "Enforce complete separation between frontend presentation logic and backend data sources.",
+        "static_description": "All frontend components retrieve data exclusively through HTTP calls to backend services rather than embedding hardcoded values.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "realTimeUpdateMechanism": "WebSocket connection or periodic polling strategy to sync latest availability/pricing changes.",
+            "cacheInvalidationPolicy": "TTL-based cache eviction rules to prevent stale display of rapidly changing data."
+        },
+        "function": "Keep displayed travel options accurate and reflective of real-world conditions.",
+        "static_description": "Search results automatically update every few seconds when open, ensuring no outdated information persists beyond acceptable thresholds.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "filterLogicHandler": "Frontend JavaScript module mapping user selections to query parameters sent to backend.",
+            "sortingAlgorithmSelector": "Client-side utility choosing how server returns results are reordered prior to rendering."
+        },
+        "function": "Empower users to narrow down large datasets and organize outcomes according to preference.",
+        "static_description": "Sidebar filters provide sliders, checkboxes, dropdown menus enabling fine-grained refinement. Sort dropdown presents common ordering strategies near top of results list.",
+        "interaction_and_states": [
+            {
+                "interaction": "Change Selection",
+                "description": "Adjusting any filter triggers immediate refresh of result list via updated API request."
+            },
+            {
+                "interaction": "Select Option",
+                "description": "Picking a sort criterion restructures visible items instantly without needing full page reload."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "validationLibrary": "Zod/Joi/Yup integrated into both frontend forms and backend request handlers.",
+            "errorMessagingSystem": "Centralized handler translating technical errors into user-friendly messages."
+        },
+        "function": "Prevent invalid submissions and guide users toward correct usage patterns.",
+        "static_description": "Input fields highlight in red upon failed validation, accompanied by descriptive helper texts beneath problematic areas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Blur Field",
+                "description": "Leaving an improperly formatted field triggers inline validation feedback immediately after losing focus."
+            },
+            {
+                "interaction": "Submit Form",
+                "description": "Attempting submission with missing/incorrect data prevents progression and highlights issues prominently."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminDashboardAPIs": "Protected endpoints under /admin namespace managing CRUD operations for travel listings, viewing/editing bookings, monitoring revenue.",
+            "roleBasedAccessControl": "Middleware verifying admin privileges before granting access to restricted sections."
+        },
+        "function": "Offer administrative oversight tools for overseeing business operations.",
+        "static_description": "Separate admin portal featuring analytics charts, searchable grids of inventory entries, editable booking statuses, and performance metrics panels—all leveraging peach puff backgrounds and Indian red accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigating to protected routes checks authentication level and either loads dashboard or redirects unauthorized attempts."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "concurrentDevScript": "\"dev\": \"concurrently \\\"npm run dev --prefix frontend\\\" \\\"npm run dev --prefix backend\\\"\"",
+            "installAllScript": "\"install:all\": \"npm install && cd frontend && npm install && cd ../backend && npm install\""
+        },
+        "function": "Streamline local development workflows by orchestrating simultaneous startup of frontend and backend processes.",
+        "static_description": "Root-level package.json defines convenient aliases for bootstrapping entire stack quickly during development iterations.",
+        "interaction_and_states": []
+    }
+]

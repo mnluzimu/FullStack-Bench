@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "A search functionality allowing users to input stock codes or names",
+    "A feature to select report formats and content options",
+    "Automated generation of customized stock reports based on user selections",
+    "Display of basic stock information in generated reports",
+    "Inclusion of market trends data in stock reports",
+    "Inclusion of financial data in stock reports",
+    "White background color applied throughout the website",
+    "Navy color applied to all components",
+    "A homepage introducing the stock report generation service",
+    "A results page displaying generated stock reports",
+    "Responsive design compatible with desktop and mobile devices",
+    "Loading indicators during data fetching and report generation processes",
+    "Error handling for invalid stock codes or unavailable data"
+]

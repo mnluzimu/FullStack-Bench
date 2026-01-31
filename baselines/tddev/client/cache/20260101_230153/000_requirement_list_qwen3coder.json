@@ -1,0 +1,236 @@
+[
+    {
+        "resource_dependency": {
+            "contestDataAPI": "GET /api/contests",
+            "contestDetailsAPI": "GET /api/contests/{id}",
+            "registerForContestAPI": "POST /api/registrations",
+            "resultsDataAPI": "GET /api/results",
+            "photoGalleryAPI": "GET /api/photos"
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "A responsive web layout with mint cream background (#F5FFFA) and teal-colored elements (#008080). The header includes navigation links to Home, Contests, Results, Photos, and Register. Main content area dynamically loads contest listings, result tables, and photo galleries.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a contest card navigates to the detailed contest page using contestDetailsAPI."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loading more contests via additional calls to contestDataAPI when reaching the bottom of the list."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnection": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "A backend application that connects to a PostgreSQL database using specified environment variables",
+        "static_description": "Backend server configured to connect to PostgreSQL instance using provided credentials. No visible UI; serves RESTful endpoints for frontend consumption.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "adminPostContestAPI": "POST /api/admin/contests",
+            "contestFormFields": [
+                "title",
+                "description",
+                "date",
+                "registration_deadline",
+                "location",
+                "prizes"
+            ]
+        },
+        "function": "Contest announcement posting functionality with title, description, date, and registration details",
+        "static_description": "Admin-only form interface with input fields for contest title, multi-line description textbox, date pickers for event and registration deadline, location text field, and prize information textarea. Submit button styled in teal.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form sends a POST request to adminPostContestAPI with collected form data."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Submit button changes shade slightly on hover for feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resultsTableSchema": "Database table containing participant_id, rank, score, contest_id",
+            "fetchResultsAPI": "GET /api/results?contest_id={id}"
+        },
+        "function": "Contest results display functionality showing participant rankings and scores",
+        "static_description": "Tabular view listing participants ranked by position. Columns include Rank, Participant Name, Score, and optionally Prize. Background remains mint cream with teal headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table ascending/descending by that attribute."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "photoGalleryEndpoint": "GET /api/photos?contest_id={id}",
+            "imageUploadAPI": "POST /api/photos/upload"
+        },
+        "function": "Contest photo gallery showcasing images from various contests",
+        "static_description": "Grid-based image gallery with thumbnails arranged in rows. Each thumbnail displays caption metadata such as photographer name and contest year. Lightbox modal opens on click.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking an image opens it in a lightbox overlay with navigation arrows."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Thumbnail captions fade in smoothly over the image."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "browseContestsAPI": "GET /api/contests",
+            "searchFunctionality": "Query parameter support in contests endpoint"
+        },
+        "function": "User browsing capability for contest announcements, results, and photos",
+        "static_description": "Search bar at top allows filtering contests by keyword. Filter tabs below allow switching between Announcements, Results, and Photos sections. Content updates dynamically without full page reload.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Switching tabs filters displayed content accordingly using respective APIs."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing enter after typing in search bar triggers re-fetching of contests with query term applied."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "registrationFormAPI": "POST /api/registrations",
+            "requiredFields": [
+                "name",
+                "email",
+                "contest_id",
+                "preferences"
+            ]
+        },
+        "function": "User registration functionality for signing up to participate in contests",
+        "static_description": "Multi-step registration form collecting user name, email address, selected contest, and optional preferences (gear used, bait preference). Teal-themed buttons guide through steps.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Next/Previous buttons navigate between form steps. Final submission posts data to registrationFormAPI."
+            },
+            {
+                "interaction": "Key Press: Tab",
+                "description": "Focus moves logically between form fields enhancing accessibility."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contestDetailPageAPI": "GET /api/contests/{id}",
+            "rulesContent": "Textual rule descriptions stored per contest",
+            "scheduleData": "Start time, duration, categories info"
+        },
+        "function": "Contest information pages displaying details like rules, prizes, and schedules",
+        "static_description": "Dedicated contest detail page featuring large header banner, followed by collapsible sections for Rules, Schedule, Prizes, and Registration Info. All styled consistently with mint cream background and teal accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking section titles expands/collapses detailed content beneath them."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "cssVariables": ":root { --bg-color: #F5FFFA; --primary-color: #008080 }"
+        },
+        "function": "Responsive web design with mint cream background and teal colored elements",
+        "static_description": "Entire site uses consistent color palette defined in CSS variables. Mint cream background spans all pages while teal is used for interactive elements, borders, and highlights. Fully responsive across devices.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbSchemaDefinition": "CREATE TABLE contests(id SERIAL PRIMARY KEY, title TEXT, description TEXT, date DATE, registration_deadline DATE); CREATE TABLE participants(id SERIAL PRIMARY KEY, name TEXT, email TEXT); CREATE TABLE results(contest_id INT REFERENCES contests(id), participant_id INT REFERENCES participants(id), rank INT, score NUMERIC); CREATE TABLE photos(id SERIAL PRIMARY KEY, url TEXT, caption TEXT, contest_id INT REFERENCES contests(id));"
+        },
+        "function": "Database schema supporting contests, participants, results, and photo galleries",
+        "static_description": "Relational database structure created during initialization with tables for contests, participants, results, and photos. Foreign key relationships ensure referential integrity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointsList": [
+                "/api/contests",
+                "/api/registrations",
+                "/api/results",
+                "/api/photos"
+            ]
+        },
+        "function": "API endpoints for fetching contest data, submitting registrations, and retrieving results",
+        "static_description": "RESTful API routes exposed under /api namespace handling GET and POST operations for contest data, registration submissions, and result retrieval. Endpoints secured appropriately.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "adminAuthCheck": "Middleware to verify admin privileges before allowing access",
+            "postContestFormUI": "HTML form bound to adminPostContestAPI"
+        },
+        "function": "User interface for administrators to post new contest announcements",
+        "static_description": "Protected route accessible only to authenticated admins presenting a rich form for creating new contest entries. Includes WYSIWYG editor for descriptions and file upload for banners.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save button submits completed form to backend via adminPostContestAPI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "photoUploadAPI": "POST /api/photos/upload",
+            "galleryManagementUI": "Interface for viewing and deleting uploaded images"
+        },
+        "function": "Photo upload and management system for contest images",
+        "static_description": "Drag-and-drop zone accepting multiple image uploads. Uploaded images appear as previews with delete options. Integrated with photo storage solution.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging files onto the drop zone initiates upload process to photoUploadAPI."
+            },
+            {
+                "interaction": "Click",
+                "description": "Delete icon removes individual images both visually and from backend storage."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "registrationFormFields": [
+                "name",
+                "email",
+                "contest_selection",
+                "preferences"
+            ],
+            "submitRegistrationAPI": "POST /api/registrations"
+        },
+        "function": "Registration form capturing user details like name, email, and contest preferences",
+        "static_description": "Cleanly designed form with clearly labeled inputs for personal details, contest selection dropdown, and checkboxes/radios for preference choices. Styled with mint cream and teal theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Register Now button validates inputs and submits to submitRegistrationAPI upon success."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "If cursor is within last input field, pressing Enter submits the form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageScripts": "{ \"install:all\": \"concurrently \\\"npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev:frontend\\\" \\\"npm run dev:backend\\\"\" }"
+        },
+        "function": "Package.json configuration with npm run install:all and npm run dev scripts",
+        "static_description": "Root package.json file containing custom script definitions enabling unified installation and development startup commands.",
+        "interaction_and_states": []
+    }
+]

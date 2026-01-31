@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all stock data dynamically from backend APIs",
+        "user_persona": "A financial analyst who needs up-to-date stock information for client presentations.",
+        "user_goal": "To view dynamically fetched stock data on the dashboard after searching for a stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens the website and sees a clean white background with navy-themed components. She notices the search bar ready for input.",
+                "action": "Load the homepage URL.",
+                "expected_outcome": "The homepage loads successfully with a white background and navy-styled UI components, including a visible search bar."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Stock",
+                "description": "Sarah enters 'AAPL' into the search field and presses Enter to trigger the search.",
+                "action": "Type 'AAPL' into the search input and press Enter.",
+                "expected_outcome": "An API call is made to fetch stock data, and the UI updates dynamically to show Apple's stock information without page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend service that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the application locally for testing.",
+        "user_goal": "To ensure the backend successfully connects to the configured PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Alex starts the backend server using the correct environment variables for database connection.",
+                "action": "Run `npm run dev` in terminal.",
+                "expected_outcome": "Backend service initializes successfully and logs confirmation of database connection using provided credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search functionality allowing users to input stock codes or names",
+        "user_persona": "An investor researching different companies.",
+        "user_goal": "To find stock details by entering either a company name or ticker symbol.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Company Name",
+                "description": "Jamie types 'Microsoft' into the search bar and clicks the Search button.",
+                "action": "Enter 'Microsoft' into the search field and click the 'Search' button.",
+                "expected_outcome": "The system recognizes the input as a valid company name and retrieves Microsoft's stock data."
+            },
+            {
+                "step": 2,
+                "title": "Using Ticker Symbol",
+                "description": "Jamie then tries searching with the ticker symbol 'MSFT'.",
+                "action": "Enter 'MSFT' into the search field and press Enter.",
+                "expected_outcome": "The system identifies the ticker symbol and displays Microsoft's stock information again."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI components for selecting report formats and content preferences",
+        "user_persona": "A portfolio manager preparing customized reports for stakeholders.",
+        "user_goal": "To customize the format and content sections of a generated stock report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Report Format",
+                "description": "Taylor searches for 'TSLA' and then selects 'PDF' from the format dropdown menu.",
+                "action": "Click the format dropdown and select 'PDF'.",
+                "expected_outcome": "The dropdown closes and 'PDF' is now selected as the preferred report format."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Content Sections",
+                "description": "Taylor checks the boxes for 'Basic Info' and 'Financial Data' to tailor the report content.",
+                "action": "Click the 'Basic Info' and 'Financial Data' checkboxes.",
+                "expected_outcome": "Both checkboxes become checked, indicating those sections will be included in the report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Automated generation of customized stock reports based on user selections",
+        "user_persona": "A research associate needing quick access to tailored stock insights.",
+        "user_goal": "To generate a customized report after making specific selections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Report Generation",
+                "description": "Jordan has searched for 'GOOGL', selected 'HTML Summary' as the format, and chosen 'Market Trends' as the only content section. Now he clicks 'Generate Report'.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A loading spinner appears while the backend compiles the report according to selections."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Generated Report",
+                "description": "After a few seconds, Jordan expects to see the generated HTML summary of Google’s market trends.",
+                "action": "Wait for the report generation process to complete.",
+                "expected_outcome": "The loading spinner disappears and the HTML summary of Google’s market trends is displayed in a preview window."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display of basic stock information including company details and ticker symbols",
+        "user_persona": "A new investor learning about various stocks.",
+        "user_goal": "To quickly identify core details about a company upon searching.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Company Details",
+                "description": "Casey searches for 'AMZN' and looks at the resulting company overview panel.",
+                "action": "Search for 'AMZN' and observe the 'Company Overview' card.",
+                "expected_outcome": "A card titled 'Company Overview' shows aligned label-value pairs for Amazon's Symbol (AMZN), Name, Sector, and Industry in navy font against a white background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Presentation of market trend analysis with visual indicators",
+        "user_persona": "A day trader monitoring intraday movements.",
+        "user_goal": "To analyze recent stock performance through visual charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Analyzing Market Trends",
+                "description": "Riley searches for 'NVDA' and focuses on the 'Market Trends' chart area.",
+                "action": "Search for 'NVDA' and look at the chart container labeled 'Market Trends'.",
+                "expected_outcome": "An interactive time-series plot is displayed showing NVIDIA's recent price movements with directional arrows or color-coded indicators."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Chart Tooltips",
+                "description": "Riley hovers over a peak point on the chart to get precise pricing details.",
+                "action": "Hover over a data point on the market trend chart.",
+                "expected_outcome": "A tooltip appears revealing exact price and volume values at that timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Inclusion of financial data such as earnings, revenue, and key ratios in reports",
+        "user_persona": "A finance student studying corporate financial health.",
+        "user_goal": "To review key financial metrics of a company in a structured way.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Financial Highlights",
+                "description": "Morgan searches for 'JPM' and scrolls down to the 'Financial Highlights' section.",
+                "action": "Search for 'JPM' and locate the 'Financial Highlights' table.",
+                "expected_outcome": "A collapsible table titled 'Financial Highlights' displays key figures like Earnings Per Share, Revenue, P/E Ratio, and Debt-to-Equity ratio."
+            },
+            {
+                "step": 2,
+                "title": "Expanding Detailed Financial Entries",
+                "description": "Morgan clicks the expand icon next to the table to see more detailed financial data.",
+                "action": "Click the expand/collapse icon of the financial highlights table.",
+                "expected_outcome": "Additional financial entries become visible without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A clean user interface with white background and navy-colored components",
+        "user_persona": "A UX designer reviewing design consistency.",
+        "user_goal": "To verify that the site follows the defined color scheme throughout.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Dana inspects the overall background of the homepage to confirm it matches the specified color.",
+                "action": "Open DevTools and inspect the body background style.",
+                "expected_outcome": "Background color is confirmed to be solid white (#FFFFFF)."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Component Colors",
+                "description": "Dana examines UI elements such as buttons and headers for consistent use of the primary color.",
+                "action": "Inspect styles of buttons and headers across the page.",
+                "expected_outcome": "All relevant components are styled with deep navy blue (#000080)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design compatible across desktop and mobile devices",
+        "user_persona": "A busy professional checking stock updates on a commute.",
+        "user_goal": "To seamlessly navigate the site on both desktop and mobile screens.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Desktop Layout",
+                "description": "Pat opens the site on a desktop browser and observes the horizontal arrangement of elements.",
+                "action": "Resize browser window to desktop width (>1024px) and observe layout.",
+                "expected_outcome": "Major UI sections are arranged horizontally with appropriate spacing and font sizes."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Mobile View",
+                "description": "Pat switches to mobile view to check responsiveness.",
+                "action": "Resize browser window to mobile width (<768px) and observe layout.",
+                "expected_outcome": "Layout stacks vertically, fonts resize appropriately, and touch targets increase for better usability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data fetching capability for up-to-date stock information",
+        "user_persona": "A trader relying on current market data.",
+        "user_goal": "To monitor live stock updates without manually refreshing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Live Updates",
+                "description": "Quinn searches for 'BTC-USD' and watches the live status indicator near the top-right corner.",
+                "action": "Search for 'BTC-USD' and observe the live status badge.",
+                "expected_outcome": "Badge shows 'Connected' and occasionally flashes when new data arrives."
+            },
+            {
+                "step": 2,
+                "title": "Checking Last Update Timestamp",
+                "description": "Quinn hovers over the live indicator to see when the last update occurred.",
+                "action": "Hover over the live status indicator.",
+                "expected_outcome": "Tooltip displays the timestamp of the most recent data update."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for invalid stock codes or unavailable data",
+        "user_persona": "A casual investor experimenting with random tickers.",
+        "user_goal": "To understand why certain searches fail gracefully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Invalid Stock Code",
+                "description": "Riley enters 'XYZ123' into the search bar and hits Enter, expecting an error message.",
+                "action": "Enter 'XYZ123' into the search field and press Enter.",
+                "expected_outcome": "An alert banner appears above the search bar stating 'Invalid stock code entered.'"
+            },
+            {
+                "step": 2,
+                "title": "Handling Missing Data",
+                "description": "Riley tries another ticker known to lack data, like 'FAKESTOCK'.",
+                "action": "Enter 'FAKESTOCK' into the search field and press Enter.",
+                "expected_outcome": "Alert banner displays 'No data found for this stock.' with guidance on correcting the issue."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Export options for generated reports in selected formats",
+        "user_persona": "An analyst needing to share findings externally.",
+        "user_goal": "To export a generated report in a preferred file format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating and Previewing Report",
+                "description": "Jordan generates an HTML summary report for 'FB' and views the result.",
+                "action": "Generate an HTML report for 'FB' and wait for preview.",
+                "expected_outcome": "Preview window shows the generated report along with export buttons."
+            },
+            {
+                "step": 2,
+                "title": "Exporting Report as PDF",
+                "description": "Jordan decides to save the report as a PDF for easy sharing.",
+                "action": "Click the 'Download PDF' button.",
+                "expected_outcome": "A new API request is initiated, and a PDF version of the report downloads automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading states and progress indicators during report generation",
+        "user_persona": "A manager waiting for a critical report before a meeting.",
+        "user_goal": "To know that the system is actively working on generating a report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Long Report Generation",
+                "description": "Taylor initiates a comprehensive report for 'AAPL' which takes several seconds to compile.",
+                "action": "Click 'Generate Report' for a multi-section report on 'AAPL'.",
+                "expected_outcome": "A semi-transparent overlay masks the interface with a centrally positioned animated spinner."
+            },
+            {
+                "step": 2,
+                "title": "Completion Feedback",
+                "description": "Taylor waits patiently as the system processes the request.",
+                "action": "Observe the UI during report compilation.",
+                "expected_outcome": "Spinner animation continues smoothly until the report finishes, at which point it disappears and the report is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Secure API communication between frontend and backend services",
+        "user_persona": "A security auditor validating API protection mechanisms.",
+        "user_goal": "To confirm that sensitive API endpoints require proper authentication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "Sam attempts to call the report generation endpoint directly without setting authorization headers.",
+                "action": "Send POST request to `/api/reports/generate` without Authorization header.",
+                "expected_outcome": "Server responds with 401 Unauthorized status, denying access due to missing token."
+            },
+            {
+                "step": 2,
+                "title": "Successful Authenticated Request",
+                "description": "Sam repeats the request but includes a valid bearer token this time.",
+                "action": "Resend the same POST request with a valid Authorization Bearer token in the header.",
+                "expected_outcome": "Request is accepted, and the report generation process begins securely."
+            }
+        ]
+    }
+]

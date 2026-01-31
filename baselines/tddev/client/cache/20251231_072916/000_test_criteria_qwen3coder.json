@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "Implement a frontend application that fetches all data from backend APIs",
+        "user_persona": "An insurance agent named Lisa who needs real-time access to customer data.",
+        "user_goal": "To view the most current list of customers without seeing outdated or hardcoded information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Customer Data",
+                "description": "Lisa logs into the system and navigates to the customer management section, expecting to see live data.",
+                "action": "Navigate to the '/customers' route.",
+                "expected_outcome": "The frontend makes a GET request to `/api/customers` and displays retrieved data in a grid/table format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a backend application that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer named Sam deploying the backend service locally.",
+        "user_goal": "To ensure the backend successfully connects to the configured PostgreSQL instance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Sam sets the required environment variables and starts the backend server.",
+                "action": "Run `npm run dev` in the backend directory after setting DB_HOST, DB_PORT, etc.",
+                "expected_outcome": "Server initializes and establishes a successful connection to PostgreSQL using the provided configuration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design a customer management module allowing users to browse and manage customer information",
+        "user_persona": "An office manager named Raj checking client details.",
+        "user_goal": "To edit an existing customer's contact information quickly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Customer Entry",
+                "description": "Raj finds the correct customer in the table and clicks the 'Edit' button next to their name.",
+                "action": "Click the 'Edit' button for a selected customer row.",
+                "expected_outcome": "A modal form opens pre-filled with the customer's current information ready for editing."
+            },
+            {
+                "step": 2,
+                "title": "Updating Information",
+                "description": "Raj updates the phone number and saves the changes.",
+                "action": "Modify the phone field and click 'Save'.",
+                "expected_outcome": "The updated customer record is saved via PUT /api/customers/{id}, and the table reflects the change immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop a policy management module enabling users to view and operate on policy data",
+        "user_persona": "A policy officer named Ana reviewing expiring policies.",
+        "user_goal": "To delete a duplicate policy entry accidentally created earlier.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Duplicate Policy",
+                "description": "Ana locates the duplicate policy in the table and clicks the trash icon.",
+                "action": "Click the 'Delete' button associated with the duplicate policy.",
+                "expected_outcome": "A confirmation dialog appears asking her to confirm the deletion."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Deletion",
+                "description": "After verifying the details, Ana confirms she wants to remove the policy.",
+                "action": "Click 'Confirm' in the dialog box.",
+                "expected_outcome": "The system sends a DELETE request to `/api/policies/{id}` and removes the policy from the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build a claims management module providing functionality to handle claims information",
+        "user_persona": "A claims adjuster named Tony evaluating submitted claims.",
+        "user_goal": "To review and update the status of a pending claim.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Claim Details",
+                "description": "Tony clicks the 'View/Edit' link for a specific claim to assess its validity.",
+                "action": "Click the 'View/Edit' button for a pending claim.",
+                "expected_outcome": "A detailed modal form loads with the claim’s information for review."
+            },
+            {
+                "step": 2,
+                "title": "Updating Claim Status",
+                "description": "After reviewing, Tony marks the claim as approved and submits the change.",
+                "action": "Select 'Approved' from the status dropdown and save changes.",
+                "expected_outcome": "The updated claim status is persisted via PATCH /api/claims/{id} and reflected in the claims table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include data analysis and reporting capabilities with various report generation features",
+        "user_persona": "A business analyst named Mia preparing quarterly performance reports.",
+        "user_goal": "To generate a Claims Summary Report covering the last three months.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Report Type",
+                "description": "Mia selects 'Claims Summary Report' from the dropdown and chooses the relevant date range.",
+                "action": "Choose 'Claims Summary Report', set start/end dates, then click 'Generate'.",
+                "expected_outcome": "Report content is fetched from `/api/reports?type=claims-summary&start=...&end=...` and displayed or made available for download."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate charting functionality to visualize data analysis results",
+        "user_persona": "A department head named Omar monitoring team performance metrics.",
+        "user_goal": "To understand monthly claim distribution patterns through visual representation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting With Charts",
+                "description": "Omar hovers over sections of the pie chart showing claim distributions.",
+                "action": "Hover over different segments of the 'Monthly Claim Distribution' pie chart.",
+                "expected_outcome": "Tooltips appear displaying exact percentages and numerical values for each segment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply a consistent color theme with whitesmoke background and dark cyan elements",
+        "user_persona": "A UX designer named Zoe auditing the app's design consistency.",
+        "user_goal": "To verify that all interactive components follow the defined color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting UI Elements",
+                "description": "Zoe inspects buttons and headers across pages to check adherence to the theme.",
+                "action": "Visit multiple pages and inspect element styles.",
+                "expected_outcome": "Background colors are consistently whitesmoke (#F5F5F5) and primary interactive elements use dark cyan (#008B8B)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run install:all command to install both frontend and backend dependencies",
+        "user_persona": "A new developer named Kai joining the project team.",
+        "user_goal": "To get both frontend and backend environments running locally with minimal setup effort.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Kai runs the unified installation script after cloning the repo.",
+                "action": "Execute `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend node_modules folders are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run dev command to start both frontend and backend concurrently",
+        "user_persona": "A tester named Elle preparing to validate integrated features.",
+        "user_goal": "To launch both services together for end-to-end testing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Full Stack Locally",
+                "description": "Elle uses the convenience script to boot up both applications at once.",
+                "action": "Run `npm run dev` from the root folder.",
+                "expected_outcome": "Frontend development server and backend API server start concurrently, accessible via localhost ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all modules support CRUD operations for their respective data entities",
+        "user_persona": "A QA engineer named Noah validating core functionality.",
+        "user_goal": "To test creation, reading, updating, and deleting a policy record.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Policy",
+                "description": "Noah fills out a new policy form and submits it.",
+                "action": "Fill form fields and click 'Add Policy'.",
+                "expected_outcome": "New policy is added to the database via POST /api/policies and appears in the table."
+            },
+            {
+                "step": 2,
+                "title": "Reading Created Policy",
+                "description": "Noah verifies the newly added policy exists in the list.",
+                "action": "Refresh the policy list view.",
+                "expected_outcome": "Newly created policy is visible in the list."
+            },
+            {
+                "step": 3,
+                "title": "Updating Policy",
+                "description": "Noah edits the policy type and saves the changes.",
+                "action": "Click 'Edit', modify policy type, then save.",
+                "expected_outcome": "Policy record is updated via PUT /api/policies/{id} and shows new value in the table."
+            },
+            {
+                "step": 4,
+                "title": "Deleting Policy",
+                "description": "Finally, Noah deletes the test policy.",
+                "action": "Click 'Delete' and confirm.",
+                "expected_outcome": "Policy is removed from the database via DELETE /api/policies/{id} and disappears from the table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement user authentication and authorization mechanisms",
+        "user_persona": "A security auditor named Iris confirming secure access control.",
+        "user_goal": "To ensure only authenticated users can access protected areas.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In Securely",
+                "description": "Iris enters valid credentials to gain access to the admin dashboard.",
+                "action": "Enter username/password and click 'Login'.",
+                "expected_outcome": "POST /api/auth/login returns a JWT token, granting access to restricted routes."
+            },
+            {
+                "step": 2,
+                "title": "Testing Unauthorized Access",
+                "description": "Without logging in, Iris tries navigating directly to the dashboard URL.",
+                "action": "Attempt to visit /dashboard without authentication.",
+                "expected_outcome": "Redirected automatically to the login page due to missing or invalid auth token."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide search and filtering capabilities across customer, policy, and claims data",
+        "user_persona": "A support representative named Ben assisting a caller looking for their file.",
+        "user_goal": "To locate a customer by name using the global search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching Customers",
+                "description": "Ben types the customer's partial name into the search bar.",
+                "action": "Type 'John Smi' into the search input field.",
+                "expected_outcome": "Debounced GET request to `/api/search?q=John+Smi` filters and updates the displayed customer list dynamically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create an administrative dashboard displaying key metrics and summaries",
+        "user_persona": "An executive named Chloe starting her day by reviewing company stats.",
+        "user_goal": "To quickly grasp overall business health through key indicators.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dashboard Metrics",
+                "description": "Chloe opens the dashboard and waits for the summary cards to populate.",
+                "action": "Navigate to the admin dashboard.",
+                "expected_outcome": "GET request to `/api/dashboard/metrics` retrieves data and populates KPI cards such as Total Customers, Active Policies, Open Claims."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design responsive UI components that work across different device sizes",
+        "user_persona": "A remote worker named Drew accessing the system from his tablet.",
+        "user_goal": "To navigate and interact seamlessly despite varying screen sizes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "Drew resizes his browser window to simulate smaller device dimensions.",
+                "action": "Manually resize the browser window to below 768px width.",
+                "expected_outcome": "Layout adjusts responsively—tables become horizontally scrollable, navigation collapses into a hamburger menu, and fonts remain readable."
+            }
+        ]
+    }
+]

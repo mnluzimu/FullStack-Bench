@@ -1,0 +1,244 @@
+[
+    {
+        "resource_dependency": {
+            "background_color": "lavender",
+            "ui_elements_color": "indigo",
+            "dashboard_layout_schema": "Set up a database schema with tables: policies (policy_id, title, description, date_enacted, status, category), policy_analytics (policy_id, views_count, downloads_count), and policy_relations (policy_id, related_policy_id)."
+        },
+        "function": "Display the main dashboard homepage showing an overview of regulatory policies.",
+        "static_description": "The landing page features a lavender background with indigo-stoneworked UI elements. It includes a header bar with navigation links, a search bar, and a grid/list view toggle. Below this is a summary section presenting key metrics such as total number of policies, recently updated policies, and popular categories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on 'View All Policies' navigates users to the full policy listing page. Clicking on any metric card expands it to show more detailed analytics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "charting_library": "Integrate Chart.js or D3.js for rendering interactive visualizations.",
+            "data_visualization_schema": "Database table named policy_analytics containing fields like policy_id, chart_type, data_points (JSON), labels (array), and timestamps."
+        },
+        "function": "Provide data visualization capabilities to represent complex regulatory policies visually.",
+        "static_description": "A dedicated visualization panel displays various charts (bar graphs, pie charts, timelines) representing policy trends, compliance rates, jurisdiction distribution, etc., using indigo-themed chart components against a lavender backdrop.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart segments reveals tooltips with specific numerical data and contextual information about that segment."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking on individual chart elements filters or highlights corresponding entries in associated lists or tables."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policy_browsing_schema": "Table policies with columns policy_id, title, description, date_enacted, status, category, and tags.",
+            "pagination_config": "Pagination settings for loading large datasets efficiently."
+        },
+        "function": "Enable users to browse through available regulatory policies easily.",
+        "static_description": "Displays a scrollable list or grid of policy cards featuring titles, brief descriptions, enactment dates, statuses, and category tags. Each card uses indigo borders and lavender accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Endless scrolling loads additional policy items dynamically without refreshing the entire page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a policy card navigates to its detailed view page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "analysis_tools_schema": "New table policy_analysis_tools with fields tool_id, name, description, and parameters_supported (JSON array).",
+            "tool_icon_set": "/assets/icons/analysis-tools/"
+        },
+        "function": "Offer analytical tools to help users understand and interpret policy implications.",
+        "static_description": "Presents a toolbar or sidebar with icons representing different analysis tools such as impact assessment calculators, comparison matrices, timeline builders, and risk evaluators—all styled with indigo-colored icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Activating an analysis tool opens a modal or side panel where users can configure inputs and run analyses based on selected policies."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "related_data_schema": "Table policy_related_data linking policy_id to external sources, documents, citations, and multimedia assets via foreign keys.",
+            "document_previewer": "Integration with PDF.js or similar library for inline document previews."
+        },
+        "function": "Show supplementary data relevant to each displayed policy.",
+        "static_description": "Each policy entry or detail view includes a collapsible section titled 'Related Data', which lists attached documents, external references, infographics, videos, and downloadable files using indigo headers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Expand' arrow under 'Related Data' reveals associated materials. Clicking on a file initiates preview or download depending on file type."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "interactive_charts_api": "Chart.js or Plotly.js integrated with dynamic data binding.",
+            "chart_data_endpoint": "API endpoint returning structured data arrays and metadata for populating charts."
+        },
+        "function": "Render interactive charts and graphs for deeper insight into policy statistics.",
+        "static_description": "Shows interactive line charts, bar graphs, heat maps, and bubble plots within dashboards or detail views. Charts use indigo lines/bars with lavender grid backgrounds.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays live data values when hovering over points or bars in the chart area."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking legend items toggles visibility of respective data series. Clicking on chart regions drills down into subcategories or timeframes."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Allows dragging to zoom into specific areas of time-series charts or scatter plots."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "filter_options_schema": "Database table filter_presets storing predefined filters including field names, operators, and values.",
+            "filter_component_template": "/components/policy-filters/"
+        },
+        "function": "Allow filtering of policy listings based on customizable criteria.",
+        "static_description": "Includes a collapsible filter panel positioned above the policy list/grid. Contains dropdowns, checkboxes, sliders, and date pickers for selecting categories, jurisdictions, enactment years, statuses, and keyword searches.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Apply Filters' updates the displayed policy set instantly. Clicking 'Reset Filters' clears current selections."
+            },
+            {
+                "interaction": "Change",
+                "description": "Adjusting any filter input automatically refreshes the results unless Apply is manually clicked."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sort_fields_config": "Pre-defined sorting options stored in app configuration mapping UI labels to database column names and sort directions.",
+            "sortable_columns_schema": "Ensure policy listing query supports ORDER BY clauses across multiple fields."
+        },
+        "function": "Permit reordering of policy listings according to user preferences.",
+        "static_description": "Features a sort control dropdown near the top-right corner of the policy list/grid, allowing selection between sorting methods like Title A-Z, Date Enacted Descending, Status, Category Alphabetical, etc., rendered with indigo text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an option from the sort dropdown immediately reorders the displayed policies accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "landing_page_css": ".landing-page { background-color: lavender; }",
+            "theme_variables": ":root { --bg-color-lavender: #E6E6FA; --accent-indigo: #4B0082; }"
+        },
+        "function": "Style the landing page with a lavender background color.",
+        "static_description": "Entire landing page has a solid lavender (#E6E6FA) background applied consistently across all sections except modals and overlays.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "ui_element_colors_css": ".ui-element { color: indigo; border-color: indigo; }",
+            "color_palette_file": "/styles/colors.scss"
+        },
+        "function": "Apply indigo styling to UI elements throughout the application.",
+        "static_description": "All buttons, form controls, tabs, navigation bars, and active states utilize indigo (#4B0082) as their primary accent color, creating visual consistency across the interface.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Buttons and interactive UI elements slightly lighten or darken upon hover while maintaining indigo tone."
+            },
+            {
+                "interaction": "Focus",
+                "description": "Focused form elements gain an indigo outline for accessibility."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "search_api_endpoint": "RESTful endpoint accepting GET requests with query parameters for full-text search and faceted filtering.",
+            "search_bar_component": "/components/search-bar/"
+        },
+        "function": "Implement a search functionality enabling quick lookup of policies by keywords.",
+        "static_description": "At the top center of the dashboard, there is a prominent indigo-stoneworked search bar labeled 'Search Policies'. It contains a magnifying glass icon and placeholder text prompting users to enter keywords.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types, predictive suggestions appear below the input box filtered by matching policy titles and descriptions."
+            },
+            {
+                "interaction": "Press Enter",
+                "description": "Submitting the search term navigates to a new results page displaying matched policies."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "policy_detail_view_schema": "Extend policies table with extended_description, legal_references, amendment_history, attachments (JSON array), and stakeholder_impact_report (URL).",
+            "detail_page_template": "/templates/policy-detail.hbs"
+        },
+        "function": "Create detailed view pages for individual regulatory policies.",
+        "static_description": "Dedicated pages for each policy feature comprehensive layouts showcasing the full title, abstract, effective dates, jurisdictional scope, amendments history, stakeholder impacts report, and embedded related media – all styled with lavender backgrounds and indigo headings.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on hyperlinked citations or cross-references takes users directly to referenced policies or external legal databases."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "export_formats_config": "Support export formats including CSV, Excel (.xlsx), JSON, and PDF via server-side generation.",
+            "download_button_component": "/components/export-button/"
+        },
+        "function": "Enable exporting of policy-related data in standard formats.",
+        "static_description": "Each policy listing and detail view includes a 'Download' or 'Export' button, represented by an indigo-stoneworked icon, offering choices like Export as CSV, Export to PDF, and Download Full Report.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an export option generates the requested format and prompts browser download dialog or sends it via email if configured."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_database_schema": "Users table with user_id, username, password_hash, role, permissions_array, last_login, created_at. Roles table with role_id, role_name, permission_set (JSON).",
+            "authentication_service": "JWT-based auth system handling login/logout/session management securely."
+        },
+        "function": "Manage user authentication and enforce role-based access control.",
+        "static_description": "Displays a secure login screen with indigo-stoneworked fields for username/password, branded logo, and 'Forgot Password?' link. Post-login, the dashboard adapts content visibility based on assigned roles (Admin, Analyst, Viewer).",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Entering credentials and clicking 'Login' validates against the user database and redirects authenticated users to the dashboard."
+            },
+            {
+                "interaction": "Logout",
+                "description": "Clicking profile menu > Logout invalidates session and returns user to login screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsive_framework": "CSS media queries and Flexbox/Grid layout ensuring compatibility with mobile, tablet, and desktop breakpoints.",
+            "device_testing_mandate": "Test across Chrome DevTools device emulator presets and physical devices running iOS/Android."
+        },
+        "function": "Ensure seamless usability and layout adaptation across various screen sizes and devices.",
+        "static_description": "Layout adjusts fluidly between stacked vertical arrangements on small screens and multi-column grids on larger ones. Navigation transforms into hamburger menus on phones, and font sizes scale appropriately with viewport dimensions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Resizing the browser window triggers responsive adjustments in layout spacing, element stacking order, and font scaling."
+            },
+            {
+                "interaction": "Rotate Device",
+                "description": "Rotating a mobile/tablet device changes orientation and readjusts the layout accordingly."
+            }
+        ]
+    }
+]

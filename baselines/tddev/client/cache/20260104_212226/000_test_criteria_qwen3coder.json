@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "Implement a homepage with a search interface for trains, flights, and hotels",
+        "user_persona": "A frequent traveler planning a weekend getaway.",
+        "user_goal": "To quickly find available travel options for a train journey from New York to Boston.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens the travel website and sees a clean homepage with a prominent search form. She notices the 'Trains' tab is already selected.",
+                "action": "Observe the homepage layout.",
+                "expected_outcome": "Homepage displays a centered card with 'Trains', 'Flights', and 'Hotels' tabs. Peach puff background with Indian red accents on active elements."
+            },
+            {
+                "step": 2,
+                "title": "Filling Search Form",
+                "description": "Sarah fills in her origin (New York), destination (Boston), selects next Friday's date, sets 2 passengers, and chooses first class.",
+                "action": "Fill in origin, destination, select date, set passenger count, and choose class option.",
+                "expected_outcome": "All fields accept input normally. The 'Search' button becomes enabled after required fields are filled."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Search Request",
+                "description": "Confident in her selections, Sarah clicks the 'Search' button to see available train options.",
+                "action": "Click the 'Search' button.",
+                "expected_outcome": "Page redirects to the search results page showing train options between New York and Boston."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a search results page displaying available trains, air tickets, and hotel options",
+        "user_persona": "A business traveler looking for the best flight deal to San Francisco.",
+        "user_goal": "To find and sort flights to San Francisco by lowest price.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Flight Results",
+                "description": "David arrives on the search results page after searching for flights to San Francisco. He sees several flight options listed.",
+                "action": "Load the search results page for flights.",
+                "expected_outcome": "Two-column layout appears with filter sidebar on left and flight cards displayed in main area. Peach puff background with Indian red highlights."
+            },
+            {
+                "step": 2,
+                "title": "Sorting by Lowest Price",
+                "description": "Wanting the cheapest option, David uses the sort dropdown and selects 'Lowest Price'.",
+                "action": "Select 'Lowest Price' from the sort dropdown.",
+                "expected_outcome": "Flight cards reorder instantly to show the cheapest options first."
+            },
+            {
+                "step": 3,
+                "title": "Applying Filter",
+                "description": "David decides he only wants non-stop flights and applies the 'Direct Flights Only' filter.",
+                "action": "Check the 'Direct Flights Only' checkbox in the filters sidebar.",
+                "expected_outcome": "Results update immediately to show only non-stop flights matching his criteria."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to select and book specific travel options with date and passenger details",
+        "user_persona": "A family planning a vacation to Orlando.",
+        "user_goal": "To book a hotel room for four people over spring break.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Hotel Option",
+                "description": "Maria finds a suitable hotel on the results page and clicks its 'Book Now' button.",
+                "action": "Click the 'Book Now' button on a hotel listing card.",
+                "expected_outcome": "Redirected to the booking confirmation page showing the selected hotel details."
+            },
+            {
+                "step": 2,
+                "title": "Entering Passenger Information",
+                "description": "On the booking page, Maria enters names and ages for all four family members.",
+                "action": "Fill in passenger name and age fields for each person.",
+                "expected_outcome": "Each field accepts the input correctly without errors."
+            },
+            {
+                "step": 3,
+                "title": "Proceeding to Payment",
+                "description": "After confirming everyone's details are correct, Maria clicks to continue to payment.",
+                "action": "Click the 'Continue to Payment' button.",
+                "expected_outcome": "Form validates successfully and proceeds to the secure payment gateway page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate a secure payment gateway for processing online transactions",
+        "user_persona": "A cautious online shopper concerned about security.",
+        "user_goal": "To safely pay for a booked flight using a credit card.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reaching Payment Page",
+                "description": "James has completed his booking and now sees the payment page hosted by a trusted third-party provider.",
+                "action": "Load the payment gateway iframe/page.",
+                "expected_outcome": "Secure payment page loads within the site, showing total amount due and accepted payment methods. Visual cues indicate SSL encryption."
+            },
+            {
+                "step": 2,
+                "title": "Entering Card Details",
+                "description": "James carefully types in his credit card number, expiration date, and CVV code.",
+                "action": "Enter credit card number, expiration date, and CVV into respective fields.",
+                "expected_outcome": "Fields format input appropriately and do not expose sensitive data visually."
+            },
+            {
+                "step": 3,
+                "title": "Completing Transaction",
+                "description": "Satisfied with the security measures, James submits his payment information.",
+                "action": "Click the 'Pay Now' button.",
+                "expected_outcome": "Payment processes successfully and redirects James to an order confirmation screen with booking details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop an order management section where users can view their booking history and status",
+        "user_persona": "A regular customer checking past travel arrangements.",
+        "user_goal": "To review the status of a previously booked train ticket.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Order History",
+                "description": "Robert logs into his account and navigates to the order management section.",
+                "action": "Navigate to the order management/dashboard page.",
+                "expected_outcome": "Tabbed interface appears showing upcoming, past, and canceled bookings with Indian red status badges."
+            },
+            {
+                "step": 2,
+                "title": "Locating Specific Booking",
+                "description": "Robert looks through his past bookings and finds the train ticket he took last month.",
+                "action": "Browse through the 'Past Bookings' tab.",
+                "expected_outcome": "List of historical bookings displays with clear dates, destinations, and 'Completed' status tags."
+            },
+            {
+                "step": 3,
+                "title": "Expanding Booking Details",
+                "description": "Curious about specifics, Robert clicks on the booking card to see more information.",
+                "action": "Click on a specific booking card.",
+                "expected_outcome": "Card expands to reveal booking reference, payment receipt link, and cancellation policy details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create user authentication and registration functionality",
+        "user_persona": "A new visitor wanting to save travel preferences.",
+        "user_goal": "To create an account and log in to access personalized features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Registration",
+                "description": "Lisa visits the site for the first time and decides to register to save her favorite destinations.",
+                "action": "Click the 'Register' link in the header navigation.",
+                "expected_outcome": "Registration modal/panel slides open with email, password, and confirm password fields styled with Indian red accents."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration Form",
+                "description": "Lisa fills out her desired email and strong password, then submits the form.",
+                "action": "Fill in registration fields and click 'Register' button.",
+                "expected_outcome": "Account is created successfully and Lisa is automatically logged in, seeing a welcome message."
+            },
+            {
+                "step": 3,
+                "title": "Logging Out and Back In",
+                "description": "Later, Lisa logs out and returns the next day, needing to log back in.",
+                "action": "Log out, then return and click 'Login' to enter credentials.",
+                "expected_outcome": "Login screen appears; after entering correct credentials, Lisa gains access to her dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design responsive UI components with peach puff background and indian red accents",
+        "user_persona": "A mobile user browsing travel deals during commute.",
+        "user_goal": "To seamlessly browse and interact with the travel site on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Mobile Homepage Experience",
+                "description": "Alex opens the travel site on his phone while commuting and observes the layout adaptation.",
+                "action": "Visit homepage on a mobile device.",
+                "expected_outcome": "Site renders responsively with stacked content, appropriately sized touch targets, and maintained color scheme (peach puff background, Indian red buttons)."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Components",
+                "description": "Alex taps through different tabs and interacts with form elements to search for hotels.",
+                "action": "Tap tabs and fill form fields on mobile screen.",
+                "expected_outcome": "Tabs switch smoothly, form fields are easily tappable, and focus states appear clearly with Indian red borders."
+            },
+            {
+                "step": 3,
+                "title": "Responsive Results Display",
+                "description": "Upon searching, Alex views the results optimized for smaller screens.",
+                "action": "View search results on mobile device.",
+                "expected_outcome": "Results display in single column with properly scaled images and readable text maintaining the site's color palette."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build backend APIs to fetch dynamic travel data from external providers",
+        "user_persona": "A developer testing backend integration with external travel APIs.",
+        "user_goal": "To verify that the backend correctly fetches and aggregates real-time flight data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Data Fetch",
+                "description": "The backend receives a request for flight information between two cities.",
+                "action": "Send GET request to backend flight search endpoint.",
+                "expected_outcome": "Backend initiates calls to configured external flight APIs to gather current schedules and pricing."
+            },
+            {
+                "step": 2,
+                "title": "Data Aggregation",
+                "description": "Multiple responses from different airline APIs arrive at the backend service.",
+                "action": "Backend receives varied API responses.",
+                "expected_outcome": "Service normalizes disparate data formats into a unified structure for internal use."
+            },
+            {
+                "step": 3,
+                "title": "Returning Unified Response",
+                "description": "The aggregated and normalized data is prepared for delivery to the frontend.",
+                "action": "Prepare and send JSON response from backend.",
+                "expected_outcome": "Frontend receives consistent, well-structured data representing available flights across providers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up a PostgreSQL database connection using provided environment variables",
+        "user_persona": "A DevOps engineer deploying the application for the first time.",
+        "user_goal": "To successfully connect the backend application to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Before starting the application, the engineer configures the necessary database environment variables.",
+                "action": "Set DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME in environment configuration.",
+                "expected_outcome": "Environment variables are correctly assigned with specified values for database connectivity."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Service",
+                "description": "With environment set, the engineer starts the backend service to establish database connections.",
+                "action": "Start the backend Node.js application.",
+                "expected_outcome": "Application initializes and connects to PostgreSQL database without authentication or connection errors."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Database Operations",
+                "description": "The engineer performs a test operation to confirm database interaction works.",
+                "action": "Execute a sample database query through the running backend.",
+                "expected_outcome": "Query executes successfully, returning expected data from the connected PostgreSQL instance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all frontend data is fetched dynamically via backend APIs",
+        "user_persona": "A front-end developer verifying decoupled architecture implementation.",
+        "user_goal": "To confirm that no static or mock data is used in presenting search results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Search Results",
+                "description": "Developer inspects network activity when loading train search results page.",
+                "action": "Open browser dev tools and navigate to train search results page.",
+                "expected_outcome": "Network tab shows XHR/fetch requests being made to backend endpoints for data retrieval."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Data Source",
+                "description": "Developer examines the source of data populating the search result cards.",
+                "action": "Check React/Vue component data props or Angular bindings.",
+                "expected_outcome": "Components receive data exclusively through resolved promises from backend API calls."
+            },
+            {
+                "step": 3,
+                "title": "Confirming No Hardcoded Values",
+                "description": "Developer reviews frontend codebase to ensure no hardcoded travel data exists.",
+                "action": "Perform code search for static travel data arrays or objects.",
+                "expected_outcome": "Codebase contains zero instances of embedded static travel data; all sourced from backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support real-time availability and pricing updates for bookings",
+        "user_persona": "An agent monitoring fluctuating hotel rates for a client.",
+        "user_goal": "To observe automatic rate updates without manually refreshing the page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Rate Display",
+                "description": "Agent opens a hotel search results page and notes the initial room prices.",
+                "action": "Load hotel search results page and observe displayed prices.",
+                "expected_outcome": "Hotel cards show current rates fetched from backend at time of page load."
+            },
+            {
+                "step": 2,
+                "title": "Waiting for Update Interval",
+                "description": "Agent keeps the page open and waits for the next scheduled update cycle.",
+                "action": "Wait for predefined interval (e.g., 30 seconds).",
+                "expected_outcome": "Background mechanism (polling/WebSocket) triggers new data fetch from backend."
+            },
+            {
+                "step": 3,
+                "title": "Observing Updated Prices",
+                "description": "Agent notices some prices have changed since opening the page.",
+                "action": "Monitor hotel card prices for changes.",
+                "expected_outcome": "Displayed prices automatically update to reflect latest values received from backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to filter and sort search results by various criteria",
+        "user_persona": "A meticulous planner seeking ideal accommodation options.",
+        "user_goal": "To filter hotels by amenities and sort by guest rating.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Amenity Filters",
+                "description": "User wants hotels with free WiFi and breakfast included. They select these filters.",
+                "action": "Select 'Free WiFi' and 'Breakfast Included' checkboxes in filters sidebar.",
+                "expected_outcome": "Hotel results instantly filter to show only those offering selected amenities."
+            },
+            {
+                "step": 2,
+                "title": "Changing Sort Criterion",
+                "description": "Now wanting to see highest-rated hotels first, the user changes the sort option.",
+                "action": "Choose 'Highest Guest Rating' from sort dropdown menu.",
+                "expected_outcome": "Filtered list reorders immediately to prioritize hotels with top guest ratings."
+            },
+            {
+                "step": 3,
+                "title": "Combining Filters and Sorting",
+                "description": "User confirms that both applied filters and chosen sort method work together effectively.",
+                "action": "Review updated results list.",
+                "expected_outcome": "Results accurately represent intersection of applied filters, ordered by selected criterion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include error handling and validation for user inputs and transactions",
+        "user_persona": "A user accidentally submitting incomplete booking information.",
+        "user_goal": "To be guided through correcting mistakes in booking form before proceeding.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Incomplete Form",
+                "description": "While booking a flight, user leaves several required fields empty and tries to proceed.",
+                "action": "Attempt to submit booking form with missing required fields.",
+                "expected_outcome": "Submission is blocked and invalid fields are highlighted with red borders and descriptive error messages below each."
+            },
+            {
+                "step": 2,
+                "title": "Correcting Validation Errors",
+                "description": "User addresses highlighted issues by filling in the missing information.",
+                "action": "Fill in previously blank required fields.",
+                "expected_outcome": "Error indicators disappear as fields become valid, enabling the submit button."
+            },
+            {
+                "step": 3,
+                "title": "Successful Submission After Correction",
+                "description": "With all corrections made, user resubmits the form successfully.",
+                "action": "Click submit button again after fixing errors.",
+                "expected_outcome": "Form passes validation, processes the booking, and redirects to payment or confirmation page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement admin dashboard for managing travel inventory and orders",
+        "user_persona": "An administrator overseeing daily operations of the travel platform.",
+        "user_goal": "To manage hotel inventory and monitor recent bookings through the admin panel.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Dashboard",
+                "description": "Admin logs into the system with elevated privileges and accesses the protected admin area.",
+                "action": "Log in with admin credentials and navigate to /admin route.",
+                "expected_outcome": "Admin dashboard loads successfully, showing analytics and management panels with appropriate styling."
+            },
+            {
+                "step": 2,
+                "title": "Managing Hotel Inventory",
+                "description": "Admin reviews and updates details for featured hotels in the inventory section.",
+                "action": "Navigate to hotel inventory grid and edit a listing.",
+                "expected_outcome": "Editable grid allows modification of hotel attributes with changes saved persistently."
+            },
+            {
+                "step": 3,
+                "title": "Monitoring Recent Bookings",
+                "description": "Admin checks the latest bookings to ensure everything is processing correctly.",
+                "action": "View recent bookings table in admin dashboard.",
+                "expected_outcome": "Table displays up-to-date booking records with status indicators and actions for intervention if needed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json scripts for concurrent frontend and backend development",
+        "user_persona": "A developer setting up a local development environment.",
+        "user_goal": "To start both frontend and backend servers simultaneously using npm scripts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer clones the repository and runs the installation script to prepare dependencies.",
+                "action": "Run 'npm run install:all' command in root directory.",
+                "expected_outcome": "Both frontend and backend dependencies install successfully without conflicts."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With dependencies ready, developer starts both development servers concurrently.",
+                "action": "Run 'npm run dev' command.",
+                "expected_outcome": "Concurrently launches frontend build server (e.g., Vite) and backend Node server with hot-reload capabilities."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Dual Server Operation",
+                "description": "Developer verifies that both frontend and backend are running and communicating.",
+                "action": "Access localhost ports for FE and BE, and perform a test API call.",
+                "expected_outcome": "Frontend serves UI on its port, backend serves APIs on its port, and cross-origin requests succeed."
+            }
+        ]
+    }
+]

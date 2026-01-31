@@ -1,0 +1,17 @@
+[
+    "Display personal information section with name, contact details, and professional summary",
+    "Show work experience section with job titles, companies, dates, and responsibilities",
+    "Present skills section with categorized technical and soft skills",
+    "Include education background section with degrees, institutions, and dates",
+    "Feature projects section with project titles, descriptions, technologies, and links",
+    "Implement responsive navigation menu to access different CV sections",
+    "Apply light pink background color throughout the website",
+    "Use medium violet red color for UI components like buttons, headers, and links",
+    "Ensure all content is fetched dynamically from backend APIs",
+    "Set up backend server connecting to PostgreSQL database using provided environment variables",
+    "Create RESTful API endpoints for personal info, work experience, skills, education, and projects",
+    "Design database schema with tables for personal info, work experience, skills, education, and projects",
+    "Configure package.json with 'install:all' script to install frontend and backend dependencies",
+    "Configure package.json with 'dev' script to start frontend and backend concurrently",
+    "Implement consistent typography and spacing for readable content presentation"
+]

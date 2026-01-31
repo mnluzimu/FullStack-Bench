@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "User registration and login functionality",
+        "user_persona": "A new entrepreneur looking to join the community to read inspiring startup stories.",
+        "user_goal": "Successfully register for a new account and then log in to access personalized features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Switching to Registration Form",
+                "description": "Sarah visits the mini-program for the first time and wants to create an account. She sees the login form but clicks on the 'Register' tab instead.",
+                "action": "Click on the 'Register' tab.",
+                "expected_outcome": "The view switches to show the registration form with fields for username, email, and password."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration Details",
+                "description": "Sarah fills out her desired username, email, and password. After reviewing, she presses Enter to submit the form.",
+                "action": "Fill in username, email, and password fields. Press Enter.",
+                "expected_outcome": "The system registers Sarah successfully and displays a confirmation message."
+            },
+            {
+                "step": 3,
+                "title": "Logging In After Registration",
+                "description": "Now that Sarah has an account, she switches to the login tab and enters her credentials to access her profile.",
+                "action": "Click on the 'Login' tab. Enter registered email and password. Click 'Log In'.",
+                "expected_outcome": "Sarah is authenticated and redirected to her dashboard with a welcome message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article browsing by category",
+        "user_persona": "A busy founder seeking inspiration from tech startups.",
+        "user_goal": "Browse articles specifically under the 'Technology' category.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Category Navigation",
+                "description": "Alex opens the app and notices several category labels above the main content area. He looks for 'Technology'.",
+                "action": "Look at the horizontal navigation bar for categories.",
+                "expected_outcome": "Multiple clickable category labels are visible, including one labeled 'Technology'."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Technology Category",
+                "description": "Alex clicks on the 'Technology' label to filter articles relevant to his interests.",
+                "action": "Click on the 'Technology' category label.",
+                "expected_outcome": "The article listing updates dynamically to display only technology-related articles."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article search functionality",
+        "user_persona": "A reader interested in finding articles about funding strategies.",
+        "user_goal": "Find articles related to startup funding using the search feature.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Search Bar",
+                "description": "Jamie notices the search bar at the top of the page and decides to look up articles on startup funding.",
+                "action": "Click on the search bar.",
+                "expected_outcome": "The search bar becomes focused and ready for input."
+            },
+            {
+                "step": 2,
+                "title": "Entering Query and Initiating Search",
+                "description": "Jamie types 'startup funding' into the search bar and hits Enter to initiate the search.",
+                "action": "Type 'startup funding' into the search bar. Press Enter.",
+                "expected_outcome": "A list of articles matching the query 'startup funding' is displayed below the search bar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article collection feature",
+        "user_persona": "A serial entrepreneur who likes saving insightful reads.",
+        "user_goal": "Collect an article they find particularly useful for future reference.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Article Preview",
+                "description": "Taylor scrolls through the latest articles and finds one titled 'Building Resilient Startups'. Next to the title is a heart icon.",
+                "action": "Locate the heart-shaped icon next to the article title.",
+                "expected_outcome": "The heart icon appears unfilled, indicating the article isn't currently in the user's collection."
+            },
+            {
+                "step": 2,
+                "title": "Collecting the Article",
+                "description": "Taylor clicks the heart icon to add the article to their personal collection.",
+                "action": "Click the heart-shaped icon.",
+                "expected_outcome": "The heart icon turns filled instantly, confirming the article was added to the user's collection."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article sharing capability to external platforms",
+        "user_persona": "An influencer wanting to promote valuable content.",
+        "user_goal": "Share an inspiring article to their LinkedIn network.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Sharing Options",
+                "description": "Jordan finishes reading an impactful article and wants to share it with colleagues on LinkedIn. They scroll down to the bottom of the article.",
+                "action": "Scroll to the end of the article content.",
+                "expected_outcome": "A row of branded social media icons including LinkedIn is visible beneath the article."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Share to LinkedIn",
+                "description": "Jordan clicks the LinkedIn icon to begin sharing the article.",
+                "action": "Click the LinkedIn icon.",
+                "expected_outcome": "A native sharing dialog opens pre-filled with the article’s URL and title, ready for posting."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reading history tracking for logged-in users",
+        "user_persona": "A frequent visitor who revisits past reads occasionally.",
+        "user_goal": "Revisit an article they read earlier this week.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Reading History",
+                "description": "Riley logs in and wants to return to an article they remember reading a few days ago. They go to their profile to find the reading history section.",
+                "action": "Navigate to the user profile or dedicated history section.",
+                "expected_outcome": "A chronological list of recently read articles appears, showing titles, authors, and dates."
+            },
+            {
+                "step": 2,
+                "title": "Opening Previously Read Article",
+                "description": "Riley locates the article in the history list and clicks on it to revisit its contents.",
+                "action": "Click on the article entry in the history list.",
+                "expected_outcome": "The full article page loads, and the visit is recorded again in the reading history."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Collection management dashboard for users",
+        "user_persona": "A meticulous reader who organizes saved articles by importance.",
+        "user_goal": "Remove an outdated article from their collection and reorder favorites.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Collection Dashboard",
+                "description": "Morgan logs in and navigates to their collection dashboard to manage saved articles.",
+                "action": "Go to the collection management dashboard.",
+                "expected_outcome": "A scrollable grid or list of collected articles is displayed, each with edit controls like trash bins and drag handles."
+            },
+            {
+                "step": 2,
+                "title": "Deleting Unwanted Article",
+                "description": "Morgan identifies an article no longer needed and clicks the trash bin icon next to it.",
+                "action": "Click the trash bin icon beside the unwanted article.",
+                "expected_outcome": "The article disappears from the list, and a DELETE request is sent to remove it from the backend collection."
+            },
+            {
+                "step": 3,
+                "title": "Reordering Favorite Articles",
+                "description": "Morgan drags a key article higher in the list to make it easier to access later.",
+                "action": "Drag the article card upward in the list.",
+                "expected_outcome": "The article moves to the new position, and the order update is persisted via a PATCH request."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout design",
+        "user_persona": "A commuter checking articles on their phone during travel.",
+        "user_goal": "Effortlessly browse articles on a mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading App on Mobile Device",
+                "description": "Casey opens the mini-program on their smartphone while commuting. The screen adapts automatically.",
+                "action": "Open the app on a mobile browser.",
+                "expected_outcome": "The layout adjusts appropriately for smaller screens; article cards stack vertically and navigation collapses into a menu."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Background styling with old lace color scheme",
+        "user_persona": "A designer evaluating UI consistency.",
+        "user_goal": "Verify that all pages use the specified background color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Background Color",
+                "description": "Patricia inspects the app visually to confirm that the background uses the correct old lace color as per brand guidelines.",
+                "action": "Visually inspect the background color across multiple pages.",
+                "expected_outcome": "All backgrounds render consistently in #FDF5E6 (old lace) without any unexpected color variations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Interface elements styled in rosy brown color",
+        "user_persona": "A frontend developer validating theme implementation.",
+        "user_goal": "Confirm that interactive elements use the correct accent color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Interface Elements",
+                "description": "Devon reviews the interface components such as buttons and category tags to verify adherence to the rosy brown theme.",
+                "action": "Observe primary interface components like buttons and active links.",
+                "expected_outcome": "All specified interactive elements utilize #BC8F8F (rosy brown) as their accent color."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Article display with titles, summaries, and metadata",
+        "user_persona": "A casual reader scanning for interesting topics.",
+        "user_goal": "Quickly assess whether an article is worth reading based on preview info.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Scanning Article Previews",
+                "description": "Blake scrolls through the homepage feed and scans article cards for engaging headlines and summaries.",
+                "action": "View the article preview cards.",
+                "expected_outcome": "Each card clearly shows a headline-sized title, short excerpt, author name, publish date, and category tag."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Category navigation menu",
+        "user_persona": "A regular user navigating between content sections.",
+        "user_goal": "Switch between different article categories using the main navigation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Sidebar Menu",
+                "description": "Ellis accesses the fixed-position sidebar menu to switch from 'Marketing' to 'Finance' articles.",
+                "action": "Click on the 'Finance' link in the sidebar navigation.",
+                "expected_outcome": "Main content area updates to show finance-related articles, highlighting 'Finance' in the menu."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User profile management section",
+        "user_persona": "A user updating personal preferences.",
+        "user_goal": "Update their bio and preferred categories in their profile settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Editing Profile Information",
+                "description": "Quinn goes to their profile page and edits their biography and selects new preferred categories.",
+                "action": "Modify the bio text field and select categories from the multi-select dropdown.",
+                "expected_outcome": "Changes are reflected in the form fields and selections are visually confirmed."
+            },
+            {
+                "step": 2,
+                "title": "Saving Updated Profile",
+                "description": "After making changes, Quinn clicks the save button to apply the updates.",
+                "action": "Click the 'Save Changes' button.",
+                "expected_outcome": "Updated profile data is submitted via PATCH request and the page refreshes with the new information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search results display with filtering options",
+        "user_persona": "A researcher refining search outcomes.",
+        "user_goal": "Filter general search results to show only recent articles.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Performing Initial Search",
+                "description": "Taylor searches for 'growth hacking', which returns many results spanning various dates.",
+                "action": "Enter 'growth hacking' into the search bar and press Enter.",
+                "expected_outcome": "Search results appear along with collapsible filter options on the side panel."
+            },
+            {
+                "step": 2,
+                "title": "Applying Date Filter",
+                "description": "Taylor expands the date filter section and chooses 'Last Month' to narrow down the results.",
+                "action": "Expand the date filter panel and select 'Last Month'.",
+                "expected_outcome": "Results update instantly to show only articles published within the last month without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Social sharing integration for major platforms",
+        "user_persona": "Content curator promoting industry insights.",
+        "user_goal": "Easily share curated articles across multiple social channels.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing to Share Across Platforms",
+                "description": "Zoe discovers a compelling article and wants to post it on both Twitter and Facebook simultaneously.",
+                "action": "Locate the social sharing buttons beneath the article.",
+                "expected_outcome": "Branded icons for Twitter and Facebook are visible and styled in rosy brown."
+            },
+            {
+                "step": 2,
+                "title": "Sharing to Multiple Networks",
+                "description": "Zoe clicks the Twitter icon first, shares the article, then repeats the process for Facebook.",
+                "action": "Click the Twitter icon, complete the share, then click the Facebook icon.",
+                "expected_outcome": "Native sharing dialogs open sequentially, each pre-populated with correct metadata for optimal display."
+            }
+        ]
+    }
+]

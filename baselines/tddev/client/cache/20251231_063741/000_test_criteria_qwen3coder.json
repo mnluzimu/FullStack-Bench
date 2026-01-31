@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "A chat interface component for user interaction with the chatbot",
+        "user_persona": "A customer visiting the website for the first time, looking for help with a product inquiry.",
+        "user_goal": "To open the chat interface and send a message to the chatbot.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Chat Interface",
+                "description": "Sarah scrolls to the bottom-right of the webpage and sees a small chat widget labeled 'Support Chat'. She clicks it to start a conversation.",
+                "action": "Click on the chat widget.",
+                "expected_outcome": "The full chat window expands, showing a header bar, message history area, and input field at the bottom."
+            },
+            {
+                "step": 2,
+                "title": "Sending First Message",
+                "description": "Sarah types 'What are your business hours?' into the input box and presses Enter to submit her question.",
+                "action": "Type a message into the input field and press Enter.",
+                "expected_outcome": "Her message appears in the message history area aligned to the right, and the input field clears for the next message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend service to handle chatbot logic and responses",
+        "user_persona": "A user seeking quick answers from the chatbot.",
+        "user_goal": "To receive a relevant response from the chatbot based on their query.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Query",
+                "description": "John asks the chatbot, 'How do I track my order?', hoping to get clear instructions quickly.",
+                "action": "Send the message 'How do I track my order?' via the chat interface.",
+                "expected_outcome": "The backend receives the message via POST /api/chat/send-message and processes it against known data sources."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Bot Response",
+                "description": "Within seconds, John sees a reply from the bot explaining how to track an order using the order ID.",
+                "action": "Wait for the bot's response.",
+                "expected_outcome": "A structured response is returned from the backend and displayed in the chat window as a bot message aligned to the left."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for chatbot to fetch FAQs, product info, and order assistance",
+        "user_persona": "A potential buyer interested in learning more about a specific product.",
+        "user_goal": "To ask about a product and receive accurate information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Asking Product Question",
+                "description": "Emily types 'Tell me about Product X' into the chat, wanting details before making a purchase decision.",
+                "action": "Send the message 'Tell me about Product X'.",
+                "expected_outcome": "The backend makes a call to GET /api/products/:id to retrieve detailed information about Product X."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Product Info",
+                "description": "Emily waits briefly and then receives a formatted response including product name, description, price, and image URL.",
+                "action": "Observe the bot's response.",
+                "expected_outcome": "Bot displays product-specific information fetched from the database through the API endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integration with PostgreSQL database to store chat logs and user interactions",
+        "user_persona": "A returning customer checking up on past conversations.",
+        "user_goal": "To have their chat history preserved for future reference.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting New Session",
+                "description": "Mark opens the chat again after a few days, expecting some continuity in his experience.",
+                "action": "Open the chat interface.",
+                "expected_outcome": "A new session record is created in the database, capturing session start time and assigning a unique session ID."
+            },
+            {
+                "step": 2,
+                "title": "Exchanging Messages",
+                "description": "He sends a greeting followed by a follow-up question about shipping options.",
+                "action": "Send two messages in succession.",
+                "expected_outcome": "Each message triggers insertions into the messages table and corresponding logs into the chat_logs table with timestamps and directions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design to support chatbot functionalities including FAQ and product data",
+        "user_persona": "An administrator maintaining the knowledge base behind the scenes.",
+        "user_goal": "To ensure that the stored FAQ and product data can be effectively queried by the chatbot.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inserting Sample Data",
+                "description": "Admin inserts sample FAQ and product entries into the database manually for testing purposes.",
+                "action": "Run SQL INSERT statements populating the faqs and products tables.",
+                "expected_outcome": "New rows are successfully added to the faqs and products tables matching the defined schemas."
+            },
+            {
+                "step": 2,
+                "title": "Querying Stored Data",
+                "description": "Admin verifies that the data was inserted correctly by running SELECT queries.",
+                "action": "Execute SELECT queries targeting the faqs and products tables.",
+                "expected_outcome": "Returned results match the previously inserted values confirming proper schema adherence."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend dynamically fetches all chatbot-related data from backend APIs",
+        "user_persona": "A developer testing the frontend integration with backend services.",
+        "user_goal": "To confirm that the frontend loads chat data dynamically upon initialization.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Chat Interface",
+                "description": "Developer reloads the page and observes whether the chat component initializes properly without hard-coded data.",
+                "action": "Refresh the browser tab hosting the web app.",
+                "expected_outcome": "On mount, the chat component triggers useEffect hooks to initialize session and fetch previous messages asynchronously."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Dynamic Fetch",
+                "description": "They inspect network traffic to verify that API calls were made instead of loading static content.",
+                "action": "Check Network tab in DevTools for outgoing requests.",
+                "expected_outcome": "Observed XHR requests to /api/chat endpoints confirming dynamic data fetching."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Styling implementation using snow color for background and dim gray for components",
+        "user_persona": "A UI designer validating visual consistency across the application.",
+        "user_goal": "To confirm that the specified color scheme has been applied throughout the chat interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Designer inspects the main body background of the chat window to check for correct snow coloring.",
+                "action": "Use browser DevTools to inspect the background-color property of the chat container.",
+                "expected_outcome": "Computed style shows background-color set to #fffafa (snow) as per CSS variable --background-snow."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Colors",
+                "description": "Next, they examine the text and border colors of the chat elements like headers and buttons.",
+                "action": "Inspect text and border styles within the chat interface.",
+                "expected_outcome": "Text and borders use #696969 (dim gray) matching the --component-dim-gray CSS variable."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json to support npm run install:all for frontend and backend dependencies",
+        "user_persona": "A new team member setting up the project locally for the first time.",
+        "user_goal": "To install all frontend and backend dependencies with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Cloning Repository",
+                "description": "Alex clones the project repository and navigates to the root directory.",
+                "action": "Clone repo and cd into project folder.",
+                "expected_outcome": "Root directory contains package.json along with frontend/ and backend/ subdirectories."
+            },
+            {
+                "step": 2,
+                "title": "Installing Dependencies",
+                "description": "Alex runs the designated script to install dependencies for both parts of the application simultaneously.",
+                "action": "Run `npm run install:all` in terminal.",
+                "expected_outcome": "Both frontend and backend node_modules folders are populated with respective packages concurrently."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configuration of package.json to support npm run dev for concurrent frontend and backend startup",
+        "user_persona": "A developer ready to begin active development work.",
+        "user_goal": "To launch both development servers efficiently without manual orchestration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Jamie wants to work on features affecting both frontend and backend, so she starts both dev servers together.",
+                "action": "Run `npm run dev` from the root project directory.",
+                "expected_outcome": "Terminal shows both frontend and backend dev servers starting concurrently, listening on separate ports."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Server Status",
+                "description": "She opens the browser to confirm that the frontend is accessible and communicating with the backend.",
+                "action": "Navigate to localhost:3000 (frontend port).",
+                "expected_outcome": "Website renders correctly and chat functionality interacts with backend APIs as expected."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication or session management for tracking chat sessions",
+        "user_persona": "A returning user resuming a previous conversation.",
+        "user_goal": "To continue chatting without losing prior context or restarting the session.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Returning After Timeout",
+                "description": "Robert closes the chat window and returns several minutes later, reopening it to continue his discussion.",
+                "action": "Close and reopen the chat interface after a delay.",
+                "expected_outcome": "System checks existing session validity; if expired, creates a new session ID and stores it appropriately."
+            },
+            {
+                "step": 2,
+                "title": "Resuming Conversation",
+                "description": "He notices his earlier messages still appear in the chat history, confirming session persistence.",
+                "action": "Review message history in reopened chat window.",
+                "expected_outcome": "Previous messages remain visible due to association with the same or renewed session identifier."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time messaging capability between user and chatbot",
+        "user_persona": "An impatient user expecting instant replies from the chatbot.",
+        "user_goal": "To engage in a fluid conversation where messages appear immediately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sending Instant Message",
+                "description": "Lisa rapidly types 'Hi!' and hits enter, anticipating an immediate acknowledgment.",
+                "action": "Quickly type and send a short message.",
+                "expected_outcome": "Message is instantly transmitted via WebSocket emit event to the server."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Real-Time Reply",
+                "description": "Almost immediately, the bot responds with a friendly greeting without needing a page refresh.",
+                "action": "Watch for incoming message display.",
+                "expected_outcome": "Server broadcasts 'receiveMessage' event which updates the UI instantly with the bot's reply."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for API failures or unavailable services",
+        "user_persona": "A frustrated user whose internet drops momentarily mid-conversation.",
+        "user_goal": "To understand when something goes wrong and know that the system isn't broken.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Network Issue",
+                "description": "While typing out a complex issue, Mike experiences a temporary loss of connectivity.",
+                "action": "Attempt to send a long-form message during simulated outage.",
+                "expected_outcome": "Request times out or fails gracefully triggering centralized error middleware."
+            },
+            {
+                "step": 2,
+                "title": "Seeing Fallback Message",
+                "description": "Instead of silence, he gets a polite apology from the bot indicating temporary trouble.",
+                "action": "Observe the error feedback provided by the system.",
+                "expected_outcome": "Fallback message 'Sorry, I am currently unable to assist. Please try again later.' is shown to the user."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Input validation for user messages to prevent malformed requests",
+        "user_persona": "A curious tester probing edge cases in the chat input.",
+        "user_goal": "To verify that inappropriate or harmful inputs don't crash the system.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Empty Message",
+                "description": "Tester deliberately tries to send a blank message just by hitting Enter repeatedly.",
+                "action": "Press Enter key in empty input field.",
+                "expected_outcome": "Input validation rejects the request with a 400 Bad Request error and descriptive validation error response."
+            },
+            {
+                "step": 2,
+                "title": "Testing Overly Long Input",
+                "description": "Next, they paste a massive block of text exceeding 1000 characters and attempt to send it.",
+                "action": "Paste large text chunk and click Send.",
+                "expected_outcome": "Validation rule blocks submission and informs user about maximum character limit violation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Logging mechanism for monitoring chatbot performance and interactions",
+        "user_persona": "A DevOps engineer troubleshooting production issues.",
+        "user_goal": "To trace problematic behavior using logged events and metrics.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Log Entry",
+                "description": "Engineer simulates an unusual interaction pattern that might cause delays or errors.",
+                "action": "Interact with chatbot using multiple rapid-fire invalid inputs.",
+                "expected_outcome": "Each interaction generates structured log entries detailing duration, outcome, and associated IDs."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Logs",
+                "description": "Later, they review logs to identify patterns or anomalies related to those interactions.",
+                "action": "Access log files or streaming output from logging service.",
+                "expected_outcome": "Logs contain sufficient detail to diagnose performance bottlenecks or recurring validation failures."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design to ensure chat interface works across devices",
+        "user_persona": "A mobile user accessing the website on their smartphone.",
+        "user_goal": "To comfortably use the chat interface despite limited screen space.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Chat on Mobile",
+                "description": "Pat browses the site on her phone and taps the floating chat icon located at the lower corner.",
+                "action": "Tap the chat widget on a mobile device screen.",
+                "expected_outcome": "Chat window opens fully adapted to smaller viewport with adjusted padding and larger touch targets."
+            },
+            {
+                "step": 2,
+                "title": "Typing Comfortably",
+                "description": "She begins typing her concern into the input area, appreciating the optimized layout.",
+                "action": "Begin typing in the input field on mobile.",
+                "expected_outcome": "Field remains accessible above virtual keyboard with no overlapping or clipping issues."
+            }
+        ]
+    }
+]

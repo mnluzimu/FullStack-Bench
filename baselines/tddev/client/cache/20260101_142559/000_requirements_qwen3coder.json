@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "Service browsing functionality displaying available cleaning services",
+    "Detailed service pages showing descriptions, pricing, and duration",
+    "Booking system allowing users to schedule cleaning services",
+    "User interface for checking the status of booked services",
+    "Contact page providing phone number and email address for customer service",
+    "Inquiry form for users to submit service-related questions",
+    "Responsive website design with azure mist background color",
+    "Dark slate blue color applied to interactive components and headers",
+    "Package.json configured with `install:all` script for FE & BE dependencies",
+    "Package.json configured with `dev` script to start FE & BE concurrently",
+    "Database schema supporting service listings, bookings, and inquiries",
+    "API endpoints for retrieving service data and submitting bookings",
+    "API endpoint for handling service status requests"
+]

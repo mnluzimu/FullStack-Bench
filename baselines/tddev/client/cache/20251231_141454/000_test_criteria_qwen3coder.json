@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "Implement a website with an anonymous reporting feature allowing users to submit insights and evidence",
+        "user_persona": "A concerned citizen who has uncovered corporate misconduct and wishes to report it anonymously.",
+        "user_goal": "To successfully submit a confidential report along with supporting documents without revealing their identity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Reporting Form",
+                "description": "Alex navigates to the whistleblower website and finds the 'Submit Anonymous Report' option prominently displayed on the homepage.",
+                "action": "Click on the 'Submit Anonymous Report' button.",
+                "expected_outcome": "A form titled 'Submit Anonymous Report' appears with fields for title, content, and a file upload zone, styled with midnight blue elements on an azure background."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out the Report",
+                "description": "Alex fills in the report title and describes the misconduct in detail. They also prepare several documents as evidence.",
+                "action": "Enter text into the title and content fields. Drag and drop files into the upload zone.",
+                "expected_outcome": "The file upload zone highlights during drag-over and shows a preview of the attached files before submission."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Report",
+                "description": "Confident that all information is accurate and complete, Alex clicks the Submit button to send the report securely.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "The system sends the data to the reportSubmissionAPI and displays a confirmation message indicating successful submission."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a discussion forum for users to share thoughts and opinions",
+        "user_persona": "A community member interested in discussing recent reports and exchanging ideas with others.",
+        "user_goal": "To participate in ongoing discussions by reading threads and posting thoughtful replies.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Forum Threads",
+                "description": "Taylor visits the forum section from the main navigation and sees a list of active discussion threads.",
+                "action": "Navigate to the forum section.",
+                "expected_outcome": "A list of forum threads is displayed with titles, authors, timestamps, and reply counts, using midnight blue cards on an azure background."
+            },
+            {
+                "step": 2,
+                "title": "Reading Thread Details",
+                "description": "Intrigued by a thread about environmental violations, Taylor clicks on it to read more and view existing replies.",
+                "action": "Click on a specific thread.",
+                "expected_outcome": "The full thread content and conversation history load dynamically without refreshing the page."
+            },
+            {
+                "step": 3,
+                "title": "Contributing to the Discussion",
+                "description": "After reading, Taylor decides to contribute by typing a well-thought-out reply and submitting it.",
+                "action": "Type a reply in the text box and click 'Post Reply'.",
+                "expected_outcome": "The reply is submitted via the threadReplyAPI and immediately appended to the current thread view."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add a search functionality enabling users to search by topics and keywords",
+        "user_persona": "A researcher looking for specific information across various sections of the website.",
+        "user_goal": "To find relevant content quickly using targeted keywords and filtering options.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating a Search",
+                "description": "Jordan recalls reading about financial fraud and wants to revisit those articles. They use the search bar at the top.",
+                "action": "Enter 'financial fraud' into the search bar and press Enter.",
+                "expected_outcome": "Search results appear categorized by type (reports, forums, blogs) with filtering options available."
+            },
+            {
+                "step": 2,
+                "title": "Refining Search Results",
+                "description": "Too many results appear, so Jordan selects the 'Blog Posts' filter and sorts them by most recent.",
+                "action": "Click on the 'Blog Posts' filter and select 'Sort by Newest'.",
+                "expected_outcome": "The searchAPI re-fetches results filtered to blog posts and sorted by newest first, updating the display instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a news and blog section for publishing latest articles and updates",
+        "user_persona": "An advocate staying informed on current events related to transparency and accountability.",
+        "user_goal": "To read the latest published articles and stay updated on important developments.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exploring Published Articles",
+                "description": "Casey goes to the News & Blog section to catch up on recent publications and notices a featured article.",
+                "action": "Navigate to the News & Blog section.",
+                "expected_outcome": "A grid layout showcases featured articles with thumbnails, headlines, excerpts, and publication dates, styled consistently with the site's theme."
+            },
+            {
+                "step": 2,
+                "title": "Reading a Full Article",
+                "description": "Interested in the featured article, Casey clicks on it to read the full piece, which includes richly formatted content.",
+                "action": "Click on an article tile.",
+                "expected_outcome": "The dedicated article page loads and renders markdown-formatted content accurately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Design the website with an azure background and midnight blue UI components",
+        "user_persona": "A new visitor exploring the site for the first time.",
+        "user_goal": "To experience a visually cohesive and accessible interface that aligns with the stated color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Site Design",
+                "description": "Riley lands on the homepage and takes note of the overall aesthetic and branding consistency.",
+                "action": "Browse the homepage visually.",
+                "expected_outcome": "All pages feature an azure (#F0FFFF) background with midnight blue (#191970) used for navigation bars, buttons, forms, and container accents."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With UI Components",
+                "description": "Riley interacts with different parts of the UI—buttons, links, and forms—to confirm visual consistency.",
+                "action": "Hover over and click various interactive elements like buttons and links.",
+                "expected_outcome": "Interactive components maintain the midnight blue color scheme and provide clear visual feedback upon interaction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Develop a frontend that fetches all dynamic data from backend APIs",
+        "user_persona": "A developer verifying that the frontend properly integrates with backend services.",
+        "user_goal": "To ensure all dynamic content on the site is sourced from backend API calls instead of hardcoded data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "Dev opens the network tab and navigates to the homepage to inspect how data is loaded.",
+                "action": "Open browser DevTools and navigate to the homepage.",
+                "expected_outcome": "Network requests are made to backend endpoints like /api/reports, /api/blog-posts, etc., retrieving actual data rather than static placeholders."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Build a backend that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A systems administrator deploying the application in a production environment.",
+        "user_goal": "To verify that the backend service successfully establishes a connection to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "SysAdmin starts the backend server and monitors logs for database connectivity messages.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "Logs indicate successful initialization of the database connection using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run install:all to install both frontend and backend dependencies",
+        "user_persona": "A new team member setting up the project locally for the first time.",
+        "user_goal": "To set up the entire development environment efficiently with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Newbie clones the repository and runs the setup command to get everything ready.",
+                "action": "Run `npm run install:all` in the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up package.json with npm run dev to start both frontend and backend concurrently",
+        "user_persona": "A developer beginning daily work on the application.",
+        "user_goal": "To launch both frontend and backend development servers simultaneously for efficient workflow.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Launching Development Servers",
+                "description": "Dev begins work by starting both development environments together.",
+                "action": "Run `npm run dev` in the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently, with unified terminal output showing logs from each."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure all submitted reports are stored securely in the database",
+        "user_persona": "A compliance officer auditing the system's handling of sensitive data.",
+        "user_goal": "To confirm that all submitted whistleblower reports are securely stored in the database with proper safeguards.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Storage",
+                "description": "Auditor checks the database after a test report submission to ensure secure storage practices.",
+                "action": "Inspect the 'reports' table in the PostgreSQL database.",
+                "expected_outcome": "Submitted reports are stored with fields including id, title, content, submitted_at, status, and attachment_urls, potentially with encryption for sensitive fields."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable user authentication system to support anonymous submissions while maintaining security",
+        "user_persona": "A potential whistleblower preparing to make their first report.",
+        "user_goal": "To initiate a report submission securely without having to register or provide identifying information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Anonymous Session",
+                "description": "Whistleblower begins the reporting process and gets automatically assigned a temporary anonymous session.",
+                "action": "Start filling out the anonymous report form.",
+                "expected_outcome": "The system issues a short-lived JWT token allowing anonymous access without collecting personal identifiers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement moderation tools for managing forum discussions and reported content",
+        "user_persona": "A site moderator tasked with reviewing user-generated content.",
+        "user_goal": "To manage and moderate forum threads and submitted reports effectively using built-in tools.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Moderation Dashboard",
+                "description": "Moderator logs into the admin panel and accesses the moderation tools section.",
+                "action": "Log in as a moderator and navigate to the moderation dashboard.",
+                "expected_outcome": "A dashboard is shown with queues of pending reports, flagged forum posts, and quick-action controls, styled with the site’s theme."
+            },
+            {
+                "step": 2,
+                "title": "Taking Moderation Action",
+                "description": "Moderator identifies an inappropriate forum post and decides to remove it.",
+                "action": "Click the delete button next to the flagged post.",
+                "expected_outcome": "The post is removed via the moderationToolsAPI and disappears from public view immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide filtering and sorting options within the search functionality",
+        "user_persona": "A frequent user seeking precise search results tailored to their interests.",
+        "user_goal": "To refine searches using filters and sort results according to preference.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filters",
+                "description": "User searches for 'corporate ethics' and then applies filters to narrow down the results.",
+                "action": "Enter search term, then toggle filter checkboxes for 'Reports' and 'Published Last Month'.",
+                "expected_outcome": "Filter selections update the live-preview count and apply to subsequent searches, returning only matching results."
+            },
+            {
+                "step": 2,
+                "title": "Sorting Results",
+                "description": "User prefers to see the most popular discussions first.",
+                "action": "Click on the 'Popularity' sort icon.",
+                "expected_outcome": "Results are re-fetched and reordered based on popularity metric, updating the list dynamically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support rich text editing or markdown for blog and news article creation",
+        "user_persona": "An editorial staff member drafting a new blog post for publication.",
+        "user_goal": "To compose and format a compelling article using a familiar editing interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Writing and Formatting Content",
+                "description": "Writer opens the blog creation tool and begins writing, applying formatting styles as they go.",
+                "action": "Open the rich text editor and begin typing content, using toolbar buttons to add headings and bold text.",
+                "expected_outcome": "As content is typed and formatted, the adjacent live-preview pane updates in real time to reflect the changes."
+            },
+            {
+                "step": 2,
+                "title": "Adding Media",
+                "description": "Writer wishes to insert an infographic to accompany the article.",
+                "action": "Click the 'Insert Image' button and choose a file to upload.",
+                "expected_outcome": "A file dialog prompts for selection, and once chosen, the image is embedded with appropriate markup in the editor."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include admin panel for managing news, blog posts, and monitoring reports",
+        "user_persona": "An administrator overseeing the site's content and operations.",
+        "user_goal": "To manage site content and monitor activity through a centralized administrative interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into Admin Panel",
+                "description": "Admin accesses the protected admin area to perform routine maintenance tasks.",
+                "action": "Visit /admin and enter admin credentials.",
+                "expected_outcome": "Upon successful authentication, the admin dashboard loads with navigation sidebar linking to various management modules."
+            },
+            {
+                "step": 2,
+                "title": "Managing Content",
+                "description": "Admin reviews pending reports and decides to publish one that looks credible.",
+                "action": "Navigate to the reports management section and click 'Publish' on a selected report.",
+                "expected_outcome": "The action triggers a call to the respective management API and the report status is updated instantly in the dashboard."
+            }
+        ]
+    }
+]

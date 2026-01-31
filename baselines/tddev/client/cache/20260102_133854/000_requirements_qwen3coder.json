@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all data from backend APIs",
+    "A backend application that connects to a PostgreSQL database using specified environment variables",
+    "UI with light goldenrod background and olive drab colored elements",
+    "Raw materials management functionality",
+    "Finished products management functionality",
+    "Inventory tracking for both raw materials and finished products",
+    "Production management and tracking capabilities",
+    "Sales recording and tracking functionality",
+    "Customer information management",
+    "Sales history recording for customers",
+    "Sales statistics generation and display",
+    "Detailed reporting functionality for inventory, production, and sales",
+    "Database schema supporting raw materials, finished products, inventory, production, sales, and customers",
+    "API endpoints for all core business entities and operations",
+    "Package.json configuration with npm run install:all and npm run dev scripts"
+]

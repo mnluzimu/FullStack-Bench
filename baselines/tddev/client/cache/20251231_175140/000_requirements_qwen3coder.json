@@ -1,0 +1,17 @@
+[
+    "A frontend interface with a white background and navy-colored components",
+    "A search input field allowing users to enter stock codes or names",
+    "A dropdown or selection menu for users to choose report formats and content options",
+    "A submit button to initiate the generation of customized stock reports",
+    "A section to display generated stock reports including basic stock information, market trends, and financial data",
+    "Frontend fetches all dynamic stock data from backend APIs; no hardcoded or mock data allowed",
+    "A backend API service that connects to an external PostgreSQL database using specified environment variables",
+    "Backend retrieves and processes stock information, market trends, and financial data from the database",
+    "Backend generates customizable stock reports based on user-selected parameters",
+    "Endpoints for searching stock information by code or name",
+    "Endpoints for retrieving available report format and content options",
+    "Endpoints for generating and delivering customized stock reports",
+    "Configuration of package.json to support `npm run install:all` for installing both frontend and backend dependencies",
+    "Configuration of package.json to support `npm run dev` for concurrently starting both frontend and backend in development mode",
+    "Responsive UI design ensuring usability across devices"
+]

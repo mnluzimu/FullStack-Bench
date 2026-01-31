@@ -1,0 +1,255 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint": "/api/data",
+            "databaseSchema": "Database with tables: users, trading_opportunities, bids, trades, accounts, notifications, admin_logs"
+        },
+        "function": "Fetch all dynamic data required by the frontend from backend APIs.",
+        "static_description": "The frontend displays a loading spinner while fetching initial data such as user info, trading opportunities, account balances, etc., via asynchronous calls to the backend API endpoint.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Page",
+                "description": "Upon load, the app makes GET requests to various endpoints to fetch dynamic content. Once received, components render accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchema": "PostgreSQL schema including tables for users, sessions, roles, permissions, and audit logs"
+        },
+        "function": "Establish secure connection between the backend server and PostgreSQL database using provided environment variables.",
+        "static_description": "Backend server initializes a connection pool to PostgreSQL upon startup, referencing environment variables for credentials and host details.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "username",
+                "password"
+            ],
+            "signupFormFields": [
+                "email",
+                "username",
+                "password",
+                "confirmPassword"
+            ],
+            "authApiEndpoints": [
+                "/api/auth/login",
+                "/api/auth/signup",
+                "/api/auth/logout"
+            ]
+        },
+        "function": "Enable secure login, registration, session management, and role-based access control for users.",
+        "static_description": "Login form appears on homepage when unauthenticated; includes fields for username and password along with 'Forgot Password?' link. Signup page contains email, username, password, and confirm-password inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Login Form",
+                "description": "Sends POST request to /api/auth/login with credentials. Displays error message if invalid or redirects to dashboard on success."
+            },
+            {
+                "interaction": "Click Logout Button",
+                "description": "Triggers DELETE request to /api/auth/logout which clears session cookie and redirects to login screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboardLayoutImage": "/assets/dashboard-layout.png",
+            "tradingOpportunitiesTableSchema": "Table columns: symbol, current_price, last_updated, volume, status",
+            "fetchOpportunitiesAPI": "/api/trading/opportunities"
+        },
+        "function": "Display available trading opportunities in an organized table view for authenticated users.",
+        "static_description": "Dashboard features header navigation bar, sidebar menu, main content area showing a searchable/filterable table listing active trading opportunities. Background color set to lemon chiffon (#FFFACD), component colors use chocolate (#D2691E).",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Dashboard",
+                "description": "Automatically fetches latest trading opportunities from /api/trading/opportunities and renders them in the table."
+            },
+            {
+                "interaction": "Click Refresh Button",
+                "description": "Manually re-fetches data from API and updates the displayed table without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "bidPlacementModal": "Modal window with input field for bid amount and confirmation button",
+            "tradeExecutionAPIs": [
+                "/api/bids/place",
+                "/api/trades/execute"
+            ]
+        },
+        "function": "Allow users to place bids and execute trades in real-time through intuitive interface elements.",
+        "static_description": "Each row in the trading opportunities table includes a 'Place Bid' button next to relevant entries. Clicking opens modal prompting for bid amount before submitting.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Place Bid Button",
+                "description": "Opens modal dialog asking for bid value. After submission, sends POST to /api/bids/place then shows confirmation toast notification."
+            },
+            {
+                "interaction": "Confirm Trade Execution",
+                "description": "Once matched, system executes trade via POST to /api/trades/execute and updates UI instantly with outcome feedback."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "accountSummaryCard": "Card layout showing balance, open positions count, net profit/loss metrics",
+            "accountManagementAPI": "/api/accounts/summary"
+        },
+        "function": "Provide users visibility into their financial standing and current holdings within the platform.",
+        "static_description": "Account summary card located in top right corner of dashboard showing key metrics like total balance, number of open positions, and overall performance indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Navigate to Account Tab",
+                "description": "Loads detailed view of portfolio breakdown, transaction history preview, and settings related to risk tolerance levels."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "orderHistoryTableSchema": "Columns: date_time, asset_symbol, type (buy/sell), quantity, price_per_unit, total_value, status",
+            "historyDataAPI": "/api/orders/history"
+        },
+        "function": "Present chronological log of completed and pending orders placed by the logged-in user.",
+        "static_description": "Orders tab displays paginated table of historical transactions with filters for time range, asset class, order type, and status.",
+        "interaction_and_states": [
+            {
+                "interaction": "Apply Date Range Filter",
+                "description": "Updates query parameters sent to /api/orders/history resulting in filtered dataset returned and rendered in table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketEndpoint": "wss://api.example.com/ws",
+            "notificationBannerComponent": "Top banner element showing live updates about bid modifications and successful trades"
+        },
+        "function": "Deliver instantaneous feedback regarding market movements and personal activity directly inside the browser.",
+        "static_description": "Thin horizontal strip across top of screen receives streaming messages about bid updates and executed trades. Uses WebSocket protocol for low-latency delivery.",
+        "interaction_and_states": [
+            {
+                "interaction": "Receive New Message",
+                "description": "Displays brief flash alert indicating nature of update followed by automatic dismissal after few seconds unless clicked to expand details."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchBarInputField": "Text input box positioned above opportunity listings",
+            "filterOptionsList": [
+                "Asset Type",
+                "Price Range",
+                "Status"
+            ]
+        },
+        "function": "Empower traders to quickly locate specific assets matching their criteria among numerous options.",
+        "static_description": "Search bar sits atop opportunities table with dropdown selectors beneath offering refined filtering capabilities based on multiple dimensions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type Search Query",
+                "description": "Filters results dynamically as characters are entered into search box, reducing visible items in real-time."
+            },
+            {
+                "interaction": "Select Filter Option",
+                "description": "Applies chosen filter immediately updating displayed subset of trading opportunities according to selected parameter(s)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignMediaQueries": "@media (max-width: 768px)",
+            "colorPaletteVariables": ":root { --background-color: #FFFACD; --component-color: #D2691E }"
+        },
+        "function": "Ensure optimal viewing experience regardless of device size or orientation while maintaining consistent styling theme.",
+        "static_description": "Website utilizes mobile-first responsive CSS framework ensuring layout adjusts smoothly across desktop, tablet, and smartphone screens. All backgrounds use lemon chiffon (#FFFACD) and chocolate (#D2691E) accents applied via CSS custom properties.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Browser Window",
+                "description": "Adapts grid layouts, font sizes, spacing, and navigation menus automatically based on viewport width thresholds defined in media queries."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileSettingsFormFields": [
+                "Full Name",
+                "Email Address",
+                "Preferred Currency",
+                "Notification Preferences"
+            ],
+            "updateProfileAPI": "/api/users/profile/update"
+        },
+        "function": "Allow registered members to customize their public identity and communication preferences.",
+        "static_description": "Accessible under 'My Profile' section containing editable text boxes for name and contact info alongside toggles for opting into different alert types.",
+        "interaction_and_states": [
+            {
+                "interaction": "Save Changes",
+                "description": "Submits updated profile information to /api/users/profile/update endpoint and reflects saved state visually once processed successfully."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "notificationsBellIcon": "/icons/notification-bell.svg",
+            "notificationFeedEndpoint": "/api/notifications/feed"
+        },
+        "function": "Keep participants informed of important events affecting their investments and actions taken elsewhere.",
+        "static_description": "Top navigation bar contains bell-shaped icon badge indicating unread alerts. Clicking reveals dropdown feed listing recent notifications sorted chronologically.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click Notification Bell",
+                "description": "Toggles dropdown panel visibility and fetches unseen notifications from /api/notifications/feed for display purposes."
+            },
+            {
+                "interaction": "Dismiss Single Alert",
+                "description": "Marks individual item as read locally and removes it from dropdown list temporarily until next refresh cycle."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminPanelSidebarLinks": [
+                "Manage Listings",
+                "User Accounts",
+                "Reports"
+            ],
+            "adminPermissionsSchema": "Role-based access control rules determining who can modify what resources"
+        },
+        "function": "Grant administrative staff oversight tools necessary for governing marketplace operations and participant behavior.",
+        "static_description": "Restricted-access admin panel accessible only by authorized personnel featuring dedicated sections for overseeing listings, managing member profiles, reviewing analytics dashboards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Access Admin Panel",
+                "description": "Redirected to protected route requiring elevated privileges verified against JWT token claims before granting entry."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{ scripts: { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\" } }"
+        },
+        "function": "Define npm command to install dependencies for both frontend and backend projects simultaneously.",
+        "static_description": "Root-level package.json file includes install:all script leveraging concurrently library to run parallel installation processes scoped separately to respective directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run npm run install:all",
+                "description": "Spawns two child processes installing node_modules in client/ and server/ folders concurrently, reporting progress independently but terminating together."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "{ scripts: { \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\" } }"
+        },
+        "function": "Start development servers for frontend and backend applications concurrently during local testing phase.",
+        "static_description": "Root-level package.json defines dev script launching hot-reloading environments for React/Vue frontend and Express/NestJS backend side-by-side using concurrently utility.",
+        "interaction_and_states": [
+            {
+                "interaction": "Execute npm run dev",
+                "description": "Boots up both development servers exposing frontend on port 3000 and backend on port 5000, outputting logs interlaced in terminal console."
+            }
+        ]
+    }
+]

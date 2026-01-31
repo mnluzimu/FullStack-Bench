@@ -1,0 +1,196 @@
+[
+    {
+        "resource_dependency": {
+            "gameBoardGridSchema": "A 4x4 grid represented as a 2D array of integers, where 0 indicates an empty cell.",
+            "tileValueColors": "{2: '#eee4da', 4: '#ede0c8', 8: '#f2b179', 16: '#f59563', 32: '#f67c5f', 64: '#f65e3b', 128: '#edcf72', 256: '#edcc61', 512: '#edc850', 1024: '#edc53f', 2048: '#edc22e'}",
+            "newGameButtonIcon": "/assets/icons/new-game-icon.svg",
+            "reviveButtonIcon": "/assets/icons/revive-icon.svg"
+        },
+        "function": "Render and manage the 2048 game board with a 4x4 grid layout for tile placement and movement.",
+        "static_description": "A square game board centered on screen with a linen background. It contains a 4x4 grid made of maroon-colored cells. Empty cells appear as light maroon placeholders. Tiles are displayed inside the grid with rounded corners and centered numeric values. Each tile's color corresponds to its value as defined in tileValueColors. Controls above the board include a 'New Game' button styled with maroon theme and icon from newGameButtonIcon.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'New Game' button resets the entire game board to initial state: two randomly placed tiles (values 2 or 4) and score set to zero."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "keyboardEventMap": "{\"ArrowUp\": \"up\", \"ArrowDown\": \"down\", \"ArrowLeft\": \"left\", \"ArrowRight\": \"right\"}",
+            "touchSwipeDetectionLogic": "Detect swipe gestures via touchstart and touchend events, calculating deltaX and deltaY to determine direction."
+        },
+        "function": "Allow players to move all tiles simultaneously in one of four cardinal directions using keyboard arrow keys or touch swipes.",
+        "static_description": "The game board remains unchanged visually but listens for directional input. No visible indicators show which directions are available since all are always accessible unless blocked by game over state.",
+        "interaction_and_states": [
+            {
+                "interaction": "Key Press",
+                "description": "Pressing ArrowUp, ArrowDown, ArrowLeft, or ArrowRight triggers respective tile movements across the grid according to keyboardEventMap."
+            },
+            {
+                "interaction": "Touch Swipe",
+                "description": "Swiping vertically or horizontally on the game board initiates tile movement in that direction based on calculated swipe vector using touchSwipeDetectionLogic."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mergeAnimationDuration": "150ms",
+            "scoreIncrementLogic": "Score increases by the value of the newly merged tile (e.g., merging two 4s adds 8 points)"
+        },
+        "function": "Merge adjacent tiles of equal value during movement and update the score accordingly.",
+        "static_description": "Tiles maintain their appearance until a merge occurs. Merged tiles briefly animate (scale up/down effect) over mergeAnimationDuration before settling into the next higher-value tile representation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tile Movement Trigger",
+                "description": "When tiles move and collide with another tile of same value, they merge into a single tile whose value equals the sum of both. The score updates instantly by adding the new tile’s value using scoreIncrementLogic. An animation plays briefly to indicate the merge."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "scoreDisplayElementId": "#current-score-display",
+            "winLoseMessageContainerId": "#game-status-message"
+        },
+        "function": "Track and display the player's current score dynamically throughout gameplay and reflect win/loss states.",
+        "static_description": "Above the game board, there is a maroon-themed panel showing 'SCORE:' followed by the numerical value in large bold font within element identified by scoreDisplayElementId. Below this, win/lose messages appear in container identified by winLoseMessageContainerId when relevant conditions occur.",
+        "interaction_and_states": [
+            {
+                "interaction": "Score Update Event",
+                "description": "Each successful tile merge increments the displayed score in real-time without delay."
+            },
+            {
+                "interaction": "Win Condition Met",
+                "description": "Upon reaching a tile valued at 2048, message 'You Win!' appears in winLoseMessageContainerId prompting continuation choice."
+            },
+            {
+                "interaction": "Loss Condition Met",
+                "description": "If no moves remain, message 'Game Over!' displays in winLoseMessageContainerId and revive option becomes active."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "gameOverCheckAlgorithm": "After each move, check if any empty spaces exist or adjacent tiles have matching values. If neither is true, trigger game over."
+        },
+        "function": "Detect when no further legal moves are possible and transition to game over state.",
+        "static_description": "No visual change until triggered. Upon activation, overlay fades onto the board dimming it slightly while displaying 'Game Over!' centered prominently.",
+        "interaction_and_states": [
+            {
+                "interaction": "Post-Move Evaluation",
+                "description": "Immediately after every tile movement, execute gameOverCheckAlgorithm. If returns true, disable further input and show game over UI prompt with revive option enabled."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "resetGameStateFunction": "Reinitialize the board grid to contain only two random starting tiles and reset score to 0."
+        },
+        "function": "Provide mechanism to restart the game entirely at any point.",
+        "static_description": "Visible 'New Game' control positioned above the board featuring maroon styling consistent with other UI elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Activating the 'New Game' button executes resetGameStateFunction immediately clearing previous session data and initiating fresh round."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reviveStateRestoreMethod": "Preserve last known board configuration pre-game-over to allow resuming from that exact moment.",
+            "reviveButtonLabel": "Revive"
+        },
+        "function": "Offer ability to resume playing after entering game over state without resetting progress.",
+        "static_description": "Below the game over message lies a prominent 'Revive' button labeled per reviveButtonLabel with matching maroon aesthetic.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting 'Revive' hides the game over overlay and restores board to preserved state allowing continued play. Score remains unchanged and move input re-enabled."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "victoryConditionChecker": "Scan all tile positions after merges to see if any reach exactly 2048 value."
+        },
+        "function": "Recognize achievement of target tile value (2048) and notify user of victory.",
+        "static_description": "Victory notification overlays the board similarly to game over but presents celebratory tone indicating success.",
+        "interaction_and_states": [
+            {
+                "interaction": "Post-Merge Check",
+                "description": "Following any tile merge operation, run victoryConditionChecker. If satisfied, reveal modal stating 'You Win! Continue Playing?' alongside standard continue options."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {},
+        "function": "Execute complete game mechanics solely within browser environment avoiding server communication or persistent storage needs.",
+        "static_description": "All interface components render normally client-side; no backend indicators present such as loading spinners tied to network activity.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "primaryColorPalette": "{background: 'linen', tileBackground: 'maroon', textColor: 'white', buttonBg: 'maroon', buttonBorder: 'darkmaroon'}"
+        },
+        "function": "Apply unified maroon-based color palette consistently across all interactive and static UI elements.",
+        "static_description": "Entire application utilizes colors derived from primaryColorPalette ensuring cohesive branding. Background uses linen (#faf0e6). All buttons, grids, and panels use various shades of maroon.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "backgroundColorHexCode": "#faf0e6"
+        },
+        "function": "Define overall background tone using linen shade to enhance contrast against darker maroon components.",
+        "static_description": "Full viewport background rendered in backgroundColorHexCode providing soft off-white canvas supporting foreground maroon elements.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "controlButtonsLayout": "[{label: 'New Game', id: 'new-game-btn'}, {label: 'Revive', id: 'revive-btn'}]"
+        },
+        "function": "Present intuitive controls enabling initiation of new games and revival of ended sessions directly from interface.",
+        "static_description": "Two clearly labeled action buttons aligned horizontally near top of screen reflecting labels and IDs from controlButtonsLayout. Both styled uniformly in maroon theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "'New Game' button invokes full reset sequence whereas 'Revive' activates only upon game over to restore prior board state."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "statusPanelStructure": "{scoreLabel: 'SCORE', winText: 'You Win!', loseText: 'Game Over!', statusClassMap: {'win': '.win-state', 'lose': '.lose-state'}}"
+        },
+        "function": "Continuously exhibit essential game metrics including live scoring and outcome notifications.",
+        "static_description": "Status area located atop main game region featuring score label beside updating number along with conditional alert banners sourced from statusPanelStructure depending on current game flow.",
+        "interaction_and_states": [
+            {
+                "interaction": "State Transition",
+                "description": "Changes in game status automatically switch between hidden/inactive and visible/active states for corresponding alerts using class mappings from statusClassMap."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "{mobileMaxWidth: '768px', tabletMinWidth: '769px', desktopMinWidth: '1025px'}",
+            "adaptiveGridScalingLogic": "Adjust tile sizes proportionally maintaining 4x4 aspect ratio under different viewport widths."
+        },
+        "function": "Ensure seamless experience regardless of device orientation or screen dimensions through adaptive layouts.",
+        "static_description": "Game board scales fluidly fitting snugly within mobile screens up to desktop resolutions. Text and controls resize appropriately guided by breakpoints in responsiveBreakpoints and scaling handled via adaptiveGridScalingLogic.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "As window size crosses thresholds defined in responsiveBreakpoints, layout recalculates adjusting spacing, font sizes, and tile dimensions accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"cd frontend && npm install && cd ../backend && npm install\"",
+            "devScriptCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Configure repository-level npm commands facilitating streamlined installation and development startup procedures.",
+        "static_description": "Standard package.json file includes script definitions aligning with installScriptCommand and devScriptCommand ensuring simultaneous setup and launch of frontend and backend modules.",
+        "interaction_and_states": []
+    }
+]

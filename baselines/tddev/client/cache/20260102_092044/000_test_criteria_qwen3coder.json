@@ -1,0 +1,387 @@
+[
+    {
+        "requirement_tested": "A homepage showcasing leadership and business training services",
+        "user_persona": "A potential client browsing for professional development opportunities.",
+        "user_goal": "To understand the range of services offered by the consulting firm.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah visits the consulting website for the first time and lands on the homepage. She immediately sees a large hero image with welcoming text about leadership training.",
+                "action": "Page loads with full-width hero image.",
+                "expected_outcome": "Hero image with overlay text is displayed prominently."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Service Options",
+                "description": "Curious about specific offerings, Sarah scrolls down and notices four distinct service icons—Workshops, Online Classes, Podcasts, and Blog—aligned horizontally beneath the hero section.",
+                "action": "Scroll down below the hero image.",
+                "expected_outcome": "Four service icons with labels are visible in a horizontal arrangement."
+            },
+            {
+                "step": 3,
+                "title": "Navigating to Workshops",
+                "description": "Interested in attending live events, Sarah clicks the 'Workshops' icon hoping to find more details.",
+                "action": "Click on the 'Workshops' icon.",
+                "expected_outcome": "Redirected to the Workshops page where she can see upcoming sessions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An e-commerce section for purchasing services directly from the site",
+        "user_persona": "A corporate HR manager looking to buy training packages for her team.",
+        "user_goal": "Purchase multiple business training services for company use.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Products",
+                "description": "Mark navigates to the e-commerce section to explore available training services. He sees a grid layout of product cards with titles, prices, and short descriptions.",
+                "action": "Visit the e-commerce section.",
+                "expected_outcome": "Grid of product cards with title, price, description, and 'Add to Cart' button appears."
+            },
+            {
+                "step": 2,
+                "title": "Adding Items to Cart",
+                "description": "After reviewing several options, Mark decides to add two different training modules to his cart by clicking their respective 'Add to Cart' buttons.",
+                "action": "Click 'Add to Cart' on two different product cards.",
+                "expected_outcome": "Each click adds the item to the session-based cart and updates the cart icon count accordingly."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Shopping Cart",
+                "description": "Ready to complete his purchase, Mark clicks the cart icon in the top-right corner to proceed to checkout.",
+                "action": "Click the persistent shopping cart icon.",
+                "expected_outcome": "Redirected to the shopping cart page showing selected items and subtotal."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A workshops page displaying available workshops with descriptions and pricing",
+        "user_persona": "A mid-level manager interested in personal growth through structured learning.",
+        "user_goal": "Find and register for an upcoming workshop that fits his schedule.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Workshop Listings",
+                "description": "Emily clicks on the 'Workshops' link from the homepage and arrives at the dedicated workshops page. She scans the vertical list of available sessions.",
+                "action": "Navigate to the Workshops page.",
+                "expected_outcome": "Vertical list of workshop cards with title, date/time, location, cost, and description is shown."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Suitable Option",
+                "description": "She finds a workshop titled 'Leadership Communication Skills' scheduled for next month and checks its details including cost and duration.",
+                "action": "Review details of a suitable workshop card.",
+                "expected_outcome": "Details like title, date/time, location, cost, and brief description are clearly displayed."
+            },
+            {
+                "step": 3,
+                "title": "Registering for Workshop",
+                "description": "Convinced it meets her needs, Emily clicks the 'Register Now' button for this workshop.",
+                "action": "Click the 'Register Now' button on the chosen workshop card.",
+                "expected_outcome": "A confirmation message appears indicating successful registration for the workshop."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An online classes section with course listings and enrollment options",
+        "user_persona": "A working professional seeking flexible educational resources.",
+        "user_goal": "Enroll in an online class to enhance skills while balancing work commitments.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Discovering Courses",
+                "description": "James visits the online classes section and browses various courses listed either in a grid or list format. Each course has key information like instructor name and duration.",
+                "action": "Navigate to the Online Classes section.",
+                "expected_outcome": "List/grid of class cards showing title, instructor, duration, module count, and preview video thumbnail is presented."
+            },
+            {
+                "step": 2,
+                "title": "Previewing Course Content",
+                "description": "Intrigued by a course on strategic thinking, James clicks the play icon on its video thumbnail to watch a sample lesson.",
+                "action": "Click the play icon on the video thumbnail.",
+                "expected_outcome": "Sample lesson plays in a modal player window without leaving the current page."
+            },
+            {
+                "step": 3,
+                "title": "Enrolling in Class",
+                "description": "Impressed by the preview, James clicks the 'Enroll Now' button for the Strategic Thinking course.",
+                "action": "Click the 'Enroll Now' button for the selected class.",
+                "expected_outcome": "Successfully enrolled in the class and redirected to the user dashboard to access materials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A podcasts page hosting audio content with playback functionality",
+        "user_persona": "A commuter who enjoys listening to educational content during travel.",
+        "user_goal": "Listen to a podcast episode about leadership challenges.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Episodes",
+                "description": "Alex goes to the Podcasts page and sees a vertical list of episodes with titles, release dates, durations, and embedded players.",
+                "action": "Visit the Podcasts page.",
+                "expected_outcome": "Vertical list of podcast episode cards with metadata and embedded audio controls is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Starting Playback",
+                "description": "He selects an episode titled 'Leading Through Change' and presses the play button within the player control bar.",
+                "action": "Click the play button on the desired episode's audio player.",
+                "expected_outcome": "Audio playback begins for the selected episode."
+            },
+            {
+                "step": 3,
+                "title": "Seeking Within Episode",
+                "description": "While driving, Alex realizes he missed something important earlier and drags the progress bar backward to re-listen to a segment.",
+                "action": "Drag the progress bar of the active audio player.",
+                "expected_outcome": "Playback jumps to the selected point in the episode."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A blog section featuring articles related to leadership and business training",
+        "user_persona": "An aspiring leader looking for insights and advice online.",
+        "user_goal": "Read insightful blog posts on leadership best practices.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Articles",
+                "description": "Lisa navigates to the blog section and finds a responsive grid of article previews. Each preview includes a featured image, title, excerpt, author photo, and publish date.",
+                "action": "Go to the Blog section.",
+                "expected_outcome": "Article previews are displayed in a responsive grid layout with essential metadata."
+            },
+            {
+                "step": 2,
+                "title": "Reading Full Article",
+                "description": "She clicks on a compelling post titled 'Building Resilient Teams' to read the entire article.",
+                "action": "Click on the blog preview card.",
+                "expected_outcome": "Redirected to the full article page displaying complete content, comments section, and sharing buttons."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication system for account creation and login",
+        "user_persona": "A new visitor wanting to track purchased services and access exclusive content.",
+        "user_goal": "Create an account to personalize experience and save preferences.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Account Creation",
+                "description": "David clicks on the 'Login/Register' option and chooses to create a new account. He fills out the registration form with his email and password.",
+                "action": "Fill out the registration form and submit.",
+                "expected_outcome": "New user account is created, and he is automatically logged in and redirected to the dashboard."
+            },
+            {
+                "step": 2,
+                "title": "Logging In Again",
+                "description": "Later, after logging out, David returns and uses the login form with his email and password to regain access.",
+                "action": "Enter valid credentials in the login form and submit.",
+                "expected_outcome": "Authenticated successfully and redirected to the user dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Shopping cart functionality for selecting and managing purchases",
+        "user_persona": "A frequent shopper who likes to compare and adjust selections before buying.",
+        "user_goal": "Customize my shopping cart contents before finalizing the purchase.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Modifying Item Quantity",
+                "description": "Maria opens her cart and sees three items. She increases the quantity of one item using the dropdown selector.",
+                "action": "Adjust quantity selector for one item in the cart.",
+                "expected_outcome": "Item total and overall subtotal update dynamically based on the new quantity."
+            },
+            {
+                "step": 2,
+                "title": "Removing Unwanted Item",
+                "description": "Noticing she added too many items, Maria removes one product from the cart by clicking its remove button.",
+                "action": "Click the remove button for an unwanted item.",
+                "expected_outcome": "Item disappears from the cart, and the updated list with recalculated subtotal is displayed."
+            },
+            {
+                "step": 3,
+                "title": "Proceeding to Checkout",
+                "description": "Satisfied with her choices, Maria clicks the 'Proceed to Checkout' button to move forward with payment.",
+                "action": "Click the 'Proceed to Checkout' button.",
+                "expected_outcome": "Redirected to the secure checkout flow for completing the purchase."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Checkout process with payment integration for service purchases",
+        "user_persona": "A customer ready to finalize their service purchase securely.",
+        "user_goal": "Complete the purchase process safely and receive confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Billing Information",
+                "description": "During checkout, John fills in his billing address and selects a preferred payment method from the options provided.",
+                "action": "Fill in billing/shipping info and select payment method.",
+                "expected_outcome": "Information fields accept input and payment method is selected."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Order Summary",
+                "description": "Before paying, John reviews the order summary which lists all selected services, costs, and estimated delivery times.",
+                "action": "Review the order summary section.",
+                "expected_outcome": "Order summary accurately reflects selected items and associated charges."
+            },
+            {
+                "step": 3,
+                "title": "Completing Purchase",
+                "description": "Confident everything looks correct, John clicks the 'Complete Purchase' button marked with a security lock icon.",
+                "action": "Click the 'Complete Purchase' button.",
+                "expected_outcome": "Payment processed via external gateway and redirected to order confirmation page showing transaction ID and access details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User dashboard for managing purchased services and viewing order history",
+        "user_persona": "A returning learner who wants easy access to previously bought content.",
+        "user_goal": "Access purchased courses and review past transactions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard Tabs",
+                "description": "Returning to the site, Anna logs in and lands on her user dashboard. She sees tabs labeled 'My Services' and 'Order History'.",
+                "action": "Log in and land on the dashboard.",
+                "expected_outcome": "Dashboard with 'My Services' and 'Order History' tabs is visible."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Enrolled Services",
+                "description": "Anna clicks the 'My Services' tab to view all her enrolled workshops and classes, each with direct access links.",
+                "action": "Click the 'My Services' tab.",
+                "expected_outcome": "List of enrolled services with clickable access links is displayed."
+            },
+            {
+                "step": 3,
+                "title": "Checking Transaction Records",
+                "description": "Wanting to verify a recent payment, Anna switches to the 'Order History' tab to check transaction details.",
+                "action": "Click the 'Order History' tab.",
+                "expected_outcome": "Past transactions with dates, amounts, and statuses are listed for review."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across devices",
+        "user_persona": "A busy executive checking the site on multiple devices throughout the day.",
+        "user_goal": "Use the website seamlessly whether on desktop, tablet, or mobile phone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Desktop Browser",
+                "description": "At work, Michael accesses the website via desktop browser and sees multi-column layouts for products and articles.",
+                "action": "Browse the website on desktop.",
+                "expected_outcome": "Website adapts to multi-column layout optimized for larger screens."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Tablet View",
+                "description": "During lunch break, Michael continues browsing on his tablet and observes the layout adjusting to two columns.",
+                "action": "Resize viewport or switch to tablet device.",
+                "expected_outcome": "Layout fluidly adjusts to two-column view for medium-sized screens."
+            },
+            {
+                "step": 3,
+                "title": "Accessing Mobile Version",
+                "description": "On the go, Michael pulls up the site on his smartphone and notices the layout now uses a single column with a hamburger menu.",
+                "action": "Access the website on mobile device.",
+                "expected_outcome": "Single-column layout with transformed navigation into hamburger menu is rendered."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Light cyan background with cadet blue components applied consistently across all pages",
+        "user_persona": "A visually-oriented designer evaluating brand consistency.",
+        "user_goal": "Verify that the website maintains uniform color scheme throughout all sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Colors",
+                "description": "Emma inspects the homepage and confirms that the background is light cyan and interactive components are styled in cadet blue.",
+                "action": "Observe homepage styling.",
+                "expected_outcome": "Background is light cyan (#E0FFFF), and components like buttons and form fields are cadet blue (#5F9EA0)."
+            },
+            {
+                "step": 2,
+                "title": "Checking E-commerce Section",
+                "description": "Moving to the e-commerce section, Emma verifies that the same colors persist for backgrounds and component styling.",
+                "action": "Navigate to the e-commerce section.",
+                "expected_outcome": "Consistent application of light cyan background and cadet blue components observed."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Across All Pages",
+                "description": "Emma repeats this inspection across other pages like Workshops, Podcasts, and Dashboard, noting the same color usage.",
+                "action": "Visit remaining main pages of the site.",
+                "expected_outcome": "Every visited page utilizes light cyan background and cadet blue components uniformly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application fetching all dynamic data from backend APIs",
+        "user_persona": "A developer testing the integration between frontend and backend systems.",
+        "user_goal": "Ensure that all dynamic content comes from backend endpoints rather than being hardcoded.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Dynamic Content",
+                "description": "Tom opens the homepage and watches as loading indicators appear briefly before featured services populate from the backend.",
+                "action": "Load the homepage.",
+                "expected_outcome": "Loading state appears temporarily, then data populates from backend API response."
+            },
+            {
+                "step": 2,
+                "title": "Handling API Errors Gracefully",
+                "description": "Simulating a network issue, Tom blocks the API endpoint and reloads the page, expecting to see error messages instead of broken layouts.",
+                "action": "Block API endpoint and reload page.",
+                "expected_outcome": "Error message appears explaining failed data retrieval without breaking UI structure."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer verifying backend database connectivity.",
+        "user_goal": "Confirm that the backend connects properly to the PostgreSQL instance using predefined settings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Connection Settings",
+                "description": "Raj starts the backend server and ensures it initializes a connection pool to PostgreSQL using the exact environment variables: localhost, port 5432, username myappuser, password myapppassword, and database name myapp.",
+                "action": "Start backend server with environment variables set.",
+                "expected_outcome": "Server logs confirm successful initialization of PostgreSQL connection pool using specified parameters."
+            },
+            {
+                "step": 2,
+                "title": "Testing Data Operations",
+                "description": "Raj triggers a few API calls that perform CRUD operations against database tables defined in migration files, confirming real-time interaction with stored data.",
+                "action": "Trigger API routes that execute database queries.",
+                "expected_outcome": "API responses reflect accurate reads/writes from/to PostgreSQL tables."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Repository configuration with package.json supporting npm run install:all and npm run dev commands",
+        "user_persona": "A new contributor setting up the project locally for the first time.",
+        "user_goal": "Install dependencies and start both frontend and backend servers efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Jamie clones the repository and runs the unified install command to get all necessary packages for both frontend and backend projects.",
+                "action": "Run `npm run install:all` from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed successfully without errors."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "Once installations finish, Jamie executes the development launch script to run both applications simultaneously.",
+                "action": "Run `npm run dev` from root directory.",
+                "expected_outcome": "Frontend and backend servers start concurrently and are accessible for development."
+            }
+        ]
+    }
+]

@@ -1,0 +1,211 @@
+[
+    {
+        "resource_dependency": {
+            "searchIconSVG": "<svg>...</svg>",
+            "stockDatabaseSchema": "A database table named 'stocks' with fields: symbol (string, unique), name (string), sector (string), market_cap (number), last_price (number), change_percent (number), and description (text)."
+        },
+        "function": "Allow users to search for stocks by entering either a stock code or name.",
+        "static_description": "A centered search bar at the top of the page with a placeholder text 'Enter stock symbol or name', accompanied by a magnifying glass icon (searchIconSVG) on the right side. The background is white (#FFFFFF) and the input field border is navy (#000080).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking inside the search bar focuses it and allows typing."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates the search query and displays results or suggestions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autocompleteAPIEndpoint": "/api/stocks/autocomplete",
+            "suggestionItemStyle": "List item with padding, hover effect changing background to light gray (#f0f0f0)"
+        },
+        "function": "Provide real-time suggestions while the user types in the search bar.",
+        "static_description": "Below the search bar appears a dropdown list of suggested stock matches when typing begins. Each suggestion includes the stock symbol and full name aligned left-to-right.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over any suggestion highlights it using the suggestionItemStyle."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a suggestion populates the search bar with that stock’s symbol or name and triggers the search."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stockSummaryDataSchema": "Fields: symbol, name, current_price, change_amount, change_percentage, previous_close, open_price, volume, market_cap",
+            "infoCardBackgroundImage": "/assets/card-bg.png"
+        },
+        "function": "Display a concise summary of essential stock details upon selecting or searching for a stock.",
+        "static_description": "A card positioned below the search bar showing key metrics such as price, daily movement, opening value, trading volume, and market cap. Background image set via infoCardBackgroundImage, with navy text color (#000080).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "chartLibrary": "Chart.js library integration",
+            "trendDataEndpoint": "/api/stocks/{symbol}/trends",
+            "timeRangeOptions": [
+                "1D",
+                "1W",
+                "1M",
+                "3M",
+                "YTD",
+                "1Y"
+            ]
+        },
+        "function": "Visualize historical market trends through interactive charts.",
+        "static_description": "A chart area displaying line graphs representing stock performance over time. Time range selector buttons above the chart allow switching between periods defined in timeRangeOptions.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a time range button fetches updated trend data from trendDataEndpoint and redraws the chart accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialMetricsSchema": "Fields: pe_ratio, eps, dividend_yield, beta, revenue_growth, debt_to_equity, roe",
+            "financialDataTableStyles": "Navy headers, alternating row colors"
+        },
+        "function": "Present important financial metrics and ratios relevant to selected stocks.",
+        "static_description": "A tabular view listing key financial indicators such as P/E ratio, EPS, Dividend Yield, Beta, Revenue Growth, Debt-to-Equity Ratio, and ROE. Styled with navy headers and clean formatting.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "formatOptions": [
+                "PDF",
+                "Markdown",
+                "HTML"
+            ],
+            "formatSelectorIcon": "/icons/format-selector.svg"
+        },
+        "function": "Enable users to choose their preferred output format for generated reports.",
+        "static_description": "A segmented control group labeled 'Report Format' placed near the top of the report customization panel. Options include PDF, Markdown, and HTML icons/text representations.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting an option updates the preview style and prepares the report generation endpoint accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sectionCheckboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "Analyst Opinions",
+                "News Summary"
+            ],
+            "checkboxCheckedIcon": "/icons/checkmark.svg"
+        },
+        "function": "Let users pick which sections they want included in their custom report.",
+        "static_description": "A vertical checklist with checkboxes next to each section title (e.g., Basic Info, Market Trends, Financial Data, etc.) under the heading 'Choose Sections'. All items unchecked initially.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggling a checkbox selects or deselects the corresponding section for inclusion in the final report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generateReportEndpoint": "/api/reports/generate",
+            "loadingSpinnerGIF": "/assets/spinner.gif"
+        },
+        "function": "Automatically compile and present a tailored stock report based on user selections.",
+        "static_description": "After configuring format and sections, clicking 'Generate Report' triggers processing. A spinner graphic (loadingSpinnerGIF) replaces the button temporarily until completion.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiates POST request to generateReportEndpoint with selected parameters; shows loading indicator then renders or downloads the report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalCSSVariables": ":root { --bg-color: #ffffff; }"
+        },
+        "function": "Maintain consistent white background throughout all pages and components.",
+        "static_description": "All major containers, body backgrounds, modals, cards, and overlays use solid white (#FFFFFF) as per globalCSSVariables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navyThemeColors": "{ primary: #000080, secondary: #000066, accent: #000099 }",
+            "buttonBorderRadius": "4px"
+        },
+        "function": "Apply navy-colored theme to interactive UI elements like buttons, inputs, links, and navigation bars.",
+        "static_description": "Buttons, form borders, active tabs, and highlighted menu items are styled using navyThemeColors.primary. Rounded corners follow buttonBorderRadius setting.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements darken slightly using navyThemeColors.secondary."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mediaQueryBreakpoints": "{ mobile: max-width 768px, tablet: min-width 769px and max-width 1024px, desktop: min-width 1025px }",
+            "responsiveGridFramework": "CSS Grid / Flexbox"
+        },
+        "function": "Ensure optimal viewing experience across various screen sizes including mobile phones, tablets, and desktops.",
+        "static_description": "Layout adjusts dynamically using responsiveGridFramework. Content stacks vertically on small screens and arranges horizontally on larger ones. Padding/margins scale according to mediaQueryBreakpoints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "progressIndicatorComponent": "<div class='loader'>Loading...</div>"
+        },
+        "function": "Indicate ongoing processes during lengthy operations such as report generation.",
+        "static_description": "While waiting for responses, especially during report creation, a centrally-aligned loader animation (progressIndicatorComponent) replaces actionable areas or overlays content.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorMessageTemplate": "Invalid stock symbol entered. Please try again.",
+            "errorDisplayStyle": "Red text with exclamation icon"
+        },
+        "function": "Notify users clearly when invalid inputs or missing data prevent successful actions.",
+        "static_description": "Upon encountering errors (like unknown stock symbols), an alert message matching errorMessageTemplate appears beneath the input field or within the affected module. Styled with red text and warning icon.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "exportButtonIcon": "/icons/download.svg",
+            "supportedExportFormats": [
+                "PDF",
+                "CSV",
+                "DOCX"
+            ]
+        },
+        "function": "Allow users to save or download generated reports locally in multiple formats.",
+        "static_description": "Once a report is ready, a 'Download' button featuring exportButtonIcon becomes visible beside the rendered document. Dropdown reveals available extensions listed in supportedExportFormats.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers file download prompt for chosen format without reloading the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authTokenStorageMethod": "Browser cookies with HttpOnly flag",
+            "loginRedirectURL": "/login",
+            "sessionTimeoutHandler": "Redirect to loginRedirectURL if token expired"
+        },
+        "function": "Manage authenticated sessions to enable personalization features like saved preferences or history tracking.",
+        "static_description": "Top-right corner displays either 'Login' link or logged-in user avatar depending on auth status. Session tokens stored securely client-side.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Login' navigates to loginRedirectURL. Authenticated users can access profile settings or logout directly."
+            }
+        ]
+    }
+]

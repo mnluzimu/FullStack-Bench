@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement a cross-platform HTML editor with live preview and code editing functionality. The editor should allow users to switch between HTML code and text editing modes and automatically convert to HTML. The editor should have project management capabilities, allowing users to organize multiple HTML documents, images, and other files. The editor should also have features such as syntax highlighting, saving template pages, and a basic user guide. Set the background color to honeydew and the component color to dark olive green.

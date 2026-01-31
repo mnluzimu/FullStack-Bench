@@ -1,0 +1,223 @@
+[
+    {
+        "resource_dependency": {
+            "featuredArticlesDataSchema": "Database table 'articles' with fields: id (UUID), title (string), summary (text), category (string), author_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp), is_featured (boolean).",
+            "featuredSolutionsDataSchema": "Database table 'solutions' with fields: id (UUID), title (string), description (text), category (string), author_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp), is_featured (boolean).",
+            "heroSectionImage": "/assets/images/tech-hero-bg.jpg"
+        },
+        "function": "Display a homepage showcasing featured technical articles and solutions along with navigation elements.",
+        "static_description": "The homepage displays a hero banner using image source 'heroSectionImage'. Below the banner, there are two sections: one for featured technical articles and another for featured solutions. Each item shows title, summary/description, author name, and publish date. Navigation bar includes links to Articles, Solutions, Search, and Profile/Login.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on any article or solution card navigates to their respective detail pages. Clicking on navigation links redirects to corresponding pages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "articleListDataSchema": "Database table 'articles' with fields: id (UUID), title (string), summary (text), category (string), author_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp), tags (array of strings). Indexes on category and tags for efficient filtering.",
+            "categoryFilterOptions": [
+                "All",
+                "Web Development",
+                "DevOps",
+                "Cloud Computing",
+                "Security",
+                "AI/ML"
+            ],
+            "tagFilterOptions": [
+                "JavaScript",
+                "React",
+                "Docker",
+                "Kubernetes",
+                "AWS",
+                "CI/CD"
+            ]
+        },
+        "function": "Provide a dedicated page for browsing technical articles with filtering capabilities by category and tags.",
+        "static_description": "Page displays a grid/list of technical articles. Above the list, filter controls allow selection of categories ('categoryFilterOptions') and tags ('tagFilterOptions'). Each article card shows title, summary, author, creation date, and associated tags.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a category or tag filters the displayed articles accordingly. Clicking an article card navigates to its detailed view page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPISpecification": "API endpoint '/api/search?q={query}' returning results from both articles and solutions tables. Response format: { type: 'article'|'solution', id: UUID, title: string, snippet: text }.",
+            "searchIconSVG": "<svg>...</svg>"
+        },
+        "function": "Enable global search functionality to locate technical information within articles and solutions.",
+        "static_description": "A search bar appears in the header across all pages, featuring an input field and a magnifying glass icon ('searchIconSVG'). Results appear in a dropdown below the input when typing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "As the user types, autocomplete suggestions populate the dropdown showing matching articles and solutions with titles and snippets."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the search icon or pressing Enter submits the query and navigates to a full search results page listing all matches."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "articleDetailDataSchema": "Database record from 'articles' table joined with related author info from 'users' table. Fields include: id, title, content (markdown/html), author details, published date, last updated, tags, comments_count.",
+            "commentSystemAPI": "API endpoints for managing comments: GET /api/articles/{id}/comments, POST /api/articles/{id}/comments, DELETE /api/comments/{id}. Requires JWT authentication for posting/deleting."
+        },
+        "function": "Present a detailed view of individual technical articles with integrated commenting capability.",
+        "static_description": "Displays the complete article content formatted as HTML/markdown. Shows metadata such as author name/avatar, publication date, and tags. Includes a comments section below the article where users can read existing comments and post new ones after logging in.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Post Comment' button adds the comment to the article via API call and refreshes the comment list without reloading the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "solutionListDataSchema": "Database table 'solutions' with fields: id (UUID), title (string), description (text), category (string), difficulty_level (enum: beginner, intermediate, advanced), author_id (foreign key), created_at (timestamp), updated_at (timestamp). Indexed by category and difficulty_level.",
+            "difficultyLevelIcons": {
+                "beginner": "/icons/beginner.svg",
+                "intermediate": "/icons/intermediate.svg",
+                "advanced": "/icons/advanced.svg"
+            }
+        },
+        "function": "Allow users to browse and view categorized solutions with difficulty level indicators.",
+        "static_description": "Page presents a list/grid of solution cards grouped by category. Each card includes title, brief description, difficulty indicator using icons from 'difficultyLevelIcons', author name, and creation date.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a solution card navigates to its detailed view page. Filtering options let users sort by category or difficulty level."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "solutionDetailDataSchema": "Full record from 'solutions' table joined with author data. Additional fields: steps (array of markdown blocks), code_snippets (array of code blocks with language labels), attachments (array of file URLs).",
+            "relatedSolutionsAPI": "Endpoint GET /api/solutions/{id}/related returning array of similar solutions based on shared categories/tags."
+        },
+        "function": "Show comprehensive details of a selected solution including implementation steps and related content.",
+        "static_description": "Detailed view of a solution presenting step-by-step instructions with embedded code snippets and downloadable attachments. Displays author information and lists related solutions fetched through 'relatedSolutionsAPI'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on related solution cards opens those solutions in the same detail view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authAPISpecifications": "Endpoints: POST /api/auth/register, POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me. Uses JWT tokens stored in HTTP-only cookies. User schema: id (UUID), username (unique), email (unique), password_hash (bcrypt), created_at (timestamp).",
+            "loginFormFields": [
+                "username_or_email",
+                "password"
+            ],
+            "registerFormFields": [
+                "username",
+                "email",
+                "password",
+                "confirm_password"
+            ]
+        },
+        "function": "Handle user authentication and registration processes securely.",
+        "static_description": "Two forms are available: login form with fields 'loginFormFields' and register form with fields 'registerFormFields'. Both include submit buttons and links to switch between forms.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting login form authenticates user and redirects to homepage. Submitting register form creates account and logs user in automatically. Switching links toggle visibility between forms."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userProfileDataSchema": "Extended user data including: id, username, email, join_date, bio (text), avatar_url (optional), contributions (joined articles and solutions authored), activity_feed (recent comments/posts).",
+            "activityFeedAPI": "GET /api/users/{id}/activity returning paginated list of recent actions: posted article/comment/solution, liked content, etc."
+        },
+        "function": "Display personalized user profile showing activity history and contributions.",
+        "static_description": "Profile page shows user avatar, username, join date, and optional bio. Sections list contributed articles and solutions, plus an activity feed powered by 'activityFeedAPI'. Edit profile option is visible only to the owner.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Profile' enables editing mode for bio and avatar upload. Clicking on listed items navigates to their respective views."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "discussionSystemDataSchema": "Comments table: id (UUID), parent_id (nullable for nested replies), content (text), author_id (FK), target_type (enum: article|solution), target_id (UUID), created_at (timestamp). Indexed by target_type + target_id for fast retrieval.",
+            "commentEditorComponent": "Rich text editor supporting basic formatting (bold, italic) and @mentions."
+        },
+        "function": "Facilitate discussion through threaded comments on articles and solutions.",
+        "static_description": "Under each article/solution, comments are displayed hierarchically with avatars, usernames, timestamps, and content. New comment box uses 'commentEditorComponent' allowing rich text input. Reply buttons enable nesting under existing comments.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Reply' opens reply textbox beneath the comment. Submitting posts the reply linked to the parent comment. Like/upvote buttons increment counters per comment."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realtimeMessagingAPISpec": "WebSocket connection endpoint wss://api.example.com/ws requiring JWT auth token. Events: message:new, message:read, user:online_status. Messages stored in 'messages' table with fields: id, sender_id, receiver_id, content, sent_at, read_at.",
+            "chatInterfaceComponents": [
+                "contact_list_sidebar",
+                "message_thread_display",
+                "message_input_box_with_send_button"
+            ]
+        },
+        "function": "Support real-time private messaging between registered users.",
+        "static_description": "Chat interface consists of sidebar contact list and main message thread area. Message input box allows sending messages which appear instantly in both participants’ views via WebSocket updates.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting a contact loads conversation history. Typing and clicking send transmits message immediately via WebSocket and stores in database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backendAPIEndpointsSpec": "RESTful endpoints: GET /api/articles, GET /api/articles/{id}, GET /api/solutions, GET /api/solutions/{id}, GET /api/users/{id}, GET /api/search. All require appropriate authorization headers except public read access to articles/solutions.",
+            "rateLimitingPolicy": "Public endpoints limited to 100 requests/hour/IP; authenticated endpoints to 1000/hr/user."
+        },
+        "function": "Expose backend services for frontend consumption ensuring secure and scalable data delivery.",
+        "static_description": "Defined set of RESTful API routes mapped to internal handlers serving JSON responses. Endpoints follow standard CRUD patterns and enforce rate limiting policies described in 'rateLimitingPolicy'.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseSchemaDefinition": "Tables: users(id, username, email...), articles(id, title, content...), solutions(id, title, steps...), comments(id, content, target_type...), messages(id, sender_id, content...). Foreign keys establish relationships. Indexes on frequently queried columns.",
+            "postgresqlConnectionConfig": "Uses environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp for connecting to PostgreSQL instance."
+        },
+        "function": "Define relational database structure to persist application data efficiently.",
+        "static_description": "Structured PostgreSQL database schema with normalized tables representing users, articles, solutions, comments, and messages. Relationships enforced through foreign keys. Connection established using predefined environment variables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "frontendComponentArchitecture": "React/Vue components consuming data exclusively from backend APIs. Components re-render upon receiving updated data. Loading states shown during fetch operations.",
+            "dataFetchingHooks": "Custom hooks like useFetchArticles(), useFetchSolution() encapsulate API calls and error/loading handling logic."
+        },
+        "function": "Ensure all frontend UI elements dynamically load content exclusively from backend APIs.",
+        "static_description": "Every dynamic element (lists, cards, detail views) renders content fetched at runtime using custom data-fetching hooks. No hardcoded/mock data present anywhere in the UI layer.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{ \"scripts\": { \"install:all\": \"concurrently \\\"cd client && npm install\\\" \\\"cd server && npm install\\\"\", \"dev\": \"concurrently \\\"cd client && npm run dev\\\" \\\"cd server && npm run dev\\\"\" } }"
+        },
+        "function": "Configure unified development workflow for installing dependencies and running frontend/backend together.",
+        "static_description": "Root package.json contains two scripts: 'install:all' runs npm install in both client/server directories concurrently, and 'dev' starts both development servers simultaneously.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "environmentVariablesFile": ".env file containing: DB_HOST=localhost DB_PORT=5432 DB_USERNAME=myappuser DB_PASSWORD=myapppassword DB_NAME=myapp",
+            "dotenvLoaderUsage": "Server loads .env file using dotenv library to make variables accessible throughout backend code."
+        },
+        "function": "Establish consistent database connectivity using standardized environment configuration.",
+        "static_description": "Backend application reads database credentials from environment variables defined in '.env' file. These match exactly: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+        "interaction_and_states": []
+    }
+]

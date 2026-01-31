@@ -1,0 +1,191 @@
+[
+    {
+        "resource_dependency": {
+            "productRegistrationFormFields": [
+                "Product ID (Unique)",
+                "Name",
+                "Description",
+                "Manufacturer",
+                "Manufacture Date",
+                "Batch Number"
+            ],
+            "registerProductAPI": "/api/products/register"
+        },
+        "function": "Allows users to register new products by submitting their details through a form.",
+        "static_description": "A centered card with a white background containing labeled input fields for Product ID, Name, Description, Manufacturer, Manufacture Date, and Batch Number. A firebrick-colored 'Register Product' button is located below the inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Register Product' button submits the form data to the backend API endpoint /api/products/register. Displays success or error message based on response."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "trackingPathVisualizationComponent": "<div class=\"tracking-path\">Timeline visualization showing nodes representing locations/events</div>",
+            "getTrackingHistoryAPI": "/api/products/{productId}/track"
+        },
+        "function": "Displays the chronological movement and handling history of a product across the supply chain.",
+        "static_description": "A vertical timeline view with circular nodes connected by lines. Each node shows location name, timestamp, event type, and handler. Background color is misty rose; components are firebrick.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input Change",
+                "description": "Entering a Product ID into the search field filters and loads the corresponding tracking path dynamically from the API endpoint /api/products/{productId}/track."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "inquirySearchFieldPlaceholder": "Enter Product ID",
+            "productStatusDisplaySchema": "{status: string, lastUpdated: datetime, currentLocation: string}",
+            "getProductStatusAPI": "/api/products/{productId}/status"
+        },
+        "function": "Enables querying of the current status and whereabouts of a specific product.",
+        "static_description": "Top section contains a search bar with placeholder 'Enter Product ID'. Below it, a panel displays status info such as 'In Transit', last updated time, and current location in firebrick text over misty rose background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button or pressing Enter after entering a Product ID fetches and displays the latest status from the API endpoint /api/products/{productId}/status."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "verificationResultIcons": {
+                "verified": "✅",
+                "not_verified": "❌"
+            },
+            "verifyProductAPI": "/api/products/{productId}/verify"
+        },
+        "function": "Verifies whether a product is genuine by checking its ID against the database records.",
+        "static_description": "A simple interface with an input box for Product ID and a large firebrick 'Verify' button. Verification result appears below with either a green checkmark or red cross icon followed by status text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Verify' button sends the Product ID to the backend API endpoint /api/products/{productId}/verify and displays the authenticity result."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartsLibraryReference": "Chart.js or similar library",
+            "analyticsDashboardEndpoints": [
+                "/api/analytics/total-products",
+                "/api/analytics/tracking-events",
+                "/api/analytics/verification-stats"
+            ]
+        },
+        "function": "Presents aggregated statistical views of supply chain activity including total products, tracking events, and verification results.",
+        "static_description": "Dashboard grid layout featuring three panels: Total Products (number), Tracking Events Over Time (line chart), and Verification Success Rate (pie chart). All charts use firebrick accents on a misty rose background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon loading, the dashboard automatically fetches analytics data from multiple API endpoints and renders visualizations using Chart.js."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authenticationEndpoints": {
+                "login": "/auth/login",
+                "logout": "/auth/logout",
+                "profile": "/auth/profile"
+            },
+            "jwtTokenStorageMechanism": "localStorage.setItem('token', token)"
+        },
+        "function": "Manages user login sessions and controls access to protected features based on roles.",
+        "static_description": "Login page with email/password fields and a firebrick 'Sign In' button. After successful login, navigation menu becomes accessible with links to all main functionalities.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Sign In' authenticates credentials via POST to /auth/login. Upon success, stores JWT token and redirects to home/dashboard."
+            },
+            {
+                "interaction": "Session Expiry",
+                "description": "If no active session exists or token expires, redirects unauthenticated users back to the login screen when trying to access restricted pages."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auditLogTableSchema": "[{timestamp: datetime, userId: string, action: string, productId: string}]",
+            "fetchAuditLogsAPI": "/api/admin/audit-logs"
+        },
+        "function": "Maintains a record of all actions taken within the system related to products for compliance and troubleshooting purposes.",
+        "static_description": "Tabular view listing audit entries sorted by timestamp descending. Columns include Timestamp, User, Action Type, and associated Product ID. Table header and rows styled with firebrick highlights on misty rose.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "The audit log table auto-fetches logs from /api/admin/audit-logs upon accessing the admin section and updates periodically every minute."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS Media Queries + Flexbox/Grid",
+            "mobileBreakpoints": "@media (max-width: 768px)"
+        },
+        "function": "Ensures optimal display and usability of the entire application on various devices including smartphones, tablets, and desktops.",
+        "static_description": "All major layouts utilize responsive grids that stack vertically on small screens. Navigation transforms into a collapsible hamburger menu. Forms and buttons scale appropriately for touch interaction.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Layout adjusts fluidly according to viewport size using media queries. Mobile-specific styles activate under 768px width breakpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeSyncMechanism": "WebSocket connection established at /ws",
+            "dataUpdateHooks": "Frontend listens to WebSocket messages to update relevant UI parts instantly without manual refresh."
+        },
+        "function": "Keeps frontend data synchronized with backend changes in real-time without requiring manual page reloads.",
+        "static_description": "UI elements like tracking timelines and dashboards show live updates whenever backend data changes occur. Visual indicator shows real-time sync status.",
+        "interaction_and_states": [
+            {
+                "interaction": "WebSocket Message Received",
+                "description": "Receiving a WebSocket message triggers automatic re-rendering of affected components like updating a tracking event or refreshing dashboard stats immediately."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "Uses env vars: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "tablesToBeCreated": [
+                "products",
+                "tracking_events",
+                "verifications",
+                "users",
+                "audit_logs"
+            ]
+        },
+        "function": "Establishes persistent storage layer for managing all product lifecycle data and metadata using PostgreSQL.",
+        "static_description": "PostgreSQL database initialized with tables for storing product definitions, event histories, verification attempts, user accounts, and system audits. Connection secured using provided credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "apiEndpointList": [
+                "/api/products/register",
+                "/api/products/{id}/track",
+                "/api/products/{id}/status",
+                "/api/products/{id}/verify",
+                "/api/analytics/*",
+                "/auth/*"
+            ],
+            "httpMethodMapping": "{POST: create/register, GET: retrieve/query}"
+        },
+        "function": "Provides RESTful interfaces for frontend applications to perform CRUD and business logic operations securely.",
+        "static_description": "REST-compliant API routes exposed under /api prefix. Endpoints support standard HTTP verbs matching their intended actions (e.g., POST for registering products). Authenticated routes require valid tokens.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonScripts": "{\"install:all\": \"concurrently \\\"npm install\\\" \\\"cd client && npm install\\\"\", \"dev\": \"concurrently \\\"npm run server\\\" \\\"cd client && npm run dev\\\"\"}",
+            "projectStructureGuide": "Root directory includes server code and client subfolder housing frontend app built with React/Vue/etc."
+        },
+        "function": "Sets up unified development workflow enabling installation and simultaneous execution of frontend and backend services.",
+        "static_description": "Root-level package.json defines two custom scripts: install:all runs dependency installations for both sides, and dev launches both servers concurrently using concurrently package.",
+        "interaction_and_states": []
+    }
+]

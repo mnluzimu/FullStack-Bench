@@ -1,0 +1,180 @@
+[
+    {
+        "resource_dependency": {
+            "stockSearchAPI": "An API endpoint that accepts stock code or name and returns matching stock metadata.",
+            "stockReportGenerationAPI": "An API endpoint that accepts selected report parameters and generates a custom stock report.",
+            "realTimeStockDataAPI": "An API for fetching real-time stock prices and related metrics.",
+            "marketTrendsAPI": "An API providing historical and predictive market trend data.",
+            "financialDataAPI": "An API that provides access to quarterly and annual financial statements.",
+            "exportReportAPI": "An API endpoint that allows downloading generated reports in various formats (PDF, DOCX, etc.)."
+        },
+        "function": "Provide a search bar for users to input stock codes or names and retrieve matching stocks.",
+        "static_description": "A centered search bar with a placeholder 'Enter stock code or name', a navy-colored submit button labeled 'Search'. Background is white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button sends the input value to the stockSearchAPI and displays loading indicator while waiting for results."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing in the input field triggers the same search functionality as clicking the 'Search' button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportOptionsSchema": "Database schema containing available report templates and customizable content sections such as Basic Info, Market Trends, Financial Data, etc.",
+            "formatOptionsList": [
+                "PDF",
+                "DOCX",
+                "HTML"
+            ]
+        },
+        "function": "Allow users to select desired report formats and content options before generating a report.",
+        "static_description": "Below the search result, display checkboxes for content sections (Basic Stock Info, Market Trends, Financial Data) and a dropdown menu for selecting format options. All components use navy color scheme against a white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting/deselecting checkboxes updates the list of included content sections for the upcoming report generation request."
+            },
+            {
+                "interaction": "Click",
+                "description": "Choosing an option from the format dropdown sets the preferred output format for the report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generatedReportsStorage": "Database table storing generated reports with fields: report_id, user_id, timestamp, stock_symbol, selected_sections, format_type, and file_path.",
+            "reportGenerateAPI": "An internal API that coordinates data fetching from external sources and compiles them into a formatted document based on user selections."
+        },
+        "function": "Generate customized stock reports using selected parameters and external data sources.",
+        "static_description": "After selecting preferences, a 'Generate Report' navy button appears. When clicked, it initiates report creation process via the reportGenerateAPI.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers the report generation workflow which calls multiple APIs (realTimeStockDataAPI, marketTrendsAPI, financialDataAPI) and stores the resulting file path in the generatedReportsStorage database."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stockInfoDisplayFields": [
+                "Symbol",
+                "Company Name",
+                "Current Price",
+                "Change (%)",
+                "Volume",
+                "Market Cap"
+            ]
+        },
+        "function": "Display basic stock information within generated reports.",
+        "static_description": "Once a report is generated, show a section titled 'Basic Stock Information' listing key-value pairs derived from realTimeStockDataAPI using predefined fields. Styled with consistent navy headers on white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "trendChartComponent": "<canvas> element integrated with chart.js or similar library to render interactive line graphs showing price movements over time.",
+            "historicalTrendDataEndpoint": "API endpoint returning historical pricing data points needed for visualization."
+        },
+        "function": "Include visual representation of market trends in generated reports.",
+        "static_description": "Within the report view, embed a responsive chart canvas displaying stock performance trends sourced from marketTrendsAPI. Axis labels and legend follow navy styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over data points shows tooltips with date and value details fetched from historicalTrendDataEndpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTableSchema": "Fields include: fiscal_year, revenue, net_income, earnings_per_share, debt_to_equity_ratio.",
+            "quarterlyFinancialsAPI": "External API delivering quarterly financial summaries per stock symbol."
+        },
+        "function": "Present detailed financial data relevant to the selected stock in generated reports.",
+        "static_description": "Render tabular data under heading 'Financial Overview' using data from quarterlyFinancialsAPI. Table rows alternate between light gray and white backgrounds; headers remain navy.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "liveStockDataStream": "WebSocket connection or polling mechanism linked to realTimeStockDataAPI ensuring up-to-date values without manual refresh."
+        },
+        "function": "Fetch and update stock information dynamically without requiring full page reloads.",
+        "static_description": "Live-updating ticker-style banner across top of screen showing current prices for major indices and recently searched stocks. Navy text on white background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Polling Interval",
+                "description": "Automatically refreshes every 60 seconds by calling realTimeStockDataAPI to maintain accuracy."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeVariablesCSS": ":root { --bg-color: #ffffff; --primary-color: #000080; }"
+        },
+        "function": "Ensure consistent UI theme throughout the application using white background and navy component colors.",
+        "static_description": "All pages utilize CSS variables setting body background to white (#ffffff) and primary interactive elements to navy (#000080). Buttons, links, form controls inherit these styles.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "viewReportPageRoute": "/reports/:reportId",
+            "storedReportContentAPI": "GET /api/reports/{id} – retrieves compiled report content stored during generation phase."
+        },
+        "function": "Offer a dedicated space where users can access previously generated stock reports.",
+        "static_description": "Dedicated route renders individual reports using stored HTML content or embedded viewer for PDFs. Navigation breadcrumbs appear above main content area.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "downloadButtonIcon": "data:image/svg+xml;base64,...",
+            "supportedExportFormats": [
+                "pdf",
+                "docx",
+                "html"
+            ]
+        },
+        "function": "Enable exporting or downloading generated reports in user-selected formats.",
+        "static_description": "Each generated report includes a navy download icon next to the title, which opens a modal presenting available export formats from supportedExportFormats list.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Opens modal prompting user to choose export format. Clicking any format triggers call to exportReportAPI and prompts browser-native save dialog."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobileBreakpointsCSS": "@media (max-width: 768px) {...}"
+        },
+        "function": "Support seamless usage experience across desktop and mobile screen sizes.",
+        "static_description": "Layout adjusts fluidly using flexbox/grid containers with media queries applying different column arrangements and font scaling below 768px viewport width.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spinnerAssetPath": "/assets/loading-spinner.gif"
+        },
+        "function": "Indicate ongoing operations like data retrieval or report generation through animated feedback.",
+        "static_description": "Overlay spinner animation centered on active region whenever asynchronous actions begin. Spinner uses navy accents on transparent background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Async Request Start",
+                "description": "Spinner becomes visible immediately upon initiating API requests until resolved either successfully or with error."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorMessageDictionary": "{ INVALID_STOCK_CODE: 'The entered stock code does not exist.', DATA_UNAVAILABLE: 'Requested data could not be retrieved.' }"
+        },
+        "function": "Gracefully handle situations involving invalid inputs or missing backend data.",
+        "static_description": "Red alert box styled with navy border displays human-readable messages mapped from errorMessageDictionary when failures occur during searches or report creation steps.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Error Response",
+                "description": "Displays appropriate message from dictionary based on HTTP status or custom error codes returned by failing endpoints."
+            }
+        ]
+    }
+]

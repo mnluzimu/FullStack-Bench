@@ -1,0 +1,191 @@
+[
+    {
+        "resource_dependency": {
+            "database_connection": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "search_api_endpoint": "/api/search",
+            "nutrition_analysis_api_endpoint": "/api/nutrition-analysis",
+            "packaging_design_api_endpoint": "/api/packaging-design"
+        },
+        "function": "A frontend that fetches all data from backend APIs",
+        "static_description": "The application features a clean interface with a linen background and maroon-colored interactive components. It includes sections for product search, nutrition analysis, and packaging design.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgres_database_config": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "food_nutrition_table_schema": "Table name: food_nutritions; Columns: id (SERIAL PRIMARY KEY), food_name (VARCHAR(255)), calories (FLOAT), fat_g (FLOAT), carbs_g (FLOAT), protein_g (FLOAT), sodium_mg (FLOAT), created_at (TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
+            "ingredient_table_schema": "Table name: ingredients; Columns: id (SERIAL PRIMARY KEY), ingredient_name (VARCHAR(255)), base_calories_per_100g (FLOAT), base_fat_g (FLOAT), base_carbs_g (FLOAT), base_protein_g (FLOAT), base_sodium_mg (FLOAT)"
+        },
+        "function": "A backend that connects to an external PostgreSQL database using environment variables",
+        "static_description": "Backend server configured to connect to PostgreSQL using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp. Contains tables for storing food nutrition data and ingredient information.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "search_input_box_icon": "magnifying-glass-icon.svg",
+            "search_results_display_area": "<div class='search-results'>...</div>",
+            "search_api_endpoint": "/api/search"
+        },
+        "function": "A product search function allowing users to input food names or keywords to search for related nutrition information",
+        "static_description": "Search bar with magnifying glass icon positioned at the top of the page. Below it is a dedicated area for displaying search results in card format showing food name and basic nutrition info.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on the search input box focuses it for text entry."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter after typing initiates the search via API call to /api/search endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ingredients_textarea_placeholder": "Enter ingredients separated by commas...",
+            "serving_size_inputs": "Array of number input fields labeled per ingredient",
+            "calculate_button_label": "Calculate Nutrition",
+            "analysis_result_display": "<div class='nutrition-facts-label'>...</div>",
+            "nutrition_analysis_api_endpoint": "/api/nutrition-analysis"
+        },
+        "function": "A nutrition analysis function allowing users to input food ingredients and serving sizes to calculate nutritional value",
+        "static_description": "Text area for entering multiple ingredients followed by individual serving size input fields for each ingredient. A 'Calculate Nutrition' button triggers the calculation which displays results in a Canadian-style nutrition facts label.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Calculate Nutrition button sends ingredient and serving data to /api/nutrition-analysis and updates the nutrition facts label display."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "packaging_canvas_element": "<canvas id='packaging-design'></canvas>",
+            "regulation_guidelines_overlay": "Overlay showing Canadian packaging requirements",
+            "save_packaging_button_label": "Save Design",
+            "packaging_design_api_endpoint": "/api/packaging-design"
+        },
+        "function": "A packaging design function allowing users to create custom food packaging according to Canadian regulations",
+        "static_description": "Interactive canvas area where users can drag and drop elements to design packaging. Regulatory guidelines are displayed as an overlay. Save button stores the design through API.",
+        "interaction_and_states": [
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can drag text boxes, images, and other elements onto the packaging canvas to arrange them according to regulatory standards."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking Save Design button uploads current canvas state to /api/packaging-design endpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "canadian_nutrition_label_template": "Template matching Health Canada's nutrition facts table format",
+            "label_update_script": "JavaScript function updating DOM based on received nutrition data"
+        },
+        "function": "Display of Canadian nutrition facts labels based on retrieved or calculated data",
+        "static_description": "Nutrition facts label styled to match Canadian regulations, featuring standardized layout with sections for serving size, calories, nutrients, and % daily values.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "search_input_placeholder": "Search foods..."
+        },
+        "function": "A text input box for entering food names or keywords in the search function",
+        "static_description": "Single-line text input field with placeholder 'Search foods...' located above the search results section.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the input field for user typing."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "ingredients_input_placeholder": "e.g., chicken, rice, broccoli"
+        },
+        "function": "A text input area for entering multiple food ingredients in the nutrition analysis function",
+        "static_description": "Multi-line text area with example placeholder 'e.g., chicken, rice, broccoli' positioned before the serving size inputs.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the textarea for user input of ingredients."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "serving_size_labels": "Labels indicating unit measurements (grams, cups, etc.)",
+            "numeric_input_fields": "HTML5 number input elements"
+        },
+        "function": "Input fields for specifying serving sizes corresponding to each ingredient in the nutrition analysis function",
+        "static_description": "Series of numeric input fields placed directly below the ingredients input area, each labeled with corresponding ingredient name and measurement units.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects the input field for numerical entry of serving size."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "design_toolbar_icons": "SVG icons for adding text, shapes, images",
+            "compliance_checker_module": "Module validating design against Canadian regulations"
+        },
+        "function": "Interactive UI components for designing food packaging compliant with Canadian labeling regulations",
+        "static_description": "Toolbar containing SVG icons for inserting text blocks, shapes, and images onto the packaging canvas. Compliance checker module runs validation continuously.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking toolbar icons adds respective element to the packaging canvas."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging elements within the canvas repositions them while maintaining compliance constraints."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "live_preview_container": "<div class='live-nutrition-preview'>...</div>",
+            "dynamic_label_renderer": "Function rendering updated nutrition label in real time"
+        },
+        "function": "Real-time display of updated nutrition facts label during packaging design process",
+        "static_description": "Live preview panel adjacent to the packaging design canvas showing实时更新的营养成分表.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "linen_background_css": "body { background-image: url('/assets/linen-texture.jpg'); }",
+            "maroon_component_styling": ".component { border-color: #800000; color: #800000; }"
+        },
+        "function": "Visual styling with a linen background and maroon-colored components throughout the interface",
+        "static_description": "Entire website uses linen texture as background image. All interactive components feature maroon borders and text colors.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mobile_viewport_meta_tag": "<meta name='viewport' content='width=device-width,initial-scale=1'>",
+            "responsive_css_classes": "@media screen and (max-width: 768px) { ... }"
+        },
+        "function": "Responsive layout ensuring usability across desktop and mobile devices",
+        "static_description": "Website adapts layout based on viewport width using CSS media queries. Mobile view stacks elements vertically with increased touch targets.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "error_message_templates": "{ 'invalid_food': 'Food not found', 'incorrect_serving_format': 'Please enter valid numbers' }",
+            "notification_banner_style": ".error-banner { background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; }"
+        },
+        "function": "Error handling for invalid inputs such as non-existent foods or incorrect serving size formats",
+        "static_description": "Red error banners appear below relevant input areas when invalid data is submitted, displaying predefined messages about what went wrong.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "spinner_animation_file": "loading-spinner.gif",
+            "loading_overlay_css": ".loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; }"
+        },
+        "function": "Loading indicators during API requests for search results, nutrition calculations, and packaging updates",
+        "static_description": "Full-screen semi-transparent overlay appears during API calls with centered spinning animation indicating loading progress.",
+        "interaction_and_states": []
+    }
+]

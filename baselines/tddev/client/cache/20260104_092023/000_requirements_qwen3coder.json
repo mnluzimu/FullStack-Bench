@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend application that connects to a PostgreSQL database using specified environment variables",
+    "User authentication and account management system",
+    "Food donation listing and browsing functionality",
+    "Food distribution application submission and management",
+    "Volunteer information display and management",
+    "User dashboard for managing personal account information",
+    "Database schema supporting users, donations, distributions, and volunteers",
+    "RESTful API endpoints for all core functionalities",
+    "Responsive web design with Azure background and midnight blue components",
+    "Package.json configured with 'install:all' script for frontend and backend installation",
+    "Package.json configured with 'dev' script to start frontend and backend concurrently",
+    "Data validation for user inputs across all forms",
+    "Role-based access control for different user types (donors, recipients, volunteers, admins)",
+    "Search and filtering capabilities for food donations and volunteer opportunities"
+]

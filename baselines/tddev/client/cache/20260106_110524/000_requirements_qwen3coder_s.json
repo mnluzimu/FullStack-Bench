@@ -1,0 +1,17 @@
+[
+    "Display a search interface for entering stock codes or names",
+    "Fetch and display stock information in real-time from backend APIs",
+    "Provide options for selecting report formats and content",
+    "Generate customized stock reports based on user inputs",
+    "Include basic stock information in generated reports",
+    "Include market trends data in generated reports",
+    "Include financial data in generated reports",
+    "Support dynamic data fetching from an external PostgreSQL database",
+    "Implement a frontend that communicates with backend APIs",
+    "Set background color to white across all pages",
+    "Apply navy color as the primary component color",
+    "Configure package.json with npm run install:all script",
+    "Configure package.json with npm run dev script for concurrent start",
+    "Connect backend to PostgreSQL database with specified environment variables",
+    "Validate user inputs for stock codes or names"
+]

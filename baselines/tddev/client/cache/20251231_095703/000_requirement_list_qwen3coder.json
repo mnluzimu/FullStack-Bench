@@ -1,0 +1,165 @@
+[
+    {
+        "resource_dependency": {
+            "promotionDataAPI": "GET /api/promotions",
+            "promotionSubmitAPI": "POST /api/promotions",
+            "searchPromotionsAPI": "GET /api/promotions/search"
+        },
+        "function": "Fetch all promotion data dynamically from backend APIs for display on the frontend.",
+        "static_description": "The main page displays a grid of promotions fetched from the backend. Each promotion card includes title, description, discount percentage, expiration date, and category. The background uses ivory (#FFFFF0) for the outer layout, while individual cards use forest green (#228B22) for headers and action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "As the user scrolls down, additional promotions are loaded via infinite scroll using pagination from the backend API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp"
+        },
+        "function": "Establish connection to a PostgreSQL database using provided environment variables.",
+        "static_description": "Backend server initializes a secure connection pool to the PostgreSQL instance at startup using environment variables for host, port, username, password, and database name.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "{ ivory: #FFFFF0, forestGreen: #228B22 }"
+        },
+        "function": "Define color scheme for consistent styling throughout the application.",
+        "static_description": "Entire site uses ivory (#FFFFF0) for outer container backgrounds and forest green (#228B22) for UI blocks such as buttons, form containers, and navigation bars.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "browsePromotionsEndpoint": "GET /api/promotions",
+            "promotionCardComponent": "<PromotionCard /> reusable React component"
+        },
+        "function": "Allow users to view available promotions through a dedicated browsing interface.",
+        "static_description": "Dedicated 'Browse Promotions' page showing a responsive grid of <PromotionCard /> components populated with promotion data retrieved from the backend.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a promotion card navigates the user to the detailed view of that promotion."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sharePromotionFormEndpoint": "POST /api/promotions",
+            "formValidationSchema": "Title (required string), Description (optional text), Discount Percentage (number between 0-100), Category (dropdown selection)"
+        },
+        "function": "Enable authenticated users to submit new promotions via a structured form.",
+        "static_description": "Share Promotion page contains a form with fields for Title, Description, Discount Percentage, Expiration Date, and Category dropdown. Submit button styled in forest green.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting the form sends validated data to the backend endpoint and redirects to the Browse Promotions page upon success."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchPromotionsEndpoint": "GET /api/promotions/search?query={term}&filters={...}",
+            "filterOptions": "[Category, Expiry Date Range, Minimum Discount]"
+        },
+        "function": "Provide keyword-based and filter-driven search functionality for promotions.",
+        "static_description": "Search bar located prominently above the promotions list with optional filter panel beneath it. Filter options include category checkboxes, date range pickers, and minimum discount slider.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Apply Filters' updates the displayed promotions by calling the search endpoint with selected criteria."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authEndpoints": "POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me",
+            "sessionStorage": "JWT token stored in HTTP-only cookie"
+        },
+        "function": "Manage user authentication and session persistence securely.",
+        "static_description": "Login/Register modal appears when accessing protected routes without valid credentials. Authenticated users see their profile avatar in the top right corner.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Logging in stores JWT in secure cookie and redirects to home page; logging out clears the cookie and returns to login screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "adminDashboardRoutes": "/admin/users, /admin/promotions, /admin/settings",
+            "crudAPIs": "GET/POST/PUT/DELETE endpoints under /api/admin/*"
+        },
+        "function": "Offer administrative controls over users, promotions, and global settings.",
+        "static_description": "Admin Dashboard accessible only to authorized roles, featuring tabs for Users, Promotions, and Settings. Tables show paginated lists with inline editing capabilities.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit' allows admins to modify entries directly within table rows; changes saved via PUT request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "promotionCRUDEndpoints": "GET /api/promotions/{id}, POST /api/promotions, PUT /api/promotions/{id}, DELETE /api/promotions/{id}"
+        },
+        "function": "Expose standard RESTful endpoints for full lifecycle management of promotions.",
+        "static_description": "Each CRUD operation corresponds to a distinct HTTP method targeting the /api/promotions resource, ensuring idempotent behavior and proper status codes.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "usersTableSchema": "CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR(255) UNIQUE NOT NULL, password_hash TEXT NOT NULL, role ENUM('user','admin') DEFAULT 'user', created_at TIMESTAMP DEFAULT NOW())",
+            "promotionsTableSchema": "CREATE TABLE promotions (id SERIAL PRIMARY KEY, title VARCHAR(255) NOT NULL, description TEXT, discount_percentage INT CHECK (discount_percentage BETWEEN 0 AND 100), expiry_date DATE, category VARCHAR(100), user_id INT REFERENCES users(id), created_at TIMESTAMP DEFAULT NOW())",
+            "settingsTableSchema": "CREATE TABLE settings (key VARCHAR(100) PRIMARY KEY, value JSONB)"
+        },
+        "function": "Define relational database structure to persistently store user accounts, shared promotions, and configuration parameters.",
+        "static_description": "Three tables defined in PostgreSQL: 'users' for account info, 'promotions' linked to users, and 'settings' storing arbitrary key-value configurations.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "browsePageRoute": "/promotions",
+            "sharePageRoute": "/promotions/new",
+            "searchPageRoute": "/promotions/search"
+        },
+        "function": "Render distinct frontend views corresponding to core promotional features.",
+        "static_description": "Three primary pages exist in the frontend routing system: '/promotions' for browsing, '/promotions/new' for sharing, and '/promotions/search' for filtering.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "mediaQueries": "@media (max-width: 768px)",
+            "responsiveBreakpoints": "Mobile (0-768px), Tablet (769px-1024px), Desktop (1025px+)"
+        },
+        "function": "Ensure optimal viewing experience across various device sizes.",
+        "static_description": "CSS media queries adjust layout grids, font sizes, and element spacing automatically based on viewport width. Navigation collapses into hamburger menu on small screens.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\""
+        },
+        "function": "Automate installation of dependencies for both frontend and backend projects.",
+        "static_description": "Root-level package.json includes a custom script named 'install:all' which runs concurrent install commands inside frontend and backend directories.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devScriptCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Simplify local development workflow by launching both services simultaneously.",
+        "static_description": "Root-level package.json defines a 'dev' script that utilizes concurrently to start frontend and backend development servers in parallel.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "errorHandlingMiddleware": "Express.js error-handling middleware returning standardized JSON responses",
+            "inputValidationLibrary": "Joi/Zod for validating incoming request payloads"
+        },
+        "function": "Implement robust validation and error handling mechanisms for user inputs and API communications.",
+        "static_description": "All public-facing API routes incorporate input validation before processing and centralized error handlers return uniform JSON error messages with appropriate HTTP codes.",
+        "interaction_and_states": []
+    }
+]

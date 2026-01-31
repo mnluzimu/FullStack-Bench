@@ -1,0 +1,310 @@
+[
+    {
+        "requirement_tested": "Implement a search functionality allowing users to input stock codes or names",
+        "user_persona": "A new investor looking to explore stock information quickly.",
+        "user_goal": "To find and view details for a specific stock by entering its name or code.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Sarah opens the website and sees the search bar at the top. She wants to look up Apple Inc.",
+                "action": "Click on the search bar.",
+                "expected_outcome": "The search bar becomes focused and ready for text input."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Name",
+                "description": "Sarah types 'Apple' into the search bar.",
+                "action": "Type 'Apple' into the search input field.",
+                "expected_outcome": "Text appears in the search bar with navy color on a white background."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Search Query",
+                "description": "After typing, Sarah presses Enter to start the search.",
+                "action": "Press Enter key.",
+                "expected_outcome": "The system processes the query and navigates to the results or stock detail page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide auto-suggested stock matches during search input",
+        "user_persona": "A frequent trader who knows stock symbols but wants quick confirmation.",
+        "user_goal": "To efficiently select a known stock from auto-suggested options while typing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Typing Partial Symbol",
+                "description": "Mike starts typing 'TSLA' in the search bar.",
+                "action": "Type 'TSLA' into the search input field.",
+                "expected_outcome": "A dropdown list of matching stocks appears below the search bar."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Suggestions",
+                "description": "Mike notices Tesla Inc. (TSLA) listed in the suggestions.",
+                "action": "Observe the dropdown list items.",
+                "expected_outcome": "Each suggestion shows both company name and ticker symbol with navy text on white background."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Suggestion",
+                "description": "Mike clicks on 'Tesla Inc. (TSLA)' from the list.",
+                "action": "Click on the suggested item.",
+                "expected_outcome": "The search bar is populated with 'TSLA' and the dropdown disappears."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display basic stock information including company details and current price",
+        "user_persona": "A casual investor checking key facts before making a decision.",
+        "user_goal": "To quickly verify the current price and core details of a stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Stock",
+                "description": "Emily searches for 'Microsoft' and submits the query.",
+                "action": "Enter 'Microsoft' and press Enter.",
+                "expected_outcome": "The system loads the Microsoft stock profile page."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Company Info",
+                "description": "Emily looks at the top section to confirm company name, sector, and current price.",
+                "action": "Scan the displayed card with basic stock information.",
+                "expected_outcome": "A card displays Microsoft Corp., technology sector, and the latest stock price in navy text on white background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show market trend visualizations such as charts and graphs",
+        "user_persona": "A technical analyst interested in recent price movement patterns.",
+        "user_goal": "To analyze short-term price trends using interactive charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Market Trends Section",
+                "description": "David has searched for Amazon and scrolls down to the market trends section.",
+                "action": "Scroll to the market trend visualization area.",
+                "expected_outcome": "A line chart showing Amazon's closing prices over time is visible."
+            },
+            {
+                "step": 2,
+                "title": "Changing Time Frame",
+                "description": "David wants to see a broader view and selects the 3-month option.",
+                "action": "Click on the '3M' button beneath the chart.",
+                "expected_outcome": "The chart updates to show three months of price data."
+            },
+            {
+                "step": 3,
+                "title": "Inspecting Data Points",
+                "description": "David hovers over a peak point to get exact value and date.",
+                "action": "Hover over a data point on the chart.",
+                "expected_outcome": "A tooltip appears showing the precise price and timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present financial data including revenue, earnings, and key ratios",
+        "user_persona": "A fundamental analyst evaluating financial health.",
+        "user_goal": "To compare yearly financial performance metrics side-by-side.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Financials Tab",
+                "description": "Priya searches for Google and finds the financial data section.",
+                "action": "Scroll to the financial data table.",
+                "expected_outcome": "A tabular view of fiscal years and financial metrics is shown."
+            },
+            {
+                "step": 2,
+                "title": "Sorting by Revenue",
+                "description": "Priya wants to sort the data by revenue to identify growth trends.",
+                "action": "Click on the 'Revenue' column header.",
+                "expected_outcome": "The table reorders rows descending by revenue values."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to select from multiple report format options",
+        "user_persona": "A manager preparing documentation for stakeholders.",
+        "user_goal": "To generate a report in a preferred file format suitable for sharing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Report Format",
+                "description": "John needs a formal document and prefers PDF format for his stock report.",
+                "action": "Click on the 'PDF' radio button in the format selection area.",
+                "expected_outcome": "The 'PDF' option is visually highlighted with navy outline."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to customize report content sections and depth",
+        "user_persona": "An experienced investor wanting only relevant parts in their report.",
+        "user_goal": "To tailor the report to include only sections of personal interest.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Customization Panel",
+                "description": "Maria clicks to expand the report customization controls.",
+                "action": "Click on the expand control for the customization panel.",
+                "expected_outcome": "Checkboxes for different report sections become visible."
+            },
+            {
+                "step": 2,
+                "title": "Excluding Unneeded Sections",
+                "description": "Maria unchecks 'Dividend Information' since she doesn't care about payouts.",
+                "action": "Uncheck the 'Dividend Information' checkbox.",
+                "expected_outcome": "The unchecked box reflects deselected status and excludes that section from the report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate downloadable stock reports in selected formats",
+        "user_persona": "A portfolio manager needing to archive detailed stock analyses.",
+        "user_goal": "To save a fully customized stock report locally for future reference.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finalizing Report Settings",
+                "description": "Robert has configured his desired format and content selections.",
+                "action": "Review selected format and customizations.",
+                "expected_outcome": "All settings reflect Robert's choices accurately."
+            },
+            {
+                "step": 2,
+                "title": "Generating and Downloading Report",
+                "description": "Ready to obtain the report, Robert clicks the download button.",
+                "action": "Click the 'Download Report' button.",
+                "expected_outcome": "A browser-native download prompt appears offering the compiled report file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a summary section highlighting key stock insights",
+        "user_persona": "A busy executive requiring a snapshot of critical stock factors.",
+        "user_goal": "To quickly grasp major takeaways without reading entire reports.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reading Summary Highlights",
+                "description": "Lisa searches for Netflix and immediately scans the summary box.",
+                "action": "Look at the key insights summary section.",
+                "expected_outcome": "Bullet points summarizing valuation, performance, and risks are clearly presented."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide historical price data visualization",
+        "user_persona": "A long-term investor assessing decade-long performance.",
+        "user_goal": "To evaluate how a stock has performed historically over several years.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Long-Term Chart",
+                "description": "Alan wants to see five years of Coca-Cola stock performance.",
+                "action": "Click on the '5Y' timeframe selector in the historical chart.",
+                "expected_outcome": "The chart redraws to show five years of price history."
+            },
+            {
+                "step": 2,
+                "title": "Examining Specific Values",
+                "description": "Alan moves his cursor along the chart to inspect past values.",
+                "action": "Hover over various points on the historical chart.",
+                "expected_outcome": "Tooltip displays accurate price and date for hovered positions."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display analyst ratings and recommendations",
+        "user_persona": "A novice investor relying on expert opinions for guidance.",
+        "user_goal": "To understand collective professional sentiment towards a stock.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Analyst Opinions",
+                "description": "Sophie checks the analyst ratings section after searching for Disney.",
+                "action": "Navigate to the analyst ratings display.",
+                "expected_outcome": "A list of analyst firms with recommendations and a distribution chart appear."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Individual Ratings",
+                "description": "Curious about Goldman Sachs' stance, Sophie clicks on their entry.",
+                "action": "Click on an individual analyst rating row.",
+                "expected_outcome": "Additional commentary or source links related to that rating expand."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show dividend information and payout history",
+        "user_persona": "An income-focused retiree tracking regular dividend payments.",
+        "user_goal": "To review consistency and amount of past dividend distributions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Dividend Timeline",
+                "description": "George scrolls to the dividend section for Johnson & Johnson.",
+                "action": "View the dividend timeline visualization.",
+                "expected_outcome": "Past dividend events with dates and amounts are displayed chronologically."
+            },
+            {
+                "step": 2,
+                "title": "Checking Detailed Event Info",
+                "description": "George clicks on a specific dividend event to learn more.",
+                "action": "Click on a past dividend marker on the timeline.",
+                "expected_outcome": "Details like declaration date or payout frequency notes appear."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present comparative analysis against industry benchmarks",
+        "user_persona": "A competitive strategist analyzing relative market position.",
+        "user_goal": "To benchmark a company's performance against industry standards.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Comparing Metrics Side-by-Side",
+                "description": "Nancy views the comparison section for Exxon Mobil vs. oil sector averages.",
+                "action": "Look at the industry comparison table or chart.",
+                "expected_outcome": "Differences between Exxon's metrics and industry benchmarks are clearly shown."
+            },
+            {
+                "step": 2,
+                "title": "Understanding Metric Significance",
+                "description": "Nancy hovers over P/E Ratio to better understand what it indicates.",
+                "action": "Hover over the 'P/E Ratio' label in the comparison table.",
+                "expected_outcome": "A brief explanation of the metric pops up explaining its relevance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer real-time stock data updates",
+        "user_persona": "A day trader monitoring live price fluctuations.",
+        "user_goal": "To track instantaneous changes in stock pricing without refreshing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Live Updates",
+                "description": "Jake watches Intel's price change as he waits for breaking news.",
+                "action": "Watch the current price display and chart update automatically.",
+                "expected_outcome": "Current price and chart adjust in real-time with a green live indicator present."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Maintain consistent styling with white background and navy component colors",
+        "user_persona": "A UX designer reviewing design consistency across features.",
+        "user_goal": "To ensure all UI components maintain a unified color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Evaluating Visual Consistency",
+                "description": "Taylor inspects various sections of the site to check for uniform styling.",
+                "action": "Browse through different pages and modules.",
+                "expected_outcome": "Every component uses white backgrounds with navy borders, icons, and text consistently."
+            }
+        ]
+    }
+]

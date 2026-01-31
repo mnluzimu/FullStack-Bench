@@ -1,0 +1,303 @@
+[
+    {
+        "requirement_tested": "User authentication and account management system with role-based access control.",
+        "user_persona": "A new volunteer named Sarah who wants to sign up and access her dashboard.",
+        "user_goal": "To register as a volunteer, log in, and access her personalized dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Site and Registering",
+                "description": "Sarah visits the homepage for the first time and decides to register as a volunteer. She clicks the 'Register' link in the navigation bar.",
+                "action": "Click on the 'Register' link.",
+                "expected_outcome": "A registration modal form appears with fields for name, email, password, and role selection."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Registration Form",
+                "description": "Sarah fills out her details, selects 'volunteer' as her role, and submits the form.",
+                "action": "Fill in name, email, password, select 'volunteer' role, and click 'Submit'.",
+                "expected_outcome": "The form data is sent to the authAPI, a new user is created in the database, and she is redirected to the login page with a success message."
+            },
+            {
+                "step": 3,
+                "title": "Logging In",
+                "description": "Sarah enters her newly created credentials into the login form.",
+                "action": "Enter email and password into the login form and click 'Login'.",
+                "expected_outcome": "Credentials are validated via authAPI, a session token is set, and she is redirected to her volunteer dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to browse and search food donation listings with filtering capabilities.",
+        "user_persona": "A recipient named Marcus looking for nearby available food donations.",
+        "user_goal": "To find and view details of available food donations near his location.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Donations",
+                "description": "Marcus logs in and navigates to the Donations page to see all available donations.",
+                "action": "Click on the 'Donations' link in the navbar.",
+                "expected_outcome": "He sees a grid of donation cards with titles, descriptions, quantities, locations, and statuses, styled with Azure background and Midnight Blue components."
+            },
+            {
+                "step": 2,
+                "title": "Searching by Keyword",
+                "description": "Marcus types 'bread' into the search bar to filter donations.",
+                "action": "Type 'bread' into the search bar.",
+                "expected_outcome": "The displayed donations update in real-time to show only those matching the keyword."
+            },
+            {
+                "step": 3,
+                "title": "Applying Location Filter",
+                "description": "Marcus uses the location filter to narrow down donations to his city.",
+                "action": "Select his city from the location dropdown filter.",
+                "expected_outcome": "The donation list updates to show only those available in his selected city."
+            },
+            {
+                "step": 4,
+                "title": "Viewing Donation Details",
+                "description": "Marcus clicks on a promising donation card to see more information.",
+                "action": "Click on a donation card.",
+                "expected_outcome": "He is taken to the detailed view page for that specific donation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable recipients to apply for food distribution and allow administrators/volunteers to manage these applications.",
+        "user_persona": "A recipient named Lisa who needs food assistance and wants to apply for distribution.",
+        "user_goal": "To submit an application for receiving food distribution.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Application Process",
+                "description": "Lisa, logged in as a recipient, finds a suitable donation and chooses to apply for it.",
+                "action": "From the donation detail page, click the 'Apply for Distribution' button.",
+                "expected_outcome": "A multi-step application form opens, pre-filled with some of her profile information."
+            },
+            {
+                "step": 2,
+                "title": "Completing Application Form",
+                "description": "Lisa fills in the remaining required fields like reason for request and preferred pickup time.",
+                "action": "Fill in reason and preferred pickup time, then click 'Submit'.",
+                "expected_outcome": "The completed form data is sent to the distributionAPI, which saves the application with status 'applied'."
+            },
+            {
+                "step": 3,
+                "title": "Confirmation",
+                "description": "Lisa expects confirmation that her application was received.",
+                "action": "Observe page after submission.",
+                "expected_outcome": "She receives a success message confirming her application has been submitted and can be tracked in her dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display volunteer information and enable volunteers to sign up for opportunities.",
+        "user_persona": "An existing volunteer named Kevin wanting to help with a new donation opportunity.",
+        "user_goal": "To view open volunteer opportunities and sign up for one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Volunteer Opportunities",
+                "description": "Kevin, logged in as a volunteer, navigates to the Volunteers section.",
+                "action": "Click on the 'Volunteers' link in the navbar.",
+                "expected_outcome": "He sees two sections: one showing active volunteer opportunities and another showing his assigned tasks."
+            },
+            {
+                "step": 2,
+                "title": "Signing Up for Opportunity",
+                "description": "Kevin identifies an appealing opportunity and signs up for it.",
+                "action": "Click the 'Sign Up' button on a volunteer opportunity card.",
+                "expected_outcome": "His request is processed via the volunteerAPI, he is assigned to the opportunity, and the current volunteer count increments."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Assignment",
+                "description": "Kevin checks his assigned tasks to confirm the signup.",
+                "action": "Look at the 'My Assigned Tasks' section.",
+                "expected_outcome": "The newly signed-up opportunity now appears in his assigned tasks list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide a centralized dashboard for users to manage personal account information and view relevant activity summaries.",
+        "user_persona": "A donor named Emma who wants to update her contact info and review past donations.",
+        "user_goal": "To edit her profile and view her donation history from her dashboard.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dashboard",
+                "description": "Emma logs in and goes directly to her dashboard.",
+                "action": "Click on the 'Dashboard' link in the navbar.",
+                "expected_outcome": "She lands on her personalized dashboard showing her profile, recent activities, and quick links."
+            },
+            {
+                "step": 2,
+                "title": "Editing Profile Information",
+                "description": "Emma notices her phone number is outdated and decides to update it.",
+                "action": "Click 'Edit Profile', change the phone number field, and save changes.",
+                "expected_outcome": "Her updated phone number is saved via the profileUpdateAPI and reflected immediately on the dashboard."
+            },
+            {
+                "step": 3,
+                "title": "Reviewing Activity History",
+                "description": "Emma scrolls down to see her recent activity, specifically her past donations.",
+                "action": "Scroll to the 'Recent Activities' section and click on a past donation entry.",
+                "expected_outcome": "She is redirected to the detailed view page of that specific donation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Establish and maintain a structured database schema to support all core application entities and relationships.",
+        "user_persona": "A developer setting up the application locally for the first time.",
+        "user_goal": "To verify that the database schema is correctly defined and aligns with application requirements.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Migration Files",
+                "description": "The developer inspects the migration files to ensure they define the correct tables and relationships.",
+                "action": "Navigate to `/backend/db/migrations` and open schema definition files.",
+                "expected_outcome": "Files contain properly written SQL `CREATE TABLE` statements for users, donations, distributions, volunteers, and volunteer_opportunities with correct foreign keys."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Table Relationships",
+                "description": "The developer verifies that relationships between entities are correctly represented.",
+                "action": "Check foreign key constraints linking donations to users, distributions to users and donations, etc.",
+                "expected_outcome": "Foreign key relationships are accurately defined and enforced in the schema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Expose all core functionalities through standardized RESTful API endpoints consumable by frontend services.",
+        "user_persona": "A frontend developer integrating the donation listing feature.",
+        "user_goal": "To successfully call and consume the donation listing API endpoint.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating API Documentation",
+                "description": "The developer refers to the API documentation to understand how to fetch donations.",
+                "action": "Open the API documentation file to find the GET /donations endpoint.",
+                "expected_outcome": "Documentation provides clear instructions on endpoint path, method, headers, and expected response format."
+            },
+            {
+                "step": 2,
+                "title": "Making API Call",
+                "description": "The developer writes code to make a GET request to the donations endpoint.",
+                "action": "Write and execute a fetch() call to the donationAPI endpoint.",
+                "expected_outcome": "Returns a successful JSON response containing a list of donations matching the schema."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure consistent styling with Azure background and Midnight Blue components while maintaining responsiveness across screen sizes.",
+        "user_persona": "A QA tester validating visual consistency and responsiveness across devices.",
+        "user_goal": "To confirm the site maintains correct styling and layout on different screen sizes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Desktop Layout",
+                "description": "Tester loads the homepage on a desktop browser and checks overall styling.",
+                "action": "Load homepage in desktop browser and visually inspect background and component colors.",
+                "expected_outcome": "Main background is Azure (#F0FFFF) and interactive components are styled with Midnight Blue (#191970)."
+            },
+            {
+                "step": 2,
+                "title": "Testing Responsive Resize",
+                "description": "Tester resizes the browser window to simulate mobile and tablet views.",
+                "action": "Gradually resize the browser window width from desktop to mobile size.",
+                "expected_outcome": "Layout adjusts smoothly without breaking, using CSS media queries to rearrange elements appropriately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure repository-wide npm scripts for streamlined installation and local development startup.",
+        "user_persona": "A new team member cloning the repository for the first time.",
+        "user_goal": "To install dependencies and start both frontend and backend servers with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "After cloning, the developer runs the install script to get everything ready.",
+                "action": "Run `npm run install:all` in the terminal at project root.",
+                "expected_outcome": "Both frontend and backend dependencies are installed without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "The developer starts both frontend and backend servers simultaneously.",
+                "action": "Run `npm run dev` in the terminal.",
+                "expected_outcome": "Both development servers start concurrently, with frontend running on one port and backend on another."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enforce strict validation rules on all user-submitted data to prevent invalid or malicious entries.",
+        "user_persona": "A user attempting to register with an invalid email address.",
+        "user_goal": "To observe form validation behavior when entering incorrect data during registration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Invalid Email",
+                "description": "While registering, the user types an obviously wrong email format.",
+                "action": "In the email field, type 'invalid-email' and tab away from the field.",
+                "expected_outcome": "Inline validation immediately displays an error message indicating invalid email format."
+            },
+            {
+                "step": 2,
+                "title": "Trying to Submit Invalid Form",
+                "description": "Ignoring the error, the user tries to submit the form anyway.",
+                "action": "Click the 'Register' submit button.",
+                "expected_outcome": "Submission is blocked by frontend validation, preventing a network call to the backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement fine-grained access controls allowing only authorized users to perform specific actions or view sensitive areas.",
+        "user_persona": "A regular recipient trying to access the admin panel.",
+        "user_goal": "To attempt accessing restricted administrative functions without proper authorization.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Restricted Area",
+                "description": "The recipient manually types an admin URL into the browser's address bar.",
+                "action": "Manually enter '/admin' into the browser address bar and press Enter.",
+                "expected_outcome": "Instead of reaching the admin page, the user is redirected to an unauthorized access page."
+            },
+            {
+                "step": 2,
+                "title": "Observing Navigation Restrictions",
+                "description": "The user looks for admin links in the navigation menu.",
+                "action": "Scan the navigation bar for any admin-related links.",
+                "expected_outcome": "No admin-specific links or panels are visible due to role-based UI flags hiding them."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Empower users to efficiently locate relevant content using flexible search and advanced filtering mechanisms.",
+        "user_persona": "A volunteer coordinator trying to find upcoming opportunities requiring specific skills.",
+        "user_goal": "To filter volunteer opportunities by required skills and start time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Volunteer Page",
+                "description": "The coordinator logs in and goes to the volunteer opportunities page.",
+                "action": "Click on 'Volunteers' in the navigation bar.",
+                "expected_outcome": "A list of active volunteer opportunities is displayed with search/filter options above."
+            },
+            {
+                "step": 2,
+                "title": "Applying Skill Filter",
+                "description": "The coordinator filters the opportunities by selecting a required skill.",
+                "action": "Use the skills filter dropdown to select 'Food Handling' and apply.",
+                "expected_outcome": "Only opportunities requiring 'Food Handling' are shown in the list."
+            },
+            {
+                "step": 3,
+                "title": "Combining With Date Filter",
+                "description": "Further narrows the results by specifying a date range.",
+                "action": "Set a date range in the time filter and apply again.",
+                "expected_outcome": "Results update instantly to reflect opportunities matching both skill and date criteria."
+            }
+        ]
+    }
+]

@@ -1,0 +1,324 @@
+[
+    {
+        "requirement_tested": "Product registration functionality allowing users to register new products with unique IDs",
+        "user_persona": "A warehouse operator named Sam who is responsible for adding newly manufactured items into the system.",
+        "user_goal": "To successfully register a new product with all required details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Registration Form",
+                "description": "Sam navigates to the product registration page where he sees a form ready for input.",
+                "action": "Navigate to the product registration page.",
+                "expected_outcome": "A centered card with labeled input fields for Product ID, Name, Description, Manufacturer, Manufacture Date, and Batch Number is displayed."
+            },
+            {
+                "step": 2,
+                "title": "Filling Product Details",
+                "description": "Sam fills out each field carefully ensuring the Product ID is unique and all other information is accurate.",
+                "action": "Fill in the Product ID, Name, Description, Manufacturer, Manufacture Date, and Batch Number fields.",
+                "expected_outcome": "All fields accept inputs correctly without errors."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Registration",
+                "description": "After reviewing the information, Sam clicks the 'Register Product' button to submit the new product entry.",
+                "action": "Click the 'Register Product' firebrick-colored button.",
+                "expected_outcome": "The form data is submitted to the backend API endpoint /api/products/register and a success message confirms the registration."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product tracking functionality displaying the circulation path of registered products",
+        "user_persona": "A logistics coordinator named Lisa who needs to monitor the movement of goods.",
+        "user_goal": "To view the full history of movements for a specific product.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Tracking Path",
+                "description": "Lisa enters a known product ID into the tracking search field to find its journey.",
+                "action": "Enter a valid Product ID into the tracking search input field.",
+                "expected_outcome": "The system dynamically loads and displays the corresponding tracking path from the API endpoint /api/products/{productId}/track."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Timeline Visualization",
+                "description": "As she types, Lisa watches the vertical timeline populate with nodes showing locations and timestamps.",
+                "action": "Observe the auto-loaded timeline visualization.",
+                "expected_outcome": "Each node on the timeline shows location name, timestamp, event type, and handler, styled appropriately with misty rose background and firebrick components."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product inquiry functionality enabling users to query current status of products",
+        "user_persona": "A retail store manager named Tom who wants to know if an ordered item has arrived yet.",
+        "user_goal": "To quickly check the status and location of a particular product.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Inquiry Search",
+                "description": "Tom goes to the inquiry section and uses the search bar to look up a product by its ID.",
+                "action": "Go to the inquiry page and enter a Product ID into the search bar with placeholder 'Enter Product ID'.",
+                "expected_outcome": "The search bar accepts the input and prepares for submission."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Status Information",
+                "description": "He presses Enter which triggers a request to fetch the most recent status of the product.",
+                "action": "Press Enter or click the Search button.",
+                "expected_outcome": "The latest status such as 'In Transit', last updated time, and current location appear in firebrick text over a misty rose background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Product verification functionality allowing users to verify product authenticity",
+        "user_persona": "A quality assurance officer named Jane tasked with confirming that incoming shipments match verified products.",
+        "user_goal": "To confirm whether a received product is genuine.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Verification Process",
+                "description": "Jane accesses the verification tool and enters the product ID found on the package label.",
+                "action": "Navigate to the verification page and input a Product ID into the designated field.",
+                "expected_outcome": "Input field captures the ID correctly."
+            },
+            {
+                "step": 2,
+                "title": "Requesting Authenticity Check",
+                "description": "She clicks the 'Verify' button to send the ID for validation against database records.",
+                "action": "Click the large firebrick 'Verify' button.",
+                "expected_outcome": "The system sends the ID to the backend API endpoint /api/products/{productId}/verify and displays either a green checkmark or red cross icon followed by status text indicating authenticity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data statistics and analysis dashboard presenting supply chain operational insights",
+        "user_persona": "An operations director named Alex who relies on analytics to make strategic decisions.",
+        "user_goal": "To review key metrics about overall supply chain performance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Analytics Dashboard",
+                "description": "Alex opens the analytics dashboard expecting to see summarized data visualizations.",
+                "action": "Visit the analytics dashboard page.",
+                "expected_outcome": "Upon loading, the dashboard automatically fetches analytics data from multiple API endpoints and renders visualizations using Chart.js, featuring total products count, tracking events over time, and verification success rate."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Statistical Panels",
+                "description": "Alex examines the three panels to gauge how many products are managed, how often they move, and how reliable verifications have been.",
+                "action": "Interact with the dashboard panels.",
+                "expected_outcome": "Charts display relevant data points clearly with firebrick accents on a misty rose background, providing actionable insights."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization system for secure access control",
+        "user_persona": "A new employee named Mark who needs to log into the internal platform for the first time.",
+        "user_goal": "To gain authorized access to the supply chain traceability tools.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging Into System",
+                "description": "Mark visits the login page and provides his company-issued credentials.",
+                "action": "Visit the login URL and fill in the email and password fields.",
+                "expected_outcome": "Email and password fields capture the input securely."
+            },
+            {
+                "step": 2,
+                "title": "Authenticating Credentials",
+                "description": "He clicks Sign In to authenticate himself and unlock access to restricted areas.",
+                "action": "Click the firebrick 'Sign In' button.",
+                "expected_outcome": "Credentials are authenticated via POST to /auth/login. Upon success, a JWT token is stored locally and Mark is redirected to the home/dashboard area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Audit logging capability for tracking all product-related activities",
+        "user_persona": "A compliance auditor named Olivia who reviews system logs to ensure proper procedures are followed.",
+        "user_goal": "To inspect the audit trail of past product-related actions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Audit Logs",
+                "description": "Olivia enters the administrative section to examine the audit logs.",
+                "action": "Navigate to the admin section containing the audit logs tab.",
+                "expected_outcome": "The audit log table begins auto-fetching logs from /api/admin/audit-logs and updates periodically."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Logged Activities",
+                "description": "She scrolls through the table looking for specific user actions tied to certain product IDs.",
+                "action": "Scroll and analyze the audit log table entries.",
+                "expected_outcome": "Entries are shown sorted by timestamp descending with columns for Timestamp, User, Action Type, and associated Product ID, all styled consistently with firebrick highlights on misty rose."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with desktop and mobile viewing",
+        "user_persona": "A field supervisor named Derek who checks inventory statuses using both office computers and personal smartphone.",
+        "user_goal": "To seamlessly use the application regardless of device size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Application on Desktop",
+                "description": "While at his desk, Derek opens the website on a desktop browser to manage several tasks simultaneously.",
+                "action": "Open the application in a desktop browser window.",
+                "expected_outcome": "Layout utilizes responsive grids that maintain horizontal alignment suitable for larger screens."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Mobile Device",
+                "description": "Later, while walking around the warehouse, Derek switches to his phone to continue work.",
+                "action": "Resize the browser window to simulate mobile dimensions or switch to actual mobile device.",
+                "expected_outcome": "Layout adjusts fluidly according to smaller viewport sizes, activating mobile-specific styles under 768px width breakpoint, including collapsible navigation menus and touch-friendly forms/buttons."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time data synchronization between frontend and backend systems",
+        "user_persona": "A central monitoring specialist named Riley who oversees ongoing shipment statuses throughout the day.",
+        "user_goal": "To observe live updates of shipment progress without manually refreshing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Monitoring Live Updates",
+                "description": "Riley keeps the tracking dashboard open during peak hours to catch real-time shipment changes.",
+                "action": "Stay on the tracking dashboard page with WebSocket connection established.",
+                "expected_outcome": "UI elements like tracking timelines and dashboards show live updates whenever backend data changes occur, indicated visually by a sync status indicator."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Instant Notifications",
+                "description": "When a new tracking event occurs, Riley notices it appears instantly on his screen.",
+                "action": "Wait for a simulated backend change affecting tracking data.",
+                "expected_outcome": "Receiving a WebSocket message triggers immediate re-rendering of affected components like updating a tracking event or refreshing dashboard stats without needing a manual refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "A DevOps engineer named Cameron responsible for deploying and maintaining the infrastructure.",
+        "user_goal": "To ensure the backend service connects properly to the configured PostgreSQL instance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Up Environment Variables",
+                "description": "Cameron configures the deployment environment with precise database connection settings.",
+                "action": "Set environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Environment variables are set accurately matching the required configuration parameters."
+            },
+            {
+                "step": 2,
+                "title": "Initializing Database Connection",
+                "description": "Once deployed, Cameron verifies that the backend successfully establishes a secure link to the PostgreSQL server.",
+                "action": "Start the backend service and check for successful database initialization logs.",
+                "expected_outcome": "PostgreSQL database initializes with necessary tables created (products, tracking_events, verifications, users, audit_logs) and maintains a stable connection using provided credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for product registration, tracking, inquiry, and verification operations",
+        "user_persona": "A software developer named Taylor integrating third-party systems with this platform.",
+        "user_goal": "To interact programmatically with core supply chain features via well-defined APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Calling Product Registration Endpoint",
+                "description": "Taylor writes a script to add new products directly into the system using the API.",
+                "action": "Send a POST request to the /api/products/register endpoint with appropriate payload.",
+                "expected_outcome": "New product is created in the database and a confirmation response is returned."
+            },
+            {
+                "step": 2,
+                "title": "Querying Existing Functionality",
+                "description": "Next, Taylor retrieves existing product data to validate integration accuracy.",
+                "action": "Perform GET requests to endpoints like /api/products/{id}/status and /api/products/{id}/verify.",
+                "expected_outcome": "Correct product status and verification results are returned based on the requested product ID."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting product information, tracking events, and verification records",
+        "user_persona": "A database administrator named Morgan who manages the underlying data architecture.",
+        "user_goal": "To confirm that the database schema supports all required entities and relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Schema Structure",
+                "description": "Morgan connects to the PostgreSQL instance to evaluate the defined schema layout.",
+                "action": "Connect to the PostgreSQL database using configured credentials.",
+                "expected_outcome": "Tables exist for products, tracking_events, verifications, users, and audit_logs with correct column definitions and constraints."
+            },
+            {
+                "step": 2,
+                "title": "Validating Data Relationships",
+                "description": "Morgan runs sample queries to test referential integrity among different entity types.",
+                "action": "Execute SQL SELECT statements joining related tables.",
+                "expected_outcome": "Queries return logically consistent datasets reflecting accurate associations between products, their movements, and verification attempts."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "An end-user named Jordan exploring the application's capabilities online.",
+        "user_goal": "To experience smooth browsing with real-time content sourced entirely from backend services.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Dynamic Content",
+                "description": "Jordan navigates through various sections noticing that all displayed data comes fresh from backend sources.",
+                "action": "Browse different pages like dashboard, tracking, and verification sections.",
+                "expected_outcome": "Every piece of dynamic content—including charts, lists, and status indicators—is fetched from backend APIs rather than hardcoded values."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Data Freshness",
+                "description": "Jordan compares some displayed figures with independently confirmed reports to verify accuracy.",
+                "action": "Cross-reference UI data with known backend-generated reports.",
+                "expected_outcome": "Displayed numbers and statuses precisely reflect the latest available data retrieved from backend APIs."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface styled with misty rose background and firebrick colored components",
+        "user_persona": "A UX designer named Casey evaluating visual consistency across the application.",
+        "user_goal": "To verify adherence to brand color guidelines throughout the interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Overall Theme Consistency",
+                "description": "Casey inspects general layout colors focusing on primary backgrounds and accent hues.",
+                "action": "Load any main application page.",
+                "expected_outcome": "Background consistently appears as misty rose (#FFE4E1) across all views unless explicitly overridden for contrast."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Component Styling",
+                "description": "Casey zooms in on interactive elements like buttons, cards, and charts to assess secondary color usage.",
+                "action": "Focus on UI components like buttons, form fields, and chart axes.",
+                "expected_outcome": "Interactive and highlight components utilize firebrick coloring (#B22222) uniformly enhancing readability and aesthetic appeal."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server configuration via package.json scripts",
+        "user_persona": "A junior developer named Austin setting up his local development environment.",
+        "user_goal": "To efficiently launch both frontend and backend servers together for streamlined coding sessions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies Simultaneously",
+                "description": "Austin sets up the project for the first time using a single command to handle dependencies for both sides.",
+                "action": "Run `npm run install:all` from the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without conflicts."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers Together",
+                "description": "Austin starts working by launching both development environments at once.",
+                "action": "Run `npm run dev` from the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently, allowing seamless testing and debugging across layers."
+            }
+        ]
+    }
+]

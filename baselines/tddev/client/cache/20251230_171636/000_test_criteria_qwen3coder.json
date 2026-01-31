@@ -1,0 +1,422 @@
+[
+    {
+        "requirement_tested": "A frontend chessboard interface allowing users to move pieces by drag-and-drop or click",
+        "user_persona": "A casual chess enthusiast who enjoys playing quick matches.",
+        "user_goal": "To successfully move a pawn from e2 to e4 using drag-and-drop.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the Game",
+                "description": "Alex opens the chess app and sees the classic-themed board with pieces in starting positions. The background is alice blue and interface elements are steel blue.",
+                "action": "Observe the initial rendering of the board.",
+                "expected_outcome": "Chessboard is displayed with all pieces in correct starting positions, alice blue background, and steel blue controls."
+            },
+            {
+                "step": 2,
+                "title": "Dragging a Pawn",
+                "description": "Alex decides to start with the classic opening move. He clicks and holds the pawn on e2.",
+                "action": "Click and hold the pawn on e2.",
+                "expected_outcome": "The pawn is highlighted indicating it's selected for movement."
+            },
+            {
+                "step": 3,
+                "title": "Moving the Pawn",
+                "description": "While holding the mouse button, Alex drags the pawn to square e4 and releases the mouse button.",
+                "action": "Drag the pawn to e4 and release.",
+                "expected_outcome": "The pawn moves to e4, and the board updates to reflect the new position."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to create new chess games with configurable settings",
+        "user_persona": "A chess player looking to practice against an AI opponent.",
+        "user_goal": "To create a new game against an intermediate-level AI with a dark-themed board.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating New Game Creation",
+                "description": "Taylor wants to play a new game and clicks the 'New Game' button on the homepage.",
+                "action": "Click the 'New Game' button.",
+                "expected_outcome": "A modal form appears with options for playerName, opponent type, difficulty level, and board theme."
+            },
+            {
+                "step": 2,
+                "title": "Configuring Game Settings",
+                "description": "Taylor selects 'AI' as opponent, chooses 'Intermediate' difficulty, and picks the 'Dark' board theme from the dropdown menus.",
+                "action": "Select 'AI', 'Intermediate', and 'Dark' theme from respective dropdowns.",
+                "expected_outcome": "Preview images update to show the selected difficulty and dark theme. Submit button becomes enabled."
+            },
+            {
+                "step": 3,
+                "title": "Starting the Game",
+                "description": "Satisfied with the settings, Taylor clicks the 'Start Game' submit button.",
+                "action": "Click the 'Start Game' button.",
+                "expected_outcome": "The system creates a new game and redirects Taylor to the game page with the dark-themed board ready for play."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to join existing chess games via unique identifiers or lobby system",
+        "user_persona": "A competitive player wanting to challenge friends online.",
+        "user_goal": "To join a friend's game using a provided game ID.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Join Game Interface",
+                "description": "Jordan receives a game ID from a friend and wants to join the match. He clicks the 'Join Game' button.",
+                "action": "Click the 'Join Game' button.",
+                "expected_outcome": "A panel appears with tabs for entering a game ID or browsing lobbies."
+            },
+            {
+                "step": 2,
+                "title": "Entering Game ID",
+                "description": "Jordan selects the 'Enter Game ID' tab and types the provided game ID into the input field.",
+                "action": "Switch to 'Enter Game ID' tab and enter the game ID.",
+                "expected_outcome": "Input field accepts the ID and the 'Join' button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Joining the Match",
+                "description": "Jordan clicks the 'Join' button to connect to his friend's game.",
+                "action": "Click the 'Join' button.",
+                "expected_outcome": "Successfully joins the game and is redirected to the game screen where the current board state is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support for undoing moves during active gameplay",
+        "user_persona": "A thoughtful chess player who likes to review moves carefully.",
+        "user_goal": "To undo a mistakenly moved knight during an active game.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making an Incorrect Move",
+                "description": "Casey accidentally moves her knight to a vulnerable square and immediately realizes the mistake.",
+                "action": "Move a knight to a wrong square.",
+                "expected_outcome": "Knight moves to the new position, and the move appears in the history log."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Undo Action",
+                "description": "Casey quickly locates the 'Undo' button above the board and clicks it before her opponent responds.",
+                "action": "Click the 'Undo' button.",
+                "expected_outcome": "A confirmation prompt appears asking if she wants to undo the last move."
+            },
+            {
+                "step": 3,
+                "title": "Confirming Undo",
+                "description": "Casey confirms the undo action to revert the board to its previous state.",
+                "action": "Confirm the undo action.",
+                "expected_outcome": "The knight returns to its original position, and the erroneous move is removed from the history log."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Resignation feature allowing players to forfeit the game",
+        "user_persona": "A busy professional playing during lunch break who realizes he's outmatched.",
+        "user_goal": "To resign gracefully from a difficult game situation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Assessing Game Position",
+                "description": "Morgan evaluates the board and recognizes that his position is hopeless against his opponent's strong attack.",
+                "action": "Evaluate the current board position.",
+                "expected_outcome": "Morgan determines resignation is the best course of action."
+            },
+            {
+                "step": 2,
+                "title": "Initiating Resignation",
+                "description": "Morgan finds the 'Resign' button among the game controls and clicks it.",
+                "action": "Click the 'Resign' button.",
+                "expected_outcome": "A confirmation dialog pops up asking 'Are you sure you want to resign?'"
+            },
+            {
+                "step": 3,
+                "title": "Confirming Resignation",
+                "description": "After confirming his decision, Morgan clicks 'Yes' in the dialog box.",
+                "action": "Click 'Yes' in the confirmation dialog.",
+                "expected_outcome": "The game ends with Morgan marked as resigned, and the result is recorded in the game history."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Buttons or controls to select different visual board themes",
+        "user_persona": "A user with visual preferences for better contrast during long gaming sessions.",
+        "user_goal": "To switch the board theme from classic to wood for improved visibility.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Theme Selector",
+                "description": "Riley notices the default classic theme isn't ideal for his eyes and looks for theme customization options.",
+                "action": "Look for board theme selector in the interface.",
+                "expected_outcome": "Find a dropdown menu labeled 'Board Theme' near the top-right corner."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Wood Theme",
+                "description": "Riley opens the theme dropdown and selects the 'Wood' option which he prefers for its natural look.",
+                "action": "Open dropdown and select 'Wood' theme.",
+                "expected_outcome": "Board instantly updates to display wood-textured squares."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Change Persistence",
+                "description": "Riley refreshes the page to ensure his theme preference has been saved.",
+                "action": "Refresh the browser page.",
+                "expected_outcome": "Upon reload, the board still displays the wood theme, confirming persistence of his choice."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Options to choose difficulty levels for playing against AI",
+        "user_persona": "An intermediate player wanting to improve skills through practice.",
+        "user_goal": "To increase AI difficulty from beginner to advanced for a greater challenge.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Difficulty Control",
+                "description": "Sammy is playing against the AI and wants a tougher challenge. He looks for the difficulty level selector.",
+                "action": "Locate the difficulty level dropdown when playing against AI.",
+                "expected_outcome": "Find a dropdown labeled 'Difficulty Level' visible only when opponent is AI."
+            },
+            {
+                "step": 2,
+                "title": "Changing Difficulty Setting",
+                "description": "Sammy changes the difficulty from 'Beginner' to 'Advanced' to test his abilities further.",
+                "action": "Change selection from 'Beginner' to 'Advanced' in the dropdown.",
+                "expected_outcome": "The change takes effect immediately, and subsequent AI moves become more challenging."
+            },
+            {
+                "step": 3,
+                "title": "Experiencing Increased Challenge",
+                "description": "Sammy observes that the AI now makes more strategic moves after the difficulty adjustment.",
+                "action": "Play several moves after changing difficulty.",
+                "expected_outcome": "Notice that AI responses are significantly stronger and require deeper thinking to counter."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Game history display showing past moves and game states",
+        "user_persona": "A chess student analyzing games to learn new strategies.",
+        "user_goal": "To review the sequence of moves made so far to understand tactical patterns.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening History Panel",
+                "description": "Kai wants to study the game progression and clicks on the 'Move History' sidebar panel.",
+                "action": "Click on the 'Move History' panel toggle.",
+                "expected_outcome": "A sidebar panel titled 'Move History' slides open showing numbered rows of algebraic notation."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Past Moves",
+                "description": "Kai scrolls through the list of moves to see how the game developed over time.",
+                "action": "Scroll vertically through the move history list.",
+                "expected_outcome": "All moves are displayed chronologically with white and black moves paired together."
+            },
+            {
+                "step": 3,
+                "title": "Analyzing Specific Move",
+                "description": "Kai clicks on a specific historical move to visualize exactly where it was played on the board.",
+                "action": "Click on a move entry in the history list.",
+                "expected_outcome": "Corresponding squares on the board are highlighted, and the timeline scrolls to center on that move."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Statistics panel showing win/loss records and performance metrics",
+        "user_persona": "A competitive player tracking improvement over time.",
+        "user_goal": "To check personal win/loss ratio and average game duration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Statistics Dashboard",
+                "description": "Ava wants to see her progress and clicks on the 'Statistics' link in the main navigation menu.",
+                "action": "Click on the 'Statistics' menu item.",
+                "expected_outcome": "Navigates to a dedicated statistics dashboard showing numeric totals for wins, losses, and draws."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Win Rate Metric",
+                "description": "Ava examines her overall win rate percentage prominently displayed on the dashboard.",
+                "action": "Locate and read the win rate statistic.",
+                "expected_outcome": "Win rate is calculated and displayed as a percentage based on total games played."
+            },
+            {
+                "step": 3,
+                "title": "Exploring Detailed Metrics",
+                "description": "Curious about what contributes to her stats, Ava hovers over various metric elements for explanations.",
+                "action": "Hover over different statistical elements.",
+                "expected_outcome": "Tooltip appears explaining the meaning or source of each metric when hovered over."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to manage game state persistence and real-time updates",
+        "user_persona": "Two friends playing remotely against each other.",
+        "user_goal": "To make a move and see it reflected instantly on the opponent's board.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Making a Move",
+                "description": "Zoe plays a move on her board and expects her friend to see it immediately.",
+                "action": "Make a legal chess move on the board.",
+                "expected_outcome": "Move is processed locally and sent to the server via WebSocket connection."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Real-Time Update",
+                "description": "Zoe's friend Max, who is watching his own screen, sees Zoe's move appear instantly.",
+                "action": "Wait for real-time update on remote client.",
+                "expected_outcome": "Max's board updates automatically to reflect Zoe's move without requiring manual refresh."
+            },
+            {
+                "step": 3,
+                "title": "Handling Connection Interruption",
+                "description": "Suddenly Zoe loses internet connectivity but the game tries to maintain connection.",
+                "action": "Simulate network disconnection.",
+                "expected_outcome": "A reconnecting spinner appears while the system attempts to restore the WebSocket connection automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User session management to track player identities across sessions",
+        "user_persona": "A frequent user returning to continue playing after some time away.",
+        "user_goal": "To resume playing without having to log in again due to persistent session.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Returning After Break",
+                "description": "Eli returns to the chess site after a week-long vacation and opens the browser.",
+                "action": "Open the chess application in the browser.",
+                "expected_outcome": "Application checks for existing session token and loads user profile silently without showing login screen."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Identity Persistence",
+                "description": "Eli checks that his username and preferences are still loaded correctly.",
+                "action": "Check user identity information in the header or settings.",
+                "expected_outcome": "Username is displayed, and previously selected board theme remains active."
+            },
+            {
+                "step": 3,
+                "title": "Refreshing Session",
+                "description": "Eli refreshes the page to verify session continuity during active gameplay.",
+                "action": "Perform a browser page refresh.",
+                "expected_outcome": "Page reloads without interruption to gameplay, maintaining user identity and game state."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design supporting storage of games, moves, and user stats",
+        "user_persona": "System administrator verifying data integrity after deployment.",
+        "user_goal": "To confirm that completed games and their moves are properly stored in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Completing a Test Game",
+                "description": "Admin completes a short test game to generate sample data for verification.",
+                "action": "Play and finish a complete chess game.",
+                "expected_outcome": "Game concludes with a definitive result (win/loss/draw) and all moves recorded."
+            },
+            {
+                "step": 2,
+                "title": "Inspecting Games Table",
+                "description": "Admin queries the database to verify the game record exists with proper metadata.",
+                "action": "Query the 'games' table in PostgreSQL database.",
+                "expected_outcome": "Find a row with the completed game's UUID, player references, status, and timestamp."
+            },
+            {
+                "step": 3,
+                "title": "Checking Moves Storage",
+                "description": "Admin verifies that each individual move from the game was logged correctly.",
+                "action": "Query the 'moves' table filtering by the game ID.",
+                "expected_outcome": "Retrieve all move records associated with the game, including from/to squares and timestamps."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "RESTful or WebSocket endpoints for game creation, joining, and move submission",
+        "user_persona": "Developer testing API integration during frontend development.",
+        "user_goal": "To successfully call REST endpoints to create and join a game programmatically.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Game via API",
+                "description": "Developer sends a POST request to create a new game with specified parameters.",
+                "action": "Send POST request to /api/game/create with player name and settings.",
+                "expected_outcome": "Receive HTTP 200 response with gameId and initial gameState object."
+            },
+            {
+                "step": 2,
+                "title": "Joining Created Game",
+                "description": "Using the returned gameId, developer sends another POST request to join the game.",
+                "action": "Send POST request to /api/game/join with the received gameId.",
+                "expected_outcome": "Receive updated gameState reflecting joined player and ready status."
+            },
+            {
+                "step": 3,
+                "title": "Submitting a Move",
+                "description": "Developer submits a test move through the appropriate API endpoint.",
+                "action": "Send POST request to /api/move/submit with move details.",
+                "expected_outcome": "Server validates move and returns updated gameState with the move applied."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Alice blue background color applied throughout the application UI",
+        "user_persona": "UI designer conducting visual consistency review.",
+        "user_goal": "To verify that alice blue background is consistently applied across all pages.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Homepage Background",
+                "description": "Designer inspects the homepage to ensure alice blue fills the entire viewport.",
+                "action": "Load the homepage and inspect CSS variables.",
+                "expected_outcome": "Body element uses --bg-primary: #f0f8ff variable resulting in alice blue background."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Game Page",
+                "description": "Designer navigates to the game screen to verify background consistency.",
+                "action": "Navigate from homepage to active game page.",
+                "expected_outcome": "Game page maintains alice blue background without color breaks or inconsistencies."
+            },
+            {
+                "step": 3,
+                "title": "Examining Modal Overlays",
+                "description": "Designer opens modal dialogs to confirm they also inherit the alice blue background.",
+                "action": "Trigger modal forms like new game or settings.",
+                "expected_outcome": "Modal backgrounds also utilize alice blue CSS variable maintaining visual harmony."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Steel blue accent color used for interface elements and controls",
+        "user_persona": "Accessibility tester ensuring sufficient color contrast for usability.",
+        "user_goal": "To confirm that steel blue is appropriately used for interactive UI components.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Button Styles",
+                "description": "Tester examines primary buttons to verify they use the designated steel blue accent.",
+                "action": "Locate and inspect CSS of primary action buttons.",
+                "expected_outcome": "Buttons utilize --accent-color: #4682b4 for background or border styling."
+            },
+            {
+                "step": 2,
+                "title": "Testing Interactive States",
+                "description": "Tester hovers over interactive elements to observe hover effects using steel blue.",
+                "action": "Hover mouse cursor over buttons and dropdown controls.",
+                "expected_outcome": "Elements exhibit visual feedback such as brightness change or underline effect in steel blue."
+            },
+            {
+                "step": 3,
+                "title": "Verifying Focus Indicators",
+                "description": "Tester uses keyboard navigation to check focus outlines on interactive components.",
+                "action": "Tab through interactive UI elements using keyboard.",
+                "expected_outcome": "Focused elements receive subtle glow outline matching the steel blue accent color."
+            }
+        ]
+    }
+]

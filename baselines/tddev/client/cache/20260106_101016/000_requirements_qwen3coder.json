@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend application that connects to a PostgreSQL database using specified environment variables",
+    "User authentication and authorization system for employees",
+    "Ticket booking interface for flights with search, selection, and confirmation",
+    "Hotel booking interface with search, filtering, and reservation capabilities",
+    "Train booking interface with schedule viewing and ticket purchasing",
+    "Settlements report generation feature for travel expenses",
+    "Reimbursement application submission form with expense details and documentation upload",
+    "Reimbursement status tracking dashboard for users",
+    "Admin panel for processing reimbursements and managing bookings",
+    "Payment integration for handling travel transactions",
+    "Expense categorization and receipt management system",
+    "Travel policy validation during booking and reimbursement processes",
+    "Reporting dashboard for finance teams to review settlements",
+    "Responsive UI design with white container backgrounds and navy component visuals"
+]

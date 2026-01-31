@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "A woman visiting the health survey website for the first time.",
+        "user_goal": "To navigate to the survey page and see the dynamically loaded form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah opens the website and sees the homepage with navigation links. She wants to take the health survey.",
+                "action": "Click on the 'Survey' link in the navigation bar.",
+                "expected_outcome": "The survey form loads dynamically without a full page refresh, showing various input fields."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend application that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the backend service.",
+        "user_goal": "To verify the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "The developer starts the backend server and expects it to connect to the configured PostgreSQL instance.",
+                "action": "Start the backend server using environment variables for DB connection.",
+                "expected_outcome": "Server logs show successful connection to PostgreSQL at localhost:5432 with the correct credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A health survey form interface for users to input and submit health information",
+        "user_persona": "A participant ready to fill out her health information.",
+        "user_goal": "To complete and submit the health survey accurately.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Filling Out Survey",
+                "description": "Emily begins filling out the survey, entering her age group, pregnancy status, and other personal health details.",
+                "action": "Fill in all required fields like age group, pregnancy status, and mental health status.",
+                "expected_outcome": "All fields accept input correctly and update in real-time without errors."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Survey",
+                "description": "After completing the form, Emily clicks the submit button to send her responses.",
+                "action": "Click the 'Submit Survey' button.",
+                "expected_outcome": "Form data is validated and sent to the backend via POST request; a success message appears."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data management functionality to store and organize submitted survey responses",
+        "user_persona": "A system administrator checking data integrity.",
+        "user_goal": "To confirm that submitted survey data is properly stored in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Entry",
+                "description": "The admin runs a query after a user submits a survey to check if the record exists.",
+                "action": "Query the 'surveys' table in PostgreSQL for the latest submission.",
+                "expected_outcome": "A new row is found in the surveys table with all submitted values correctly stored."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User permission management system to control access to data and features",
+        "user_persona": "An admin configuring user roles in the system.",
+        "user_goal": "To assign appropriate permissions to different user types.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Role Permissions",
+                "description": "Admin assigns roles to users ensuring they can only perform allowed actions.",
+                "action": "Update user roles in the backend assigning 'survey_taker', 'reviewer', or 'admin'.",
+                "expected_outcome": "Each user now has restricted access based on their assigned role per internal rules."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data review interface for authorized personnel to view and validate submissions",
+        "user_persona": "A reviewer examining submitted health surveys.",
+        "user_goal": "To view and validate a submitted survey entry.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Review Interface",
+                "description": "Jenny logs in as a reviewer and navigates to the data review section.",
+                "action": "Navigate to the data review page.",
+                "expected_outcome": "A list of submitted surveys is displayed with options to view details."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Submission Details",
+                "description": "She clicks on a submission to inspect the full details.",
+                "action": "Click on a specific survey entry from the list.",
+                "expected_outcome": "The detailed view of the selected survey opens up for inspection and validation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Reporting dashboard to display aggregated health data insights",
+        "user_persona": "An analyst reviewing health trends among participants.",
+        "user_goal": "To analyze health trends using visual reports.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Dashboard",
+                "description": "Alex accesses the dashboard to get insights from collected survey data.",
+                "action": "Navigate to the reporting dashboard.",
+                "expected_outcome": "Visualizations such as bar charts and pie graphs appear showing aggregated data."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Charts",
+                "description": "He hovers over segments of a chart to see more detailed breakdowns.",
+                "action": "Hover over sections of the pie chart representing pregnancy status.",
+                "expected_outcome": "Tooltip displays additional statistical information about the hovered segment."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with whitesmoke background and dark cyan styled components",
+        "user_persona": "A mobile user accessing the site on her phone.",
+        "user_goal": "To have a consistent experience regardless of device size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Site on Mobile",
+                "description": "Lisa visits the site on her smartphone expecting everything to look good and function smoothly.",
+                "action": "Open the website on a mobile browser.",
+                "expected_outcome": "Site renders with responsive layout adjustments, maintaining whitesmoke background and dark cyan components."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Authentication system to manage user sessions and roles",
+        "user_persona": "A registered user logging into the platform.",
+        "user_goal": "To securely log in and maintain session during usage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Maria enters her credentials to access the platform.",
+                "action": "Enter username and password and click 'Login'.",
+                "expected_outcome": "Upon successful authentication, she receives a JWT token and gets redirected to the dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Survey form validation to ensure complete and accurate data submission",
+        "user_persona": "A user attempting to submit an incomplete survey.",
+        "user_goal": "To understand what fields need correction before submission.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Leaving Required Fields Blank",
+                "description": "Tom leaves several key fields empty and tries to submit the form immediately.",
+                "action": "Attempt to click 'Submit Survey' without filling required fields.",
+                "expected_outcome": "Highlighted error messages appear next to unfilled mandatory fields indicating they're required."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Data export functionality for administrators to download survey results",
+        "user_persona": "An administrator needing to share survey findings externally.",
+        "user_goal": "To export all survey data in CSV format for further analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Exporting Data",
+                "description": "Admin navigates to the export section and initiates a data download.",
+                "action": "Click the 'Export' button and choose CSV format.",
+                "expected_outcome": "A downloadable CSV file containing all survey responses is generated and offered for download."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Audit logging for tracking data access and modifications",
+        "user_persona": "A compliance officer auditing system activity.",
+        "user_goal": "To trace changes made to survey records by authorized users.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Audit Logs",
+                "description": "Officer reviews logs to verify proper handling of sensitive health data.",
+                "action": "Query the audit_logs table for recent data access events.",
+                "expected_outcome": "Log entries show timestamps, user IDs, and actions taken (create/read/update/delete) on relevant resources."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Role-based access control for different user types (e.g., survey takers, reviewers, admins)",
+        "user_persona": "A reviewer trying to access admin-only features.",
+        "user_goal": "To be denied access to unauthorized administrative functions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Attempting Unauthorized Access",
+                "description": "Reviewer tries to navigate to the admin panel despite lacking admin privileges.",
+                "action": "Try to access the /admin route directly.",
+                "expected_outcome": "Access is blocked and the user is redirected or shown an unauthorized error message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development setup with npm scripts for installing dependencies and running both frontend and backend",
+        "user_persona": "A developer setting up the project locally for the first time.",
+        "user_goal": "To easily install and start both frontend and backend services together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer clones the repo and wants to quickly install all dependencies for both parts.",
+                "action": "Run 'npm run install:all' from root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "Now he wants to launch both servers for local testing.",
+                "action": "Execute 'npm run dev' command.",
+                "expected_outcome": "Frontend and backend development servers start simultaneously, ready for interaction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design to support health survey data storage and retrieval",
+        "user_persona": "A database architect validating schema implementation.",
+        "user_goal": "To confirm the database schema supports all necessary data structures.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Structure",
+                "description": "Architect inspects the created tables to ensure they match specifications.",
+                "action": "Connect to PostgreSQL and describe the structure of the 'surveys' table.",
+                "expected_outcome": "Schema matches the definition with correct column names, types, constraints, and relationships."
+            }
+        ]
+    }
+]

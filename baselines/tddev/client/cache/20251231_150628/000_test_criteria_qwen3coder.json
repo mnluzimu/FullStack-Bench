@@ -1,0 +1,289 @@
+[
+    {
+        "requirement_tested": "A question submission form with fields for question title and content",
+        "user_persona": "A curious user named Alex who has a question about cooking techniques.",
+        "user_goal": "To submit a new question about how to properly sear a steak.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Question Form",
+                "description": "Alex is browsing the homepage and decides to ask a question. He clicks the floating '+' button at the bottom right of the screen.",
+                "action": "Click the floating '+' button.",
+                "expected_outcome": "A modal form titled 'Ask a Question' appears with fields for 'Title' and 'Content'."
+            },
+            {
+                "step": 2,
+                "title": "Filling in Details",
+                "description": "Alex types 'How do I properly sear a steak?' into the Title field and adds more context in the Content field.",
+                "action": "Enter text into the 'Title' and 'Content' fields.",
+                "expected_outcome": "Both input fields accept text input and display the typed content."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Question",
+                "description": "Satisfied with his wording, Alex presses Enter in the content field to submit the form quickly.",
+                "action": "Press Enter key in the content field.",
+                "expected_outcome": "The form submits successfully, closes the modal, and shows a success confirmation message."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A page displaying a list of submitted questions with titles and excerpts",
+        "user_persona": "Jamie, a frequent visitor looking for solutions to common tech issues.",
+        "user_goal": "To find an existing question about fixing slow computer performance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Question List",
+                "description": "Jamie lands on the main questions page and sees a list of recently asked questions displayed as cards.",
+                "action": "Navigate to the main questions page.",
+                "expected_outcome": "A vertical list of question cards is displayed, each showing a bold title and a content excerpt."
+            },
+            {
+                "step": 2,
+                "title": "Scanning Through Questions",
+                "description": "Jamie scrolls down the list and notices several relevant topics but none exactly matching his issue yet.",
+                "action": "Scroll down the question list.",
+                "expected_outcome": "More questions load dynamically as Jamie reaches the bottom of the scrollable area."
+            },
+            {
+                "step": 3,
+                "title": "Selecting a Relevant Question",
+                "description": "Seeing a promising title, 'Why is my laptop running slowly?', Jamie clicks on the card to read more.",
+                "action": "Click on a question card.",
+                "expected_outcome": "The user is navigated to the detailed view page for that specific question."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A detailed question view showing full question content and associated answers",
+        "user_persona": "Taylor, a student researching historical events for a paper.",
+        "user_goal": "To understand various perspectives on the causes of World War I by reading answers to a related question.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Detailed View",
+                "description": "Taylor clicks on a question titled 'What were the primary causes of WWI?' from the question list.",
+                "action": "Click on a question from the list.",
+                "expected_outcome": "The detailed question view loads, displaying the full title and content of the question."
+            },
+            {
+                "step": 2,
+                "title": "Reading Existing Answers",
+                "description": "Below the question, Taylor finds multiple expert-provided answers and begins reading them carefully.",
+                "action": "Scroll through the list of answers.",
+                "expected_outcome": "All answers associated with the question are displayed below the main content section."
+            },
+            {
+                "step": 3,
+                "title": "Voting on Useful Answers",
+                "description": "One answer particularly resonates with Taylor’s research. She clicks the upvote button to show appreciation.",
+                "action": "Click the upvote icon next to an answer.",
+                "expected_outcome": "The vote count increases instantly without refreshing the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An answer submission form accessible from each question's detail page",
+        "user_persona": "Riley, a history teacher contributing knowledge to the community.",
+        "user_goal": "To provide a comprehensive explanation of the Treaty of Versailles as an answer.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Answer Section",
+                "description": "On a question about post-WWI Europe, Riley scrolls to the bottom where he sees the 'Your Answer' form.",
+                "action": "Scroll to the answer submission form on the question detail page.",
+                "expected_outcome": "A textarea labeled 'Your Answer' and a 'Post Your Answer' button appear beneath the existing answers."
+            },
+            {
+                "step": 2,
+                "title": "Writing an Answer",
+                "description": "Riley writes a detailed explanation covering economic, political, and social impacts of the treaty.",
+                "action": "Type a long-form answer into the textarea.",
+                "expected_outcome": "The textarea expands to accommodate the length of the written content."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Answer",
+                "description": "After proofreading, Riley clicks the 'Post Your Answer' button to share his insights.",
+                "action": "Click the 'Post Your Answer' button.",
+                "expected_outcome": "The answer is submitted via API and immediately appended to the list of answers without a page reload."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A rating system allowing users to upvote or downvote answers",
+        "user_persona": "Jordan, a critical reader evaluating answer quality.",
+        "user_goal": "To express agreement or disagreement with answers based on accuracy and clarity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Upvoting Accurate Information",
+                "description": "Jordan reads a well-researched answer and decides to support it by clicking the up arrow.",
+                "action": "Click the upward arrow icon next to an accurate answer.",
+                "expected_outcome": "An API call records the upvote, and the vote count updates instantly in real time."
+            },
+            {
+                "step": 2,
+                "title": "Downvoting Misleading Content",
+                "description": "Another answer contains outdated information. Jordan clicks the down arrow to signal low quality.",
+                "action": "Click the downward arrow icon next to a misleading answer.",
+                "expected_outcome": "The downvote is recorded, and the vote count decreases immediately without a page refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display of vote counts next to each answer",
+        "user_persona": "Casey, a researcher prioritizing highly-rated responses.",
+        "user_goal": "To identify the most helpful answers by sorting based on vote scores.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Top-Rated Answers",
+                "description": "Casey visits a complex question and looks for answers with the highest numerical ratings.",
+                "action": "Scan the vote counts displayed beside each answer.",
+                "expected_outcome": "Each answer shows a numeric score representing net upvotes, helping Casey judge relevance."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Persistent storage of questions and answers in a PostgreSQL database",
+        "user_persona": "DevOps engineer monitoring backend services.",
+        "user_goal": "To verify that all user-generated content persists correctly after server restarts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Data Persistence",
+                "description": "After restarting the backend service, DevOps checks if previously posted questions remain available.",
+                "action": "Restart the backend server and reload the question list page.",
+                "expected_outcome": "All previously submitted questions and answers are still present and accessible."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for creating, retrieving, and listing questions and answers",
+        "user_persona": "Frontend developer integrating with backend services.",
+        "user_goal": "To confirm that all CRUD operations function correctly through RESTful APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Create Endpoints",
+                "description": "Developer sends a POST request to /api/questions to simulate a new question creation.",
+                "action": "Send POST request to /api/questions endpoint with valid payload.",
+                "expected_outcome": "Server responds with 201 Created and returns the newly created question object."
+            },
+            {
+                "step": 2,
+                "title": "Testing Retrieve Endpoints",
+                "description": "Developer requests a specific question by ID to validate GET functionality.",
+                "action": "Send GET request to /api/questions/{id}.",
+                "expected_outcome": "Server returns the correct question data including its associated answers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoint for submitting votes on answers",
+        "user_persona": "QA tester validating voting features.",
+        "user_goal": "To ensure that votes are accurately tracked and updated in the backend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Sending Vote Requests",
+                "description": "Tester simulates an upvote action by sending a POST request to the vote endpoint.",
+                "action": "Send POST request to /api/answers/{id}/vote with body {\"type\": \"up\"}.",
+                "expected_outcome": "Server processes the vote and returns the updated vote count in the response."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend components styled with beige background and saddle brown accents",
+        "user_persona": "UI designer reviewing brand consistency.",
+        "user_goal": "To ensure all interface elements match the specified color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Visual Design",
+                "description": "Designer inspects the homepage visually and through browser tools to verify colors.",
+                "action": "Open the homepage and inspect CSS styles applied to major components.",
+                "expected_outcome": "Main background is set to beige (#F5F5DC) and interactive elements/borders use saddle brown (#8B4513)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive layout suitable for desktop and mobile browsing",
+        "user_persona": "Mobile user accessing the site during commute.",
+        "user_goal": "To navigate and interact with the Q&A platform smoothly on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Site on Mobile Device",
+                "description": "While commuting, Sam opens the Q&A site on his phone to browse some questions.",
+                "action": "Resize viewport to mobile dimensions or access site via mobile browser.",
+                "expected_outcome": "Layout adjusts appropriately with stacked cards, collapsible menu, and readable font sizes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navigation between question list and individual question details",
+        "user_persona": "Regular participant exploring multiple topics.",
+        "user_goal": "To move freely between overview and detailed views without confusion.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Returning to Question List",
+                "description": "After reading one question thoroughly, Morgan wants to go back to the main list.",
+                "action": "Click the 'Home' link in the top navigation bar.",
+                "expected_outcome": "User is redirected to the question list page with no loss of session or preferences."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Back Using Breadcrumbs",
+                "description": "From another question detail page, Morgan uses the breadcrumb trail to return to the previous level.",
+                "action": "Click the 'Questions' breadcrumb link.",
+                "expected_outcome": "Breadcrumb navigation leads back to the appropriate parent page reliably."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time update of answer ratings without page refresh",
+        "user_persona": "Active community member engaging with many answers.",
+        "user_goal": "To rate multiple answers quickly without waiting for page loads.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Rapid Voting Experience",
+                "description": "Ella rapidly clicks upvote buttons on several answers within a single question thread.",
+                "action": "Click multiple vote buttons in quick succession.",
+                "expected_outcome": "Vote counts update immediately in real time, providing instant feedback without delays."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for submitting new questions from any page",
+        "user_persona": "Busy professional with spontaneous queries.",
+        "user_goal": "To quickly pose a question regardless of which part of the site they're currently viewing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Quick Question Submission",
+                "description": "While reading an answer, Kai remembers something important and wants to ask a follow-up question.",
+                "action": "Click the floating '+' button visible on every page.",
+                "expected_outcome": "Question submission form appears as a modal overlay without changing the current page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend service connecting to PostgreSQL using specified environment variables",
+        "user_persona": "System administrator deploying the application.",
+        "user_goal": "To deploy the backend securely with proper database configuration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Admin sets the required DB environment variables before launching the backend service.",
+                "action": "Set DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Application starts successfully and establishes a secure connection to the PostgreSQL instance."
+            }
+        ]
+    }
+]

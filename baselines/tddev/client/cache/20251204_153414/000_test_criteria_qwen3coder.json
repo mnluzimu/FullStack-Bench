@@ -1,0 +1,338 @@
+[
+    {
+        "requirement_tested": "Implement a search functionality allowing users to input stock codes or names",
+        "user_persona": "A new investor exploring stock information for the first time.",
+        "user_goal": "To find information about a specific stock by entering its name or code.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Alex opens the website and sees a centered search bar at the top of the page. He wants to look up Apple Inc.",
+                "action": "Click inside the search bar.",
+                "expected_outcome": "The search bar becomes focused and ready for input with a blinking cursor."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Name",
+                "description": "Alex types 'Apple' into the search bar, noticing the navy border around the field.",
+                "action": "Type 'Apple' into the search input field.",
+                "expected_outcome": "Text appears in the input box as typed."
+            },
+            {
+                "step": 3,
+                "title": "Initiating Search",
+                "description": "After typing, Alex presses Enter to initiate the search for Apple-related stocks.",
+                "action": "Press the Enter key.",
+                "expected_outcome": "Search results or suggestions appear below the search bar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide auto-suggest or autocomplete feature for stock search input",
+        "user_persona": "A frequent trader who knows stock symbols but wants quick confirmation.",
+        "user_goal": "To quickly confirm and select the correct stock using real-time suggestions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Typing",
+                "description": "Jordan starts typing 'TSLA' into the search bar hoping to get Tesla's data.",
+                "action": "Begin typing 'TSLA' into the search input.",
+                "expected_outcome": "A dropdown list with matching stock suggestions appears instantly."
+            },
+            {
+                "step": 2,
+                "title": "Browsing Suggestions",
+                "description": "Jordan notices several suggestions pop up, including 'TSLA - Tesla, Inc.', and hovers over it.",
+                "action": "Hover over the suggestion 'TSLA - Tesla, Inc.'",
+                "expected_outcome": "The hovered item changes background to light gray (#f0f0f0)."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Suggestion",
+                "description": "Satisfied with the match, Jordan clicks on the suggestion to proceed.",
+                "action": "Click on the suggestion 'TSLA - Tesla, Inc.'",
+                "expected_outcome": "The search bar gets populated with 'TSLA' and triggers the search automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Create a stock information summary display showing basic stock details",
+        "user_persona": "An analyst reviewing multiple companies’ core metrics.",
+        "user_goal": "To quickly review key stock details like price, volume, and market cap.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Stock",
+                "description": "Morgan searches for 'MSFT' to analyze Microsoft's performance.",
+                "action": "Enter 'MSFT' into the search bar and press Enter.",
+                "expected_outcome": "The system returns Microsoft's summary card with basic stock information displayed below the search bar."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Summary Card",
+                "description": "Morgan looks at the card which shows current price, daily change, open/close prices, and other vital stats.",
+                "action": "Visually scan the summary card content.",
+                "expected_outcome": "All essential stock metrics are clearly visible with navy text against the background image."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include market trends visualization section in stock reports",
+        "user_persona": "A portfolio manager evaluating long-term trends before making investment decisions.",
+        "user_goal": "To visualize how a stock has performed historically over different time ranges.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Market Trends Section",
+                "description": "Riley selects Amazon (AMZN) and scrolls down to the Market Trends section.",
+                "action": "Scroll down to the chart area after searching for AMZN.",
+                "expected_outcome": "A line graph appears showing Amazon's price movements over time."
+            },
+            {
+                "step": 2,
+                "title": "Changing Time Range",
+                "description": "Riley wants to compare yearly performance with monthly trends, so he clicks the '1Y' button.",
+                "action": "Click the '1Y' time range button.",
+                "expected_outcome": "The chart updates dynamically to show Amazon's performance over the past year."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate financial data display including key financial metrics and ratios",
+        "user_persona": "A finance student studying company fundamentals.",
+        "user_goal": "To understand key financial health indicators of a company.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Financial Data Table",
+                "description": "Casey searches for Google (GOOGL) and finds the Financial Data tabular view.",
+                "action": "Search for GOOGL and scroll to the financial data section.",
+                "expected_outcome": "A neatly formatted table with headers like P/E Ratio, EPS, Dividend Yield, etc., is shown with navy headers."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Metrics",
+                "description": "Casey reviews values like ROE and Debt-to-Equity Ratio to assess Google’s financial stability.",
+                "action": "Read through the rows of financial metrics.",
+                "expected_outcome": "Each metric is presented clearly with alternating row colors for readability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Offer customizable report format selection options",
+        "user_persona": "A researcher preparing materials for publication.",
+        "user_goal": "To generate a stock report in a specific format suitable for sharing.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Report Format",
+                "description": "Jamie wants to export a report on Netflix (NFLX) in Markdown format for easy documentation.",
+                "action": "Navigate to the format selector and click on the Markdown option.",
+                "expected_outcome": "The Markdown option becomes selected, updating the preview accordingly."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Selection",
+                "description": "Jamie confirms that the selected format reflects correctly before proceeding.",
+                "action": "Verify the selected format visually.",
+                "expected_outcome": "Markdown is visibly marked as the active choice among PDF, HTML, and Markdown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide content selection controls for users to choose report sections",
+        "user_persona": "A busy executive needing only critical insights from stock reports.",
+        "user_goal": "To customize the report to include only relevant sections for faster reading.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Customizing Sections",
+                "description": "Patricia decides she only needs Basic Info and Financial Data from Ford Motor Co. (F).",
+                "action": "Click the checkboxes for 'Basic Info' and 'Financial Data'.",
+                "expected_outcome": "Both checkboxes become checked, indicating those sections will be included."
+            },
+            {
+                "step": 2,
+                "title": "Excluding Unneeded Sections",
+                "description": "She leaves Analyst Opinions and News Summary unchecked to keep the report concise.",
+                "action": "Leave 'Analyst Opinions' and 'News Summary' unchecked.",
+                "expected_outcome": "These sections remain unselected and won’t appear in the final report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate automated stock reports based on user-selected criteria",
+        "user_persona": "A consultant compiling weekly summaries for clients.",
+        "user_goal": "To produce a fully customized stock report efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Configuring Report Parameters",
+                "description": "Sam sets up his report for Coca-Cola (KO) choosing PDF format and checking all sections except News Summary.",
+                "action": "Set format to PDF and check desired sections.",
+                "expected_outcome": "Format and sections reflect Sam's choices accurately."
+            },
+            {
+                "step": 2,
+                "title": "Generating Report",
+                "description": "Sam clicks the Generate Report button to compile everything together.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A loading spinner replaces the button temporarily while the report generates."
+            },
+            {
+                "step": 3,
+                "title": "Receiving Generated Report",
+                "description": "After a few moments, the completed report appears on-screen.",
+                "action": "Wait for report generation to complete.",
+                "expected_outcome": "The full custom report is rendered or made available for download."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement white background color scheme across the entire website",
+        "user_persona": "A designer checking consistency of visual design elements.",
+        "user_goal": "To ensure uniformity in background coloring throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Background",
+                "description": "Taylor visits the homepage and checks whether the overall background is consistently white.",
+                "action": "Load the homepage and observe the main container background.",
+                "expected_outcome": "Main background remains solid white (#FFFFFF) across all containers and panels."
+            },
+            {
+                "step": 2,
+                "title": "Checking Inner Pages",
+                "description": "Taylor navigates to the report generation page to verify consistent white backgrounds there too.",
+                "action": "Visit internal pages like the report generator interface.",
+                "expected_outcome": "All inner pages maintain the same white background theme."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apply navy color theme to all UI components and interactive elements",
+        "user_persona": "A UX tester validating branding consistency.",
+        "user_goal": "To confirm that interactive elements use the specified navy color theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Buttons",
+                "description": "Quinn inspects the 'Generate Report' button to ensure it uses the navy theme.",
+                "action": "Look at buttons and form controls on the report setup page.",
+                "expected_outcome": "Buttons have navy borders and text, adhering to the defined navyThemeColors.primary."
+            },
+            {
+                "step": 2,
+                "title": "Testing Hover Effects",
+                "description": "Quinn hovers over the 'Login' link in the header to see the hover effect.",
+                "action": "Hover over interactive elements like buttons and links.",
+                "expected_outcome": "Elements slightly darken using navyThemeColors.secondary on hover."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure responsive layout that works across different device sizes",
+        "user_persona": "A mobile-first user accessing the platform primarily on a smartphone.",
+        "user_goal": "To navigate and interact seamlessly regardless of screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Site on Mobile",
+                "description": "Devon accesses the site on a mobile phone and checks how the layout adapts.",
+                "action": "Open the site on a smartphone browser.",
+                "expected_outcome": "Content stacks vertically, padding adjusts, and touch targets are appropriately sized."
+            },
+            {
+                "step": 2,
+                "title": "Resizing Window on Desktop",
+                "description": "On desktop, Devon resizes the window to simulate smaller devices.",
+                "action": "Resize browser window to mimic tablet and mobile dimensions.",
+                "expected_outcome": "Layout shifts responsively using CSS Grid/Flexbox adjustments based on breakpoints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include loading states or progress indicators during report generation",
+        "user_persona": "An impatient user expecting immediate feedback during wait times.",
+        "user_goal": "To know that the system is actively working when generating reports.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Long Process",
+                "description": "Blake submits a complex report request involving many sections and waits.",
+                "action": "Click 'Generate Report' with multiple sections selected.",
+                "expected_outcome": "A centrally-aligned loading spinner appears immediately, replacing the button."
+            },
+            {
+                "step": 2,
+                "title": "Monitoring Progress",
+                "description": "Blake watches the spinner animate while waiting for the report.",
+                "action": "Observe the loading indicator animation.",
+                "expected_outcome": "Spinner continues animating until the report finishes processing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide error handling for invalid stock codes or unavailable data",
+        "user_persona": "A cautious user double-checking accuracy of inputs.",
+        "user_goal": "To receive helpful guidance when entering incorrect stock identifiers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Submitting Invalid Symbol",
+                "description": "Kai mistakenly enters 'XYZ123' into the search bar and hits Enter.",
+                "action": "Input 'XYZ123' and press Enter.",
+                "expected_outcome": "An error message appears beneath the search bar stating 'Invalid stock symbol entered. Please try again.'"
+            },
+            {
+                "step": 2,
+                "title": "Noticing Visual Feedback",
+                "description": "Kai notices the red-colored error text and warning icon indicating something went wrong.",
+                "action": "Scan the error notification area.",
+                "expected_outcome": "Error message follows the errorDisplayStyle with red text and an exclamation icon."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement report export or download functionality",
+        "user_persona": "A professional needing offline access to generated reports.",
+        "user_goal": "To download a generated report in a preferred file format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Preparing Download",
+                "description": "Zoe completes her report on IBM and now wants to save it locally as a PDF.",
+                "action": "Click the 'Download' button next to the generated report.",
+                "expected_outcome": "A dropdown menu shows supported formats like PDF, CSV, DOCX."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Export Format",
+                "description": "Zoe chooses PDF from the options and proceeds with the download.",
+                "action": "Select 'PDF' from the dropdown and click the download option.",
+                "expected_outcome": "A file download prompt appears allowing Zoe to save the PDF version of the report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Add user authentication or session management for personalized experiences",
+        "user_persona": "A returning user wanting to preserve personal settings.",
+        "user_goal": "To access previously saved preferences and manage account securely.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Nia clicks the 'Login' link in the top-right corner to access her profile.",
+                "action": "Click the 'Login' link.",
+                "expected_outcome": "Redirected to the login page (/login) where Nia can enter credentials."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Profile Features",
+                "description": "After logging in, Nia sees her avatar and accesses saved watchlists.",
+                "action": "Log in successfully and return to the homepage.",
+                "expected_outcome": "Avatar replaces the 'Login' link, and session-based features like saved reports are accessible."
+            }
+        ]
+    }
+]

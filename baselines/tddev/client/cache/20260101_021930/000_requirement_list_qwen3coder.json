@@ -1,0 +1,326 @@
+[
+    {
+        "resource_dependency": {
+            "chartLibrary": "Chart.js or D3.js",
+            "backgroundColor": "ghostwhite",
+            "componentColor": "slategray",
+            "basketballStatsSchema": "Database table with columns: stat_id (UUID), player_id (UUID), match_id (UUID), points (int), rebounds (int), assists (int), steals (int), blocks (int), turnovers (int), minutes_played (float), created_at (timestamp)"
+        },
+        "function": "Display interactive charts and graphs for basketball analytics",
+        "static_description": "A grid of responsive chart containers with slate gray backgrounds on a ghost white page. Charts show various basketball statistics including scoring trends, player efficiency ratings, and team performance over time.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on individual data points reveals detailed tooltip information about specific games or player performances"
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over chart elements highlights related data series across multiple visualizations simultaneously"
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling through the page loads additional historical data visualizations dynamically"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "postgresqlDriver": "pg npm package",
+            "apiEndpoint": "/api/basketball-data",
+            "dataModels": "Tables for teams, players, matches, and betting_odds with defined relationships"
+        },
+        "function": "Serve basketball data through RESTful API endpoints connecting to PostgreSQL database",
+        "static_description": "A Node.js/Express server configured with PostgreSQL connection pooling using specified environment variables. API routes defined for retrieving basketball statistics, match data, and analytical insights.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request",
+                "description": "Incoming GET requests to /api/matches, /api/teams, /api/players trigger database queries and return structured JSON responses with basketball data"
+            },
+            {
+                "interaction": "Database Query",
+                "description": "SQL queries execute against PostgreSQL tables to fetch requested basketball statistics and betting information"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "matchHistorySchema": "matches table with: match_id (UUID), home_team_id (UUID), away_team_id (UUID), date (timestamp), venue (string), home_score (int), away_score (int), season (string), status (enum)",
+            "teamDataSchema": "teams table with: team_id (UUID), name (string), abbreviation (string), logo_url (string), conference (string), division (string)",
+            "paginationComponent": "React pagination library or custom implementation"
+        },
+        "function": "Allow users to browse historical basketball match data with detailed game information",
+        "static_description": "A searchable timeline of past basketball games displayed in a card-based layout on ghost white background with slate gray cards. Each card shows teams involved, final score, date, and venue.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a match card expands to show detailed box score statistics, play-by-play data, and betting outcomes for that specific game"
+            },
+            {
+                "interaction": "Search",
+                "description": "Entering team names, dates, or venues filters the match history display to show only relevant games"
+            },
+            {
+                "interaction": "Pagination",
+                "description": "Navigating through pages loads additional historical matches without refreshing the entire page"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "standingsSchema": "standings table with: standing_id (UUID), team_id (UUID), season (string), wins (int), losses (int), win_percentage (float), conference_rank (int), division_rank (int), streak (string)",
+            "performanceMetrics": "Calculated metrics including point differential, strength of schedule, and recent form indicators",
+            "rankingIcons": "Trophy icons for top-ranked teams"
+        },
+        "function": "Display current team standings and performance metrics in an organized leaderboard format",
+        "static_description": "Conference and divisional ranking tables with alternating row colors on slate gray background. Columns include team names, win-loss records, percentage, games behind leader, and streak information.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a team row navigates to that team's detailed performance dashboard showing advanced metrics and historical trends"
+            },
+            {
+                "interaction": "Sort",
+                "description": "Clicking column headers reorders the standings table based on selected criteria (wins, percentage, etc.)"
+            },
+            {
+                "interaction": "Filter",
+                "description": "Selecting conference or division filters the displayed rankings to show only relevant teams"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "playerStatsSchema": "players table with: player_id (UUID), name (string), team_id (UUID), position (string), height (string), weight (int), jersey_number (int); player_stats table with: stat_id (UUID), player_id (UUID), season (string), games_played (int), avg_points (float), avg_rebounds (float), avg_assists (float)",
+            "analysisAlgorithms": "Statistical models for calculating PER, TS%, USG%, and other advanced metrics",
+            "playerPhotos": "Image URLs for player headshots"
+        },
+        "function": "Track and analyze individual player performance statistics with advanced metrics",
+        "static_description": "Player profile cards arranged in a grid layout featuring photos, basic info, and key statistical averages. Detailed views show career trajectories and comparative performance charts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a player card opens a detailed analytics dashboard showing season-by-season progression, advanced metrics, and comparison tools"
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over statistical values displays tooltips explaining metric definitions and contextual performance benchmarks"
+            },
+            {
+                "interaction": "Compare",
+                "description": "Selecting multiple players enables side-by-side statistical comparison views with normalized data visualizations"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "predictionModelAPI": "Machine learning model endpoint for calculating match outcome probabilities",
+            "probabilityCalculations": "Algorithm considering team stats, player injuries, home court advantage, and historical matchups",
+            "matchPredictionSchema": "predictions table with: prediction_id (UUID), match_id (UUID), home_win_probability (float), away_win_probability (float), confidence_score (float), generated_at (timestamp)"
+        },
+        "function": "Calculate and display probability estimates for upcoming basketball match outcomes",
+        "static_description": "Prediction cards showing upcoming matches with color-coded probability percentages for each team's likelihood to win. Confidence indicators and contributing factors listed below each prediction.",
+        "interaction_and_states": [
+            {
+                "interaction": "Refresh",
+                "description": "Manual refresh updates probability calculations based on latest team and player statistics"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking prediction details reveals factor weighting analysis and historical accuracy metrics for the prediction model"
+            },
+            {
+                "interaction": "Filter",
+                "description": "Filtering by date range or team focuses predictions on selected matches only"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "recommendationEngine": "Algorithm analyzing match predictions, odds data, and risk tolerance to suggest optimal bets",
+            "bettingOddsSchema": "odds table with: odd_id (UUID), match_id (UUID), bookmaker (string), home_odds (float), away_odds (float), over_under (float), updated_at (timestamp)",
+            "riskProfiles": "Predefined user risk tolerance settings: conservative, moderate, aggressive"
+        },
+        "function": "Generate personalized betting recommendations based on analytical insights and user preferences",
+        "static_description": "Recommendation feed displaying suggested bets with expected value calculations, risk assessments, and potential returns. Each suggestion includes match details, odds comparison, and confidence level indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Configure",
+                "description": "Adjusting risk tolerance and preference settings recalculates all betting recommendations in real-time"
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a recommendation reveals detailed analysis including alternative betting options, historical success rates, and market movement tracking"
+            },
+            {
+                "interaction": "Save",
+                "description": "Saving recommendations adds them to a personal watchlist for tracking outcome performance"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "teamsSchema": "teams table with: team_id (UUID), name (string), city (string), abbreviation (string), conference (string), division (string), founded_year (int), arena (string), capacity (int), logo_url (string)",
+            "playersSchema": "players table with: player_id (UUID), first_name (string), last_name (string), team_id (UUID), position (string), height (string), weight (int), birth_date (date), draft_year (int), draft_pick (int), college (string), salary (int)",
+            "matchesSchema": "matches table with: match_id (UUID), home_team_id (UUID), away_team_id (UUID), date_time (timestamp), venue (string), home_score (int), away_score (int), season (string), status (enum: scheduled, in_progress, completed, postponed)",
+            "bettingOddsSchema": "odds table with: odd_id (UUID), match_id (UUID), bookmaker (string), home_win_odds (float), away_win_odds (float), point_spread_home (float), point_spread_away (float), over_under (float), timestamp (timestamp)"
+        },
+        "function": "Define core data structures for storing basketball-related entities and their relationships",
+        "static_description": "Entity relationship diagram showing interconnected tables for teams, players, matches, and betting odds with primary keys, foreign key relationships, and data types clearly defined.",
+        "interaction_and_states": [
+            {
+                "interaction": "Query",
+                "description": "Database queries join related tables to retrieve comprehensive information about matches including team details, player rosters, and current odds"
+            },
+            {
+                "interaction": "Update",
+                "description": "Real-time data feeds update match scores, player statistics, and betting odds in corresponding database tables"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "chartingLibrary": "D3.js or Chart.js with responsive configuration",
+            "visualizationTypes": "Line charts, bar graphs, radar charts, heat maps, and scatter plots",
+            "dataTransformationLogic": "Algorithms for aggregating raw statistics into meaningful visual representations"
+        },
+        "function": "Provide interactive data visualizations for exploring basketball analytics",
+        "static_description": "Dashboard layout with multiple resizable chart widgets showing different aspects of basketball performance. Visualizations include team comparison radar charts, player trend lines, and seasonal performance heat maps.",
+        "interaction_and_states": [
+            {
+                "interaction": "Zoom",
+                "description": "Dragging to select time ranges zooms into specific periods for detailed statistical analysis"
+            },
+            {
+                "interaction": "Brush",
+                "description": "Using brush tools selects data subsets for focused visualization and export"
+            },
+            {
+                "interaction": "Export",
+                "description": "Downloading chart images or underlying data enables offline analysis and reporting"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette": "Ghost white background (#F8F8FF) with slate gray components (#708090)",
+            "cssVariables": "Defined CSS custom properties for consistent color usage across components",
+            "responsiveGrid": "CSS Grid or Flexbox layout system"
+        },
+        "function": "Implement consistent visual styling with specified color scheme across all user interface elements",
+        "static_description": "Clean, minimalist interface featuring ghost white background with slate gray cards, buttons, and navigation elements. Consistent typography and spacing creating visual hierarchy throughout the application.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements like buttons and links change shade slightly when hovered to provide visual feedback"
+            },
+            {
+                "interaction": "Focus",
+                "description": "Keyboard navigation highlights focused elements with accessible contrast against the ghost white background"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeDataAPI": "WebSocket or Server-Sent Events connection for live score updates",
+            "externalSportsData": "Integration with sports data provider API for real-time basketball information",
+            "apiEndpoints": "GET /api/live-matches, GET /api/player-stats-realtime, GET /api/injury-reports"
+        },
+        "function": "Fetch and serve real-time basketball data through dedicated API endpoints",
+        "static_description": "API route handlers configured to proxy requests to external sports data services and cache responses for performance. WebSocket server for broadcasting live score updates to connected clients.",
+        "interaction_and_states": [
+            {
+                "interaction": "Poll",
+                "description": "Scheduled API calls fetch updated statistics, injury reports, and lineup changes at regular intervals"
+            },
+            {
+                "interaction": "Broadcast",
+                "description": "Live scoring events trigger immediate WebSocket messages to update all subscribed frontend clients simultaneously"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseSchemaDDL": "PostgreSQL CREATE TABLE statements for all required tables with appropriate indexes and constraints",
+            "relationshipDefinitions": "Foreign key constraints linking teams, players, matches, and betting data",
+            "initialSeedData": "Sample data scripts for populating database with test teams, players, and historical matches"
+        },
+        "function": "Design and implement PostgreSQL database schema for storing basketball statistics and betting information",
+        "static_description": "Database schema documentation showing table structures, column definitions, primary keys, and foreign key relationships. Indexing strategy optimized for common query patterns in basketball analytics.",
+        "interaction_and_states": [
+            {
+                "interaction": "Migration",
+                "description": "Applying schema migrations creates or updates database tables according to version-controlled definitions"
+            },
+            {
+                "interaction": "Query",
+                "description": "Complex JOIN operations retrieve comprehensive datasets combining team, player, match, and odds information efficiently"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mobileBreakpoints": "CSS media queries for screen widths: 768px (tablet), 480px (mobile)",
+            "touchComponents": "Larger touch targets and swipe gesture support for mobile interactions",
+            "adaptiveLayouts": "Flexible grid systems that rearrange content based on viewport size"
+        },
+        "function": "Ensure website usability and visual consistency across desktop and mobile viewing experiences",
+        "static_description": "Fluid layout adapting to different screen sizes with appropriately sized text, buttons, and interactive elements. Mobile-first navigation menu and optimized data visualization rendering.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Browser window resizing dynamically adjusts layout columns, font sizes, and component arrangements for optimal viewing"
+            },
+            {
+                "interaction": "Touch",
+                "description": "Touch gestures enable swiping between tabs, pinch-to-zoom on charts, and simplified navigation on mobile devices"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authSchema": "users table with: user_id (UUID), email (string, unique), password_hash (string), created_at (timestamp); user_preferences table with: preference_id (UUID), user_id (UUID), risk_tolerance (enum), favorite_teams (array), notification_settings (json)",
+            "authenticationLibrary": "Passport.js or similar authentication middleware",
+            "sessionManagement": "JWT tokens or session storage mechanism"
+        },
+        "function": "Manage user account creation, login, and preference storage for personalized experiences",
+        "static_description": "Login/registration forms with email and password fields positioned prominently in the header. User profile section accessible after authentication showing saved preferences and betting history.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting registration form validates email uniqueness and securely hashes passwords before storing user credentials"
+            },
+            {
+                "interaction": "Login",
+                "description": "Successful authentication generates secure session token and redirects user to personalized dashboard with preferred team data"
+            },
+            {
+                "interaction": "Update Preferences",
+                "description": "Modifying user settings immediately updates stored preferences and refreshes content recommendations accordingly"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchIndexSchema": "Database indexes on name columns for teams and players; full-text search capabilities on match descriptions",
+            "autocompleteAPI": "Endpoint returning filtered suggestions as user types search queries",
+            "searchResultsLayout": "Card-based display showing different entity types (teams, players, matches) with distinct visual treatments"
+        },
+        "function": "Enable fast discovery of teams, players, and historical matches through intelligent search functionality",
+        "static_description": "Persistent search bar in header with autocomplete dropdown showing matching teams, players, and recent matches. Search results page organizes findings by category with filtering options.",
+        "interaction_and_states": [
+            {
+                "interaction": "Type",
+                "description": "Typing in search field triggers real-time autocomplete suggestions based on partial matches in team and player names"
+            },
+            {
+                "interaction": "Submit",
+                "description": "Pressing Enter or clicking search button executes full database query returning paginated results across all relevant categories"
+            },
+            {
+                "interaction": "Filter",
+                "description": "Refining search results by entity type (teams, players, matches) narrows displayed items to selected category only"
+            }
+        ]
+    }
+]

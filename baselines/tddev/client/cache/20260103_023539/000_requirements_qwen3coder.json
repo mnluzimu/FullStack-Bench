@@ -1,0 +1,17 @@
+[
+    "Frontend application that fetches all dynamic data from backend APIs",
+    "Backend server connecting to PostgreSQL database using specified environment variables",
+    "User authentication and session management system",
+    "Dashboard page displaying user progress summary and statistics",
+    "Weekly word delivery system providing 10 new words each week",
+    "Avatar selection feature allowing users to choose and customize their profile avatar",
+    "Waiting room with simple game for user engagement during loading periods",
+    "Homepage with navigation to all main sections",
+    "Five distinct activity pages for different quiz and word game types",
+    "Crossword puzzle game functionality",
+    "Letter unjumbling game functionality",
+    "Synonym and antonym identification activities",
+    "Interactive flashcard system for vocabulary review",
+    "Fill-in-the-blank exercises with automatic grading",
+    "Blog section for vocabulary-related articles and updates"
+]

@@ -1,0 +1,261 @@
+[
+    {
+        "requirement_tested": "A frontend application that fetches all to-do data from backend APIs",
+        "user_persona": "A busy professional who manages daily tasks through a digital to-do list.",
+        "user_goal": "View all existing to-do items upon opening the app.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening the Application",
+                "description": "Sarah opens her browser and navigates to the to-do list application URL hoping to see her tasks.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The page loads with a lavender background and indigo-themed header, preparing to display to-do items."
+            },
+            {
+                "step": 2,
+                "title": "Fetching To-Do Items",
+                "description": "Upon landing, Sarah waits for the app to load her list of tasks from the server.",
+                "action": "Page loads and automatically triggers a GET request to /api/todos.",
+                "expected_outcome": "All to-do items are fetched and displayed in a list view with titles, descriptions, due dates, and completion status using indigo-styled cards."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API that connects to a PostgreSQL database using specified environment variables",
+        "user_persona": "A developer deploying the application locally for testing purposes.",
+        "user_goal": "Verify that the backend successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Server",
+                "description": "Jamie runs the backend server locally and expects it to connect to the configured PostgreSQL instance.",
+                "action": "Start the backend service with correct environment variables set.",
+                "expected_outcome": "Server logs indicate successful connection to PostgreSQL at localhost:5432 with username myappuser and database myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to create new to-do items with title, description, and due date",
+        "user_persona": "A student organizing study sessions throughout the week.",
+        "user_goal": "Add a new task to prepare for an upcoming exam.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Task Creation",
+                "description": "Alex clicks on the 'Add Task' button to begin entering details about studying for finals.",
+                "action": "Click the 'Add Task' button.",
+                "expected_outcome": "An indigo-styled modal form appears with input fields for title, description, and due date."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out Details",
+                "description": "Alex fills out the form with the title 'Study for Calculus Final', adds notes in the description, and selects tomorrow’s date.",
+                "action": "Fill the title, description, and select a due date.",
+                "expected_outcome": "Form fields accept the input values without error."
+            },
+            {
+                "step": 3,
+                "title": "Submitting New Task",
+                "description": "After reviewing the details, Alex submits the form to add the task to their list.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "A POST request is made to /api/todos, and the newly added task appears at the top of the list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to edit existing to-do items including title, description, and due date",
+        "user_persona": "A project manager adjusting timelines and task descriptions.",
+        "user_goal": "Update an old task's deadline and clarify its description.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Task to Edit",
+                "description": "Taylor notices an outdated task titled 'Weekly Report' and decides to update it with clearer instructions and a new due date.",
+                "action": "Click the pencil/edit icon next to the 'Weekly Report' task.",
+                "expected_outcome": "An indigo-styled edit form opens pre-filled with current task data."
+            },
+            {
+                "step": 2,
+                "title": "Updating Information",
+                "description": "Taylor modifies the description to specify formatting requirements and changes the due date to next Monday.",
+                "action": "Modify the description and due date fields.",
+                "expected_outcome": "Fields update with new values without triggering validation errors prematurely."
+            },
+            {
+                "step": 3,
+                "title": "Saving Changes",
+                "description": "Satisfied with the edits, Taylor saves the updated task.",
+                "action": "Click the 'Save' button.",
+                "expected_outcome": "A PUT request is sent to /api/todos/{id}, and the task in the list reflects the updated description and due date immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to delete to-do items permanently",
+        "user_persona": "A freelancer cleaning up completed client work from last month.",
+        "user_goal": "Remove an obsolete task they no longer need tracked.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Task to Delete",
+                "description": "Jordan scrolls through the list and finds a completed task called 'Client Feedback Review' which he wants to remove permanently.",
+                "action": "Locate and click the trash/delete icon associated with the task.",
+                "expected_outcome": "A DELETE request is sent to /api/todos/{id}."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Deletion",
+                "description": "The task disappears instantly from the list view after deletion completes.",
+                "action": "Wait for response from DELETE endpoint.",
+                "expected_outcome": "Task is removed from the UI without requiring manual refresh."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to mark tasks as completed or uncompleted",
+        "user_persona": "A parent tracking household chores assigned to children.",
+        "user_goal": "Mark a chore as done once finished by their child.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding the Task",
+                "description": "Morgan sees the task 'Clean Bedroom' still marked as incomplete and wants to check it off since it's been completed.",
+                "action": "Click the checkbox beside the task.",
+                "expected_outcome": "A PATCH request is sent to /api/todos/{id}/complete, and the checkbox visually toggles to checked state immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filtering capability to show all, active, or completed tasks",
+        "user_persona": "A remote worker focusing only on pending assignments today.",
+        "user_goal": "See only the tasks that remain active.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Applying Filter",
+                "description": "Casey wants to focus solely on unfinished tasks and selects the 'Active' filter option.",
+                "action": "Click the 'Active' filter tab/button.",
+                "expected_outcome": "GET request is sent to /api/todos?filter=active, and the list updates to show only non-completed tasks."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality to find tasks by keywords in title or description",
+        "user_persona": "A team lead looking for a specific meeting prep task buried among dozens.",
+        "user_goal": "Quickly locate a task related to budget planning.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Search Term",
+                "description": "Riley remembers there was a task involving 'budget approval' but doesn't recall exactly where it is.",
+                "action": "Type 'budget approval' into the search bar.",
+                "expected_outcome": "Debounced GET request is triggered to /api/todos?search=budget+approval, and matching tasks appear in real time."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display all to-do items in a list view with key details visible",
+        "user_persona": "A new user exploring the app for the first time.",
+        "user_goal": "Understand what tasks exist and get a quick overview.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Overview",
+                "description": "Quinn opens the app and scans the main screen to understand how tasks are presented.",
+                "action": "Load the main page and observe the task listing.",
+                "expected_outcome": "Tasks are displayed in vertical indigo-styled cards or rows showing title, description snippet, due date, and completion status clearly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI design with lavender background and indigo components across all pages",
+        "user_persona": "A designer checking cross-device compatibility of the application.",
+        "user_goal": "Ensure consistent styling regardless of device used.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Mobile Layout",
+                "description": "Dana views the app on a smartphone to ensure elements adapt properly.",
+                "action": "Resize browser window or open app on mobile device.",
+                "expected_outcome": "Lavender background remains intact and indigo components maintain proper sizing and alignment across different screen sizes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time synchronization between frontend and backend for all CRUD operations",
+        "user_persona": "Two users collaborating on shared tasks remotely.",
+        "user_goal": "Ensure both users see live updates when one makes changes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Simultaneous Editing",
+                "description": "One user marks a task as complete while another deletes a different task.",
+                "action": "Perform concurrent create/update/delete actions from multiple clients.",
+                "expected_outcome": "Both users observe synchronized updates in real time without needing to manually refresh the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Error handling for failed API requests or database connections",
+        "user_persona": "A user experiencing intermittent network issues.",
+        "user_goal": "Receive helpful feedback when something goes wrong.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Failure",
+                "description": "While trying to submit a new task, Pat experiences a momentary loss of connectivity.",
+                "action": "Attempt to create a task when offline or API is unreachable.",
+                "expected_outcome": "An indigo-themed toast notification pops up informing the user that the operation failed and suggesting retry."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Validation for required fields when creating or editing tasks",
+        "user_persona": "A distracted multitasker prone to missing fields.",
+        "user_goal": "Be prompted to fill in necessary information before saving.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Leaving Required Field Blank",
+                "description": "Asher tries to save a new task but forgets to enter a title.",
+                "action": "Leave the title field empty and attempt to submit the form.",
+                "expected_outcome": "Submission is blocked, and the title field highlights red with an error message indicating it's required."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Pagination or infinite scroll for browsing long lists of tasks",
+        "user_persona": "A meticulous planner managing hundreds of weekly tasks.",
+        "user_goal": "Effortlessly navigate through many tasks without performance lag.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Scrolling Through Long List",
+                "description": "Blair has accumulated over 50 tasks and begins scrolling down the list.",
+                "action": "Scroll toward the bottom of the task list.",
+                "expected_outcome": "Additional tasks are loaded dynamically via GET /api/todos?page=x&limit=y, preventing overwhelming initial load times."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configured with npm run install:all and npm run dev scripts",
+        "user_persona": "A new contributor setting up the codebase for local development.",
+        "user_goal": "Install dependencies and start both services efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Charlie clones the repo and wants to quickly set up everything needed to develop.",
+                "action": "Run command 'npm run install:all' in terminal.",
+                "expected_outcome": "Frontend and backend dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Running Development Servers",
+                "description": "Once setup is done, Charlie starts working on features by launching both environments.",
+                "action": "Run command 'npm run dev'.",
+                "expected_outcome": "Both frontend and backend servers start concurrently, ready for development."
+            }
+        ]
+    }
+]

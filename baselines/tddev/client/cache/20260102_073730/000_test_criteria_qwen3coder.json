@@ -1,0 +1,240 @@
+[
+    {
+        "requirement_tested": "Frontend application with pages for browsing, searching, filtering, and booking apartments",
+        "user_persona": "A traveler looking for a short-term apartment rental.",
+        "user_goal": "Browse available apartments and navigate to the apartment detail page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Sarah visits the homepage and sees the navigation bar with links to different sections.",
+                "action": "Click on the 'Apartments' link in the navigation bar.",
+                "expected_outcome": "The apartment listing page loads, showing a grid of available apartments."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Apartment Details",
+                "description": "Sarah finds an apartment she likes and clicks on the apartment card to see more details.",
+                "action": "Click on an apartment card.",
+                "expected_outcome": "The apartment detail page loads, displaying comprehensive information and images."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API service to manage apartment data, bookings, and user interactions",
+        "user_persona": "A developer testing backend functionality.",
+        "user_goal": "Verify that the backend API serves apartment data correctly.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Apartment Data",
+                "description": "The frontend makes a request to the backend to retrieve apartment listings.",
+                "action": "Send GET request to /api/apartments.",
+                "expected_outcome": "API responds with a list of apartments in JSON format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "PostgreSQL database connection using environment variables: DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME",
+        "user_persona": "A DevOps engineer deploying the application.",
+        "user_goal": "Ensure the backend connects to the PostgreSQL database using correct environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "The backend service initializes and attempts to connect to the database.",
+                "action": "Start the backend service with environment variables set.",
+                "expected_outcome": "Service successfully connects to PostgreSQL database using provided credentials."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apartment listing page displaying available apartments with key details",
+        "user_persona": "A potential renter exploring options.",
+        "user_goal": "View a list of available apartments with key details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Apartment Listings",
+                "description": "John clicks on the 'Apartments' link to see available rentals.",
+                "action": "Navigate to the apartment listing page.",
+                "expected_outcome": "Page displays a grid of apartment cards with thumbnails, titles, locations, prices, and ratings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Search functionality allowing users to find apartments by location, dates, and other criteria",
+        "user_persona": "A user planning a trip to a specific city.",
+        "user_goal": "Find apartments in a specific location using the search bar.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Search Bar",
+                "description": "Emily wants to find apartments in Paris. She types 'Paris' into the search bar.",
+                "action": "Enter 'Paris' into the search bar and click 'Search'.",
+                "expected_outcome": "Page updates to show apartments located in Paris."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Filter options for refining apartment searches by price, amenities, type, and availability",
+        "user_persona": "A budget-conscious traveler.",
+        "user_goal": "Filter apartments by price range.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Filter Panel",
+                "description": "David clicks the filter icon to refine his search results.",
+                "action": "Click the filter icon.",
+                "expected_outcome": "Filter options panel expands below the search bar."
+            },
+            {
+                "step": 2,
+                "title": "Applying Price Filter",
+                "description": "David sets a maximum nightly rate of $100 and applies the filter.",
+                "action": "Set max price to $100 and apply filters.",
+                "expected_outcome": "List updates to show only apartments within the specified price range."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Apartment detail page showing comprehensive information, images, and pricing",
+        "user_persona": "Someone considering a booking.",
+        "user_goal": "Review detailed information and images of an apartment.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Apartment Details",
+                "description": "Lisa clicks on an apartment card to learn more about it.",
+                "action": "Click on an apartment card.",
+                "expected_outcome": "Apartment detail page loads with photo gallery, description, amenities, and pricing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Booking system enabling users to select dates and submit rental requests",
+        "user_persona": "A user ready to make a reservation.",
+        "user_goal": "Select dates and submit a booking request for an apartment.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Booking Process",
+                "description": "Michael clicks the 'Book Now' button on an apartment detail page.",
+                "action": "Click the 'Book Now' button.",
+                "expected_outcome": "Booking form modal or page appears with date selection and guest count."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Booking Request",
+                "description": "Michael selects his stay dates and clicks submit.",
+                "action": "Select dates and click the submit button.",
+                "expected_outcome": "Form submits successfully and redirects to a confirmation page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management for secure booking and record access",
+        "user_persona": "Returning user accessing personal bookings.",
+        "user_goal": "Log in to access personal booking records.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Anna clicks the login button and enters her credentials.",
+                "action": "Click login button, enter email and password, then click 'Login'.",
+                "expected_outcome": "User is authenticated and redirected to their account dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Booking history page where users can view their past and upcoming reservations",
+        "user_persona": "A frequent renter checking previous stays.",
+        "user_goal": "View past and upcoming reservations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Booking History",
+                "description": "Robert navigates to the bookings page to see his reservation history.",
+                "action": "Click on the 'Bookings' link in the navigation bar.",
+                "expected_outcome": "Booking history page loads, displaying a list of past and upcoming reservations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Admin interface or capability for managing apartment listings and bookings",
+        "user_persona": "An admin managing the platform.",
+        "user_goal": "Add a new apartment listing through the admin interface.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Adding New Apartment",
+                "description": "Admin accesses the admin dashboard and initiates adding a new apartment.",
+                "action": "Click 'Add New Apartment' in the admin panel.",
+                "expected_outcome": "Blank form for entering apartment details appears."
+            },
+            {
+                "step": 2,
+                "title": "Saving Apartment Listing",
+                "description": "Admin fills out the form and saves the new listing.",
+                "action": "Fill form fields and click save.",
+                "expected_outcome": "New apartment is added to the database and visible in listings."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design optimized for desktop and mobile browsing experiences",
+        "user_persona": "Mobile user browsing apartments.",
+        "user_goal": "Browse apartments seamlessly on a mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Emma opens the website on her smartphone to look for apartments.",
+                "action": "Visit the homepage on a mobile browser.",
+                "expected_outcome": "Site layout adjusts responsively to fit the mobile screen size."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Visual styling with linen background and maroon-colored interactive components",
+        "user_persona": "A designer verifying visual consistency.",
+        "user_goal": "Confirm that the site uses the correct background and accent colors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Visual Design",
+                "description": "Designer checks the homepage for correct background texture and interactive element colors.",
+                "action": "Load homepage and inspect visual elements.",
+                "expected_outcome": "Background displays linen texture; interactive elements use maroon color on hover/click."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script for simultaneous frontend and backend dependency installation",
+        "user_persona": "Developer setting up the project locally.",
+        "user_goal": "Install dependencies for both frontend and backend simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Developer runs the unified install command to set up the project.",
+                "action": "Run 'npm run install:all' from the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Development setup with 'dev' script to run frontend and backend concurrently",
+        "user_persona": "Developer starting the development environment.",
+        "user_goal": "Start both frontend and backend servers with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Developer uses the convenience script to launch both services.",
+                "action": "Run 'npm run dev' from the root directory.",
+                "expected_outcome": "Frontend and backend servers start concurrently and are accessible."
+            }
+        ]
+    }
+]

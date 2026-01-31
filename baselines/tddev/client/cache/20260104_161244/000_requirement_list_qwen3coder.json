@@ -1,0 +1,262 @@
+[
+    {
+        "resource_dependency": {
+            "registrationFormFields": [
+                "username",
+                "email",
+                "password",
+                "confirmPassword"
+            ],
+            "userAvatarPlaceholder": "/assets/default-avatar.png",
+            "apiEndpointRegister": "/api/auth/register"
+        },
+        "function": "Allows new users to create an account by submitting their credentials.",
+        "static_description": "A centered form with fields for username, email, password, and confirm password. Includes a submit button labeled 'Sign Up'. Background is light cyan (#E0FFFF) and form elements use cadet blue (#5F9EA0) styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Sign Up' button submits the form data to the backend via POST /api/auth/register. Displays loading spinner during submission."
+            },
+            {
+                "interaction": "Input Focus",
+                "description": "Each input field highlights when focused with a border color matching cadet blue."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loginFormFields": [
+                "email",
+                "password"
+            ],
+            "logoImage": "/assets/logo.svg",
+            "apiEndpointLogin": "/api/auth/login"
+        },
+        "function": "Enables existing users to authenticate themselves and access protected areas of the website.",
+        "static_description": "A centered login form featuring email and password inputs along with a 'Log In' button. Contains links to register and reset password. Styled with light cyan background and cadet blue components.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Log In' sends credentials to /api/auth/login endpoint. On success redirects to dashboard; on failure shows error message."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Forgot Password?' navigates to password recovery page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "inviteFormFields": [
+                "friendEmail"
+            ],
+            "sendInviteAPI": "/api/user/invite",
+            "invitationSentMessage": "Invitation sent successfully!",
+            "defaultInviteText": "Join me on this amazing platform!"
+        },
+        "function": "Permits logged-in users to send invitations to friends via email to join the website.",
+        "static_description": "A modal dialog containing an input field for friend's email address, a textarea for custom message (pre-filled with default text), and buttons to send or cancel the invitation. Uses light cyan background and cadet blue accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Send Invite' calls POST /api/user/invite with friend’s email and optional message. Shows confirmation toast upon successful request."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Cancel' closes the modal without sending any invitation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "voteButtons": [
+                "upvote_icon.svg",
+                "downvote_icon.svg"
+            ],
+            "voteAPI": "/api/content/vote",
+            "contentDataSchema": "Table 'posts' includes columns: post_id (UUID), author_id (UUID), content_text (TEXT), image_url (TEXT), upvotes (INTEGER), downvotes (INTEGER), created_at (TIMESTAMP)"
+        },
+        "function": "Provides ability for authenticated users to express approval/disapproval of user-generated content through voting.",
+        "static_description": "Each post displays two vertically stacked icons (upvote/downvote) next to the content area. Vote counts appear beside respective icons. Background remains light cyan, while vote buttons follow cadet blue theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking upvote/downvote triggers PUT /api/content/vote/{post_id} with vote_type parameter. Updates displayed count instantly after server confirmation."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Icons slightly increase in size and opacity when hovered over."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "uploadAreaIcon": "upload_image_icon.svg",
+            "uploadAPI": "/api/media/upload",
+            "acceptedFileTypes": ".jpg,.jpeg,.png",
+            "maxFileSizeMB": 5
+        },
+        "function": "Enables users to upload images which can be shared within the platform.",
+        "static_description": "A dashed rectangular drop zone with centered upload icon and text prompting user to drag & drop or click to browse files. Styled with light cyan background and cadet blue borders/icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking opens native file browser allowing selection of supported image formats under 5MB. Selected file preview appears before upload."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Dragging a valid file onto the zone highlights it green and allows dropping. Invalid files show red highlight and rejection notification."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pointsDisplayIcon": "points_badge.svg",
+            "pointsAPISchema": "Database table 'user_points': user_id (UUID), total_points (INTEGER), last_updated (TIMESTAMP)",
+            "activityRewardsMapping": "{ 'upload': 10, 'vote': 1, 'receive_vote': 2 }"
+        },
+        "function": "Tracks and rewards user engagement through point accumulation based on various actions.",
+        "static_description": "Top navigation bar features a small badge showing current user points with associated star-shaped icon. Points value updates dynamically across sessions. Maintains consistent light cyan/cadet blue color scheme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Backend Event",
+                "description": "Upon completing eligible activities (upload, vote, etc.), backend increments points according to mapping rules. UI reflects updated score after refresh or live update push."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profilePicturePlaceholder": "/assets/profile-placeholder.jpg",
+            "personalInfoFields": [
+                "name",
+                "bio",
+                "location",
+                "joined_date"
+            ],
+            "recentActivityFeedSchema": "Fetch latest posts/images/votes made by user from 'posts', 'media', and 'votes' tables joined by user_id",
+            "userDataAPI": "/api/user/me"
+        },
+        "function": "Displays personalized information about the logged-in user including bio, stats, and recent activity.",
+        "static_description": "Left sidebar shows profile picture, name, short bio, location, join date, and follower stats. Main panel lists recent uploads, votes cast, and interactions in chronological order. Light cyan background with cadet blue cards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Load",
+                "description": "Automatically fetches user details from GET /api/user/me and populates fields. Recent activity loaded asynchronously."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit Profile' enables inline editing of editable fields like bio and location."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dynamicEndpointsList": [
+                "/api/auth/register",
+                "/api/auth/login",
+                "/api/user/invite",
+                "/api/content/vote",
+                "/api/media/upload",
+                "/api/user/me"
+            ],
+            "apiResponseFormat": "JSON responses with standardized structure { status: <code>, data: <payload>, message: <optional> }"
+        },
+        "function": "Ensures all frontend components communicate exclusively with backend services instead of using hardcoded or mock data.",
+        "static_description": "All forms and interactive widgets rely on defined RESTful endpoints for data retrieval and manipulation. No static values embedded directly in code.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "requiredTablesSchema": "users(uuid), posts(uuid), media(uuid), votes(uuid), friendships(uuid), points(uuid)"
+        },
+        "function": "Establishes secure connection between application backend and PostgreSQL instance using provided environment variables.",
+        "static_description": "Backend initialization script reads environment variables to configure database pool connection. All models map to corresponding database tables.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "themeVariablesCSS": ":root { --bg-color: #E0FFFF; --primary-color: #5F9EA0; }",
+            "colorPaletteGuide": "#E0FFFF (Light Cyan), #5F9EA0 (Cadet Blue), #FFFFFF (White), #000000 (Black)"
+        },
+        "function": "Applies global CSS styling ensuring uniform appearance throughout the site with specified colors.",
+        "static_description": "Entire website uses light cyan as main background color and cadet blue for primary interactive elements such as buttons and headers.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "Mobile (<768px), Tablet (768–1024px), Desktop (>1024px)",
+            "adaptiveComponentRules": "Flexible grids, collapsible menus, scalable fonts"
+        },
+        "function": "Optimizes layout and usability across different device screen sizes and orientations.",
+        "static_description": "Layout adjusts automatically depending on viewport width. Navigation collapses into hamburger menu on mobile. Images scale appropriately.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "feedItemTemplate": "<div class='post'>...</div>",
+            "fetchFeedAPI": "/api/feed",
+            "feedDataSourceSchema": "Join 'posts', 'users', 'votes', and 'media' tables filtered by friendship relationships"
+        },
+        "function": "Presents aggregated stream of content posted by connected friends to keep users engaged.",
+        "static_description": "Main feed section displays chronological list of posts from followed users. Each entry contains avatar, username, timestamp, content/image, and interaction options. Follows light cyan/cadet blue aesthetic.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling near bottom triggers infinite scroll loader fetching additional items via GET /api/feed?page=N+1"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "friendsListTemplate": "<ul><li v-for='friend'>{{friend.name}}</li></ul>",
+            "friendManagementAPIs": [
+                "/api/friends/list",
+                "/api/friends/add",
+                "/api/friends/remove"
+            ],
+            "friendshipStatusSchema": "Table 'friendships': requester_id(UUID), accepter_id(UUID), status(ENUM: pending, accepted, declined)"
+        },
+        "function": "Facilitates adding, removing, and viewing mutual connections among users.",
+        "static_description": "Dedicated tab or panel showing searchable list of current friends. Buttons alongside each friend allow removal. Pending requests listed separately with accept/decline options. Consistent styling applied.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Add Friend' prompts for username/email lookup. Clicking 'Remove' triggers DELETE /api/friends/remove/{id}. Accept/Decline modify friendship record accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "shareableContentTypes": [
+                "text",
+                "image",
+                "link"
+            ],
+            "createPostAPI": "/api/posts/create",
+            "postSubmissionSchema": "POST body includes type(TEXT), content(TEXT), media_id(OPTIONAL UUID)"
+        },
+        "function": "Supports creation and distribution of diverse types of user-generated content beyond images alone.",
+        "static_description": "Compose box atop feed accepts multi-line text input with attachment option for images or links. Toggle switches determine content type. Submit button publishes to feed. Styled consistently with overall theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Post' submits data to POST /api/posts/create. Response adds new item to top of feed immediately."
+            },
+            {
+                "interaction": "Click",
+                "description": "Attaching image/link reveals preview panel above text area."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "concurrently \"cd client && npm install\" \"cd server && npm install\"",
+            "devStartCommand": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+            "packageJsonStructure": "{ scripts: { \"install:all\": \"<command>\", \"dev\": \"<command>\" } }"
+        },
+        "function": "Sets up repository-level automation for streamlined setup and concurrent execution of frontend and backend processes.",
+        "static_description": "Root-level package.json defines two custom commands: install:all runs npm install in both client/server directories, and dev starts both environments simultaneously using concurrently utility.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,186 @@
+[
+    {
+        "resource_dependency": {
+            "stockDataAPI": "An API endpoint that returns real-time stock data including company details, ticker symbols, market trends, financials, and key ratios.",
+            "reportGenerationAPI": "An API endpoint that generates custom stock reports based on user-selected parameters such as format and content sections.",
+            "exportReportAPI": "An API endpoint to export generated reports in selected formats (PDF, CSV, etc.)."
+        },
+        "function": "Fetch all stock-related data dynamically from backend APIs to populate the frontend components.",
+        "static_description": "The main dashboard displays a white background with navy-themed UI components. It includes a header bar with navigation links, a search bar for entering stock codes or names, filters for selecting report formats and content preferences, and placeholders for displaying stock information, market trends, and financial data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button triggers an API call to fetch and display relevant stock data."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focusing on the stock code/name input field initiates the same search action as clicking the 'Search' button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseSchema": "Set up a PostgreSQL database with tables: stocks(stock_id, symbol, name, sector, industry), reports(report_id, user_selections_json, generated_at), users(user_id, username, email) if needed for tracking purposes."
+        },
+        "function": "Establish secure connection to a PostgreSQL database using provided environment variables to store and retrieve persistent data related to stocks, reports, and potentially users.",
+        "static_description": "No visible representation since this is a backend configuration. However, it supports the entire system’s ability to persistently manage stock metadata, historical report generations, and possibly user settings.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "searchInputField": "Text input styled with navy border and placeholder text indicating 'Enter stock code or name'",
+            "searchButton": "Navy-colored button labeled 'Search'"
+        },
+        "function": "Allow users to enter either a stock ticker symbol or full company name to initiate a lookup process.",
+        "static_description": "A centered horizontal form containing a navy-outlined text input field followed by a navy-filled 'Search' button. Placeholder text inside the input says 'Enter stock code or name'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button sends the entered value to the backend for validation and subsequent data fetching."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter within the input field triggers the same behavior as clicking the 'Search' button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formatOptionsDropdown": [
+                "PDF",
+                "CSV",
+                "HTML Summary"
+            ],
+            "contentPreferencesCheckboxes": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data"
+            ]
+        },
+        "function": "Provide controls enabling users to customize their desired output format and choose which sections of the report they want included.",
+        "static_description": "Below the search area lies two sets of controls: a dropdown menu labeled 'Select Format', pre-populated with common document types, and beneath that, checkboxes grouped under 'Include Sections:', listing options like Basic Info, Market Trends, Financial Data.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any checkbox toggles selection state; clicking the dropdown reveals available formats."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "generateReportEndpoint": "POST /api/reports/generate accepting user selections and returning a downloadable link or embedded preview"
+        },
+        "function": "Process user inputs regarding stock selection, preferred format, and chosen content areas to automatically produce tailored reports.",
+        "static_description": "Once valid inputs are submitted, a modal appears showing a loading spinner until completion. Upon success, a preview window shows the generated report alongside download/export buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "After selecting preferences, clicking 'Generate Report' triggers the backend service to compile the requested report and return either a direct view or download option."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "companyDetailsSchema": "{ symbol: string, name: string, sector: string, industry: string }"
+        },
+        "function": "Present fundamental identifying attributes about a selected stock including its ticker symbol, official company name, business sector, and industry classification.",
+        "static_description": "A card-style panel titled 'Company Overview' presents aligned label-value pairs showing Symbol, Name, Sector, and Industry in navy font against a white background.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "marketTrendVisualizerComponent": "Chart.js or similar library rendering line graphs and candlestick patterns"
+        },
+        "function": "Illustrate recent performance movements through graphical representations highlighting upward/downward trends along with supporting numerical metrics.",
+        "static_description": "Adjacent to the company info card, there's a dedicated chart container labeled 'Market Trends' displaying interactive time-series plots with directional arrows or color-coded indicators denoting positive/negative movement.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over data points reveals tooltips showing exact price/volume values at those timestamps."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialDataTableSchema": "{ earnings: number, revenue: number, pe_ratio: float, debt_to_equity: float }"
+        },
+        "function": "Tabulate critical fiscal statistics essential for evaluating a company’s financial health and investment potential.",
+        "static_description": "Another collapsible table titled 'Financial Highlights' lists key figures such as Earnings Per Share, Revenue, P/E Ratio, Debt-to-Equity ratio arranged neatly in rows and columns.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the expand/collapse icon toggles visibility of detailed financial entries without reloading the page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeCSSVariables": ":root { --bg-color: #FFFFFF; --primary-color: #000080; }"
+        },
+        "function": "Apply consistent styling throughout the application using predefined CSS variables ensuring uniformity in background and component colors.",
+        "static_description": "Entire layout uses solid white (#FFFFFF) for backgrounds and deep navy blue (#000080) consistently applied to buttons, headers, borders, and active elements across pages.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "@media queries targeting standard device widths: mobile (<768px), tablet (768px–1024px), desktop (>1024px)"
+        },
+        "function": "Ensure optimal viewing experience regardless of screen size by adapting layouts fluidly between breakpoints.",
+        "static_description": "All major UI sections stack vertically on smaller screens but reflow horizontally when sufficient space allows. Font sizes adjust accordingly, and touch targets increase proportionally on mobile views.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "realTimeWebSocketAPI": "Websocket endpoint providing live updates on stock prices and changes without manual refresh"
+        },
+        "function": "Continuously poll or receive push notifications from backend systems to keep displayed data synchronized with latest market conditions.",
+        "static_description": "Live status badge near top right corner indicates connection state ('Connected'/'Disconnected') and flashes briefly whenever fresh data arrives.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Hovering over the live indicator provides additional context like last updated timestamp."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorMessages": "{ invalidSymbol: 'Invalid stock code entered.', noDataAvailable: 'No data found for this stock.' }"
+        },
+        "function": "Gracefully handle cases where user submits incorrect or unsupported stock identifiers or when source data becomes temporarily inaccessible.",
+        "static_description": "Upon encountering errors, clear alert banners appear above respective forms or panels explaining what went wrong and how users might correct it.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "exportFormatsList": [
+                "PDF",
+                "CSV",
+                "XLSX"
+            ]
+        },
+        "function": "Offer multiple avenues for saving or sharing completed reports beyond browser-based viewing.",
+        "static_description": "Within the report results section, secondary action buttons labeled 'Download PDF', 'Export as CSV', etc., are visually distinct yet maintain theme consistency.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Each button initiates a separate API request to generate and deliver the equivalent version of the current report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loadingSpinnerAsset": "/assets/spinner.gif"
+        },
+        "function": "Indicate ongoing processing during intensive operations such as report generation or large dataset retrieval.",
+        "static_description": "Overlay semi-transparent darkened mask covers main interface during loading phases accompanied by centrally positioned animated spinner graphic sourced from local assets folder.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "authTokenHeader": "Authorization Bearer token passed via HTTP headers for verifying requests originate from authenticated sessions"
+        },
+        "function": "Protect sensitive endpoints from unauthorized access by enforcing token-based authentication protocols.",
+        "static_description": "No explicit UI element shown but underlying network traffic appends appropriate authorization headers before transmitting sensitive requests.",
+        "interaction_and_states": []
+    }
+]

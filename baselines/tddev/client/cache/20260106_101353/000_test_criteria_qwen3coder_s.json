@@ -1,0 +1,296 @@
+[
+    {
+        "requirement_tested": "Display a search interface for entering stock codes or names",
+        "user_persona": "A stock analyst looking to quickly find information about a specific company.",
+        "user_goal": "To search for a stock using its ticker symbol or company name.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing the Search Interface",
+                "description": "Sarah opens the stock report generator website and sees a clean search bar with the placeholder text 'Enter stock code or name'. She decides to look up Apple Inc.",
+                "action": "Type 'Apple' into the search input field.",
+                "expected_outcome": "The text 'Apple' appears in the search box."
+            },
+            {
+                "step": 2,
+                "title": "Initiating the Search",
+                "description": "Sarah clicks the search button next to the input field, hoping to get relevant results.",
+                "action": "Click on the search button.",
+                "expected_outcome": "A loading spinner appears and the system initiates a search query for 'Apple'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Fetch and display stock information in real-time from backend APIs",
+        "user_persona": "A financial advisor who needs accurate stock data for client consultations.",
+        "user_goal": "To view real-time stock details after performing a search.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Performing a Stock Search",
+                "description": "Michael searches for 'MSFT' using the search bar on the homepage.",
+                "action": "Enter 'MSFT' in the search box and click the search button.",
+                "expected_outcome": "The system returns a list of matching stocks including Microsoft Corporation."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Detailed Stock Information",
+                "description": "Michael selects the Microsoft entry from the results to see detailed information like current price and trading volume.",
+                "action": "Click on the row representing Microsoft in the results table.",
+                "expected_outcome": "A detailed stock information card displays Microsoft's ticker symbol, current price, and trading volume."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to select report formats and content preferences",
+        "user_persona": "A portfolio manager preparing quarterly reports for clients.",
+        "user_goal": "To customize the report format and content before generating it.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Report Format",
+                "description": "Lisa navigates to the report customization section where she can choose how her report will be exported.",
+                "action": "Click on the dropdown menu for report format options.",
+                "expected_outcome": "A dropdown list showing PDF, CSV, and HTML options appears."
+            },
+            {
+                "step": 2,
+                "title": "Choosing Content Preferences",
+                "description": "Lisa checks the boxes for Basic Info and Market Trends to ensure these sections are included in her report.",
+                "action": "Click the checkboxes for 'Basic Info' and 'Market Trends'.",
+                "expected_outcome": "Both checkboxes are selected and the report generation settings update accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate customized stock reports based on user inputs",
+        "user_persona": "A student researching market behavior for a school project.",
+        "user_goal": "To generate a comprehensive stock report tailored to his research needs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating the Report",
+                "description": "Tom selects Tesla as his focus stock, chooses PDF as the format, and includes all content types. He then clicks the 'Generate Report' button.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "The system processes the request and builds a report based on the selected options."
+            },
+            {
+                "step": 2,
+                "title": "Previewing the Generated Report",
+                "description": "After processing, Tom views the preview area to confirm the content and formatting match his expectations.",
+                "action": "Wait for the report preview to load.",
+                "expected_outcome": "A snippet of the generated report appears in the preview area with correct content and format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include basic stock information such as price, volume, and ticker symbol",
+        "user_persona": "A day trader who relies on quick access to core stock metrics.",
+        "user_goal": "To view essential stock details at a glance.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Core Stock Details",
+                "description": "Alex searches for 'GOOGL' and views the main stock card displayed on the page.",
+                "action": "Click on the 'GOOGL' result from the search list.",
+                "expected_outcome": "A card layout displays the ticker symbol 'GOOGL', current price, and trading volume."
+            },
+            {
+                "step": 2,
+                "title": "Analyzing Market Trends",
+                "description": "Alex examines the chart component below the basic info to understand recent price movements.",
+                "action": "Hover over the chart component.",
+                "expected_outcome": "Detailed data points appear on hover, providing insight into daily fluctuations."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide market trend analysis and visualization",
+        "user_persona": "An investor analyzing long-term investment opportunities.",
+        "user_goal": "To analyze the market trend of a particular stock over time.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visualizing Historical Price Movements",
+                "description": "Emma selects 'AMZN' from the search results and looks at the interactive chart showing its historical performance.",
+                "action": "Click on the chart component associated with the selected stock.",
+                "expected_outcome": "An interactive chart renders showing AMZN's price movements over the past year."
+            },
+            {
+                "step": 2,
+                "title": "Reading Trend Analysis Summary",
+                "description": "Emma reads the accompanying trend analysis text to understand recent developments affecting the stock.",
+                "action": "Scroll down to read the trend analysis paragraph.",
+                "expected_outcome": "A concise summary explains recent market trends influencing Amazon's stock."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integrate financial data into generated reports",
+        "user_persona": "A corporate finance professional reviewing company financial health.",
+        "user_goal": "To include key financial metrics in the generated stock report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Financial Metrics",
+                "description": "John selects 'TSLA' and scrolls through the financial data table to review key indicators.",
+                "action": "Scroll through the financial data table.",
+                "expected_outcome": "Rows showing P/E ratio, EPS, and debt-to-equity ratio become visible."
+            },
+            {
+                "step": 2,
+                "title": "Including Financial Data in Report",
+                "description": "John ensures the 'Financial Data' checkbox is checked before generating the report.",
+                "action": "Verify that the 'Financial Data' checkbox is selected.",
+                "expected_outcome": "The checkbox remains selected, indicating it will be included in the final report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Support multiple report formats (PDF, CSV, HTML)",
+        "user_persona": "A data scientist needing to import stock data into spreadsheets.",
+        "user_goal": "To export stock reports in CSV format for further analysis.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Export Format",
+                "description": "David selects 'CSV' from the dropdown menu under report formats to prepare his data for spreadsheet tools.",
+                "action": "Click on the 'CSV' option in the format selection dropdown.",
+                "expected_outcome": "The report format is updated to CSV and the download button reflects this change."
+            },
+            {
+                "step": 2,
+                "title": "Downloading the Report",
+                "description": "David clicks the 'Save/Download Report' button to save the file locally.",
+                "action": "Click the 'Save/Download Report' button.",
+                "expected_outcome": "A file named 'stock_report.csv' downloads to his computer."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to save or download generated reports",
+        "user_persona": "A business owner compiling a monthly stock summary for stakeholders.",
+        "user_goal": "To download a completed report for presentation purposes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating a PDF Report",
+                "description": "Jennifer generates a report for 'AAPL' and selects PDF as the format.",
+                "action": "Select 'PDF' from the format dropdown and click 'Generate Report'.",
+                "expected_outcome": "The system builds a PDF version of the report based on selected preferences."
+            },
+            {
+                "step": 2,
+                "title": "Saving the Report",
+                "description": "Jennifer clicks the 'Save/Download Report' button to download the final document.",
+                "action": "Click the 'Save/Download Report' button.",
+                "expected_outcome": "A PDF file named 'stock_report.pdf' is downloaded to her device."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a responsive layout with white background and navy-colored components",
+        "user_persona": "A mobile user browsing stock reports on a tablet.",
+        "user_goal": "To navigate the site smoothly on a smaller screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating on Mobile Device",
+                "description": "Robert accesses the site on his tablet and notices the clean white background and navy blue interactive elements.",
+                "action": "Open the website on a tablet browser.",
+                "expected_outcome": "All UI components maintain their white background and navy color scheme regardless of screen size."
+            },
+            {
+                "step": 2,
+                "title": "Interacting with Responsive Elements",
+                "description": "Robert taps the search button and confirms it highlights appropriately on touch.",
+                "action": "Tap the search button.",
+                "expected_outcome": "The button visually highlights upon touch, confirming its interactivity."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Connect to an external PostgreSQL database for dynamic stock data",
+        "user_persona": "A developer verifying the backend integration for stock data.",
+        "user_goal": "To confirm that stock information is fetched from the configured database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Database Connection",
+                "description": "The developer checks that the application correctly connects to the PostgreSQL database using environment variables.",
+                "action": "Ensure DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp are set.",
+                "expected_outcome": "Application logs show successful connection to the database."
+            },
+            {
+                "step": 2,
+                "title": "Fetching Stock Data",
+                "description": "The developer performs a stock search to verify real-time data retrieval from the database.",
+                "action": "Search for a known stock like 'NFLX'.",
+                "expected_outcome": "Real-time data for Netflix is returned from the backend API connecting to the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Set up backend API endpoints to serve stock data",
+        "user_persona": "A frontend engineer integrating with backend services.",
+        "user_goal": "To ensure the frontend can properly communicate with the stock data API.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing API Endpoint Availability",
+                "description": "The engineer sends a GET request to the stock data endpoint to validate functionality.",
+                "action": "Send a GET request to '/api/stocks?stock_code=NFLX'.",
+                "expected_outcome": "The server responds with JSON containing NFLX stock data."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Authentication",
+                "description": "The engineer confirms that protected endpoints require valid authentication tokens.",
+                "action": "Attempt to access '/api/reports' without a token.",
+                "expected_outcome": "The server returns a 401 Unauthorized error."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run install:all script for installing frontend and backend dependencies",
+        "user_persona": "A new team member setting up the development environment.",
+        "user_goal": "To install all necessary dependencies for both frontend and backend with a single command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "The developer runs the install script to set up both frontend and backend environments.",
+                "action": "Run 'npm run install:all' in the terminal.",
+                "expected_outcome": "Both frontend and backend dependency installations complete successfully."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Setup",
+                "description": "The developer verifies that node_modules folders exist in both frontend and backend directories.",
+                "action": "Check directory structure for node_modules folders.",
+                "expected_outcome": "Both frontend and backend node_modules directories are present and populated."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Configure package.json with npm run dev script to start frontend and backend concurrently",
+        "user_persona": "A developer running the application locally during development.",
+        "user_goal": "To start both frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "The developer executes the development script to launch the full-stack application.",
+                "action": "Run 'npm run dev' in the terminal.",
+                "expected_outcome": "Frontend and backend servers start concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Application Functionality",
+                "description": "The developer opens the browser to ensure the application is accessible and functioning.",
+                "action": "Navigate to http://localhost:3000 in a web browser.",
+                "expected_outcome": "The stock report generator website loads successfully with no console errors."
+            }
+        ]
+    }
+]

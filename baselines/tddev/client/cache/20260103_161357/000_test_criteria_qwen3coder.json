@@ -1,0 +1,282 @@
+[
+    {
+        "requirement_tested": "A frontend interface for displaying a link tree with a papaya whip background and dark orange styled components",
+        "user_persona": "A visitor browsing someone's shared link tree.",
+        "user_goal": "View a well-styled list of links on a themed page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Public Link Tree Page",
+                "description": "Sarah receives a link to her friend's link tree and opens it in her browser. She expects to see a clean and organized list of links.",
+                "action": "Navigate to the public link tree URL.",
+                "expected_outcome": "The page loads with a papaya whip background and a vertical list of link cards styled with dark orange borders and text."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Links",
+                "description": "Sarah sees several interesting links and decides to click one. Before clicking, she hovers over it to preview.",
+                "action": "Hover over a link card, then click the link.",
+                "expected_outcome": "On hover, the link card gains a subtle shadow effect. On click, the target URL opens in a new tab."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management for personalized link tree access",
+        "user_persona": "A returning user wanting to manage their personal link tree.",
+        "user_goal": "Log in securely to access and edit their personalized link tree.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Login Process",
+                "description": "Alex visits the website and wants to access his personal dashboard. He finds and clicks the login option.",
+                "action": "Click the 'Login' button.",
+                "expected_outcome": "A modal or route appears showing the login form with email and password fields."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Credentials",
+                "description": "Alex fills in his email and password, then hits Enter to submit quickly.",
+                "action": "Fill in valid credentials and press Enter.",
+                "expected_outcome": "Credentials are sent via POST /api/auth/login, and Alex is redirected to his dashboard upon successful authentication."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Capability for users to create their own unique link tree profile",
+        "user_persona": "A newly registered user setting up their first link tree.",
+        "user_goal": "Set up a unique profile that will host their personalized link tree.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Prompted to Create Profile",
+                "description": "Jamie just signed up and is now asked to choose a username for their link tree profile.",
+                "action": "Enter a preferred username and click confirm.",
+                "expected_outcome": "A POST request is made to /api/users/profile, and the profile is created successfully with a unique identifier."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to add new links to a user's link tree via form input",
+        "user_persona": "An active user looking to expand their link tree.",
+        "user_goal": "Add a new link to their existing collection.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Add Link Form",
+                "description": "Taylor notices the 'Add Link' button on their dashboard and clicks it to start adding a new resource.",
+                "action": "Click the 'Add Link' button.",
+                "expected_outcome": "A form with 'Title' and 'URL' input fields slides into view, matching the site’s dark orange theme."
+            },
+            {
+                "step": 2,
+                "title": "Entering and Validating Data",
+                "description": "Taylor types in a title and begins entering a malformed URL. As they type, validation kicks in.",
+                "action": "Type an invalid URL and observe real-time feedback.",
+                "expected_outcome": "An inline error message warns about incorrect formatting immediately during typing."
+            },
+            {
+                "step": 3,
+                "title": "Submitting Correct Information",
+                "description": "After correcting the URL, Taylor clicks the submit button to finalize the addition.",
+                "action": "Correct the URL and click the 'Submit' button.",
+                "expected_outcome": "Data passes validation and is posted to /api/links; the new link appears in the list instantly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to edit existing links within a user's link tree",
+        "user_persona": "A meticulous user refining their content.",
+        "user_goal": "Update outdated information on one of their existing links.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Edit Mode",
+                "description": "Jordan realizes one of his links has changed and needs updating. He clicks the pencil icon next to the outdated link.",
+                "action": "Click the 'Edit' icon beside a link.",
+                "expected_outcome": "An editable form appears, pre-filled with the current title and URL of the selected link."
+            },
+            {
+                "step": 2,
+                "title": "Saving Updated Details",
+                "description": "Jordan modifies the URL and saves the updated information.",
+                "action": "Change the URL value and click 'Save Changes'.",
+                "expected_outcome": "A PUT request updates the link via /api/links/{id}, and the changes reflect immediately in the displayed link tree."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to delete unwanted links from a user's link tree",
+        "user_persona": "A user cleaning up old or irrelevant entries.",
+        "user_goal": "Remove a redundant link from their personal link tree.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Deletion",
+                "description": "Casey no longer uses a particular link and wants to remove it permanently from her list.",
+                "action": "Click the trash bin icon next to the unwanted link.",
+                "expected_outcome": "A confirmation dialog pops up asking if Casey really wants to delete the link."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Removal",
+                "description": "After confirming, Casey watches as the link disappears from her list.",
+                "action": "Click 'Confirm' in the dialog box.",
+                "expected_outcome": "A DELETE request is sent to /api/links/{id}, and the link vanishes from the UI seamlessly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API endpoints for CRUD operations on user link data",
+        "user_persona": "Developer testing backend functionality independently.",
+        "user_goal": "Verify all basic create, read, update, and delete actions work correctly through API calls.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating New Link Entry",
+                "description": "Using an API client tool, the developer creates a new link entry under a known user ID.",
+                "action": "Send POST request to /api/links with valid payload.",
+                "expected_outcome": "Server responds with 201 Created and returns the newly added link object."
+            },
+            {
+                "step": 2,
+                "title": "Fetching All User Links",
+                "description": "The developer retrieves the full list of links belonging to the authenticated user.",
+                "action": "Send GET request to /api/links.",
+                "expected_outcome": "Returns a JSON array containing all links linked to the user’s account."
+            },
+            {
+                "step": 3,
+                "title": "Updating Existing Link",
+                "description": "The developer modifies one attribute of an existing link record.",
+                "action": "Send PUT request to /api/links/{id} with updated data.",
+                "expected_outcome": "Server responds with 200 OK and reflects the change in the returned object."
+            },
+            {
+                "step": 4,
+                "title": "Deleting Specific Link",
+                "description": "Finally, the developer deletes a specific link entry entirely.",
+                "action": "Send DELETE request to /api/links/{id}.",
+                "expected_outcome": "Response code 204 No Content confirms successful removal without body."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend service connecting to a PostgreSQL database using specified environment variables",
+        "user_persona": "System administrator deploying the backend service.",
+        "user_goal": "Ensure proper database connectivity upon backend initialization.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Admin sets the correct environment variables and boots up the backend server.",
+                "action": "Run `npm run dev` in backend directory.",
+                "expected_outcome": "Application logs indicate successful connection to PostgreSQL using DB_HOST=localhost, DB_PORT=5432 etc."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design supporting users and their associated links",
+        "user_persona": "Database architect verifying structural integrity.",
+        "user_goal": "Validate that the database tables properly represent user-link relationships.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Table Structures",
+                "description": "Architect reviews how user identities map to collections of links stored in separate tables.",
+                "action": "Query database metadata for table schemas.",
+                "expected_outcome": "Users table contains id, username, created_at; Links table contains id, user_id (foreign key), title, url, position, created_at."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Shareable public URL generation for each user's link tree",
+        "user_persona": "Content creator ready to distribute their curated links.",
+        "user_goal": "Obtain a unique, shareable URL representing their personal link tree.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Profile Setup Completion",
+                "description": "Morgan finishes setting up their profile and looks for ways to share it publicly.",
+                "action": "Complete profile setup process.",
+                "expected_outcome": "Upon completion, Morgan sees a generated public URL like '/u/morgan_links' assigned automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Public view page rendering a user's link tree without requiring login",
+        "user_persona": "Guest visitor exploring a shared link tree.",
+        "user_goal": "Access and navigate a user's public link tree anonymously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Shared Link Tree",
+                "description": "Patricia receives a link to someone's public link tree and opens it in her browser.",
+                "action": "Visit the shared public URL such as '/u/example_user'.",
+                "expected_outcome": "Page renders a styled list of links similar to logged-in view but excludes edit/delete options."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive UI layout ensuring compatibility across devices",
+        "user_persona": "Mobile-first user accessing the platform on different screen sizes.",
+        "user_goal": "Seamlessly use the application whether on desktop or mobile device.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Resizing Browser Window",
+                "description": "Dana resizes her browser window to simulate various device widths and checks responsiveness.",
+                "action": "Resize browser window width below 768px threshold.",
+                "expected_outcome": "Layout adjusts dynamically—cards stack vertically, margins/padding reduce accordingly, preserving usability."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Form validation for link inputs including URL format checking",
+        "user_persona": "Detail-oriented user submitting carefully crafted content.",
+        "user_goal": "Avoid accidental submission of malformed URLs through proactive validation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Malformed URL",
+                "description": "While filling out the add-link form, Sam mistakenly enters an incomplete URL.",
+                "action": "Leave the URL input field after typing something like 'htp:/example.com'.",
+                "expected_outcome": "Inline validation triggers and displays a warning: 'Please enter a valid URL starting with http(s)'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Loading states and error handling during API requests",
+        "user_persona": "End-user experiencing intermittent network conditions.",
+        "user_goal": "Receive clear feedback when performing actions reliant on backend communication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Long-Running Action",
+                "description": "Riley adds a new link and waits for the server to respond, expecting some visual indication of progress.",
+                "action": "Click 'Submit' on the add link form.",
+                "expected_outcome": "A spinner overlay appears over the affected section indicating ongoing activity."
+            },
+            {
+                "step": 2,
+                "title": "Encountering Network Error",
+                "description": "Due to poor internet, Riley experiences a timeout during the operation.",
+                "action": "Wait for API call to fail due to timeout.",
+                "expected_outcome": "Toast notification pops up saying 'Network error – please try again later'."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Concurrent development server setup for both frontend and backend",
+        "user_persona": "Frontend developer beginning joint development workflow.",
+        "user_goal": "Start both frontend and backend servers simultaneously with minimal effort.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Booting Full Stack Locally",
+                "description": "Dev wants to launch everything together instead of running multiple terminals manually.",
+                "action": "Execute `npm run dev` from root project folder.",
+                "expected_outcome": "Both frontend and backend servers boot concurrently using concurrently package, logging outputs side-by-side."
+            }
+        ]
+    }
+]

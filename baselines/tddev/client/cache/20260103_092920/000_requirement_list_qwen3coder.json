@@ -1,0 +1,198 @@
+[
+    {
+        "resource_dependency": {
+            "weatherDataAPI": "An API endpoint to fetch real-time weather data such as temperature, humidity, and pressure.",
+            "airQualityDataAPI": "An API endpoint to fetch real-time air quality index (AQI) and gas sensor readings.",
+            "historicalAQIDataAPI": "An API endpoint to retrieve AQI data for the past two weeks.",
+            "comparisonDataAPI": "An API endpoint that allows querying of historical data to enable comparison of pollution levels over time.",
+            "pollutionTrendChartLibrary": "A JavaScript charting library (e.g., Chart.js or D3.js) for rendering trend comparisons.",
+            "gasSensorIcons": "/assets/icons/gas-sensor-icons/",
+            "uiColorPalette": "{ background: '#F0FFFF', elementColor: '#483D8B' }"
+        },
+        "function": "Display real-time weather and air quality data including temperature, humidity, and AQI metrics.",
+        "static_description": "The page displays a dashboard with real-time updates showing current temperature, humidity percentage, atmospheric pressure, AQI value, and gas sensor readings. Background is set to azure mist (#F0FFFF), and all UI elements use dark slate blue (#483D8B). Icons representing various sensors are shown alongside numeric values.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Refresh button triggers manual refresh of all real-time data without reloading the entire page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "historicalAQIDataSchema": "Database table named 'aqi_history' with columns: id (SERIAL PRIMARY KEY), recorded_at (TIMESTAMP WITH TIME ZONE), aqi_value (INTEGER), location (TEXT)",
+            "fetchHistoricalAQIAPI": "GET /api/aqi/history?days=14 returning JSON array of {recorded_at, aqi_value}",
+            "chartVisualizationLibrary": "JavaScript charting library (e.g., Chart.js)"
+        },
+        "function": "Show Air Quality Index (AQI) for the past two weeks in a visualized timeline.",
+        "static_description": "A line graph titled 'Air Quality Over Past Two Weeks' spans horizontally across the screen. X-axis shows dates from last 14 days, Y-axis indicates AQI scale. Graph line uses dark slate blue color against light background matching overall theme.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "User hovers over any point on the chart to see tooltip displaying exact AQI value and timestamp."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Horizontal scroll reveals more detailed view when screen width is insufficient to show full history."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "comparisonDataSchema": "Table 'pollution_comparison' storing daily average values per pollutant type: id (SERIAL), date (DATE), pm2_5_avg (FLOAT), pm10_avg (FLOAT), co_avg (FLOAT), no2_avg (FLOAT), o3_avg (FLOAT)",
+            "comparePollutionAPI": "GET /api/pollution/comparison returning grouped averages by date",
+            "trendComparisonChartLibrary": "JavaScript visualization tool capable of multi-series plotting (e.g., Recharts)"
+        },
+        "function": "Enable users to visually compare pollution and air quality changes over selected periods.",
+        "static_description": "Two side-by-side charts: one for particulate matter trends (PM2.5 vs PM10), another for gaseous pollutants (CO, NO2, O3). Charts utilize dark slate blue lines on white gridlines. Date range selector above charts defaults to last week.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Date range selector toggles dropdown menu allowing selection of custom date ranges. On apply, both charts re-render based on new period."
+            },
+            {
+                "interaction": "Drag and Select",
+                "description": "Users can drag-select regions within either chart to zoom into specific time intervals for closer inspection."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "currentWeatherAPISchema": "GET /api/weather/current returning {temperature_celsius, humidity_percent, pressure_hpa, wind_speed_kmh}",
+            "weatherIcons": "/assets/weather-icons/"
+        },
+        "function": "Provide browsing interface for current weather conditions including temperature and humidity.",
+        "static_description": "Card-based layout presents live weather information with large numeric readouts for temperature and humidity. Wind speed and barometric pressure appear below. Weather condition icons accompany numerical data aligned left-to-right.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Units toggle switches between Celsius/Fahrenheit; humidity unit remains fixed as percent."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "realTimeGasDataAPI": "WebSocket connection or polling GET /api/sensors/gas providing continuous stream of {sensor_type, concentration_ppm, updated_at}",
+            "gasSensorTypesList": "[\"CO\", \"NO2\", \"O3\", \"SO2\"]"
+        },
+        "function": "Render real-time gas sensor concentrations measured in parts per million (ppm).",
+        "static_description": "Grid of cards labeled by sensor type (e.g., Carbon Monoxide, Nitrogen Dioxide). Each card shows current ppm reading along with timestamp and indicator icon reflecting severity level.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays additional metadata like sensor calibration status and measurement accuracy upon hovering individual cards."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autoUpdateMechanism": "Frontend logic periodically calling all relevant data endpoints every 60 seconds via setInterval() or similar mechanism.",
+            "lastUpdatedTimestampField": "Each data section includes small italicized label stating “Last Updated: [timestamp]” which refreshes automatically."
+        },
+        "function": "Ensure automatic periodic updating of all dynamic datasets displayed throughout the application.",
+        "static_description": "All sections include a consistent footer note indicating last update time formatted as HH:mm:ss. Real-time indicators animate subtly during fetch cycles.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Manual refresh button beside timestamp forces immediate reload of all data streams."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "themeCSSVariables": ":root { --bg-color: #F0FFFF; } applied globally"
+        },
+        "function": "Apply azure mist (#F0FFFF) as the base background color scheme throughout the website.",
+        "static_description": "Entire viewport background rendered in soft azure hue. All content areas maintain this backdrop unless explicitly overridden by component-specific styles.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "elementStylingRules": "CSS classes define text, borders, buttons etc. using #483D8B (darkslateblue)"
+        },
+        "function": "Style interactive and static UI components uniformly using dark slate blue (#483D8B).",
+        "static_description": "Buttons, headers, navigation bars, form inputs, and chart axes use dark slate blue coloring. Text remains readable through sufficient contrast ratios.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements slightly lighten their fill color while retaining core dark slate blue border/shadow effect."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backendAPIEndpoints": [
+                "/api/weather/current",
+                "/api/aqi/history",
+                "/api/pollution/comparison",
+                "/api/sensors/gas"
+            ]
+        },
+        "function": "All frontend components must exclusively source dynamic data via defined backend API routes.",
+        "static_description": "No hardcoded test values or mockups used anywhere in UI — all numbers originate from backend services only.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionConfig": "Uses environment variables DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseSchemaDefinitions": "CREATE TABLE IF NOT EXISTS aqi_history (...); CREATE TABLE IF NOT EXISTS pollution_comparison (...); etc."
+        },
+        "function": "Establish persistent PostgreSQL database connectivity using predefined credentials.",
+        "static_description": "Backend initializes ORM/client connecting securely to remote Postgres instance upon startup. Tables created dynamically if missing.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptCommand": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\" inside root package.json"
+        },
+        "function": "Configure unified installation command to handle dependency setup across both frontend and backend modules simultaneously.",
+        "static_description": "Executing 'npm run install:all' from project root installs packages listed under frontend/package.json and backend/package.json concurrently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devStartCommand": "\"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\" inside root package.json"
+        },
+        "function": "Define concurrent development server launch process for rapid local testing of integrated features.",
+        "static_description": "Running 'npm run dev' starts both React/Vue frontend dev-server and Node.js/Express backend simultaneously using shared terminal window.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "weatherEndpointRoute": "GET /api/weather/current → returns structured JSON response containing latest weather parameters",
+            "aqiHistoryEndpoint": "GET /api/aqi/history?days=N → responds with ordered list of {recorded_at, aqi_value} objects",
+            "comparisonEndpoint": "GET /api/pollution/comparison → delivers aggregated dataset suitable for plotting comparative graphs",
+            "gasSensorStream": "GET or WebSocket /api/sensors/gas → delivers real-time updates from physical monitoring devices"
+        },
+        "function": "Expose RESTful API paths enabling consumption of all required environmental data sets by frontend clients.",
+        "static_description": "Four distinct HTTP(S) accessible endpoints available at predictable paths exposing standardized responses tailored for client-side parsing and visualization.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveComponentFramework": "Utilization of CSS media queries + mobile-first design principles in component styling",
+            "mobileChartAdaptation": "Charts adapt to vertical stacking and touch-enabled zoom controls on smaller screens"
+        },
+        "function": "Develop fully adaptive interfaces ensuring optimal usability regardless of device dimensions or orientation.",
+        "static_description": "Layout adjusts fluidly from desktop grid to stacked columnar arrangement on smartphones. Font sizes increase appropriately; tap targets expand for ease of interaction.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Vertical scrolling accommodates longer content flows on handheld devices."
+            },
+            {
+                "interaction": "Pinch Zoom",
+                "description": "Supported on chart canvases allowing granular inspection of plotted data points."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dataWithTimestampSchema": "Every returned record from backend contains ISO-formatted datetime field e.g. updated_at: \"2025-04-05T10:30:00Z\"",
+            "localizedTimeFormatter": "Frontend converts UTC timestamps into user’s local timezone before display"
+        },
+        "function": "Associate accurate temporal metadata with every datum presented to end-users.",
+        "static_description": "Each metric block concludes with a clearly marked timestamp string formatted according to ISO standards but localized for viewer convenience.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,166 @@
+[
+    {
+        "resource_dependency": {
+            "apiEndpoint_companyInfo": "/api/company-info",
+            "databaseSchema_companyInfo": "Table 'company_info' with columns: id (primary key), history (text), mission (text), values (text)"
+        },
+        "function": "Display the company's history, mission, and values fetched dynamically from the backend.",
+        "static_description": "A section titled 'About Us' with three subsections: 'Our History', 'Our Mission', and 'Our Values'. Each subsection displays text content retrieved from the backend API. Background uses lemon chiffon (#FFFACD) and component layer uses chocolate (#D2691E).",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "As users scroll through this section, content remains visible without triggering additional actions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint_products": "/api/products",
+            "databaseSchema_products": "Table 'products' with columns: id (primary key), name (string), description (text), image_url (string), price (decimal)"
+        },
+        "function": "Showcase products with detailed information fetched from the backend.",
+        "static_description": "A grid-based layout presenting multiple product cards. Each card includes an image, title, brief description, and a 'View Details' button. Background uses lemon chiffon (#FFFACD) and component layer uses chocolate (#D2691E).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a product card navigates to a dedicated product detail page or expands the current view to show more details."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiEndpoint_news": "/api/news",
+            "databaseSchema_news": "Table 'news' with columns: id (primary key), title (string), summary (text), date_published (timestamp), full_content (text)"
+        },
+        "function": "Display latest news and events related to the company.",
+        "static_description": "A vertical timeline or list view showing news items with titles, summaries, publication dates, and links to read more. Background uses lemon chiffon (#FFFACD) and component layer uses chocolate (#D2691E).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on a news item opens the full article in a modal or separate page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "formSubmission_endpoint": "/api/contact",
+            "validationRules": "Name must be non-empty string; Email must match standard email format; Message must be at least 10 characters long"
+        },
+        "function": "Allow users to send messages via a contact form with validation.",
+        "static_description": "A contact form containing labeled input fields for Name, Email, and Message, along with a Submit button. All inputs are styled with chocolate borders and backgrounds when active. Background uses lemon chiffon (#FFFACD).",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Upon clicking Submit, client-side validation checks all fields. If valid, the form data is sent to the backend endpoint. Invalid entries trigger inline error messages."
+            },
+            {
+                "interaction": "Input Focus",
+                "description": "Each field highlights with a chocolate border when focused."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "colorPalette_lemonChiffon": "#FFFACD",
+            "colorPalette_chocolate": "#D2691E"
+        },
+        "function": "Apply consistent background and component colors across all pages.",
+        "static_description": "All pages use lemon chiffon (#FFFACD) as the base background color. Component layers such as headers, buttons, and cards utilize chocolate (#D2691E) for visual contrast.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "navigationItems": [
+                "Home",
+                "About",
+                "Products",
+                "News",
+                "Contact"
+            ]
+        },
+        "function": "Provide site-wide navigation linking to all main sections.",
+        "static_description": "A horizontal navigation bar fixed at the top featuring five clickable links aligned left-to-right: Home, About, Products, News, Contact. Styled with chocolate text over lemon chiffon background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any link scrolls smoothly to the corresponding section or loads the relevant page."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Menu items highlight slightly under hover with a semi-transparent overlay."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveBreakpoints": "{ mobile: max-width 768px, tablet: min-width 769px and max-width 1024px, desktop: min-width 1025px }"
+        },
+        "function": "Ensure responsive design compatible with various device sizes.",
+        "static_description": "Layout adjusts fluidly between mobile, tablet, and desktop views. Navigation becomes hamburger-styled on small screens. Grid layouts reflow accordingly.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "UI elements automatically adapt their size and positioning based on viewport dimensions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "seoMetadata_template": "Each route defines unique <title> and <meta name=\"description\"> tags generated server-side."
+        },
+        "function": "Generate SEO-friendly metadata for improved search engine visibility.",
+        "static_description": "Each HTML document includes dynamically rendered <title> and <meta name=\"description\"> tags reflecting the content of that specific page or section.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "accessibilityStandards": "WCAG 2.1 AA compliance enforced using semantic HTML and ARIA roles where needed"
+        },
+        "function": "Support accessibility features including keyboard navigation and screen readers.",
+        "static_description": "All interactive elements are focusable and operable via keyboard. Semantic HTML tags and ARIA attributes enhance screen reader interpretation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Tab Navigation",
+                "description": "Users can navigate sequentially through interactive elements using Tab key."
+            },
+            {
+                "interaction": "Enter/Space Key Press",
+                "description": "Activates buttons and links when focused."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "loadingIndicator_component": "<div class='spinner'>Loading...</div>"
+        },
+        "function": "Indicate loading states during asynchronous data fetching.",
+        "static_description": "A centered spinner animation appears wherever content is being fetched from an API until the request completes.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Request Initiated",
+                "description": "Spinner activates immediately upon initiating fetch call."
+            },
+            {
+                "interaction": "Data Loaded Successfully",
+                "description": "Spinner disappears once data is received and rendered."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorHandling_strategy": "Display user-friendly error message overlays or banners indicating failure status"
+        },
+        "function": "Handle errors gracefully during API calls or database connections.",
+        "static_description": "In case of failed API requests or database issues, a dismissible banner shows a generic but informative error message above affected sections.",
+        "interaction_and_states": [
+            {
+                "interaction": "API Failure Detected",
+                "description": "Error banner slides down from the top of the affected area stating: \"Failed to load content. Please try again later.\""
+            },
+            {
+                "interaction": "Dismiss Banner",
+                "description": "Clicking close icon hides the error notification temporarily."
+            }
+        ]
+    }
+]

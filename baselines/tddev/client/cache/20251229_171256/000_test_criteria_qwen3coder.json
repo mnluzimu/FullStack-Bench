@@ -1,0 +1,247 @@
+[
+    {
+        "requirement_tested": "Frontend application that fetches all stock data dynamically from backend APIs",
+        "user_persona": "A financial analyst who needs up-to-date stock information.",
+        "user_goal": "To retrieve real-time stock data without seeing any mock or cached content.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading the Website",
+                "description": "Sarah opens the website and expects to see a clean interface ready for searching stocks.",
+                "action": "Navigate to the homepage URL.",
+                "expected_outcome": "The page loads with a white background and navy UI components, with no static or preloaded stock data visible."
+            },
+            {
+                "step": 2,
+                "title": "Searching for Stocks",
+                "description": "She types 'AAPL' into the search bar and hits enter, expecting fresh results from the backend.",
+                "action": "Type 'AAPL' into the search input and press Enter.",
+                "expected_outcome": "The frontend makes a request to the backend API at `/api/stocks/search?q=AAPL`, and the results appear dynamically below the search bar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API service that connects to external PostgreSQL database using provided environment variables",
+        "user_persona": "A developer validating backend connectivity.",
+        "user_goal": "To confirm the backend is pulling accurate data from the correct PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Triggering Backend Request",
+                "description": "Mark submits a search query from the frontend which should trigger a database lookup.",
+                "action": "Enter 'MSFT' in the search box and click 'Search'.",
+                "expected_outcome": "The backend connects to PostgreSQL using the specified environment variables and retrieves Microsoft's stock record from the `stocks` table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Stock search functionality allowing users to input stock codes or names",
+        "user_persona": "A new investor exploring different companies.",
+        "user_goal": "To find stock information by entering either a company name or ticker symbol.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Ticker Code",
+                "description": "Jamie enters 'TSLA' into the search field and clicks Search.",
+                "action": "Type 'TSLA' into the search input and click the 'Search' button.",
+                "expected_outcome": "Results matching Tesla Inc. are returned from the backend API."
+            },
+            {
+                "step": 2,
+                "title": "Entering Company Name",
+                "description": "Next, Jamie tries typing the full company name instead.",
+                "action": "Type 'Tesla Inc.' into the search input and press Enter.",
+                "expected_outcome": "Same Tesla-related stock records are shown based on the name match."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Report generation feature that creates customized stock reports based on user selections",
+        "user_persona": "An investment manager preparing client reports.",
+        "user_goal": "To generate a tailored report including selected sections like financials and market trends.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Selecting Stock and Options",
+                "description": "Alex chooses a stock from the search results and selects PDF format and specific content sections.",
+                "action": "Select 'GOOGL' from the results list, choose 'PDF' format, and check 'Financial Data' and 'Market Trends'.",
+                "expected_outcome": "The selected options update the report configuration accordingly."
+            },
+            {
+                "step": 2,
+                "title": "Generating the Report",
+                "description": "He clicks the Generate Report button to compile his custom report.",
+                "action": "Click the 'Generate Report' button.",
+                "expected_outcome": "A request is sent to `/api/reports/generate`, and upon success, a formatted PDF preview appears in the report area."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for selecting report formats and content options",
+        "user_persona": "A researcher needing flexible reporting tools.",
+        "user_goal": "To customize what gets included in the generated stock report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Format",
+                "description": "Taylor expands the dropdown menu to pick between HTML and PDF formats.",
+                "action": "Click the 'Select Format' dropdown and choose 'HTML'.",
+                "expected_outcome": "The dropdown closes and 'HTML' is now selected as the preferred format."
+            },
+            {
+                "step": 2,
+                "title": "Customizing Content Sections",
+                "description": "She decides to only include Basic Stock Information and Financial Data in her report.",
+                "action": "Check the 'Basic Stock Information' and 'Financial Data' checkboxes.",
+                "expected_outcome": "Only those two checkboxes remain checked, reflecting her choices."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display of basic stock information in generated reports",
+        "user_persona": "A portfolio manager reviewing company fundamentals.",
+        "user_goal": "To quickly access essential details like sector and industry in the report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Generated Report",
+                "description": "Jordan generates a report and looks for the Basic Stock Information section.",
+                "action": "Click 'Generate Report' after selecting a stock and relevant options.",
+                "expected_outcome": "After loading, the report shows a clearly labeled 'Basic Stock Information' section with symbol, name, sector, and industry."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Inclusion of market trends data in stock reports",
+        "user_persona": "A day trader analyzing price movements.",
+        "user_goal": "To visualize historical price changes within the report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Including Market Trends",
+                "description": "Riley ensures that the Market Trends option is selected before generating the report.",
+                "action": "Check the 'Market Trends' checkbox and click 'Generate Report'.",
+                "expected_outcome": "The generated report includes a visual chart showing recent price fluctuations sourced from the market_trends table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Integration of financial data in stock reports",
+        "user_persona": "A financial auditor verifying company performance.",
+        "user_goal": "To review multi-year financial metrics in a structured table.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Requesting Financial Overview",
+                "description": "Cameron includes the Financial Data checkbox when generating a report.",
+                "action": "Select 'Financial Data' and click 'Generate Report'.",
+                "expected_outcome": "The report displays a table titled 'Financial Overview' with revenue, net income, and EPS values pulled from the financials table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "White background color applied throughout the website",
+        "user_persona": "A UX designer checking visual consistency.",
+        "user_goal": "To verify the entire site maintains a uniform white background.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Page Background",
+                "description": "Dana navigates through various pages and scrolls down to ensure consistent background coloring.",
+                "action": "Load the homepage and scroll through the content areas.",
+                "expected_outcome": "Every part of the page, including forms and footers, retains a solid white background (#FFFFFF)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Navy color scheme for all UI components",
+        "user_persona": "A brand compliance officer auditing the UI.",
+        "user_goal": "To confirm all interactive elements follow the navy theme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Checking Button Colors",
+                "description": "Morgan inspects the primary buttons to ensure they're styled correctly.",
+                "action": "Hover over and inspect the 'Search' and 'Generate Report' buttons.",
+                "expected_outcome": "Both buttons display a navy background (#000080) with white text."
+            },
+            {
+                "step": 2,
+                "title": "Validating Active States",
+                "description": "She focuses on an input field to check if it follows the color scheme.",
+                "action": "Click inside the 'Search Stocks' input field.",
+                "expected_outcome": "The border of the focused input turns navy (#000080)."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' script for simultaneous frontend and backend dependency installation",
+        "user_persona": "A DevOps engineer setting up a new project environment.",
+        "user_goal": "To install all necessary dependencies efficiently with one command.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Running Install Script",
+                "description": "Pat clones the repo and wants to get started quickly by installing all dependencies.",
+                "action": "Run `npm run install:all` in the terminal from the root directory.",
+                "expected_outcome": "Dependencies for both frontend and backend folders are installed concurrently without errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'dev' script to concurrently start frontend and backend services",
+        "user_persona": "A software developer beginning daily work.",
+        "user_goal": "To launch both frontend and backend development servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Servers",
+                "description": "Lee begins working on enhancements and needs both environments running locally.",
+                "action": "Execute `npm run dev` from the root folder.",
+                "expected_outcome": "Terminal outputs show both frontend and backend servers starting concurrently, listening on their respective ports."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database operations strictly using the configured PostgreSQL connection",
+        "user_persona": "A QA engineer ensuring data integrity.",
+        "user_goal": "To validate that all data operations occur via the defined PostgreSQL setup.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Performing Data Operation",
+                "description": "Casey searches for a stock to initiate a database read operation.",
+                "action": "Type 'AMZN' into the search bar and click 'Search'.",
+                "expected_outcome": "The backend uses the configured PostgreSQL connection to fetch Amazon's data from the database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "No hardcoded or mock data - all information fetched from backend APIs",
+        "user_persona": "A product owner verifying authenticity of displayed data.",
+        "user_goal": "To ensure no fake or static data appears during usage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Dynamic Data",
+                "description": "Reese performs a search and examines the returned data for signs of mock content.",
+                "action": "Enter 'NFLX' in the search field and submit the query.",
+                "expected_outcome": "Results reflect current Netflix stock data retrieved live from the backend API connected to the PostgreSQL database."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design compatible with standard browser dimensions",
+        "user_persona": "A mobile user accessing the platform remotely.",
+        "user_goal": "To navigate and use the site seamlessly on smaller screens.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Mobile View",
+                "description": "Zoe resizes her browser window to simulate a mobile device viewport.",
+                "action": "Resize browser window to 375x667 pixels and reload the page.",
+                "expected_outcome": "Layout adjusts appropriately with stacked elements, readable fonts, and accessible controls."
+            }
+        ]
+    }
+]

@@ -1,0 +1,17 @@
+[
+    "A frontend application that fetches all dynamic data from backend APIs",
+    "A backend application connecting to a PostgreSQL database using specified environment variables",
+    "User authentication and session management for contest participation",
+    "Contest browsing interface displaying available knowledge competitions",
+    "Contest enrollment functionality allowing users to join competitions",
+    "Interactive question display interface showing one question at a time",
+    "Answer submission system for users to provide responses to contest questions",
+    "Real-time scoring mechanism calculating user performance",
+    "Personal score dashboard displaying individual user results and rankings",
+    "Public leaderboard showcasing top performers in each contest",
+    "Performance comparison feature allowing users to view how they rank against others",
+    "Responsive UI design with beige as the base color and saddle brown for all components",
+    "Package.json configured with 'install:all' script to install both frontend and backend dependencies",
+    "Package.json configured with 'dev' script to start both frontend and backend concurrently",
+    "Database schema supporting users, contests, questions, answers, and leaderboard data"
+]

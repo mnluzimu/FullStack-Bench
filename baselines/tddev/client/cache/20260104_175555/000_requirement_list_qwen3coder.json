@@ -1,0 +1,211 @@
+[
+    {
+        "resource_dependency": {
+            "authAPI": "RESTful API for user registration, login, session management, and JWT token generation.",
+            "userDatabaseSchema": "PostgreSQL tables: users(id UUID primary key, email VARCHAR unique, password_hash TEXT, created_at TIMESTAMP), sessions(session_token TEXT, user_id UUID foreign key to users.id, expires_at TIMESTAMP)"
+        },
+        "function": "Provide secure user registration and authentication services including account creation, login, logout, and session management.",
+        "static_description": "A centered form with two tabs: 'Sign Up' and 'Log In'. Fields include Email, Password, Confirm Password (for Sign Up only). Submit button styled with peru background. Links for switching between forms and password recovery option.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Sign Up' tab displays registration fields. Clicking 'Log In' tab shows login fields. Submitting valid credentials redirects to dashboard. Invalid inputs show inline error messages."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Submit buttons change background shade slightly when hovered over."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "profileAPI": "RESTful API endpoints for creating, reading, updating, and deleting user profiles.",
+            "profileDatabaseSchema": "PostgreSQL table: profiles(user_id UUID primary key references users.id, full_name VARCHAR, bio TEXT, location VARCHAR, avatar_url TEXT, updated_at TIMESTAMP)"
+        },
+        "function": "Allow authenticated users to create and manage their public profile information including name, bio, location, and avatar.",
+        "static_description": "Profile editor page with form fields: Full Name, Bio (textarea), Location, Avatar Upload area. Save and Cancel buttons styled with peru. Preview section showing current profile data with cornsilk background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save button sends updated profile data to backend. Cancel discards changes. Avatar upload opens file selection dialog."
+            },
+            {
+                "interaction": "Drag and Drop",
+                "description": "Users can drag image files onto the avatar area to initiate upload process."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "skillsAPI": "RESTful API for managing user skills and certifications CRUD operations.",
+            "skillsDatabaseSchema": "PostgreSQL tables: skills(id SERIAL primary key, name VARCHAR unique), user_skills(id SERIAL primary key, user_id UUID foreign key to users.id, skill_id INTEGER foreign key to skills.id, proficiency_level VARCHAR, added_date DATE), certifications(id SERIAL primary key, name VARCHAR, issuing_organization VARCHAR, issue_date DATE, expiration_date DATE, credential_url TEXT, user_id UUID foreign key to users.id)"
+        },
+        "function": "Enable users to add, modify, and remove their professional skills and certification details which appear on their public profile.",
+        "static_description": "Two sections: Skills List (with proficiency levels) and Certifications List. Each item has Edit and Delete icons. Add New Skill/Certification buttons styled with peru. Form modals appear when adding/editing items.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Add buttons open modal forms. Edit icons populate modals with existing data. Delete removes items after confirmation. Save submits changes to backend API."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Edit/Delete icons become visible only on hover over list items."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPI": "API endpoint accepting query parameters for skills and certifications with filtering capabilities.",
+            "searchDatabaseQuery": "Complex JOIN queries across users, profiles, skills, user_skills, and certifications tables to match search criteria."
+        },
+        "function": "Allow users to discover others by searching through skills and certifications using keyword matching and filters.",
+        "static_description": "Search bar at top of page with filter dropdowns for Skills and Certifications. Results displayed as grid of user cards with avatars, names, and key skills highlighted against cornsilk background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Search button triggers API call. Filter dropdowns expand to show available options. User cards link to detailed profiles."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter in search field initiates search operation."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "browseAPI": "Paginated API endpoint returning lists of user profiles with basic info.",
+            "browseDatabaseSchema": "Query combining users and profiles tables with optional joins to skills/certifications for sorting."
+        },
+        "function": "Provide an interface for users to explore all platform members in an organized, paginated view.",
+        "static_description": "Grid layout of user profile cards showing avatar images, full names, locations, and condensed skill lists. Pagination controls at bottom. Sorting options above grid (Name, Recently Active, Most Skills). Background uses cornsilk color.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Profile cards navigate to detailed views. Pagination numbers/next-prev buttons load new pages via API. Sort options reorder results dynamically."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loading additional profiles automatically when reaching page bottom."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "detailedProfileAPI": "API endpoint retrieving complete user profile data including all skills and certifications by user ID.",
+            "contactButtonHandler": "Integration point for messaging or connection request systems."
+        },
+        "function": "Display comprehensive individual user profiles containing all shared information including full skill sets and certifications.",
+        "static_description": "Single column layout featuring large profile header (avatar, name, location), extended bio section, skills display with proficiency indicators, and certifications list with dates and issuers. Contact button prominently placed near top right with peru styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Contact button opens messaging interface or connection request modal. Skill tags may expand to show more details. Certification links open credential URLs in new tabs."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Certification rows highlight subtly on hover to indicate interactivity."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "messagingAPI": "Real-time or asynchronous messaging system allowing communication between connected users.",
+            "contactDatabaseSchema": "Tables for storing contacts/connections (user_connections) and messages (messages.thread_id, sender_id, recipient_id, content, timestamp)"
+        },
+        "function": "Facilitate direct communication between platform users through private messaging or connection requests.",
+        "static_description": "Modal overlay containing threaded conversation view with message input area at bottom. Send button styled with peru. Previous messages listed chronologically with sender identification.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Send button transmits message content to recipient. Close button dismisses modal. Message timestamps update in real time if supported."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "In message input field, Enter key sends message unless Shift is held for line break."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "frontendAPIClient": "Axios/fetch-based client configured to communicate with all backend REST APIs using JWT tokens for authorization headers."
+        },
+        "function": "Ensure all frontend components retrieve dynamic data exclusively from backend services rather than using hardcoded values.",
+        "static_description": "Not applicable - this is an architectural implementation detail ensuring no static/mock data usage throughout the application interface.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "postgresqlConnectionConfig": "Node.js/Python connection pool setup using environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME for secure database access."
+        },
+        "function": "Establish persistent, secure connections between backend services and PostgreSQL database instance using provided configuration.",
+        "static_description": "Not applicable - this is a backend infrastructure requirement specifying how database connections are initialized and managed.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "installScriptDefinition": "NPM script definition in root package.json executing 'npm install' in both frontend and backend directories sequentially."
+        },
+        "function": "Automate dependency installation process for entire project stack with single command execution.",
+        "static_description": "Root-level package.json file containing script definitions enabling unified development environment setup.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "devServerScript": "Concurrent process runner configuration launching both frontend development server and backend API server simultaneously."
+        },
+        "function": "Enable developers to start complete local development environment with one terminal command.",
+        "static_description": "Defined npm scripts in package.json facilitating simultaneous launch of frontend build tool (e.g., Vite/Webpack Dev Server) and backend runtime (e.g., Node.js/Express).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "layoutStylesheet": "CSS stylesheet defining global body/html background-color as #FFF8DC (cornsilk) with responsive breakpoints for mobile/tablet/desktop layouts."
+        },
+        "function": "Implement consistent visual theme with cornsilk background across all viewport sizes while maintaining usability on different devices.",
+        "static_description": "Full browser window background rendered in cornsilk (#FFF8DC). Content containers maintain readable contrast ratios. Layout adapts fluidly between single-column mobile view and multi-column desktop presentation.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "interactiveElementStyles": "CSS class definitions applying #CD853F (peru) color to buttons, form controls, links, and other interactive interface elements."
+        },
+        "function": "Apply distinctive styling to clickable/tappable elements using specified peru color scheme for improved user guidance.",
+        "static_description": "All interactive components (buttons, links, form inputs, etc.) utilize peru-colored borders, backgrounds, or text depending on element type. Hover states provide clear visual feedback maintaining accessibility standards.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Interactive elements transition smoothly to slightly darker or lighter peru shades indicating readiness for activation."
+            },
+            {
+                "interaction": "Click",
+                "description": "Active elements briefly invert colors or apply pressed-state effects during interaction events."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationComponent": "Header/footer navigation bars with logical grouping of site features and intuitive menu structures.",
+            "layoutFramework": "CSS Grid/Flexbox based layout system providing consistent spacing and alignment patterns."
+        },
+        "function": "Deliver coherent site navigation experience with clearly organized content hierarchy and predictable layout behavior.",
+        "static_description": "Top navigation bar includes logo, main menu items (Home, Browse, Search, Profile), and user dropdown. Footer contains secondary links, social media icons, and copyright notice. Main content areas follow consistent padding/margin guidelines.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Navigation links smoothly transition between views. Mobile hamburger menu expands vertically on small screens. User dropdown reveals account-related actions."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Desktop navigation items reveal submenus or underline effects to indicate clickable targets."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "persistenceLayer": "Database schema design enforcing referential integrity between users, profiles, skills, and certifications with appropriate indexing strategies."
+        },
+        "function": "Guarantee reliable long-term storage and retrieval of all user-generated content and relationships within the platform.",
+        "static_description": "Not applicable - this represents underlying data modeling decisions ensuring consistency and performance of stored information without visible interface implications.",
+        "interaction_and_states": []
+    }
+]

@@ -1,0 +1,192 @@
+[
+    {
+        "resource_dependency": {
+            "employeeLoginIcon": "/assets/icons/login-icon.svg",
+            "dashboardPageURL": "/dashboard",
+            "attendanceDataSchema": "Database schema: attendance_records(id UUID primary key, employee_id UUID foreign key references employees(employee_id), clock_in TIMESTAMP, clock_out TIMESTAMP, status ENUM('present', 'absent'), created_at TIMESTAMP)",
+            "employeeAuthAPI": "Authentication API handling login/logout with JWT tokens"
+        },
+        "function": "Authenticate and authorize employees accessing the time attendance system.",
+        "static_description": "A centered login form with username and password fields, a submit button, and a header displaying the company logo. Background color set to papaya whip (#FFEFD5) and all interactive components styled with dark orange (#FF8C00).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the submit button sends credentials to the authentication API endpoint. On success, redirects to the employee dashboard page."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused on either input field triggers submission of the form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "clockInButtonIcon": "/assets/icons/clockin-icon.svg",
+            "currentTimeDisplayFormat": "HH:mm:ss",
+            "attendanceRecordEndpoint": "/api/v1/attendance/clock-in"
+        },
+        "function": "Enable authenticated employees to record their arrival time.",
+        "static_description": "Dashboard contains a large prominent 'Clock In' button aligned center-top with current time displayed above it. All buttons use dark orange background with white text, and the overall background is papaya whip.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the Clock In button calls the /api/v1/attendance/clock-in endpoint with employee ID and current timestamp. Button becomes disabled after successful call until next day reset."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "clockOutButtonIcon": "/assets/icons/clockout-icon.svg",
+            "attendanceRecordEndpoint": "/api/v1/attendance/clock-out"
+        },
+        "function": "Allow authenticated employees to log their departure time.",
+        "static_description": "Below the Clock In section, there's a clearly labeled 'Clock Out' button also styled with dark orange. It remains disabled unless a corresponding Clock In record exists for the same day.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking Clock Out triggers a POST request to /api/v1/attendance/clock-out with employee ID and current timestamp. Updates existing record with clock-out time."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "personalAttendanceHistoryEndpoint": "/api/v1/attendance/history",
+            "historyTableColumns": [
+                "Date",
+                "Clock-In Time",
+                "Clock-Out Time",
+                "Status"
+            ]
+        },
+        "function": "Display individual employee’s historical attendance records.",
+        "static_description": "Tabbed interface within the dashboard showing a sortable table of past attendance entries with columns Date, Clock-In Time, Clock-Out Time, Status. Styled consistently with papaya whip background and dark orange accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking column headers sorts the table by that attribute. Clicking refresh reloads latest data from personalAttendanceHistoryEndpoint."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "absenceCalculationLogic": "Computed difference between scheduled hours and actual worked hours per period",
+            "workingHoursPerDay": 8
+        },
+        "function": "Calculate and display total present and absent times for each employee.",
+        "static_description": "Summary cards beneath the history table show cumulative attendance metrics including Total Present Hours, Absent Hours, and Percentage Attendance. Cards are visually distinct but follow theme colors.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "adminLoginIcon": "/assets/icons/admin-login-icon.svg",
+            "adminDashboardURL": "/admin/dashboard",
+            "adminAuthAPI": "Separate admin authentication endpoint validating against admin role claims in JWT token"
+        },
+        "function": "Secure access for administrative users to manage attendance data.",
+        "static_description": "Dedicated admin login screen identical in layout to employee login but routed separately. Uses same color scheme with additional role-specific styling cues.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submitting admin credentials routes through adminAuthAPI. Successful authentication grants access to admin dashboard URL."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "allEmployeesAttendanceEndpoint": "/api/v1/admin/attendance/all",
+            "filterOptions": [
+                "By Department",
+                "By Date Range",
+                "By Employee Name"
+            ],
+            "adminDataTableColumns": [
+                "Employee Name",
+                "Date",
+                "Clock-In Time",
+                "Clock-Out Time",
+                "Status"
+            ]
+        },
+        "function": "Provide administrators full visibility over team attendance records.",
+        "static_description": "Fullscreen responsive grid listing all employee attendance logs with filter controls atop. Grid uses alternating row shading under papaya whip theme, actions styled with dark orange.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Applying filters updates the dataset fetched from allEmployeesAttendanceEndpoint with applied query parameters. Sorting works similarly to employee view."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "statisticsReportGeneratorAPI": "/api/v1/admin/reports/statistics",
+            "statisticalMetrics": [
+                "Average Daily Attendance",
+                "Late Arrivals Count",
+                "Absenteeism Rate"
+            ]
+        },
+        "function": "Generate statistical summaries of organizational attendance patterns.",
+        "static_description": "Dedicated reporting tab featuring charts and KPI widgets summarizing key attendance metrics. Visualizations utilize chart.js or similar library with consistent theming.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selecting date range and clicking 'Generate Report' fetches aggregated stats from statisticsReportGeneratorAPI and renders results dynamically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "analysisEngineAPI": "/api/v1/admin/analysis/trends",
+            "analysisDimensions": [
+                "Weekly Patterns",
+                "Departmental Trends",
+                "Individual Performance"
+            ]
+        },
+        "function": "Support deeper analytical insights into workforce attendance trends.",
+        "static_description": "Analysis module presents multi-dimensional trend graphs and heatmaps derived from attendance datasets. Interface mirrors report generator in style and navigation flow.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Choosing different analysis dimensions re-fetches processed data from analysisEngineAPI and redraws visualizations accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalStylesheetPath": "/styles/theme.css",
+            "primaryBackgroundColor": "#FFEFD5",
+            "componentAccentColor": "#FF8C00"
+        },
+        "function": "Ensure consistent UI branding across entire application using defined palette.",
+        "static_description": "Entire app wrapped in global stylesheet applying Papaya Whip (#FFEFD5) as base background and Dark Orange (#FF8C00) to actionable elements like buttons and links.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "clockInOutEndpointsSpec": "{POST} /api/v1/attendance/clock-in {POST} /api/v1/attendance/clock-out",
+            "timestampFormat": "ISO 8601 UTC"
+        },
+        "function": "Expose RESTful endpoints enabling client-side clock operations with accurate timestamps.",
+        "static_description": "Backend-defined route handlers accepting structured payloads containing employee IDs and ISO-formatted timestamps for precise logging.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "attendanceRecordsRetrievalSpec": "{GET} /api/v1/attendance/history {GET} /api/v1/admin/attendance/all",
+            "paginationSupport": true
+        },
+        "function": "Serve filtered and paginated sets of attendance data based on requester permissions.",
+        "static_description": "Defined GET endpoints returning JSON responses encapsulating arrays of attendance records tailored to requesting user roles.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "developmentServerScript": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+            "installAllScript": "npm install --prefix frontend && npm install --prefix backend"
+        },
+        "function": "Facilitate unified local development workflow managing both frontend and backend processes.",
+        "static_description": "Root package.json configured with scripts invoking concurrent execution of respective dev servers and parallel installation commands.",
+        "interaction_and_states": []
+    }
+]

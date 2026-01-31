@@ -1,0 +1,17 @@
+[
+    "User registration and login functionality for students and training providers",
+    "Profile management for students to input and update personal details, qualifications, and career preferences",
+    "Dashboard for students to view matched training programs and application status",
+    "Advanced matching algorithm to suggest training programs based on qualifications, location, field of study, and career interests",
+    "Intuitive interface for students to apply to training programs directly through the portal",
+    "Training provider dashboard to manage program listings and view matched student profiles",
+    "Ability for training providers to search and filter student profiles based on predefined criteria",
+    "Secure messaging or communication system between students and training providers",
+    "Data persistence using PostgreSQL with connection via specified environment variables",
+    "Frontend application that fetches all dynamic data from backend APIs",
+    "Backend API layer that interfaces with PostgreSQL database for data storage and retrieval",
+    "Role-based access control to differentiate student and training provider functionalities",
+    "Responsive web design with Azure-themed background and midnight blue UI controls",
+    "Package.json configuration with 'install:all' script to install frontend and backend dependencies",
+    "Package.json configuration with 'dev' script to start frontend and backend concurrently"
+]

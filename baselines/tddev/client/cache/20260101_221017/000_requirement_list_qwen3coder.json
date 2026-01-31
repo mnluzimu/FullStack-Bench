@@ -1,0 +1,294 @@
+[
+    {
+        "resource_dependency": {
+            "promotionCardPlaceholderImage": "/assets/images/promo-placeholder.png",
+            "browsePageLayout": "Ivory background with forest green UI blocks",
+            "searchIcon": "/assets/icons/search-icon.svg",
+            "shareIcon": "/assets/icons/share-icon.svg",
+            "socialMediaIcons": [
+                "/assets/icons/facebook.svg",
+                "/assets/icons/twitter.svg",
+                "/assets/icons/linkedin.svg"
+            ]
+        },
+        "function": "Display a list of promotions in a responsive grid layout with search and filtering capabilities.",
+        "static_description": "The page displays an ivory-colored outer container with a header containing the site logo and navigation links. Below is a search bar with a forest green border and a search icon. A filter dropdown allows selection by category. Promotions are displayed in a responsive grid of cards featuring a placeholder image, title, description, discount value, validity period, and share button with share icons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the search button or pressing Enter after typing in the search bar triggers a promotion search based on keywords."
+            },
+            {
+                "interaction": "Click",
+                "description": "Selecting a category from the dropdown filters promotions by that category."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking a share button opens a modal with social media icons and a copyable link to the promotion."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "promotionFormFields": [
+                "title",
+                "description",
+                "category",
+                "discount_value",
+                "start_date",
+                "end_date",
+                "terms_conditions"
+            ],
+            "submitButtonLabel": "Submit Promotion",
+            "cancelButtonLabel": "Cancel",
+            "sharePageLayout": "Ivory background with forest green form container"
+        },
+        "function": "Allow authenticated users to submit new promotions through a form interface.",
+        "static_description": "A dedicated page with an ivory background featuring a centered forest green form block. The form includes labeled input fields for promotion title, description, category dropdown, discount value, start/end dates, and terms and conditions. Submit and cancel buttons are positioned below the form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Promotion' validates all fields and sends the data to the backend API to create a new promotion entry."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Cancel' clears the form and redirects to the browse promotions page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "promotionDatabaseSchema": "Table 'promotions' with columns: id (UUID), title (string), description (text), category (string), discount_value (string), start_date (date), end_date (date), terms_conditions (text), created_by (foreign key to users.id), created_at (timestamp), updated_at (timestamp)",
+            "userDatabaseSchema": "Table 'users' with columns: id (UUID), username (string), email (string), password_hash (string), role (enum: admin/user), created_at (timestamp), updated_at (timestamp)",
+            "settingsDatabaseSchema": "Table 'website_settings' with columns: id (primary key), setting_key (string), setting_value (text)"
+        },
+        "function": "Provide persistent storage for promotions, user accounts, and website configurations using PostgreSQL.",
+        "static_description": "A PostgreSQL database schema defined with three tables: 'promotions', 'users', and 'website_settings'. Each table contains fields relevant to storing promotion data, user credentials and roles, and customizable website parameters. Connection established using environment variables DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loginPageRoute": "/admin/login",
+            "authAPIEndpoint": "/api/auth/login",
+            "jwtTokenStorage": "localStorage.setItem('authToken', token)",
+            "adminDashboardRoute": "/admin/dashboard"
+        },
+        "function": "Secure access to the administrative backend through user authentication.",
+        "static_description": "A login page accessible at /admin/login featuring a centered forest green card on an ivory background. The card contains fields for email and password, along with a 'Login' button. Invalid credentials display an error message beneath the form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Login' button sends credentials to the /api/auth/login endpoint. On success, stores JWT in localStorage and redirects to /admin/dashboard. On failure, shows error message."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "promotionManagementAPI": "/api/admin/promotions",
+            "editIcon": "/assets/icons/edit.svg",
+            "deleteIcon": "/assets/icons/delete.svg",
+            "createFormRoute": "/admin/promotions/new",
+            "editFormRoute": "/admin/promotions/:id/edit"
+        },
+        "function": "Enable administrators to perform CRUD operations on promotions through a dedicated management interface.",
+        "static_description": "An admin dashboard section listing all promotions in a table format. Each row includes promotion details and action icons for editing and deleting. A 'Create New Promotion' button leads to the creation form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the edit icon navigates to the promotion edit form pre-filled with current data."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete icon prompts a confirmation dialog. Confirming deletes the promotion via DELETE request to /api/admin/promotions/:id."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Create New Promotion' navigates to the blank promotion creation form."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "userManagementAPI": "/api/admin/users",
+            "userRoleOptions": [
+                "admin",
+                "user"
+            ],
+            "userTableColumns": [
+                "ID",
+                "Username",
+                "Email",
+                "Role",
+                "Created At",
+                "Actions"
+            ]
+        },
+        "function": "Provide an interface for administrators to view, modify, and remove user accounts.",
+        "static_description": "A tab within the admin dashboard displaying a table of registered users with their details. Action buttons allow changing user roles or deleting accounts. Pagination controls appear below the table for large datasets.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the role dropdown in a user row allows changing the user's role between 'admin' and 'user'."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the delete button prompts a confirmation before removing the user account via DELETE request to /api/admin/users/:id."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "settingsAPIEndpoint": "/api/admin/settings",
+            "configurableSettings": [
+                "site_title",
+                "contact_email",
+                "default_promotion_category"
+            ],
+            "saveSettingsButton": "Save Changes"
+        },
+        "function": "Allow administrators to configure global website settings through a simple control panel.",
+        "static_description": "A configuration panel in the admin area showing input fields for various site settings such as site title, contact email, and default promotion categories. A 'Save Changes' button appears below the form.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Save Changes' sends updated settings to /api/admin/settings endpoint to update the website_settings table."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPIEndpoint": "/api/promotions/search",
+            "searchFilters": [
+                "keyword",
+                "category",
+                "date_range"
+            ],
+            "noResultsMessage": "No promotions found matching your criteria."
+        },
+        "function": "Enable users to find specific promotions using keyword searches and category filters.",
+        "static_description": "Integrated search functionality on the main promotions page with a search input field and optional filters. Results dynamically update without page reload. Displays 'No results' message when no matches are found.",
+        "interaction_and_states": [
+            {
+                "interaction": "Input",
+                "description": "Typing in the search box updates the query parameter sent to /api/promotions/search in real-time or upon submission."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing filter options modifies the search parameters sent to the backend API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "socialSharingAPIs": [
+                "Facebook Share Dialog",
+                "Twitter Web Intent",
+                "LinkedIn ShareArticle"
+            ],
+            "directLinkCopy": "navigator.clipboard.writeText()",
+            "shareModalContent": "Social media buttons and direct link input field"
+        },
+        "function": "Facilitate easy sharing of promotions across social platforms and through direct URL copying.",
+        "static_description": "A modal window appearing when clicking a promotion's share button. Contains branded icons for major social networks and a read-only input field showing the direct link to the promotion.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a social media icon opens the respective platform's sharing dialog with the promotion URL pre-filled."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking the copy link button copies the promotion URL to the clipboard and shows a confirmation tooltip."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS Grid and Flexbox with media queries",
+            "colorPalette": "{ primary: '#228B22', secondary: '#FFFFF0' }",
+            "mobileBreakpoints": [
+                "768px",
+                "480px"
+            ]
+        },
+        "function": "Ensure consistent appearance and usability across desktop, tablet, and mobile devices.",
+        "static_description": "A fully responsive design implementing CSS Grid and Flexbox layouts. Outer containers use ivory (#FFFFF0) backgrounds while inner UI blocks utilize forest green (#228B22) styling. Media queries adjust element sizes and stacking at 768px and 480px breakpoints.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize",
+                "description": "Resizing the browser window adjusts layout elements according to defined breakpoints, ensuring optimal viewing experience on all devices."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "restEndpoints": [
+                "GET /api/promotions",
+                "POST /api/promotions",
+                "PUT /api/promotions/:id",
+                "DELETE /api/promotions/:id",
+                "GET /api/promotions/search?q=:query"
+            ],
+            "httpStatusCodes": "Standard REST status codes (200 OK, 201 Created, 400 Bad Request, 404 Not Found, etc.)"
+        },
+        "function": "Expose standardized HTTP endpoints for interacting with promotion data programmatically.",
+        "static_description": "Defined RESTful API routes enabling clients to retrieve lists of promotions, create new entries, update existing ones, delete records, and search content using standard HTTP methods and URI patterns.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "validationLibrary": "Express-validator or similar middleware",
+            "errorResponseFormat": "{ error: { code: string, message: string, details: array } }",
+            "inputSanitization": "Remove HTML tags and escape special characters"
+        },
+        "function": "Validate incoming data and provide meaningful feedback for erroneous requests.",
+        "static_description": "Server-side validation middleware checking required fields, data types, and formats for all POST and PUT requests. Malformed or invalid submissions return structured JSON error responses indicating specific issues.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "concurrentDevScript": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+            "developmentDependencies": [
+                "concurrently",
+                "nodemon",
+                "webpack-dev-server"
+            ]
+        },
+        "function": "Run both frontend and backend services simultaneously during local development.",
+        "static_description": "NPM script configured in root package.json that uses the 'concurrently' package to execute separate frontend and backend development servers in parallel when running 'npm run dev'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Line Execution",
+                "description": "Running 'npm run dev' initiates both frontend build tool (e.g., webpack-dev-server) and backend server (e.g., nodemon) concurrently in the same terminal session."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installAllScript": "npm install --prefix frontend && npm install --prefix backend",
+            "rootPackageJson": "{\"scripts\": {\"install:all\": \"...\"}}"
+        },
+        "function": "Simplify dependency installation across frontend and backend projects with a single command.",
+        "static_description": "Root-level package.json file containing a custom script named 'install:all' which sequentially runs npm install commands in both frontend and backend directories.",
+        "interaction_and_states": [
+            {
+                "interaction": "Command Line Execution",
+                "description": "Executing 'npm run install:all' installs all required Node.js packages for both client-side and server-side applications automatically."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "staticAssetDirectory": "frontend/public/",
+            "assetTypes": [
+                "HTML files",
+                "Images",
+                "Fonts",
+                "Icons"
+            ],
+            "expressStaticMiddleware": "app.use(express.static('public'))"
+        },
+        "function": "Serve static assets like images, fonts, and HTML files directly from the filesystem.",
+        "static_description": "Backend Express server configured with express.static middleware pointing to the frontend public directory. This serves all static files under root paths without requiring dynamic processing.",
+        "interaction_and_states": []
+    }
+]

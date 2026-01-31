@@ -1,0 +1,282 @@
+[
+    {
+        "requirement_tested": "A frontend interface for customers to input shirt customization details including model, fabric, and measurements",
+        "user_persona": "A customer named Alex who wants to design a custom shirt for an upcoming event.",
+        "user_goal": "To successfully enter shirt model, fabric choice, and body measurements into the customization form.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Customization Form",
+                "description": "Alex navigates to the shirt customization page and sees a form with sections for model selection, fabric options, and measurements.",
+                "action": "Load the customization page.",
+                "expected_outcome": "The page displays a multi-section form with a dropdown for shirt models, a grid of fabric swatches, and labeled input fields for measurements, all on a floral white background."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Shirt Model",
+                "description": "Alex selects a preferred shirt model from the dropdown menu.",
+                "action": "Click the shirt model dropdown and select an option.",
+                "expected_outcome": "The selected model updates the preview area with the base model visualization."
+            },
+            {
+                "step": 3,
+                "title": "Choosing Fabric",
+                "description": "Alex browses through available fabrics and clicks on a preferred swatch.",
+                "action": "Click on a fabric swatch.",
+                "expected_outcome": "The clicked swatch is highlighted as selected and the preview updates accordingly."
+            },
+            {
+                "step": 4,
+                "title": "Entering Measurements",
+                "description": "Alex begins typing his body measurements into the respective fields.",
+                "action": "Type values into measurement input fields.",
+                "expected_outcome": "Real-time validation feedback appears below each field as Alex types."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A real-time shirt design generator that creates visual representations based on customer inputs",
+        "user_persona": "A fashion-conscious customer named Taylor designing a personalized gift.",
+        "user_goal": "To see a live visual update of the shirt design as customization choices are made.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Design Display",
+                "description": "Taylor arrives at the customization page and observes a default shirt design in the preview panel.",
+                "action": "Load the customization page.",
+                "expected_outcome": "A central panel shows a default SVG representation of a shirt against a floral white background."
+            },
+            {
+                "step": 2,
+                "title": "Modifying Inputs",
+                "description": "Taylor changes the shirt model, selects a new fabric, and tweaks some measurements.",
+                "action": "Modify shirt model, fabric, and measurement inputs.",
+                "expected_outcome": "Debounced requests are sent to the design generation API, updating the SVG in real time with each change."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A design preview panel allowing customers to view and confirm their customized shirt design",
+        "user_persona": "Jordan, a meticulous shopper, wants to verify the final look before proceeding.",
+        "user_goal": "To review the finalized shirt design and confirm it before moving forward.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Design",
+                "description": "Jordan examines the generated shirt design in the preview panel and decides it looks perfect.",
+                "action": "View the design preview panel.",
+                "expected_outcome": "The panel displays the current shirt SVG centered with a 'Confirm Design' button styled in dark goldenrod below it."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Design",
+                "description": "Satisfied with the design, Jordan clicks the confirmation button.",
+                "action": "Click the 'Confirm Design' button.",
+                "expected_outcome": "The user is redirected to the order summary page with the confirmed design carried over."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A dynamic form system that validates customer inputs for shirt customization parameters",
+        "user_persona": "Casey, a cautious user, wants to ensure all entries are correct before submitting.",
+        "user_goal": "To submit valid customization details without encountering errors.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Invalid Data",
+                "description": "Casey mistakenly enters a negative value in the chest measurement field and moves to the next field.",
+                "action": "Enter '-5' in the chest measurement field and blur the field.",
+                "expected_outcome": "An inline error message immediately appears below the field indicating the value must be positive."
+            },
+            {
+                "step": 2,
+                "title": "Correcting Entry",
+                "description": "Casey corrects the mistake by entering a valid number.",
+                "action": "Change the value to '95' and blur the field again.",
+                "expected_outcome": "The error message disappears and the field is marked as valid."
+            },
+            {
+                "step": 3,
+                "title": "Attempting Submission",
+                "description": "Before selecting a model, Casey tries to proceed to the next step.",
+                "action": "Attempt to click 'Next' without selecting a model.",
+                "expected_outcome": "Red error messages appear prompting selection of required fields like model and fabric."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An order management system to process and track customer shirt orders",
+        "user_persona": "Riley, a frequent shopper, wants to check the status of a recent order.",
+        "user_goal": "To view and track the progress of an existing shirt order.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Order History",
+                "description": "Riley logs in and navigates to the order history section.",
+                "action": "Navigate to the order history page.",
+                "expected_outcome": "A table lists Riley's past and current orders with IDs, dates, amounts, and status icons on a floral white background."
+            },
+            {
+                "step": 2,
+                "title": "Checking Order Details",
+                "description": "Riley clicks on a specific order to get more information.",
+                "action": "Click on an order row.",
+                "expected_outcome": "The user is taken to a detailed tracking page showing customization specs, status timeline, and delivery estimate."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A payment processing integration to handle secure transactions for custom shirt purchases",
+        "user_persona": "Morgan is ready to complete the purchase of a custom-designed shirt.",
+        "user_goal": "To securely pay for the custom shirt and receive confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Payment",
+                "description": "Morgan reaches the checkout screen and sees a secure payment form.",
+                "action": "Open the checkout modal.",
+                "expected_outcome": "A modal overlay titled 'Complete Your Purchase' appears containing PCI-compliant card input fields."
+            },
+            {
+                "step": 2,
+                "title": "Submitting Payment",
+                "description": "Morgan fills in card details and clicks the submit button.",
+                "action": "Fill payment form and click 'Submit'.",
+                "expected_outcome": "The form is submitted to the Stripe API. On success, Morgan is redirected to the order confirmation screen; on failure, an error message is shown."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend API layer that connects to a PostgreSQL database using provided environment variables",
+        "user_persona": "DevOps engineer Sam is deploying the application for production use.",
+        "user_goal": "To ensure the backend properly connects to the PostgreSQL database using predefined environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Sam starts the backend server which should automatically connect to the database.",
+                "action": "Start the backend service.",
+                "expected_outcome": "The backend establishes a connection to the PostgreSQL database using the environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend components that fetch all dynamic data exclusively through backend APIs",
+        "user_persona": "End-user Pat is browsing the website to customize a shirt.",
+        "user_goal": "To interact with a fully functional frontend that retrieves dynamic content via backend APIs.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Loading Shirt Models",
+                "description": "Pat visits the customization page and expects to see a list of available shirt models loaded dynamically.",
+                "action": "Visit the customization page.",
+                "expected_outcome": "The frontend makes an API call to fetch shirt models and populates the dropdown with results instead of hardcoded data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema to store customer information, shirt customizations, orders, and payment records",
+        "user_persona": "Database administrator Quinn ensures data integrity and schema compliance.",
+        "user_goal": "To validate that all necessary tables and relationships exist in the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Tables",
+                "description": "Quinn connects to the database to verify that all required tables have been created.",
+                "action": "Query the database for table existence.",
+                "expected_outcome": "Tables such as users, shirt_customizations, orders, and payments are present with appropriate columns and foreign key constraints."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A color configuration system setting floral white as the global background color",
+        "user_persona": "Designer Dana wants to ensure brand consistency across the entire site.",
+        "user_goal": "To confirm that every page uses floral white as the background color.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Homepage",
+                "description": "Dana opens the homepage to check the background color.",
+                "action": "Load the homepage.",
+                "expected_outcome": "The entire viewport renders with a solid floral white background as defined by the CSS variable :root { --background-color: #fffaf0; }."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI component styling framework using dark goldenrod for all interactive elements",
+        "user_persona": "UX researcher Robin is evaluating the visual consistency of interactive components.",
+        "user_goal": "To verify that all interactive UI elements use dark goldenrod styling.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Interacting With Buttons",
+                "description": "Robin focuses on various buttons throughout the site to observe their styling.",
+                "action": "Focus on different buttons and input fields.",
+                "expected_outcome": "All interactive elements have dark goldenrod borders and accents, with a subtle glow effect on focus as specified in the stylesheet."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and session management for persistent shopping experiences",
+        "user_persona": "Returning user Blake wants to continue shopping where he left off last time.",
+        "user_goal": "To log in and access previously saved items and preferences.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Blake clicks the login link and enters his credentials in the modal.",
+                "action": "Click 'Login', fill in email and password, then submit.",
+                "expected_outcome": "Credentials are verified via the session management API. On success, the page reloads showing the logged-in UI with Blake's profile avatar."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Order confirmation and receipt generation functionality",
+        "user_persona": "New customer Avery just completed her first purchase.",
+        "user_goal": "To receive a digital receipt and confirmation after placing an order.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Completing Purchase",
+                "description": "After payment, Avery is directed to a confirmation screen.",
+                "action": "Complete payment process.",
+                "expected_outcome": "The order confirmation page displays HTML receipt content inline and an email receipt is sent asynchronously via the SMTP service."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Inventory tracking system for shirt models and fabrics",
+        "user_persona": "Customer Zoe is trying to select a limited edition fabric for her shirt.",
+        "user_goal": "To choose an available fabric without encountering inventory issues.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Fabrics",
+                "description": "Zoe looks through the fabric options and notices one marked as low stock.",
+                "action": "Browse fabric options.",
+                "expected_outcome": "Low-stock fabrics display a warning indicator, and out-of-stock options are grayed out with a 'Out of Stock' label."
+            },
+            {
+                "step": 2,
+                "title": "Selecting Fabric",
+                "description": "Zoe attempts to select a fabric that is out of stock.",
+                "action": "Click on an out-of-stock fabric swatch.",
+                "expected_outcome": "The selection is prevented and a notification suggests alternative fabric choices."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring consistent experience across desktop and mobile devices",
+        "user_persona": "Mobile user Charlie is customizing a shirt on his smartphone during lunch break.",
+        "user_goal": "To navigate and customize a shirt seamlessly on a small touchscreen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Using Mobile Device",
+                "description": "Charlie accesses the customization page on his phone and interacts with the layout.",
+                "action": "Resize browser window to simulate mobile view or use actual mobile device.",
+                "expected_outcome": "The layout adjusts responsively using media queries optimized for smaller screens, ensuring all touch targets meet minimum 44px spacing standards."
+            }
+        ]
+    }
+]

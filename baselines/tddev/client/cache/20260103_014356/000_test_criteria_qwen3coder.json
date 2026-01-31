@@ -1,0 +1,436 @@
+[
+    {
+        "requirement_tested": "User authentication and authorization system",
+        "user_persona": "A new student, Alex, who wants to join study groups for upcoming exams.",
+        "user_goal": "To successfully register for an account and log in to access study group features.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Site",
+                "description": "Alex visits the website for the first time and sees the centered authentication card with tabs for Login and Sign Up.",
+                "action": "Observe the static appearance of the authentication form.",
+                "expected_outcome": "A card with 'Login' and 'Sign Up' tabs is visible, styled with steel blue elements and icons next to input fields."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Sign Up",
+                "description": "Alex decides to create a new account and clicks the 'Sign Up' tab.",
+                "action": "Click on the 'Sign Up' tab.",
+                "expected_outcome": "The form switches to show sign-up fields, including username, email, password, and confirm password. All previous input fields are cleared."
+            },
+            {
+                "step": 3,
+                "title": "Entering Registration Details",
+                "description": "Alex fills out the registration form, noticing the password strength indicator as he types.",
+                "action": "Fill in username, email, password, and confirm password fields. Observe password strength indicator.",
+                "expected_outcome": "Field borders highlight in steel blue when focused. A real-time password strength meter appears and updates as Alex types."
+            },
+            {
+                "step": 4,
+                "title": "Submitting Registration",
+                "description": "After filling in valid details, Alex submits his registration.",
+                "action": "Click the 'Sign Up' button.",
+                "expected_outcome": "A POST request is made to '/api/auth/signup'. Upon success, Alex is redirected or notified that registration was successful."
+            },
+            {
+                "step": 5,
+                "title": "Logging In",
+                "description": "Returning to the site later, Alex switches to the Login tab and enters his credentials.",
+                "action": "Click on the 'Login' tab, enter email and password, then click the 'Login' button.",
+                "expected_outcome": "The form toggles to login mode, clears previous inputs, accepts credentials, and sends a POST request to '/api/auth/login'. On success, Alex gains access to the dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ability to create new study groups with titles, descriptions, and topics",
+        "user_persona": "Taylor, a university student majoring in Computer Science.",
+        "user_goal": "To create a new study group for her Algorithms course to help classmates prepare for midterms.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Create Group Form",
+                "description": "After logging in, Taylor navigates to the section for creating study groups and finds the form.",
+                "action": "Navigate to the 'Create Study Group' page.",
+                "expected_outcome": "A form titled 'Create Study Group' is displayed with input fields for title, description, and a dropdown for selecting topics."
+            },
+            {
+                "step": 2,
+                "title": "Filling Group Details",
+                "description": "Taylor begins entering information about the study group, noting how character counters update in real time.",
+                "action": "Type into the title and description fields while observing character counters.",
+                "expected_outcome": "Character counters beneath the title and description fields update in real-time as Taylor types."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Topics",
+                "description": "Taylor selects relevant topics from the dropdown menu for her Algorithms study group.",
+                "action": "Open the topics dropdown and select 'Programming' and 'Mathematics'.",
+                "expected_outcome": "Selected topics appear as tags below the dropdown menu."
+            },
+            {
+                "step": 4,
+                "title": "Submitting New Group",
+                "description": "With all details filled in, Taylor submits the form to officially create the study group.",
+                "action": "Click the 'Submit' button.",
+                "expected_outcome": "A POST request is sent to '/api/groups/create' with the form data. The group is created and Taylor is taken to the group page or receives a success confirmation."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to search and join existing study groups",
+        "user_persona": "Jordan, a high school student preparing for college entrance exams.",
+        "user_goal": "To find and join a study group focused on SAT preparation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Searching for Groups",
+                "description": "Jordan logs in and goes to the browse groups section, where he starts typing in the search bar.",
+                "action": "Navigate to the group browsing page and start typing 'SAT' in the search bar.",
+                "expected_outcome": "The search bar has the placeholder 'Search groups by topic or keyword...'. As Jordan types, the list of groups dynamically filters."
+            },
+            {
+                "step": 2,
+                "title": "Finding Relevant Groups",
+                "description": "Several groups appear matching 'SAT'. Jordan reviews the grid of group cards showing titles, descriptions, topics, and member counts.",
+                "action": "Review the filtered group cards.",
+                "expected_outcome": "A grid of cards is displayed, each showing group metadata including title, description, topics, and number of members."
+            },
+            {
+                "step": 3,
+                "title": "Joining a Group",
+                "description": "Seeing a suitable group, Jordan clicks the 'Join Group' button on one of the cards.",
+                "action": "Click the 'Join Group' button on a relevant group card.",
+                "expected_outcome": "A POST request is made to '/api/groups/join' with the group ID. The button changes to 'Joined' and becomes disabled."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Resource sharing feature allowing users to upload and download study materials",
+        "user_persona": "Morgan, a senior studying Biology, has compiled extensive notes and wants to share them.",
+        "user_goal": "To upload comprehensive biology notes and later download a chemistry reference guide shared by another member.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Uploading Notes",
+                "description": "Inside a study group, Morgan looks for the resource sharing section and drags his notes file into the upload zone.",
+                "action": "Drag and drop a file into the designated upload area.",
+                "expected_outcome": "The drop zone visually highlights during drag. Upon dropping, the file uploads immediately via a POST request to '/api/resources/upload'."
+            },
+            {
+                "step": 2,
+                "title": "Alternative Upload Method",
+                "description": "Later, Morgan wants to upload slides and chooses to use the traditional file browser method.",
+                "action": "Click the 'Choose File' button and select a file from the system dialog.",
+                "expected_outcome": "The native file browser opens. After selecting a file, it uploads via the same mechanism as drag-and-drop."
+            },
+            {
+                "step": 3,
+                "title": "Downloading Shared Resource",
+                "description": "Morgan sees a chemistry reference guide uploaded by another group member and decides to download it.",
+                "action": "Click the download icon next to the chemistry file entry.",
+                "expected_outcome": "A GET request is initiated to '/api/resources/download/{resourceId}' for the selected file, prompting the browser to download it."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Project collaboration workspace with discussion threads and file sharing",
+        "user_persona": "Casey, a graduate student working on a research project with peers.",
+        "user_goal": "To start a new discussion thread about methodology and share a draft document with collaborators.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting a Discussion Thread",
+                "description": "In the project workspace, Casey navigates to the discussion area and creates a new thread about methodology questions.",
+                "action": "Click 'New Thread' and enter a title and initial message, then submit.",
+                "expected_outcome": "A POST request is made to '/api/projects/{projectId}/threads/new'. The new thread appears in the sidebar navigation."
+            },
+            {
+                "step": 2,
+                "title": "Participating in Thread",
+                "description": "Another team member responds. Casey reads the comment and adds his own reply using the message composer.",
+                "action": "Select the thread, type a response in the message box, and press Enter.",
+                "expected_outcome": "Comments load via GET from '/api/projects/{projectId}/threads'. Pressing Enter posts the message to '/api/threads/{threadId}/comments'."
+            },
+            {
+                "step": 3,
+                "title": "Sharing Project Files",
+                "description": "To support the discussion, Casey attaches a methodology draft document to the thread.",
+                "action": "Click the attachment icon in the message composer and select a file.",
+                "expected_outcome": "The file picker opens. After selecting a file, it uploads and associates with the project in the project_files table."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Personal center displaying user profile information and activity history",
+        "user_persona": "Riley, a frequent user of the platform who likes to track engagement.",
+        "user_goal": "To review personal profile details and scroll through recent activity history.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Profile Information",
+                "description": "Riley navigates to the personal center to check her account details.",
+                "action": "Go to the personal center/profile page.",
+                "expected_outcome": "Profile header shows avatar and basic info like Username, Email, and Member Since date aligned to the left."
+            },
+            {
+                "step": 2,
+                "title": "Checking Activity Timeline",
+                "description": "Riley scrolls down to see her recent activities on the platform.",
+                "action": "Scroll down the activity timeline section.",
+                "expected_outcome": "Timeline shows recent actions such as 'Joined group', 'Uploaded resource' fetched from '/api/user/activity' and aligned to the right."
+            },
+            {
+                "step": 3,
+                "title": "Loading More History",
+                "description": "As Riley reaches the end of the currently displayed history, older entries automatically load.",
+                "action": "Continue scrolling to the bottom of the activity list.",
+                "expected_outcome": "Additional historical entries are appended by fetching more data from the paginated '/api/user/activity' endpoint."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Group management dashboard for creators to manage members and content",
+        "user_persona": "Quinn, the founder of a popular literature study group.",
+        "user_goal": "To moderate the group by removing an inactive member and updating the group description.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Admin Dashboard",
+                "description": "As the group creator, Quinn accesses special administrative controls not visible to regular members.",
+                "action": "Navigate to the group dashboard as the group creator.",
+                "expected_outcome": "A dashboard tab for admin functions is visible, showing member roster and settings panel."
+            },
+            {
+                "step": 2,
+                "title": "Removing a Member",
+                "description": "Quinn identifies an inactive member and removes them from the group.",
+                "action": "Click the 'Remove Member' button next to the inactive user.",
+                "expected_outcome": "A DELETE request is sent to '/api/groups/{groupId}/members/remove'. A confirmation prompt appears and the member is removed upon confirmation."
+            },
+            {
+                "step": 3,
+                "title": "Editing Group Information",
+                "description": "Quinn updates the group's description to reflect new focus areas.",
+                "action": "Edit the description in the settings panel and save changes.",
+                "expected_outcome": "Changes are submitted via PUT to '/api/groups/{groupId}/update', and the group information is updated accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time messaging or discussion forum within each study group",
+        "user_persona": "Avery, a participant in a fast-paced programming study group.",
+        "user_goal": "To engage in real-time discussion with other group members while solving coding problems together.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Entering Chat Room",
+                "description": "Avery joins the group's chat room and sees previous messages displayed in chronological order.",
+                "action": "Navigate to the group's messaging section.",
+                "expected_outcome": "A full-height sidebar shows timestamped messages with sender names and avatars. A real-time status indicator is visible."
+            },
+            {
+                "step": 2,
+                "title": "Sending a Message",
+                "description": "Avery types a question about a tricky algorithm problem and hits send.",
+                "action": "Type a message in the input textbox and click the send button.",
+                "expected_outcome": "Clicking 'Send' emits a WebSocket event. The message instantly appears in the conversation without needing a page refresh."
+            },
+            {
+                "step": 3,
+                "title": "Quick Replies",
+                "description": "Other members respond quickly. Avery replies back using the Enter key for speed.",
+                "action": "Type a quick reply and press Enter while focused on the input field.",
+                "expected_outcome": "Pressing Enter submits the message to the WebSocket connection, sending it to other participants immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Notifications system for group activities and resource updates",
+        "user_persona": "Parker, a busy medical student juggling multiple study groups.",
+        "user_goal": "To stay informed about important updates in his various study groups without constantly checking each one.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Receiving Notifications",
+                "description": "While browsing the site, Parker notices a red badge on the notification bell indicating new alerts.",
+                "action": "Observe the top navbar with the notification bell icon.",
+                "expected_outcome": "The bell icon (/assets/icons/notification-bell.svg) shows a red badge with the count of unread notifications."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Alerts",
+                "description": "Curious about the alerts, Parker clicks the bell to see what he's missed.",
+                "action": "Click the notification bell icon.",
+                "expected_outcome": "A dropdown menu expands showing latest notifications fetched from '/api/notifications', with descriptions and timestamps."
+            },
+            {
+                "step": 3,
+                "title": "Marking as Read",
+                "description": "After reading the notifications, Parker wants to clear the alert count.",
+                "action": "Interact with notifications or simply close the dropdown.",
+                "expected_outcome": "Marking notifications as read updates their status in the backend and decrements the badge counter on the bell icon."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive web design with alice blue background and steel blue components",
+        "user_persona": "Skyler, a design-conscious student who accesses the site from multiple devices.",
+        "user_goal": "To have a consistent and visually appealing experience whether using desktop, tablet, or mobile.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Desktop Experience",
+                "description": "On a laptop, Skyler browses study groups and appreciates the clean layout with proper spacing.",
+                "action": "Browse the site on a desktop screen wider than 1024px.",
+                "expected_outcome": "Layout uses alice blue (#F0F8FF) background. Buttons, headers, and cards are styled with steel blue (#4682B4). Elements are properly spaced for large screens."
+            },
+            {
+                "step": 2,
+                "title": "Tablet Responsiveness",
+                "description": "Switching to a tablet, Skyler observes how the interface adjusts for medium-sized screens.",
+                "action": "Resize browser window to between 768px and 1024px or use tablet device.",
+                "expected_outcome": "Spacing, font sizes, and element stacking adjust according to tablet breakpoint. Layout remains usable and visually consistent."
+            },
+            {
+                "step": 3,
+                "title": "Mobile Adaptation",
+                "description": "Finally, Skyler checks the site on a smartphone to ensure it's still functional on small screens.",
+                "action": "Access the site on a mobile device or resize browser to less than 768px width.",
+                "expected_outcome": "UI adapts to mobile breakpoint with adjusted spacing and font sizes. All interactive elements remain accessible and retain steel blue styling against alice blue background."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend application that fetches all dynamic data from backend APIs",
+        "user_persona": "Dakota, a tech-savvy student who understands how web applications work behind the scenes.",
+        "user_goal": "To verify that all displayed data comes from live API calls rather than being hardcoded.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initial Page Load",
+                "description": "Upon visiting the dashboard, Dakota knows that components should fetch data immediately.",
+                "action": "Load the main dashboard page after authentication.",
+                "expected_outcome": "Components execute useEffect/onMounted hooks that trigger initial data fetches from backend APIs like '/api/groups/list'."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Dynamic Content",
+                "description": "Dakota sees study groups listed that match those in the database, confirming live data retrieval.",
+                "action": "Observe the content rendered in group listing components.",
+                "expected_outcome": "Content is rendered only after receiving and processing responses from backend API calls. No mock or static data is presented."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API server connecting to PostgreSQL database using specified environment variables",
+        "user_persona": "A developer setting up the application environment for the first time.",
+        "user_goal": "To configure and run the backend server with correct database connectivity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Before starting the server, the developer sets up the required database environment variables.",
+                "action": "Set environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp.",
+                "expected_outcome": "Environment variables are correctly set and accessible to the Node.js server process."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Server",
+                "description": "With environment variables in place, the developer starts the backend service.",
+                "action": "Run the backend server initialization code.",
+                "expected_outcome": "Node.js server initializes with Express.js/Fastify, configures database pool using injected environment values, and starts listening for requests."
+            },
+            {
+                "step": 3,
+                "title": "Processing Requests",
+                "description": "The server handles incoming API requests by querying the connected PostgreSQL database.",
+                "action": "Make a sample API request to a protected route.",
+                "expected_outcome": "Server validates JWT tokens, executes queries against PostgreSQL using pg-promise/knex ORM, and returns structured JSON responses based on database data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema supporting users, groups, resources, projects, and discussions",
+        "user_persona": "A database administrator tasked with deploying the application's data structure.",
+        "user_goal": "To create all necessary database tables with correct relationships and constraints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Defining Table Relationships",
+                "description": "The DBA reviews the schema requirements to understand how entities relate to each other.",
+                "action": "Review requiredTablesAndRelationships definition.",
+                "expected_outcome": "Clear understanding of table structures and foreign key relationships such as users.id -> study_groups.creator_id."
+            },
+            {
+                "step": 2,
+                "title": "Executing Migration Script",
+                "description": "Using the reviewed schema, the DBA runs a migration script to create all tables.",
+                "action": "Execute SQL migration script defining all required tables and relationships.",
+                "expected_outcome": "All tables (users, study_groups, group_members, etc.) are created with proper columns, primary keys, and foreign key constraints enforced."
+            },
+            {
+                "step": 3,
+                "title": "Adding Performance Indexes",
+                "description": "To optimize common queries, indexes are added on frequently searched columns.",
+                "action": "Add indexes on columns like user_id, group_id, and timestamps.",
+                "expected_outcome": "Indexes are created on specified columns, improving query performance for lookups involving user associations, group memberships, and chronological sorting."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' and 'dev' npm scripts",
+        "user_persona": "A new contributor to the project who needs to set up their development environment.",
+        "user_goal": "To easily install dependencies and start both frontend and backend services simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "After cloning the repository, the contributor runs the command to install all necessary packages.",
+                "action": "Run 'npm run install:all' from the root directory.",
+                "expected_outcome": "Concurrently executes 'npm install' in both frontend and backend directories, installing all required dependencies."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "With dependencies installed, the contributor starts both development servers with one command.",
+                "action": "Run 'npm run dev' from the root directory.",
+                "expected_outcome": "Concurrently starts the frontend development server and backend API server, allowing full application functionality during development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for browsing and filtering available study groups",
+        "user_persona": "Jamie, a curious learner looking to explore different academic interests.",
+        "user_goal": "To discover new study groups by applying various filters based on topics and member activity.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Groups",
+                "description": "Jamie visits the browse groups page and sees a grid of cards representing public study groups.",
+                "action": "Navigate to the browse groups page.",
+                "expected_outcome": "A grid of study group cards is displayed, each showing title, description, topic tags, and current user's join status ('Joined' or 'Join')."
+            },
+            {
+                "step": 2,
+                "title": "Applying Topic Filter",
+                "description": "Interested in science-related groups, Jamie applies a topic filter to narrow down the options.",
+                "action": "Select 'Science' from the Topic filter dropdown.",
+                "expected_outcome": "Filter selection automatically updates query parameters sent to '/api/groups/browse', refreshing the grid to show only science-related groups."
+            },
+            {
+                "step": 3,
+                "title": "Sorting by Member Count",
+                "description": "Wanting to join active communities, Jamie sorts the results by member count.",
+                "action": "Apply a sort/filter option for Member Count.",
+                "expected_outcome": "Groups are reordered based on member count, helping Jamie identify popular and potentially more active study groups."
+            },
+            {
+                "step": 4,
+                "title": "Joining a Filtered Group",
+                "description": "Seeing an ideal group in the filtered results, Jamie joins it directly from the browse page.",
+                "action": "Click the 'Join' button on a group card from the filtered results.",
+                "expected_outcome": "User is enrolled in the group via API call, and the local UI state updates immediately to show 'Joined' status."
+            }
+        ]
+    }
+]

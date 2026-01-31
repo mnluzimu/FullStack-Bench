@@ -1,0 +1,17 @@
+[
+    "User registration and authentication system",
+    "User profile creation and management",
+    "Ability to add, edit, and remove skills and certifications",
+    "Search functionality to find users by skills and certifications",
+    "User profile browsing interface",
+    "Detailed profile view showing skills and certifications",
+    "Contact functionality between users",
+    "Frontend application fetching all data from backend APIs",
+    "Backend API connecting to PostgreSQL database using specified environment variables",
+    "Repository package.json configured with npm run install:all for frontend and backend installation",
+    "Repository package.json configured with npm run dev to start frontend and backend concurrently",
+    "Responsive web design with cornsilk background color",
+    "Interactive elements styled with peru color",
+    "User-friendly navigation and layout structure",
+    "Data persistence for user profiles, skills, and certifications"
+]

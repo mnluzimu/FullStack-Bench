@@ -1,0 +1,201 @@
+[
+    {
+        "resource_dependency": {
+            "dashboardLayoutCSS": "Light gray background (#f0f0f0) with dark red components (#8B0000)",
+            "buyerDashboardRoute": "/buyer/dashboard",
+            "sellerDashboardRoute": "/seller/dashboard"
+        },
+        "function": "Provide separate dashboards for buyers and sellers with navigation between them.",
+        "static_description": "A responsive web page layout with a consistent header containing logo, user profile menu, and navigation links. Main content area displaying either the buyer or seller dashboard based on route. Background color set to light gray and component accents in dark red.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking on 'Buyer Dashboard' navigates to /buyer/dashboard. Clicking on 'Seller Dashboard' navigates to /seller/dashboard."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "productListAPI": "GET /api/products",
+            "productDataSchema": "Table 'products' with fields: id (UUID), name (string), description (text), price (decimal), currency (string), seller_id (foreign key to users.id), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Allow buyers to browse available cryptocurrency products listed by sellers.",
+        "static_description": "A grid or list view showing product cards with name, description, price, currency, and seller information. Each card includes a 'Select' button. Loading spinner displayed during initial data fetch.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Select' on a product initiates the purchase flow and redirects to escrow deposit screen."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Infinite scroll loading more products as user scrolls down."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "escrowDepositAPI": "POST /api/transactions/{id}/deposit",
+            "cryptocurrencyIcons": "/assets/icons/crypto/",
+            "supportedCryptos": [
+                "BTC",
+                "ETH",
+                "USDT"
+            ]
+        },
+        "function": "Enable buyers to deposit cryptocurrency into an escrow account for selected transactions.",
+        "static_description": "Modal or dedicated page showing transaction details, supported cryptocurrencies with icons, wallet address for deposit, QR code, and amount due. Dark red CTA button for confirming deposit initiation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Confirm Deposit' sends POST request to escrow API and displays success message with next steps."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "productManagementAPI": "GET /api/seller/products, POST /api/seller/products, PUT /api/seller/products/{id}, DELETE /api/seller/products/{id}",
+            "productFormFields": [
+                "name",
+                "description",
+                "price",
+                "currency",
+                "crypto_types"
+            ]
+        },
+        "function": "Allow sellers to create, read, update, and delete their cryptocurrency product listings.",
+        "static_description": "Tabbed interface with 'My Products' list view and 'Add New Product' form. List shows product name, price, status, and action buttons. Form contains input fields for all product details with dark red submit button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Edit' loads product data into form. Clicking 'Delete' prompts confirmation dialog. Submitting form creates or updates product via API."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "transactionRecordsAPI": "GET /api/seller/transactions",
+            "transactionDataSchema": "Table 'transactions' with fields: id (UUID), product_id (foreign key), buyer_id (foreign key), seller_id (foreign key), status (enum: pending, confirmed, completed, disputed), amount (decimal), currency (string), escrow_account_id (foreign key), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Provide sellers with access to view and manage their transaction history and current statuses.",
+        "static_description": "Filterable table listing all seller transactions with columns: Transaction ID, Product Name, Buyer Info, Amount, Status, Date, Actions. Status badges colored according to state. Dark red 'View Details' buttons per row.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'View Details' opens transaction detail modal. Filtering changes query parameters and reloads table data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "confirmTransactionAPI": "POST /api/transactions/{id}/confirm",
+            "confirmationNotificationAPI": "WebSocket endpoint /ws/notifications"
+        },
+        "function": "Facilitate confirmation of completed trades between buyers and sellers.",
+        "static_description": "Within transaction detail view, display 'Confirm Transaction' button when status is pending. Show confirmation timestamp and status update after successful confirmation.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Confirm Transaction' sends POST request. On success, updates local state and shows notification about status change."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "releaseCryptoAPI": "POST /api/transactions/{id}/release",
+            "escrowAccountSchema": "Table 'escrow_accounts' with fields: id (UUID), transaction_id (foreign key), balance (decimal), currency (string), status (enum: active, released, refunded), created_at (timestamp), updated_at (timestamp)"
+        },
+        "function": "Release cryptocurrency from escrow to seller upon successful transaction completion.",
+        "static_description": "In transaction detail view, show 'Release Cryptocurrency' button when status is confirmed. Display escrow balance and release confirmation message after processing.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Release Cryptocurrency' triggers API call. Success response updates UI to reflect released status and zero balance."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "disputeAPI": "POST /api/transactions/{id}/dispute",
+            "disputeResolutionUI": "Modal with text area for explanation and 'Submit Dispute' button",
+            "disputeStatusSchema": "Field 'status' in transactions table includes 'disputed' value; additional 'disputes' table with fields: id (UUID), transaction_id (foreign key), filed_by (user_id), reason (text), resolution_status (enum: open, resolved, rejected), created_at (timestamp)"
+        },
+        "function": "Allow users to initiate disputes and provide interface for resolution management.",
+        "static_description": "Visible 'Raise Dispute' button in transaction views when status is not completed or disputed. Modal appears with form to explain issue and submit dispute.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Raise Dispute' opens modal. Submitting form disables button and shows pending status until admin resolves."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "apiBaseURL": "http://localhost:3001/api",
+            "authEndpoints": {
+                "login": "POST /auth/login",
+                "register": "POST /auth/register",
+                "logout": "POST /auth/logout"
+            }
+        },
+        "function": "Serve all dynamic data through RESTful API endpoints consumed by frontend.",
+        "static_description": "Backend Express.js server exposing CRUD operations for users, products, transactions, and escrow accounts. All routes prefixed with /api. Authentication middleware protecting sensitive endpoints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "dbConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "pgClientLibrary": "pg npm package"
+        },
+        "function": "Establish secure connection to external PostgreSQL database using provided environment variables.",
+        "static_description": "Node.js backend configured with pg client pool connecting to PostgreSQL instance. Connection initialized at server startup using env vars. Error handling for failed connections logged to console.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "databaseERD": "Users <-OneToMany-> Transactions, Users <-OneToMany-> Products, Transactions <-OneToOne-> EscrowAccounts, Transactions <-OneToMany-> Disputes"
+        },
+        "function": "Define relational database schema supporting core entities: users, products, transactions, escrow accounts, and disputes.",
+        "static_description": "PostgreSQL database with tables: users, products, transactions, escrow_accounts, disputes. Foreign key relationships established. Indexes on frequently queried columns like user_id and status.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "jwtSecretEnvVar": "JWT_SECRET=mysecretkey",
+            "authMiddleware": "Express middleware checking Authorization Bearer token"
+        },
+        "function": "Implement JWT-based authentication and role-based authorization for buyers and sellers.",
+        "static_description": "Login/register forms on frontend sending credentials to /auth endpoints. Successful login returns JWT stored in localStorage. Protected routes check token validity and decode user roles before rendering.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Submitting login form sends POST to /auth/login. Valid credentials return token used for subsequent authenticated requests."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "websocketEndpoint": "ws://localhost:3001/ws",
+            "socketIOLibrary": "socket.io"
+        },
+        "function": "Push real-time updates regarding transaction status changes and escrow account balance adjustments to connected clients.",
+        "static_description": "WebSocket server broadcasting events on transaction updates and escrow changes. Frontend establishes persistent connection and listens for relevant messages to update UI dynamically without refresh.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "packageJsonStructure": "{\"scripts\": {\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\"\"}}"
+        },
+        "function": "Configure repository package.json to enable simultaneous installation and development startup of frontend and backend.",
+        "static_description": "Root-level package.json file with concurrently dependency and two scripts: install:all runs npm install in both directories, dev runs development servers concurrently.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "themeVariables": ":root { --background-color: #f0f0f0; --primary-color: #8B0000; }",
+            "globalStylesheet": "/styles/global.css"
+        },
+        "function": "Apply consistent styling across application with specified light gray background and dark red component colors.",
+        "static_description": "Global CSS variables defining --background-color as #f0f0f0 and --primary-color as #8B0000. Applied throughout components for backgrounds, borders, and interactive elements.",
+        "interaction_and_states": []
+    }
+]

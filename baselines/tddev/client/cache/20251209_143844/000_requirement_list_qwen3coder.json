@@ -1,0 +1,230 @@
+[
+    {
+        "resource_dependency": {
+            "searchIcon": "/icons/search-icon.svg",
+            "stockDatabaseSchema": "A database table named 'stocks' with fields: stock_id (unique ID), symbol (string), name (string), exchange (string), sector (string), industry (string), market_cap (number), last_price (number), last_updated (datetime)."
+        },
+        "function": "Enable users to search for stocks by entering either stock codes or names.",
+        "static_description": "A centered search bar at the top of the page with a placeholder 'Enter stock code or name', accompanied by a magnifying glass icon (searchIcon) on the right side. The background is white (#FFFFFF) and the search bar border and text are navy (#000080).",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Focuses the input field when clicked."
+            },
+            {
+                "interaction": "Type",
+                "description": "Triggers live filtering of stock suggestions from the stock database as the user types."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "autocompleteDropdownStyle": "Navy border (#000080), white background (#FFFFFF), navy text color (#000080)",
+            "stockSuggestionsData": "List of matching stock symbols and names fetched from the stock database based on partial user input."
+        },
+        "function": "Provide auto-suggested stock entries while the user is typing in the search bar.",
+        "static_description": "A dropdown list appears directly beneath the search bar showing matching stock symbols and names. Each suggestion item displays the stock symbol followed by the full company name. The dropdown uses autocompleteDropdownStyle styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects the clicked suggestion, populates the search bar with the selected stock symbol or name, and closes the dropdown."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Highlights the hovered suggestion with a light navy background (#E6E6FA) and darker text shade."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "stockInfoSchema": "Fields: symbol (string), name (string), current_price (number), change (number), change_percent (number), previous_close (number), open_price (number), volume (number), market_cap (number), pe_ratio (number)",
+            "infoCardStyle": "White background (#FFFFFF), navy border (#000080), padding 16px, rounded corners (8px)"
+        },
+        "function": "Display a summary card containing essential stock information after selecting a stock.",
+        "static_description": "A responsive card component positioned below the search bar featuring key-value pairs such as Symbol, Name, Current Price, Change, % Change, Previous Close, Open, Volume, Market Cap, and P/E Ratio. The layout follows infoCardStyle.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "trendChartPlaceholder": "/images/trend-chart-placeholder.png",
+            "chartingLibraryAPI": "Integration with a third-party charting library (e.g., Chart.js or D3.js) for dynamic trend visualization"
+        },
+        "function": "Visualize historical market trends through interactive charts within the stock report.",
+        "static_description": "A dedicated section titled 'Market Trends' includes a placeholder image (trendChartPlaceholder) before data loads, styled with white background and navy borders. Once loaded, an interactive line chart replaces the placeholder showing price movement over time.",
+        "interaction_and_states": [
+            {
+                "interaction": "Hover",
+                "description": "Displays tooltips with date and value details upon hovering over chart points."
+            },
+            {
+                "interaction": "Click",
+                "description": "May trigger drill-down actions depending on chart configuration (e.g., switching between daily, weekly, monthly views)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "financialMetricsSchema": "Fields: revenue (number), net_income (number), eps (number), debt_to_equity (number), roe (number), dividend_yield (number), beta (number)",
+            "dataTableStyle": "Navy headers with white text, alternating row colors (white and light navy #F5F5F5)"
+        },
+        "function": "Present critical financial metrics and ratios in a structured tabular format.",
+        "static_description": "A section labeled 'Financial Data' contains a table displaying key financial indicators like Revenue, Net Income, EPS, Debt-to-Equity, ROE, Dividend Yield, and Beta. Table styling adheres to dataTableStyle guidelines.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "formatOptions": [
+                "PDF",
+                "Excel",
+                "HTML"
+            ],
+            "radioButtonStyle": "Navy circle outline with white fill, checked state filled with solid navy"
+        },
+        "function": "Allow users to choose their preferred output format for the generated report.",
+        "static_description": "Three radio buttons aligned horizontally under the heading 'Report Format'. Labels correspond to formatOptions values. Selected option is visually indicated with navy fill inside the circle.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Selects the clicked format option, updating the preview and enabling export accordingly."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "contentSections": [
+                "Basic Info",
+                "Market Trends",
+                "Financial Data",
+                "News Summary"
+            ],
+            "checkboxStyle": "Navy square border, checked state shows navy checkmark icon"
+        },
+        "function": "Let users customize which sections appear in their final stock report.",
+        "static_description": "A vertical checklist titled 'Choose Sections' lists checkboxes next to each item in contentSections. All boxes are unchecked by default but can be toggled independently.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Toggles selection status of individual checkboxes; selected items will be included in the generated report."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportGenerationEngine": "A backend engine that compiles selected data and formats into a cohesive document using templates",
+            "loadingSpinner": "/icons/loading-spinner.gif"
+        },
+        "function": "Automatically compile and generate a complete stock report based on user selections.",
+        "static_description": "Upon clicking 'Generate Report', a loading spinner (loadingSpinner) briefly appears while processing. After completion, the compiled report becomes visible in the main viewing area.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Triggers the generation process using the currently selected stock, format, and content preferences."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "reportPreviewStyle": "Clean typography with consistent spacing, navy headings (#000080), dark gray body text (#333333), white background (#FFFFFF)",
+            "printCSS": "Print-friendly CSS ensuring proper formatting during PDF export"
+        },
+        "function": "Show the generated report in a clear and well-formatted manner suitable for reading and exporting.",
+        "static_description": "The generated report fills most of the screen with a scrollable view. It uses reportPreviewStyle for consistent fonts, margins, and readability. Headings are bolded and colored navy.",
+        "interaction_and_states": [
+            {
+                "interaction": "Scroll",
+                "description": "Allows navigation through longer reports without pagination."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "globalBackgroundCSS": "body { background-color: #FFFFFF; }"
+        },
+        "function": "Maintain a uniform white background across all pages and components of the website.",
+        "static_description": "Every page and container element uses a pure white background (#FFFFFF) as defined in globalBackgroundCSS. No other background colors are used except for interactive highlights.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "componentColorPalette": "Primary Color: Navy (#000080); Secondary Highlight: Light Navy (#4B0082)"
+        },
+        "function": "Apply a consistent navy color theme to all UI elements throughout the site.",
+        "static_description": "All buttons, icons, borders, and primary text use navy (#000080) as per componentColorPalette. Hover states may utilize secondary highlight color for emphasis.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "priceChartPlaceholder": "/images/price-chart-placeholder.png",
+            "timeRangeButtons": [
+                "1D",
+                "1W",
+                "1M",
+                "3M",
+                "1Y",
+                "All"
+            ]
+        },
+        "function": "Show dynamic stock price charts with adjustable time ranges for better trend analysis.",
+        "static_description": "Below the stock summary, there’s a chart area displaying a static placeholder image (priceChartPlaceholder). Adjacent to it are small toggle buttons labeled with timeRangeButtons allowing users to switch chart periods.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Updates the displayed chart to reflect the selected time range."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "exportFormats": [
+                "PDF",
+                "Excel"
+            ],
+            "downloadIcon": "/icons/download-icon.svg"
+        },
+        "function": "Enable users to download generated reports in various file formats.",
+        "static_description": "At the bottom of the report preview, two export buttons labeled 'Export to PDF' and 'Export to Excel' are shown side-by-side. Both feature a download icon (downloadIcon) and navy text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Initiates the download of the current report in the respective format (PDF or Excel)."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "authDatabaseSchema": "Users table with fields: user_id (unique ID), email (string), password_hash (string), created_at (datetime), last_login (datetime)",
+            "loginFormFields": [
+                "Email",
+                "Password"
+            ],
+            "signupFormFields": [
+                "Name",
+                "Email",
+                "Password",
+                "Confirm Password"
+            ]
+        },
+        "function": "Manage secure user access via login/signup forms and maintain personalized settings.",
+        "static_description": "A modal form opens upon clicking 'Sign In' or 'Register'. Fields follow standard web practices with navy-themed styling. Buttons include 'Login'/'Signup' and 'Forgot Password'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit",
+                "description": "Validates credentials or registration data and authenticates the user or creates a new account."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "watchlistDatabaseSchema": "Watchlists table with fields: watchlist_id (unique ID), user_id (foreign key), stock_symbol (string), added_on (datetime)",
+            "bookmarkIcon": "/icons/bookmark-icon.svg"
+        },
+        "function": "Allow users to save favorite stocks for quick access later.",
+        "static_description": "Next to each stock entry in search results or summaries, a bookmark icon (bookmarkIcon) indicates whether the stock is saved. An empty outline means unbookmarked; filled means saved.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Adds or removes the current stock from the user's personal watchlist stored in the watchlist database."
+            }
+        ]
+    }
+]

@@ -1,0 +1,17 @@
+[
+    "A dashboard website for displaying regulatory policies",
+    "Data visualization capabilities for complex regulatory policies",
+    "Ability to browse different policies",
+    "Ability to analyze policies with related data and charts",
+    "Filtering functionality for policies",
+    "Sorting functionality for policies",
+    "Frontend that fetches all data from backend APIs",
+    "Backend that connects to an external PostgreSQL database",
+    "Use of specified environment variables for database connection: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+    "Lavender background color assigned to the website",
+    "Indigo color assigned to UI elements",
+    "Configuration of package.json with 'npm run install:all' script to install both frontend and backend dependencies",
+    "Configuration of package.json with 'npm run dev' script to start both frontend and backend concurrently",
+    "Interactive charts and graphs for policy data representation",
+    "Responsive design compatible with multiple device sizes"
+]

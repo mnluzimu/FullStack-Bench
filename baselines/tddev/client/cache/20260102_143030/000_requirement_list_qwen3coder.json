@@ -1,0 +1,272 @@
+[
+    {
+        "resource_dependency": {
+            "api_endpoints": {
+                "fetch_dynamic_data": "/api/data"
+            }
+        },
+        "function": "A frontend application that fetches all dynamic data from backend APIs",
+        "static_description": "A responsive web interface with navigation bar, main content area, and footer. All dynamic content is fetched from backend endpoints.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "database_connection": "PostgreSQL connection using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "api_endpoints": {
+                "connect_to_db": "/api/connect"
+            }
+        },
+        "function": "A backend application connecting to a PostgreSQL database using specified environment variables",
+        "static_description": "Server-side application with RESTful API endpoints that establish secure connections to PostgreSQL database using provided credentials.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "financial_data_schema": "Table: financial_transactions (transaction_id UUID, patient_id UUID, amount DECIMAL, transaction_type VARCHAR, timestamp TIMESTAMP, description TEXT)",
+            "api_endpoints": {
+                "collect_fees": "/api/finance/collect",
+                "manage_finances": "/api/finance/manage"
+            }
+        },
+        "function": "Financial management module for collecting patient fees and managing hospital finances",
+        "static_description": "Financial dashboard showing transaction history, fee collection forms, and financial summaries with Indian Red accents on buttons and charts.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button on fee collection form triggers POST request to /api/finance/collect endpoint"
+            },
+            {
+                "interaction": "Click",
+                "description": "Financial summary cards display detailed breakdown when clicked"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "report_data_schemas": {
+                "inventory_reports": "Table: inventory_reports (report_id UUID, generated_at TIMESTAMP, item_counts JSONB)",
+                "patient_reports": "Table: patient_reports (report_id UUID, generated_at TIMESTAMP, patient_statistics JSONB)",
+                "financial_reports": "Table: financial_reports (report_id UUID, generated_at TIMESTAMP, revenue_data JSONB)"
+            },
+            "api_endpoints": {
+                "generate_inventory_report": "/api/reports/inventory",
+                "generate_patient_report": "/api/reports/patient",
+                "generate_financial_report": "/api/reports/financial"
+            }
+        },
+        "function": "Reporting module generating inventory reports, patient reports, and financial reports",
+        "static_description": "Reports dashboard with tabs for inventory, patient, and financial reports. Each tab contains report generation controls and visualization areas with Peach Puff background and Indian Red borders.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Report generation buttons trigger API calls to respective endpoints and display results in chart/table format"
+            },
+            {
+                "interaction": "Click",
+                "description": "Export buttons download generated reports in PDF/CSV formats"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "daily_report_schema": "Table: daily_reports (report_id UUID, employee_id UUID, date DATE, activities TEXT, supervisor_id UUID, status VARCHAR)",
+            "api_endpoints": {
+                "submit_daily_report": "/api/reports/daily/submit",
+                "view_submitted_reports": "/api/reports/daily/view"
+            }
+        },
+        "function": "Daily report submission feature for employees to provide detailed activity information to superiors",
+        "static_description": "Daily report form with text area for activity details, date picker, and submit button. Supervisor view shows list of submitted reports with approval controls. Background uses Peach Puff with Indian Red form elements.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit button sends report data to /api/reports/daily/submit endpoint"
+            },
+            {
+                "interaction": "Click",
+                "description": "Supervisor approval buttons update report status in database"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "pharmacy_data_schema": "Table: pharmacy_inventory (medicine_id UUID, name VARCHAR, quantity INTEGER, expiry_date DATE, supplier VARCHAR, price DECIMAL)",
+            "api_endpoints": {
+                "manage_medicine_inventory": "/api/pharmacy/inventory"
+            }
+        },
+        "function": "Pharmacy management module for medicine inventory tracking",
+        "static_description": "Inventory management interface with searchable medicine list, stock level indicators, and add/update forms. Uses Peach Puff background with Indian Red table headers and buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Add/Edit medicine buttons open modal forms for data entry"
+            },
+            {
+                "interaction": "Click",
+                "description": "Stock adjustment buttons update quantity values in database"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "patient_file_schema": "Table: patient_files (file_id UUID, patient_name VARCHAR, date_of_visit DATE, diagnosis TEXT, comments TEXT)",
+            "api_endpoints": {
+                "store_patient_files": "/api/patients/files/store",
+                "retrieve_patient_files": "/api/patients/files/retrieve"
+            }
+        },
+        "function": "Patient electronic files storing name, date of visit, diagnosis, and comments",
+        "static_description": "Patient file viewer with search functionality, file creation form, and detailed view panel. Background is Peach Puff with Indian Red form borders and action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Create new file button opens data entry form with fields for all required patient information"
+            },
+            {
+                "interaction": "Click",
+                "description": "Search button filters patient files based on entered criteria"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "claim_data_schema": "Table: medical_claims (claim_id UUID, patient_id UUID, treatment_details TEXT, claim_amount DECIMAL, status VARCHAR, submitted_by UUID)",
+            "api_endpoints": {
+                "formulate_claim": "/api/claims/formulate",
+                "process_claim": "/api/claims/process"
+            }
+        },
+        "function": "Claim formulation functionality for processing medical claims",
+        "static_description": "Claims management interface with claim creation form, status tracking table, and processing controls. Uses Peach Puff background with Indian Red status indicators.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Submit claim button sends data to /api/claims/formulate endpoint"
+            },
+            {
+                "interaction": "Click",
+                "description": "Process claim buttons update claim status through /api/claims/process endpoint"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "laboratory_data_schema": "Table: lab_operations (operation_id UUID, test_type VARCHAR, patient_id UUID, technician_id UUID, results TEXT, status VARCHAR)",
+            "api_endpoints": {
+                "manage_lab_operations": "/api/laboratory/manage"
+            }
+        },
+        "function": "Laboratory management system for handling lab operations",
+        "static_description": "Lab management dashboard showing pending tests, completed results, and technician assignments. Background is Peach Puff with Indian Red test status badges.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Test completion buttons update operation status in database"
+            },
+            {
+                "interaction": "Click",
+                "description": "Result entry forms submit data to lab operations API"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "theater_data_schema": "Table: theater_schedule (schedule_id UUID, operation_theater VARCHAR, surgery_type VARCHAR, surgeon_id UUID, patient_id UUID, start_time TIMESTAMP, end_time TIMESTAMP)",
+            "api_endpoints": {
+                "manage_theater_scheduling": "/api/theater/schedule"
+            }
+        },
+        "function": "Theater management module for operating room scheduling and tracking",
+        "static_description": "Scheduling calendar view showing theater bookings, surgery details, and staff assignments. Uses Peach Puff background with Indian Red event markers.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Schedule creation/modification forms submit data to theater scheduling API"
+            },
+            {
+                "interaction": "Click",
+                "description": "Calendar events show detailed surgery information when selected"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "auth_data_schema": "Table: users (user_id UUID, username VARCHAR, password_hash TEXT, role VARCHAR, employee_id UUID)",
+            "api_endpoints": {
+                "authenticate_user": "/api/auth/login",
+                "authorize_access": "/api/auth/authorize"
+            }
+        },
+        "function": "User authentication and role-based access control for different employee types",
+        "static_description": "Login page with username/password fields and role selection dropdown. Protected routes redirect unauthenticated users to login. Background is Peach Puff with Indian Red login button.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Login button authenticates credentials and redirects to appropriate dashboard based on user role"
+            },
+            {
+                "interaction": "Click",
+                "description": "Protected navigation links check authorization before allowing access"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "dashboard_data_endpoints": {
+                "finance_metrics": "/api/dashboard/finance",
+                "inventory_metrics": "/api/dashboard/inventory",
+                "patient_metrics": "/api/dashboard/patient"
+            }
+        },
+        "function": "Dashboard displaying key metrics across finance, inventory, and patient data",
+        "static_description": "Main dashboard with metric cards for financial status, inventory levels, and patient statistics. Charts and graphs use Indian Red color scheme against Peach Puff background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Metric cards expand to show detailed analytics views"
+            },
+            {
+                "interaction": "Hover",
+                "description": "Chart tooltips appear showing detailed metric information"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "data_entry_forms": {
+                "patient_form": "/components/forms/patient-entry.html",
+                "inventory_form": "/components/forms/inventory-update.html",
+                "transaction_form": "/components/forms/transaction-entry.html"
+            }
+        },
+        "function": "Data entry forms for patient information, inventory updates, and financial transactions",
+        "static_description": "Collection of standardized forms with validation feedback, save/cancel buttons, and consistent styling using Peach Puff backgrounds and Indian Red action buttons.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Save buttons validate form data and submit to appropriate API endpoints"
+            },
+            {
+                "interaction": "Click",
+                "description": "Cancel buttons clear form fields and return to previous view"
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "styling_config": "CSS variables: --background-color: peachpuff; --primary-color: indianred;"
+        },
+        "function": "Background color configured to peach puff with components using indian red",
+        "static_description": "Global CSS theme configuration setting body background to Peach Puff (#FFDAB9) and primary interactive elements to Indian Red (#CD5C5C).",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "package_json_scripts": "\"install:all\": \"concurrently \\\"npm install\\\" \\\"cd backend && npm install\\\"\", \"dev\": \"concurrently \\\"npm run dev:frontend\\\" \\\"npm run dev:backend\\\"\""
+        },
+        "function": "Concurrent development server setup for frontend and backend via npm scripts",
+        "static_description": "NPM package.json configuration with custom scripts for installing dependencies and running development servers simultaneously.",
+        "interaction_and_states": []
+    }
+]

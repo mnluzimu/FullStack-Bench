@@ -1,0 +1,317 @@
+[
+    {
+        "requirement_tested": "Frontend application with pages for buyer and seller dashboards",
+        "user_persona": "Alex, a frequent cryptocurrency trader switching between buying and selling roles.",
+        "user_goal": "To seamlessly switch between buyer and seller dashboards to manage transactions.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Seller Dashboard",
+                "description": "After logging in, Alex wants to check his product listings. He notices the 'Seller Dashboard' link in the header.",
+                "action": "Click on the 'Seller Dashboard' link.",
+                "expected_outcome": "Page navigates to /seller/dashboard and displays the seller dashboard interface with product management options."
+            },
+            {
+                "step": 2,
+                "title": "Switching to Buyer Dashboard",
+                "description": "Alex now wants to browse available products for purchase. He clicks on the 'Buyer Dashboard' link.",
+                "action": "Click on the 'Buyer Dashboard' link.",
+                "expected_outcome": "Page navigates to /buyer/dashboard and displays the buyer dashboard interface with product browsing capabilities."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Buyer dashboard to browse and select sellers' cryptocurrency products",
+        "user_persona": "Taylor, a cryptocurrency buyer looking to make a new investment.",
+        "user_goal": "To find and select a suitable cryptocurrency product to purchase.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Browsing Products",
+                "description": "Taylor logs into the buyer dashboard and sees a list of available cryptocurrency products loading.",
+                "action": "Wait for product list to load completely.",
+                "expected_outcome": "Product cards are displayed in a grid view showing name, description, price, currency, and seller information."
+            },
+            {
+                "step": 2,
+                "title": "Selecting a Product",
+                "description": "Taylor finds an interesting product and decides to proceed with the purchase by clicking the 'Select' button.",
+                "action": "Click the 'Select' button on a product card.",
+                "expected_outcome": "System redirects to the escrow deposit screen for that specific transaction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality for buyers to deposit cryptocurrencies into escrow accounts",
+        "user_persona": "Jordan, a cautious buyer who wants to securely deposit funds for a transaction.",
+        "user_goal": "To deposit cryptocurrency into an escrow account for a selected transaction.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Transaction Details",
+                "description": "Jordan has been redirected to the escrow deposit screen where he sees transaction details including amount due and wallet address.",
+                "action": "Review the transaction details and wallet address shown.",
+                "expected_outcome": "All transaction details including amount, currency, and wallet address are clearly visible with QR code and cryptocurrency icons."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Deposit",
+                "description": "After transferring funds to the provided wallet address, Jordan confirms the deposit by clicking the dark red CTA button.",
+                "action": "Click the 'Confirm Deposit' button.",
+                "expected_outcome": "POST request is sent to escrow API and a success message with next steps is displayed."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Seller dashboard to view and manage cryptocurrency product listings",
+        "user_persona": "Morgan, a cryptocurrency seller who regularly updates product offerings.",
+        "user_goal": "To add a new cryptocurrency product to their listings.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Product Management",
+                "description": "Morgan logs into the seller dashboard and navigates to the product management section.",
+                "action": "Navigate to the product management tab.",
+                "expected_outcome": "Tabbed interface appears showing 'My Products' list view and 'Add New Product' form."
+            },
+            {
+                "step": 2,
+                "title": "Creating New Product",
+                "description": "Morgan fills out the new product form with all required details and submits it.",
+                "action": "Fill out product form fields and click the dark red submit button.",
+                "expected_outcome": "New product is created via API and appears in the product list with correct details."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Seller capability to view and manage transaction records",
+        "user_persona": "Casey, a seller who needs to track transaction history and status.",
+        "user_goal": "To check the status of recent transactions and view detailed information.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Transaction Records",
+                "description": "Casey logs into the seller dashboard and goes to the transactions section to see all records.",
+                "action": "Navigate to the transactions section.",
+                "expected_outcome": "Filterable table displays all seller transactions with columns showing Transaction ID, Product Name, Buyer Info, Amount, Status, Date, and Action buttons."
+            },
+            {
+                "step": 2,
+                "title": "Checking Transaction Details",
+                "description": "Casey wants to see more details about a specific transaction and clicks the 'View Details' button.",
+                "action": "Click the 'View Details' button for a transaction.",
+                "expected_outcome": "Transaction detail modal opens showing comprehensive information about the selected transaction."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Transaction confirmation mechanism for completed trades",
+        "user_persona": "Riley, a seller who needs to confirm receipt of payment for a transaction.",
+        "user_goal": "To confirm that a transaction has been completed successfully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Transaction Details",
+                "description": "Riley opens a transaction detail view where the buyer has indicated they've made payment.",
+                "action": "Open transaction detail view for a pending transaction.",
+                "expected_outcome": "'Confirm Transaction' button is visible when transaction status is pending."
+            },
+            {
+                "step": 2,
+                "title": "Confirming Transaction",
+                "description": "After verifying payment, Riley clicks the confirmation button to mark the transaction as confirmed.",
+                "action": "Click the 'Confirm Transaction' button.",
+                "expected_outcome": "POST request is sent, local state updates, and notification about status change is displayed showing confirmation timestamp."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Cryptocurrency release functionality upon successful transaction completion",
+        "user_persona": "Avery, a seller ready to receive cryptocurrency after completing a successful transaction.",
+        "user_goal": "To release cryptocurrency from escrow to their wallet after transaction confirmation.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Confirmed Transaction",
+                "description": "Avery checks a transaction that has been confirmed by both parties and is ready for fund release.",
+                "action": "Open transaction detail view for a confirmed transaction.",
+                "expected_outcome": "'Release Cryptocurrency' button is visible when transaction status is confirmed, along with escrow balance information."
+            },
+            {
+                "step": 2,
+                "title": "Releasing Cryptocurrency",
+                "description": "Avery clicks the release button to transfer the cryptocurrency from escrow to their wallet.",
+                "action": "Click the 'Release Cryptocurrency' button.",
+                "expected_outcome": "API call is triggered, UI updates to reflect released status, and escrow balance shows zero."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Dispute resolution system for handling transaction conflicts",
+        "user_persona": "Quinn, a buyer experiencing issues with a transaction who needs to raise a dispute.",
+        "user_goal": "To initiate a dispute for a problematic transaction.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Identifying Problematic Transaction",
+                "description": "Quinn discovers an issue with a transaction and wants to raise a formal dispute through the system.",
+                "action": "Navigate to the transaction view for the problematic transaction.",
+                "expected_outcome": "'Raise Dispute' button is visible when transaction status is not completed or already disputed."
+            },
+            {
+                "step": 2,
+                "title": "Filing Dispute",
+                "description": "Quinn clicks the dispute button and fills out the explanation form to submit the dispute.",
+                "action": "Click 'Raise Dispute', fill out explanation in modal, and click 'Submit Dispute'.",
+                "expected_outcome": "Modal appears with form for explanation, and after submission the button is disabled showing pending status until admin resolves."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API to handle all dynamic data operations",
+        "user_persona": "Developer working on integrating frontend with backend services.",
+        "user_goal": "To verify that backend API properly handles product data operations.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Product Data",
+                "description": "Frontend application makes request to retrieve list of available cryptocurrency products.",
+                "action": "Send GET request to /api/products endpoint.",
+                "expected_outcome": "Backend returns complete list of products in proper format with all required fields including id, name, description, price, currency, and seller_id."
+            },
+            {
+                "step": 2,
+                "title": "Creating New Product",
+                "description": "Seller dashboard submits a request to create a new product listing through the API.",
+                "action": "Send POST request to /api/seller/products with product data.",
+                "expected_outcome": "Backend processes the request, stores new product in database, and returns success response with created product data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend connection to external PostgreSQL database using specified environment variables",
+        "user_persona": "DevOps engineer deploying the application infrastructure.",
+        "user_goal": "To ensure the backend service successfully connects to the PostgreSQL database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Backend Service",
+                "description": "Backend service initializes and attempts to establish database connection using environment variables.",
+                "action": "Start the backend Node.js server process.",
+                "expected_outcome": "Server successfully connects to PostgreSQL database using DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp."
+            },
+            {
+                "step": 2,
+                "title": "Performing Database Operation",
+                "description": "Application performs a basic database operation to verify connectivity.",
+                "action": "Execute a simple SELECT query against the database.",
+                "expected_outcome": "Query executes successfully and returns expected results without connection errors."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema design to support users, products, transactions, and escrow accounts",
+        "user_persona": "Database administrator setting up the application's data structure.",
+        "user_goal": "To verify that all required database tables and relationships are properly implemented.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Table Structure",
+                "description": "DBA examines the database to ensure all necessary tables exist with correct schemas.",
+                "action": "Query database information schema to check for required tables.",
+                "expected_outcome": "Tables exist for users, products, transactions, escrow_accounts, and disputes with proper field definitions matching specifications."
+            },
+            {
+                "step": 2,
+                "title": "Checking Relationships",
+                "description": "DBA verifies that foreign key relationships are correctly established between tables.",
+                "action": "Examine foreign key constraints in database schema.",
+                "expected_outcome": "Foreign key relationships are properly defined: Users <-OneToMany-> Transactions, Users <-OneToMany-> Products, Transactions <-OneToOne-> EscrowAccounts, Transactions <-OneToMany-> Disputes."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication and authorization for buyers and sellers",
+        "user_persona": "Sam, a new user registering for the cryptocurrency escrow platform.",
+        "user_goal": "To register for an account and log in successfully.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Registering New Account",
+                "description": "Sam visits the platform and fills out the registration form with their credentials.",
+                "action": "Complete registration form and submit to /auth/register endpoint.",
+                "expected_outcome": "User account is created in database and success response is returned."
+            },
+            {
+                "step": 2,
+                "title": "Logging Into Account",
+                "description": "Sam uses their newly created credentials to log into the platform.",
+                "action": "Submit login credentials to /auth/login endpoint.",
+                "expected_outcome": "Valid JWT token is returned and stored, allowing access to protected dashboard routes based on user role."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updates for transaction status and escrow account balances",
+        "user_persona": "Alex, monitoring an ongoing transaction for immediate status updates.",
+        "user_goal": "To receive instant notifications when transaction status changes.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Establishing WebSocket Connection",
+                "description": "Alex opens a transaction detail page which automatically establishes a WebSocket connection.",
+                "action": "Load transaction detail page and initialize WebSocket connection to ws://localhost:3001/ws.",
+                "expected_outcome": "Persistent WebSocket connection is established and frontend begins listening for relevant messages."
+            },
+            {
+                "step": 2,
+                "title": "Receiving Real-time Update",
+                "description": "When the other party confirms the transaction, Alex receives an immediate notification.",
+                "action": "Wait for WebSocket message about transaction status change.",
+                "expected_outcome": "UI dynamically updates to reflect new transaction status without requiring page refresh, showing notification about the change."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json configuration with 'install:all' and 'dev' scripts for concurrent FE/BE startup",
+        "user_persona": "Developer setting up a new development environment for the project.",
+        "user_goal": "To install dependencies and start both frontend and backend services simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Developer runs the command to install all frontend and backend dependencies at once.",
+                "action": "Run 'npm run install:all' from the root directory.",
+                "expected_outcome": "Both frontend and backend dependencies are installed concurrently without errors."
+            },
+            {
+                "step": 2,
+                "title": "Starting Development Servers",
+                "description": "Developer starts both development servers using the configured script.",
+                "action": "Run 'npm run dev' from the root directory.",
+                "expected_outcome": "Both frontend and backend development servers start concurrently and are accessible for development work."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "UI styled with light gray background and dark red component colors",
+        "user_persona": "UI designer reviewing the visual implementation of the platform.",
+        "user_goal": "To verify that the platform follows the specified color scheme consistently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Background Color",
+                "description": "Designer examines the overall page background to ensure it matches the specified light gray color.",
+                "action": "Inspect CSS styles applied to the main page container.",
+                "expected_outcome": "Background color is set to #f0f0f0 (light gray) as specified in the requirements."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Colors",
+                "description": "Designer verifies that interactive components use the specified dark red color scheme.",
+                "action": "Inspect CSS styles on primary buttons and interactive elements.",
+                "expected_outcome": "Component accents and interactive elements use #8B0000 (dark red) color consistently throughout the interface."
+            }
+        ]
+    }
+]

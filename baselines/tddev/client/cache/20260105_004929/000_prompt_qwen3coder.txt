@@ -1,0 +1,13 @@
+Create a website repository based on the given user instruction with these rules:
+1. If the site needs dynamic data, include:
+   - A frontend that fetches all data from backend APIs. No hard-coded or mock data.
+   - A backend that connects to an external PostgreSQL database using these exact
+     environment variables:
+       DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser,
+       DB_PASSWORD=myapppassword, DB_NAME=myapp.
+2. If the site is strictly static (e.g., marketing or documentation), a backend is not required.
+3. Configure the repository's `package.json` so that
+   - `npm run install:all` installs both FE & BE, and
+   - `npm run dev` starts both concurrently.
+
+user instruction: Please implement a golf travel package booking website that sells golf travel packages. The website should have functionalities for customer request handling, booking confirmation, online quotes, customer relationship management, and supplier management. Users can initiate requests through the website homepage form submission, and the system will collect information based on customer preferences and dynamically apply hotel, flight, transport, and golf conditions. Customers can confirm bookings online, and the system will generate digital vouchers and invoices. Assign whitesmoke to body backgrounds and dark cyan to main components.

@@ -1,0 +1,17 @@
+[
+    "Create a homepage displaying general office information and a welcome message",
+    "Implement an 'About Us' page with details about the clinical office and its mission",
+    "Develop a 'Services' page listing all medical services offered by the office",
+    "Build a 'Contact Us' page with a form for users to submit inquiries and office contact details",
+    "Design a consistent navigation menu across all pages for easy access to main sections",
+    "Apply a light cyan background color to all pages",
+    "Style all UI components using a cadet blue color scheme",
+    "Ensure all pages are responsive and accessible on different device sizes",
+    "Set up frontend to fetch any dynamic content via backend APIs if needed",
+    "Configure backend to connect to PostgreSQL database using specified environment variables",
+    "Initialize repository structure with separate directories for frontend and backend",
+    "Configure package.json with install:all script to set up both frontend and backend dependencies",
+    "Add dev script in package.json to run both frontend and backend concurrently",
+    "Include static asset handling for images, stylesheets, and client-side JavaScript",
+    "Implement SEO-friendly page titles and meta descriptions for each page"
+]

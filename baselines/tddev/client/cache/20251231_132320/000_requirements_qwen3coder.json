@@ -1,0 +1,17 @@
+[
+    "Anonymous discussion forum with post creation and reply functionality",
+    "User authentication system supporting anonymous participation",
+    "Post browsing and searching capabilities",
+    "Topic following and subscription feature",
+    "Real-time notification system for followed topics and replies",
+    "Backend API integration with PostgreSQL database using specified environment variables",
+    "Frontend fetching all data dynamically from backend APIs",
+    "Privacy and security measures to protect student personal information",
+    "Theme configuration with honeydew background and dark olive green components",
+    "Database schema design for posts, replies, topics, and user preferences",
+    "RESTful API endpoints for forum operations (create, read, update, delete)",
+    "Search functionality across posts and topics",
+    "User interface for managing followed topics",
+    "Notification preferences and management system",
+    "Concurrent development setup with npm run dev for both frontend and backend"
+]

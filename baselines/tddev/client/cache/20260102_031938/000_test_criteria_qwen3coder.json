@@ -1,0 +1,352 @@
+[
+    {
+        "requirement_tested": "A question submission form with fields for question title and content",
+        "user_persona": "A curious student named Alex who has a question about calculus.",
+        "user_goal": "To submit a new question to the Q&A platform.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Submit Question",
+                "description": "Alex visits the homepage and notices a prominent 'Ask a Question' button styled in saddle brown.",
+                "action": "Click on the 'Ask a Question' button.",
+                "expected_outcome": "A form appears with fields for entering a question title and content, both with appropriate placeholders."
+            },
+            {
+                "step": 2,
+                "title": "Filling Out the Form",
+                "description": "Alex fills in the title field with 'How do I find the derivative of x^2?' and describes the problem in detail in the content area.",
+                "action": "Type into the title and content fields.",
+                "expected_outcome": "The text is captured accurately in both input fields. The submit button becomes active."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Question",
+                "description": "Satisfied with the wording, Alex clicks the submit button to post the question.",
+                "action": "Click the submit button.",
+                "expected_outcome": "The question is sent via POST request to the backend API, and Alex sees a confirmation or is redirected to the question list."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A page displaying a list of submitted questions with titles and excerpts",
+        "user_persona": "Jamie, a frequent visitor looking for existing answers before posting a new question.",
+        "user_goal": "To browse through previously asked questions to avoid duplication.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting the Homepage",
+                "description": "Jamie opens the website and is greeted by a beige background with a clean layout.",
+                "action": "Load the homepage.",
+                "expected_outcome": "A list of questions is displayed in card format, each showing a title and an excerpt of the content."
+            },
+            {
+                "step": 2,
+                "title": "Scanning Through Questions",
+                "description": "Jamie scans the titles and brief descriptions of the questions listed.",
+                "action": "Visually scan the question cards.",
+                "expected_outcome": "Each card clearly shows the title and excerpt, styled with saddle brown borders for visual separation."
+            },
+            {
+                "step": 3,
+                "title": "Selecting a Relevant Question",
+                "description": "Seeing a potentially related question titled 'Understanding Derivatives', Jamie decides to click on it.",
+                "action": "Click on the 'Understanding Derivatives' question card.",
+                "expected_outcome": "The browser navigates to the detailed view of the selected question."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A detailed question page showing the full question and associated answers",
+        "user_persona": "Taylor, a math tutor checking if someone needs help with derivatives.",
+        "user_goal": "To read a full question and review all submitted answers.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Detailed View",
+                "description": "Taylor lands on the detailed question page after clicking from the list.",
+                "action": "Navigate to the detailed question page.",
+                "expected_outcome": "The full title and content of the question are displayed at the top of the page."
+            },
+            {
+                "step": 2,
+                "title": "Viewing Answers Section",
+                "description": "Below the question, Taylor looks for responses from other users.",
+                "action": "Scroll down to the answers section.",
+                "expected_outcome": "All answers submitted for this question are listed below, each in its own card with beige background and saddle brown accents."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "An answer submission form accessible on each question's detail page",
+        "user_persona": "Jordan, a knowledgeable peer ready to help others understand complex topics.",
+        "user_goal": "To provide a helpful answer to a question they just read.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Answer Form",
+                "description": "After reading a question about integrals, Jordan scrolls to the bottom where the answer form resides.",
+                "action": "Scroll to the bottom of the question detail page.",
+                "expected_outcome": "An answer submission form with a text area and a submit button styled in saddle brown is visible."
+            },
+            {
+                "step": 2,
+                "title": "Writing the Answer",
+                "description": "Jordan writes out a clear explanation of how to solve the integral step-by-step.",
+                "action": "Enter text into the answer text area.",
+                "expected_outcome": "The text area captures the input without issues."
+            },
+            {
+                "step": 3,
+                "title": "Submitting the Answer",
+                "description": "Confident in the clarity of the response, Jordan submits the answer.",
+                "action": "Click the submit button.",
+                "expected_outcome": "The answer is posted via a POST request to the backend and appears in the answers list immediately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Answer display section under each question showing all submitted answers",
+        "user_persona": "Casey, a student preparing for an exam by reviewing past Q&A threads.",
+        "user_goal": "To study multiple answers for a single question to gain deeper understanding.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Question Details",
+                "description": "Casey navigates to a specific question about limits in calculus.",
+                "action": "Visit the detailed question page.",
+                "expected_outcome": "The question content is fully visible at the top."
+            },
+            {
+                "step": 2,
+                "title": "Reviewing Submitted Answers",
+                "description": "Casey examines several answers listed under the question, noting differences in approaches.",
+                "action": "Read through each answer card.",
+                "expected_outcome": "Multiple distinct answers are shown, each in its own styled card with rating information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Rating functionality allowing users to upvote or downvote answers",
+        "user_persona": "Morgan, a community moderator ensuring quality content rises to the top.",
+        "user_goal": "To improve the visibility of accurate and helpful answers by rating them.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Helpful Answer",
+                "description": "Morgan reads a well-explained answer and wants to give credit for good work.",
+                "action": "Locate the upvote button next to the answer.",
+                "expected_outcome": "An upward-pointing arrow icon (▲) is visible beside the current rating count."
+            },
+            {
+                "step": 2,
+                "title": "Upvoting the Answer",
+                "description": "Morgan clicks the upvote button to increase the score of the answer.",
+                "action": "Click the upvote (▲) button.",
+                "expected_outcome": "A PATCH request is sent to update the rating in the database, and the UI reflects the change."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Real-time updating of answer ratings without page refresh",
+        "user_persona": "Riley, watching a live discussion unfold online while relaxing at home.",
+        "user_goal": "To observe real-time feedback on answers as others interact with them.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Staying on Page During Discussion",
+                "description": "Riley keeps the question page open while others continue voting on answers.",
+                "action": "Remain on the question detail page.",
+                "expected_outcome": "WebSocket connection is established to listen for rating updates."
+            },
+            {
+                "step": 2,
+                "title": "Observing Real-Time Rating Changes",
+                "description": "As another user votes on an answer, Riley sees the number change instantly.",
+                "action": "Watch for rating changes.",
+                "expected_outcome": "Upon receiving a 'answer_rated' event, the relevant answer’s rating count updates automatically without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Persistent storage of questions, answers, and ratings in a PostgreSQL database",
+        "user_persona": "Devon, a developer verifying that data persists correctly after app restarts.",
+        "user_goal": "To ensure that all content remains available even after restarting the application.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Content Before Restart",
+                "description": "Devon creates a question, adds an answer, and rates it before shutting down the app.",
+                "action": "Submit a question, add an answer, and rate it.",
+                "expected_outcome": "All actions result in successful API calls and database entries."
+            },
+            {
+                "step": 2,
+                "title": "Restarting Application",
+                "description": "Devon stops and then restarts the application to test data persistence.",
+                "action": "Stop and start the application servers.",
+                "expected_outcome": "Upon restart, all previously created content and ratings remain intact when viewed again."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Backend API endpoints for creating, retrieving, and rating questions and answers",
+        "user_persona": "Quinn, a backend engineer validating that all necessary endpoints function properly.",
+        "user_goal": "To confirm that all CRUD operations for questions and answers are supported by working endpoints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Creation Endpoints",
+                "description": "Quinn uses Postman to send requests to create a question and an answer.",
+                "action": "Send POST requests to /api/questions and /api/questions/{id}/answers.",
+                "expected_outcome": "New records are successfully created in the database and returned with proper status codes."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Retrieval Endpoints",
+                "description": "Quinn retrieves the list of questions and details of one specific question.",
+                "action": "Send GET requests to /api/questions and /api/questions/{id}.",
+                "expected_outcome": "Correct data sets are returned matching what was previously inserted."
+            },
+            {
+                "step": 3,
+                "title": "Updating Ratings via API",
+                "description": "Finally, Quinn tests modifying an answer's rating using the dedicated endpoint.",
+                "action": "Send a PATCH request to /api/answers/{id}/rate.",
+                "expected_outcome": "The specified answer's rating value in the database is updated accordingly."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Frontend components styled with a beige background and saddle brown accents",
+        "user_persona": "Pat, a designer auditing the consistency of the visual theme across the application.",
+        "user_goal": "To verify that the entire frontend adheres to the defined color scheme.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Overall Theme",
+                "description": "Pat loads the homepage and inspects the general background color.",
+                "action": "Open the homepage and inspect body styles.",
+                "expected_outcome": "The background color is consistently set to beige throughout the page."
+            },
+            {
+                "step": 2,
+                "title": "Checking Component Accents",
+                "description": "Pat examines interactive elements like buttons and headers.",
+                "action": "Inspect styles of buttons and headings.",
+                "expected_outcome": "Interactive elements and headers utilize the saddle brown accent color as defined in the stylesheet."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User interface for browsing and navigating between questions and answers",
+        "user_persona": "Skyler, exploring the site for educational purposes during lunch break.",
+        "user_goal": "To seamlessly move between the question list and individual question details.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting From Question List",
+                "description": "Skyler begins on the main questions listing page.",
+                "action": "Load the questions list page.",
+                "expected_outcome": "A clear list of questions with titles and excerpts is presented."
+            },
+            {
+                "step": 2,
+                "title": "Navigating to Question Detail",
+                "description": "Skyler clicks on a question to see more details.",
+                "action": "Click on a question card.",
+                "expected_outcome": "Client-side routing takes Skyler to the question detail page smoothly without full page reload."
+            },
+            {
+                "step": 3,
+                "title": "Returning to Question List",
+                "description": "After reading, Skyler uses the navigation bar to go back to the list.",
+                "action": "Click the 'Questions' link in the navigation bar.",
+                "expected_outcome": "Skyler returns to the questions list page efficiently using React Router."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Database schema including tables for questions, answers, and answer ratings",
+        "user_persona": "Bailey, a database administrator ensuring schema integrity during deployment.",
+        "user_goal": "To validate that the correct relational tables exist with appropriate constraints.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Connecting to Database",
+                "description": "Bailey accesses the configured PostgreSQL instance using provided credentials.",
+                "action": "Connect to the PostgreSQL database using DB_HOST, DB_PORT, etc.",
+                "expected_outcome": "Successful connection to the myapp database with access to defined tables."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Table Structure",
+                "description": "Bailey checks the structure of the questions and answers tables.",
+                "action": "Run DESCRIBE or equivalent commands on questions and answers tables.",
+                "expected_outcome": "Tables match the defined schema, with correct column names, types, and foreign key relationships."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Environment variable configuration for connecting to PostgreSQL database",
+        "user_persona": "Cameron, setting up the project for local development.",
+        "user_goal": "To configure environment variables so the backend can connect to the database.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Creating Environment File",
+                "description": "Cameron creates a .env file in the backend directory with required database settings.",
+                "action": "Create a .env file and populate with DB_HOST=localhost, DB_PORT=5432, etc.",
+                "expected_outcome": "Environment variables are saved correctly according to the template."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Server",
+                "description": "Cameron starts the backend server which should now use these environment variables.",
+                "action": "Start the backend server process.",
+                "expected_outcome": "Server initializes successfully and connects to the PostgreSQL database using values from the .env file."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Package.json scripts for concurrent development server startup and dependency installation",
+        "user_persona": "Drew, a new team member getting started with the codebase locally.",
+        "user_goal": "To easily install dependencies and launch both frontend and backend servers simultaneously.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Installing Dependencies",
+                "description": "Drew runs the command to install all frontend and backend dependencies at once.",
+                "action": "Execute `npm run install:all` in the root directory.",
+                "expected_outcome": "Both frontend and backend node_modules folders are populated with necessary packages concurrently."
+            },
+            {
+                "step": 2,
+                "title": "Launching Development Servers",
+                "description": "Once installed, Drew starts both development servers together.",
+                "action": "Execute `npm run dev` in the root directory.",
+                "expected_outcome": "Frontend and backend development servers boot up concurrently, allowing Drew to begin development."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Responsive design ensuring usability across desktop and mobile devices",
+        "user_persona": "Avery, a busy parent accessing the Q&A site from a smartphone during commute.",
+        "user_goal": "To navigate and contribute to discussions comfortably on a small screen.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Site on Mobile",
+                "description": "Avery opens the Q&A site using a mobile browser.",
+                "action": "Load the website on a smartphone.",
+                "expected_outcome": "Layout adjusts responsively, stacking elements vertically for better readability."
+            },
+            {
+                "step": 2,
+                "title": "Interacting With Elements",
+                "description": "Despite the smaller screen, Avery finds forms and buttons appropriately sized.",
+                "action": "Tap through navigation links and interact with form inputs.",
+                "expected_outcome": "All interactive elements are touch-friendly and spaced adequately for small screens."
+            }
+        ]
+    }
+]

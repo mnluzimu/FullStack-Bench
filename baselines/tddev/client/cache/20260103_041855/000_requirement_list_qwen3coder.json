@@ -1,0 +1,248 @@
+[
+    {
+        "resource_dependency": {
+            "questionBankAPI": "GET /api/questions",
+            "topicDropdownOptions": [
+                "Traffic Signs",
+                "Speed Limits",
+                "Right of Way",
+                "Parking Regulations",
+                "Random"
+            ],
+            "questionDataSchema": "Table 'questions' with fields: id (UUID), topic (string), question_text (text), options (array of strings), correct_option_index (integer), explanation (text)"
+        },
+        "function": "Allow users to browse and select individual practice questions by topic or randomly.",
+        "static_description": "A vertically scrollable panel with categorized question cards. Above the cards is a dropdown labeled 'Select Topic' using the 'topicDropdownOptions'. Background is floral white; all components use dark goldenrod for borders and text.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a question card navigates to the question detail view. Clicking the dropdown toggles the topic selection menu."
+            },
+            {
+                "interaction": "Change",
+                "description": "Changing the topic dropdown value filters the displayed question cards to match the selected topic. Selecting 'Random' displays shuffled questions from all topics."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "examStartAPI": "POST /api/exams/start",
+            "examSubmitAPI": "POST /api/exams/submit",
+            "timerComponent": "Countdown timer starting at 45 minutes",
+            "examDataSchema": "Table 'exams' with fields: id (UUID), user_id (UUID), started_at (timestamp), completed_at (timestamp), score (float), total_questions (integer), correct_answers (integer)"
+        },
+        "function": "Enable users to take full-length simulated driver's license exams under timed conditions.",
+        "static_description": "A clean full-screen layout featuring a countdown timer ('timerComponent') at the top right corner, followed by sequential question views with multiple-choice options. Submit button at bottom. Background is floral white; all UI elements use dark goldenrod styling.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Start Exam' initializes the timer and loads the first question. Clicking an option selects it. Clicking 'Next Question' proceeds forward; clicking 'Previous Question' goes back unless it’s the first."
+            },
+            {
+                "interaction": "Timer Expire",
+                "description": "When time runs out, auto-submits current answers and redirects to results page."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Submit Exam' sends responses via 'examSubmitAPI', calculates score, and redirects to the results page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "errorAnalysisAPI": "GET /api/exams/{examId}/errors",
+            "incorrectAnswerIcon": "/assets/icons/wrong.svg",
+            "correctAnswerIcon": "/assets/icons/correct.svg",
+            "errorExplanationPopupContent": "Displays why the chosen answer was wrong and what the correct reasoning should have been."
+        },
+        "function": "Provide detailed feedback on incorrect answers from previous exams.",
+        "static_description": "A dashboard listing each incorrectly answered question in expandable rows. Each row shows the question, user-selected answer marked with 'incorrectAnswerIcon', and the correct answer marked with 'correctAnswerIcon'. Background is floral white; all text and icons styled in dark goldenrod.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a row expands it to show the detailed explanation defined in 'errorExplanationPopupContent'."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "examResultsAPI": "GET /api/exams/{examId}/results",
+            "scoreDisplayFormat": "{score}% ({correct}/{total})",
+            "passFailIndicator": "Green checkmark if passed, red X if failed"
+        },
+        "function": "Show calculated scores and performance metrics immediately after completing a simulated exam.",
+        "static_description": "A centered modal or dedicated result screen showing the formatted score ('scoreDisplayFormat'), pass/fail indicator ('passFailIndicator'), number of correct vs total questions, and average time per question. Background is floral white; all metrics are highlighted in dark goldenrod.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load",
+                "description": "Upon loading, fetches results via 'examResultsAPI' and populates the score information dynamically."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking 'Review Answers' navigates to the error analysis page for this exam."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "backgroundColor": "#FFFAF0",
+            "componentColor": "#B8860B"
+        },
+        "function": "Apply consistent visual theme across entire website with floral white background and dark goldenrod component coloring.",
+        "static_description": "All pages feature a base background color set to '#FFFAF0' (floral white) and all interactive and static components styled with '#B8860B' (dark goldenrod) including buttons, headers, dividers, and form controls.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "fetchQuestionsEndpoint": "GET /api/questions",
+            "fetchExamsEndpoint": "GET /api/exams",
+            "frontendFramework": "React.js with Axios for HTTP requests"
+        },
+        "function": "Ensure all frontend data related to questions and exams comes exclusively from backend APIs without any hardcoded or mock data.",
+        "static_description": "The frontend app built using React.js displays dynamic content fetched through Axios calls to endpoints like '/api/questions' and '/api/exams'. Data rendering depends entirely on successful API responses.",
+        "interaction_and_states": [
+            {
+                "interaction": "Mount Component",
+                "description": "Each component mounts and triggers useEffect hooks to call respective backend endpoints such as 'fetchQuestionsEndpoint'."
+            },
+            {
+                "interaction": "Network Error",
+                "description": "If an API request fails, display an inline error message instead of crashing the UI."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "postgresConnectionEnvVars": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "databaseORM": "Sequelize ORM configured to connect using above environment variables"
+        },
+        "function": "Establish secure connection between backend services and PostgreSQL database using predefined environment variables.",
+        "static_description": "Server-side code uses Sequelize ORM initialized with credentials sourced directly from environment variables listed in 'postgresConnectionEnvVars'. No hard-coded credentials appear in source files.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "usersTableSchema": "CREATE TABLE users (id UUID PRIMARY KEY, username VARCHAR(255), created_at TIMESTAMP);",
+            "questionsTableSchema": "CREATE TABLE questions (id UUID PRIMARY KEY, topic TEXT, question_text TEXT, options TEXT[], correct_option_index INTEGER, explanation TEXT);",
+            "responsesTableSchema": "CREATE TABLE responses (id UUID PRIMARY KEY, user_id UUID REFERENCES users(id), exam_id UUID, question_id UUID REFERENCES questions(id), selected_option INTEGER, is_correct BOOLEAN);",
+            "examsTableSchema": "CREATE TABLE exams (id UUID PRIMARY KEY, user_id UUID REFERENCES users(id), started_at TIMESTAMP, completed_at TIMESTAMP, score FLOAT, total_questions INT, correct_answers INT);"
+        },
+        "function": "Define relational database schema to support storing user data, questions, responses, and exam records.",
+        "static_description": "PostgreSQL tables created based on schemas provided in 'usersTableSchema', 'questionsTableSchema', 'responsesTableSchema', and 'examsTableSchema'. All tables linked relationally via UUID references where applicable.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "topicSelectorUI": "Dropdown with options from available topics plus 'Random'",
+            "randomizerLogic": "Shuffle algorithm applied before presenting questions"
+        },
+        "function": "Allow users to filter questions by topic or access randomized sets of practice questions.",
+        "static_description": "At the top of the question browsing section, there is a styled dropdown ('topicSelectorUI') containing topic options and 'Random'. Below it appears a grid or list of filtered/randomized questions. Floral white background; dark goldenrod accents.",
+        "interaction_and_states": [
+            {
+                "interaction": "Change",
+                "description": "Selecting a topic filters the visible questions accordingly. Choosing 'Random' applies 'randomizerLogic' to shuffle and present questions."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "timerLogicModule": "JavaScript-based countdown logic initialized at 45 minutes",
+            "examTimeoutHandler": "Function triggered when timer reaches zero"
+        },
+        "function": "Implement timing mechanism during simulated exams to replicate real testing scenarios.",
+        "static_description": "Top-right corner displays active countdown timer initialized to 45 minutes using 'timerLogicModule'. Timer updates every second visually while decrementing internally. Styled in dark goldenrod against floral white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Start Exam",
+                "description": "Initiates the timer countdown which begins updating in real-time."
+            },
+            {
+                "interaction": "Timer Reaches Zero",
+                "description": "Triggers 'examTimeoutHandler' which submits the exam automatically and redirects to the results screen."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "examHistoryAPI": "GET /api/users/me/exam-history",
+            "historyEntryFormat": "{dateTaken: string, score: percentage, duration: string}"
+        },
+        "function": "Maintain historical record of user exam attempts for future review.",
+        "static_description": "Dedicated tab or section titled 'My Exam History' lists past exams in chronological order. Each entry includes date taken, score, and duration formatted according to 'historyEntryFormat'. Background is floral white; entries styled with dark goldenrod.",
+        "interaction_and_states": [
+            {
+                "interaction": "Load Tab",
+                "description": "On mount, fetches history via 'examHistoryAPI' and renders each entry as a clickable row."
+            },
+            {
+                "interaction": "Click",
+                "description": "Clicking an exam entry navigates to that specific exam's results and/or error analysis."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "answerExplanationField": "Text field within question object explaining rationale behind correct/incorrect choices",
+            "explanationDisplayStyle": "Inline beneath selected answer once revealed"
+        },
+        "function": "Reveal explanations for both correct and incorrect answers after submission or upon viewing errors.",
+        "static_description": "After submitting an answer or reviewing a past question, an additional block appears below the options displaying explanation text derived from 'answerExplanationField'. Text styled consistently in dark goldenrod over floral white.",
+        "interaction_and_states": [
+            {
+                "interaction": "Submit Answer",
+                "description": "Immediately reveals whether the choice was correct and shows the explanation inline using 'explanationDisplayStyle'."
+            },
+            {
+                "interaction": "View Review",
+                "description": "Navigating to the error analysis also displays relevant explanations alongside each reviewed item."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "responsiveMediaQueries": "@media queries targeting mobile breakpoints (<768px)",
+            "touchFriendlyControls": "Larger tap targets and spacing optimized for fingers"
+        },
+        "function": "Ensure seamless experience on desktops, tablets, and smartphones.",
+        "static_description": "Layout adjusts fluidly using CSS media queries ('responsiveMediaQueries'). Buttons and inputs increase in size ('touchFriendlyControls') on smaller screens. Consistent floral white background and dark goldenrod accents maintained across devices.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Adjusts layout and reflows content appropriately depending on viewport width, maintaining readability and usability."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionStorageMechanism": "Browser sessionStorage used to preserve temporary state",
+            "sessionPersistenceAPI": "Optional API endpoint to save session progress server-side"
+        },
+        "function": "Track user activity and maintain exam state even if browser refreshes occur mid-session.",
+        "static_description": "During active exam sessions, answers and current position saved temporarily using 'sessionStorageMechanism'. Optional sync via 'sessionPersistenceAPI' allows restoring unsaved progress later.",
+        "interaction_and_states": [
+            {
+                "interaction": "Page Reload",
+                "description": "Restores last known exam state from sessionStorage if present, preventing loss of work."
+            },
+            {
+                "interaction": "Navigate Away",
+                "description": "Prompts confirmation dialog to prevent accidental exit mid-exam."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installScript": "\"install:all\": \"concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"",
+            "devScript": "\"dev\": \"concurrently \\\"cd frontend && npm start\\\" \\\"cd backend && npm run dev\\\"\""
+        },
+        "function": "Configure package.json scripts to enable unified installation and parallel development startup of frontend and backend.",
+        "static_description": "Root-level package.json contains two custom scripts: 'install:all' executes concurrent installations in frontend and backend directories, and 'dev' concurrently starts both development servers as defined in 'installScript' and 'devScript'.",
+        "interaction_and_states": [
+            {
+                "interaction": "Run Command",
+                "description": "Executing 'npm run install:all' installs dependencies in both projects simultaneously. Running 'npm run dev' launches both apps together in watch mode."
+            }
+        ]
+    }
+]

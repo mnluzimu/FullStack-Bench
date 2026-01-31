@@ -1,0 +1,17 @@
+[
+    "Customer management module with CRUD operations for customer data",
+    "Policy management module with CRUD operations for insurance policies",
+    "Claims management module with CRUD operations for insurance claims",
+    "Data browsing interface for viewing customer, policy, and claims information",
+    "User authentication and authorization system for secure access",
+    "Data analysis dashboard with visualization capabilities",
+    "Reporting engine for generating various insurance business reports",
+    "Interactive charts and graphs for data representation",
+    "Frontend application that fetches all data from backend APIs",
+    "Backend API server connecting to PostgreSQL database using specified environment variables",
+    "Database schema design for customers, policies, and claims entities",
+    "Search and filtering functionality across all data modules",
+    "Responsive web interface with whitesmoke background and dark cyan themed elements",
+    "Concurrent development setup with npm run dev starting both frontend and backend",
+    "Package.json configuration with install:all script for simultaneous FE and BE installation"
+]

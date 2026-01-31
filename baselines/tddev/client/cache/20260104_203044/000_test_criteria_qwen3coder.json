@@ -1,0 +1,345 @@
+[
+    {
+        "requirement_tested": "A frontend that fetches all data from backend APIs",
+        "user_persona": "A developer setting up the project for the first time.",
+        "user_goal": "Verify that the frontend successfully retrieves media content from backend APIs rather than using mock data.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Starting Development Server",
+                "description": "Jordan runs `npm run dev` to start both frontend and backend servers concurrently after installing dependencies with `npm run install:all`.",
+                "action": "Run `npm run dev` in terminal.",
+                "expected_outcome": "Both frontend and backend servers start without errors, and the app opens in browser at development URL."
+            },
+            {
+                "step": 2,
+                "title": "Checking Homepage Data Fetch",
+                "description": "Jordan visits the homepage expecting to see real categorized ringtones and wallpapers fetched from the backend API.",
+                "action": "Navigate to the homepage.",
+                "expected_outcome": "Homepage displays dynamically loaded media cards grouped by categories, confirming API integration instead of hardcoded data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A backend that connects to an external PostgreSQL database using environment variables: DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+        "user_persona": "A DevOps engineer deploying the application.",
+        "user_goal": "Ensure the backend properly establishes a connection to the PostgreSQL database using specified environment variables.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Setting Environment Variables",
+                "description": "Taylor sets the correct environment variables including DB_HOST=localhost, DB_PORT=5432, etc., before starting the backend server.",
+                "action": "Set environment variables in .env file or system environment.",
+                "expected_outcome": "Environment variables are correctly assigned and recognized by the backend configuration module."
+            },
+            {
+                "step": 2,
+                "title": "Starting Backend Server",
+                "description": "Taylor starts the backend server to verify it initializes and connects to the PostgreSQL instance using the provided settings.",
+                "action": "Start backend server using `npm run dev` or direct node command.",
+                "expected_outcome": "Server logs show successful database connection message; no authentication or connection errors occur."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Pages styled with a light goldenrod background and olive drab components",
+        "user_persona": "A UI designer reviewing the site's visual consistency.",
+        "user_goal": "Confirm that all pages maintain the defined color scheme throughout the site.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Inspecting Homepage Styling",
+                "description": "Morgan navigates to the homepage to evaluate if the overall page background matches the light goldenrod color.",
+                "action": "Visit the homepage and inspect body background-color.",
+                "expected_outcome": "Page background is set to light goldenrod (`#FAFAD2`) across all sections."
+            },
+            {
+                "step": 2,
+                "title": "Verifying Component Colors",
+                "description": "Morgan checks various interactive components like buttons and headers to ensure they use olive drab styling.",
+                "action": "Inspect styles of header, buttons, and cards.",
+                "expected_outcome": "All primary interactive components utilize olive drab (`#6B8E23`) for borders, backgrounds, or text as appropriate."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A homepage displaying categorized ringtones and wallpapers",
+        "user_persona": "A new visitor exploring available content.",
+        "user_goal": "Browse different categories of ringtones and wallpapers presented on the homepage.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Landing on Homepage",
+                "description": "Alex lands on the homepage and expects to immediately see organized content under distinct categories such as 'Popular Ringtones' and 'Nature Wallpapers'.",
+                "action": "Open homepage URL.",
+                "expected_outcome": "Homepage renders multiple category sections with relevant media cards arranged in grids."
+            },
+            {
+                "step": 2,
+                "title": "Navigating Categories",
+                "description": "Alex scrolls down and clicks on a category heading to filter content specifically for that group.",
+                "action": "Click on a category name like 'Nature Wallpapers'.",
+                "expected_outcome": "Content updates dynamically to display only items belonging to the selected category."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A search bar to allow users to search for specific ringtones or wallpapers",
+        "user_persona": "A user looking for something specific.",
+        "user_goal": "Use the search bar to locate a particular ringtone or wallpaper by keyword.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Locating Search Bar",
+                "description": "Casey notices the search bar positioned above the main content area and decides to look for 'summer vibes' wallpapers.",
+                "action": "Identify and click on the search input field.",
+                "expected_outcome": "Cursor focuses in the input box with placeholder text guiding usage."
+            },
+            {
+                "step": 2,
+                "title": "Performing Search",
+                "description": "After typing 'summer vibes', Casey presses Enter to initiate the search.",
+                "action": "Type 'summer vibes' and press Enter key.",
+                "expected_outcome": "Results update instantly to show media matching the query term."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A category menu to filter content by type (ringtones or wallpapers) and subcategories",
+        "user_persona": "A frequent user wanting to narrow down choices efficiently.",
+        "user_goal": "Filter content using the category menu to view only ringtones.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Accessing Category Menu",
+                "description": "Jamie looks for the category filter and finds the vertical menu or collapsible icon depending on screen size.",
+                "action": "Click on the filter icon if on mobile, or directly interact with sidebar menu.",
+                "expected_outcome": "Category menu expands revealing top-level options like 'Ringtones' and 'Wallpapers'."
+            },
+            {
+                "step": 2,
+                "title": "Applying Filter",
+                "description": "Jamie selects 'Ringtones' to refine the displayed items to audio files only.",
+                "action": "Click on the 'Ringtones' option in the category menu.",
+                "expected_outcome": "Media grid updates dynamically to show only ringtones, excluding wallpapers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Individual content pages for each ringtone and wallpaper with download buttons",
+        "user_persona": "A user interested in downloading a specific item.",
+        "user_goal": "View details about a ringtone and proceed to download it.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Visiting Content Page",
+                "description": "Riley clicks on a ringtone titled 'Ocean Waves' from the homepage to go to its dedicated detail page.",
+                "action": "Click on a media card representing 'Ocean Waves' ringtone.",
+                "expected_outcome": "Redirected to a unique page for the ringtone showing large preview, description, and metadata."
+            },
+            {
+                "step": 2,
+                "title": "Downloading Ringtone",
+                "description": "On the content page, Riley sees the prominent 'Download' button and clicks it to get the file.",
+                "action": "Click the 'Download' button.",
+                "expected_outcome": "File begins downloading automatically through the browser dialog."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A user profile page showing download history",
+        "user_persona": "An authenticated user checking past downloads.",
+        "user_goal": "Review previously downloaded items through the user profile page.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Logging In",
+                "description": "Sam logs into their account using valid credentials to access personalized features.",
+                "action": "Fill out login form and submit.",
+                "expected_outcome": "Successfully redirected to the dashboard or last visited page with profile access now available."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Profile Page",
+                "description": "Sam navigates to the profile page to check the download history section.",
+                "action": "Click on the user profile icon and select 'Profile'.",
+                "expected_outcome": "Profile page loads showing tabs including 'Download History'."
+            },
+            {
+                "step": 3,
+                "title": "Viewing Download History",
+                "description": "Sam clicks the 'Download History' tab to see a list of previously downloaded items.",
+                "action": "Click on 'Download History' tab.",
+                "expected_outcome": "List displays entries with titles, dates, and ability to re-download."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Functionality to add ringtones to a personal collection for future reference",
+        "user_persona": "A logged-in user saving favorite items.",
+        "user_goal": "Save a preferred ringtone to a personal collection for easy retrieval later.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Finding Favorite Item",
+                "description": "Taylor discovers a ringtone named 'Morning Birdsong' and wants to keep track of it for future use.",
+                "action": "Navigate to the ringtone's individual page.",
+                "expected_outcome": "Page shows full details and actions for the selected ringtone."
+            },
+            {
+                "step": 2,
+                "title": "Adding to Collection",
+                "description": "Taylor clicks the 'Add to Collection' icon next to the download button.",
+                "action": "Click the 'Add to Collection' button/icon.",
+                "expected_outcome": "Item gets added to the user's collection with a success confirmation message shown temporarily."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A downloads section where users can access their downloaded items",
+        "user_persona": "A returning user revisiting downloaded content.",
+        "user_goal": "Re-access a previously downloaded ringtone from the Downloads section.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Navigating to Downloads Section",
+                "description": "Jordan remembers downloading several items earlier and wants to revisit them.",
+                "action": "Click on the 'Downloads' link in the main navigation menu.",
+                "expected_outcome": "Redirected to Downloads page listing all previously downloaded items chronologically."
+            },
+            {
+                "step": 2,
+                "title": "Re-downloading an Item",
+                "description": "Jordan locates a specific wallpaper in the list and chooses to re-download it.",
+                "action": "Click on the wallpaper entry.",
+                "expected_outcome": "The file initiates another download seamlessly from stored reference."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A responsive navigation system to move between sections of the site",
+        "user_persona": "A mobile user navigating the site.",
+        "user_goal": "Effortlessly switch between site sections using the navigation menu on a smartphone.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Opening Mobile Navigation",
+                "description": "On a small-screen device, Maya taps the hamburger menu icon since the horizontal nav isn't visible.",
+                "action": "Tap the hamburger menu icon located in the header.",
+                "expected_outcome": "Navigation menu slides open vertically covering part of the viewport."
+            },
+            {
+                "step": 2,
+                "title": "Switching Sections",
+                "description": "Maya selects 'Categories' from the expanded menu to explore available content.",
+                "action": "Tap on 'Categories' menu item.",
+                "expected_outcome": "Redirected smoothly to the Categories page with menu closing automatically."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "User authentication to access personalized features like download history and collections",
+        "user_persona": "New user signing up to unlock extra features.",
+        "user_goal": "Register for an account and gain access to profile-based functionalities.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Registration",
+                "description": "Ashley arrives on the homepage and wants to register for an account to save preferences.",
+                "action": "Click the 'Login / Register' button and choose 'Register'.",
+                "expected_outcome": "Registration modal or page appears with fields for username, email, and password."
+            },
+            {
+                "step": 2,
+                "title": "Completing Registration",
+                "description": "Ashley fills out the registration form accurately and submits it.",
+                "action": "Enter valid details and click 'Register' button.",
+                "expected_outcome": "Account is created successfully, Ashley is logged in automatically, and redirected to the dashboard."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A footer with links to terms of service, privacy policy, and contact information",
+        "user_persona": "A visitor needing official information about the site.",
+        "user_goal": "Find legal documents and contact methods via the site footer.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Scanning Footer Links",
+                "description": "Leo scrolls to the bottom of any page seeking company policies and support contact.",
+                "action": "Scroll to the very bottom of the page.",
+                "expected_outcome": "Footer section is visible containing links for Terms of Service, Privacy Policy, and Contact Us."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Legal Document",
+                "description": "Leo clicks on the 'Privacy Policy' link to understand how personal data is handled.",
+                "action": "Click on 'Privacy Policy' link.",
+                "expected_outcome": "Redirected to a standalone page detailing the site’s privacy practices."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "A header with logo, main navigation menu, and user login/profile access",
+        "user_persona": "Regular site user navigating daily.",
+        "user_goal": "Quickly return to homepage and access user-specific tools using the header.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Returning Home",
+                "description": "While browsing a deep category page, Jordan wishes to go back to the homepage quickly.",
+                "action": "Click the site logo in the header.",
+                "expected_outcome": "Instantly redirected to the homepage without delay."
+            },
+            {
+                "step": 2,
+                "title": "Accessing Profile",
+                "description": "Jordan wants to check recent activity and clicks the profile icon in the header.",
+                "action": "Click the user profile icon.",
+                "expected_outcome": "Dropdown menu appears offering quick links to Profile, Settings, or Logout."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Category management in the backend to support organizing content",
+        "user_persona": "Site administrator updating content organization.",
+        "user_goal": "Verify that backend supports dynamic category management which reflects on frontend.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Fetching Categories via API",
+                "description": "Admin uses Postman or similar tool to call `/api/categories` endpoint to retrieve current list.",
+                "action": "Send GET request to `/api/categories`.",
+                "expected_outcome": "Response returns structured JSON data listing all active categories and subcategories."
+            },
+            {
+                "step": 2,
+                "title": "Observing Frontend Reflection",
+                "description": "Admin confirms that changes made in backend reflect appropriately on the frontend menus and listings.",
+                "action": "Refresh frontend pages after backend category edits.",
+                "expected_outcome": "Frontend dynamically updates to match latest category structure retrieved from backend."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "API endpoints for fetching ringtones, wallpapers, user data, and managing downloads",
+        "user_persona": "Developer testing backend services independently.",
+        "user_goal": "Test core API endpoints to confirm they return expected responses.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Media Fetch Endpoint",
+                "description": "Dev sends a request to the `/api/media` endpoint to fetch sample media items.",
+                "action": "Make GET request to `/api/media` endpoint.",
+                "expected_outcome": "Returns paginated list of media objects with titles, URLs, and metadata in JSON format."
+            },
+            {
+                "step": 2,
+                "title": "Testing User Profile Endpoint",
+                "description": "Dev accesses protected `/api/user/profile` route with valid auth token to retrieve user info.",
+                "action": "Include JWT in Authorization header and send GET to `/api/user/profile`.",
+                "expected_outcome": "Responds with authenticated user’s profile data including ID, name, and email."
+            }
+        ]
+    }
+]

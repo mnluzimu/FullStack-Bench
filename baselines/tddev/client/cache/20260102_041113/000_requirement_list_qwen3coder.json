@@ -1,0 +1,144 @@
+[
+    {
+        "resource_dependency": {
+            "propertyListingEndpoint": "/api/properties",
+            "propertyDetailsEndpoint": "/api/properties/{id}",
+            "searchPropertiesEndpoint": "/api/search",
+            "filterPropertiesEndpoint": "/api/filter"
+        },
+        "function": "Display a paginated list of property summaries on the homepage.",
+        "static_description": "The page displays a grid of cards representing properties. Each card includes an image thumbnail, address, price, number of bedrooms/bathrooms, and square footage. Background is alice blue; all text and borders use steel blue.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a property card navigates to the property detail page for that item."
+            },
+            {
+                "interaction": "Scroll",
+                "description": "Scrolling near the bottom loads more items if pagination is enabled, or triggers infinite scroll behavior."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "propertyDetailsEndpoint": "/api/properties/{id}"
+        },
+        "function": "Show detailed information about a specific property when selected from the listings.",
+        "static_description": "A full-width layout presenting images in a carousel at the top, followed by structured details such as address, price, description, features (beds/baths/sqft), location map, and contact info. All elements styled with steel blue accents over an alice blue background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking navigation arrows in the image carousel changes displayed photo."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "searchAPI": "/api/search?query={term}",
+            "filterOptionsSchema": "{price_min, price_max, location, property_type, bedrooms, bathrooms, sqft_min, sqft_max}"
+        },
+        "function": "Enable keyword-based search and multi-criteria filtering of property listings.",
+        "static_description": "At the top of the listings page, there’s a horizontal bar containing a search input field, multiple dropdown/select menus for filters (location, type, beds, baths), two sliders for price range and size, and a 'Search' button. All controls are styled in steel blue against alice blue background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking the 'Search' button applies current filter settings and updates the displayed property list."
+            },
+            {
+                "interaction": "Key Press: Enter",
+                "description": "Pressing Enter while focused in the search input triggers the same search action as clicking the button."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "navigationMenuItems": [
+                "Home",
+                "Listings",
+                "Saved Properties",
+                "Contact Us"
+            ],
+            "logoImage": "/assets/logo.svg"
+        },
+        "function": "Provide consistent site-wide navigation through header menu.",
+        "static_description": "Fixed-position header featuring a logo aligned left and a horizontal navigation menu aligned right. Menu contains links labeled Home, Listings, Saved Properties, Contact Us. Entire header uses steel blue text/icons on alice blue background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking any menu link navigates the user to the corresponding section or page."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "mapComponentLibrary": "Leaflet.js-compatible API",
+            "geolocationDataField": "latitude, longitude"
+        },
+        "function": "Visualize property locations using an embedded interactive map component.",
+        "static_description": "Below the property details section, show a responsive map centered on the property's coordinates. Pins/markers indicate nearby properties. Styled consistently with steel blue markers and controls on alice blue background canvas.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking a marker opens a small popup showing basic property info and a link to view details."
+            },
+            {
+                "interaction": "Hover",
+                "description": "Hovering over a marker highlights it and shows tooltip with brief property data."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "sessionStorageMechanism": "JWT token stored in localStorage or cookies",
+            "loginStatusCheckEndpoint": "/api/auth/status"
+        },
+        "function": "Manage user sessions for future personalization features like saving favorite properties.",
+        "static_description": "No visible UI element unless login status affects UI state (e.g., displaying 'Favorites' tab). Session tokens are managed transparently via HTTP-only cookies or localStorage depending on security configuration.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "loadingSpinnerAsset": "/assets/spinner.gif",
+            "errorPageContent": "Failed to load content. Please try again later."
+        },
+        "function": "Handle asynchronous data loading states and errors gracefully during API calls.",
+        "static_description": "During data fetch operations, display a centrally-aligned spinner animation sourced from asset path. On failure, replace content area with styled error message block using steel blue text on alice blue background.",
+        "interaction_and_states": [
+            {
+                "interaction": "Click",
+                "description": "Clicking retry button re-initiates failed request."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "databaseConnectionConfig": "DB_HOST=localhost, DB_PORT=5432, DB_USERNAME=myappuser, DB_PASSWORD=myapppassword, DB_NAME=myapp",
+            "propertyTableSchema": "CREATE TABLE properties (id SERIAL PRIMARY KEY, title TEXT NOT NULL, description TEXT, price NUMERIC(12, 2), address TEXT, city TEXT, state TEXT, zip TEXT, lat DECIMAL(9,6), lng DECIMAL(9,6), bedrooms INTEGER, bathrooms REAL, sqft INTEGER, property_type TEXT, created_at TIMESTAMP DEFAULT NOW());"
+        },
+        "function": "Establish secure connection to PostgreSQL database instance and define schema for storing property records.",
+        "static_description": "No frontend representation. Backend initializes connection pool using provided environment variables. Database table named 'properties' will store all relevant property metadata including spatial coordinates.",
+        "interaction_and_states": []
+    },
+    {
+        "resource_dependency": {
+            "responsiveDesignFramework": "CSS media queries targeting mobile/tablet/desktop breakpoints"
+        },
+        "function": "Ensure consistent and usable layout across various device screen sizes.",
+        "static_description": "Layout adjusts dynamically based on viewport width. Cards stack vertically on small screens, sidebars collapse into accordions, fonts scale appropriately, and touch targets increase in size for mobile users. Consistent alice blue background and steel blue theme maintained throughout.",
+        "interaction_and_states": [
+            {
+                "interaction": "Resize Window",
+                "description": "Resizing browser window causes adaptive layout shifts according to predefined CSS breakpoints."
+            }
+        ]
+    },
+    {
+        "resource_dependency": {
+            "installAllScriptCommand": "concurrently \\\"cd frontend && npm install\\\" \\\"cd backend && npm install\\\"",
+            "devStartScriptCommand": "concurrently \\\"cd frontend && npm run dev\\\" \\\"cd backend && npm run dev\\\""
+        },
+        "function": "Configure package.json scripts to manage installation and concurrent development startup of frontend and backend services.",
+        "static_description": "Root-level package.json file defines custom scripts under \"scripts\" section: install:all runs parallel npm installs for both directories; dev starts both dev servers simultaneously using concurrently utility.",
+        "interaction_and_states": []
+    }
+]

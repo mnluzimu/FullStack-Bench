@@ -1,0 +1,219 @@
+[
+    {
+        "requirement_tested": "Implement a search functionality allowing users to input stock codes or names",
+        "user_persona": "A new investor exploring stock options for the first time.",
+        "user_goal": "To find information about a specific stock by entering its name or code.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Initiating Search",
+                "description": "Sarah opens the website and sees the search bar prominently placed at the top of the page. She wants to look up Apple Inc.",
+                "action": "Click on the search input field.",
+                "expected_outcome": "The input field is focused and ready for typing, with placeholder text 'Enter stock code or name'."
+            },
+            {
+                "step": 2,
+                "title": "Entering Stock Name",
+                "description": "Sarah begins typing 'Apple' into the search bar hoping to see suggestions.",
+                "action": "Type 'Apple' into the search input.",
+                "expected_outcome": "Auto-suggested results appear below the input in a dropdown menu with a white background and navy borders."
+            },
+            {
+                "step": 3,
+                "title": "Selecting Suggested Option",
+                "description": "Seeing 'Apple Inc. (AAPL)' among the suggestions, Sarah clicks it to proceed.",
+                "action": "Click on 'Apple Inc. (AAPL)' from the dropdown.",
+                "expected_outcome": "The input field is populated with 'Apple Inc. (AAPL)', and the page updates to show Apple's stock information."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Display basic stock information including company name, ticker symbol, and current price",
+        "user_persona": "An experienced trader checking quick facts before making a trade decision.",
+        "user_goal": "To quickly verify key details of a selected stock without delay.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Viewing Stock Details",
+                "description": "After searching for Microsoft, Marcus looks for the most essential stock data displayed clearly.",
+                "action": "Wait for dynamic update after selecting Microsoft stock.",
+                "expected_outcome": "A card-style container appears below the search bar showing 'Microsoft Corporation (MSFT)' in bold navy font, with the current price aligned to the right."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Show market trend data with charts or graphs for selected stocks",
+        "user_persona": "A financial analyst evaluating recent performance trends.",
+        "user_goal": "To analyze the stock’s performance over time using visual charts.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Examining Market Trends",
+                "description": "Elena has selected Tesla and now examines its market trend visualization.",
+                "action": "Observe the chart area beneath the basic info section.",
+                "expected_outcome": "A full-width line graph shows Tesla's performance over time, with dates on the x-axis and price range on the y-axis, all styled appropriately."
+            },
+            {
+                "step": 2,
+                "title": "Exploring Time Intervals",
+                "description": "Curious about short-term changes, Elena decides to switch the view to a 5-day interval.",
+                "action": "Click on the '5D' interval button.",
+                "expected_outcome": "The chart reloads and displays Tesla’s stock movement specifically for the last five days."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Present financial data such as revenue, earnings, and key ratios",
+        "user_persona": "A portfolio manager assessing investment viability.",
+        "user_goal": "To review critical financial indicators for informed decision-making.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Reviewing Financial Metrics",
+                "description": "Nathan selects Amazon and scrolls down to inspect its financial health indicators.",
+                "action": "Scroll down to the tabular financial data section.",
+                "expected_outcome": "A neatly organized table lists Amazon’s Revenue, EPS, P/E Ratio, Debt-to-Equity, and Dividend Yield with navy-stonned headers."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Enable users to select from multiple report format options",
+        "user_persona": "A researcher preparing materials for a presentation.",
+        "user_goal": "To choose a suitable format for exporting the final stock report.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Choosing Export Format",
+                "description": "Priya finishes customizing her Google stock report and needs to decide how to save it.",
+                "action": "Click on the 'PDF' format button near the bottom of the customization panel.",
+                "expected_outcome": "The 'PDF' button becomes visually highlighted, indicating that the report will be generated in PDF format."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Allow users to customize report content by choosing specific sections or data points",
+        "user_persona": "A student working on a finance project focusing only on certain aspects.",
+        "user_goal": "To tailor the report content to include only relevant sections.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Customizing Report Sections",
+                "description": "James wants a simplified report on Netflix focusing just on basic info and financial data.",
+                "action": "Tick the checkboxes for 'Basic Info' and 'Financial Data'.",
+                "expected_outcome": "Only the checked sections will be included in the final generated report."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Generate automated stock reports based on user selections",
+        "user_persona": "A business consultant needing regular stock updates for clients.",
+        "user_goal": "To compile a comprehensive yet customized stock report efficiently.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Generating Custom Report",
+                "description": "Maria has configured her report preferences for Coca-Cola and is ready to generate it.",
+                "action": "Click the 'Create My Report' button.",
+                "expected_outcome": "Report generation starts, the button gets disabled temporarily, and a loading spinner appears during processing."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include a report preview feature before final generation",
+        "user_persona": "A meticulous editor verifying content accuracy pre-export.",
+        "user_goal": "To preview the report layout and ensure everything looks correct.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Previewing Generated Report",
+                "description": "David generates his Disney report and wants to confirm formatting before downloading.",
+                "action": "Scroll through the embedded report preview pane.",
+                "expected_outcome": "A scrollable iframe displays the formatted report content in real-time, allowing inspection of structure and data."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide export functionality for generated reports in common formats",
+        "user_persona": "A marketing executive needing shareable documents.",
+        "user_goal": "To download the finished report in a usable digital format.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Downloading Final Report",
+                "description": "Lisa previews her finalized Pfizer report and is satisfied with the result.",
+                "action": "Click the 'Download PDF' button underneath the preview.",
+                "expected_outcome": "The browser initiates a download of the report saved as a PDF file without reloading the page."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Implement a clean user interface with white background and navy component colors",
+        "user_persona": "A UX designer auditing visual consistency across platforms.",
+        "user_goal": "To evaluate the uniformity of color usage throughout the application.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Validating UI Consistency",
+                "description": "Omar navigates through different sections of the site to assess overall aesthetic cohesion.",
+                "action": "Observe background and component color schemes across pages.",
+                "expected_outcome": "All containers and panels maintain a white background, while interactive elements consistently use navy accents for visual harmony."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Ensure responsive design for desktop and mobile viewing",
+        "user_persona": "A busy professional accessing the platform on various devices.",
+        "user_goal": "To seamlessly interact with the website regardless of screen size.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Testing Responsive Layout",
+                "description": "Chen switches between his laptop and smartphone to compare layouts.",
+                "action": "Resize browser window or switch devices.",
+                "expected_outcome": "Content adjusts fluidly, navigation collapses into a hamburger menu on smaller screens, and fonts scale appropriately."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Include error handling for invalid stock codes or unavailable data",
+        "user_persona": "A curious teenager experimenting with random inputs.",
+        "user_goal": "To understand why some searches don't return results.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Encountering Error Handling",
+                "description": "Jamie enters a made-up stock code 'XYZ123' expecting feedback.",
+                "action": "Submit the invalid stock code in the search bar.",
+                "expected_outcome": "An inline alert banner appears above the search bar with a clear error message like 'Invalid stock symbol.', styled red but outlined in navy."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Provide loading indicators during report generation processes",
+        "user_persona": "An impatient user expecting immediate responses.",
+        "user_goal": "To know when a long-running process is underway.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Observing Loading Feedback",
+                "description": "Ryan clicks to generate his Boeing report and waits anxiously.",
+                "action": "Watch the interface after clicking 'Create My Report'.",
+                "expected_outcome": "An animated spinner replaces the main action button, signaling ongoing processing until completion."
+            }
+        ]
+    },
+    {
+        "requirement_tested": "Maintain user session data for report preferences and history",
+        "user_persona": "A frequent visitor relying on previous settings.",
+        "user_goal": "To retain personal preferences across visits without reconfiguration.",
+        "narrative_steps": [
+            {
+                "step": 1,
+                "title": "Verifying Session Persistence",
+                "description": "Zoe returns to the site after closing her browser earlier.",
+                "action": "Refresh the page or reopen the browser and revisit the site.",
+                "expected_outcome": "Previously selected report formats and recently searched stocks remain accessible via session storage mechanisms."
+            }
+        ]
+    }
+]
