@@ -2,9 +2,15 @@
 
 ### Overview
 
-This is a repository for the full-stack evaluation benchmark (FullStack-Bench) described in the paper "FullStack-Agent: Enhancing Agentic Full-Stack Web Coding via Development-Oriented Testing and Repository Back-Translation". It also contains code for the baseline testing.
+This is a repository for the full-stack evaluation benchmark (FullStack-Bench) described in the paper ["FullStack-Agent: Enhancing Agentic Full-Stack Web Coding via Development-Oriented Testing and Repository Back-Translation"](https://arxiv.org/abs/2602.03798). It also contains code for the baseline testing.
 
 ![method](assets/method.png)
+
+### Dataset
+
+| Dataset Name | Huggingface Link |
+|------------|------------------|
+| FullStack-Bench | 🤗 [luzimu/FullStack-Bench](https://huggingface.co/datasets/luzimu/FullStack-Bench) |
 
 ### Installation
 
@@ -51,3 +57,19 @@ bash src/grade_appearance/eval_appearance_parallel.sh $LOG_DIR_ROOT
 Experimental results of FullStack-Dev on [FullStack-Bench](https://github.com/mnluzimu/FullStack-Bench) compared to popular baseline methods are shown below:
 
 ![main_results](assets/main_results.png)
+
+
+### Cite
+If you find our project helpful, please cite:
+
+```
+@misc{lu2026fullstackagentenhancingagenticfullstack,
+      title={FullStack-Agent: Enhancing Agentic Full-Stack Web Coding via Development-Oriented Testing and Repository Back-Translation}, 
+      author={Zimu Lu and Houxing Ren and Yunqiao Yang and Ke Wang and Zhuofan Zong and Mingjie Zhan and Hongsheng Li},
+      year={2026},
+      eprint={2602.03798},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2602.03798}, 
+}
+```
